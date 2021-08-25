@@ -51,7 +51,7 @@
         <img src="../../Images/Notification.png" alt="">
     </div>
     <div id="userSection">
-        <div id="username">Name</div>
+        <div id="username">Rocell Bathware</div>
         <div>
             <img src="../../Images/profile.jpg" alt="">
         </div>
