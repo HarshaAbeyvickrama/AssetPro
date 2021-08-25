@@ -70,7 +70,7 @@
     }
     .componentText{
         color: #929292;
-        font-size: 15px;
+        font-size: 20px;
     }
     .component:hover{
         cursor: pointer;
