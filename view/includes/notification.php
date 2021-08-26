@@ -1,11 +1,10 @@
 <style>
     .notificationContainer{
-        
+        display: none;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         background-color: #D0D5E1;
         width: 20vw;
         height: 60vh;
-        display: grid;
         grid-template-rows:0.5fr 9.5fr;
         color: #304068;
         padding: 12px;
@@ -112,7 +111,7 @@
             <div class="notificationSection" id="oldNotifications">
                 <div class="notificationSub">Earlier</div>
                 <div>
-                    <div class="singleNotification new">
+                    <div class="singleNotification">
                         <div>
                             <img src="../../Images/profile.jpg" alt="">
                         </div>
@@ -120,7 +119,7 @@
                             Kasun reported breakdown: FA/34567
                         </div>
                     </div>
-                    <div class="singleNotification new">
+                    <div class="singleNotification">
                         <div>
                             <img src="../../Images/profile.jpg" alt="">
                         </div>
@@ -128,7 +127,7 @@
                             Kasun reported breakdown: FA/34567
                         </div>
                     </div>
-                    <div class="singleNotification new">
+                    <div class="singleNotification">
                         <div>
                             <img src="../../Images/profile.jpg" alt="">
                         </div>
@@ -136,7 +135,7 @@
                             Kasun reported breakdown: FA/34567
                         </div>
                     </div>
-                    <div class="singleNotification new">
+                    <div class="singleNotification">
                         <div>
                             <img src="../../Images/profile.jpg" alt="">
                         </div>
