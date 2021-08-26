@@ -18,6 +18,9 @@
         align-items: center;
         
     }
+    #notificationIcon:hover{
+        cursor: pointer;
+    }
     #userSection{
         display: grid;
         grid-template-columns: 7fr 3fr;
@@ -58,3 +61,20 @@
     </div>
     <div></div>
 </div>
+<?php
+    include_once("notification.php")
+?>
+
+
+
+<script>
+    var icon = document.getElementById("notificationIcon");
+    icon.addEventListener("click",e =>{
+        var notification = document.querySelector(".notificationContainer");
+        if(notification.style.display ==="none"){
+            notification.style.display = "grid";
+        }else{
+            notification.style.display= "none";
+        }
+    })
+</script>

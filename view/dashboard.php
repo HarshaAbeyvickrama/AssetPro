@@ -15,6 +15,7 @@
             display: grid;
             grid-template-columns: 1fr 9fr;
             overflow: hidden;
+            z-index: 0;
             
         }
         .container > dv{
