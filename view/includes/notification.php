@@ -68,6 +68,9 @@
     .notificationContent::-webkit-scrollbar{
         display: none;
     }
+    #markRead:hover{
+        cursor: pointer;
+    }
 </style>
 
 <div class="notificationContainer">
