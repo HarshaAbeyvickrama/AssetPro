@@ -84,7 +84,7 @@
                 <div>
                     <div class="singleNotification new">
                         <div>
-                            <img src="../../Images/profile.jpg" alt="">
+                            <img src="../Images/profile.jpg" alt="">
                         </div>
                         <div class="notificationText">
                             Kasun reported breakdown: FA/34567
@@ -92,7 +92,7 @@
                     </div>
                     <div class="singleNotification new">
                         <div>
-                            <img src="../../Images/profile.jpg" alt="">
+                            <img src="../Images/profile.jpg" alt="">
                         </div>
                         <div class="notificationText">
                             Kasun reported breakdown: FA/34567
@@ -100,7 +100,7 @@
                     </div>
                     <div class="singleNotification new">
                         <div>
-                            <img src="../../Images/profile.jpg" alt="">
+                            <img src="../Images/profile.jpg" alt="">
                         </div>
                         <div class="notificationText">
                             Kasun reported breakdown: FA/34567
@@ -113,7 +113,7 @@
                 <div>
                     <div class="singleNotification">
                         <div>
-                            <img src="../../Images/profile.jpg" alt="">
+                            <img src="../Images/profile.jpg" alt="">
                         </div>
                         <div class="notificationText">
                             Kasun reported breakdown: FA/34567
@@ -121,7 +121,7 @@
                     </div>
                     <div class="singleNotification">
                         <div>
-                            <img src="../../Images/profile.jpg" alt="">
+                            <img src="../Images/profile.jpg" alt="">
                         </div>
                         <div class="notificationText">
                             Kasun reported breakdown: FA/34567
@@ -129,7 +129,7 @@
                     </div>
                     <div class="singleNotification">
                         <div>
-                            <img src="../../Images/profile.jpg" alt="">
+                            <img src="../Images/profile.jpg" alt="">
                         </div>
                         <div class="notificationText">
                             Kasun reported breakdown: FA/34567
@@ -137,7 +137,7 @@
                     </div>
                     <div class="singleNotification">
                         <div>
-                            <img src="../../Images/profile.jpg" alt="">
+                            <img src="../Images/profile.jpg" alt="">
                         </div>
                         <div class="notificationText">
                             Kasun reported breakdown: FA/34567

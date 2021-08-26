@@ -51,12 +51,12 @@
         
     </div>
     <div id="notificationIcon">
-        <img src="../../Images/Notification.png" alt="">
+        <img src="../Images/Notification.png" alt="">
     </div>
     <div id="userSection">
         <div id="username">Rocell Bathware</div>
         <div>
-            <img src="../../Images/profile.jpg" alt="">
+            <img src="../Images/profile.jpg" alt="">
         </div>
     </div>
     <div></div>
