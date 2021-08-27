@@ -15,6 +15,7 @@
             display: grid;
             grid-template-columns: 1fr 9fr;
             overflow: hidden;
+            z-index: 0;
             
         }
         .container > dv{
@@ -41,7 +42,21 @@
         </div>
         <div>
         <?php
-            // include_once("includes/center.php")
+            //Adding the relevant overview section related to the user and role
+           switch ($_SESSION['userType']) {
+            case 'admin':
+                
+                break;
+            case 'employee':
+
+                break;
+            case 'technician':
+
+                break;
+            case 'assetManager':
+                include_once("includes/assetManager/overview.php");
+                break;
+            }
         ?>
         </div>
         

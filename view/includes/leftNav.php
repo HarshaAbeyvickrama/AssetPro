@@ -18,20 +18,41 @@
     
     #logo{
         text-align: center;
+        padding-top: 15px;
     }
     #logo > img{
-        max-width: 150px;
+
+        max-width: 100px;
         height: auto;
     }
     #components{
-        
         overflow-y: scroll;
         overflow-x: hidden;
         
     }
+    /* #components::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        background: #8070D4;
+        border: 6px solid rgba(0,0,0,0.2);
+    } */
     #components::-webkit-scrollbar{
-        /* display: none; */
+        display: none;
+     }
+
+     /* #components::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
     }
+
+    #components::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    #components::-webkit-scrollbar-thumb{
+        background-color: #000000;
+    } */
     .component{
         
         margin: 5px 0px 5px 0px;
@@ -40,20 +61,23 @@
         text-align: center;
     }
     .component div{
-        /* justify-content: center  ; */
-        /* align-items: center; */
+        
         text-align: center;
         margin: 10px;
     }
     .component img{
-        max-width: 30px;
+        max-width: 20px;
     }
     .componentText{
-        font-size: 24px;
+        color: #929292;
+        font-size: 20px;
     }
     .component:hover{
         cursor: pointer;
         
+    }
+    .selectedComponent{
+        /* border: 1px solid green; */
     }
     .component::selection{
         color: #FFA712;
@@ -68,7 +92,7 @@
     .unselectedBtn{
         color: #929292;
     }
-    #logoutBtn{
+    #logout{
         
         display: flex;
         justify-content: center;
@@ -77,17 +101,17 @@
         
 
     }
-    #logoutBtn > div{
+    #logout > div{
         background-color: #304068;
         padding: 10px 30px;
         color: white;
         border-radius: 20px;
 
     }
-    #logoutBtn > div:hover{
+    #logout > div:hover{
         cursor: pointer;
     }
-    #logoutBtn > div:c{
+    #logout > div:c{
         cursor: pointer;
     }
     
@@ -101,12 +125,10 @@
     <div id="components">
 
         <!-- Dashboard component -->
-        <div class='component' id='dashboard'>
-            <div class='componentIcon' id='dashboard'>
-                <img src='../Images/Selected/Dashboard.png' >
-            </div>
+        <div class='component selectedComponent' id='dashboard'>
+            <img src='../Images/Selected/Dashboard.png' >
             <div class='componentText selectedBtn' >Dashboard</div>
-        </div>";
+        </div>
     <?php
         switch ($_SESSION['userType']) {
             case 'admin':
@@ -196,17 +218,7 @@
                     <img src='../Images/NotSelected/Reports.png' >
                     <div class='componentText'>Reports</div>
                 </div>";
-                //Reported Breakdowns
-                echo "<div class='component' id='reportedBreakdown'>
-                    <img src='../Images/NotSelected/Breakdowns.png' >
-                    <div class='componentText'>Reported Breakdowns</div>
-                </div>";
 
-                //Reports
-                echo "<div class='component' id='reports'>
-                    <img src='../Images/NotSelected/Reports.png' >
-                    <div class='componentText'>Reports</div>
-                </div>";
 
 
                 break;
@@ -217,8 +229,8 @@
     ?>
         
     </div>
-    <div id="logoutBtn">
-        <div>Log Out</div>
+    <div id="logout">
+        <div id="btnLogout">Log Out</div>
     </div>
 </div>
 
@@ -230,14 +242,14 @@
         // event.preventDefault();
         var eventId = event.path[1].id;
         console.log(eventId);
-        changeImage(eventId);
+        setFocus(eventId);
         loadSection(eventId);        
     });
 
     function loadSection(sectionId){
 
     }
-    function changeImage(id){
+    function setFocus(id){
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item =>{
             var imageSrc = item.querySelector("img").src;
@@ -247,13 +259,22 @@
                 item.querySelector("img").src = path+"Selected/"+filename;
                 item.querySelector(".componentText").classList.remove("unselectedBtn");
                 item.querySelector(".componentText").classList.add("selectedBtn");
+                item.classList.add("selectedComponent");
+                console.log(item)
             }else{
                 item.querySelector("img").src = path+"NotSelected/"+filename;
                 item.querySelector(".componentText").classList.remove("selectedBtn");
                 item.querySelector(".componentText").classList.add("unselectedBtn");
+                item.classList.remove("selectedComponent");
             }
         })
     }
+
+    //Logout button event listener
+    var btnLogout = document.getElementById("btnLogout");
+    btnLogout.addEventListener("click",()=>{
+        console.log("logout")
+    })
 </script>
 
 
