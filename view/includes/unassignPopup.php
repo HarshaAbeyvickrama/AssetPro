@@ -68,7 +68,7 @@
     <div class="unassignPopup">
         <div id="popupTitle">These assets will be unassigned !</div>
         <div id="popupContent">
-
+            <!-- Should add the table here -->
         </div>
         <div id="popupBtn">
             <div class="btn" id="btnDelete">Delete Anyway</div>
@@ -76,3 +76,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    //event listener for delete and camcel buttons on unassignPopup
+    var btnSection = document.getElementById("popupBtn");
+    btnSection.addEventListener("click",function(e){
+        switch(e.target.id){
+            case "btnCancel":
+                console.log("cancel");
+                break;
+            case "btnDelete":
+                console.log("delete");
+                break;
+            default:
+        }
+    })
+</script>
