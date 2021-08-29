@@ -1,3 +1,63 @@
+<?php
+  $host = "localhost";
+  $user = "root";
+  $password = "";
+  $db = "assetpro";
+
+  session_start();
+
+  $data = mysqli_connect($host, $user, $password, "assetpro");
+
+  if($data===false) {
+    die("Connection Error");
+  }
+
+  if($_SERVER["REQUEST_METHOD"]=="POST") {
+    $Username = $_POST["Username"];
+    $Password = $_POST["Password"];
+
+    $sql =
+    "select * from user
+    inner join login on login.UserID = user.UserID
+    inner join role on role.RoleID=user.UserID
+    where login.UserID in ( 
+        select login.UserID
+        from login
+        where login.Username='".$Username."' and login.Password='".$Password."'
+    )";
+    
+    $result = mysqli_query($data, $sql);
+    $row = mysqli_fetch_array($result);
+    
+
+    if($row["RoleID"]=="1") {
+      $_SESSION["Username"] = $Username;
+      header("location:view/includes/Admin/index.html");
+    }
+    elseif ($row["RoleID"]=="2") {
+      $_SESSION["Username"]=$Username;
+      header("location:");
+    }
+    elseif($row["RoleID"]=="3") {
+      $_SESSION["Username"]=$Username;
+      header("location:");
+    }
+    elseif ($row["RoleID"]=="4") {
+      $_SESSION["Username"]=$Username;
+      header("location:");
+    }
+    else {
+      echo "Username or Password Incorrect";
+    }
+
+  }
+
+?>
+
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -121,14 +181,14 @@
       <div class="logo">
           <img src="./Images/AssetProLogo.png" alt="AssetPro Logo">
       </div>
-      <form method="post">
+      <form action = "#" method="POST">
         <div class="txt_field">
-          <input type="text" required />
+          <input type="text" name="Username" required />
           <span></span>
           <label>Username</label>
         </div>
         <div class="txt_field">
-          <input type="password" required />
+          <input type="password" name="Password" required />
           <span></span>
           <label>Password</label>
         </div>
