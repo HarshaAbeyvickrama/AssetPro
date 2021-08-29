@@ -25,7 +25,7 @@
         from login
         where login.Username='".$Username."' and login.Password='".$Password."'
     )";
-    
+
     $result = mysqli_query($data, $sql);
     $row = mysqli_fetch_array($result);
     
@@ -52,10 +52,6 @@
 
   }
 
-?>
-
-<?php
-  session_start();
 ?>
 
 <!DOCTYPE html>
