@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['userType']='assetManager';
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +44,7 @@
             //Adding the relevant overview section related to the user and role
            switch ($_SESSION['userType']) {
             case 'admin':
-                
+                include_once("includes/Admin/index.html");
                 break;
             case 'employee':
 
