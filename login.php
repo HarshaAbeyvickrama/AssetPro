@@ -31,25 +31,21 @@
     
 
     if($row["RoleID"]=="1") {
-      $_SESSION["Username"] = $Username;
-      header("location:view/includes/Admin/index.html");
+      $_SESSION['userType']='admin';
     }
     elseif ($row["RoleID"]=="2") {
-      $_SESSION["Username"]=$Username;
-      header("location:");
+      $_SESSION['userType']='assetManager';
     }
     elseif($row["RoleID"]=="3") {
-      $_SESSION["Username"]=$Username;
-      header("location:");
+      $_SESSION['userType']='employee';
     }
     elseif ($row["RoleID"]=="4") {
-      $_SESSION["Username"]=$Username;
-      header("location:");
+      $_SESSION['userType']='technician';
     }
     else {
       echo "Username or Password Incorrect";
     }
-
+    header("location:view/dashboard.php");
   }
 
 ?>
