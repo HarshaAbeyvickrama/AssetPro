@@ -40,7 +40,7 @@
             include_once("includes/header.php")
         ?>
         </div>
-        <div>
+        <div id="centerSection">
         <?php
             //Adding the relevant overview section related to the user and role
            switch ($_SESSION['userType']) {
@@ -54,7 +54,8 @@
 
                 break;
             case 'assetManager':
-                include_once("includes/assetManager/overview.php");
+                // include_once("includes/assetManager/overview.php");
+                include_once("includes/profile.php");
                 break;
             }
         ?>

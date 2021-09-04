@@ -241,14 +241,32 @@
     components.addEventListener("click", (event)=> {
         // event.preventDefault();
         var eventId = event.path[1].id;
-        console.log(eventId);
         setFocus(eventId);
         loadSection(eventId);        
     });
 
-    function loadSection(sectionId){
+    //Loading the sections on left nav clicks with AJAX
 
+    function loadSection(sectionId){
+        var centerSection = document.getElementById("centerSection");
+        const xhr = new XMLHttpRequest();
+        
+        xhr.open('GET',"../controller/sceneController.php?action=renderView",true);
+
+
+        xhr.onload = function(){
+            if(this.status ===200){
+                console.log(this.responseText)
+            }
+            centerSection.innerHTML = this.responseText;
+        }
+        xhr.send();
     }
+
+
+
+
+
     function setFocus(id){
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item =>{
@@ -260,7 +278,6 @@
                 item.querySelector(".componentText").classList.remove("unselectedBtn");
                 item.querySelector(".componentText").classList.add("selectedBtn");
                 item.classList.add("selectedComponent");
-                console.log(item)
             }else{
                 item.querySelector("img").src = path+"NotSelected/"+filename;
                 item.querySelector(".componentText").classList.remove("selectedBtn");
