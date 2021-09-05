@@ -94,10 +94,10 @@
                 
                 $conn = mysqli_connect("localhost","root","","assetpro");
                 //$sql = "select * from userdetails";
-                $sql = "SELECT userdetails.UserID, fname, lName, Gender 
+                $sql = "SELECT userdetails.UserID, fName, lName, Gender 
                 FROM userdetails JOIN user 
                 ON user.UserID = userdetails.UserID 
-                WHERE user.RoleID = 3)";
+                WHERE user.RoleID = 3";
 
                 $result = $conn->query($sql);
 
