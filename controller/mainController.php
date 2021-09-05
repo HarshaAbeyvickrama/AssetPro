@@ -50,7 +50,13 @@
                 # code...
                 break;
         }
-
-        return include($location.$view.".php");
+        $file = $location.$view.".php";
+        if ( !file_exists($file) || !is_readable($file) ) {
+            return "File not found";
+          }
+          else {
+            return include($file);
+          }
+       
     }
 ?>
