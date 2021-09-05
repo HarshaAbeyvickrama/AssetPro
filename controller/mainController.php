@@ -6,7 +6,7 @@
         require_once("loginController.php");
         switch ($_GET['action']) {
             case 'renderView':
-               echo renderView($_GET['view']);
+                renderView($_GET['view']);
                 break;
 
             case 'logout':
@@ -56,7 +56,7 @@
           }
           else {
             return include($file);
-          }
+        }
        
     }
 ?>

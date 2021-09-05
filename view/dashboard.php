@@ -55,8 +55,7 @@
 
                 break;
             case 'assetManager':
-                // include_once("includes/assetManager/overview.php");
-                include_once("includes/profile.php");
+                include_once("includes/assetManager/overview.php");
                 break;
             }
         ?>
