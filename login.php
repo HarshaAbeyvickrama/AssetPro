@@ -1,52 +1,8 @@
 <?php
-  $host = "localhost";
-  $user = "root";
-  $password = "";
-  $db = "assetpro";
+ 
 
-  session_start();
-
-  $data = mysqli_connect($host, $user, $password, "assetpro");
-
-  if($data===false) {
-    die("Connection Error");
-  }
-
-  if($_SERVER["REQUEST_METHOD"]=="POST") {
-    $Username = $_POST["Username"];
-    $Password = $_POST["Password"];
-
-    $sql =
-    "select * from user
-    inner join login on login.UserID = user.UserID
-    inner join role on role.RoleID=user.UserID
-    where login.UserID in ( 
-        select login.UserID
-        from login
-        where login.Username='".$Username."' and login.Password='".$Password."'
-    )";
-
-    $result = mysqli_query($data, $sql);
-    $row = mysqli_fetch_array($result);
-    
-
-    if($row["RoleID"]=="1") {
-      $_SESSION['userType']='admin';
-    }
-    elseif ($row["RoleID"]=="2") {
-      $_SESSION['userType']='assetManager';
-    }
-    elseif($row["RoleID"]=="3") {
-      $_SESSION['userType']='employee';
-    }
-    elseif ($row["RoleID"]=="4") {
-      $_SESSION['userType']='technician';
-    }
-    else {
-      echo "Username or Password Incorrect";
-    }
-    header("location:view/dashboard.php");
-  }
+  
+  
 
 ?>
 
@@ -173,7 +129,7 @@
       <div class="logo">
           <img src="./Images/AssetProLogo.png" alt="AssetPro Logo">
       </div>
-      <form action = "#" method="POST">
+      <form action = "./controller/mainController.php?action=login" method="POST">
         <div class="txt_field">
           <input type="text" name="Username" required />
           <span></span>
@@ -184,9 +140,14 @@
           <span></span>
           <label>Password</label>
         </div>
-        <div class="pass">Forgot Password?</div>
+        <div class="pass" id="forgotPass">Forgot Password?</div>
         <input type="submit" value="Login" />
       </form>
     </div>
   </body>
 </html>
+<script>
+  document.getElementById("forgotPass").addEventListener("click",function(){
+    alert("Relax and try to remember your password 😊😊")
+  })
+</script>

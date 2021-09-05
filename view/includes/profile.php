@@ -43,7 +43,12 @@
         <img src="../Images/profile.jpg" alt="">
         <div style="background-color: green;">
             <!-- <div>Basic Information</div> -->
+            <!-- A sample php code inside this div -->
+            
         </div>
     </div>
     <div id="pRight"></div>
 </div>
+
+
+    

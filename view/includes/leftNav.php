@@ -251,9 +251,8 @@
         var centerSection = document.getElementById("centerSection");
         const xhr = new XMLHttpRequest();
         
-        xhr.open('GET',"../controller/sceneController.php?action=renderView",true);
-
-
+        xhr.open('GET',`../controller/sceneController.php?action=renderView&view=${sectionId}`,true);
+        
         xhr.onload = function(){
             if(this.status ===200){
                 console.log(this.responseText)
@@ -290,7 +289,7 @@
     //Logout button event listener
     var btnLogout = document.getElementById("btnLogout");
     btnLogout.addEventListener("click",()=>{
-        console.log("logout")
+        window.location.replace("../controller/mainController.php?action=logout");
     })
 </script>
 
