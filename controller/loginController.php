@@ -6,7 +6,7 @@
     require_once("../db/dbConnection.php");
 
     function login($Username,$Password){
-        // Accessing the global variuables from dbConnection.php
+        // Accessing the global variables from dbConnection.php
         global $host,$user,$password,$db;
 
         $data = mysqli_connect($host, $user, $password, $db);

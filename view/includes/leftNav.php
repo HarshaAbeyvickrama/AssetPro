@@ -144,6 +144,12 @@
                     <div class='componentText'>Technicians</div>
                 </div>";
 
+                //Departments
+                echo "<div class='component' id='departments'>
+                    <img src='../Images/NotSelected/Departments.png' >
+                    <div class='componentText'>Departments</div>
+                </div>";
+
 
                 break;
 
