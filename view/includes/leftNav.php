@@ -250,8 +250,8 @@
     function loadSection(sectionId){
         var centerSection = document.getElementById("centerSection");
         const xhr = new XMLHttpRequest();
-        
-        xhr.open('GET',`../controller/sceneController.php?action=renderView&view=${sectionId}`,true);
+        console.log(sectionId)
+        xhr.open('GET',`../controller/mainController.php?action=renderView&view=${sectionId}`,true);
         
         xhr.onload = function(){
             if(this.status ===200){
@@ -262,10 +262,7 @@
         xhr.send();
     }
 
-
-
-
-
+    // seeting the colored icon and text on the navigation on click
     function setFocus(id){
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item =>{
