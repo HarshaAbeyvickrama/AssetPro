@@ -77,4 +77,31 @@
             notification.style.display= "none";
         }
     })
+
+    //Checking for notifications
+
+    window.onload = function(){
+       checkNewNotifications();
+    }
+   
+
+    function checkNewNotifications() {
+        setInterval(getCount, 2000);
+    }
+    var cows =1;
+    function getCount() {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET","../controller/mainController.php?action=newNotifCount",true);
+
+        xhr.onload = function(){
+            if(this.status === 200){
+                console.log("හරකා Number "+cows+" 🐮🐮")
+                cows++;
+            }else{
+                
+            }
+        }
+        xhr.send();
+    }
 </script>

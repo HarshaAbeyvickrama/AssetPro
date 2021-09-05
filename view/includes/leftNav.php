@@ -125,7 +125,7 @@
     <div id="components">
 
         <!-- Dashboard component -->
-        <div class='component selectedComponent' id='dashboard'>
+        <div class='component selectedComponent' id='overview'>
             <img src='../Images/Selected/Dashboard.png' >
             <div class='componentText selectedBtn' >Dashboard</div>
         </div>
@@ -250,14 +250,15 @@
     function loadSection(sectionId){
         var centerSection = document.getElementById("centerSection");
         const xhr = new XMLHttpRequest();
-        console.log(sectionId)
+        
         xhr.open('GET',`../controller/mainController.php?action=renderView&view=${sectionId}`,true);
         
         xhr.onload = function(){
             if(this.status ===200){
-                console.log(this.responseText)
+                centerSection.innerHTML = this.responseText;
+                console.log(this.response)
             }
-            centerSection.innerHTML = this.responseText;
+            
         }
         xhr.send();
     }
