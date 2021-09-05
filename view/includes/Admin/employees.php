@@ -70,29 +70,84 @@
     .contentSection{
         background-color: white;
         border-radius: 15px;
+        margin-top: 15px;
+        height: 82vh;
+    }
+    .addEmp {
+        color: white;
+        background-color: #6A71D7;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 14px;
+        font-size: 20px;
+        border: none;
+        margin-left: 139.8vh;
+    }
+    .empData {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 24px;
+        margin-top: -38vh;
+        margin-left: 5vh;
+        
+    }
+    .empData th {
+        color: #5C6E9B;
+        padding: 8px;
+    }
+    .empData td {
+        padding: 8px;
+        font-weight: lighter;
+    }
+    table tr:nth-child(2){
+        counter-reset: rowNumber;
+    }
+    table tr {
+        counter-increment: rowNumber;
+    }
+    table tr td:first-child::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5px;
+    }
+    .editBtn, .deleteBtn {
+        color: white;
+        background-color: #5C6E9B;
+        padding: 10px;
+        border: none;
+        border-radius: 32px;
+        width: 91px;
+        height: 41px;
+        cursor: pointer;
+        font-size: 15px;
     }
 </style>
 <div class="overviewLayout">
     <div>
         <div>All Employees</div>
+        <div>
+            <button class="addEmp">Add Employee</button>
+        </div>
     </div>
     
     
     <div class="contentSection ">
         <div class="data">
-            <table class="empdata">
-                <tr>
+            <table class="empData">
+                <tr">
                     <th>Number</th>
                     <th>Employee ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>
-                    <th>Edit/Delete</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
 
                 <?php
                 
                 $conn = mysqli_connect("localhost","root","","assetpro");
+
                 //$sql = "select * from userdetails";
                 $sql = "SELECT userdetails.UserID, fName, lName, Gender 
                 FROM userdetails JOIN user 
@@ -103,10 +158,15 @@
 
                 if($result->num_rows>0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr><td>".$row["UserID"]."</td><td>".$row["fName"]."</td>
-                        <td>".$row["lName"]."</td><td>".$row["Gender"]."</td>
-                        <td>Delete</td>
-                        </tr>";
+                        echo "<tr>
+                                <td></td>
+                                <td>".$row["UserID"]."</td>
+                                <td>".$row["fName"]."</td>
+                                <td>".$row["lName"]."</td>
+                                <td>".$row["Gender"]."</td>
+                                <td><button class='editBtn'>Edit</button></td>
+                                <td><button class='deleteBtn'>Delete</button></td>
+                              </tr>";
                     }
                 } else {
                     echo "No Results :(";
