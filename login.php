@@ -60,6 +60,7 @@
         height: 40px;
         font-size: 16px;
         border: none;
+        color: aliceblue;
         background: none;
         outline: none;
       }
