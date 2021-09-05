@@ -46,7 +46,7 @@
             //Adding the relevant overview section related to the user and role
            switch ($_SESSION['userType']) {
             case 'admin':
-                include_once("includes/Admin/index.html");
+                include_once("includes/Admin/employees.php");
                 break;
             case 'employee':
 
