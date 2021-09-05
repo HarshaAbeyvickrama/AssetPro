@@ -16,7 +16,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
     }
     #notificationIcon:hover{
         cursor: pointer;
@@ -24,9 +23,6 @@
     #userSection{
         display: grid;
         grid-template-columns: 7fr 3fr;
-        
-        
-
     }
     #userSection > div{
         display: flex;
@@ -54,7 +50,13 @@
         <img src="../Images/Notification.png" alt="">
     </div>
     <div id="userSection">
-        <div id="username">Rocell Bathware</div>
+        <!-- <div id="username">Rocell Bathware</div> -->
+        <div id="username">
+            <?php
+                $loggedInUserType = $_SESSION['userType'];
+                echo $loggedInUserType;
+            ?>
+        </div>
         <div>
             <img src="../Images/profile.jpg" alt="">
         </div>

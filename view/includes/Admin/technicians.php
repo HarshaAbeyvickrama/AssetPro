@@ -73,7 +73,7 @@
         margin-top: 15px;
         height: 82vh;
     }
-    .addEmp {
+    .addTec {
         color: white;
         background-color: #6A71D7;
         cursor: pointer;
@@ -81,9 +81,9 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 139.8vh;
+        margin-left: 136.9vh;
     }
-    .empData {
+    .tecData {
         width: 100%;
         border-collapse: collapse;
         font-size: 24px;
@@ -91,11 +91,11 @@
         margin-left: 5vh;
         
     }
-    .empData th {
+    .tecData th {
         color: #5C6E9B;
         padding: 8px;
     }
-    .empData td {
+    .tecData td {
         padding: 8px;
         font-weight: lighter;
     }
@@ -124,19 +124,19 @@
 </style>
 <div class="overviewLayout">
     <div>
-        <div>All Employees</div>
+        <div>All Technicians</div>
         <div>
-            <button class="addEmp">Add Employee</button>
+            <button class="addTec">Add Technician</button>
         </div>
     </div>
     
     
     <div class="contentSection ">
         <div class="data">
-            <table class="empData">
+            <table class="tecData">
                 <tr">
                     <th>Number</th>
-                    <th>Employee ID</th>
+                    <th>Technician ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>
@@ -152,7 +152,7 @@
                 $sql = "SELECT userdetails.UserID, fName, lName, Gender 
                 FROM userdetails JOIN user 
                 ON user.UserID = userdetails.UserID 
-                WHERE user.RoleID = 3";
+                WHERE user.RoleID = 4";
 
                 $result = $conn->query($sql);
 
