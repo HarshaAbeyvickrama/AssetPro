@@ -1,4 +1,7 @@
 <style>
+    * {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
     .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
@@ -71,46 +74,47 @@
 </style>
 <div class="overviewLayout">
     <div>
-        <div> My Dashboard Overview</div>
+        <div>All Employees</div>
     </div>
-    <div class="statSection">
-        <div>
-            <div class="statBox box1" id="allAssets">
-                <div class="statNumber">1890</div>
-                <div class="statText">My All Assets</div>
-            </div>
-        </div>
-
-        <div>
-            <div class="statBox box2" id="allEmployees">
-                    <div class="statNumber">113</div>
-                    <div class="statText">My All Employees</div>
-            </div>
-        </div>
-            
-        <div>
-            <div class="statBox box3" id="allTechnicians">
-                <div class="statNumber">56</div>
-                    <div class="statText">My All Technicians</div>
-            </div>
-        </div>
-        <div>
-            <!-- <div class="statBox box4" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
-        <div>
-            <!-- <div class="statBox box5" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
-    </div>
-    <div>
-    <div>Recent Activities</div>
-    </div>
+    
+    
     <div class="contentSection ">
+        <div class="data">
+            <table class="empdata">
+                <tr>
+                    <th>Number</th>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Edit/Delete</th>
+                </tr>
 
+                <?php
+                
+                $conn = mysqli_connect("localhost","root","","assetpro");
+                //$sql = "select * from userdetails";
+                $sql = "SELECT userdetails.UserID, fname, lName, Gender 
+                FROM userdetails JOIN user 
+                ON user.UserID = userdetails.UserID 
+                WHERE user.RoleID = 3)";
+
+                $result = $conn->query($sql);
+
+                if($result->num_rows>0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr><td>".$row["UserID"]."</td><td>".$row["fName"]."</td>
+                        <td>".$row["lName"]."</td><td>".$row["Gender"]."</td>
+                        <td>Delete</td>
+                        </tr>";
+                    }
+                } else {
+                    echo "No Results :(";
+                }
+                $conn->close();
+
+                ?>
+            </table>
+        </div>
     </div>
 </div>
