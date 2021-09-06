@@ -89,7 +89,6 @@
         font-size: 20px;
         margin-top: -38vh;
         margin-left: 5vh;
-        overflow-y: scroll;
     }
     .empData th {
         color: #5C6E9B;
