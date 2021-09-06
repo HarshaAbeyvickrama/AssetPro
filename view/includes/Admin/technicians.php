@@ -148,7 +148,6 @@
                 
                 $conn = mysqli_connect("localhost","root","","assetpro");
 
-                //$sql = "select * from userdetails";
                 $sql = "SELECT userdetails.UserID, fName, lName, Gender 
                 FROM userdetails JOIN user 
                 ON user.UserID = userdetails.UserID 
