@@ -100,18 +100,6 @@
                     <div class="statText">All Technicians</div>
             </div>
         </div>
-        <div>
-            <!-- <div class="statBox box4" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
-        <div>
-            <!-- <div class="statBox box5" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
     </div>
     <div>
     <div>Recent Activities</div>

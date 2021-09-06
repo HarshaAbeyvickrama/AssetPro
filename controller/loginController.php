@@ -30,8 +30,7 @@
             )";
 
             $result = mysqli_query($data, $sql);
-            $row = mysqli_fetch_array($result);
-            
+            $row = mysqli_fetch_array($result);            
 
             if($row["RoleID"]=="1") {
                 $_SESSION['userType']='admin';

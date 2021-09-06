@@ -72,6 +72,7 @@
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
+        overflow: hidden;
     }
     .addEmp {
         color: white;
@@ -89,7 +90,10 @@
         font-size: 24px;
         margin-top: -38vh;
         margin-left: 5vh;
-        
+        overflow-y: scroll;
+    }
+    .empData::-webkit-scrollbar{
+        display: none;
     }
     .empData th {
         color: #5C6E9B;
@@ -135,7 +139,7 @@
         <div class="data">
             <table class="empData">
                 <tr">
-                    <th>Number</th>
+                    <th id="num">Number</th>
                     <th>Employee ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -148,7 +152,6 @@
                 
                 $conn = mysqli_connect("localhost","root","","assetpro");
 
-                //$sql = "select * from userdetails";
                 $sql = "SELECT userdetails.UserID, fName, lName, Gender 
                 FROM userdetails JOIN user 
                 ON user.UserID = userdetails.UserID 
