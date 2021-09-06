@@ -126,7 +126,7 @@
     <div>
         <div>All Employees</div>
         <div>
-            <button class="addEmp">Add Employee</button>
+            <button id="addEmp" class="addEmp">Add Employee</button>
         </div>
     </div>
     
@@ -177,3 +177,8 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('addEmp').addEventListener('click', function() {
+        loadSection('emprofile');
+    });
+</script>
