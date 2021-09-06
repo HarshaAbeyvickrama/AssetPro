@@ -73,7 +73,7 @@
         margin-top: 15px;
         height: 82vh;
     }
-    .addEmp {
+    .addDep {
         color: white;
         background-color: #6A71D7;
         cursor: pointer;
@@ -83,19 +83,19 @@
         border: none;
         margin-left: 132.8vh;
     }
-    .empData {
+    .depData {
         width: 100%;
         border-collapse: collapse;
-        font-size: 24px;
+        font-size: 20px;
         margin-top: -38vh;
         margin-left: 5vh;
         
     }
-    .empData th {
+    .depData th {
         color: #5C6E9B;
         padding: 8px;
     }
-    .empData td {
+    .depData td {
         padding: 8px;
         font-weight: lighter;
     }
@@ -127,13 +127,13 @@
     <div>
         <div>All Departments</div>
         <div>
-            <button class="addEmp">Add Department</button>
+            <button class="addDep">Add Department</button>
         </div>
     </div>
     
     <div class="contentSection ">
         <div class="data">
-            <table class="empData">
+            <table class="depData">
                 <tr">
                     <th>Number</th>
                     <th>Department ID</th>
@@ -149,7 +149,7 @@
                 
                 $conn = mysqli_connect("localhost","root","","assetpro");
 
-                $sql = "SELECT * FROM department";
+                $sql = "SELECT DepartmentID, Name, ContactNum, DATE(DateCreated) AS datecreated, DATE(LastModified) AS lastmodified FROM department";
 
                 $result = $conn->query($sql);
 
@@ -160,8 +160,8 @@
                                 <td>".$row["DepartmentID"]."</td>
                                 <td>".$row["Name"]."</td>
                                 <td>".$row["ContactNum"]."</td>
-                                <td>".$row["DateCreated"]."</td>
-                                <td>".$row["LastModified"]."</td>
+                                <td>".$row["datecreated"]."</td>
+                                <td>".$row["lastmodified"]."</td>
                                 <td><button class='editBtn'>Edit</button></td>
                                 <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";

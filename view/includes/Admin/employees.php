@@ -72,7 +72,6 @@
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
-        overflow: hidden;
     }
     .addEmp {
         color: white;
@@ -87,13 +86,10 @@
     .empData {
         width: 100%;
         border-collapse: collapse;
-        font-size: 24px;
+        font-size: 20px;
         margin-top: -38vh;
         margin-left: 5vh;
         overflow-y: scroll;
-    }
-    .empData::-webkit-scrollbar{
-        display: none;
     }
     .empData th {
         color: #5C6E9B;
