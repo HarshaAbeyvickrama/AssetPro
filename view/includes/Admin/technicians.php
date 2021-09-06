@@ -86,10 +86,9 @@
     .tecData {
         width: 100%;
         border-collapse: collapse;
-        font-size: 24px;
+        font-size: 20px;
         margin-top: -38vh;
         margin-left: 5vh;
-        
     }
     .tecData th {
         color: #5C6E9B;
