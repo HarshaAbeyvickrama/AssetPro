@@ -66,7 +66,7 @@
         margin: 10px;
     }
     .component img{
-        max-width: 20px;
+        max-height: 30px;
     }
     .componentText{
         color: #929292;
@@ -180,7 +180,7 @@
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
-                    <img src='../Images/NotSelected/Assets.png' >
+                    <img src='../Images/NotSelected/Repaired.png' >
                     <div class='componentText'>Repaired Assets</div>
                 </div>";
 
