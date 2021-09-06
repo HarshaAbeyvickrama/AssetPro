@@ -49,10 +49,11 @@
                 include_once("includes/Admin/overview.php");
                 break;
             case 'employee':
-
+                include_once("includes/employee/overview.php");
                 break;
+            
             case 'technician':
-
+                include_once("includes/technician/overview.php");
                 break;
             case 'assetManager':
                 include_once("includes/assetManager/overview.php");
@@ -62,8 +63,9 @@
         </div>
         
     </div>
-    <?php
+    <script>
+       
 
-    ?>
+    </script>
 </body>
 </html>

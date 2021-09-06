@@ -126,7 +126,7 @@
     <div>
         <div>All Employees</div>
         <div>
-            <button id="addEmp" class="addEmp">Add Employee</button>
+            <div id="addEmp" class="addEmp">Add Employee</div>
         </div>
     </div>
     
@@ -177,8 +177,11 @@
         </div>
     </div>
 </div>
-<script>
-    document.getElementById('addEmp').addEventListener('click', function() {
-        loadSection('emprofile');
+<script type="text/javascript">
+    var addEmployeeBtn = document.getElementById("addEmp");
+    addEmployeeBtn.addEventListener('click',function(){
+
+        //Add the code to execute
+        alert("hemlo 👽")
     });
 </script>
