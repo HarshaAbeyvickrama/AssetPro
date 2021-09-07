@@ -73,7 +73,7 @@
         margin-top: 15px;
         height: 82vh;
     }
-    .addEmp {
+    .addEmp #addEmp {
         color: white;
         background-color: #6A71D7;
         cursor: pointer;
@@ -125,14 +125,16 @@
     <div>
         <div>All Employees</div>
         <div>
-            <div id="addEmp" class="addEmp">Add Employee</div>
+            <div id="addEmp" class="addEmp">
+                <button id="addEmp">Add Employees</button>
+            </div>
         </div>
     </div>
     
     
     <div class="contentSection ">
         <div class="data">
-            <table class="empData">
+            <table class="empData" id="empData">
                 <tr">
                     <th id="num">Number</th>
                     <th>Employee ID</th>
@@ -177,10 +179,13 @@
     </div>
 </div>
 <script type="text/javascript">
-    var addEmployeeBtn = document.getElementById("addEmp");
+    var addEmployeeBtn = document.getElementById('addEmp');
     addEmployeeBtn.addEventListener('click',function(){
 
         //Add the code to execute
-        alert("hemlo 👽")
+
+        loadSection('emprofile');
+
+        // alert("hemlo 👽")
     });
 </script>
