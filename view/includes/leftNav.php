@@ -275,7 +275,6 @@
     //Evalute the js code coming from the AJAX requests and appending them to DOM as scripts
     
     function evaluateJs(){
-        console.log("evall")
         scripts = document.getElementById("centerSection").querySelectorAll('script');
 
         for (var n = 0; n < scripts.length; n++){
