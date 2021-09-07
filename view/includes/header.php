@@ -83,7 +83,7 @@
     //Checking for notifications
 
     window.onload = function(){
-       checkNewNotifications();
+    //    checkNewNotifications();
     }
    
 

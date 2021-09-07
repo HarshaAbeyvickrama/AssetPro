@@ -2,11 +2,11 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
-    if(isset($_GET['action'])){
+    if(isset($_REQUEST['action'])){
         require_once("loginController.php");
-        switch ($_GET['action']) {
+        switch ($_REQUEST['action']) {
             case 'renderView':
-                renderView($_GET['view']);
+                renderView($_REQUEST['view']);
                 break;
 
             case 'logout':

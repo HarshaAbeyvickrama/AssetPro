@@ -248,7 +248,9 @@
         // event.preventDefault();
         var eventId = event.path[1].id;
         setFocus(eventId);
-        loadSection(eventId);        
+        loadSection(eventId);   
+       
+            
     });
 
     //Loading the sections on left nav clicks with AJAX
@@ -258,15 +260,30 @@
         const xhr = new XMLHttpRequest();
         
         xhr.open('GET',`../controller/mainController.php?action=renderView&view=${sectionId}`,true);
-        
+        xhr.setRequestHeader("Content-type", "text/javascript");
         xhr.onload = function(){
             if(this.status ===200){
                 centerSection.innerHTML = this.responseText;
-                console.log(this.response)
+                evaluateJs(); 
             }
             
         }
         xhr.send();
+        
+    }
+
+    //Evalute the js code coming from the AJAX requests and appending them to DOM as scripts
+    
+    function evaluateJs(){
+        scripts = document.getElementById("centerSection").querySelectorAll('script');
+
+        for (var n = 0; n < scripts.length; n++){
+            var script = document.createElement("script");
+            script.type="text/javascript";
+            script.innerHTML=scripts[n].innerHTML;
+            document.getElementsByTagName('head')[0].appendChild(script);
+            
+        }
     }
 
     // seeting the colored icon and text on the navigation on click

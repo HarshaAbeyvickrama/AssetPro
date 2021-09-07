@@ -39,7 +39,7 @@
     }
 </style>
 
-<div class="profile">
+<div id = "emprofile" class="profile">
     <div id="pLeft">
         <img src="../Images/profile.jpg" alt="">
         <div style="background-color: green;">
