@@ -1,18 +1,15 @@
 <style>
-    * {
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
     .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
         height: 82vh;
         width: 87.5vw;
-        overflow-y: hidden;
+        overflow-y: auto;
         padding: 20px;
         background-color: #F1F4FF;
     }
     .overviewLayout > div{
-        display: flex;
+        display: grid;
         align-items: center;
         color: #304068;
         font-size: 24px;
@@ -66,114 +63,181 @@
     .box5{
         background-color: #4E74AB;
     }
-    .contentSection{
-        background-color: white;
+
+    .overviewLayout .contentSection{
+        all: revert;
+        display: grid;
+        grid-template-rows: 1fr 9fr;
         border-radius: 15px;
-        margin-top: 15px;
-        height: 82vh;
-        width: 100%;
-        overflow-y: auto;
+        overflow-y: hidden;
+        padding: 0px 10px;
+        background-color: white;
     }
-    .addDep {
-        color: white;
-        background-color: #6A71D7;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 14px;
-        font-size: 20px;
-        border: none;
-        margin-left: 132.8vh;
-    }
-    .depData {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 20px;
-        margin-top: -38vh;
-        margin-left: 5vh;
+    .contentSection > div{
+        margin:8px 15px;
+        
         
     }
-    .depData th {
-        color: #5C6E9B;
-        padding: 8px;
+    .recentTitle{
+        color: #304068;
+        font-size: 20px;
+        font-weight: bold;
     }
-    .depData td {
-        padding: 8px;
-        font-weight: lighter;
-    }
-    table tr:nth-child(2){
-        counter-reset: rowNumber;
-    }
-    table tr {
-        counter-increment: rowNumber;
-    }
-    table tr td:first-child::before {
-        content: counter(rowNumber);
-        min-width: 1em;
-        margin-right: 0.5px;
-    }
-    .editBtn, .deleteBtn {
-        color: white;
-        background-color: #5C6E9B;
-        padding: 10px;
-        border: none;
-        border-radius: 32px;
-        width: 91px;
-        height: 41px;
-        cursor: pointer;
-        font-size: 15px;
-    }
-</style>
 
+
+    /* Recent activity Table CSS */
+    .table{
+        display: table;
+        width: 100%;
+        margin: 10px 0px;
+        
+    }
+    .tableHeader{
+        display: table-header-group;
+        font-size: 19px;
+        padding: 15px;
+        font-weight: bold;
+    }
+    .table .tableRowGroup{
+        display: table-row-group;
+    }
+    .tableRow{
+        display: table-row;
+    }
+    .tableCell{
+        display: table-cell;
+    }
+    .tableRowGroup .tableRow:hover{
+        cursor: pointer;
+        background-color: grey;
+        
+    }
+    .tableRow .tableCell{
+        padding:10px 0px;
+        
+    }
+
+   
+    hr{
+        background-color: #304068;
+        width: 100%;
+        /* height: 1px; */
+    }
+    #assetSections{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    #assetSections > div{
+        width: 200px;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        color: #7F91BC;
+        font-size: 20px;
+        height: 100%;
+        padding: 8px 0px;
+        
+    }
+    #assetSections > div:hover{
+        cursor: pointer;
+        background-color: aliceblue;
+    }
+    #assetContents{
+        overflow-y: auto;
+        padding: 10px;
+        /* height: 100%; */
+
+    }
+    .buttonSection{
+        all: revert;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding-bottom: 10px;
+    }
+    .button{
+        background-color: #6A71D7;
+        padding: 10px 20px;
+        color: white;
+        border-radius: 10px;
+    }
+    .button:hover{
+        cursor: pointer;
+    }
+    
+</style>
 <div class="overviewLayout">
     <div>
-        <div>All Assets</div>
+        <div>Dashboard Overview</div>
+    </div>
+    <div class="statSection">
         <div>
-            <button class="addDep">Add Asset</button>
+            <div class="statBox box1" id="allAssets">
+                <div class="statNumber">1890</div>
+                <div class="statText">All Assets</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="statBox box2" id="allEmployees">
+                    <div class="statNumber">113</div>
+                    <div class="statText">All Employees</div>
+            </div>
+        </div>
+            
+        <div>
+            <div class="statBox box3" id="allTechnicians">
+                <div class="statNumber">56</div>
+                    <div class="statText">All Technicians</div>
+            </div>
+        </div>
+        <div>
+            <div class="statBox box4" id="allTechnicians">
+                <div class="statNumber">897</div>
+                    <div class="statText">Tangible Assets</div>
+            </div>
+        </div>
+        <div>
+            <div class="statBox box5" id="allTechnicians">
+                <div class="statNumber">584</div>
+                    <div class="statText">Cosumable Assets</div>
+            </div>
         </div>
     </div>
-    
-    <div class="contentSection ">
-        <div class="data">
-            <table class="depData">
-                <tr">
-                    <th>Number</th>
-                    <th>Department ID</th>
-                    <th>Department Name</th>
-                    <th>Contact Number</th>
-                    <th>Date Created</th>
-                    <th>Last Modified</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-
-                <?php
-                
-                $conn = mysqli_connect("localhost","root","","assetpro");
-
-                $sql = "SELECT DepartmentID, Name, ContactNum, DATE(DateCreated) AS datecreated, DATE(LastModified) AS lastmodified FROM department";
-
-                $result = $conn->query($sql);
-
-                if($result->num_rows>0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td></td>
-                                <td>".$row["DepartmentID"]."</td>
-                                <td>".$row["Name"]."</td>
-                                <td>".$row["ContactNum"]."</td>
-                                <td>".$row["datecreated"]."</td>
-                                <td>".$row["lastmodified"]."</td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
-                              </tr>";
-                    }
-                } else {
-                    echo "No Results :(";
-                }
-                $conn->close();
-
-                ?>
-            </table>
+    <div>
+        <div>Recent Activities</div>
+    </div>
+    <div class="contentSection">
+        <div id="assetSections">
+            <div id="allAssets">All Assets</div>
+            <div id="assignedAssets">Assigned Assets</div>
+            <div id="unassignedAssets">Unassigned Assets</div>
+            <div id="assignedHistory">Assigned History</div>
+            <div id="repairedAssets">Repaired Assets</div>
+            <div id="repairHistory">Repair History</div>
         </div>
+        <div id="assetContents">
+            <?php
+                include("allAssets.php");
+            ?>
+        </div>
+        <!-- <div class="buttonSection">
+            <div class="button" id="addAsset">Add Asset</div>
+        </div> -->
     </div>
 </div>
+
+<script>
+    document.getElementById("assetSections").addEventListener('click',function(e){
+        const eventId = e.target.id;
+        if(eventId != 'assetSections'){
+            assetContents = document.getElementById("assetContents");
+            loadSection(eventId,assetContents);
+            e.stopPropagation();
+        }
+        
+    })
+</script>
