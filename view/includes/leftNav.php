@@ -8,7 +8,7 @@
         /* overflow: hidden; */
     }
     .navWrapper{
-        width: 10vw;
+        width: 200px;
         height: 100vh;
         display: grid;
         grid-template-rows: 2fr 7fr 1fr;
@@ -66,7 +66,7 @@
         margin: 10px;
     }
     .component img{
-        max-height: 30px;
+        max-height: 80px;
     }
     .componentText{
         color: #929292;
@@ -127,7 +127,7 @@
         <!-- Dashboard component -->
         <div class='component selectedComponent' id='overview'>
             <img src='../Images/Selected/Dashboard.png' >
-            <div class='componentText selectedBtn' >Dashboard</div>
+            <div class='componentText selectedBtn' ></div>
         </div>
     <?php
         switch ($_SESSION['userType']) {
@@ -135,19 +135,19 @@
                 //Employees
                 echo "<div class='component' id='employees'>
                     <img src='../Images/NotSelected/Employees.png' >
-                    <div class='componentText'>Employees</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
                     <img src='../Images/NotSelected/Technicians.png' >
-                    <div class='componentText'>Technicians</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 //Departments
                 echo "<div class='component' id='departments'>
                     <img src='../Images/NotSelected/Departments.png' >
-                    <div class='componentText'>Departments</div>
+                    <div class='componentText'></div>
                 </div>";
 
 
@@ -158,13 +158,13 @@
                 //Assigned Assets
                 echo "<div class='component' id='assignedAssets'>
                     <img src='../Images/NotSelected/Assets.png' >
-                    <div class='componentText'>Assigned Assets</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
                     <img src='../Images/NotSelected/Breakdowns.png' >
-                    <div class='componentText'>Reported Breakdowns</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 break;
@@ -175,13 +175,13 @@
                 //Assigned Assets
                 echo "<div class='component' id='assignedAssets'>
                     <img src='../Images/NotSelected/Assets.png' >
-                    <div class='componentText'>Assigned Assets</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
                     <img src='../Images/NotSelected/Repaired.png' >
-                    <div class='componentText'>Repaired Assets</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 break;
@@ -192,37 +192,37 @@
                 //Assets
                 echo "<div class='component' id='assets'>
                     <img src='../Images/NotSelected/Assets.png' >
-                    <div class='componentText'>Assets</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 //Employees
                 echo "<div class='component' id='employees'>
                     <img src='../Images/NotSelected/Employees.png' >
-                    <div class='componentText'>Employees</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
                     <img src='../Images/NotSelected/Technicians.png' >
-                    <div class='componentText'>Technicians</div>
+                    <div class='componentText'></div>
                 </div>";
                     
                 //Disposals
                 echo "<div class='component' id='disposals'>
                     <img src='../Images/NotSelected/Disposals.png' >
-                    <div class='componentText'>Disposals</div>
+                    <div class='componentText'></div>
                 </div>";
                     
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
                     <img src='../Images/NotSelected/Breakdowns.png' >
-                    <div class='componentText'>Reported Breakdowns</div>
+                    <div class='componentText'></div>
                 </div>";
 
                 //Reports
                 echo "<div class='component' id='reports'>
                     <img src='../Images/NotSelected/Reports.png' >
-                    <div class='componentText'>Reports</div>
+                    <div class='componentText'></div>
                 </div>";
 
 
