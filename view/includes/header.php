@@ -13,12 +13,28 @@
         width: 30px;
     }
     #notificationIcon{
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     #notificationIcon:hover{
         cursor: pointer;
+    }
+    #notificationCount{
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        background-color: red;
+        border-radius: 50%;
+        color: white;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        font-weight: bold;
     }
     #userSection{
         display: grid;
@@ -48,6 +64,7 @@
     </div>
     <div id="notificationIcon">
         <img src="../Images/Notification.png" alt="">
+        <span id="notificationCount">2</span>
     </div>
     <div id="userSection">
         <!-- <div id="username">Rocell Bathware</div> -->

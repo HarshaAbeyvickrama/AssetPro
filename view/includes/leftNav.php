@@ -267,7 +267,7 @@
                 section.innerHTML = this.responseText;
                 evaluateJs(); 
             }
-            
+        
         }
         xhr.send();
         
