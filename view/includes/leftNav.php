@@ -66,7 +66,7 @@
         margin: 10px;
     }
     .component img{
-        max-height: 80px;
+        max-height: 60px;
     }
     .componentText{
         color: #929292;
