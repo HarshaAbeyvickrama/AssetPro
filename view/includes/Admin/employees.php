@@ -125,7 +125,7 @@
     <div>
         <div>All Employees</div>
         <div>
-            <div id="addEmp" class="addEmp">
+            <div class="addEmp">
                 <button id="addEmp">Add Employees</button>
             </div>
         </div>
