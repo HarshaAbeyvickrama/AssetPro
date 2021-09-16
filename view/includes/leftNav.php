@@ -66,7 +66,7 @@
         margin: 10px;
     }
     .component img{
-        max-height: 80px;
+        max-height: 60px;
     }
     .componentText{
         color: #929292;
@@ -246,25 +246,24 @@
     var components = document.getElementById("components");
     components.addEventListener("click", (event)=> {
         // event.preventDefault();
-        var centerSection = document.getElementById("centerSection");
         var eventId = event.path[1].id;
         setFocus(eventId);
-        loadSection(eventId,centerSection);   
+        loadSection(eventId);   
        
             
     });
 
     //Loading the sections on left nav clicks with AJAX
 
-    function loadSection(sectionId,section){
-        
+    function loadSection(sectionId){
+        var centerSection = document.getElementById("centerSection");
         const xhr = new XMLHttpRequest();
         
         xhr.open('GET',`../controller/mainController.php?action=renderView&view=${sectionId}`,true);
         xhr.setRequestHeader("Content-type", "text/javascript");
         xhr.onload = function(){
             if(this.status ===200){
-                section.innerHTML = this.responseText;
+                centerSection.innerHTML = this.responseText;
                 evaluateJs(); 
             }
         
