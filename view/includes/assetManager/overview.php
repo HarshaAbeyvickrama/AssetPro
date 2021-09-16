@@ -9,12 +9,11 @@
         background-color: #F1F4FF;
     }
     .overviewLayout > div{
-        display: flex;
+        display: grid;
         align-items: center;
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-        
     }
     .statSection{
         display: grid;
@@ -64,9 +63,65 @@
     .box5{
         background-color: #4E74AB;
     }
-    .contentSection{
-        background-color: white;
+
+    .contentSection ::-webkit-scrollbar{
+        display: none;
+    }
+    .overviewLayout .contentSection{
+        all: revert;
+        display: inline-block;
+        /* grid-template-rows: 1fr 1fr; */
         border-radius: 15px;
+        overflow-y: auto;
+        padding: 10px;
+        background-color: white;
+    }
+    .contentSection > div{
+        margin:15px;
+        height: auto;
+    }
+    .recentTitle{
+        color: #304068;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+    /* Recent activity Table CSS */
+    .table{
+        display: table;
+        width: 100%;
+        margin: 10px 0px;
+        
+    }
+    .tableHeader{
+        display: table-header-group;
+        font-size: 19px;
+        padding: 15px;
+        font-weight: bold;
+    }
+    .table .tableRowGroup{
+        display: table-row-group;
+    }
+    .tableRow{
+        display: table-row;
+    }
+    .tableCell{
+        display: table-cell;
+    }
+    .tableRowGroup .tableRow:hover{
+        cursor: pointer;
+        background-color: grey;
+        
+    }
+    .tableRow .tableCell{
+        padding:10px 0px;
+        
+    }
+    hr{
+        background-color: #304068;
+        width: 100%;
+        /* height: 1px; */
     }
 </style>
 <div class="overviewLayout">
@@ -108,9 +163,71 @@
         </div>
     </div>
     <div>
-    <div>Recent Activities</div>
+        <div>Recent Activities</div>
     </div>
     <div class="contentSection ">
+        <div class="recent24">
+            <div class="recentTitle">Last 24 Hours</div>
 
+            <div class="recentActivityTable table">
+                <div class="tableHeader">
+                    <div class="tableCell">Date</div>
+                    <div class="tableCell">Name</div>
+                    <div class="tableCell">Role</div>
+                    <div class="tableCell">Task</div>
+                    <div class="tableCell">Time</div>
+                </div>
+                <div class="tableRowGroup">
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="oldActivities">
+            <div class="recentTitle">Earlier</div>
+
+            <div class="recentActivityTable table">
+                <div class="tableHeader">
+                    <div class="tableCell">Date</div>
+                    <div class="tableCell">Name</div>
+                    <div class="tableCell">Role</div>
+                    <div class="tableCell">Task</div>
+                    <div class="tableCell">Time</div>
+                </div>
+                <div class="tableRowGroup">
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
     </div>
 </div>
