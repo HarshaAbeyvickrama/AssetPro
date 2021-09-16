@@ -266,7 +266,7 @@
                 centerSection.innerHTML = this.responseText;
                 evaluateJs(); 
             }
-            
+        
         }
         xhr.send();
         
