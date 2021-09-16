@@ -62,9 +62,9 @@
     <div>
         
     </div>
-    <div id="notificationIcon">
-        <img src="../Images/Notification.png" alt="">
-        <span id="notificationCount">2</span>
+    <div id="notificationIcon" class="notificationBadge">
+        <img src="../Images/Notification.png" alt="" class="notificationBadge">
+        <span id="notificationCount" class="notificationBadge">2</span>
     </div>
     <div id="userSection">
         <!-- <div id="username">Rocell Bathware</div> -->
@@ -123,4 +123,14 @@
         }
         xhr.send();
     }
+
+
+    //hide notification panel when clicked outside 
+    document.addEventListener('click',function(e){
+        notificationWindow = document.querySelector('.notificationContainer');
+        if(e.target.classList[0] !== 'notificationBadge' && window.getComputedStyle(notificationWindow).display !== "none"){
+            notificationWindow.style.display = 'none';
+            
+        }
+    })
 </script>
