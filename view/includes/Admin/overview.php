@@ -120,5 +120,6 @@
     </div>
     <div class="contentSection">
         <h2>Last 24 hours</h2>
+        
     </div>
 </div>

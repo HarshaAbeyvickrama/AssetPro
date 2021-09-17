@@ -81,7 +81,7 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 136.9vh;
+        margin-left: 134vh;
     }
     .tecData {
         width: 100%;
