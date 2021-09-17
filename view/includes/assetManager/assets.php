@@ -230,8 +230,7 @@
     document.getElementById("assetSections").addEventListener('click',function(e){
         const eventId = e.target.id;
         if(eventId != 'assetSections'){
-            assetContents = document.getElementById("assetContents");
-            loadSection(eventId,assetContents);
+            loadSection("assetContents",eventId);
             e.stopPropagation();
         }
         

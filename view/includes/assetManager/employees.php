@@ -115,7 +115,7 @@
     
      
 </style>
-<form action="">
+<form action="" id="userProfileForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection"> 
@@ -151,7 +151,7 @@
                         <input type="radio" name="gender" id="female" value="female"><label>Female</label>
                     </div>
                     <div class="col-btn">
-                        <div>Edit</div>
+                        <div id="btnEditProfile">Edit</div>
                     </div>
 
                 </div>
@@ -206,5 +206,34 @@
 
 </form>
 
+<script>
+
+    // Enable / Disable the form fields
+    
+    // formID = the Id of the form that should be diabled
+    // readonlyState ---->
+    //      true --> form disabled 
+    //      false --> form enabled 
+    
+    function formState(formId,readonlyState){
+        const form = document.getElementById(formId);
+        var elements = form.elements;
+        var len = elements.length;
+        for(var i=0; i<len; ++i){
+            elements[i].readOnly = readonlyState;
+        }
+    }
+    
+    formState("userProfileForm",true);
+    
+    var btnEditProfile = document.getElementById("btnEditProfile")
+    btnEditProfile.addEventListener('click',function(){
+        formState("userProfileForm",false);
+        btnEditProfile.style.display = 'none';
+
+
+    })
+
+</script>
 
     
