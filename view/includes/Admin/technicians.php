@@ -88,7 +88,7 @@
         border-collapse: collapse;
         font-size: 20px;
         margin-top: -38vh;
-        margin-left: 5vh;
+        margin-left: 1vh;
     }
     .tecData th {
         color: #5C6E9B;
@@ -97,6 +97,8 @@
     .tecData td {
         padding: 8px;
         font-weight: lighter;
+        text-align: center;
+        width: 140px;
     }
     table tr:nth-child(2){
         counter-reset: rowNumber;

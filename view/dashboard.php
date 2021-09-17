@@ -27,6 +27,12 @@
             grid-row: 1/3;
            
         }
+        #headerDiv {
+            border: none;
+            border-left: 4px solid #F1F4FF;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -36,7 +42,7 @@
             include_once("includes/leftNav.php");
         ?>
         </div>
-        <div>
+        <div id="headerDiv">
         <?php
             include_once("includes/header.php")
         ?>
