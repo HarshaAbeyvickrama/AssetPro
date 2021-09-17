@@ -68,7 +68,6 @@
         display: inline-block;
         /* grid-template-rows: 1fr 1fr; */
         border-radius: 15px;
-        overflow-y: auto;
         padding: 10px;
         background-color: white;
     }
@@ -161,7 +160,7 @@
     <div>
         <div>Recent Activities</div>
     </div>
-    <div class="contentSection ">
+    <div class="contentSection scrollBar">
         <div class="recent24">
             <div class="recentTitle">Last 24 Hours</div>
 
@@ -207,6 +206,62 @@
                     <div class="tableCell">Time</div>
                 </div>
                 <div class="tableRowGroup">
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell">18/07/2020</div>
+                        <div class="tableCell">Wathsala</div>
+                        <div class="tableCell">Reported Breakdown: FA/12345</div>
+                        <div class="tableCell">Employee</div>
+                        <div class="tableCell">5 Hours ago</div>
+                    </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
                         <div class="tableCell">Wathsala</div>

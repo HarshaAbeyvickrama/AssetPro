@@ -1,49 +1,34 @@
 <style>
-    form{
-        height: 87vh;
-    }
     .profile {
-        all: revert;
         display: grid;
         grid-template-columns: 1fr 1fr;
         background-color: #F1F4FF;
-        overflow:hidden;
-        padding: 0px;
-        height: 87vh;
     }
 
     .profile>div {
         /* margin: 15px; */
         background-color: white;
         border-radius: 10px;
-        /* height: calc(100% - 100px); */
-        /* height: 100%; */
         /* padding: 10px; */
 
     }
-    .leftSection,
-    .rightSection{
-        overflow-y: auto;
-    }
-    /* .leftSection::-webkit-scrollbar,
-    .rightSection::-webkit-scrollbar{
-        display: none;
-    } */
 
-    .profile .leftSection {
+    .leftSection {
         display: grid;
         grid-template-rows: 4fr 6fr;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        background-color: forestgreen;
         margin: 15px 7.5px 15px 15px;
         padding: 10px;
-        
+
     }
-    
+
     .rightSection {
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: forestgreen;
         margin: 15px 15px 15px 7.5px;
         padding: 10px;
     }
@@ -63,9 +48,9 @@
     }
 
     .leftSection .leftBottom {
+        all: revert;
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        width: 100%;
         height: 100%;
     }
 
@@ -108,8 +93,6 @@
         width: 100%;
         color: #304068;
         font-weight: bolder;
-        margin: 10px 0px;
-        font-size: 20px;
     }
 
     .col-f {
@@ -124,6 +107,7 @@
 
     .col-btn {
         position: relative;
+        border: 1px solid green;
         text-align: center;
         width: 100%;
         align-items: center;
@@ -153,7 +137,18 @@
         margin-top: 10px;
         outline: none;
     }
-
+    .col-f select{
+        justify-content: center;
+        align-items: center;
+        width: calc(94% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 35px;
+        border-radius: 9px;
+        padding: 3px 3px;
+        margin-top: 10px;
+        outline: none;
+    }
     .col-h input[type=text] {
         justify-content: center;
         align-items: center;
@@ -170,7 +165,6 @@
     .col-h,
     .col-f>span {
         display: block;
-        margin-top: 5px;
     }
 
     .leftSection>div {}
@@ -187,10 +181,10 @@
         outline: none;
         padding: 3px 3px;
     }
-
-    #gender {
+    
+    /* #gender {
         margin-bottom: 10px;
-    }
+    } */
 
     /* .editBtn,
     .delBtn {
@@ -204,10 +198,7 @@
         margin-left: 70vh;
     } */
 
-    .editBtn:hover,
-    .delBtn:hover,
-    .saveBtn:hover,
-    .cancBtn:hover {
+    .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
@@ -235,47 +226,57 @@
 <form action="" id="userProfileForm">
 
     <div class="profile">
-        <div id="pLeft" class="leftSection scrollBar"> 
+        <div id="pLeft" class="leftSection"> 
             <div class="profileImageSection">
                 <img src="../Images/profile.jpg" alt="">
-                <input type="file" name="profileImage" id="profileImage" hidden>
-                <label for="profileImage" id="uploadBtn">Choose Image</label>
+                <input type="file" name="assetImage" id="assetImage" hidden>
+                <label for="assetImage" id="uploadBtn">Choose Image</label>
             </div>
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
 
                     <div class="col-f">
-                        <span for="empID">Employee ID</span>
-                        <input type="text" name="empID" id="empID">
+                        <span for="assetId">Asset ID</span>
+                        <input type="text" name="assetId" id="assetId">
                     </div>
                     
-                    <div class="col-h">
-                        <span for="fName">First Name</span>
-                        <input type="text" name="fName" id="fName">
+                    <div class="col-f">
+                        <span for="assetName">Asset Name</span>
+                        <input type="text" name="assetName" id="assetName">
                     </div>
-                    <div class="col-h">
-                        <span for="lName">Last Name</span>
-                        <input type="text" name="lName" id="lName">
+                   
+                    <div class="col-f">
+                        <span for="assetType">Asset Type</span>
+                        <select name="assetType" id="assetType">
+                            <option value="Furniture">Furniture</option>
+                        </select>
                     </div>
                     <div class="col-f">
-                        <span for="role">Role</span>
-                        <input type="text" name="role" id="role">
+                        <span for="category">Category</span>
+                        <select name="category" id="category">
+                            <option value="Fixed Asset">Fixed Asset</option>
+                        </select>
                     </div>
                     <div class="col-f">
-                        <span for="gender">Gender</span>
-                        <input type="radio" name="gender" id="male" value="male"><label>Male</label>
-                        <input type="radio" name="gender" id="female" value="female"><label>Female</label>
+                        <span for="condition">condition</span>
+                        <select name="condition" id="condition">
+                            <option value="Brand New">Brand New</option>
+                            <option value="Used">Used</option>
+                        </select>
                     </div>
+
                     <div class="col-btn">
-                        <div id="btnEditProfile">Edit</div>
+                        <div id="btnSaveAsset">Edit</div>
+                        <div id="btnCancel">Edit</div>
                     </div>
+                    
 
                 </div>
                 
             </div>
         </div>
-        <div id="pRight" class="rightSection scrollBar">
+        <div id="pRight" class="rightSection">
         <div class="basic-information">
             <div class="col-f">
                 <span for="dob">Date of Birth</span>
@@ -302,7 +303,7 @@
                 <input type="email" name="email" id="email">
             </div>
 
-            <div class="title">Emergency Contact</div>
+            <div class="title">emergency Contact</div>
 
             <div class="col-f">
                 <span for="eName">Name</span>

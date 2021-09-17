@@ -3,6 +3,7 @@
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
         background-color: #F1F4FF;
+        border: 3px solid red;
     }
     .overviewLayout > div{
         display: grid;
@@ -63,11 +64,12 @@
     .overviewLayout .contentSection{
         all: revert;
         display: grid;
-        grid-template-rows: 1fr 9fr;
+        grid-template-rows: 1fr 8.5fr 0.5fr;
         border-radius: 15px;
         overflow-y: hidden;
         padding: 0px 10px;
         background-color: white;
+        border: 3px solid red;
     }
     .contentSection > div{
         margin:8px 15px;
@@ -220,9 +222,9 @@
                 include("allAssets.php");
             ?>
         </div>
-        <!-- <div class="buttonSection">
+        <div class="buttonSection">
             <div class="button" id="addAsset">Add Asset</div>
-        </div> -->
+        </div>
     </div>
 </div>
 
@@ -234,5 +236,12 @@
             e.stopPropagation();
         }
         
+    });
+
+    document.getElementById("addAsset").addEventListener('click',function(e){
+        const eventId = e.target.id;
+        if(eventId == "addAsset"){
+            loadSection("centerSection",eventId);
+        }
     })
 </script>

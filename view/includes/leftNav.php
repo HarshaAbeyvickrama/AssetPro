@@ -289,7 +289,6 @@
 
     function removeScript(sectionId){
         const scripts = document.querySelectorAll(`.${sectionId}Script`);
-        console.log(scripts)
         for (var n = 0; n < scripts.length; n++){
             scripts[n].remove();
             
