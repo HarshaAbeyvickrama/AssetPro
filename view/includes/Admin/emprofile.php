@@ -50,7 +50,7 @@
     .profile-pic-div img {
         width: 200px;
         height: 200px;
-        margin-top: 5vh;
+        margin-top: 1vh;
         text-align: center;
     }
 
@@ -115,3 +115,4 @@
             <button type="submit">Click me</button>
         </div>
     </div>
+</form>

@@ -29,8 +29,11 @@
             grid-row: 1/3;
            
         }
-        #centerSection{
-            border: 1px solid black;
+        #headerDiv {
+            border: none;
+            border-left: 4px solid #F1F4FF;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
@@ -41,7 +44,11 @@
             include_once("includes/leftNav.php");
         ?>
         </div>
+<<<<<<< HEAD
+        <div id="headerDiv">
+=======
         <div style="margin: 0px; padding: 0px;">
+>>>>>>> upstream/main
         <?php
             include_once("includes/header.php")
         ?>

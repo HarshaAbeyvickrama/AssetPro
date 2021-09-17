@@ -88,7 +88,7 @@
         border-collapse: collapse;
         font-size: 20px;
         margin-top: -38vh;
-        margin-left: 5vh;
+        margin-left: 1vh;
     }
     .empData th {
         color: #5C6E9B;
@@ -97,6 +97,8 @@
     .empData td {
         padding: 8px;
         font-weight: lighter;
+        text-align: center;
+        width: 140px;
     }
     table tr:nth-child(2){
         counter-reset: rowNumber;
@@ -137,7 +139,9 @@
             <table class="empData" id="empData">
                 <tr">
                     <th id="num">Number</th>
+                    <th>User ID</th>
                     <th>Employee ID</th>
+                    <th>Department ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>
@@ -149,9 +153,17 @@
                 
                 $conn = mysqli_connect("localhost","root","","assetpro");
 
-                $sql = "SELECT userdetails.UserID, fName, lName, Gender 
-                FROM userdetails JOIN user 
-                ON user.UserID = userdetails.UserID 
+                // $sql = "SELECT userdetails.UserID, fName, lName, Gender 
+                // FROM userdetails JOIN user 
+                // ON user.UserID = userdetails.UserID 
+                // WHERE user.RoleID = 3";
+
+                $sql = "SELECT 
+                user.UserID, userdetails.fName, userdetails.lName, userdetails.Gender,
+                emp.EmployeeID, emp.DepartmentID 
+                FROM employeeuser emp INNER JOIN userdetails 
+                ON userdetails.UserID = emp.UserID 
+                JOIN user ON user.UserID = userdetails.UserID 
                 WHERE user.RoleID = 3";
 
                 $result = $conn->query($sql);
@@ -161,6 +173,8 @@
                         echo "<tr>
                                 <td></td>
                                 <td>".$row["UserID"]."</td>
+                                <td>".$row["EmployeeID"]."</td>
+                                <td>".$row["DepartmentID"]."</td>
                                 <td>".$row["fName"]."</td>
                                 <td>".$row["lName"]."</td>
                                 <td>".$row["Gender"]."</td>
