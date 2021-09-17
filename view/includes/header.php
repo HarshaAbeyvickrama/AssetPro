@@ -4,6 +4,7 @@
         grid-template-columns: 7fr 0.5fr 2fr 0.5fr ;
         height: 12vh;
         border-left: 4px solid #F1F4FF;
+        background-color: green;
     }
     .header >div{
         border: 0px solid green;

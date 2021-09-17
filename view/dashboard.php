@@ -22,10 +22,15 @@
         .container > dv{
             width: 100%;
             height: 100%;
+            margin: 0px;
+            padding: 0px;
         }
         #leftSection{
             grid-row: 1/3;
            
+        }
+        #centerSection{
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -36,7 +41,7 @@
             include_once("includes/leftNav.php");
         ?>
         </div>
-        <div>
+        <div style="margin: 0px; padding: 0px;">
         <?php
             include_once("includes/header.php")
         ?>
