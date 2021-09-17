@@ -2,10 +2,6 @@
     .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
-        height: 82vh;
-        width: 87.5vw;
-        overflow-y: auto;
-        padding: 20px;
         background-color: #F1F4FF;
     }
     .overviewLayout > div{

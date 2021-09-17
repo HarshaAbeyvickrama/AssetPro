@@ -8,7 +8,7 @@
         /* overflow: hidden; */
     }
     .navWrapper{
-        width: 200px;
+        width: 12.5;
         height: 100vh;
         display: grid;
         grid-template-rows: 2fr 7fr 1fr;
@@ -21,8 +21,7 @@
         padding-top: 15px;
     }
     #logo > img{
-
-        max-width: 100px;
+        max-width: 120px;
         height: auto;
     }
     #components{
@@ -66,7 +65,7 @@
         margin: 10px;
     }
     .component img{
-        max-height: 60px;
+        max-width:8vw;
     }
     .componentText{
         color: #929292;

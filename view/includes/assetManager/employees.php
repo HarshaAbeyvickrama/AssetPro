@@ -1,13 +1,8 @@
 <style>
     .profile{
         display: grid;
-        height: 82vh;
-        width: 87.5vw;
         grid-template-columns: 1fr 1fr;
-        /* padding: 20px; */
         background-color: #F1F4FF;
-        border: 1px solid red;
-
     }
     .profile > div{
         /* margin: 15px; */
@@ -23,6 +18,8 @@
         justify-content: center;
         background-color: forestgreen;
         margin: 15px 7.5px 15px 15px;
+        padding: 10px;
+        
     }
     .rightSection{
         display: flex;
@@ -30,6 +27,7 @@
         justify-content: center;
         background-color: forestgreen;
         margin: 15px 15px 15px 7.5px;
+        padding: 10px;
     }
     .leftSection > div{
         /* height: 100%; */
@@ -45,7 +43,6 @@
     .leftSection .leftBottom{
         all: revert;
         display: flex;
-        border: 1px solid black;
         width: 100%;
         height: 100%;
     }
@@ -76,6 +73,7 @@
         height: calc(100% - 40px);
         display: flex;
         flex-wrap: wrap;
+        padding: 10px;
         /* justify-content: space-around; */
     }
     .title{
