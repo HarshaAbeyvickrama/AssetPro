@@ -247,45 +247,56 @@
         // event.preventDefault();
         var eventId = event.path[1].id;
         setFocus(eventId);
-        loadSection(eventId);   
+        loadSection("centerSection",eventId);   
        
             
     });
 
     //Loading the sections on left nav clicks with AJAX
 
-    function loadSection(sectionId){
-        var centerSection = document.getElementById("centerSection");
+    function loadSection(sectionId,eventId){
+        var section = document.getElementById(sectionId);
         const xhr = new XMLHttpRequest();
         
-        xhr.open('GET',`../controller/mainController.php?action=renderView&view=${sectionId}`,true);
+        xhr.open('GET',`../controller/mainController.php?action=renderView&view=${eventId}`,true);
         xhr.setRequestHeader("Content-type", "text/javascript");
         xhr.onload = function(){
             if(this.status ===200){
-                centerSection.innerHTML = this.responseText;
-                evaluateJs(); 
+                section.innerHTML = this.responseText;
+                evaluateJs(sectionId); 
             }
         
         }
         xhr.send();
-        
     }
 
     //Evalute the js code coming from the AJAX requests and appending them to DOM as scripts
     
-    function evaluateJs(){
-        scripts = document.getElementById("centerSection").querySelectorAll('script');
+    function evaluateJs(sectionId){
+        removeScript(sectionId);
+        scripts = document.getElementById(sectionId).querySelectorAll('script');
 
         for (var n = 0; n < scripts.length; n++){
             var script = document.createElement("script");
             script.type="text/javascript";
+            script.className = `${sectionId}Script`;
             script.innerHTML=scripts[n].innerHTML;
             document.getElementsByTagName('head')[0].appendChild(script);
             
         }
     }
+    //Remving the dynamically added scripts
 
-    // seeting the colored icon and text on the navigation on click
+    function removeScript(sectionId){
+        const scripts = document.querySelectorAll(`.${sectionId}Script`);
+        console.log(scripts)
+        for (var n = 0; n < scripts.length; n++){
+            scripts[n].remove();
+            
+        }
+    }
+
+    // seting the colored icon and text on the navigation on click
     function setFocus(id){
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item =>{
