@@ -44,11 +44,7 @@
             include_once("includes/leftNav.php");
         ?>
         </div>
-<<<<<<< HEAD
         <div id="headerDiv">
-=======
-        <div style="margin: 0px; padding: 0px;">
->>>>>>> upstream/main
         <?php
             include_once("includes/header.php")
         ?>
