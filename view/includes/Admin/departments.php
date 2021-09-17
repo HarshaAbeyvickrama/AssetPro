@@ -81,7 +81,7 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 132.8vh;
+        margin-left: 130vh;
     }
     .depData {
         width: 100%;

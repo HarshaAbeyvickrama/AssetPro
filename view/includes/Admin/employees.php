@@ -81,14 +81,14 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 139.8vh;
+        margin-left: 135vh;
     }
     .empData {
         width: 100%;
         border-collapse: collapse;
         font-size: 20px;
         margin-top: -38vh;
-        margin-left: 1vh;
+        margin-left: -2vh;
     }
     .empData th {
         color: #5C6E9B;
