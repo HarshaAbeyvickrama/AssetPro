@@ -22,6 +22,8 @@
         .container > dv{
             width: 100%;
             height: 100%;
+            margin: 0px;
+            padding: 0px;
         }
         #leftSection{
             grid-row: 1/3;
@@ -42,7 +44,11 @@
             include_once("includes/leftNav.php");
         ?>
         </div>
+<<<<<<< HEAD
         <div id="headerDiv">
+=======
+        <div style="margin: 0px; padding: 0px;">
+>>>>>>> upstream/main
         <?php
             include_once("includes/header.php")
         ?>
