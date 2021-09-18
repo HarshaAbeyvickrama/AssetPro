@@ -73,7 +73,7 @@
         margin-top: 15px;
         height: 82vh;
     }
-    .addTec {
+    .addTec #addTec{
         color: white;
         background-color: #6A71D7;
         cursor: pointer;
@@ -126,8 +126,8 @@
 <div class="overviewLayout">
     <div>
         <div>All Technicians</div>
-        <div>
-            <button class="addTec">Add Technician</button>
+        <div class="addTec">
+            <button id="addTec">Add Technician</button>
         </div>
     </div>
     
@@ -179,3 +179,15 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var addTechnicianBtn = document.getElementById('addTec');
+    addTechnicianBtn.addEventListener('click',function(){
+
+        //Add the code to execute
+
+        loadSection('addTechnician');
+
+        // alert("hemlo 👽") 
+    });
+</script>

@@ -128,7 +128,7 @@
         <div>All Employees</div>
         <div>
             <div class="addEmp">
-                <button id="addEmp">Add Employees</button>
+                <button id="addEmp">Add Employee</button>
             </div>
         </div>
     </div>
@@ -198,7 +198,7 @@
 
         //Add the code to execute
 
-        loadSection('emprofile');
+        loadSection('addEmployee');
 
         // alert("hemlo 👽") 
     });
