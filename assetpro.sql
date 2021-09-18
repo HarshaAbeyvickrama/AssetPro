@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2021 at 05:48 PM
+-- Generation Time: Sep 18, 2021 at 02:26 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -114,6 +114,8 @@ INSERT INTO `assetmanageruser` (`AssetManagerID`, `UserID`) VALUES
 CREATE TABLE `assetwarranty` (
   `AssetID` int(11) NOT NULL,
   `WarrantyPeriod` int(11) NOT NULL,
+  `fromDate` date NOT NULL,
+  `toDate` date NOT NULL,
   `OtherInfo` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -206,7 +208,9 @@ CREATE TABLE `employeeuser` (
 --
 
 INSERT INTO `employeeuser` (`EmployeeID`, `UserID`, `DepartmentID`) VALUES
-(1, 3, 1);
+(1, 3, 1),
+(5, 6, 3),
+(6, 8, 3);
 
 -- --------------------------------------------------------
 
@@ -228,7 +232,8 @@ INSERT INTO `login` (`UserID`, `Username`, `Password`) VALUES
 (1, 'indunijd', 'indunijd'),
 (2, 'VH', 'harsha'),
 (3, 'mushrifa', 'mushrifa77'),
-(4, 'ayishasj', 'ayishasj');
+(4, 'ayishasj', 'ayishasj'),
+(6, 'sashini', 'sashini');
 
 -- --------------------------------------------------------
 
@@ -330,6 +335,8 @@ INSERT INTO `user` (`UserID`, `RoleID`) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
+(6, 3),
+(8, 3),
 (4, 4);
 
 -- --------------------------------------------------------
@@ -359,7 +366,9 @@ INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `Address`, `Gender`, `Age
 (1, 'Induni', 'Dulanjalee', 'Badulla', 'F', 23, '0719598424', '1998-04-24', '', 'Single'),
 (2, 'Harsha', 'Abeyvickrama', 'Rakwana', 'M', 23, '0711425085', '1998-08-29', '', 'Single'),
 (3, 'Mushrifa', 'Mansoor', 'Mawanella', 'F', 22, '0775067556', '1999-07-07', '', 'Single'),
-(4, 'Ayisha', 'Siddeequa', 'Kandy', 'F', 22, '0764243353', '1999-08-14', '', 'Single');
+(4, 'Ayisha', 'Siddeequa', 'Kandy', 'F', 22, '0764243353', '1999-08-14', '', 'Single'),
+(6, 'Sashini', 'Madushani', 'colombo', 'F', 23, '0714562389', '2021-08-31', '', 'Single'),
+(8, 'Lalith', 'Gunasena', 'Polonnaruwa', 'M', 34, '0875612310', '1989-12-14', '', 'Married');
 
 -- --------------------------------------------------------
 
@@ -560,7 +569,7 @@ ALTER TABLE `depreciation`
 -- AUTO_INCREMENT for table `employeeuser`
 --
 ALTER TABLE `employeeuser`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -590,7 +599,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
