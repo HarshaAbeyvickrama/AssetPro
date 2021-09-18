@@ -183,14 +183,14 @@
 
     .editBtn:hover,
     .delBtn:hover,
-    .saveBtn:hover,
+    .addBtn:hover,
     .cancBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
 
-    .saveBtn,
+    .addBtn,
     .cancBtn {
         width: 80px;
         height: 40px;
@@ -203,7 +203,8 @@
     }
 
 </style>
-<form action="">
+
+<form action="addemployee" method="POST">
 
     <div class="profile">
         <div id="pLeft" class="leftSection">
@@ -237,9 +238,6 @@
                         <span for="gender" id="gender">Gender</span>
                         <input type="radio" name="gender" id="male" value="male"><label>Male</label>
                         <input type="radio" name="gender" id="female" value="female"><label>Female</label>
-                    </div>
-                    <div class="col-btn">
-                        <button class="editBtn">Edit</button>
                     </div>
 
                 </div>
@@ -287,20 +285,16 @@
                     <span for="econtact">Telephone Number</span>
                     <input type="text" name="econtact" id="econtact">
                 </div>
-                <!-- Delete button -->
-                <div class="col-btn">
-                    <button class="delBtn">Delete</button>
-                </div>
 
-                <!-- The cancel and save button after clicking the edit button -->
-                <!-- <div class="BtnGroup">
+                <!-- Add and Cancel button to add -->
+                <div class="BtnGroup">
                     <div class="col-btn">
-                        <button class="saveBtn">Save</button>
+                        <button class="addBtn" type="submit" name="submit" value="submit">Add</button>
                     </div>
-                    <div class="col-btn">
+                    <!-- <div class="col-btn">
                         <button class="cancBtn">Cancel</button>
-                    </div>
-                </div> -->
+                    </div> -->
+                </div>
             </div>
 
         </div>

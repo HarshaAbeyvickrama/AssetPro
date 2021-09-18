@@ -49,10 +49,9 @@
             }
             header("location:../view/dashboard.php");
         }
-}
+    }
     function logOut(){
         session_unset();
         header("location: ../index.php");
     }
 ?>
-
