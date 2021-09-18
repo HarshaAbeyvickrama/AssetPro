@@ -49,7 +49,7 @@
     
 </style>
 
-<div class="table">
+<div class="table scrollbar">
     <div class="tableHeader">
         <div>Number</div>
         <div>Asset ID</div>
