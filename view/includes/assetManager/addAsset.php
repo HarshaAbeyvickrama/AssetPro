@@ -13,12 +13,8 @@
     }
 
     .profile>div {
-        /* margin: 15px; */
         background-color: white;
         border-radius: 10px;
-        /* height: calc(100% - 100px); */
-        /* height: 100%; */
-        /* padding: 10px; */
 
     }
     .leftSection,
@@ -39,14 +35,7 @@
         padding: 10px;
         
     }
-    
-    .rightSection {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 15px 15px 15px 7.5px;
-        padding: 10px;
-    }
+
 
     .leftSection>div {
         /* height: 100%; */
@@ -56,10 +45,6 @@
     .profileImageSection>img {
         width: 200px;
         border-radius: 50%;
-    }
-
-    .rightSection {
-        /* border: 1px solid black; */
     }
 
     .leftSection .leftBottom {
@@ -115,6 +100,19 @@
     .col-f {
         width: 100%;
         color: #5C6E9B;
+    }
+
+    .col-f select{
+        justify-content: center;
+        align-items: center;
+        width: calc(94% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 35px;
+        border-radius: 9px;
+        padding: 3px 3px;
+        margin-top: 10px;
+        outline: none;
     }
 
     .col-h {
@@ -174,22 +172,7 @@
         display: block;
         margin-top: 5px;
     }
-
-    .leftSection>div {}
-
-    #email,
-    #dob,
-    #maritalStatus {
-        width: calc(97% - 30px);
-        border: none;
-        background-color: #F1F4FF;
-        height: 25px;
-        border-radius: 9px;
-        margin-top: 10px;
-        outline: none;
-        padding: 3px 3px;
-    }
-
+    
     .radio-group{
         margin: 5px 0px;
     }
@@ -200,99 +183,134 @@
         cursor: pointer;
     }
 
-    /* .editBtn,
-    .delBtn {
-        width: 80px;
-        height: 40px;
-        background-color: #5C6E9B;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        color: #F1F4FF;
-        margin-left: 70vh;
-    } */
-
-    .editBtn:hover,
-    .delBtn:hover,
-    .saveBtn:hover,
-    .cancBtn:hover {
+    .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
-
-    /* .saveBtn,
-    .cancBtn {
-        width: 80px;
-        height: 40px;
-        background-color: #5C6E9B;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        color: #F1F4FF;
-        margin-left: 70vh;
-    } */
-    /* .BtnGroup{
-        border: 1px solid red;
-        display: block;
-        position: relative;
-        float: left;
-    } */
-
-    /* Hide save and cancel buttons initially */
-    #cancelEdit,
-    #saveAsset{
-        display: none;
+    #pRight{
+        background-color: #F1F4FF;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        overflow-x: hidden;
     }
-
+    #pRight > div{
+        background-color: white;
+        border-radius: 10px;
+    }
+    #pRight > div:nth-child(1){
+        margin: 15px 10px 5px 5px;
+    }
+    #pRight > div:nth-child(2){
+        margin: 5px 15px 10px 5px;
+    }
+    .col-btn{
+        z-index: 1;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        right: calc(50%);
+    }
 </style>
-<form action="" id="userProfileForm">
+<form action="" id="addAssetForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
             <div class="profileImageSection">
                 <img src="../Images/profile.jpg" alt="">
-                <input type="file" name="profileImage" id="profileImage" hidden>
-                <label for="profileImage" id="uploadBtn">Choose Image</label>
+                <input type="file" name="image" id="image" hidden>
+                <label for="image" id="uploadBtn">Choose Image</label>
             </div>
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
 
                     <div class="col-f">
-                        <span for="empID">Employee ID</span>
-                        <input type="text" name="empID" id="empID">
+                        <span for="assetId">Asset ID</span>
+                        <input type="text" name="assetId" id="assetId">
                     </div>
                     
-                    <div class="col-h">
-                        <span for="fName">First Name</span>
-                        <input type="text" name="fName" id="fName">
+                    <div class="col-f">
+                        <span for="assetName">Asset Name</span>
+                        <input type="text" name="assetName" id="assetName">
                     </div>
-                    <div class="col-h">
-                        <span for="lName">Last Name</span>
-                        <input type="text" name="lName" id="lName">
+                   
+                    <div class="col-f">
+                        <span for="assetType">Asset Type</span>
+                        <select name="assetType" id="assetType">
+                            <option value="Furniture">Furniture</option>
+                        </select>
                     </div>
                     <div class="col-f">
-                        <span for="role">Role</span>
-                        <input type="text" name="role" id="role">
+                        <span for="category">Category</span>
+                        <select name="category" id="category">
+                            <option value="Fixed Asset">Fixed Asset</option>
+                        </select>
                     </div>
                     <div class="col-f">
-                        <span for="gender">Gender</span>
-                        <div class="radio-group">
-                            <input type="radio" name="gender" id="male" value="male"><label>Male</label>
-                            <input type="radio" name="gender" id="female" value="female"><label>Female</label>
-                        </div>
+                        <span for="condition">condition</span>
+                        <select name="condition" id="condition">
+                            <option value="Brand New">Brand New</option>
+                            <option value="Used">Used</option>
+                        </select>
                     </div>
+
                     <div class="col-btn">
-                        <div class="btnAction" id="btnEditProfile">Edit</div>
+                        <div id="btnSaveAsset">Save</div>
+                        <div id="cancelAddAsset">Cancel</div>
                     </div>
 
                 </div>
-                
             </div>
         </div>
         <div id="pRight" class="rightSection scrollBar">
-        <div class="basic-information">
+            <div id="rightTop">
+                <div class="basic-information">
+                    <div class="col-f">
+                        <span for="purchaseDate">Purchase Date</span>
+                        <input type="date" name="purchaseDate" id="purchaseDate">
+                    </div>
+                    <div class="col-f">
+                        <span for="purchaseCost">Purchase Cost</span>
+                        <input type="datetime" name="purchaseCost" id="purchaseCost">
+                    </div>
+                    <div class="col-f">
+                        <span for="warrentyPeriod">Warrenty Period</span>
+                        <label for="fromDate">From</label><input type="date" name="fromDate" id="fromDate">
+                        <label for="toDate">To</label><input type="date" name="toDate" id="toDate">
+                    </div>
+                    <div class="col-f">
+                        <span for="otherInfo">Other Information</span>
+                        <input type="text" name="otherInfo" id="otherInfo">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="depriciationSection">
+                <div class="basic-information">
+                    <div class="title" for="depriciation">Depriciation <input type="checkbox" name="depriciation" id="depriciation"></div>
+                    <div class="col-f">
+                        <span for="depriciationMethod">Depriciation Method</span>
+                        <select name="depriciationMethod" id="depriciationMethod">
+                            <option value="Staright Line">Staright Line Method</option>
+                        </select>
+                    </div>
+                    <div class="col-f">
+                            <span for="depriciaionRate">Depriciation Rate</span>
+                            <input type="number" name="depriciaionRate" id="depriciaionRate" step=".01">
+                    </div>
+                    <div class="col-f">
+                            <span for="residualValue">Residual Value</span>
+                            <input type="number" name="residualValue" id="residualValue" >
+                    </div>
+                    <div class="col-f">
+                            <span for="usefulYears">Useful Years</span>
+                            <input type="number" name="usefulYears" id="usefulYears" step="1">
+                    </div>
+                </div>
+            </div>
+        <!-- <div class="basic-information">
             <div class="col-f">
                 <span for="dob">Date of Birth</span>
                 <input type="datetime" name="dob" id="dob">
@@ -332,16 +350,12 @@
                 <span for="econtact">Telephone Number</span>
                 <input type="text" name="econtact" id="econtact">
             </div>
-            <div class="col-btn">
-                <div class="saveBtn btnAction" id="saveAsset">Save</div>
-                <div class="cancBtn btnAction" id="cancelEdit">Cancel</div>
-                <div class="delBtn btnAction" id="deleteAsset">Delete</div>
-            </div>
+
             
                 
                 
               
-        </div>
+        </div> -->
 
         </div>
     </div>
@@ -357,46 +371,26 @@
     //      true --> form disabled 
     //      false --> form enabled 
     
-    function formState(formId,readonlyState){
-        const form = document.getElementById(formId);
-        var elements = form.elements;
-        var len = elements.length;
-        for(var i=0; i<len; ++i){
-            elements[i].disabled=readonlyState;
-        }
-        document.getElementById("uploadBtn").disabled=readonlyState;
-
-        
+    function formState(state){
+        document.getElementById('depriciationMethod').disabled = state;
+        document.getElementById('depriciaionRate').disabled = state;
+        document.getElementById('residualValue').disabled = state;
+        document.getElementById('usefulYears').disabled = state;
     }
     
-    formState("userProfileForm",true);
+    // formState("userProfileForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
-        const cancelBtn = document.getElementById("cancelEdit");
-        const saveBtn = document.getElementById("saveAsset");
-        const deleteBtn = document.getElementById("deleteAsset");
-        const editBtn = document.getElementById("btnEditProfile");
+        const cancelBtn = document.getElementById("cancelAddAsset");
+        const saveBtn = document.getElementById("btnSaveAsset");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
-                case 'cancelEdit':
-                    formState("userProfileForm",true);
-                    saveBtn.style.display = 'none';
-                    cancelBtn.style.display = 'none';
-                    deleteBtn.style.display = 'block';
-                    btnEditProfile.style.display = 'block';
+                case 'cancelAddAsset':
+                   
                     break;
-                case 'saveAsset':
-                    
-                    break;
-                case 'deleteAsset':
-                    
-                    break;
-                case 'btnEditProfile':
-                    btnEditProfile.style.display = 'none';
-                    cancelBtn.style.display = 'block';
-                    saveBtn.style.display = 'block';
-                    deleteBtn.style.display = 'none';
-                    formState("userProfileForm",false);
+                case 'btnSaveAsset':
+                    const asset = getFormdata();
+                    saveAsset(asset);
                     break;
             
                 default:
@@ -406,9 +400,40 @@
         
         })
     })
+    formState(true);
+    document.getElementById('depriciation').addEventListener('change',function(){
+            formState(!depriciation.checked);
+    })
+
+    document.getElementById('image').addEventListener('change',function(e){
+        console.log(e.target.files[0].value)
+    })
     
-    
-    
+
+    //get Form data
+
+    function getFormdata(){
+        const formData = new FormData(document.getElementById('addAssetForm'))
+        // for (var pair of formData.entries()) {
+        //     console.log(pair[0] + ': ' + pair[1]);
+        // }
+        return formData;
+    }
+
+    //Save asset function
+    // Saving asset details through AJAX
+
+    function saveAsset(asset){
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","../model/Asset.php?action=addAsset",true);
+
+        xhr.onload = function(){
+            if(this.status ===200){
+                console.log(this.responseText);
+            }
+        }
+        xhr.send(asset);
+    }
 
 </script>
 

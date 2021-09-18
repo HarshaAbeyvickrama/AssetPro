@@ -5,7 +5,6 @@
         width: 100%;
         margin: 10px 0px;
         color: #5C6E9B;
-        overflow-y: hidden;  
         
     }
     .tableHeader{
@@ -59,7 +58,7 @@
         <div>Condition</div>
         <div>Assigned Employee</div>
     </div>
-    <div class="tableRowGroup">
+    <div class="tableRowGroup ">
         <div class="tableRow">
             <div>1</div>
             <div>FA/12345</div>

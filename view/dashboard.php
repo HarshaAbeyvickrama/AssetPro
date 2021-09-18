@@ -41,7 +41,27 @@
             overflow:hidden;
             padding: 20px;
             background-color: #F1F4FF;
+            border: 3px solid red;
         }
+        /* Scrollbar styling */
+        .scrollBar{
+            overflow-y: auto;
+        }
+        .scrollBar::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+        }
+
+        .scrollBar::-webkit-scrollbar{
+            width: 6px;
+            background-color: #F5F5F5;
+        }
+
+        .scrollBar::-webkit-scrollbar-thumb
+        {
+            background-color: #5C6E9B;
+        }
+
     </style>
 </head>
 <body>
