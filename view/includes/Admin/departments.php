@@ -19,7 +19,6 @@
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-
     }
 
     .statSection {
@@ -147,9 +146,8 @@
 
     /* CSS for pop-up form */
     .bg-popup {
-        width: 211.8vh;
+        width: 100vw;
         height: 100vh;
-        margin-left: -30vh;
         background-color: rgba(0, 0, 0, 0.8);
         position: absolute;
         top: 0;
@@ -157,6 +155,8 @@
         justify-content: center;
         align-items: center;
         display: none;
+        z-index: 10;
+        left: 0px;
     }
 
     .popup-content {
