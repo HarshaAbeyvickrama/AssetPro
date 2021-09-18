@@ -127,6 +127,7 @@
         text-align: center;
         width: 100%;
         align-items: center;
+        margin: 10px 0px;
         
     }
     .col-btn>div {
@@ -139,6 +140,7 @@
         max-height: 30px;
         position: relative;
         float: right;
+        margin-right: 5px;
     }
 
     .col-f input[type=text] {
@@ -188,8 +190,14 @@
         padding: 3px 3px;
     }
 
-    #gender {
-        margin-bottom: 10px;
+    .radio-group{
+        margin: 5px 0px;
+    }
+    .radio-group > label { 
+        margin-left: 5px;
+    }
+    .radio-group > input[type=radio]:hover{
+        cursor: pointer;
     }
 
     /* .editBtn,
@@ -231,6 +239,12 @@
         float: left;
     } */
 
+    /* Hide save and cancel buttons initially */
+    #cancelEdit,
+    #saveAsset{
+        display: none;
+    }
+
 </style>
 <form action="" id="userProfileForm">
 
@@ -264,11 +278,13 @@
                     </div>
                     <div class="col-f">
                         <span for="gender">Gender</span>
-                        <input type="radio" name="gender" id="male" value="male"><label>Male</label>
-                        <input type="radio" name="gender" id="female" value="female"><label>Female</label>
+                        <div class="radio-group">
+                            <input type="radio" name="gender" id="male" value="male"><label>Male</label>
+                            <input type="radio" name="gender" id="female" value="female"><label>Female</label>
+                        </div>
                     </div>
                     <div class="col-btn">
-                        <div id="btnEditProfile">Edit</div>
+                        <div class="btnAction" id="btnEditProfile">Edit</div>
                     </div>
 
                 </div>
@@ -317,12 +333,13 @@
                 <input type="text" name="econtact" id="econtact">
             </div>
             <div class="col-btn">
-                <div class="saveBtn">Save</div>
-                <div class="cancBtn">Cancel</div>
+                <div class="saveBtn btnAction" id="saveAsset">Save</div>
+                <div class="cancBtn btnAction" id="cancelEdit">Cancel</div>
+                <div class="delBtn btnAction" id="deleteAsset">Delete</div>
             </div>
             
                 
-             
+                
               
         </div>
 
@@ -354,13 +371,44 @@
     
     formState("userProfileForm",true);
 
-    var btnEditProfile = document.getElementById("btnEditProfile")
-    btnEditProfile.addEventListener('click',function(){
-        formState("userProfileForm",false);
-        btnEditProfile.style.display = 'none';
-
-
+    document.querySelectorAll(".col-btn").forEach(button =>{
+        const cancelBtn = document.getElementById("cancelEdit");
+        const saveBtn = document.getElementById("saveAsset");
+        const deleteBtn = document.getElementById("deleteAsset");
+        const editBtn = document.getElementById("btnEditProfile");
+        button.addEventListener('click',function(event){
+            switch (event.target.id) {
+                case 'cancelEdit':
+                    formState("userProfileForm",true);
+                    saveBtn.style.display = 'none';
+                    cancelBtn.style.display = 'none';
+                    deleteBtn.style.display = 'block';
+                    btnEditProfile.style.display = 'block';
+                    break;
+                case 'saveAsset':
+                    
+                    break;
+                case 'deleteAsset':
+                    
+                    break;
+                case 'btnEditProfile':
+                    btnEditProfile.style.display = 'none';
+                    cancelBtn.style.display = 'block';
+                    saveBtn.style.display = 'block';
+                    deleteBtn.style.display = 'none';
+                    formState("userProfileForm",false);
+                    break;
+            
+                default:
+                    break;
+            }
+        
+        
+        })
     })
+    
+    
+    
 
 </script>
 
