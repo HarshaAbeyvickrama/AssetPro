@@ -399,6 +399,7 @@
                 case 'btnSaveAsset':
                     const asset = getFormdata();
                     saveAsset(asset);
+                    console.log(asset);
                     break;
             
                 default:
@@ -432,7 +433,7 @@
         xhr.open("POST","../model/Asset.php?action=addAsset",true);
 
         xhr.onload = function(){
-            if(this.status ===200){
+            if(this.status === 200){
                 console.log(this.responseText);
             }
         }
