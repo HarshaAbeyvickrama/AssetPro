@@ -196,10 +196,7 @@
     var addEmployeeBtn = document.getElementById('addEmp');
     addEmployeeBtn.addEventListener('click',function(){
 
-        //Add the code to execute
-
-        loadSection('addEmployee');
-
-        // alert("hemlo 👽") 
+        loadSection('centerSection','addEmployee');
+ 
     });
 </script>

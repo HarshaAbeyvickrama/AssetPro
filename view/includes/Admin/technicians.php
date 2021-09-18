@@ -186,7 +186,7 @@
 
         //Add the code to execute
 
-        loadSection('addTechnician');
+        loadSection('centerSection','addTechnician');
 
         // alert("hemlo 👽") 
     });
