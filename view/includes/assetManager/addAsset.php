@@ -263,6 +263,7 @@
                 </div>
             </div>
         </div>
+        
         <div id="pRight" class="rightSection scrollBar">
             <div id="rightTop">
                 <div class="basic-information">
