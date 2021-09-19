@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2021 at 02:26 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.18
+-- Generation Time: Sep 19, 2021 at 11:15 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,8 +49,8 @@ CREATE TABLE `asset` (
   `AssetID` int(11) NOT NULL,
   `CategoryID` int(11) NOT NULL,
   `TypeID` int(11) NOT NULL,
-  `DepartmentID` int(11) NOT NULL,
-  `EmployeeID` int(11) NOT NULL,
+  `DepartmentID` int(11) DEFAULT NULL,
+  `EmployeeID` int(11) DEFAULT NULL,
   `DateCreated` datetime(6) NOT NULL,
   `LastModified` datetime(6) NOT NULL,
   `Status` varchar(20) NOT NULL
@@ -164,6 +164,7 @@ INSERT INTO `category` (`CategoryID`, `Name`) VALUES
 CREATE TABLE `department` (
   `DepartmentID` int(11) NOT NULL,
   `Name` varchar(200) NOT NULL,
+  `description` longtext DEFAULT NULL,
   `ContactNum` varchar(10) NOT NULL,
   `DateCreated` datetime(6) NOT NULL,
   `LastModified` datetime(6) NOT NULL
@@ -173,10 +174,10 @@ CREATE TABLE `department` (
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`DepartmentID`, `Name`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
-(1, 'Finance', '0452245696', '2021-08-27 20:52:38.000000', '2021-08-27 20:52:38.000000'),
-(2, 'Operation', '0112345678', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
-(3, 'Human Resource', '0573785647', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000');
+INSERT INTO `department` (`DepartmentID`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
+(1, 'Finance', NULL, '0452245696', '2021-08-27 20:52:38.000000', '2021-08-27 20:52:38.000000'),
+(2, 'Operation', NULL, '0112345678', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
+(3, 'Human Resource', NULL, '0573785647', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000');
 
 -- --------------------------------------------------------
 
