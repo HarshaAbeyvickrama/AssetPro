@@ -204,9 +204,7 @@
                         // console.log(JSON.stringify(this.response));
                         var assets = JSON.parse(this.responseText);
                         for(var i = 0; i<assets.length;i++){
-                            // console.log(assets[i]['assetName'])
                             const tb = document.getElementById('allAssetsTableBody');
-                            console.log(assets)
                             tb.innerHTML += `
                                 <div class="tableRow">
                                     <div>${i+1}</div>
