@@ -400,7 +400,7 @@
                 case 'btnSaveAsset':
                     const asset = getFormdata();
                     saveAsset(asset);
-                    console.log(asset);
+                    
                     break;
             
                 default:
@@ -435,11 +435,13 @@
 
         xhr.onload = function(){
             if(this.status === 200){
-                console.log(this.responseText);
+                alert(this.responseText);
             }
         }
         xhr.send(asset);
     }
+
+    
 
 </script>
 

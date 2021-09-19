@@ -57,48 +57,11 @@
         <div>Asset Name</div>
         <div>Asset Type</div>
         <div>Condition</div>
-        <div>status</div>
+        <div>Status</div>
     </div>
-    <div class="tableRowGroup">
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Assigned</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Assigned</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Assigned</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Assigned</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Assigned</div>
-        </div>
+    <div class="tableRowGroup" id="allAssetsTableBody">
     </div>
 </div>
+<script>
+    getAssets('all');
+</script>
