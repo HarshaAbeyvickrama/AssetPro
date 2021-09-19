@@ -3,7 +3,7 @@
         session_start();
     }
     require_once("../db/dbConnection.php");
-    global $host,$user,$password,$db;
+    global $mysql;
 
     if(isset($_REQUEST['action'])){
         switch ($_REQUEST['action']) {
@@ -19,25 +19,32 @@
 
     function saveAsset(){
 
+        $status = "unassigned";
         // Getting the values
         $assetId = $_POST['assetId'];
         $assetName = $_POST['assetName'];
+        $assetDescription = $_POST['assetDescription'];
         $assetType = $_POST['assetType'];
         $category = $_POST['category'];
         $condition = $_POST['condition'];
         $purchaseDate = $_POST['purchaseDate'];
         $purchaseCost = $_POST['purchaseCost'];
-        $warrentyStart = $_POST['fromDate'];
-        $warrentyEnd = $_POST['toDate'];
         $otherInfo = $_POST['otherInfo'];
+
+        if(isset($_POST['warrenty'])){
+            $warrentyStart = $_POST['fromDate'];
+            $warrentyEnd = $_POST['toDate'];
+            echo($warrentyEnd);
+        }
+
         if(isset($_POST['depriciation'])){
             $depriciationMethod = $_POST['depriciationMethod'];
             $depriciaionRate = $_POST['depriciaionRate'];
             $residualValue = $_POST['residualValue'];
             $usefulYears = $_POST['usefulYears'];
         }
-        print_r($_POST);
         
+        $assetQuery = "insert into asset values($status)"
     }
 
 ?>

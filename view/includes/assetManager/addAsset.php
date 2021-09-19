@@ -234,6 +234,11 @@
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName">
                     </div>
+
+                    <div class="col-f">
+                        <span for="assetDescription">Asset Description</span>
+                        <input type="text" name="assetDescription" id="assetDescription">
+                    </div>
                    
                     <div class="col-f">
                         <span for="assetType">Asset Type</span>
@@ -274,6 +279,9 @@
                         <span for="purchaseCost">Purchase Cost</span>
                         <input type="datetime" name="purchaseCost" id="purchaseCost">
                     </div>
+
+                    <div class="title" for="warrenty">Warrenty <input type="checkbox" name="warrenty" id="warrenty"></div>
+
                     <div class="col-f">
                         <span for="warrentyPeriod">Warrenty Period</span>
                         <label for="fromDate">From</label><input type="date" name="fromDate" id="fromDate">
@@ -407,22 +415,18 @@
     })
 
     document.getElementById('image').addEventListener('change',function(e){
-        console.log(e.target.files[0].value)
+        // console.log(e.target.files[0].value)
     })
     
 
     //get Form data
 
     function getFormdata(){
-        const formData = new FormData(document.getElementById('addAssetForm'))
-        // for (var pair of formData.entries()) {
-        //     console.log(pair[0] + ': ' + pair[1]);
-        // }
-        return formData;
+        return new FormData(document.getElementById('addAssetForm'));
     }
 
-    //Save asset function
-    // Saving asset details through AJAX
+
+    //Save asset function ----->  Saving asset details through AJAX
 
     function saveAsset(asset){
         var xhr = new XMLHttpRequest();
