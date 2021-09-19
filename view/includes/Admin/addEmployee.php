@@ -212,7 +212,7 @@
 
 </style>
 
-<form action="addemployee" method="POST">
+<form action="" method="POST" id="addEmployeeForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection">

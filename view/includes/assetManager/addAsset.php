@@ -302,7 +302,7 @@
                     <div class="col-f">
                         <span for="depriciationMethod">Depriciation Method</span>
                         <select name="depriciationMethod" id="depriciationMethod">
-                            <option value="Staright Line">Staright Line Method</option>
+                            <option value="Staright Line">Straight Line Method</option>
                         </select>
                     </div>
                     <div class="col-f">
