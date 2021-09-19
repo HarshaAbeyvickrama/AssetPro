@@ -127,7 +127,7 @@
         background-color: #F1F4FF;
         height: 25px;
         border-radius: 9px;
-        padding: 3px 3px;
+        padding: 8px 15px 8px 15px;
         margin-top: 10px;
         outline: none;
     }
@@ -140,7 +140,7 @@
         background-color: #F1F4FF;
         height: 25px;
         border-radius: 9px;
-        padding: 3px 3px;
+        padding: 8px 15px 8px 15px;
         margin-top: 10px;
         outline: none;
     }

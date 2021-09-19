@@ -81,7 +81,7 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 135vh;
+        margin-left: 65vw;
     }
     .empData {
         width: 100%;
