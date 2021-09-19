@@ -243,13 +243,13 @@
                     <div class="col-f">
                         <span for="assetType">Asset Type</span>
                         <select name="assetType" id="assetType">
-                            <option value="Furniture">Furniture</option>
+                            <option value="1">Furniture</option>
                         </select>
                     </div>
                     <div class="col-f">
                         <span for="category">Category</span>
                         <select name="category" id="category">
-                            <option value="Fixed Asset">Fixed Asset</option>
+                            <option value="1">Fixed Asset</option>
                         </select>
                     </div>
                     <div class="col-f">
