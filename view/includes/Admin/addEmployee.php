@@ -93,7 +93,7 @@
         width: 100%;
         color: #304068;
         font-weight: bolder;
-        margin-top: 5px;
+        margin-top: 10px;
     }
 
     .col-f {
@@ -125,9 +125,9 @@
         width: calc(100% - 50px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 18px;
         border-radius: 9px;
-        padding: 3px 3px;
+        padding: 8px 15px 8px 15px;
         margin-top: 10px;
         outline: none;
     }
@@ -138,10 +138,9 @@
         width: calc(94% - 30px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 18px;
         border-radius: 9px;
-        padding: 3px 3px;
-        margin-top: 10px;
+        padding: 8px 15px 8px 15px;
         outline: none;
     }
 
@@ -153,16 +152,25 @@
     .leftSection>div {}
 
     #email,
-    #dob,
-    #maritalStatus {
-        width: calc(97% - 30px);
+    #dob {
+        width: calc(96% - 30px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 20px;
         border-radius: 9px;
         margin-top: 10px;
         outline: none;
-        padding: 3px 3px;
+        padding: 8px 15px 8px 15px;
+    }
+    #maritalStatus {
+        width: calc(101% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 30px;
+        border-radius: 9px;
+        margin-top: 10px;
+        outline: none;
+        padding: 8px 15px 8px 15px;
     }
 
     #gender {

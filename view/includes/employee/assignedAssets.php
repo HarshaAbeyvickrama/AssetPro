@@ -195,7 +195,7 @@
     reportbtn.addEventListener('click',function(){
 
     
-        loadSection('report');
+        loadSection('centerSection','report');
     
     });
 </script>
