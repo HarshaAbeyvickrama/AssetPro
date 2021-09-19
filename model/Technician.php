@@ -8,8 +8,8 @@
 
     if (isset($_REQUEST['action'])) {
         switch ($_REQUEST['action']) {
-            case 'addEmployee';
-            saveEmployee();
+            case 'addTechnician';
+            saveTechnician();
             break;
         
         default:
@@ -18,8 +18,7 @@
         }
     }
 
-    function saveEmployee() {
-        $departmentID = $_POST['depID'];
+    function saveTechnician() {
         $firstName = $_POST['fName'];
         $lastName = $_POST['lName'];
         $role = $_POST['role'];

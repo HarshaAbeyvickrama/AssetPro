@@ -235,7 +235,7 @@
     <div>
         <div>All Departments</div>
         <div class="addDep">
-            <button id="addDep" onclick="popForm()">Add Department</button>
+            <button id="addDep">Add Department</button>
         </div>
     </div>
 
@@ -288,9 +288,9 @@
 <!-- Add Department pop-up form -->
 <div class="bg-popup">
     <div class="popup-content">
-        <div class="close">+</div>
+        <div class="close" id="cancelAddTechnician">+</div>
         <h3 class="depInfo">Department Information</h3>
-        <form action="">
+        <form action="" id="addDepartmentForm">
             <div class="col-f">
                 <span for="depID" id="fieldName">Department ID</span>
                 <input type="text" name="depID" id="depID">
@@ -309,7 +309,7 @@
             </div>
             <div class="btn-group">
                 <div class="col-h">
-                    <button class="addBtn" type="submit" name="submit" value="submit">Add</button>
+                    <button class="addBtn" id="btnSaveDepartment">Add</button>
                 </div>
             </div>
         </form>
@@ -317,11 +317,6 @@
 </div>
 
 <script type="text/javascript">
-    //JS for add employee button
-    // var addDepartmentBtn = document.getElementById('addDep');
-    // addDepartmentBtn.addEventListener('click', function() {
-    //     loadSection('addDepartment'); 
-    // });
 
     //JS for pop-up form
     document.getElementById('addDep').addEventListener('click',
@@ -337,4 +332,49 @@
         function popForm() {
             document.querySelector('.bg-popup').style.display = 'none';
         });
+
+    // Getting the form data
+
+    document.querySelectorAll(".col-btn").forEach(button=> {
+        // const cancBtn = document.getElementById('cancelAddDepartment');
+        const saveBtn = document.getElementById("btnSaveDepartment");
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            switch (event.target.id) {
+                case 'cancelAddDepartment':
+                    
+                    break;
+                case 'btnSaveDepartment':
+                    const technician = getFormdata();
+                    saveDepartment(department);
+                    console.log(department);
+                    break;
+            
+                default:
+                    break;
+            }
+        })
+    })
+
+    //getting the form data
+
+    function getFormdata() {
+        return new FormData(document.getElementById('addDepartmentForm'));
+    }
+
+    //Saving the department function
+    //Saving department details through AJAX
+
+    function saveDepartment(department) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","../model/Department.php?action=departments",true);
+
+        xhr.onload = function() {
+            if(this.status === 200) {
+                console.log(this.responseText);
+            }
+        }
+        xhr.send(department);
+    }
+
 </script>

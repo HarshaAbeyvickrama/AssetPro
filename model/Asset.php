@@ -44,7 +44,7 @@
             $usefulYears = $_POST['usefulYears'];
         }
         
-        $assetQuery = "insert into asset values($status)"
+        $assetQuery = "insert into asset values($status)";
     }
 
 ?>
