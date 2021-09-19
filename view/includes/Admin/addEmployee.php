@@ -107,8 +107,11 @@
     }
 
     .col-btn {
-        float: right;
-        text-align: right;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        align-items: center;
+        margin: 10px 0px;  
     }
 
     .col-btn>div {
@@ -117,6 +120,11 @@
         color: white;
         font-size: 18px;
         background-color: #5C6E9B;
+        width: 80px;
+        max-height: 30px;
+        position: relative;
+        float: right;
+        margin-right: 5px;
     }
 
     .col-f input[type=text] {
@@ -125,7 +133,7 @@
         width: calc(100% - 50px);
         border: none;
         background-color: #F1F4FF;
-        height: 18px;
+        height: 15px;
         border-radius: 9px;
         padding: 8px 15px 8px 15px;
         margin-top: 10px;
@@ -138,7 +146,7 @@
         width: calc(94% - 30px);
         border: none;
         background-color: #F1F4FF;
-        height: 18px;
+        height: 15px;
         border-radius: 9px;
         padding: 8px 15px 8px 15px;
         outline: none;
@@ -156,7 +164,7 @@
         width: calc(96% - 30px);
         border: none;
         background-color: #F1F4FF;
-        height: 20px;
+        height: 15px;
         border-radius: 9px;
         margin-top: 10px;
         outline: none;
@@ -212,7 +220,7 @@
 
 </style>
 
-<form action="addemployee" method="POST">
+<form action="" id="addEmployeeForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection">
@@ -228,6 +236,11 @@
                     <div class="col-f">
                         <span for="empID">Employee ID</span>
                         <input type="text" name="empID" id="empID">
+                    </div>
+
+                    <div class="col-f">
+                        <span for="depID">Department ID</span>
+                        <input type="text" name="depID" id="depID">
                     </div>
 
                     <div class="col-h">
@@ -295,17 +308,58 @@
                 </div>
 
                 <!-- Add and Cancel button to add -->
-                <div class="BtnGroup">
                     <div class="col-btn">
-                        <button class="addBtn" type="submit" name="submit" value="submit">Add</button>
+                        <button class="addBtn" id="btnSaveEmployee">Save</button>
+                        <button class="addBtn" id="cancelAddEmployee">Cancel</button>
                     </div>
-                    <!-- <div class="col-btn">
-                        <button class="cancBtn">Cancel</button>
-                    </div> -->
-                </div>
             </div>
 
         </div>
     </div>
 
 </form>
+
+<script>
+    document.querySelectorAll(".col-btn").forEach(button=> {
+        const cancBtn = document.getElementById('cancelAddEmployee');
+        const saveBtn = document.getElementById("btnSaveEmployee");
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            switch (event.target.id) {
+                case 'cancelAddEmployee':
+                    
+                    break;
+                case 'btnSaveEmployee':
+                    const employee = getFormdata();
+                    saveEmployee(employee);
+                    console.log(employee);
+                    break;
+            
+                default:
+                    break;
+            }
+        })
+    })
+
+    //getting the form data
+
+    function getFormdata() {
+        return new FormData(document.getElementById('addEmployeeForm'));
+    }
+
+    //Saving the employee function
+    //Saving employee details through AJAX
+
+    function saveEmployee(employee) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","../model/Employee.php?action=addEmployee",true);
+
+        xhr.onload = function() {
+            if(this.status === 200) {
+                console.log(this.responseText);
+            }
+        }
+        xhr.send(employee);
+    }
+
+</script>
