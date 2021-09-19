@@ -22,9 +22,9 @@
         $departmentID = $_POST['depID'];
         $Name = $_POST['dName'];
         $ContactNum = $_POST['dCon'];
-        $Description = $_POST['dDes'];
-        $DateCreated = date('y-n-j h:i:s a');
-        $LastModified = date('y-n-j h:i:s a');
+        $description = $_POST['dDes'];
+        $DateCreated = date('y-m-d H:i:s');
+        $LastModified = date('y-m-d H:i:s');
     }
 
 ?>

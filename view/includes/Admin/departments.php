@@ -307,11 +307,9 @@
                 <span for="depID" id="fieldName">Description</span>
                 <textarea type="text" name="dDes" id="dDes"></textarea>
             </div>
-            <div class="btn-group">
-                <div class="col-h">
+                <div class="col-btn">
                     <button class="addBtn" id="btnSaveDepartment">Add</button>
                 </div>
-            </div>
         </form>
     </div>
 </div>
@@ -345,7 +343,7 @@
                     
                     break;
                 case 'btnSaveDepartment':
-                    const technician = getFormdata();
+                    const department = getFormdata();
                     saveDepartment(department);
                     console.log(department);
                     break;
