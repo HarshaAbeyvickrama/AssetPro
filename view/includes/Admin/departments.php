@@ -95,7 +95,7 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 130vh;
+        margin-left: 63vw;
     }
 
     .depData {
@@ -188,7 +188,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         outline: none;
-        padding: 10px;
+        padding: 8px 15px 8px 15px;
     }
 
     .col-h {
