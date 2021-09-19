@@ -125,7 +125,7 @@
         width: calc(100% - 50px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 15px;
         border-radius: 9px;
         padding: 8px 15px 8px 15px;
         margin-top: 10px;
@@ -138,7 +138,7 @@
         width: calc(94% - 30px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 15px;
         border-radius: 9px;
         padding: 8px 15px 8px 15px;
         margin-top: 10px;
@@ -153,12 +153,21 @@
     .leftSection>div {}
 
     #email,
-    #dob,
-    #maritalStatus {
-        width: calc(97% - 30px);
+    #dob {
+        width: calc(96% - 30px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 15px;
+        border-radius: 9px;
+        margin-top: 10px;
+        outline: none;
+        padding: 8px 15px 8px 15px;
+    }
+    #maritalStatus {
+        width: calc(101% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 30px;
         border-radius: 9px;
         margin-top: 10px;
         outline: none;
@@ -201,13 +210,12 @@
         color: #F1F4FF;
         margin-left: 70vh;
     }
-
 </style>
 
 
 
 
-<form action="addemployee" method="POST">
+<form action="" id="addTechnicianForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection">
@@ -290,13 +298,9 @@
                 </div>
 
                 <!-- Add and Cancel button to add -->
-                <div class="BtnGroup">
-                    <div class="col-btn">
-                        <button class="addBtn" type="submit" name="submit" value="submit">Add</button>
-                    </div>
-                    <!-- <div class="col-btn">
-                        <button class="cancBtn">Cancel</button>
-                    </div> -->
+                <div class="col-btn">
+                    <button class="addBtn" id="btnSaveTechnician">Save</button>
+                    <button class="addBtn" id="cancelAddTechnician">Cancel</button>
                 </div>
             </div>
 
@@ -304,3 +308,48 @@
     </div>
 
 </form>
+
+<script>
+    document.querySelectorAll(".col-btn").forEach(button=> {
+        const cancBtn = document.getElementById('cancelAddTechnician');
+        const saveBtn = document.getElementById("btnSaveTechnician");
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            switch (event.target.id) {
+                case 'cancelAddTechnician':
+                    
+                    break;
+                case 'btnSaveTechnician':
+                    const technician = getFormdata();
+                    saveTechnician(technician);
+                    console.log(technician);
+                    break;
+            
+                default:
+                    break;
+            }
+        })
+    })
+
+    //getting the form data
+
+    function getFormdata() {
+        return new FormData(document.getElementById('addTechnicianForm'));
+    }
+
+    //Saving the technician function
+    //Saving technician details through AJAX
+
+    function saveTechnician(technician) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","../model/Technician.php?action=addTechnician",true);
+
+        xhr.onload = function() {
+            if(this.status === 200) {
+                console.log(this.responseText);
+            }
+        }
+        xhr.send(technician);
+    }
+
+</script>
