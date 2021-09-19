@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2021 at 11:15 AM
+-- Generation Time: Sep 19, 2021 at 02:44 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -51,8 +51,8 @@ CREATE TABLE `asset` (
   `TypeID` int(11) NOT NULL,
   `DepartmentID` int(11) DEFAULT NULL,
   `EmployeeID` int(11) DEFAULT NULL,
-  `DateCreated` datetime(6) NOT NULL,
-  `LastModified` datetime(6) NOT NULL,
+  `DateCreated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `LastModified` timestamp NOT NULL DEFAULT current_timestamp(),
   `Status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -61,8 +61,19 @@ CREATE TABLE `asset` (
 --
 
 INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `EmployeeID`, `DateCreated`, `LastModified`, `Status`) VALUES
-(1, 1, 1, 1, 1, '2021-08-27 21:10:13.000000', '2021-08-27 21:10:13.000000', 'Active'),
-(4, 1, 2, 1, 1, '2021-08-27 21:16:02.000000', '2021-08-27 21:16:02.000000', 'Active');
+(1, 1, 1, 1, 1, '2021-08-27 15:40:13', '2021-08-27 15:40:13', 'Active'),
+(4, 1, 2, 1, 1, '2021-08-27 15:46:02', '2021-08-27 15:46:02', 'Active'),
+(10, 1, 1, NULL, NULL, '2021-09-19 11:02:02', '2021-09-19 11:02:02', 'Unassigned'),
+(11, 1, 1, NULL, NULL, '2021-09-19 11:37:22', '2021-09-19 11:37:22', 'Unassigned'),
+(12, 1, 1, NULL, NULL, '2021-09-19 11:38:55', '2021-09-19 11:38:55', 'Unassigned'),
+(13, 1, 1, NULL, NULL, '2021-09-19 11:40:29', '2021-09-19 11:40:29', 'Unassigned'),
+(14, 1, 1, NULL, NULL, '2021-09-19 11:45:05', '2021-09-19 11:45:05', 'Unassigned'),
+(15, 1, 1, NULL, NULL, '2021-09-19 11:45:46', '2021-09-19 11:45:46', 'Unassigned'),
+(16, 1, 1, NULL, NULL, '2021-09-19 11:54:35', '2021-09-19 11:54:35', 'Unassigned'),
+(17, 1, 1, NULL, NULL, '2021-09-19 12:03:34', '2021-09-19 12:03:34', 'Unassigned'),
+(18, 1, 1, NULL, NULL, '2021-09-19 12:28:21', '2021-09-19 12:28:21', 'Unassigned'),
+(19, 1, 1, NULL, NULL, '2021-09-19 12:34:23', '2021-09-19 12:34:23', 'Unassigned'),
+(20, 1, 1, NULL, NULL, '2021-09-19 12:35:29', '2021-09-19 12:35:29', 'Unassigned');
 
 -- --------------------------------------------------------
 
@@ -77,7 +88,7 @@ CREATE TABLE `assetdetails` (
   `AssetCondition` varchar(100) NOT NULL,
   `ImageURL` varchar(1000) NOT NULL,
   `Description` longtext DEFAULT NULL,
-  `PurchasedDate` date NOT NULL
+  `PurchasedDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -85,7 +96,9 @@ CREATE TABLE `assetdetails` (
 --
 
 INSERT INTO `assetdetails` (`AssetID`, `Name`, `Cost`, `AssetCondition`, `ImageURL`, `Description`, `PurchasedDate`) VALUES
-(1, 'Computer Chair', 6000, 'New', '', 'This is a computer chair', '2021-08-25');
+(1, 'Computer Chair', 6000, 'New', '', 'This is a computer chair', '2021-08-24 18:30:00'),
+(18, 'Laptop', 50000, 'Brand New', 'google', 'good laptop', '2021-09-19 12:34:04'),
+(20, 'Laptop', 50000, 'Brand New', 'google', 'good laptop', '2021-09-19 12:35:29');
 
 -- --------------------------------------------------------
 
@@ -113,7 +126,6 @@ INSERT INTO `assetmanageruser` (`AssetManagerID`, `UserID`) VALUES
 
 CREATE TABLE `assetwarranty` (
   `AssetID` int(11) NOT NULL,
-  `WarrantyPeriod` int(11) NOT NULL,
   `fromDate` date NOT NULL,
   `toDate` date NOT NULL,
   `OtherInfo` longtext NOT NULL
@@ -143,17 +155,18 @@ CREATE TABLE `breakdown` (
 
 CREATE TABLE `category` (
   `CategoryID` int(11) NOT NULL,
-  `Name` varchar(100) NOT NULL
+  `Name` varchar(100) NOT NULL,
+  `CategoryCode` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`CategoryID`, `Name`) VALUES
-(1, 'Fixed'),
-(2, 'Consumable'),
-(3, 'Intangible');
+INSERT INTO `category` (`CategoryID`, `Name`, `CategoryCode`) VALUES
+(1, 'Fixed', ''),
+(2, 'Consumable', ''),
+(3, 'Intangible', '');
 
 -- --------------------------------------------------------
 
@@ -191,6 +204,13 @@ CREATE TABLE `depreciation` (
   `UsefulYears` date NOT NULL,
   `CurrentValue` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `depreciation`
+--
+
+INSERT INTO `depreciation` (`DepreciationID`, `AssetID`, `UsefulYears`, `CurrentValue`) VALUES
+(1, 20, '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -303,19 +323,20 @@ CREATE TABLE `techrepairbreak` (
 CREATE TABLE `type` (
   `TypeID` int(11) NOT NULL,
   `CategoryID` int(11) NOT NULL,
-  `Name` varchar(100) NOT NULL
+  `Name` varchar(100) NOT NULL,
+  `TypeCode` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `type`
 --
 
-INSERT INTO `type` (`TypeID`, `CategoryID`, `Name`) VALUES
-(1, 1, 'Furniture'),
-(2, 1, 'Computers & Peripherals'),
-(3, 2, 'Computers & Peripherals'),
-(4, 2, 'Other'),
-(5, 3, 'Software');
+INSERT INTO `type` (`TypeID`, `CategoryID`, `Name`, `TypeCode`) VALUES
+(1, 1, 'Furniture', ''),
+(2, 1, 'Computers & Peripherals', ''),
+(3, 2, 'Computers & Peripherals', ''),
+(4, 2, 'Other', ''),
+(5, 3, 'Software', '');
 
 -- --------------------------------------------------------
 
@@ -534,7 +555,7 @@ ALTER TABLE `adminuser`
 -- AUTO_INCREMENT for table `asset`
 --
 ALTER TABLE `asset`
-  MODIFY `AssetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `AssetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `assetmanageruser`
@@ -564,7 +585,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `depreciation`
 --
 ALTER TABLE `depreciation`
-  MODIFY `DepreciationID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `DepreciationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employeeuser`
