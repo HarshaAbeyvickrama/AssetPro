@@ -365,7 +365,7 @@
 
     function saveDepartment(department) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Department.php?action=departments",true);
+        xhr.open("POST","../model/Department.php?action=addDepartment",true);
 
         xhr.onload = function() {
             if(this.status === 200) {
