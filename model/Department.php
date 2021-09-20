@@ -19,6 +19,7 @@
 
     function saveDepartment() {
         global $mysql;
+        $DepartmentCode = $_POST['dCode'];
         $Name = $_POST['dName'];
         $ContactNum = $_POST['dCon'];
         $description = $_POST['dDes'];
@@ -26,8 +27,8 @@
         // $LastModified = date('y-m-d H:i:s');
 
         $departmentQuery = "INSERT INTO department
-        (DepartmentID,Name,description,ContactNum,DateCreated,LastModified)
-        VALUES (NULL,'$Name','$description','$ContactNum',now(),now())";
+        (DepartmentID,DepartmentCode,Name,description,ContactNum,DateCreated,LastModified)
+        VALUES (NULL,'$DepartmentCode','$Name','$description','$ContactNum',now(),now())";
 
         if(mysqli_query($mysql,$departmentQuery)) {
             function alert_success($message) {
