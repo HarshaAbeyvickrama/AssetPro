@@ -167,14 +167,91 @@
     }
     
 </style>
+
+<script>
+
+    //Get Asset Counts
+    getCount('all');
+
+    function getCount(type){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET",`../model/Asset.php?action=getCount&type=${type}`,true);
+
+        xhr.onload = function(){
+            if(this.status === 200){
+                switch (type) {
+                    case 'all':
+                        document.getElementById('allAssetsCount').innerHTML = this.responseText;
+                        break;
+                
+                    default:
+                        break;
+                }
+                
+            }
+        }
+        xhr.send();
+    }
+
+    function getAssets(type){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
+
+        xhr.onload = function(){
+            if(this.status === 200){
+                switch (type) {
+                    case 'all':
+                        // console.log(JSON.stringify(this.response));
+                        var assets = JSON.parse(this.responseText);
+                        for(var i = 0; i<assets.length;i++){
+                            const tb = document.getElementById('allAssetsTableBody');
+                            tb.innerHTML += `
+                                <div class="tableRow">
+                                    <div>${i+1}</div>
+                                    <div>${assets[i]['AssetID']}</div>
+                                    <div>${assets[i]['assetName']}</div>
+                                    <div>${assets[i]['assetType']}</div>
+                                    <div>${assets[i]['AssetCondition']}</div>
+                                    <div>${assets[i]['Status']}</div>
+                                </div>`;
+                        }
+                        // console.log(JSON.parse(this.responseJSON));
+                        break;
+                
+                    default:
+                        break;
+                }
+                
+            }
+        }
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send();
+    }
+
+    document.getElementById("assetSections").addEventListener('click',function(e){
+        const eventId = e.target.id;
+        if(eventId != 'assetSections'){
+            loadSection("assetContents",eventId);
+            e.stopPropagation();
+        }
+        
+    });
+
+    document.getElementById("addAsset").addEventListener('click',function(e){
+        const eventId = e.target.id;
+        if(eventId == "addAsset"){
+            loadSection("centerSection",eventId);
+        }
+    })
+</script>
 <div class="overviewLayout">
     <div>
         <div>Dashboard Overview</div>
     </div>
     <div class="statSection">
         <div>
-            <div class="statBox box1" id="allAssets">
-                <div class="statNumber">1890</div>
+            <div class="statBox box1" >
+                <div class="statNumber" id="allAssetsCount"></div>
                 <div class="statText">All Assets</div>
             </div>
         </div>
@@ -228,20 +305,3 @@
     </div>
 </div>
 
-<script>
-    document.getElementById("assetSections").addEventListener('click',function(e){
-        const eventId = e.target.id;
-        if(eventId != 'assetSections'){
-            loadSection("assetContents",eventId);
-            e.stopPropagation();
-        }
-        
-    });
-
-    document.getElementById("addAsset").addEventListener('click',function(e){
-        const eventId = e.target.id;
-        if(eventId == "addAsset"){
-            loadSection("centerSection",eventId);
-        }
-    })
-</script>
