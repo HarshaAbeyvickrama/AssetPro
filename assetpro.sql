@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2021 at 09:44 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Sep 20, 2021 at 07:52 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -187,6 +187,7 @@ INSERT INTO `category` (`CategoryID`, `Name`, `CategoryCode`) VALUES
 
 CREATE TABLE `department` (
   `DepartmentID` int(11) NOT NULL,
+  `DepartmentCode` varchar(5) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `description` longtext DEFAULT NULL,
   `ContactNum` varchar(10) NOT NULL,
@@ -198,10 +199,12 @@ CREATE TABLE `department` (
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`DepartmentID`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
-(1, 'Finance', NULL, '0452245696', '2021-08-27 20:52:38.000000', '2021-08-27 20:52:38.000000'),
-(2, 'Operation', NULL, '0112345678', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
-(3, 'Human Resource', NULL, '0573785647', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000');
+INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
+(1, '', 'Finance', NULL, '0452245696', '2021-08-27 20:52:38.000000', '2021-08-27 20:52:38.000000'),
+(2, '', 'Operation', NULL, '0112345678', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
+(3, '', 'Human Resource', NULL, '0573785647', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
+(4, '', 'Research and Development', 'Research and Development', '0113454545', '2021-09-20 10:29:01.000000', '2021-09-20 10:29:01.000000'),
+(17, '', '', '', '', '2021-09-20 11:13:05.000000', '2021-09-20 11:13:05.000000');
 
 -- --------------------------------------------------------
 
@@ -390,6 +393,7 @@ CREATE TABLE `userdetails` (
   `Gender` char(1) NOT NULL,
   `Age` int(3) NOT NULL,
   `PhoneNumber` varchar(10) NOT NULL,
+  `Email` varchar(255) NOT NULL,
   `DOB` date NOT NULL,
   `ProfilePicURL` varchar(1000) NOT NULL,
   `CivilStatus` varchar(10) NOT NULL
@@ -399,13 +403,13 @@ CREATE TABLE `userdetails` (
 -- Dumping data for table `userdetails`
 --
 
-INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `Address`, `Gender`, `Age`, `PhoneNumber`, `DOB`, `ProfilePicURL`, `CivilStatus`) VALUES
-(1, 'Induni', 'Dulanjalee', 'Badulla', 'F', 23, '0719598424', '1998-04-24', '', 'Single'),
-(2, 'Harsha', 'Abeyvickrama', 'Rakwana', 'M', 23, '0711425085', '1998-08-29', '', 'Single'),
-(3, 'Mushrifa', 'Mansoor', 'Mawanella', 'F', 22, '0775067556', '1999-07-07', '', 'Single'),
-(4, 'Ayisha', 'Siddeequa', 'Kandy', 'F', 22, '0764243353', '1999-08-14', '', 'Single'),
-(6, 'Sashini', 'Madushani', 'colombo', 'F', 23, '0714562389', '2021-08-31', '', 'Single'),
-(8, 'Lalith', 'Gunasena', 'Polonnaruwa', 'M', 34, '0875612310', '1989-12-14', '', 'Married');
+INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `Address`, `Gender`, `Age`, `PhoneNumber`, `Email`, `DOB`, `ProfilePicURL`, `CivilStatus`) VALUES
+(1, 'Induni', 'Dulanjalee', 'Badulla', 'F', 23, '0719598424', '', '1998-04-24', '', 'Single'),
+(2, 'Harsha', 'Abeyvickrama', 'Rakwana', 'M', 23, '0711425085', '', '1998-08-29', '', 'Single'),
+(3, 'Mushrifa', 'Mansoor', 'Mawanella', 'F', 22, '0775067556', '', '1999-07-07', '', 'Single'),
+(4, 'Ayisha', 'Siddeequa', 'Kandy', 'F', 22, '0764243353', '', '1999-08-14', '', 'Single'),
+(6, 'Sashini', 'Madushani', 'colombo', 'F', 23, '0714562389', '', '2021-08-31', '', 'Single'),
+(8, 'Lalith', 'Gunasena', 'Polonnaruwa', 'M', 34, '0875612310', '', '1989-12-14', '', 'Married');
 
 -- --------------------------------------------------------
 
@@ -570,7 +574,7 @@ ALTER TABLE `adminuser`
 -- AUTO_INCREMENT for table `asset`
 --
 ALTER TABLE `asset`
-  MODIFY `AssetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `AssetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `assetmanageruser`
@@ -594,7 +598,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `depreciation`

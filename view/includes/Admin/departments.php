@@ -290,18 +290,18 @@
     <div class="popup-content">
         <div class="close" id="cancelAddTechnician">+</div>
         <h3 class="depInfo">Department Information</h3>
-        <form action="" id="addDepartmentForm">
+        <form action="" id="addDepartmentForm" onsubmit="checkBlank()">
             <div class="col-f">
                 <span for="depID" id="fieldName">Department ID</span>
-                <input type="text" name="depID" id="depID">
+                <input type="text" name="depID" id="depID" required/>
             </div>
             <div class="col-f">
                 <span for="depID" id="fieldName">Department Name</span>
-                <input type="text" name="dName" id="dName">
+                <input type="text" name="dName" id="dName" required/>
             </div>
             <div class="col-f">
                 <span for="depID" id="fieldName">Contact Number</span>
-                <input type="text" name="dCon" id="dCon">
+                <input type="text" name="dCon" id="dCon" required/>
             </div>
             <div class="col-f">
                 <span for="depID" id="fieldName">Description</span>
@@ -336,7 +336,7 @@
     document.querySelectorAll(".col-btn").forEach(button=> {
         // const cancBtn = document.getElementById('cancelAddDepartment');
         const saveBtn = document.getElementById("btnSaveDepartment");
-        button.addEventListener('click', function(event) {
+        button.addEventListener('submit', function(event) {
             event.preventDefault();
             switch (event.target.id) {
                 case 'cancelAddDepartment':
@@ -358,6 +358,14 @@
 
     function getFormdata() {
         return new FormData(document.getElementById('addDepartmentForm'));
+    }
+
+    // checking if all fields are filled
+    function checkBlank() {
+        if(document.getElementById('dName').value == "") {
+            alert('Please enter all the details');
+            return false;
+        }
     }
 
     //Saving the department function
