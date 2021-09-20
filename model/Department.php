@@ -4,7 +4,6 @@
         session_start();
     }
     require_once("../db/dbConnection.php");
-    global $mysql;
 
     if (isset($_REQUEST['action'])) {
         switch ($_REQUEST['action']) {
@@ -19,12 +18,22 @@
     }
 
     function saveDepartment() {
-        $departmentID = $_POST['depID'];
+        global $mysql;
         $Name = $_POST['dName'];
         $ContactNum = $_POST['dCon'];
-        $Description = $_POST['dDes'];
-        $DateCreated = date('y-n-j h:i:s a');
-        $LastModified = date('y-n-j h:i:s a');
+        $description = $_POST['dDes'];
+        $DateCreated = date('y-m-d H:i:s');
+        $LastModified = date('y-m-d H:i:s');
+
+        $departmentQuery = "INSERT INTO department
+        (DepartmentID,Name,description,ContactNum,DateCreated,LastModified)
+        VALUES (NULL,'$Name','$description','$ContactNum',now(),now())";
+
+        if(mysqli_query($mysql,$departmentQuery)) {
+            echo "success";
+        } else {
+            echo "Fail";
+        }
     }
 
 ?>
