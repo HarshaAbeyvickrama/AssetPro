@@ -225,7 +225,7 @@
         right: calc(0%);
     }
 </style>
-<form action="" id="addAssetForm">
+<form action="" id="reportAssetForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
@@ -285,19 +285,19 @@
 
                 <div class="col-f">
                     <span for="defectedParts">Defected Parts</span>
-                    <textarea class="textarea" cols="" rows=""></textarea>
+                    <textarea class="textarea" cols="" rows="" id="defP"></textarea>
                 </div>
 
                 <div class="col-f">
                     <span for="explainDefect">Explain the defect</span>
-                    <textarea class="textarea" cols="" rows=""></textarea>
+                    <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
                 </div>
 
                
                 <div class="col-btn">
                         <div id="cancelReport">Cancel</div>
                         <div id="reportAsset">Report</div>
-                       
+                    
                     </div>
 
             </div>
@@ -305,4 +305,60 @@
     </div>
 
 </form>
+
+
+<script>
+    document.querySelectorAll(".col-btn").forEach(button =>{
+        const cancelBtn = document.getElementById("cancelReport");
+        const reportBtn = document.getElementById("reportAsset");
+        button.addEventListener('click',function(event){
+            switch (event.target.id) {                       //event triggered when clicking the report btn
+                case 'cancelReport':
+                   
+                    break;
+                case 'reportAsset':
+                   const report = getFormdata();   
+
+                   for (var pair of report.entries()) 
+                   {
+                   console.log(pair[0] + ': ' + pair[1]);
+                   }
+                    saveReport(report);
+                    break;
+            
+                default:
+                    break;
+            }
+        
+        
+        })
+    })
+
+    function getFormdata(){
+        reportForm = new FormData(document.getElementById('reportAssetForm'));
+        //console.log(reportForm);
+
+        defectedPart =  document.getElementById('defP').value;
+        reportForm.append('defP',defectedPart);
+
+        explainDefect = document.getElementById('exDef').value;
+        reportForm.append('exDef',explainDefect);
+        console.log(reportForm);
+        return reportForm;
+    }
+
+
+    function saveReport(report){
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
+        
+        xhr.onload = function(){
+            if(this.status === 200){
+                alert(this.responseText);
+            }
+        }
+        xhr.send(report);
+    }
+</script>
+
                     
