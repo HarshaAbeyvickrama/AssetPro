@@ -60,9 +60,7 @@
         background-color: #4E74AB;
     }
 
-    .contentSection ::-webkit-scrollbar{
-        display: none;
-    }
+    
     .overviewLayout .contentSection{
         all: revert;
         display: inline-block;
@@ -70,6 +68,7 @@
         border-radius: 15px;
         padding: 10px;
         background-color: white;
+        overflow-y: auto;
     }
     .contentSection > div{
         margin:15px;
@@ -126,21 +125,21 @@
     <div class="statSection">
         <div>
             <div class="statBox box1" id="allAssets">
-                <div class="statNumber">1890</div>
+                <div class="statNumber" id="allAssetsCount"></div>
                 <div class="statText">All Assets</div>
             </div>
         </div>
 
         <div>
             <div class="statBox box2" id="allEmployees">
-                    <div class="statNumber">113</div>
+                    <div class="statNumber" id="allEmployeesCount"></div>
                     <div class="statText">All Employees</div>
             </div>
         </div>
             
         <div>
             <div class="statBox box3" id="allTechnicians">
-                <div class="statNumber">56</div>
+                <div class="statNumber" id="allTechniciansCount"></div>
                     <div class="statText">All Technicians</div>
             </div>
         </div>
@@ -160,7 +159,7 @@
     <div>
         <div>Recent Activities</div>
     </div>
-    <div class="contentSection scrollBar">
+    <div class="contentSection scrollbar">
         <div class="recent24">
             <div class="recentTitle">Last 24 Hours</div>
 
@@ -168,8 +167,8 @@
                 <div class="tableHeader">
                     <div class="tableCell">Date</div>
                     <div class="tableCell">Name</div>
-                    <div class="tableCell">Role</div>
                     <div class="tableCell">Task</div>
+                    <div class="tableCell">Role</div>
                     <div class="tableCell">Time</div>
                 </div>
                 <div class="tableRowGroup">
@@ -201,8 +200,8 @@
                 <div class="tableHeader">
                     <div class="tableCell">Date</div>
                     <div class="tableCell">Name</div>
-                    <div class="tableCell">Role</div>
                     <div class="tableCell">Task</div>
+                    <div class="tableCell">Role</div>
                     <div class="tableCell">Time</div>
                 </div>
                 <div class="tableRowGroup">
@@ -282,3 +281,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    getCount('allAssets');
+    getCount('allEmployees');
+    getCount('allTechnicians');
+</script>

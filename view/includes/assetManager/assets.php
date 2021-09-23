@@ -3,7 +3,6 @@
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
         background-color: #F1F4FF;
-        border: 3px solid red;
     }
     .overviewLayout > div{
         display: grid;
@@ -22,7 +21,6 @@
         width: 100%;
         height: 100%;
         display: flex;
-        /* justify-content: center; */
         align-items: center;
     }
     .statBox{
@@ -69,7 +67,6 @@
         overflow-y: hidden;
         padding: 0px 10px;
         background-color: white;
-        border: 3px solid red;
     }
     .contentSection > div{
         margin:8px 15px;
@@ -171,41 +168,24 @@
 <script>
 
     //Get Asset Counts
-    getCount('all');
-
-    function getCount(type){
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getCount&type=${type}`,true);
-
-        xhr.onload = function(){
-            if(this.status === 200){
-                switch (type) {
-                    case 'all':
-                        document.getElementById('allAssetsCount').innerHTML = this.responseText;
-                        break;
-                
-                    default:
-                        break;
-                }
-                
-            }
-        }
-        xhr.send();
-    }
+    getCount('allAssets');
+    getCount('allEmployees');
+    getCount('allTechnicians');
+    
+    
 
     function getAssets(type){
+        console.log(type);
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
 
         xhr.onload = function(){
             if(this.status === 200){
+                var assets = JSON.parse(this.responseText);
                 switch (type) {
                     case 'all':
-                        // console.log(JSON.stringify(this.response));
-                        var assets = JSON.parse(this.responseText);
                         for(var i = 0; i<assets.length;i++){
-                            const tb = document.getElementById('allAssetsTableBody');
-                            tb.innerHTML += `
+                            document.getElementById('allAssetsTableBody').innerHTML += `
                                 <div class="tableRow">
                                     <div>${i+1}</div>
                                     <div>${assets[i]['AssetID']}</div>
@@ -215,7 +195,58 @@
                                     <div>${assets[i]['Status']}</div>
                                 </div>`;
                         }
-                        // console.log(JSON.parse(this.responseJSON));
+                        break;
+                    case 'assigned':
+                        for(var i = 0; i<assets.length;i++){
+                            var tb = document.getElementById('assignedAssetsTableBody');
+                            console.log(assets[i]);
+                            tb.innerHTML += `
+                                <div class="tableRow">
+                                    <div>${i+1}</div>
+                                    <div>${assets[i]['AssetID']}</div>
+                                    <div>${assets[i]['assetName']}</div>
+                                    <div>${assets[i]['assetType']}</div>
+                                    <div>${assets[i]['AssetCondition']}</div>
+                                    <div>${assets[i]['employee']}</div>
+                                </div>`;
+                        }
+                        break;
+
+                    case 'shared':
+                        for(var i = 0; i<assets.length;i++){
+                            console.log(assets[i]);
+                            document.getElementById('sharedAssetsTableBody').innerHTML += `
+                                <div class="tableRow">
+                                    <div>${i+1}</div>
+                                    <div>${assets[i]['AssetID']}</div>
+                                    <div>${assets[i]['assetName']}</div>
+                                    <div>${assets[i]['assetType']}</div>
+                                    <div>${assets[i]['AssetCondition']}</div>
+                                    <div>${assets[i]['department']}</div>
+                                </div>`;
+                        }
+                        break;
+                    case 'unassigned':
+                        for(var i = 0; i<assets.length;i++){
+                            const tb = document.getElementById('unassignedAssetsTableBody');
+                            // console.log(assets[i]);
+                            tb.innerHTML += `
+                                <div class="tableRow">
+                                    <div>${i+1}</div>
+                                    <div>${assets[i]['AssetID']}</div>
+                                    <div>${assets[i]['assetName']}</div>
+                                    <div>${assets[i]['assetType']}</div>
+                                    <div>${assets[i]['AssetCondition']}</div>
+                                    <div>
+                                        <div class='assignAssetButton' id=${assets[i]['AssetID']}>
+                                            Assign
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                      
+                        }
+                        addEventListeners();
                         break;
                 
                     default:
@@ -258,14 +289,14 @@
 
         <div>
             <div class="statBox box2" id="allEmployees">
-                    <div class="statNumber">113</div>
+                    <div class="statNumber" id="allEmployeesCount"></div>
                     <div class="statText">All Employees</div>
             </div>
         </div>
             
         <div>
             <div class="statBox box3" id="allTechnicians">
-                <div class="statNumber">56</div>
+                <div class="statNumber" id="allTechniciansCount"></div>
                     <div class="statText">All Technicians</div>
             </div>
         </div>
@@ -290,9 +321,7 @@
             <div id="allAssets">All Assets</div>
             <div id="assignedAssets">Assigned Assets</div>
             <div id="unassignedAssets">Unassigned Assets</div>
-            <div id="assignedHistory">Assigned History</div>
-            <div id="repairedAssets">Repaired Assets</div>
-            <div id="repairHistory">Repair History</div>
+            <div id="sharedAssets">Shared Assets</div>
         </div>
         <div id="assetContents">
             <?php

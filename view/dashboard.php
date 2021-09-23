@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">  
     <title>Dashboard</title>
     <style>
         .container{
@@ -41,25 +42,23 @@
             overflow:hidden;
             padding: 20px;
             background-color: #F1F4FF;
-            border: 3px solid red;
         }
         /* Scrollbar styling */
-        .scrollBar{
-            overflow-y: auto;
-        }
+       .scrollBar{
+       }
         .scrollBar::-webkit-scrollbar-track{
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-            background-color: #F5F5F5;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+            background-color: #F5F5F5 !important;
         }
 
         .scrollBar::-webkit-scrollbar{
-            width: 6px;
-            background-color: #F5F5F5;
+            width: 6px !important;
+            background-color: #F5F5F5 !important;
         }
 
         .scrollBar::-webkit-scrollbar-thumb
         {
-            background-color: #5C6E9B;
+            background-color: #5C6E9B !important;
         }
 
     </style>
@@ -102,7 +101,31 @@
         
     </div>
     <script>
-       
+       function getCount(type){
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET",`../model/Asset.php?action=getCount&type=${type}`,true);
+
+            xhr.onload = function(){
+                if(this.status === 200){
+                    switch (type) {
+                        case 'allAssets':
+                            document.getElementById('allAssetsCount').innerHTML = this.responseText;
+                            break;
+                        case 'allEmployees':
+                            document.getElementById('allEmployeesCount').innerHTML = this.responseText;
+                            break;
+                        case 'allTechnicians':
+                            document.getElementById('allTechniciansCount').innerHTML = this.responseText;
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                    
+                }
+            }
+            xhr.send();
+        }
 
     </script>
 </body>

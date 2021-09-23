@@ -4,20 +4,26 @@
         width: 100%;
         margin: 10px 0px;
         color: #5C6E9B;
+        overflow-y: hidden !important;
         
         
     }
     .tableHeader{
+        width: 100%;
         display: table-header-group;
         font-size: 19px;
         padding: 15px;
         font-weight: bold;
+        overflow-y: hidden !important;
+        
     }
     .tableHeader > div { 
         display: table-cell;
     }
     .table .tableRowGroup{
         display: table-row-group;
+        overflow-y: auto !important;
+        
     }
     .tableRow{
         display: table-row;

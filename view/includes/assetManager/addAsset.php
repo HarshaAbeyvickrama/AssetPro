@@ -44,6 +44,7 @@
 
     .profileImageSection>img {
         width: 200px;
+        height: 200px;
         border-radius: 50%;
     }
 
@@ -217,7 +218,7 @@
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
             <div class="profileImageSection">
-                <img src="../Images/profile.jpg" alt="">
+                <img src="../Images/profile.jpg" alt="" id="imagePreview">
                 <input type="file" name="image" id="image" hidden>
                 <label for="image" id="uploadBtn">Choose Image</label>
             </div>
@@ -225,11 +226,11 @@
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
 
-                    <div class="col-f">
+                    <!-- <div class="col-f">
                         <span for="assetId">Asset ID</span>
                         <input type="text" name="assetId" id="assetId">
                     </div>
-                    
+                     -->
                     <div class="col-f">
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName">
@@ -239,19 +240,19 @@
                         <span for="assetDescription">Asset Description</span>
                         <input type="text" name="assetDescription" id="assetDescription">
                     </div>
-                   
-                    <div class="col-f">
-                        <span for="assetType">Asset Type</span>
-                        <select name="assetType" id="assetType">
-                            <option value="1">Furniture</option>
-                        </select>
-                    </div>
                     <div class="col-f">
                         <span for="category">Category</span>
                         <select name="category" id="category">
                             <option value="1">Fixed Asset</option>
                         </select>
                     </div>
+                    <div class="col-f">
+                        <span for="assetType">Asset Type</span>
+                        <select name="assetType" id="assetType">
+                            <option value="1">Furniture</option>
+                        </select>
+                    </div>
+                    
                     <div class="col-f">
                         <span for="condition">condition</span>
                         <select name="condition" id="condition">
@@ -379,7 +380,17 @@
     // readonlyState ---->
     //      true --> form disabled 
     //      false --> form enabled 
-    
+    var imageUpload = document.getElementById('image');
+    imageUpload.addEventListener('change',()=>{
+        const image = imageUpload.files[0];
+        if(image){
+            var src = URL.createObjectURL(image);
+            console.log(src);
+            document.getElementById('imagePreview').src = src;
+        }
+
+    })
+
     function formState(state){
         document.getElementById('depriciationMethod').disabled = state;
         document.getElementById('depriciaionRate').disabled = state;
@@ -399,6 +410,10 @@
                     break;
                 case 'btnSaveAsset':
                     const asset = getFormdata();
+                    // for (var pair of asset.entries()) {
+                    //     console.log(pair[1].name);
+                    //     break;
+                    // }
                     saveAsset(asset);
                     
                     break;

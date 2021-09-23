@@ -58,97 +58,11 @@
         <div>Condition</div>
         <div>Assigned Employee</div>
     </div>
-    <div class="tableRowGroup ">
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        <div class="tableRow">
-            <div>1</div>
-            <div>FA/12345</div>
-            <div>FA/12345</div>
-            <div>Computer</div>
-            <div>Brand New</div>
-            <div>Kasun Sameera</div>
-        </div>
-        
-        
+    <div class="tableRowGroup " id="assignedAssetsTableBody">
         
     </div>
 </div>
+
+<script>
+    getAssets('assigned');
+</script>

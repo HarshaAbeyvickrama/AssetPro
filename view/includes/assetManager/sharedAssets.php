@@ -5,7 +5,6 @@
         width: 100%;
         margin: 10px 0px;
         color: #5C6E9B;
-        overflow-y: hidden;  
         
     }
     .tableHeader{
@@ -45,51 +44,25 @@
     .tableHeader > div:first-of-type{
         text-align: center;
     }
-    .assignAssetButton{
-        padding: 10px 20px;
-        background-color: #5C6E9B;
-        color: white;
-        text-align: center;
-        width: 50px;
-        border-radius: 20px;
-    }
-    .assignAssetButton:hover{
-        background-color: whitesmoke;
-        color: #5C6E9B;
-    }
-    .tableRow > div:last-of-type{
-        text-align: center;
-    }
+   
     
     
 </style>
 
-<div class="table">
+<div class="table scrollbar">
     <div class="tableHeader">
         <div>Number</div>
         <div>Asset ID</div>
         <div>Asset Name</div>
         <div>Asset Type</div>
         <div>Condition</div>
-        <div></div>
+        <div>Department</div>
     </div>
-    <div class="tableRowGroup" id="unassignedAssetsTableBody">     
+    <div class="tableRowGroup " id="sharedAssetsTableBody">
+        
     </div>
 </div>
 
 <script>
-    getAssets('unassigned');
-
-    function addEventListeners(){
-        const buttonArray = document.querySelectorAll('.assignAssetButton');
-        for(var i=0 ; i < buttonArray.length ; i++ ){
-            buttonArray[i].addEventListener('click',(e) => {
-                AssignAsset(e.target.id)
-            })
-        }
-    }
-
-    function AssignAsset(assetId){
-        console.log('Assigned' , assetId)
-    }
+    getAssets('shared');
 </script>

@@ -3,7 +3,7 @@
         session_start();
     }
     require_once("../db/dbConnection.php");
-    
+    $rootDir = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
     global $mysql;
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -29,17 +29,17 @@
     }
 
     function saveAsset(){
-        global $mysql;
+        global $mysql,$rootDir;
         mysqli_begin_transaction($mysql);
 
         $isSuccess = false;
         $dateCreated = date("Y-m-d H:i:s");
         $dateModified = date("Y-m-d H:i:s");
 
+        //Get asset Image
 
         $status = "unassigned";
         // Getting the values
-        $assetId = $_POST['assetId'];
         $assetName = $_POST['assetName'];
         $assetDescription = $_POST['assetDescription'];
         $assetType = $_POST['assetType'];
@@ -64,7 +64,7 @@
             $residualValue = $_POST['residualValue'];
             $usefulYears = $_POST['usefulYears'];
         }
-
+       
         try {
             // Asset table query
             $assetQuery = "insert into asset (AssetID,CategoryID,TypeID,DateCreated,LastModified,Status) values(NULL,$category,$assetType,'$dateCreated','$dateModified','Unassigned')";
@@ -73,8 +73,13 @@
             //getting the asset ID
             $assetId = mysqli_insert_id($mysql);
 
+            //Save image in the folder
+            $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $fileUrl = '/assetPro/uploads/assets/'.$assetId.'.'.$extension;
+            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , $rootDir.$fileUrl);
+
             // Asset detail query
-            $assetDetails = "insert into assetdetails values($assetId,'$assetName',$purchaseCost,'$condition','google','$assetDescription','$purchaseDate')";
+            $assetDetails = "insert into assetdetails values($assetId,'$assetName',$purchaseCost,'$condition','$fileUrl','$assetDescription','$purchaseDate')";
             mysqli_query($mysql,$assetDetails);
 
             
@@ -89,67 +94,32 @@
                 mysqli_query($mysql,$depriciaionQuery);
             }
 
+           
+            
             //Commit if everything is ok
-            mysqli_commit($mysql);
-            echo('OK');
+            if($imageSaved){
+                mysqli_commit($mysql);
+                echo('OK');
+            }
 
         } catch (mysqli_sql_exception $exception) {
             mysqli_rollback($mysql);
             echo('Not OK\n Exception'.$exception);
         }
         
-        // if(mysqli_query($mysql,$assetQuery)){
-        //     $assetId = mysqli_insert_id($mysql);
-
-        //     // Asset detail query
-        //     $assetDetails = "insert into assetdetails values($assetId,'$assetName',$purchaseCost,'$condition','google','$assetDescription',now())";
-
-        //     if(mysqli_query($mysql,$assetDetails)){
-                // if($hasWarrenty){
-                //     $warrentyQuery = "insert into assetwarranty values($assetId,'$warrentyStart','$warrentyEnd','$otherInfo')";
-                //     $warrentyStatus = mysqli_query($mysql,$warrentyQuery);
-                //     // if(!$Ass)
-                // }
-                // if($hasDepriciation){
-                //     $depriciaionQuery = "insert into depreciation values (NULL,$assetId,$usefulYears,'0')";
-                //     $depriciationStatus =  mysqli_query($mysql,$depriciaionQuery);
-                // }
-
-        //         if($hasDepriciation && $hasWarrenty && $depriciationStatus && $warrentyStatus){
-        //             // Autocommit
-        //             $isSuccess = true;
-        //         }elseif($hasDepriciation && $depriciationStatus){
-        //             // Autocommit
-        //             $isSuccess = true;
-        //         }elseif($hasWarrenty && $warrentyStatus){
-        //             // Autocommit
-        //             $isSuccess = true;
-        //         }else{
-        //             // rollback
-        //             $isSuccess = false;
-        //             echo mysqli_error($mysql);
-        //         }
-        //     }else{
-        //         $isSuccess = false;
-        //         echo mysqli_error($mysql);
-        //     }
-
-        // }else{
-        //     $isSuccess = false;
-        //     echo mysqli_error($mysql);
-        // }
-        // if($isSuccess){
-        //     echo "Success";
-        // }else{
-        //     echo "failed";
-        // }
     }
     function getCount($type){
         global $mysql;
 
         switch ($type) {
-            case 'all':
+            case 'allAssets':
                 $query = "SELECT COUNT(*) FROM asset as count";
+                break;
+            case 'allEmployees':
+                $query = "SELECT COUNT(*) FROM employeeuser as count";
+                break;
+            case 'allTechnicians':
+                $query = "SELECT COUNT(*) FROM technicianuser as count";
                 break;
             
             default:
@@ -181,7 +151,60 @@
                         ORDER BY asset.AssetID";
                 
                 break;
+            case 'assigned':
+                $sql = "SELECT
+                            asset.AssetID,
+                            asset.Status,
+                            assetdetails.Name AS assetName,
+                            assetdetails.AssetCondition,
+                            TYPE.Name AS assetType,
+                            CONCAT(userdetails.fName,' ',userdetails.lName) as employee
+                        FROM
+                            asset
+                        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                        INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+                        INNER join userdetails ON asset.EmployeeID = userdetails.UserID
+                        WHERE
+                            asset.Status = 'assigned' AND asset.EmployeeID IS NOT NULL AND asset.DepartmentID IS NULL
+                        ORDER BY
+                            asset.AssetID";
+                
+                break;
+            case 'shared':
+                $sql = "SELECT
+                            asset.AssetID,
+                            asset.Status,
+                            assetdetails.Name AS assetName,
+                            assetdetails.AssetCondition,
+                            TYPE.Name AS assetType,
+                            department.Name AS department
+                        FROM
+                            asset
+                        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                        INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+                        INNER JOIN department ON department.DepartmentID = asset.DepartmentID
+                        WHERE
+                            asset.Status = 'assigned' AND asset.EmployeeID IS NULL AND asset.DepartmentID IS NOT NULL
+                        ORDER BY
+                            asset.AssetID";
+                break;
+
+            case 'unassigned':
+                $sql = "SELECT
+                            asset.AssetID,
+                            asset.Status,
+                            assetdetails.Name as assetName,
+                            assetdetails.AssetCondition,
+                            TYPE.Name as assetType
+                        FROM asset
+                        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                        INNER JOIN type ON asset.TypeID = type.TypeID WHERE asset.Status= 'unassigned'
+                        ORDER BY asset.AssetID";
+                
+                break;
+           
             
+                
             default:
                 # code...
                 break;
