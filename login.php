@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <title>AssetPro</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">  
     <style>
       * {
         margin: 0;
