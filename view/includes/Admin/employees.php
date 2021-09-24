@@ -51,7 +51,7 @@
     </div>
 
 
-    <div class="contentSection ">
+    <div class="contentSection">
         <?php
         include("employeeDetails.php");
         ?>

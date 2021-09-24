@@ -1,104 +1,71 @@
 <style>
-    .overviewLayout{
+    .overviewLayout {
         display: grid;
-        grid-template-rows: 0.75fr 9.25fr ;
+        /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr; */
+        height: 82vh;
+        width: 87.5vw;
+        overflow-y: scroll;
+        padding: 20px;
         background-color: #F1F4FF;
     }
-    .overviewLayout > div:nth-child(1){
-        /* display: grid; */
+
+    .overviewLayout>div {
+        display: flex;
         align-items: center;
         color: #304068;
         font-size: 24px;
         font-weight: bold;
     }
-    .overviewLayout > div:nth-child(2){
+
+    .contentSection {
         background-color: white;
-        border-radius: 12px;
-        /* display: flex; */
-        /* justify-content: center; */
+        border-radius: 15px;
+        margin-top: 15px;
+        height: 82vh;
     }
 
-    .table{
-        display: table;
-        width: 95%;
-        margin: 20px 0px;
+    .table-data {
+        color: #304068;
+        margin: 4px 4px;
+        height: 500px;
+        width: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .employeeData {
+        width: 80%;
+        border-collapse: collapse;
+        font-size: 18px;
+        /* margin-left: 5vw; */
+        text-align: center;
+    }
+
+    .table-data th {
         color: #5C6E9B;
-        border: 3px solid red;
-        overflow-y: scroll;
-        /* height: 100px; */
-        
-        
-    }
-    .tableHeader{
-        width: 100%;
-        display: table-header-group;
-        font-size: 19px;
-        padding: 15px;
-        font-weight: bold;
+        padding: 8px;
+        position: sticky;
         top: 0;
-        z-index: 20;
-        /* position: sticky; */
-    }
-    .tableHeader > div { 
-        display: table-cell;
-    }
-    .table .tableRowGroup{
-        display: table-row-group;
-        
-    }
-    .tableRow{
-        display: table-row;
-    }
-    .tableCell{
-        display: table-cell;
-    }
-    .tableRowGroup .tableRow:hover{
-        cursor: pointer;
-        background-color: wheat;
+        background-color: white;
     }
 
-    /* Table overflow */
-    .tableRowGroup{
-        overflow-y: auto;
+    .table-data td {
+        padding: 8px;
+        font-weight: lighter;
     }
-    .tableRow .tableCell{
-        padding:10px 0px;
-        
+
+    table tr:nth-child(2) {
+        counter-reset: rowNumber;
     }
-    .tableRow > div{
-        display: table-cell;
-        padding:10px 0px;
+
+    table tr {
+        counter-increment: rowNumber;
     }
-    .tableRow > div:first-of-type{
-        text-align: center;
-    }
-    .tableHeader > div:first-of-type{
-        text-align: center;
-    }
-    #allEmployeesTableBody{
-        overflow-y: auto;
-    }
-    table{
-        border: 3px solid red;
-        width: 100%;
-        margin: 20px;
-    }
-    tbody{
-        
-        display: block;
-        overflow-y: auto;
-        background-color: wheat;
-        height: 300px;
-        width: 100% !important;
-    }
-    thead th{
-        border: 3px solid red;
-    }
-    tbody td:nth-child(1){
-        text-align: center;
-    }
-    thead th:nth-child(1) , th:nth-child(2) , th:nth-child(4) , th:nth-child(5){
-        width: 200px;
+
+    table tr td:first-child::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5px;
     }
 </style>
 
@@ -106,8 +73,153 @@
     <div>
         <div>All Employees</div>
     </div>
-    <div>
-        <div class="table">
+    <div class="contentSection">
+        <div class="table-data">
+            <table class="employeeData">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kanchana Silva</td>
+                        <td>Female</td>
+                        <td>View</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Your previous codes -->
+
+        <!-- <div class="table">
             <div class="tableHeader">
                 <div>Number</div>
                 <div>Employee ID</div>
@@ -315,7 +427,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- <table>
             <thead>
                 <tr>
