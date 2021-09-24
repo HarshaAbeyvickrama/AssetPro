@@ -31,11 +31,7 @@
         VALUES (NULL,'$DepartmentCode','$Name','$description','$ContactNum',now(),now())";
 
         if(mysqli_query($mysql,$departmentQuery)) {
-            function alert_success($message) {
-                echo "<script type='text/javasctipt'>alert('$message');</script>";
-            }
-            alert_success("Successfully added!");
-            // echo "success";
+            echo "success";
         } else {
             echo "Fail";
         }

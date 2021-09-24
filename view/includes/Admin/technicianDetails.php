@@ -12,6 +12,7 @@
         border-collapse: collapse;
         font-size: 20px;
         margin-left: 5vh;
+        text-align: center;
     }
 
     .table-data th {

@@ -2,16 +2,18 @@
     .table-data {
         color: #304068;
         margin: 4px 4px;
-        height: 600px;
+        height: 500px;
         width: 99%;
+        margin-top: -100px;
         overflow-y: auto;
         overflow-x: hidden;
     }
     .depData {
         /* width: 100%; */
         border-collapse: collapse;
-        font-size: 20px;
+        font-size: 18px;
         margin-left: 5vh;
+        text-align: center;
     }
 
     .table-data th {
@@ -143,6 +145,7 @@
         <tr">
             <th>Number</th>
             <th>Department ID</th>
+            <th>Department Code</th>
             <th>Department Name</th>
             <th>Contact Number</th>
             <th>Date Created</th>
@@ -155,7 +158,13 @@
 
             $conn = mysqli_connect("localhost", "root", "", "assetpro");
 
-            $sql = "SELECT DepartmentID, Name, ContactNum, DATE(DateCreated) AS datecreated, DATE(LastModified) AS lastmodified FROM department";
+            $sql = "SELECT DepartmentID,
+                    DepartmentCode,
+                    Name, 
+                    ContactNum, 
+                    DATE(DateCreated) AS datecreated, 
+                    DATE(LastModified) AS lastmodified 
+                    FROM department";
 
             $result = $conn->query($sql);
 
@@ -164,6 +173,7 @@
                     echo "<tr>
                                 <td></td>
                                 <td>" . $row["DepartmentID"] . "</td>
+                                <td>" . $row["DepartmentCode"] . "</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["ContactNum"] . "</td>
                                 <td>" . $row["datecreated"] . "</td>
