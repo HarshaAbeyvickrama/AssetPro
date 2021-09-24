@@ -19,6 +19,9 @@
     .table-data th {
         color: #5C6E9B;
         padding: 8px;
+        position: sticky;
+        top: 0;
+        background-color: white;
     }
 
     .table-data td {
