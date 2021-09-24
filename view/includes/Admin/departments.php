@@ -57,24 +57,24 @@
 
 <!-- Add Department pop-up form -->
 <div class="bg-popup">
-    <div class="popup-content">
+    <div class="popup-content" id="popup-content">
         <div class="close" id="cancelAddTechnician">+</div>
         <h3 class="depInfo">Department Information</h3>
-        <form action="" id="addDepartmentForm" onsubmit="checkBlank()">
+        <form action="" id="addDepartmentForm">
             <div class="col-f">
-                <span for="depID" id="fieldName">Department ID</span>
-                <input type="text" name="depID" id="depID" required />
+                <span for="dCode" id="fieldName">Department Code</span>
+                <input type="text" name="dCode" id="dCode" required />
             </div>
             <div class="col-f">
-                <span for="depID" id="fieldName">Department Name</span>
+                <span for="dName" id="fieldName">Department Name</span>
                 <input type="text" name="dName" id="dName" required />
             </div>
             <div class="col-f">
-                <span for="depID" id="fieldName">Contact Number</span>
+                <span for="dCon" id="fieldName">Contact Number</span>
                 <input type="text" name="dCon" id="dCon" required />
             </div>
             <div class="col-f">
-                <span for="depID" id="fieldName">Description</span>
+                <span for="dDes" id="fieldName">Description</span>
                 <textarea type="text" name="dDes" id="dDes"></textarea>
             </div>
             <div class="col-btn">
@@ -127,14 +127,6 @@
 
     function getFormdata() {
         return new FormData(document.getElementById('addDepartmentForm'));
-    }
-
-    // checking if all fields are filled
-    function checkBlank() {
-        if (document.getElementById('dName').value == "") {
-            alert('Please enter all the details');
-            return false;
-        }
     }
 
     //Saving the department function
