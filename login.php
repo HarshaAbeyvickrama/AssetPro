@@ -127,7 +127,7 @@
       <div class="logo">
           <img src="./Images/AssetProLogo.png" alt="AssetPro Logo">
       </div>
-      <form action = "./controller/mainController.php?action=login" method="POST">
+      <form id="loginForm" action = "#">
         <div class="txt_field">
           <input type="text" name="Username" required />
           <span></span>
@@ -139,7 +139,7 @@
           <label>Password</label>
         </div>
         <div class="pass" id="forgotPass">Forgot Password?</div>
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" id="btnLogin"/>
       </form>
     </div>
   </body>
@@ -148,4 +148,24 @@
   document.getElementById("forgotPass").addEventListener("click",function(){
     alert("Relax and try to remember your password 😊😊")
   })
+
+  const form = document.getElementById('loginForm');
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    var login = new FormData(form);
+    
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST','./controller/mainController.php?action=login',true);
+    xhr.onload = function(){
+      const res = JSON.parse(this.responseText);
+      if(res.status != "ok"){
+        alert("Wrong userame/password combination!!!!!")
+      }else{
+        // console.log(`http://localhost/assetpro/${res.location}`);
+        window.location.replace(res.location);
+      }
+    }
+    xhr.send(login);
+  })
+
 </script>

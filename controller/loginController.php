@@ -7,11 +7,9 @@
 
     function login($Username,$Password){
         // Accessing the global variables from dbConnection.php
-        global $host,$user,$password,$db;
+        global $mysql;
 
-        $data = mysqli_connect($host, $user, $password, $db);
-    
-        if($data===false) {
+        if($mysql===false) {
             die("Connection Error");
         }
 
@@ -28,26 +26,38 @@
                 from login
                 where login.Username='".$Username."' and login.Password='".$Password."'
             )";
+            
+            $result = mysqli_query($mysql, $sql);
+            $rowcount = mysqli_num_rows($result);
 
-            $result = mysqli_query($data, $sql);
-            $row = mysqli_fetch_array($result);            
+            $response = new stdClass();
+            if($rowcount == 0){
+                $response->status = "no";
+            }else if($rowcount == 1){
+                
 
-            if($row["RoleID"]=="1") {
-                $_SESSION['userType']='admin';
+
+                $row = mysqli_fetch_array($result);            
+    
+                if($row["RoleID"]=="1") {
+                    $_SESSION['userType']='admin';
+                }   
+                elseif ($row["RoleID"]=="2") {
+                    $_SESSION['userType']='assetManager';
+                }
+                elseif($row["RoleID"]=="3") {
+                    $_SESSION['userType']='employee';
+                }
+                elseif ($row["RoleID"]=="4") {
+                    $_SESSION['userType']='technician';
+                }
+                
+                $response->status = "ok";
+                $response->location= "view/dashboard.php";
+                
+                // header("location:./view/dashboard.php");
             }
-            elseif ($row["RoleID"]=="2") {
-                $_SESSION['userType']='assetManager';
-            }
-            elseif($row["RoleID"]=="3") {
-                $_SESSION['userType']='employee';
-            }
-            elseif ($row["RoleID"]=="4") {
-                $_SESSION['userType']='technician';
-            }
-            else {
-                echo "Username or Password Incorrect";
-            }
-            header("location:../view/dashboard.php");
+            echo json_encode($response);
         }
     }
     function logOut(){
