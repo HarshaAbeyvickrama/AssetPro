@@ -34,10 +34,10 @@
         if(mysqli_query($mysql,$reportassetquery )) {
           
             function alert_success($message) {
-                echo "alert('$message')";
+                $message = "Successfully reported!";
+                echo alert_success($message);
             }
-            alert_success("Successfully reported!");
-            
+    
         } else {
             echo "Fail";
         }

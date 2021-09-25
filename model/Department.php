@@ -19,6 +19,8 @@
 
     function saveDepartment() {
         global $mysql;
+        mysqli_begin_transaction($mysql);
+
         $DepartmentCode = $_POST['dCode'];
         $Name = $_POST['dName'];
         $ContactNum = $_POST['dCon'];
@@ -31,7 +33,12 @@
         VALUES (NULL,'$DepartmentCode','$Name','$description','$ContactNum',now(),now())";
 
         if(mysqli_query($mysql,$departmentQuery)) {
-            echo "success";
+
+            function alert_success($message) {
+                echo "('$message')";
+            }
+            alert_success("Successfully reported!");
+
         } else {
             echo "Fail";
         }
