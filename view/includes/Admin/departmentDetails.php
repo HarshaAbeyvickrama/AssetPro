@@ -43,7 +43,7 @@
         margin-right: 0.5px;
     }
 
-    .editBtn,
+    .viewBtn, .editBtn,
     .deleteBtn {
         color: white;
         background-color: #5C6E9B;
@@ -55,7 +55,15 @@
         cursor: pointer;
         font-size: 15px;
     }
-
+    /* .viewBtn {
+        background-color: #37A9FF;
+    }
+    .editBtn {
+        background-color: #27AE60;
+    }
+    .deleteBtn {
+        background-color: #E74C3C;
+    } */
     /* CSS for pop-up form */
     .bg-popup {
         width: 100vw;
@@ -153,6 +161,7 @@
             <th>Contact Number</th>
             <th>Date Created</th>
             <th>Last Modified</th>
+            <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
             </tr>
@@ -181,6 +190,7 @@
                                 <td>" . $row["ContactNum"] . "</td>
                                 <td>" . $row["datecreated"] . "</td>
                                 <td>" . $row["lastmodified"] . "</td>
+                                <td><button class='viewBtn'>View</button></td>
                                 <td><button class='editBtn'>Edit</button></td>
                                 <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";

@@ -78,7 +78,7 @@
                 <textarea type="text" name="dDes" id="dDes"></textarea>
             </div>
             <div class="col-btn">
-                <button class="addBtn" id="btnSaveDepartment">Add</button>
+                <button class="addBtn" id="btnSaveDepartment" type="submit">Add</button>
             </div>
         </form>
     </div>
@@ -138,7 +138,7 @@
 
         xhr.onload = function() {
             if (this.status === 200) {
-                console.log(this.responseText);
+                alert(this.responseText);
             }
         }
         xhr.send(department);
