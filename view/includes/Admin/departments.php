@@ -27,6 +27,7 @@
         margin-top: 15px;
         height: 82vh;
     }
+
     .addDep #addDep {
         color: white;
         background-color: #6A71D7;
@@ -37,7 +38,6 @@
         border: none;
         margin-left: 63vw;
     }
-
 </style>
 
 <div class="overviewLayout">
@@ -56,7 +56,7 @@
 </div>
 
 <!-- Add Department pop-up form -->
-<div class="bg-popup">
+<div class="bg-popup" id="closeForm">
     <div class="popup-content" id="popup-content">
         <div class="close" id="cancelAddTechnician">+</div>
         <h3 class="depInfo">Department Information</h3>
@@ -100,6 +100,11 @@
             document.querySelector('.bg-popup').style.display = 'none';
         });
 
+        //close form function
+        function closeForm(formID) {
+            document.getElementById('closeForm').style.display='none';
+        }
+
     // Getting the form data
 
     document.querySelectorAll(".col-btn").forEach(button => {
@@ -113,8 +118,20 @@
                     break;
                 case 'btnSaveDepartment':
                     const department = getFormdata();
-                    saveDepartment(department);
-                    console.log(department);
+                    // saveDepartment(department);
+                    var isEmpty = false;
+                    for (var pair of department.entries()) {
+                        // console.log(pair[0] + ': ' + pair[1]);
+                        if (pair[1] == '') {
+                            isEmpty = true;
+                        }
+                    }
+                    if(!isEmpty) {
+                        saveDepartment(department);
+                    } else {
+                        alert('Fill the form!');
+                    }
+
                     break;
 
                 default:
@@ -139,6 +156,7 @@
         xhr.onload = function() {
             if (this.status === 200) {
                 alert(this.responseText);
+                
             }
         }
         xhr.send(department);

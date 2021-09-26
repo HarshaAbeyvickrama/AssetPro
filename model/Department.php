@@ -19,7 +19,6 @@
 
     function saveDepartment() {
         global $mysql;
-        mysqli_begin_transaction($mysql);
 
         $DepartmentCode = $_POST['dCode'];
         $Name = $_POST['dName'];
@@ -31,6 +30,8 @@
         $departmentQuery = "INSERT INTO department
         (DepartmentID,DepartmentCode,Name,description,ContactNum,DateCreated,LastModified)
         VALUES (NULL,'$DepartmentCode','$Name','$description','$ContactNum',now(),now())";
+
+        
 
         if(mysqli_query($mysql,$departmentQuery)) {
 
