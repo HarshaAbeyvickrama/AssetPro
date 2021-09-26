@@ -223,9 +223,12 @@
         left: 0px;
         bottom: 0px;
         right: calc(0%);
+        cursor: pointer;
     }
 </style>
-<form action="" id="reportAssetForm">
+
+
+<form action="" id="reportAssetForm" onsubmit="">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
@@ -312,6 +315,7 @@
         const cancelBtn = document.getElementById("cancelReport");
         const reportBtn = document.getElementById("reportAsset");
         button.addEventListener('click',function(event){
+            //event.preventDefault();
             switch (event.target.id) {                       //event triggered when clicking the report btn
                 case 'cancelReport':
                    
@@ -319,11 +323,20 @@
                 case 'reportAsset':
                    const report = getFormdata();   
 
-                   for (var pair of report.entries()) 
+                //    for (var pair of report.entries()) 
+                //    {
+                //    console.log(pair[0] + ': ' + pair[1]);
+                //    }
+                   
+                   if(report == null)
                    {
-                   console.log(pair[0] + ': ' + pair[1]);
+                     alert('Fields cannot be empty');
                    }
+                   else
+                   {
                     saveReport(report);
+                   }
+                   
                     break;
             
                 default:
@@ -344,8 +357,22 @@
         explainDefect = document.getElementById('exDef').value;
         reportForm.append('exDef',explainDefect);
         console.log(reportForm);
+
+        if(defectedPart == "" || explainDefect == "")
+        {
+            return null;
+        }
+        
+
         return reportForm;
     }
+
+    // function checkBlank() {
+    //     if( defectedPart && explainDefect== 0)
+    //     {
+    //     alert("empty");
+    //      }
+    // }
 
 
     function saveReport(report){
@@ -359,6 +386,10 @@
         }
         xhr.send(report);
     }
+
 </script>
+
+
+
 
                     
