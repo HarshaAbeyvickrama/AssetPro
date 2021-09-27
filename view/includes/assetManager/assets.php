@@ -175,7 +175,6 @@
     
 
     function getAssets(type){
-        console.log(type);
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
 
@@ -185,21 +184,29 @@
                 switch (type) {
                     case 'all':
                         for(var i = 0; i<assets.length;i++){
-                            document.getElementById('allAssetsTableBody').innerHTML += `
-                                <div class="tableRow">
+                            var bd = document.getElementById('allAssetsTableBody')
+                            var row= `
                                     <div>${i+1}</div>
                                     <div>${assets[i]['AssetID']}</div>
                                     <div>${assets[i]['assetName']}</div>
                                     <div>${assets[i]['assetType']}</div>
                                     <div>${assets[i]['AssetCondition']}</div>
                                     <div>${assets[i]['Status']}</div>
-                                </div>`;
+                                `;
+                            var tableRow = document.createElement('div');
+                            tableRow.className = 'tableRow';
+                            tableRow.id = assets[i]['AssetID'];
+                            tableRow.innerHTML = row;
+                            console.log(tableRow);
+                            addViewAssetListener(tableRow);
+                            bd.appendChild(tableRow);
+
+
                         }
                         break;
                     case 'assigned':
                         for(var i = 0; i<assets.length;i++){
                             var tb = document.getElementById('assignedAssetsTableBody');
-                            console.log(assets[i]);
                             tb.innerHTML += `
                                 <div class="tableRow">
                                     <div>${i+1}</div>
@@ -214,7 +221,6 @@
 
                     case 'shared':
                         for(var i = 0; i<assets.length;i++){
-                            console.log(assets[i]);
                             document.getElementById('sharedAssetsTableBody').innerHTML += `
                                 <div class="tableRow">
                                     <div>${i+1}</div>
@@ -229,7 +235,6 @@
                     case 'unassigned':
                         for(var i = 0; i<assets.length;i++){
                             const tb = document.getElementById('unassignedAssetsTableBody');
-                            // console.log(assets[i]);
                             tb.innerHTML += `
                                 <div class="tableRow">
                                     <div>${i+1}</div>
@@ -274,6 +279,23 @@
             loadSection("centerSection",eventId);
         }
     })
+
+
+    //Add event listener to listen for click events on each asset in all tables
+    function addViewAssetListener(assetElement){
+        assetElement.addEventListener('click', (event) =>{
+            var asset = event.target.parentElement;
+            event.stopPropagation();
+            console.log(asset.id);
+            getAsset(assets.id)
+        })
+    }
+
+    //Get asset details by ID
+    function getAsset(assetID){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
+    }
 </script>
 <div class="overviewLayout">
     <div>
