@@ -230,7 +230,7 @@
 
                     <div class="col-f">
                         <span for="empID">Technician ID</span>
-                        <input type="text" name="empID" id="empID">
+                        <input type="text" name="tecID" id="tecID">
                     </div>
 
                     <div class="col-h">
@@ -243,7 +243,7 @@
                     </div>
                     <div class="col-f">
                         <span for="role">Role</span>
-                        <input type="text" name="role" id="role">
+                        <input type="text" name="role" id="role" value="Technician">
                     </div>
                     <div class="col-f">
                         <span for="gender" id="gender">Gender</span>
@@ -347,6 +347,7 @@
         xhr.onload = function() {
             if(this.status === 200) {
                 console.log(this.responseText);
+                alert("Successfully added to the system!");
             }
         }
         xhr.send(technician);

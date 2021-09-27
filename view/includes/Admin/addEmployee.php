@@ -253,7 +253,7 @@
                     </div>
                     <div class="col-f">
                         <span for="role">Role</span>
-                        <input type="text" name="role" id="role">
+                        <input type="text" name="role" id="role" value="Employee">
                     </div>
                     <div class="col-f">
                         <span for="gender" id="gender">Gender</span>
@@ -331,8 +331,20 @@
                     break;
                 case 'btnSaveEmployee':
                     const employee = getFormdata();
-                    saveEmployee(employee);
-                    console.log(employee);
+                    // saveDepartment(department);
+                    var isEmpty = false;
+                    for (var pair of employee.entries()) {
+                        // console.log(pair[0] + ': ' + pair[1]);
+                        if (pair[1] == '') {
+                            isEmpty = true;
+                        }
+                    }
+                    if(!isEmpty) {
+                        saveEmployee(employee);
+                    } else {
+                        alert('Fill the form!');
+                    }
+                    
                     break;
             
                 default:
@@ -357,6 +369,7 @@
         xhr.onload = function() {
             if(this.status === 200) {
                 console.log(this.responseText);
+                alert("Successfully added to the system!");
             }
         }
         xhr.send(employee);

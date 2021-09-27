@@ -2,8 +2,9 @@
     .table-data {
         color: #304068;
         margin: 4px 4px;
-        height: 600px;
+        height: 500px;
         width: 99%;
+        margin-top: -100px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -53,15 +54,15 @@
         cursor: pointer;
         font-size: 15px;
     }
-    /* .viewBtn {
-        background-color: #21618C;
+    .viewBtn {
+        background-color: #7A90C9;
     }
     .editBtn {
-        background-color: #1D8348;
+        background-color: #5C6E9B;
     }
     .deleteBtn {
-        background-color: #B03A2E;
-    } */
+        background-color: #394564;
+    }
 </style>
 
 <div class="table-data">

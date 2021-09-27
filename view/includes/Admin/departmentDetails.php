@@ -55,15 +55,15 @@
         cursor: pointer;
         font-size: 15px;
     }
-    /* .viewBtn {
-        background-color: #37A9FF;
+    .viewBtn {
+        background-color: #7A90C9;
     }
     .editBtn {
-        background-color: #27AE60;
+        background-color: #5C6E9B;
     }
     .deleteBtn {
-        background-color: #E74C3C;
-    } */
+        background-color: #394564;
+    }
     /* CSS for pop-up form */
     .bg-popup {
         width: 100vw;
