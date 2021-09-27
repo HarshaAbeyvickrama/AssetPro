@@ -65,59 +65,54 @@ function saveEmployee() {
     $econtact = $_POST['econtact'];
 
     try {
+        //Inserting into the user table
+        $user = "INSERT INTO user VALUES (NULL,'3')";
+        mysqli_query($mysql,$user);
+
+        $userID = mysqli_insert_id($mysql);
+
+        //Inserting into the userdetails table
+        $userdetails = "INSERT INTO userdetails VALUES 
+                       ('$userID','$firstName','$lastName','$address','$gender','23',
+                       '$contactNo','$email','$dob','url','$maritalStatus')";
+        mysqli_query($mysql,$userdetails);
+
+        //Inserting into employeeuser table
+        $employeeuser = "INSERT INTO employeeuser VALUES
+                        (NULL,'$userID','$departmentID')";
+        mysqli_query($mysql,$employeeuser);
+
+        //Inserting into useremergency table
+        $useremergency = "INSERT INTO useremergency VALUES
+                         ('$userID','$eRelationship','$eName','blah','$econtact')";
+        mysqli_query($mysql,$useremergency);
+
+        //Getting a random username
+        //generating username by concatenating first name and last name
+        $username = strtolower($firstName . "_" .$lastName);
+        $check_username_query = mysqli_query($mysql, "SELECT Username FROM login WHERE username='$username'");
         
-    } catch (\Throwable $th) {
+        $i = 0;
+        //if username exists add number to username
+        while(mysqli_num_rows($check_username_query) !=0) {
+            $i++; //add 1 to i
+            $username = $username . "_" . $i;
+            $check_username_query = mysqli_query($mysql, "SELECT Username FROM login WHERE username='$username'");
+        }
         
+        //Getting a random password
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $Password = substr(str_shuffle($chars), 0, 8);
+        $encrypt_pwd = md5($Password); //Encrypting the password
+
+        $usernamePassword = "INSERT INTO login VALUES ('$userID','$username','$encrypt_pwd')";
+        mysqli_query($mysql,$usernamePassword);
+        
+        //auto commit true
+        mysqli_commit($mysql);
+        
+    } catch (mysqli_sql_exception $exception) {
+        mysqli_rollback($mysql);
+        echo('Not OK\n Exception'.$exception);
     }
-
-    // mysqli_begin_transaction($mysql);
-    // try {
-    //     //SQL for inserting into user table
-    //     $user = "INSERT INTO user VALUES (NULL,'4')";
-    //     $userID = mysqli_insert_id($mysql);
-    //     //SQL for inserting into userdetails table
-    //     $userdetails = "INSERT INTO userdetails
-    //     VALUES ($userID,'$firstName','$lastName','$address','$gender',
-    //     '$contactNo','$email','$dob','$maritalStatus')";
-
-    //     //SQL for inserting into employeeuser table
-    //     $employeeuser = "INSERT INTO employeeuser
-    //     VALUES ('NULL','$userID','$departmentID')";
-
-    //     //SQL for inserting into useremergency table
-    //     $useremergency = "INSERT INTO useremergency
-    //     VALUES ('$userID','$eName','$eRelationship','$econtact')";
-
-    //     $query1 = mysqli_query($mysql,$user);
-    //     $query2 = mysqli_query($mysql,$userdetails);
-    //     $query3 = mysqli_query($mysql,$employeeuser);
-    //     $query4 = mysqli_query($mysql,$useremergency);
-
-    //     mysqli_commit($mysql);
-    //     // echo "Data Submitted";
-
-    // } catch (mysqli_sql_exception $exception) {
-    //     mysqli_rollback($mysql);
-    //     throw $exception;
-    //     echo "Error !";
-    // }
-
-    //SQL for user table
-    // $user = "INSERT INTO user VALUES (NULL,'$RoleID')";
-
-    // if (mysqli_query($mysql, $user)) {
-    //     $userID = mysqli_insert_id($mysql);
-
-    //     //SQL query for user details
-    //     $userQuery = "INSERT INTO userdetails
-    //     VALUES ($userID,'$firstName','$lastName','$address','$gender',
-    //     '$contactNo','$email','$dob','$maritalStatus')";
-
-    //     //query to insert into employee user table
-    //     $employeeuser = "INSERT INTO employeeuser
-    //     VALUES (NULL,$userID,'$departmentID')";
-
-    //     //query to insert into user emergency table
-    //     $useremergency = "INSERT INTO useremergency VALUES ('$userID','$eName','$eRelationship','$econtact')";
-    // }
 }

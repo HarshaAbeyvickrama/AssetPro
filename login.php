@@ -129,7 +129,7 @@
       </div>
       <form id="loginForm" action = "#">
         <div class="txt_field">
-          <input type="text" name="Username" required />
+          <input type="text" name="Username" autocomplete="off" required />
           <span></span>
           <label>Username</label>
         </div>

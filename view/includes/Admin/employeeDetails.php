@@ -2,8 +2,9 @@
     .table-data {
         color: #304068;
         margin: 4px 4px;
-        height: 600px;
+        height: 500px;
         width: 99%;
+        margin-top: -100px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -41,7 +42,7 @@
         margin-right: 0.5px;
     }
 
-    .editBtn,
+    .viewBtn, .editBtn,
     .deleteBtn {
         color: white;
         background-color: #5C6E9B;
@@ -52,6 +53,15 @@
         height: 41px;
         cursor: pointer;
         font-size: 15px;
+    }
+    .viewBtn {
+        background-color: #7A90C9;
+    }
+    .editBtn {
+        background-color: #5C6E9B;
+    }
+    .deleteBtn {
+        background-color: #394564;
     }
 </style>
 
@@ -65,6 +75,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
+            <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
             </tr>
@@ -98,6 +109,7 @@
                                 <td>" . $row["fName"] . "</td>
                                 <td>" . $row["lName"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
+                                <td><button class='viewBtn'>View</button></td>
                                 <td><button class='editBtn'>Edit</button></td>
                                 <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";
