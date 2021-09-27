@@ -4,6 +4,7 @@
         margin: 4px 4px;
         height: 600px;
         width: 99%;
+        /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -55,13 +56,13 @@
         font-size: 15px;
     }
     .viewBtn {
-        background-color: #1B4F72;
+        background-color: #7A90C9;
     }
     .editBtn {
-        background-color: #186A3B;
+        background-color: #5C6E9B;
     }
     .deleteBtn {
-        background-color: #7B241C;
+        background-color: #394564;
     }
 </style>
 
