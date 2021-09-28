@@ -21,6 +21,10 @@
             case 'getAssets':
                 getAssets($_REQUEST['type']);
                 break;
+
+            case 'getCats':
+                getCats();
+                break;
             
             default:
                 # code...
@@ -216,4 +220,19 @@
         }
         echo json_encode($rows);
     }
+
+    function getCats(){
+        global $mysql;
+        $sql = "SELECT
+                    c.*,
+                    t.TypeID,
+                    t.Name,
+                    t.TypeCode
+                FROM
+                    category c
+                INNER JOIN TYPE t ON
+                    t.CategoryID = c.CategoryID";
+             
+    }
+    function getAsset(){};
 ?>

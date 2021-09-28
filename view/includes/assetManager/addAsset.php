@@ -385,7 +385,6 @@
         const image = imageUpload.files[0];
         if(image){
             var src = URL.createObjectURL(image);
-            console.log(src);
             document.getElementById('imagePreview').src = src;
         }
 
@@ -456,6 +455,17 @@
         xhr.send(asset);
     }
 
+    function getCatogories(){
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","../model/Asset.php?action=getCats",true);
+
+        xhr.onload = function(){
+            if(this.status === 200){
+                console.log(this.responseText);
+            }
+        }
+        xhr.send();
+    }
     
 
 </script>

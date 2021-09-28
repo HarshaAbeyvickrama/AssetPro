@@ -190,14 +190,13 @@
                                     <div>${assets[i]['AssetID']}</div>
                                     <div>${assets[i]['assetName']}</div>
                                     <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>
+                                    <div>${assets[i]['AssetCondition']}</div>   
                                     <div>${assets[i]['Status']}</div>
                                 `;
                             var tableRow = document.createElement('div');
                             tableRow.className = 'tableRow';
                             tableRow.id = assets[i]['AssetID'];
                             tableRow.innerHTML = row;
-                            console.log(tableRow);
                             addViewAssetListener(tableRow);
                             bd.appendChild(tableRow);
 
@@ -286,7 +285,6 @@
         assetElement.addEventListener('click', (event) =>{
             var asset = event.target.parentElement;
             event.stopPropagation();
-            console.log(asset.id);
             getAsset(assets.id)
         })
     }
