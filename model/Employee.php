@@ -116,3 +116,38 @@ function saveEmployee() {
         echo('Not OK\n Exception'.$exception);
     }
 }
+
+//getting the employee list (remove if meka not working)
+function getEmployees($employee) {
+    global $mysql;
+    switch ($employee) {
+        case 'employees':
+            $sql = "SELECT
+            USER.UserID,
+            userdetails.fName,
+            userdetails.lName,
+            userdetails.Gender,
+            emp.EmployeeID,
+            emp.DepartmentID
+        FROM
+            employeeuser emp
+        INNER JOIN userdetails ON userdetails.UserID = emp.UserID
+        JOIN USER ON USER.UserID = userdetails.UserID
+        WHERE
+            USER.RoleID = 3";
+
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+    $result = mysqli_query($mysql,$sql);
+    $rows = array();
+    while($r = mysqli_fetch_assoc($result)) {
+        $rows[] = $r;
+    }
+    echo json_encode($rows);
+}
+
+?>
