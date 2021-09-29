@@ -228,11 +228,6 @@
                 <div class="basic-information">
                     <div class="title">Basic Information:</div>
 
-                    <div class="col-f">
-                        <span for="empID">Technician ID</span>
-                        <input type="text" name="tecID" id="tecID">
-                    </div>
-
                     <div class="col-h">
                         <span for="fName">First Name</span>
                         <input type="text" name="fName" id="fName">
