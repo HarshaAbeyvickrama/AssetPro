@@ -11,12 +11,42 @@ if (isset($_REQUEST['action'])) {
             saveEmployee();
             break;
 
+        case 'allEmployees';
+            getAllEmployees();
+            break;
+
         default:
             # code...
             break;
     }
 }
 
+// Retrieve all employee details
+
+function getAllEmployees(){
+    global $mysql;
+
+    $sql = "SELECT
+        employeeuser.UserID,
+        employeeuser.EmployeeID,
+        CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
+        userdetails.Gender
+    FROM
+        employeeuser
+    INNER JOIN userdetails ON employeeuser.UserID = userdetails.UserID";
+
+    $result = mysqli_query($mysql , $sql);
+    $employees = array();
+
+    if($result){
+        while($employee = mysqli_fetch_assoc($result)){
+            $employees[] = $employee;
+        }
+    }
+    echo json_encode($employees);
+
+
+}
 function saveEmployee() {
     global $mysql;
     mysqli_begin_transaction($mysql);
