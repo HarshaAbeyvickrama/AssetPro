@@ -242,14 +242,14 @@
 
                     <div class="title">Basic Information</div>
 
-                    <div class="col-h">
+                    <!-- <div class="col-h">
                         <span for="errorId">Error ID</span>
                         <input type="text" name="errorId" id="errorId" value="D/FA/2346">
-                    </div>
+                    </div> -->
                     
-                    <div class="col-h">
+                    <div class="col-f">
                         <span for="assetId">Asset ID</span>
-                        <input type="text" name="assetID" id="assetID" value="FA/2346" >
+                        <input type="text" name="assetID" id="assetID" >
                     </div>
                    
                     <div class="col-f">
@@ -272,10 +272,10 @@
                         <input type="text" name="condition" id="condition"  value="Brand New">
                     </div>
 
-                    <div class="col-f">
+                    <!-- <div class="col-f">
                         <span for="purchaseDate">Purchase Date</span>
                         <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
-                    </div>
+                    </div> -->
             </div>
         </div>
     </div>
@@ -299,9 +299,9 @@
                
                 <div class="col-btn">
                         <div id="cancelReport">Cancel</div>
-                        <div id="reportAsset">Report</div>
-                    
-                    </div>
+                        <div id="reportAsset">Report</div>     
+                </div>
+                  
 
             </div>
         </div>

@@ -68,6 +68,8 @@
         background-color: white;
         border-radius: 15px;
         padding:15px;
+        width:100%;
+        height:100%;
     }
 
 /*inside content section*/
@@ -75,7 +77,7 @@
         width:100%;
         height:100%;
         display:grid;
-        grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns:2fr 14fr 2fr 1fr;
         
     }
    #reportbtn{
@@ -89,6 +91,62 @@
         cursor: pointer;
         font-size: 15px;
    }
+
+   /*------------------------------------------modified one ----------------------------------*/
+   .table{
+        display: table;
+        width: 100%;
+        margin: 10px 0px;
+        color: #5C6E9B;
+        overflow-y: hidden !important;
+        
+        
+    }
+    .tableHeader{
+        width: 100%;
+        display: table-header-group;
+        font-size: 19px;
+        padding: 15px;
+        font-weight: bold;
+        overflow-y: hidden !important;
+        
+    }
+    .tableHeader > div { 
+        display: table-cell;
+    }
+    .table .tableRowGroup{
+        display: table-row-group;
+        overflow-y: auto !important;
+        
+    }
+    .tableRow{
+        display: table-row;
+    }
+    .tableCell{
+        display: table-cell;
+    }
+    .tableRowGroup .tableRow:hover{
+        cursor: pointer;
+        background-color: wheat;
+    }
+    /* Table overflow */
+    .tableRowGroup{
+        overflow-y: auto;
+    }
+    .tableRow .tableCell{
+        padding:10px 0px;
+        
+    }
+    .tableRow > div{
+        display: table-cell;
+        padding:10px 0px;
+    }
+    .tableRow > div:first-of-type{
+        text-align: center;
+    }
+    .tableHeader > div:first-of-type{
+        text-align: center;
+    }
    
 </style>
 
@@ -141,61 +199,87 @@
     </div>
 
     <div class="contentSection">
-        <div class="econtainer1"> 
-                 <div>
-                     <h5>Number</h5>
-                     <p>1</p>
-                     <p>2</p>
-                     <p>3</p>
-                    
-                 </div>
-
-                 <div>
-                     <h5>AssetID</h5>
-                     <p>FA/12345</p>
-                     <p>FA/12345</p>
-                     <p>FA/12345</p>
-
-                   
-                 </div>
-
-                 <div>
-                     <h5>Asset Name</h5>
-                     <p>FA-Furniture</p>
-                     <p>FA-Furniture</p>
-                     <p>FA-Furniture</p>
-                   
-                 </div>
-                 
-                 <div>
-                     <h5>Asset Type</h5>
-                     <p>Fixed Asset</p>
-                     <p>Fixed Asset</p>
-                     <p>Fixed Asset</p>
-                     
-                 </div>
-
-                 <div>
-                 <h5>Report Breakdown</h5>
+        <!-- <div class="econtainer1">  -->
+                <div class="table">
+                    <div class="tableHeader">
+                            <div>Number</div>
+                            <div>Asset ID</div>
+                            <div>Asset Name</div>
+                            <div>Asset Type</div>
+                            <div>ReportBreakdown</div> 
+                            </div>
+                            
+                            
+    <div class="tableRowGroup" id="allAssetsEmp">
      
-                  <p><button id='reportbtn'> Report</button></p>
-                  <p><button id='reportbtn'> Report</button></p>
-                  <p><button id='reportbtn'> Report</button></p>
-                  </a> 
-                 </div>
-            
 
-        </div>
-        
+
+            </div>
+        </div> 
     </div>
 </div>
+
+
+
+
+<script>
+        
+
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET","../model/AssignedAssetsEmp.php?action=getAssets",true);
+
+        xhr.onload = function(){
+            if(this.status === 200){
+                var assets = JSON.parse(this.responseText);
+                console.log(assets);
+                        for(var i = 0; i<assets.length;i++){
+                            document.getElementById('allAssetsEmp').innerHTML += `
+                                <div class="tableRow">
+                                    <div>${i+1}</div>
+                                    <div>${assets[i]['AssetID']}</div>
+                                    <div>${assets[i]['assetName']}</div>
+                                    <div>${assets[i]['assetType']}</div>
+
+                                    <div>  
+                                    <p><button id='reportbtn' onClick="report(${assets[i]['AssetID']})">Report</button></p>
+                                    </div> 
+
+                                </div>`;
+                        }  
+            }
+        }
+
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send();
+        
+    function report(assetid){
+
+        loadSection('centerSection','report');
+        
+        console.log(assetid);
+ 
+    }
+        
+        
+   
+</script>
+
+
+
+
+
+
+<!--Report button click to report.php-->
 
 <script>
     var reportbtn = document.getElementById('reportbtn');
     reportbtn.addEventListener('click',function(){
 
-    
+        console.log('looooooaddd plzz');
         loadSection('centerSection','report');
+        
     
     });
 </script>
+
