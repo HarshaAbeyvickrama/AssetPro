@@ -272,7 +272,7 @@
 
 <!--Report button click to report.php-->
 
-<script>
+<!-- <script>
     var reportbtn = document.getElementById('reportbtn');
     reportbtn.addEventListener('click',function(){
 
@@ -281,5 +281,5 @@
         
     
     });
-</script>
+</script> -->
 

@@ -298,7 +298,7 @@
 
                
                 <div class="col-btn">
-                        <div id="cancelReport">Cancel</div>
+                        <div id="cancelReport" onClick="cancelReport()">Cancel</div>
                         <div id="reportAsset">Report</div>     
                 </div>
                   
@@ -386,6 +386,24 @@
         }
         xhr.send(report);
     }
+
+
+
+   function cancelReport(){
+
+    loadSection('centerSection','assignedAssets');
+
+     console.log(report);
+   }
+   
+    
+    //  cancelBtn.addEventListener('click',function(){
+        
+    //     loadSection('centerSection','report');
+        
+    // });
+
+
 
 </script>
 
