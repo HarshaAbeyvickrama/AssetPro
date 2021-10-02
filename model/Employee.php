@@ -27,13 +27,13 @@ function getAllEmployees(){
     global $mysql;
 
     $sql = "SELECT
-        employeeuser.UserID,
-        employeeuser.EmployeeID,
-        CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
-        userdetails.Gender
-    FROM
-        employeeuser
-    INNER JOIN userdetails ON employeeuser.UserID = userdetails.UserID";
+                employeeuser.UserID,
+                employeeuser.EmployeeID,
+                CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
+                userdetails.Gender
+            FROM
+                employeeuser
+            INNER JOIN userdetails ON employeeuser.UserID = userdetails.UserID";
 
     $result = mysqli_query($mysql , $sql);
     $employees = array();
@@ -123,18 +123,18 @@ function getEmployees($employee) {
     switch ($employee) {
         case 'employees':
             $sql = "SELECT
-            USER.UserID,
-            userdetails.fName,
-            userdetails.lName,
-            userdetails.Gender,
-            emp.EmployeeID,
-            emp.DepartmentID
-        FROM
-            employeeuser emp
-        INNER JOIN userdetails ON userdetails.UserID = emp.UserID
-        JOIN USER ON USER.UserID = userdetails.UserID
-        WHERE
-            USER.RoleID = 3";
+                        USER.UserID,
+                        userdetails.fName,
+                        userdetails.lName,
+                        userdetails.Gender,
+                        emp.EmployeeID,
+                        emp.DepartmentID
+                    FROM
+                        employeeuser emp
+                    INNER JOIN userdetails ON userdetails.UserID = emp.UserID
+                    JOIN USER ON USER.UserID = userdetails.UserID
+                    WHERE
+                        USER.RoleID = 3";
 
             break;
         
