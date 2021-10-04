@@ -224,8 +224,6 @@
 
 <script>
         
-
-
         const xhr = new XMLHttpRequest();
         xhr.open("GET","../model/AssignedAssetsEmp.php?action=getAssets",true);
 
@@ -253,16 +251,26 @@
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send();
         
-    function report(assetid){
-
+    function report(asset){
+        var assetDetails=null;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET','');
+        xhr.onload = ()=>{
+            if(this.status==200){
+                assetDetails = JSON.parse(this.responseText);
+            }
+        }
+        xhr.send();
         loadSection('centerSection','report');
         
-        console.log(assetid);
+        if(!null){
+            document.getElementById('assetID').innerhtml = assetDetails.assetId;
+        }
+
+        console.log(asset);
  
     }
-        
-        
-   
+
 </script>
 
 

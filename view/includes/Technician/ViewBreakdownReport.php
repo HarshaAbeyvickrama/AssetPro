@@ -15,7 +15,7 @@
     .profile>div {
         background-color: white;
         border-radius: 10px;
-
+   
     }
     .leftSection,
     .rightSection{
@@ -228,7 +228,7 @@
 </style>
 
 
-<form action="" id="reportAssetForm" onsubmit="">
+<form action="" id="viewBreakdownReport" onsubmit="">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
@@ -241,41 +241,36 @@
                 <div class="basic-information">
 
                     <div class="title">Basic Information</div>
-
-                    <!-- <div class="col-h">
-                        <span for="errorId">Error ID</span>
-                        <input type="text" name="errorId" id="errorId" value="D/FA/2346">
-                    </div> -->
                     
-                    <div class="col-f">
-                        <span for="assetId">Asset ID</span>
-                        <input type="text" name="assetID" id="assetID" >
+                    <div class="col-h">
+                        <span for="assetId">Asset ID :</span>
+                        <input type="text" name="assetID" id="assetID" value="FA/12345" >
                     </div>
                    
                     <div class="col-f">
-                        <span for="assetName">Asset Name</span>
-                        <input type="text" name="assetName" id="assetName" value="Lenovo Laptop">
+                        <span for="assetName">Asset Name :</span>
+                        <input type="text" name="assetName" id="assetName" value="Asus Laptop">
                     </div>
 
                     <div class="col-f">
-                        <span for="AssetType">Asset Type</span>
+                        <span for="AssetType">Asset Type :</span>
                         <input type="text" name="assetType" id="assetType"  value="Fixed Asset" >
                     </div>
 
                     <div class="col-f">
-                        <span for="category">Asset Category</span>
+                        <span for="category">Asset Category :</span>
                         <input type="text" name="category" id="category" value="Electronic" >
                     </div>
 
                     <div class="col-f">
-                        <span for="condition">Condition</span>
+                        <span for="condition">Condition :</span>
                         <input type="text" name="condition" id="condition"  value="Brand New">
                     </div>
 
-                    <!-- <div class="col-f">
-                        <span for="purchaseDate">Purchase Date</span>
-                        <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
-                    </div> -->
+                    <div class="col-f">
+                        <span for="purchaseDate">Purchase Date :</span>
+                        <input type="text" name="purchaseDate" id="purchaseDate" value="" >
+                    </div>
             </div>
         </div>
     </div>
@@ -284,7 +279,7 @@
         <div id="pRight" class="rightSection">
             <div class="basic-information">
 
-                <div class="title">Report Breakdown:</div>
+                <div class="title">Report Breakdown :</div>
 
                 <div class="col-f">
                     <span for="defectedParts">Defected Parts</span>
@@ -292,16 +287,16 @@
                 </div>
 
                 <div class="col-f">
-                    <span for="explainDefect">Explain the defect</span>
+                    <span for="explainDefect">Identified Defect</span>
                     <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
                 </div>
 
                
                 <div class="col-btn">
-                        <div id="cancelReport" onClick="cancelReport()">Cancel</div>
-                        <div id="reportAsset">Report</div>     
-                </div>
-                  
+                        <div id="FinalizeBreakdown">Finish</div>
+                        <div id="ErrorlogofAsset">Error Log</div>
+                    
+                    </div>
 
             </div>
         </div>
@@ -366,7 +361,6 @@
 
         return reportForm;
     }
-    
 
     // function checkBlank() {
     //     if( defectedPart && explainDefect== 0)
@@ -388,27 +382,4 @@
         xhr.send(report);
     }
 
-
-
-   function cancelReport(){
-
-    loadSection('centerSection','assignedAssets');
-
-     console.log(report);
-   }
-   
-    
-    //  cancelBtn.addEventListener('click',function(){
-        
-    //     loadSection('centerSection','report');
-        
-    // });
-
-
-
 </script>
-
-
-
-
-                    
