@@ -250,27 +250,48 @@
 
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send();
+
+
         
     function report(asset){
         var assetDetails=null;
         const xhr = new XMLHttpRequest();
-        xhr.open('GET','');
-        xhr.onload = ()=>{
-            if(this.status==200){
+        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=getAssignedAssetById&asset_id=${asset}`,true);
+        xhr.onload = function(){
+            if(this.status == 200){
                 assetDetails = JSON.parse(this.responseText);
-            }
+                test(assetDetails);
         }
-        xhr.send();
-        loadSection('centerSection','report');
         
-        if(!null){
-            document.getElementById('assetID').innerhtml = assetDetails.assetId;
-        }
+     }
+
+      
+
+       function test(assetDetails){
+             console.log(assetDetails);
+
+             loadSection('centerSection','report');
+
+             
+        var testone = document.getElementById('assetID');
+        testone.value= assetDEtails['asset_id'];
+         console.log();
+
+           
+       }
+
+         xhr.send();
+
+
 
         console.log(asset);
- 
     }
 
+
+   
+
+
+    
 </script>
 
 

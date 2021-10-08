@@ -16,7 +16,13 @@
                // getAssets($_REQUEST['type']);
                getAssets();
                 break;
-            
+
+
+            case 'getAssignedAssetById':
+                getAssignedAssetById($_REQUEST['asset_id']);
+                break;
+
+
             default:
                 # code...
                 break;
@@ -50,5 +56,37 @@
             $rows[] = $r;
         }
         echo json_encode($rows);
+    }
+
+
+
+
+    function getAssignedAssetById($asset_id){
+        global $mysql;
+      
+                $sql = "SELECT
+                            asset.AssetID,
+                            assetdetails.Name as assetName,
+                            assetdetails.AssetCondition,
+                            TYPE.Name as assetType
+                        FROM asset
+                        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                        INNER JOIN type ON asset.TypeID = type.TypeID
+                        WHERE asset.AssetID = $asset_id
+                        ORDER BY asset.AssetID" ;
+                
+           
+        $result = mysqli_query($mysql,$sql);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)){
+            $rows[] = $r;
+        }
+        echo json_encode($rows);
+
+
+
+        //SELECT * FROM 'asset' INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID 
+        //WHERE employeeuser.UserID = 3;
+        
     }
 ?>
