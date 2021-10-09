@@ -271,6 +271,7 @@
         }
     }
 
+<<<<<<< HEAD
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send();
 
@@ -280,9 +281,23 @@
         xhr.open('GET', '');
         xhr.onload = () => {
             if (this.status == 200) {
+=======
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send();
+
+
+        
+    function report(asset){
+        var assetDetails=null;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=getAssignedAssetById&asset_id=${asset}`,true);
+        xhr.onload = function(){
+            if(this.status == 200){
+>>>>>>> upstream/main
                 assetDetails = JSON.parse(this.responseText);
-            }
+                test(assetDetails);
         }
+<<<<<<< HEAD
         xhr.send();
         loadSection('centerSection', 'report');
 
@@ -293,6 +308,38 @@
         console.log(asset);
 
     }
+=======
+        
+     }
+
+      
+
+       function test(assetDetails){
+             console.log(assetDetails);
+
+             loadSection('centerSection','report');
+
+             
+        var testone = document.getElementById('assetID');
+        testone.value= assetDEtails['asset_id'];
+         console.log();
+
+           
+       }
+
+         xhr.send();
+
+
+
+        console.log(asset);
+    }
+
+
+   
+
+
+    
+>>>>>>> upstream/main
 </script>
 
 
