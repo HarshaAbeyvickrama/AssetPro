@@ -1,35 +1,39 @@
 <style>
-    .overviewLayout{
+    .overviewLayout {
         display: grid;
-        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
+        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
         height: 82vh;
         width: 87.5vw;
         overflow-y: auto;
         padding: 20px;
         background-color: #F1F4FF;
     }
-    .overviewLayout > div{
+
+    .overviewLayout>div {
         display: flex;
         align-items: center;
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-        
+
     }
-    .statSection{
+
+    .statSection {
         display: grid;
-        grid-template-columns: repeat(5,1fr);
+        grid-template-columns: repeat(5, 1fr);
         width: 100%;
         height: 100%;
     }
-    .statSection > div{
+
+    .statSection>div {
         width: 100%;
         height: 100%;
         display: flex;
         /* justify-content: center; */
         align-items: center;
     }
-    .statBox{
+
+    .statBox {
         display: grid;
         grid-template-rows: 3fr 2fr;
         color: white;
@@ -37,117 +41,137 @@
         width: 90%;
         border-radius: 12px;
     }
-    .statBox > div{
+
+    .statBox>div {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .statNumber{
+
+    .statNumber {
         font-size: 40px;
     }
-    .statText{
+
+    .statText {
         font-size: 17px;
         font-weight: lighter;
     }
-    .box1{
+
+    .box1 {
         background-color: #304068;
     }
-    .box2{
+
+    .box2 {
         background-color: #6A71D7;
     }
-    .box3{
+
+    .box3 {
         background-color: #3D7DDB;
     }
-    .box4{
+
+    .box4 {
         background-color: #6165A2;
     }
-    .box5{
+
+    .box5 {
         background-color: #4E74AB;
     }
-    .contentSection{
+
+    .contentSection {
         background-color: white;
         border-radius: 15px;
-        padding:15px;
-        width:100%;
-        height:100%;
+        padding: 15px;
+        width: 100%;
+        height: 100%;
     }
 
-/*inside content section*/
-    .econtainer1{     
-        width:100%;
-        height:100%;
-        display:grid;
-        grid-template-columns:2fr 14fr 2fr 1fr;
-        
+    /*inside content section*/
+    .econtainer1 {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 2fr 14fr 2fr 1fr;
+
     }
-   #reportbtn{
+
+    #reportbtn {
         color: white;
         background-color: #5C6E9B;
-        padding:10px;
+        padding: 10px;
         border: none;
         border-radius: 32px;
         width: 100px;
         height: 49px;
         cursor: pointer;
         font-size: 15px;
-   }
+    }
 
-   /*------------------------------------------modified one ----------------------------------*/
-   .table{
+    /*------------------------------------------modified one ----------------------------------*/
+    .table {
         display: table;
         width: 100%;
         margin: 10px 0px;
         color: #5C6E9B;
         overflow-y: hidden !important;
-        
-        
+
+
     }
-    .tableHeader{
+
+    .tableHeader {
         width: 100%;
         display: table-header-group;
         font-size: 19px;
         padding: 15px;
         font-weight: bold;
         overflow-y: hidden !important;
-        
+
     }
-    .tableHeader > div { 
+
+    .tableHeader>div {
         display: table-cell;
     }
-    .table .tableRowGroup{
+
+    .table .tableRowGroup {
         display: table-row-group;
         overflow-y: auto !important;
-        
+
     }
-    .tableRow{
+
+    .tableRow {
         display: table-row;
     }
-    .tableCell{
+
+    .tableCell {
         display: table-cell;
     }
-    .tableRowGroup .tableRow:hover{
+
+    .tableRowGroup .tableRow:hover {
         cursor: pointer;
         background-color: wheat;
     }
+
     /* Table overflow */
-    .tableRowGroup{
+    .tableRowGroup {
         overflow-y: auto;
     }
-    .tableRow .tableCell{
-        padding:10px 0px;
-        
+
+    .tableRow .tableCell {
+        padding: 10px 0px;
+
     }
-    .tableRow > div{
+
+    .tableRow>div {
         display: table-cell;
-        padding:10px 0px;
+        padding: 10px 0px;
     }
-    .tableRow > div:first-of-type{
+
+    .tableRow>div:first-of-type {
         text-align: center;
     }
-    .tableHeader > div:first-of-type{
+
+    .tableHeader>div:first-of-type {
         text-align: center;
     }
-   
 </style>
 
 
@@ -165,15 +189,15 @@
 
         <div>
             <div class="statBox box2" id="allEmployees">
-                    <div class="statNumber">70</div>
-                    <div class="statText">Tangible Assets</div>
+                <div class="statNumber">70</div>
+                <div class="statText">Tangible Assets</div>
             </div>
         </div>
-            
+
         <div>
             <div class="statBox box3" id="allTechnicians">
                 <div class="statNumber">40</div>
-                    <div class="statText">Fixed Assets</div>
+                <div class="statText">Fixed Assets</div>
             </div>
         </div>
 
@@ -191,31 +215,31 @@
             </div>
         </div>
 
-        
+
     </div>
 
     <div>
-    <div>Recent Activities</div>
+        <div>Recent Activities</div>
     </div>
 
     <div class="contentSection">
         <!-- <div class="econtainer1">  -->
-                <div class="table">
-                    <div class="tableHeader">
-                            <div>Number</div>
-                            <div>Asset ID</div>
-                            <div>Asset Name</div>
-                            <div>Asset Type</div>
-                            <div>ReportBreakdown</div> 
-                            </div>
-                            
-                            
-    <div class="tableRowGroup" id="allAssetsEmp">
-     
+        <div class="table">
+            <div class="tableHeader">
+                <div>Number</div>
+                <div>Asset ID</div>
+                <div>Asset Name</div>
+                <div>Asset Type</div>
+                <div>ReportBreakdown</div>
+            </div>
+
+
+            <div class="tableRowGroup" id="allAssetsEmp">
+
 
 
             </div>
-        </div> 
+        </div>
     </div>
 </div>
 
@@ -223,16 +247,15 @@
 
 
 <script>
-        
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET","../model/AssignedAssetsEmp.php?action=getAssets",true);
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
 
-        xhr.onload = function(){
-            if(this.status === 200){
-                var assets = JSON.parse(this.responseText);
-                console.log(assets);
-                        for(var i = 0; i<assets.length;i++){
-                            document.getElementById('allAssetsEmp').innerHTML += `
+    xhr.onload = function() {
+        if (this.status === 200) {
+            var assets = JSON.parse(this.responseText);
+            console.log(assets);
+            for (var i = 0; i < assets.length; i++) {
+                document.getElementById('allAssetsEmp').innerHTML += `
                                 <div class="tableRow">
                                     <div>${i+1}</div>
                                     <div>${assets[i]['AssetID']}</div>
@@ -244,10 +267,21 @@
                                     </div> 
 
                                 </div>`;
-                        }  
             }
         }
+    }
 
+<<<<<<< HEAD
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send();
+
+    function report(asset) {
+        var assetDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '');
+        xhr.onload = () => {
+            if (this.status == 200) {
+=======
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send();
 
@@ -259,9 +293,22 @@
         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=getAssignedAssetById&asset_id=${asset}`,true);
         xhr.onload = function(){
             if(this.status == 200){
+>>>>>>> upstream/main
                 assetDetails = JSON.parse(this.responseText);
                 test(assetDetails);
         }
+<<<<<<< HEAD
+        xhr.send();
+        loadSection('centerSection', 'report');
+
+        if (!null) {
+            document.getElementById('assetID').innerhtml = assetDetails.assetId;
+        }
+
+        console.log(asset);
+
+    }
+=======
         
      }
 
@@ -292,6 +339,7 @@
 
 
     
+>>>>>>> upstream/main
 </script>
 
 
@@ -311,4 +359,3 @@
     
     });
 </script> -->
-

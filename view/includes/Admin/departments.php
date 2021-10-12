@@ -246,7 +246,7 @@
                                 <td>" . $row["ContactNum"] . "</td>
                                 <td>" . $row["datecreated"] . "</td>
                                 <td>" . $row["lastmodified"] . "</td>
-                                <td><button class='viewBtn'>View</button></td>
+                                <td id=".$row['DepartmentID']."><button id='view' class='viewBtn'>View</button></td>
                                 <td><button class='editBtn'>Edit</button></td>
                                 <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";
@@ -367,5 +367,29 @@
             }
         }
         xhr.send(department);
+    }
+
+
+    //Viewing the deaprtment details
+    var viewDepartmentBtn = document.querySelectorAll('#view');
+    for (var i = 0; i < viewDepartmentBtn.length; i++) {
+        viewDepartmentBtn[i].addEventListener('click', function() {
+            loadDepartment(event.target.parentElement.id);
+            // console.log(event.target.parentElement.id);
+
+        });
+    }
+
+    function loadDepartment(departmentID) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", `../model/Department.php?action=loadDepartment&departmentID=${departmentID}`, true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                // alert(this.responseText);
+                loadSection('centerSection', 'departmentDetails');
+            }
+        }
+        xhr.send();
     }
 </script>
