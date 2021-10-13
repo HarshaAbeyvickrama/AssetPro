@@ -20,7 +20,7 @@
             $sql =
             "select * from user
             inner join login on login.UserID = user.UserID
-            inner join role on role.RoleID=user.UserID
+            inner join role on role.RoleID=user.roleID
             where login.UserID in ( 
                 select login.UserID
                 from login

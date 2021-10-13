@@ -1,82 +1,94 @@
 <style>
-    .table-data {
-        color: #304068;
-        margin: 4px 4px;
-        height: 500px;
-        width: 99%;
-        margin-top: -100px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-    .depData {
-        /* width: 100%; */
-        border-collapse: collapse;
-        font-size: 18px;
-        margin-left: 5vh;
-        text-align: center;
+    * {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
 
-    .table-data th {
-        color: #5C6E9B;
-        padding: 8px;
-        position: sticky;
-        top: 0;
-        background-color: white;
+    .overviewLayout {
+        display: grid;
+        /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ; */
+        height: 82vh;
+        width: 87.5vw;
+        overflow-y: scroll;
+        padding: 20px;
+        background-color: #F1F4FF;
     }
 
-    .table-data td {
-        padding: 8px;
-        font-weight: lighter;
-    }
-
-    table tr:nth-child(2) {
-        counter-reset: rowNumber;
-    }
-
-    table tr {
-        counter-increment: rowNumber;
-    }
-
-    table tr td:first-child::before {
-        content: counter(rowNumber);
-        min-width: 1em;
-        margin-right: 0.5px;
-    }
-
-    .viewBtn, .editBtn,
-    .deleteBtn {
-        color: white;
-        background-color: #5C6E9B;
-        padding: 10px;
-        border: none;
-        border-radius: 32px;
-        width: 91px;
-        height: 41px;
-        cursor: pointer;
-        font-size: 15px;
-    }
-    .viewBtn {
-        background-color: #7A90C9;
-    }
-    .editBtn {
-        background-color: #5C6E9B;
-    }
-    .deleteBtn {
-        background-color: #394564;
-    }
-    /* CSS for pop-up form */
-    .bg-popup {
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.8);
-        position: absolute;
-        top: 0;
+    .overviewLayout>div {
         display: flex;
-        justify-content: center;
         align-items: center;
-        display: none;
-        z-index: 10;
-        left: 0px;
+        color: #304068;
+        font-size: 24px;
+        font-weight: bold;
+
+    }
+
+    .contentSection {
+        background-color: white;
+        border-radius: 15px;
+        margin-top: 15px;
+        height: 82vh;
+    }
+/* CSS for the tabs */
+    .tabs {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 450px;
+        height: 250px;
+    }
+    .tabs .tab-header {
+        /* background: #f5f5f5; */
+        padding: 10px;
+        display: flex;
+    }
+    .tabs .tab-header > div {
+        position: relative;
+        width: 45%;
+        text-align: center;
+        padding: 10px;
+        z-index: 2;
+        font-weight: 500;
+        color: #7F91BC;
+        cursor: pointer;
+        transition: all 300ms ease-in-out;
+    }
+    .tabs .tab-header > div.action {
+        color: #304068;
+    }
+    .tabs .tab-indicator {
+        position: absolute;
+        width: calc(45% - 5px);
+        height: 50px;
+        background: #EAEDF5;
+        top: 10px;
+        left: 20px;
+        border-radius: 20px;
+        transition: all 300ms ease-in-out;
+    }
+    .tabs .tab-body {
+        position: relative;
+        padding: 10px;
+        border-top: 2px solid #EAEDF5;
+        height: calc(100% - 50px);
+        overflow: hidden;
+    }
+    .tabs .tab-body > div{
+        position: absolute;
+        opacity: 0;
+        top: -100%;
+        transform: translateY(-10px);
+        transition: opacity 300ms ease-in-out,
+                    transform 300ms ease-in-out;
+    }
+    .tabs .tab-body > div.active {
+        transform: translateY(0px);
+        top:  30px;
+        opacity: 1;
+    }
+    .tabs .tab-body {
+        color: #5C6E9B;
+        font-family: 15px;
     }
 
     .popup-content {
@@ -89,17 +101,12 @@
         position: relative;
     }
 
-    .depInfo {
-        text-align: left;
-        margin-left: 20px;
-        color: #304068;
-    }
-
     .col-f input[type=text],
     textarea {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
+        font-size: 20px;
         border: none;
         background-color: #F1F4FF;
         height: 25px;
@@ -123,7 +130,7 @@
         color: #5C6E9B;
     }
 
-    .addBtn {
+    .editBtn {
         width: 80px;
         height: 40px;
         background-color: #5C6E9B;
@@ -134,72 +141,54 @@
         margin-left: 95vh;
     }
 
-    .addBtn:hover {
+    .editBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
-
-    .close {
-        position: absolute;
-        top: 0;
-        right: 14px;
-        font-size: 50px;
-        transform: rotate(45deg);
-        cursor: pointer;
-        color: #5C6E9B;
-    }
 </style>
+<div class="overviewLayout">
+    <div>
+        <div>Department Details</div>
+    </div>
+    <div class="contentSection">
+        <div class="tabs">
+            <div class="tab-header">
+                <div class="active">General Details</div>
+                <div>Employees</div>
+            </div>
+            <div class="tab-indicator"></div>
+            <div class="tab-body">
+                <div class="active">
+                    <!-- <h1>Department Details</h1> -->
+                    <p>Department Form should be here</p>
+                </div>
+                <div>
+                    <!-- <h1>Employees in the Department</h1> -->
+                    <p>List of employees in the Department Form should be here</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="table-data">
-    <table class="depData">
-        <tr">
-            <th>Number</th>
-            <th>Department ID</th>
-            <th>Department Code</th>
-            <th>Department Name</th>
-            <th>Contact Number</th>
-            <th>Date Created</th>
-            <th>Last Modified</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            </tr>
-
-            <?php
-
-            $conn = mysqli_connect("localhost", "root", "", "assetpro");
-
-            $sql = "SELECT DepartmentID,
-                    DepartmentCode,
-                    Name, 
-                    ContactNum, 
-                    DATE(DateCreated) AS datecreated, 
-                    DATE(LastModified) AS lastmodified 
-                    FROM department";
-
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                                <td></td>
-                                <td>" . $row["DepartmentID"] . "</td>
-                                <td>" . $row["DepartmentCode"] . "</td>
-                                <td>" . $row["Name"] . "</td>
-                                <td>" . $row["ContactNum"] . "</td>
-                                <td>" . $row["datecreated"] . "</td>
-                                <td>" . $row["lastmodified"] . "</td>
-                                <td><button class='viewBtn'>View</button></td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
-                              </tr>";
-                }
-            } else {
-                echo "No Results :(";
-            }
-            $conn->close();
-
-            ?>
-    </table>
 </div>
+
+<script type="text/javascript">
+    //JS for the tab layout
+    var tabs = document.querySelector(".tabs");
+    var tabHeader = tabs.querySelector(".tab-header");
+    var tabBody = tabs.querySelector(".tab-body");
+    var tabIndicator = tabs.querySelector(".tab-indicator");
+    var tabHeader = tabs.querySelectorAll(".tab-header > div");
+    var tabBodyNodes = tabs.querySelectorAll(".tab-body > div");
+
+    for(var i = 0; i<tabHeaderNodes.length; i++) {
+        tabHeaderNodes[i].addEventListner("click",function() {
+            tabHeader.querySelector(".active").classList.remove("active");
+            tabHeaderNodes[i].classList.add("active");
+            tabBody.querySelector(".active").classList.remove("active");
+            tabBodyNodes[i].classList.add("active");
+            tabIndicator.style.left = 'calc(clac(clac(25% - 5px) * ${i}) + 10px)'
+        });
+    }
+</script>

@@ -232,12 +232,7 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information:</div>
-
-                    <div class="col-f">
-                        <span for="empID">Employee ID</span>
-                        <input type="text" name="empID" id="empID">
-                    </div>
-
+                    
                     <div class="col-f">
                         <span for="depID">Department ID</span>
                         <input type="text" name="depID" id="depID">
@@ -344,7 +339,7 @@
                     } else {
                         alert('Fill the form!');
                     }
-                    
+
                     break;
             
                 default:
