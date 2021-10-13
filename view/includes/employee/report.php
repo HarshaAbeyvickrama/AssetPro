@@ -394,7 +394,7 @@
 
     loadSection('centerSection','assignedAssets');
 
-     console.log(report);
+     //console.log(report);
    }
    
     
