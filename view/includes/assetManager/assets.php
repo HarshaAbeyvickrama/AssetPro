@@ -138,7 +138,7 @@
     }
     #assetSections > div:hover{
         cursor: pointer;
-        background-color: aliceblue;
+        background-color: #EAEDF5;
     }
     #assetContents{
         overflow-y: auto;
@@ -164,7 +164,7 @@
     }
     
     .activeTab{
-        background-color: red;
+        background-image: linear-gradient(#EAEDF5, white);;
     }
 </style>
 
