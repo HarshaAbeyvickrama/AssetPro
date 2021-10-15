@@ -143,7 +143,7 @@
                             <td>${res[i].EmployeeID}</td>
                             <td>${res[i].name}</td>
                             <td>${res[i].Gender == 'F' ? "Female" : "Male"}</td>
-                            <td>View</td>
+                            <td><div class='btnAction'>View</div></td>
                         </tr>
                     `;
                     console.log(row);
