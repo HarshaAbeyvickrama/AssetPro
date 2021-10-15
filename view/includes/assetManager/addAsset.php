@@ -405,7 +405,8 @@
         button.addEventListener('click',function(event){
             switch (event.target.id) {
                 case 'cancelAddAsset':
-                   
+                    setFocus('assets');
+                    loadSection("centerSection",'assets'); 
                     break;
                 case 'btnSaveAsset':
                     const asset = getFormdata();
