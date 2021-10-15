@@ -271,17 +271,6 @@
         }
     }
 
-<<<<<<< HEAD
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send();
-
-    function report(asset) {
-        var assetDetails = null;
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', '');
-        xhr.onload = () => {
-            if (this.status == 200) {
-=======
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send();
 
@@ -293,22 +282,9 @@
         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=getAssignedAssetById&asset_id=${asset}`,true);
         xhr.onload = function(){
             if(this.status == 200){
->>>>>>> upstream/main
                 assetDetails = JSON.parse(this.responseText);
                 test(assetDetails);
         }
-<<<<<<< HEAD
-        xhr.send();
-        loadSection('centerSection', 'report');
-
-        if (!null) {
-            document.getElementById('assetID').innerhtml = assetDetails.assetId;
-        }
-
-        console.log(asset);
-
-    }
-=======
         
      }
 
@@ -339,7 +315,6 @@
 
 
     
->>>>>>> upstream/main
 </script>
 
 

@@ -141,7 +141,8 @@
 
                     <?php
 
-                    $conn = mysqli_connect("localhost", "root", "", "assetpro");
+                    require_once('../db/dbConnection.php');
+                    global $mysql;
 
                     $sql = "SELECT
                                 USER.UserID,
@@ -157,7 +158,7 @@
                             WHERE
                                 USER.RoleID = 3";
 
-                    $result = $conn->query($sql);
+                    $result = $mysql->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -177,7 +178,7 @@
                     } else {
                         echo "No Results :(";
                     }
-                    $conn->close();
+                    $mysql->close();
 
                     ?>
             </table>
