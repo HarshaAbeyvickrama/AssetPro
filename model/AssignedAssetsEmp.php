@@ -74,6 +74,10 @@
                         INNER JOIN type ON asset.TypeID = type.TypeID
                         WHERE asset.AssetID = $asset_id
                         ORDER BY asset.AssetID" ;
+
+        //SELECT * FROM 'asset' INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID 
+        //WHERE employeeuser.UserID = 3; 
+        //ny uing this code the assets for partcular employee will be shown and one UI is enough
                 
            
         $result = mysqli_query($mysql,$sql);
@@ -84,9 +88,6 @@
         echo json_encode($rows);
 
 
-
-        //SELECT * FROM 'asset' INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID 
-        //WHERE employeeuser.UserID = 3;
         
     }
 ?>
