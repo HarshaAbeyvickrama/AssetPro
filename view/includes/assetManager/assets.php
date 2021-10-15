@@ -163,6 +163,9 @@
         cursor: pointer;
     }
     
+    .activeTab{
+        background-color: red;
+    }
 </style>
 
 <script>
@@ -268,10 +271,18 @@
         if(eventId != 'assetSections'){
             loadSection("assetContents",eventId);
             e.stopPropagation();
+            setActiveTab(eventId);
         }
         
     });
 
+    function setActiveTab(eventId){
+        var tabs = document.querySelector('#assetSections').querySelectorAll('div');
+        tabs.forEach(tab =>{
+            tab.classList.remove('activeTab');
+        })
+        document.getElementById(eventId).classList.add('activeTab');
+    }
     document.getElementById("addAsset").addEventListener('click',function(e){
         const eventId = e.target.id;
         if(eventId == "addAsset"){
@@ -338,7 +349,7 @@
     </div>
     <div class="contentSection">
         <div id="assetSections">
-            <div id="allAssets">All Assets</div>
+            <div id="allAssets" class="activeTab">All Assets</div>
             <div id="assignedAssets">Assigned Assets</div>
             <div id="unassignedAssets">Unassigned Assets</div>
             <div id="sharedAssets">Shared Assets</div>

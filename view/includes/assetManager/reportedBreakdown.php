@@ -58,10 +58,10 @@
         background-color: wheat;
         cursor: pointer;
     }
-    .table-data tr>td:nth-child(6) > div{
+    /* .table-data tr>td:nth-child(6) > div{
         text-align: center;
         align-items: center;
-    }
+    } */
     .btnAction{
         border-radius: 15px;
         padding: 10px 20px;
@@ -79,7 +79,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div>Asset Disposal</div>
+        <div>Reported Breakdowns</div>
     </div>
     <div class="contentSection">
         <div class="table-data">
@@ -87,54 +87,70 @@
                 <thead>
                     <tr>
                         <th>Number</th>
+                        <th>Date</th>
                         <th>Asset ID</th>
                         <th>Asset Name</th>
                         <th>Asset Type</th>
-                        <th>Useful Years</th>
-                        <th>Submit for disposal</th>
+                        <th>Reported Employee</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="employeeTableBody">
                 <tr>
                     <td>1</td>
+                    <td>2021/07/20</td>
                     <td>FA/12345</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td><div class='btnAction'>Submit</div></td>
+                    <td>Kalum De Silva</td>
+                    <td><div class='btnAction'>View</div></td>
                 </tr>
                 <tr>
                     <td>1</td>
+                    <td>2021/07/20</td>
                     <td>FA/12345</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td><div class='btnAction'>Submit</div></td>
+                    <td>Kalum De Silva</td>
+                    <td><div class='btnAction'>View</div></td>
                 </tr>
                 <tr>
                     <td>1</td>
+                    <td>2021/07/20</td>
                     <td>FA/12345</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td><div class='btnAction'>Submit</div></td>
+                    <td>Kalum De Silva</td>
+                    <td><div class='btnAction'>View</div></td>
                 </tr>
                 <tr>
                     <td>1</td>
+                    <td>2021/07/20</td>
                     <td>FA/12345</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td><div class='btnAction'>Submit</div></td>
+                    <td>Kalum De Silva</td>
+                    <td><div class='btnAction'>View</div></td>
                 </tr>
                 <tr>
                     <td>1</td>
+                    <td>2021/07/20</td>
                     <td>FA/12345</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td><div class='btnAction'>Submit</div></td>
+                    <td>Kalum De Silva</td>
+                    <td><div class='btnAction'>View</div></td>
                 </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2021/07/20</td>
+                    <td>FA/12345</td>
+                    <td>Computer</td>
+                    <td>Fixed Asset</td>
+                    <td>Kalum De Silva</td>
+                    <td><div class='btnAction'>View</div></td>
+                </tr>
+               
                 </tbody>
             </table>
         </div>

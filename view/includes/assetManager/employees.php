@@ -55,22 +55,23 @@
         font-weight: lighter;
     }
     .table-data tr:hover{
-        background-color: #5C6E9B;
+        background-color: wheat;
         cursor: pointer;
     }
-    /* table tr:nth-child(2) {
-        counter-reset: rowNumber;
-    } */
-
-    /* table tr {
-        counter-increment: rowNumber;
-    } */
-
-    /* table tr td:first-child::before {
-        content: counter(rowNumber);
-        min-width: 1em;
-        margin-right: 0.5px;
-    } */
+    
+    .btnAction{
+        border-radius: 15px;
+        padding: 10px 20px;
+        color: white;
+        font-size: 18px;
+        background-color: #5C6E9B;
+        width: 80px;
+        max-height: 30px;
+    }
+    .btnAction:hover{
+        color: black;
+        background-color: white;
+    }
 </style>
 
 <div class="overviewLayout">

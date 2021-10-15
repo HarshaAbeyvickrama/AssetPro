@@ -4,6 +4,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once("../db/dbConnection.php");
+$rootDir = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+global $mysql;
 
 if (isset($_REQUEST['action'])) {
     switch ($_REQUEST['action']) {
@@ -39,6 +41,12 @@ function saveTechnician() {
         mysqli_query($mysql,$user);
 
         $userID = mysqli_insert_id($mysql);
+
+        //Save image in the folder
+        global $rootDir;
+        $extension = pathinfo($_FILES['profileImage']['name'], PATHINFO_EXTENSION);
+        $fileUrl = '/assetPro/uploads/technicians/' . $userID . '.' . $extension;
+        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], $rootDir . $fileUrl);
 
         //Inserting into the userdetails table
         $userdetails = "INSERT INTO userdetails VALUES 

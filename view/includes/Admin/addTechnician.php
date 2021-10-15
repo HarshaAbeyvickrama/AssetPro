@@ -220,7 +220,7 @@
     <div class="profile">
         <div id="pLeft" class="leftSection">
             <div class="profileImageSection">
-                <img src="../Images/profile.jpg" alt="">
+                <img src="../Images/addImage.png" alt="" id="imagePreview">
                 <input type="file" name="profileImage" id="profileImage" hidden>
                 <label for="profileImage" id="uploadBtn">Choose Image</label>
             </div>
@@ -331,6 +331,17 @@
     function getFormdata() {
         return new FormData(document.getElementById('addTechnicianForm'));
     }
+
+    //Getting the image preview
+    var imageUpload = document.getElementById('profileImage');
+    imageUpload.addEventListener('change',()=>{
+        const image = imageUpload.files[0];
+        if(image){
+            var src = URL.createObjectURL(image);
+            document.getElementById('imagePreview').src = src;
+        }
+
+    });
 
     //Saving the technician function
     //Saving technician details through AJAX
