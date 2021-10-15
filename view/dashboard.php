@@ -153,7 +153,10 @@
             xhr.send();
         }
 
-        
+    // Read a cookie value
+    function getCookieValue(name){
+        return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
+    }
     </script>
 </body>
 </html>

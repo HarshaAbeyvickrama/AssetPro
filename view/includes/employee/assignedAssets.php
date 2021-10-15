@@ -247,43 +247,63 @@
 
 
 <script>
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
 
-    xhr.onload = function() {
-        if (this.status === 200) {
-            var assets = JSON.parse(this.responseText);
-            console.log(assets);
-            for (var i = 0; i < assets.length; i++) {
-                document.getElementById('allAssetsEmp').innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
+   function loadAssets(){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
 
-                                    <div>  
-                                    <p><button id='reportbtn' onClick="report(${assets[i]['AssetID']})">Report</button></p>
-                                    </div> 
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var assets = JSON.parse(this.responseText);
+                console.log(assets);
+                for (var i = 0; i < assets.length; i++) {
+                    document.getElementById('allAssetsEmp').innerHTML += `
+                                    <div class="tableRow">
+                                        <div>${i+1}</div>
+                                        <div>${assets[i]['AssetID']}</div>
+                                        <div>${assets[i]['assetName']}</div>
+                                        <div>${assets[i]['assetType']}</div>
 
-                                </div>`;
+                                        <div>  
+                                        <p><button id='reportbtn' onClick="report(${assets[i]['AssetID']})">Report</button></p>
+                                        </div> 
+
+                                    </div>`;
+                }
             }
         }
-    }
-
-<<<<<<< HEAD
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send();
-
-    function report(asset) {
-        var assetDetails = null;
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', '');
-        xhr.onload = () => {
-            if (this.status == 200) {
-=======
-        xhr.setRequestHeader("Content-type", "application/json");
         xhr.send();
+    }
+    loadAssets();
+
+
+
+    // const xhr = new XMLHttpRequest();
+    // xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
+
+    // // xhr.onload = function() {
+    //     if (this.status === 200) {
+    //         var assets = JSON.parse(this.responseText);
+    //         console.log(assets);
+    //         for (var i = 0; i < assets.length; i++) {
+    //             document.getElementById('allAssetsEmp').innerHTML += `
+    //                             <div class="tableRow">
+    //                                 <div>${i+1}</div>
+    //                                 <div>${assets[i]['AssetID']}</div>
+    //                                 <div>${assets[i]['assetName']}</div>
+    //                                 <div>${assets[i]['assetType']}</div>
+
+    //                                 <div>  
+    //                                 <p><button id='reportbtn' onClick="report(${assets[i]['AssetID']})">Report</button></p>
+    //                                 </div> 
+
+    //                             </div>`;
+    //         }
+    //     }
+    // }
+
+    //     // xhr.setRequestHeader("Content-type", "application/json");
+    //     xhr.send();
 
 
         
@@ -293,53 +313,39 @@
         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=getAssignedAssetById&asset_id=${asset}`,true);
         xhr.onload = function(){
             if(this.status == 200){
->>>>>>> upstream/main
                 assetDetails = JSON.parse(this.responseText);
-                test(assetDetails);
-        }
-<<<<<<< HEAD
-        xhr.send();
-        loadSection('centerSection', 'report');
-
-        if (!null) {
-            document.getElementById('assetID').innerhtml = assetDetails.assetId;
-        }
-
-        console.log(asset);
-
-    }
-=======
+                loadSection('centerSection','report',asset);
+                document.cookie=`assetID=${asset}`;
+            }
         
      }
 
       
 
-       function test(assetDetails){
-             console.log(assetDetails);
+    //    function test(assetDetails){
+    //     console.log(assetDetails);
 
-             loadSection('centerSection','report');
+    //     loadSection('centerSection','report');
 
              
-        var testone = document.getElementById('assetID');
-        testone.value= assetDEtails['asset_id'];
-         console.log();
+    //     var testone = document.getElementById('assetID');
+    //     testone.value= assetDetails['AssetID'];   //assetDEtails to assetDetails
+    //      console.log();
 
            
-       }
+    //    }
+    
 
          xhr.send();
 
 
 
         console.log(asset);
+     
     }
 
 
-   
 
-
-    
->>>>>>> upstream/main
 </script>
 
 
