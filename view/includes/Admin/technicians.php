@@ -137,16 +137,16 @@
 
                     <?php
 
-
-                    $conn = mysqli_connect("localhost", "root", "", "assetpro");
-                    // require_once('../db/dbConnection.php');
+                    // $conn = mysqli_connect("localhost", "root", "", "assetpro");
+                    require_once('../db/dbConnection.php');
+                    global $mysql;
 
                     $sql = "SELECT userdetails.UserID, fName, lName, Gender 
-                FROM userdetails JOIN user 
-                ON user.UserID = userdetails.UserID 
-                WHERE user.RoleID = 4";
+                            FROM userdetails JOIN user 
+                            ON user.UserID = userdetails.UserID 
+                            WHERE user.RoleID = 4";
 
-                    $result = $conn->query($sql);
+                    $result = $mysql->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -164,7 +164,7 @@
                     } else {
                         echo "No Results :(";
                     }
-                    $conn->close();
+                    $mysql->close();
 
                     ?>
             </table>

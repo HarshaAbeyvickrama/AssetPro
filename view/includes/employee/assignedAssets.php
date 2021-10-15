@@ -278,6 +278,7 @@
 
 
 
+
     // const xhr = new XMLHttpRequest();
     // xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
 
@@ -306,6 +307,7 @@
     //     xhr.send();
 
 
+
         
     function report(asset){
         var assetDetails=null;
@@ -316,8 +318,9 @@
                 assetDetails = JSON.parse(this.responseText);
                 loadSection('centerSection','report',asset);
                 document.cookie=`assetID=${asset}`;
-            }
-        
+            }                
+        }
+       
      }
 
       
@@ -343,8 +346,6 @@
         console.log(asset);
      
     }
-
-
 
 </script>
 
