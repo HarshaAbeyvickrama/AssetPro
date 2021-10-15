@@ -252,10 +252,10 @@
     .tableCell{
         display: table-cell;
     }
-    .tableRowGroup .tableRow:hover{
+    /* .tableRowGroup .tableRow:hover{
         cursor: pointer;
         background-color: wheat;
-    }
+    } */
     /* Table overflow */
     .tableRowGroup{
         overflow-y: auto;
@@ -271,6 +271,7 @@
     
     th{
         color: #5C6E9B;
+        padding: 10px;
     }
     .spanRow{
         color: #5C6E9B;
@@ -278,6 +279,7 @@
     }
     .row{
         font-size: 14px;
+        margin-top: 13px;
     }
     .row td{
         text-align: center;
@@ -286,7 +288,12 @@
         padding-left: 10px;
         text-align: left !important;
     }
-    
+    .generalStats{
+        margin: 0px 0px 15px 0px;
+    }
+    .generalStats > div{
+        margin-top: 5px;
+    }
 </style>
 <form action="" id="reports">
 
@@ -304,7 +311,7 @@
                         <img src="../Images/AssetProLogo.png" alt="">
                     </div>
                 </div>
-                <div>
+                <div class="generalStats">
                     <div >Date : </div>
                     <div >Time : </div>
                     <div >Depriciation Method : </div>
