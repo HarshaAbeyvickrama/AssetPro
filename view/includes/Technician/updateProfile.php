@@ -2,6 +2,7 @@
     form{
         height: 87vh;
     }
+
     .profile {
         all: revert;
         display: grid;
@@ -200,20 +201,7 @@
         cursor: pointer;
     }
 
-    /* .editBtn,
-    .delBtn {
-        width: 80px;
-        height: 40px;
-        background-color: #5C6E9B;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        color: #F1F4FF;
-        margin-left: 70vh;
-    } */
 
-    .editBtn:hover,
-    .delBtn:hover,
     .saveBtn:hover,
     .cancBtn:hover {
         cursor: pointer;
@@ -241,7 +229,7 @@
 
     /* Hide save and cancel buttons initially */
     #cancelEdit,
-    #saveAsset{
+    #saveInfo{
         display: none;
     }
 
@@ -257,7 +245,7 @@
             </div>
             <div class="leftBottom">
                 <div class="basic-information">
-                    <div class="title">Basic Information</div>
+                    <div class="title"> Basic Information: </div>
 
                     <div class="col-f">
                         <span for="empID"> Technician ID: </span>
@@ -287,9 +275,6 @@
                         </div>
                     </div>
                     
-                  //<div class="col-btn">
-                        <div class="btnAction" id="btnEditProfile">Edit</div>
-                    </div>//
 
                 </div>
                 
@@ -337,13 +322,10 @@
                 <input type="text" name="econtact" id="econtact">
             </div>
             <div class="col-btn">
-                <div class="saveBtn btnAction" id="saveAsset">Save</div>
-                <div class="cancBtn btnAction" id="cancelEdit">Cancel</div>
+                <div class="saveBtn btnAction" id="saveInfo"> Save </div>
+                <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>
             </div>
-            
-                
-                
-              
+                      
         </div>
 
         </div>
@@ -368,16 +350,14 @@
             elements[i].disabled=readonlyState;
         }
         document.getElementById("uploadBtn").disabled=readonlyState;
-
-        
+    
     }
     
     formState("userProfileForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
-        const cancelBtn = document.getElementById("cancelEdit");
-        const saveBtn = document.getElementById("saveAsset");
-        const editBtn = document.getElementById("btnEditProfile");
+        const cancBtn = document.getElementById("cancelEdit");
+        const saveBtn = document.getElementById("saveInfo");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
                 case 'cancelEdit':
@@ -385,11 +365,9 @@
                     saveBtn.style.display = 'none';
                     cancelBtn.style.display = 'none';
                     btnEditProfile.style.display = 'block';
-                    break;
-                case 'saveAsset':
                     
                     break;
-                case 'btnEditProfile':
+                case 'saveInfo':
                     btnEditProfile.style.display = 'none';
                     cancelBtn.style.display = 'block';
                     saveBtn.style.display = 'block';
@@ -404,6 +382,5 @@
         
         })
     })
-    
-    
+       
 </script>
