@@ -11,11 +11,9 @@
         padding: 0px;
         height: 87vh;
     }
-
     .profile>div {
         background-color: white;
         border-radius: 10px;
-
     }
     .leftSection,
     .rightSection{
@@ -25,7 +23,6 @@
     .rightSection::-webkit-scrollbar{
         display: none;
     } */
-
     .profile .leftSection {
         display: grid;
         grid-template-rows: 4fr 6fr;
@@ -35,18 +32,14 @@
         padding: 10px;
         
     }
-
-
     .leftSection>div {
         /* height: 100%; */
         /* width: 100%; */
     }
-
     .profileImageSection>img {
         width: 200px;
         border-radius: 0%;
     }
-
     .leftSection .leftBottom {
         display: flex;
         justify-content: center;
@@ -60,7 +53,6 @@
         justify-content: center;
         align-items: center;
     }
-
     #uploadBtn {
         display: flex;
         align-items: center;
@@ -72,13 +64,11 @@
         color: #F1F4FF;
         border-radius: 30px;
     }
-
     #uploadBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
-
     /* Form styling */
     .basic-information {
         width: calc(100% - 40px);
@@ -88,7 +78,6 @@
         padding: 10px;
         /* justify-content: space-around; */
     }
-
     .title {
         width: 100%;
         color: #304068;
@@ -96,12 +85,10 @@
         margin: 10px 0px;
         font-size: 20px;
     }
-
     .col-f {
         width: 100%;
         color: #5C6E9B;
     }
-
     .col-f select{
         justify-content: center;
         align-items: center;
@@ -114,12 +101,10 @@
         margin-top: 10px;
         outline: none;
     }
-
     .col-h {
         width: 50%;
         color: #5C6E9B;
     }
-
     .col-btn {
         position: relative;
         text-align: center;
@@ -140,7 +125,6 @@
         float: right;
         margin-right: 5px;
     }
-
     .col-f input[type=text] {
         justify-content: center;
         align-items: center;
@@ -153,7 +137,6 @@
         margin-top: 10px;
         outline: none;
     }
-
     .col-h input[type=text] {
         justify-content: center;
         align-items: center;
@@ -166,7 +149,6 @@
         margin-top: 10px;
         outline: none;
     }
-
     .textarea{
         justify-content: center;
         align-items: center;
@@ -179,7 +161,6 @@
         margin-top: 10px;
         outline: none;
     }
-
     .col-h,
     .col-f>span {
         display: block;
@@ -195,7 +176,6 @@
     .radio-group > input[type=radio]:hover{
         cursor: pointer;
     }
-
     .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
@@ -232,16 +212,12 @@
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
-
             <div class="profileImageSection">
                 <image src="../Images/lap1.jpg"alt="laptop-1">
             </div>
-
             <div class="leftBottom">
                 <div class="basic-information">
-
                     <div class="title">Basic Information</div>
-
                     <!-- <div class="col-h">
                         <span for="errorId">Error ID</span>
                         <input type="text" name="errorId" id="errorId" value="D/FA/2346">
@@ -256,22 +232,18 @@
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName" value="Lenovo Laptop">
                     </div>
-
                     <div class="col-f">
                         <span for="AssetType">Asset Type</span>
                         <input type="text" name="assetType" id="assetType"  value="Fixed Asset" >
                     </div>
-
                     <div class="col-f">
                         <span for="category">Asset Category</span>
                         <input type="text" name="category" id="category" value="Electronic" >
                     </div>
-
                     <div class="col-f">
                         <span for="condition">Condition</span>
                         <input type="text" name="condition" id="condition"  value="Brand New">
                     </div>
-
                     <!-- <div class="col-f">
                         <span for="purchaseDate">Purchase Date</span>
                         <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
@@ -279,43 +251,33 @@
             </div>
         </div>
     </div>
-
         
         <div id="pRight" class="rightSection">
             <div class="basic-information">
-
                 <div class="title">Report Breakdown:</div>
-
                 <div class="col-f">
                     <span for="defectedParts">Defected Parts</span>
                     <textarea class="textarea" cols="17.5" rows="17.5" id="defP"></textarea>
                 </div>
-
                 <div class="col-f">
                     <span for="explainDefect">Explain the defect</span>
                     <textarea class="textarea" cols="17.5" rows="17.5" id="exDef"></textarea>
                 </div>
-
                
                 <div class="col-btn">
                         <div id="cancelReport" onClick="cancelReport()">Cancel</div>
                         <div id="reportAsset">Report</div>     
                 </div>
                   
-
             </div>
         </div>
     </div>
-
 </form>
-
-
 <script>
-
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
-    
+  
     var assetID = getCookieValue('assetID');      
     // console.log("Fetch asset details of the asset : ",assetID);   by using ajax request get the details of assetID
     document.querySelectorAll(".col-btn").forEach(button =>{
@@ -329,7 +291,6 @@
                     break;
                 case 'reportAsset':
                    const report = getFormdata();   
-
                 //    for (var pair of report.entries()) 
                 //    {
                 //    console.log(pair[0] + ': ' + pair[1]);
@@ -355,36 +316,28 @@
         
         })
     })
-
     function getFormdata(){
         reportForm = new FormData(document.getElementById('reportAssetForm'));
         //console.log(reportForm);
-
         defectedPart =  document.getElementById('defP').value;
         reportForm.append('defP',defectedPart);
-
         explainDefect = document.getElementById('exDef').value;
         reportForm.append('exDef',explainDefect);
         console.log(reportForm);
-
         if(defectedPart == "" || explainDefect == "")
         {
             return null;
         }
         
-
         return reportForm;
     }
     
-
     // function checkBlank() {
     //     if( defectedPart && explainDefect== 0)
     //     {
     //     alert("empty");
     //      }
     // }
-
-
     function saveReport(report){
         var xhr = new XMLHttpRequest();
         xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
@@ -396,13 +349,8 @@
         }
         xhr.send(report);
     }
-
-
-
    function cancelReport(){
-
     loadSection('centerSection','assignedAssets');
-
     // console.log(report);
    }
    
@@ -412,12 +360,4 @@
     //     loadSection('centerSection','report');
         
     // });
-
-
-
 </script>
-
-
-
-
-                    
