@@ -163,6 +163,7 @@
         outline: none;
         padding: 8px 15px 8px 15px;
     }
+
     #maritalStatus {
         width: calc(101% - 30px);
         border: none;
@@ -295,7 +296,7 @@
                 <!-- Add and Cancel button to add -->
                 <div class="col-btn">
                     <button class="addBtn" id="btnSaveTechnician">Save</button>
-                    <button class="addBtn" id="cancelAddTechnician">Cancel</button>
+                    <button class="addBtn" id="cancelAddTechnician" onClick="goBack()">Back</button>
                 </div>
             </div>
 
@@ -305,21 +306,21 @@
 </form>
 
 <script>
-    document.querySelectorAll(".col-btn").forEach(button=> {
+    document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddTechnician');
         const saveBtn = document.getElementById("btnSaveTechnician");
         button.addEventListener('click', function(event) {
             event.preventDefault();
             switch (event.target.id) {
                 case 'cancelAddTechnician':
-                    
+
                     break;
                 case 'btnSaveTechnician':
                     const technician = getFormdata();
                     saveTechnician(technician);
                     console.log(technician);
                     break;
-            
+
                 default:
                     break;
             }
@@ -334,9 +335,9 @@
 
     //Getting the image preview
     var imageUpload = document.getElementById('profileImage');
-    imageUpload.addEventListener('change',()=>{
+    imageUpload.addEventListener('change', () => {
         const image = imageUpload.files[0];
-        if(image){
+        if (image) {
             var src = URL.createObjectURL(image);
             document.getElementById('imagePreview').src = src;
         }
@@ -348,10 +349,10 @@
 
     function saveTechnician(technician) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Technician.php?action=addTechnician",true);
+        xhr.open("POST", "../model/Technician.php?action=addTechnician", true);
 
         xhr.onload = function() {
-            if(this.status === 200) {
+            if (this.status === 200) {
                 console.log(this.responseText);
                 alert("Successfully added to the system!");
             }
@@ -359,4 +360,8 @@
         xhr.send(technician);
     }
 
+    //Function to go back
+    function goBack() {
+        loadSection('centerSection', 'technicians');
+    }
 </script>
