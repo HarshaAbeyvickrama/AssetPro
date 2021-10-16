@@ -33,7 +33,7 @@
         width: 83vh;
         height: 100vh;
         background: rgba(207, 207, 207, 0.1);
-        backdrop-filter: blur(10px);
+        /* backdrop-filter: blur(10px); */
         color: whitesmoke;
         box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
       }

@@ -249,7 +249,7 @@
                     
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
-                        <input type="text" name="assetID" id="assetID" >
+                        <input type="text" name="assetID" id="assetID" value="FA/567">
                     </div>
                    
                     <div class="col-f">
@@ -288,12 +288,12 @@
 
                 <div class="col-f">
                     <span for="defectedParts">Defected Parts</span>
-                    <textarea class="textarea" cols="19" rows="19" id="defP"></textarea>
+                    <textarea class="textarea" cols="17.5" rows="17.5" id="defP"></textarea>
                 </div>
 
                 <div class="col-f">
                     <span for="explainDefect">Explain the defect</span>
-                    <textarea class="textarea" cols="19" rows="19" id="exDef"></textarea>
+                    <textarea class="textarea" cols="17.5" rows="17.5" id="exDef"></textarea>
                 </div>
 
                
@@ -312,7 +312,9 @@
 
 <script>
 
-    
+// function getCookieValue(name){
+//         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
+//     }
     
     var assetID = getCookieValue('assetID');      
     // console.log("Fetch asset details of the asset : ",assetID);   by using ajax request get the details of assetID
@@ -340,7 +342,7 @@
                    else
                    {
                     saveReport(report);
-                    var alertMsg="Successfully Reported";
+                    var alertMsg="Successfully Reported!";
                     alert(alertMsg);
                    }
                    
