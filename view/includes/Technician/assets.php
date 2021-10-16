@@ -168,6 +168,60 @@
     }
 </style>
 
+<div class="overviewLayout">
+    <div>
+        <div>Dashboard Overview</div>
+    </div>
+    <div class="statSection">
+        <div>
+            <div class="statBox box1" >
+                <div class="statNumber" id="allAssets"> 16 </div>
+                <div class="statText"> All Assets </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="statBox box2" id="assignedAssets">
+                    <div class="statNumber" id="assignedAssets"> 4 </div>
+                    <div class="statText"> Assigned Assets </div>
+            </div>
+        </div>
+            
+        <div>
+            <div class="statBox box3" id="inProgress">
+                <div class="statNumber" id="inProgress"> 6 </div>
+                    <div class="statText"> In Progress </div>
+            </div>
+        </div>
+        <div>
+            <div class="statBox box4" id="repairedAssets">
+                <div class="statNumber" id="repairedAssets"> 6 </div>
+                    <div class="statText"> Repaired Assets </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>Recent Activities</div>
+    </div>
+    <div class="contentSection">
+        <div id="assetSections">
+            <div id="allAssets" class="activeTab">All Assets</div>
+            <div id="assignedAssets">Assigned Assets</div>
+            <div id="unassignedAssets">Unassigned Assets</div>
+            <div id="sharedAssets">Shared Assets</div>
+        </div>
+        <div id="assetContents">
+            <?php
+                include("allAssets.php");
+            ?>
+        </div>
+        <div class="buttonSection">
+            <div class="button" id="addAsset">Add Asset</div>
+        </div>
+    </div>
+</div>
+
+
 <script>
 
     //Get Asset Counts
@@ -306,62 +360,4 @@
         xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
     }
 </script>
-<div class="overviewLayout">
-    <div>
-        <div>Dashboard Overview</div>
-    </div>
-    <div class="statSection">
-        <div>
-            <div class="statBox box1" >
-                <div class="statNumber" id="allAssetsCount"></div>
-                <div class="statText">All Assets</div>
-            </div>
-        </div>
-
-        <div>
-            <div class="statBox box2" id="allEmployees">
-                    <div class="statNumber" id="allEmployeesCount"></div>
-                    <div class="statText">All Employees</div>
-            </div>
-        </div>
-            
-        <div>
-            <div class="statBox box3" id="allTechnicians">
-                <div class="statNumber" id="allTechniciansCount"></div>
-                    <div class="statText">All Technicians</div>
-            </div>
-        </div>
-        <div>
-            <div class="statBox box4" id="allTechnicians">
-                <div class="statNumber">897</div>
-                    <div class="statText">Tangible Assets</div>
-            </div>
-        </div>
-        <div>
-            <div class="statBox box5" id="allTechnicians">
-                <div class="statNumber">584</div>
-                    <div class="statText">Cosumable Assets</div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div>Recent Activities</div>
-    </div>
-    <div class="contentSection">
-        <div id="assetSections">
-            <div id="allAssets" class="activeTab">All Assets</div>
-            <div id="assignedAssets">Assigned Assets</div>
-            <div id="unassignedAssets">Unassigned Assets</div>
-            <div id="sharedAssets">Shared Assets</div>
-        </div>
-        <div id="assetContents">
-            <?php
-                include("allAssets.php");
-            ?>
-        </div>
-        <div class="buttonSection">
-            <div class="button" id="addAsset">Add Asset</div>
-        </div>
-    </div>
-</div>
 
