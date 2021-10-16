@@ -311,6 +311,9 @@
 
 
 <script>
+    
+    var assetID = getCookieValue('assetID');      
+    // console.log("Fetch asset details of the asset : ",assetID);   by using ajax request get the details of assetID
     document.querySelectorAll(".col-btn").forEach(button =>{
         const cancelBtn = document.getElementById("cancelReport");
         const reportBtn = document.getElementById("reportAsset");
@@ -335,6 +338,8 @@
                    else
                    {
                     saveReport(report);
+                    var alertMsg="Successfully Reported";
+                    alert(alertMsg);
                    }
                    
                     break;
@@ -394,7 +399,7 @@
 
     loadSection('centerSection','assignedAssets');
 
-     console.log(report);
+    // console.log(report);
    }
    
     

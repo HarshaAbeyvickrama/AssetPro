@@ -254,7 +254,8 @@
 
     //Loading the sections on left nav clicks with AJAX
 
-    function loadSection(sectionId,eventId){
+    function loadSection(sectionId,eventId,params){
+        params = params || null;
         var section = document.getElementById(sectionId);
         const xhr = new XMLHttpRequest();
         
@@ -285,7 +286,7 @@
             
         }
     }
-    //Remving the dynamically added scripts
+    //Removing the dynamically added scripts
 
     function removeScript(sectionId){
         const scripts = document.querySelectorAll(`.${sectionId}Script`);

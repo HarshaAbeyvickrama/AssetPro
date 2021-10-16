@@ -224,17 +224,18 @@
 
                     <?php
 
-                    $conn = mysqli_connect("localhost", "root", "", "assetpro");
+                    require_once('../db/dbConnection.php');
+                    global $mysql;
 
                     $sql = "SELECT DepartmentID,
-                    DepartmentCode,
-                    Name, 
-                    ContactNum, 
-                    DATE(DateCreated) AS datecreated, 
-                    DATE(LastModified) AS lastmodified 
-                    FROM department";
+                            DepartmentCode,
+                            Name, 
+                            ContactNum, 
+                            DATE(DateCreated) AS datecreated, 
+                            DATE(LastModified) AS lastmodified 
+                            FROM department";
 
-                    $result = $conn->query($sql);
+                    $result = $mysql->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -254,7 +255,7 @@
                     } else {
                         echo "No Results :(";
                     }
-                    $conn->close();
+                    $mysql->close();
 
                     ?>
             </table>
@@ -380,6 +381,7 @@
         });
     }
 
+    //Loading details of the selected department
     function loadDepartment(departmentID) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", `../model/Department.php?action=loadDepartment&departmentID=${departmentID}`, true);
