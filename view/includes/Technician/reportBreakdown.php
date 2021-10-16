@@ -14,17 +14,17 @@
 
     .profile>div {
         background-color: white;
-        border-radius: 10px; 
+        border-radius: 10px;  
    
     }
     .leftSection,
     .rightSection{
         overflow-y: auto; 
     }
-    /* .leftSection::-webkit-scrollbar,
-    .rightSection::-webkit-scrollbar{
+        /* .leftSection::-webkit-scrollbar,
+        .rightSection::-webkit-scrollbar{
         display: none;
-    } */
+        } */
 
     .profile .leftSection {
         display: grid;
