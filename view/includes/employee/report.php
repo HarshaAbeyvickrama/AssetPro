@@ -21,6 +21,8 @@
     .rightSection{
         overflow-y: auto;
     }
+
+
     /* .leftSection::-webkit-scrollbar,
     .rightSection::-webkit-scrollbar{
         display: none;
@@ -217,21 +219,21 @@
     #pRight > div:nth-child(2){
         margin: 5px 15px 10px 5px;
     }
-    .col-btn{
-        z-index: 1;
+    /* .col-btn{
+        z-index: 1; */
         /* position: absolute; */
-        left: 0px;
+        /* left: 0px;
         bottom: 0px;
         right: calc(0%);
         cursor: pointer;
-    }
+    } */
 </style>
 
 
 <form action="" id="reportAssetForm" onsubmit="">
 
     <div class="profile">
-        <div id="pLeft" class="leftSection scrollBar"> 
+        <div id="pLeft" class="leftSection"> 
 
             <div class="profileImageSection">
                 <image src="../Images/lap1.jpg"alt="laptop-1">
