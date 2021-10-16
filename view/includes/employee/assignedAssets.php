@@ -320,6 +320,9 @@
                 document.cookie=`assetID=${asset}`;
             }                
         }
+        xhr.send();
+
+        console.log(asset);
        
      }
 
@@ -339,13 +342,10 @@
     //    }
     
 
-         xhr.send();
-
-
-
-        console.log(asset);
+    
+        //console.log(asset);
      
-    }
+   // }
 
 </script>
 

@@ -28,6 +28,7 @@
         //print_r($reason);
         $reportassetquery = "INSERT into breakdown(AssetID,TechnicianID,EmployeeID,Date,Reason,DefectedParts)
         VALUES(42,1,5,now(),'$defectedPart','$reason')";
+    
          
 
         //SELECT * FROM 'asset' INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID WHERE employeeuser.UserID = 3;
@@ -36,16 +37,20 @@
         //different pages...
         //and purchase date and error log is no need
         
-        if(mysqli_query($mysql,$reportassetquery )) {
+        // if(mysqli_query($mysql,$reportassetquery )) {
           
-            function alert_success($message) {
-                $message = "Successfully reported!";
-                echo alert_success($message);
-            }
-    
-        } else {
-            echo "Fail";
-        }
+        // function function_alert($message) 
+        // {
+        //     echo "<script>alert('$message');</script>";
+        // }
+        //    function_alert("Welcome to Geeks for Geeks");
+        // }
+
+
+
+        
+        
     }
+    
 
 ?>
