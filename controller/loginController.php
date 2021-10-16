@@ -123,21 +123,5 @@
             exit(0);
         }
     }
-?>
-
-<!-- UPDATE
-    login
-INNER JOIN userdetails ON login.UserID = userdetails.UserID
-SET
-    verify_token = 2
-WHERE
-	login.UserID = 1 AND  userdetails.email = 'indunijd@gmail.com'-->
 
 
-    <!-- UPDATE
-    login
-INNER JOIN userdetails ON login.UserID = userdetails.UserID
-SET
-    verify_token = 'abcd'
-WHERE
-    login.UserID = userdetails.UserID AND userdetails.email = 'indunijd@gmail.com' -->
