@@ -173,7 +173,7 @@
         width: calc(94% - 30px);
         border: none;
         background-color: #F1F4FF;
-        height: 250px;
+        /* height: 250px; */
         border-radius: 9px;
         padding: 3px 3px;
         margin-top: 10px;
@@ -219,7 +219,7 @@
     }
     .col-btn{
         z-index: 1;
-        position: absolute;
+        /* position: absolute; */
         left: 0px;
         bottom: 0px;
         right: calc(0%);
@@ -249,7 +249,7 @@
                     
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
-                        <input type="text" name="assetID" id="assetID" >
+                        <input type="text" name="assetID" id="assetID" value="FA/567">
                     </div>
                    
                     <div class="col-f">
@@ -288,12 +288,12 @@
 
                 <div class="col-f">
                     <span for="defectedParts">Defected Parts</span>
-                    <textarea class="textarea" cols="" rows="" id="defP"></textarea>
+                    <textarea class="textarea" cols="17.5" rows="17.5" id="defP"></textarea>
                 </div>
 
                 <div class="col-f">
                     <span for="explainDefect">Explain the defect</span>
-                    <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
+                    <textarea class="textarea" cols="17.5" rows="17.5" id="exDef"></textarea>
                 </div>
 
                
@@ -311,6 +311,10 @@
 
 
 <script>
+
+// function getCookieValue(name){
+//         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
+//     }
     
     var assetID = getCookieValue('assetID');      
     // console.log("Fetch asset details of the asset : ",assetID);   by using ajax request get the details of assetID
@@ -338,7 +342,7 @@
                    else
                    {
                     saveReport(report);
-                    var alertMsg="Successfully Reported";
+                    var alertMsg="Successfully Reported!";
                     alert(alertMsg);
                    }
                    
