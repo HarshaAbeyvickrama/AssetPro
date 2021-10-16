@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <style>
-    {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
