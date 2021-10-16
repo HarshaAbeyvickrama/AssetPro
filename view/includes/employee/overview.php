@@ -12,7 +12,7 @@
         display: flex;
         align-items: center;
         color: #304068;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: bold;
         
     }
@@ -76,6 +76,8 @@
         height:100%;
         display:grid;
         grid-template-columns:1fr 1fr 2fr 1fr;
+        font-size:18px;
+        font-weight:lighter;
         
     }
    
@@ -157,18 +159,6 @@
                      <p>7 days ago</p>
                      <p>9 days ago</p>
                  </div>
-
-
-                
-
-
-
-
-
-
-                 
-
-
         </div>
         
     </div>
