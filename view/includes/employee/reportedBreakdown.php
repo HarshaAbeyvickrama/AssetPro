@@ -5,14 +5,14 @@
         height: 82vh;
         width: 87.5vw;
         overflow-y: auto;
-        padding: 20px;
+        padding: 24px;
         background-color: #F1F4FF;
     }
     .overviewLayout > div{
         display: flex;
         align-items: center;
         color: #304068;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: bold;
         
     }
@@ -48,6 +48,7 @@
     .statText{
         font-size: 17px;
         font-weight: lighter;
+    
     }
     .box1{
         background-color: #304068;
@@ -76,6 +77,8 @@
         height:100%;
         display:grid;
         grid-template-columns:repeat(6,1fr);
+        font-size:18px;
+        font-weight:lighter;
         
     }
   
@@ -134,14 +137,18 @@
                      <p>1</p>
                      <p>2</p>
                      <p>3</p>
+                     <p>4</p>
+                     <p>5</p>
                     
                  </div>
 
                  <div>
                      <h5>Date</h5>
                      <p>2021/07/20</p>
-                     <p>2021/07/20</p>
-                     <p>2021/07/20</p>
+                     <p>2021/07/29</p>
+                     <p>2021/08/01</p>
+                     <p>2021/09/01</p>
+                     <p>2021/09/12</p>
                   
 
                    
@@ -150,8 +157,10 @@
                  <div>
                      <h5>Error ID</h5>
                      <p>D/FA/12345</p>
-                     <p>D/FA/12345</p>
-                     <p>D/FA/12345</p>
+                     <p>D/FA/89011</p>
+                     <p>D/FA/99763</p>
+                     <p>D/FA/90763</p>
+                     <p>D/FA/89052</p>
                      
                    
                  </div>
@@ -159,8 +168,10 @@
                  <div>
                      <h5>Asset ID</h5>
                      <p>FA/12345</p>
-                     <p>FA/12345</p>
-                     <p>FA/12345</p>
+                     <p>FA/89011</p>
+                     <p>FA/99763</p>
+                     <p>FA/90763</p>
+                     <p>FA/89052</p>
                     
                      
                  </div>
@@ -168,12 +179,16 @@
                  <div>
                      <h5>Asset Name</h5>
                     <p>Laptop</p>
+                    <p>Scanner</p>
+                    <p>Printer</p>
                     <p>Laptop</p>
-                    <p>Laptop</p>
+                    <p>Printer</p>
                  </div>
 
                  <div>
                      <h5>Asset Type</h5>
+                    <p>Fixed Asset</p>
+                    <p>Fixed Asset</p>
                     <p>Fixed Asset</p>
                     <p>Fixed Asset</p>
                     <p>Fixed Asset</p>
@@ -187,5 +202,6 @@
 </div>
 
 <script>
+ 
 
 </script>
