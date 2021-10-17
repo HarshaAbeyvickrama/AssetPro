@@ -126,6 +126,7 @@
             <table class="tecData">
                 <tr">
                     <th>Number</th>
+                    <th>User ID</th>
                     <th>Technician ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -141,10 +142,18 @@
                     require_once('../db/dbConnection.php');
                     global $mysql;
 
-                    $sql = "SELECT userdetails.UserID, fName, lName, Gender 
-                            FROM userdetails JOIN user 
-                            ON user.UserID = userdetails.UserID 
-                            WHERE user.RoleID = 4";
+                    $sql = "SELECT
+                                USER.UserID,
+                                userdetails.fName,
+                                userdetails.lName,
+                                userdetails.Gender,
+                                tec.TechnicianID
+                            FROM
+                                technicianuser tec
+                            INNER JOIN userdetails ON userdetails.UserID = tec.UserID
+                            JOIN USER ON USER.UserID = userdetails.UserID
+                            WHERE
+                                USER.RoleID = 4";
 
                     $result = $mysql->query($sql);
 
@@ -153,6 +162,7 @@
                             echo "<tr>
                                 <td></td>
                                 <td>" . $row["UserID"] . "</td>
+                                <td>" . $row["TechnicianID"] . "</td>
                                 <td>" . $row["fName"] . "</td>
                                 <td>" . $row["lName"] . "</td>
                                 <td>" . $row["Gender"] . "</td>

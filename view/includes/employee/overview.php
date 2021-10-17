@@ -76,7 +76,9 @@
         height:100%;
         display:grid;
         grid-template-columns:1fr 1fr 2fr 1fr;
-        
+        font-size:18px;
+        font-weight:lighter;
+        text-align:center;      
     }
    
    
@@ -135,6 +137,8 @@
                      <p>2021/9/09</p>
                      <p>2021/7/07</p>
                      <p>2021/1/09</p>
+                     <p>2021/1/19</p>
+                     <p>2021/7/09</p>
                  </div>
 
                  <div>
@@ -142,6 +146,8 @@
                      <p>Employee1</p>
                      <p>Employee3</p>
                      <p>Employee7</p>
+                     <p>Employee9</p>
+                     <p>Employee4</p>
                  </div>
 
                  <div>
@@ -149,6 +155,8 @@
                      <p>Reported breakdown of the asset FA/C/123</p>
                      <p>Reported breakdown of the asset CA/T/323</p>
                      <p>Reported breakdown of the asset FA/C/190</p>
+                     <p>Reported breakdown of the asset FA/T/200</p>
+                     <p>Reported breakdown of the asset FA/T/890</p>
                  </div>
                  
                  <div>
@@ -156,19 +164,9 @@
                      <p>5 days ago</p>
                      <p>7 days ago</p>
                      <p>9 days ago</p>
+                     <p>3 days ago</p>
+                     <p>1 days ago</p>
                  </div>
-
-
-                
-
-
-
-
-
-
-                 
-
-
         </div>
         
     </div>

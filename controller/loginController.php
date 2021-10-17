@@ -64,4 +64,64 @@
         session_unset();
         header("location: ../index.php");
     }
-?>
+
+
+    //If user clicks on forgot password
+
+    //sending the mail function
+    function send_password_reset($get_name, $get_email, $token) {
+        
+    }
+
+    //Sending a token
+    if(isset($_POST['password_reset_link'])) {
+        $email = mysqli_real_escape_string($mysql, $_POST['email']);
+        $token = md5(rand());
+
+        $check_email = "SELECT
+                            email
+                        FROM
+                            userdetails
+                        WHERE
+                            email = '$email'
+                        LIMIT 1";
+
+        $check_email_run = mysqli_query($mysql, $check_email);
+
+        //If any record is available or not
+        if(mysqli_num_rows($check_email_run) > 0) {
+            $row = mysqli_fetch_array($check_email_run);
+            $get_name = $row['fName'];
+            $get_email = $row['email'];
+
+            $update_token = "UPDATE
+                                login
+                            INNER JOIN userdetails ON login.UserID = userdetails.UserID
+                            SET
+                                verify_token = '$token'
+                            WHERE
+                                login.UserID = userdetails.UserID AND userdetails.email = '$get_email'
+                            LIMIT 1;";
+                            
+
+            $update_token_run = mysqli_query($mysql, $update_token);
+
+            if($update_token_run) {
+                send_password_reset($get_name, $get_email, $token);
+                $_SESSION['status'] = "We emailed you a password reset link";
+                header("location: login.php");
+            exit(0);
+            } else {
+                $_SESSION['status'] = "Something went wrong. #1 :(";
+                header("location: login.php");
+                exit(0);
+            }
+
+        } else {
+            $_SESSION['status'] = "No Email found :(";
+            header("location: login.php");
+            exit(0);
+        }
+    }
+
+
