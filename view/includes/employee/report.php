@@ -253,7 +253,7 @@
                     </div> -->
             </div>
         </div>
-    </div>
+     </div>
         
         <div id="pRight" class="rightSection">
             <div class="basic-information">
@@ -270,7 +270,6 @@
                         <div id="cancelReport" onClick="cancelReport()">Cancel</div>
                         <div id="reportAsset">Report</div>     
                 </div>
-                  
             </div>
         </div>
     </div>
