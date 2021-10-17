@@ -5,7 +5,7 @@
         height: 82vh;
         width: 87.5vw;
         overflow-y: auto;
-        padding: 20px;
+        padding: 24px;
         background-color: #F1F4FF;
     }
     .overviewLayout>div {
@@ -84,9 +84,9 @@
         border: none;
         border-radius: 32px;
         width: 100px;
-        height: 49px;
+        /* height: 49px; */
         cursor: pointer;
-        font-size: 15px;
+        font-size: 16px;    
     }
     /*------------------------------------------modified one ----------------------------------*/
     .table {
@@ -113,7 +113,9 @@
     }
     .tableRow {
         display: table-row;
+        max-height: 10px;
     }
+
     .tableCell {
         display: table-cell;
     }
@@ -124,13 +126,15 @@
     /* Table overflow */
     .tableRowGroup {
         overflow-y: auto;
+        font-size:18px;
     }
+    
     .tableRow .tableCell {
-        padding: 10px 0px;
+        /* padding: 10px 0px; */
     }
     .tableRow>div {
         display: table-cell;
-        padding: 10px 0px;
+        /* padding: 10px 0px; */
     }
     .tableRow>div:first-of-type {
         text-align: center;
@@ -181,7 +185,6 @@
         <div>Recent Activities</div>
     </div>
     <div class="contentSection">
-        <!-- <div class="econtainer1">  -->
         <div class="table">
             <div class="tableHeader">
                 <div>Number</div>
@@ -190,6 +193,7 @@
                 <div>Asset Type</div>
                 <div>ReportBreakdown</div>
             </div>
+            <br>
             <div class="tableRowGroup" id="allAssetsEmp">
             </div>
         </div>
@@ -224,28 +228,7 @@
         xhr.send();
     }
     loadAssets();
-    // const xhr = new XMLHttpRequest();
-    // xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
-    // // xhr.onload = function() {
-    //     if (this.status === 200) {
-    //         var assets = JSON.parse(this.responseText);
-    //         console.log(assets);
-    //         for (var i = 0; i < assets.length; i++) {
-    //             document.getElementById('allAssetsEmp').innerHTML += `
-    //                             <div class="tableRow">
-    //                                 <div>${i+1}</div>
-    //                                 <div>${assets[i]['AssetID']}</div>
-    //                                 <div>${assets[i]['assetName']}</div>
-    //                                 <div>${assets[i]['assetType']}</div>
-    //                                 <div>  
-    //                                 <p><button id='reportbtn' onClick="report(${assets[i]['AssetID']})">Report</button></p>
-    //                                 </div> 
-    //                             </div>`;
-    //         }
-    //     }
-    // }
-    //     // xhr.setRequestHeader("Content-type", "application/json");
-    //     xhr.send();
+    
         
     function report(asset){
         var assetDetails=null;
@@ -263,20 +246,6 @@
        
      }
       
-    //    function test(assetDetails){
-    //     console.log(assetDetails);
-    //     loadSection('centerSection','report');
-             
-    //     var testone = document.getElementById('assetID');
-    //     testone.value= assetDetails['AssetID'];   //assetDEtails to assetDetails
-    //      console.log();
-           
-    //    }
-    
-    
-        //console.log(asset);
-     
-   // }
 </script>
 
 
@@ -289,7 +258,7 @@
 <!-- <script>
     var reportbtn = document.getElementById('reportbtn');
     reportbtn.addEventListener('click',function(){
-        console.log('looooooaddd plzz');
+        console.log('load');
         loadSection('centerSection','report');
         
     
