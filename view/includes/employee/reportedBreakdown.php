@@ -5,14 +5,14 @@
         height: 82vh;
         width: 87.5vw;
         overflow-y: auto;
-        padding: 24px;
+        padding: 20px;
         background-color: #F1F4FF;
     }
     .overviewLayout > div{
         display: flex;
         align-items: center;
         color: #304068;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: bold;
         
     }
@@ -78,8 +78,8 @@
         display:grid;
         grid-template-columns:repeat(6,1fr);
         font-size:18px;
-        font-weight:lighter;
-        
+        font-weight:lighter;  
+        text-align:center;   
     }
   
 </style>

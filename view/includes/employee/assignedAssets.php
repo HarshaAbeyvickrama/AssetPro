@@ -79,7 +79,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div>Reported Breakdowns</div>
+        <div>Assigned Assets</div>
     </div>
     <div class="contentSection">
         <div class="table-data">
