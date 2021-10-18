@@ -17,7 +17,7 @@
     }
     .leftSection,
     .rightSection{
-        overflow-y: auto;
+        overflow-y: hidden;
     }
 
 
@@ -78,6 +78,8 @@
         display: flex;
         flex-wrap: wrap;
         padding: 10px;
+        /* overflow-y:auto; */
+        overflow-y:hidden;
         /* justify-content: space-around; */
     }
     .title {
@@ -112,14 +114,13 @@
         text-align: center;
         width: 100%;
         align-items: center;
-        margin: 10px 0px;
-        
+        margin: 10px 0px;   
     }
     .col-btn>div {
         border-radius: 15px;
         padding: 10px 20px;
         color: white;
-        font-size: 18px;
+        font-size: 16px;
         background-color: #5C6E9B;
         width: 80px;
         max-height: 30px;
@@ -157,7 +158,7 @@
         width: calc(94% - 30px);
         border: none;
         background-color: #F1F4FF;
-        /* height: 250px; */
+        /* height: 100px; */
         border-radius: 9px;
         padding: 3px 3px;
         margin-top: 10px;
@@ -185,8 +186,8 @@
     }
     #pRight{
         background-color: #F1F4FF;
-        display: grid;
-        grid-template-rows: 1fr 1fr;
+        /* display: grid; */
+        /* grid-template-rows: 1fr 1fr; */
         overflow-x: hidden;
     }
     #pRight > div{
@@ -199,21 +200,23 @@
     #pRight > div:nth-child(2){
         margin: 5px 15px 10px 5px;
     }
+
     /* .col-btn{
-        z-index: 1; */
-        /* position: absolute; */
-        /* left: 0px;
+        z-index: 1;
+        /* position: absolute; 
+        left: 0px;
         bottom: 0px;
         right: calc(0%);
         cursor: pointer;
-    } */
+    }*/
+    
 </style>
 
 
 <form action="" id="reportAssetForm" onsubmit="">
 
     <div class="profile">
-        <div id="pLeft" class="leftSection scrollBar"> 
+        <div id="pLeft" class="leftSection"> 
             <div class="profileImageSection">
                 <image src="../Images/lap1.jpg"alt="laptop-1">
             </div>
@@ -252,25 +255,23 @@
                     </div> -->
             </div>
         </div>
-    </div>
+     </div>
         
         <div id="pRight" class="rightSection">
             <div class="basic-information">
                 <div class="title">Report Breakdown:</div>
                 <div class="col-f">
                     <span for="defectedParts">Defected Parts</span>
-                    <textarea class="textarea" cols="17.5" rows="17.5" id="defP"></textarea>
+                    <textarea class="textarea" cols="8.5" rows="8.5" id="defP"></textarea>
                 </div>
                 <div class="col-f">
                     <span for="explainDefect">Explain the defect</span>
-                    <textarea class="textarea" cols="17.5" rows="17.5" id="exDef"></textarea>
+                    <textarea class="textarea" cols="10" rows="10" id="exDef"></textarea>
                 </div>
-               
                 <div class="col-btn">
                         <div id="cancelReport" onClick="cancelReport()">Cancel</div>
                         <div id="reportAsset">Report</div>     
                 </div>
-                  
             </div>
         </div>
     </div>
