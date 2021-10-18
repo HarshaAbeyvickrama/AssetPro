@@ -33,18 +33,9 @@
         padding: 10px;
     }
 
-    .leftSection>div {
-        /* height: 100%; */
-        /* width: 100%; */
-    }
-
     .profileImageSection>img {
         width: 200px;
         border-radius: 50%;
-    }
-
-    .rightSection {
-        /* border: 1px solid black; */
     }
 
     .leftSection .leftBottom {
@@ -149,8 +140,6 @@
     .col-f>span {
         display: block;
     }
-
-    .leftSection>div {}
 
     #email,
     #dob {

@@ -136,141 +136,8 @@
       color: white;
       transition: 0.5s;
     }
-
-    /* CSS for the forgot password popup form */
-    .bg-popup {
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      position: absolute;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      display: none;
-      z-index: 10;
-      left: 0px;
-    }
-
-    .popup-content {
-      width: 360px;
-      height: 450px;
-      margin: 8% auto;
-      background-color: white;
-      border-radius: 20px;
-      /* text-align: center; */
-      padding: 20px;
-      position: relative;
-      text-align: center;
-      padding: 20px;
-      overflow: hidden;
-    }
-    .popup-content form {
-      width: 280px;
-      position: absolute;
-      top: 100px;
-      left: 40px;
-      transition: 0.5s;
-    }
-
-    .forgotPasswordInfo {
-      color: #687baa;
-      font-size: 30px;
-      padding-bottom: 10px;
-    }
-
-    .emailText {
-      color: #687baa;
-      font-weight: lighter;
-    }
-
-    img {
-      width: 100px;
-      height: 100px;
-    }
-
-    .email {
-      width: 100%;
-      display: block;
-      margin: 25px auto;
-      padding: 10px 5px;
-      border: 0;
-      border-bottom: 1px solid #687baa;
-      outline: none;
-    }
-
-    ::placeholder {
-      color: #BAC2D6;
-      text-align: center;
-    }
-
-    .btn-box {
-      width: 100%;
-      margin: 30px auto;
-      text-align: center;
-    }
-
-    form button {
-      width: 110px;
-      height: 35px;
-      margin: 0 10px;
-      background: linear-gradient(to right, #394564, #7A90C9);
-      border-radius: 30px;
-      border: 0;
-      outline: none;
-      color: #EAEDF5;
-      cursor: pointer;
-    }
-
-    .close {
-      position: absolute;
-      top: 0;
-      right: 14px;
-      font-size: 42px;
-      transform: rotate(45deg);
-      cursor: pointer;
-    }
-
-    #Form2 {
-      left: 450px;
-    }
-
-    #Form3 {
-      left: 450px;
-    }
-    .step-row {
-      width: 360px;
-      height: 40px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 -1px 5px -1px #bad2ff;
-      position: relative;
-      left: 0;
-    }
-    .step-col {
-      width: 120px;
-      text-align: center;
-      color: red;
-    }
-    #progress {
-      position: absolute;
-      height: 100%;
-      /* kalin thibbe 120 */
-      width: 180px; 
-      background: linear-gradient(to right, #394564, #7A90C9);
-      transition: 1s;
-    }
-    #progress::after {
-      content: '';
-      height: 0;
-      width: 0;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
-      position: absolute;
-      right: -20px;
-      top: 0;
-      border-left: 20px solid #7A90C9;
+    a {
+     text-decoration: none;
     }
   </style>
 </head>
@@ -291,117 +158,17 @@
         <span></span>
         <label>Password</label>
       </div>
-      <div class="pass" id="forgotPass">Forgot Password?</div>
       <input type="submit" value="Login" id="btnLogin" />
+      <br>
+      <a href="password-reset.php" class="pass" id="forgotPass">Forgot Password?</a>
+      
     </form>
   </div>
-
-  <!-- Forgot Password popup form -->
-  <div class="bg-popup" id="closeForm">
-    <div class="popup-content" id="popup-content">
-      <div class="close" id="cancelforgotPassword">+</div>
-
-      <!-- Form for the first tab (entering the email address) -->
-      <form action="" id="Form1">
-        <h3 class="forgotPasswordInfo">Forgot Password</h3>
-        <img src="./Images/forgotpass.png" alt="forgot password">
-        <h4 class="emailText">Enter your email address below</h4>
-        <input type="text" placeholder="E-Mail" class="email" name="password_rest_link" autocomplete="off" required>
-        <div class="btn-box">
-          <!-- <button type="button" id="closeForm">Cancel</button> -->
-          <button type="button" id="Next1">Send Link</button>
-        </div>
-      </form>
-
-      <!-- Form for the second tab (email sent message) -->
-      <form action="" id="Form2">
-      <img src="./Images/otp.png" alt="forgot password" style="width: 130px;">
-        <h4 class="emailText">Check you E-Mails</h4>
-        <!-- <input type="text" placeholder="otp" class="email"> -->
-        <div class="btn-box">
-          <button type="button">Ok</button>
-          <button type="button" id="Back1">Back</button>
-        </div>
-      </form>
-
-      <!-- Entring and confirming the new password -->
-      <form action="#" id="Form3">
-      <img src="./Images/newpass.png" alt="forgot password" style="width: 110px;">
-        <h4 class="emailText">Enter new password</h4>
-        <input type="text" placeholder="New Password" class="email" required>
-        <input type="text" placeholder="Confirm Password" class="email" required>
-        <div class="btn-box">
-          <button type="button" id="Back2">Back</button>
-          <button type="button">Submit</button>
-        </div>
-      </form>
-
-      <div class="step-row">
-        <div id="progress"></div>
-        <div class="step-col"><small>Step 1</small></div>
-        <div class="step-col"><small>Step 2</small></div>
-        <!-- <div class="step-col"><small>Step 3</small></div> -->
-      </div>
-
-    </div>
-  </div>
-
-<script>
-  var Form1 = document.getElementById('Form1');
-  var Form2 = document.getElementById('Form2');
-  // var Form3 = document.getElementById('Form3');
-
-  var Next1 = document.getElementById('Next1');
-  // var Next2 = document.getElementById('Next2');
-  var Back1 = document.getElementById('Back1');
-  // var Back2 = document.getElementById('Back2');
-
-  var progress = document.getElementById('progress');
-
-  Next1.onclick = function() {
-    Form1.style.left = "-450px";
-    Form2.style.left = "40px";
-    progress.style.width = "360px";
-  }
-  Back1.onclick = function() {
-    Form1.style.left = "40px";
-    Form2.style.left = "450px";
-    progress.style.width = "180px";
-  }
-  // Next2.onclick = function() {
-  //   Form2.style.left = "-450px";
-  //   Form3.style.left = "40px";
-  //   progress.style.width = "360px";
-  // }
-  // Back2.onclick = function() {
-  //   Form2.style.left = "40px";
-  //   Form3.style.left = "450px";
-  //   progress.style.width = "240px";
-  // }
-
-
-</script>
 
 </body>
 
 </html>
 <script>
-  //JS for pop-up form after clicking the forgot password
-  document.getElementById('forgotPass').addEventListener('click',
-    function popForm() {
-      document.querySelector('.bg-popup').style.display = 'flex';
-    });
-
-  // function popForm() {
-  //     document.getElementById('bg-popup').style.display = 'flex';
-  // }
-
-  //Closing the form
-  document.querySelector('.close').addEventListener('click',
-    function popForm() {
-      document.querySelector('.bg-popup').style.display = 'none';
-    });
-
   const form = document.getElementById('loginForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -420,5 +187,4 @@
     }
     xhr.send(login);
   })
-
 </script>
