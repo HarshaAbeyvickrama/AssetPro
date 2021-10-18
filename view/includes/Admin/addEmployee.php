@@ -33,18 +33,9 @@
         padding: 10px;
     }
 
-    .leftSection>div {
-        /* height: 100%; */
-        /* width: 100%; */
-    }
-
     .profileImageSection>img {
         width: 200px;
         border-radius: 50%;
-    }
-
-    .rightSection {
-        /* border: 1px solid black; */
     }
 
     .leftSection .leftBottom {
@@ -111,7 +102,7 @@
         text-align: center;
         width: 100%;
         align-items: center;
-        margin: 10px 0px;  
+        margin: 10px 0px;
     }
 
     .col-btn>div {
@@ -157,8 +148,6 @@
         display: block;
     }
 
-    .leftSection>div {}
-
     #email,
     #dob {
         width: calc(96% - 30px);
@@ -170,6 +159,7 @@
         outline: none;
         padding: 8px 15px 8px 15px;
     }
+
     #maritalStatus {
         width: calc(101% - 30px);
         border: none;
@@ -217,11 +207,11 @@
         color: #F1F4FF;
         margin-left: 70vh;
     }
+
     #imagePreview {
-        height:200px;
+        height: 200px;
         max-height: 200px;
     }
-
 </style>
 
 <form action="" id="addEmployeeForm">
@@ -236,7 +226,7 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information:</div>
-                    
+
                     <div class="col-f">
                         <span for="depID">Department ID</span>
                         <input type="text" name="depID" id="depID">
@@ -307,10 +297,10 @@
                 </div>
 
                 <!-- Add and Cancel button to add -->
-                    <div class="col-btn">
-                        <button class="addBtn" id="btnSaveEmployee">Save</button>
-                        <button class="addBtn" id="cancelAddEmployee">Cancel</button>
-                    </div>
+                <div class="col-btn">
+                    <button class="addBtn" id="btnSaveEmployee">Save</button>
+                    <button class="addBtn" id="cancelAddEmployee" onClick="goBack()">Back</button>
+                </div>
             </div>
 
         </div>
@@ -319,14 +309,14 @@
 </form>
 
 <script>
-    document.querySelectorAll(".col-btn").forEach(button=> {
+    document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddEmployee');
         const saveBtn = document.getElementById("btnSaveEmployee");
         button.addEventListener('click', function(event) {
             event.preventDefault();
             switch (event.target.id) {
                 case 'cancelAddEmployee':
-                    
+
                     break;
                 case 'btnSaveEmployee':
                     const employee = getFormdata();
@@ -338,14 +328,14 @@
                             isEmpty = true;
                         }
                     }
-                    if(!isEmpty) {
+                    if (!isEmpty) {
                         saveEmployee(employee);
                     } else {
                         alert('Fill the form!');
                     }
 
                     break;
-            
+
                 default:
                     break;
             }
@@ -360,9 +350,9 @@
 
     //Getting the image preview
     var imageUpload = document.getElementById('profileImage');
-    imageUpload.addEventListener('change',()=>{
+    imageUpload.addEventListener('change', () => {
         const image = imageUpload.files[0];
-        if(image){
+        if (image) {
             var src = URL.createObjectURL(image);
             document.getElementById('imagePreview').src = src;
         }
@@ -374,10 +364,10 @@
 
     function saveEmployee(employee) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Employee.php?action=addEmployee",true);
+        xhr.open("POST", "../model/Employee.php?action=addEmployee", true);
 
         xhr.onload = function() {
-            if(this.status === 200) {
+            if (this.status === 200) {
                 console.log(this.responseText);
                 alert("Successfully added to the system!");
             }
@@ -385,4 +375,8 @@
         xhr.send(employee);
     }
 
+    //Function to go back
+    function goBack() {
+        loadSection('centerSection', 'employees');
+    }
 </script>

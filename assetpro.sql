@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2021 at 07:52 AM
+-- Generation Time: Oct 18, 2021 at 02:46 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -200,11 +200,12 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
-(1, '', 'Finance', NULL, '0452245696', '2021-08-27 20:52:38.000000', '2021-08-27 20:52:38.000000'),
-(2, '', 'Operation', NULL, '0112345678', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
-(3, '', 'Human Resource', NULL, '0573785647', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
-(4, '', 'Research and Development', 'Research and Development', '0113454545', '2021-09-20 10:29:01.000000', '2021-09-20 10:29:01.000000'),
-(17, '', '', '', '', '2021-09-20 11:13:05.000000', '2021-09-20 11:13:05.000000');
+(1, 'FN', 'Finance', NULL, '0452245696', '2021-08-27 20:52:38.000000', '2021-08-27 20:52:38.000000'),
+(2, 'OP', 'Operation', NULL, '0112345678', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
+(3, 'HR', 'Human Resource', NULL, '0573785647', '2021-08-27 20:53:33.000000', '2021-08-27 20:53:33.000000'),
+(4, 'MKT', 'Marketing Department', 'This is the Marketing department', '0454564545', '2021-09-20 20:05:14.000000', '2021-09-20 20:05:14.000000'),
+(5, 'MNG', 'Management', 'Management', '0113454545', '2021-09-25 09:20:03.000000', '2021-09-25 09:20:03.000000'),
+(70, 'SLS', 'Sales Department', 'This is the Sales Department', '0111121212', '2021-09-28 19:24:36.000000', '2021-09-28 19:24:36.000000');
 
 -- --------------------------------------------------------
 
@@ -249,7 +250,18 @@ CREATE TABLE `employeeuser` (
 INSERT INTO `employeeuser` (`EmployeeID`, `UserID`, `DepartmentID`) VALUES
 (1, 3, 1),
 (5, 6, 3),
-(6, 8, 3);
+(6, 8, 3),
+(12, 15, 2),
+(16, 19, 1),
+(17, 21, 1),
+(18, 22, 3),
+(21, 25, 1),
+(22, 26, 4),
+(23, 27, 3),
+(24, 29, 3),
+(25, 31, 4),
+(30, 36, 2),
+(31, 39, 1);
 
 -- --------------------------------------------------------
 
@@ -260,19 +272,38 @@ INSERT INTO `employeeuser` (`EmployeeID`, `UserID`, `DepartmentID`) VALUES
 CREATE TABLE `login` (
   `UserID` int(5) NOT NULL,
   `Username` varchar(50) NOT NULL,
-  `Password` varchar(255) NOT NULL
+  `Password` varchar(255) NOT NULL,
+  `verify_token` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`UserID`, `Username`, `Password`) VALUES
-(1, 'indunijd', 'indunijd'),
-(2, 'VH', 'harsha'),
-(3, 'mushrifa', 'mushrifa77'),
-(4, 'ayishasj', 'ayishasj'),
-(6, 'sashini', 'sashini');
+INSERT INTO `login` (`UserID`, `Username`, `Password`, `verify_token`) VALUES
+(1, 'indunijd', 'indunijd', '3d5b1e003897505cb762bd9c6ba3e27a'),
+(2, 'VH', 'harsha', '29c1cde725ddba7236dd913bc68957fe'),
+(3, 'mushrifa', 'mushrifa77', '725941e6384cea4cda9ef81db3700c44'),
+(4, 'ayishasj', 'ayishasj', '238377b18affc8d952f1a1e9b225e9e3'),
+(6, 'sashini', 'sashini', '1'),
+(19, 'piyumi_perera', 'rU7e1Spq', '1'),
+(20, 'kumud_bandara', '0a66425d8dfe23a3b4e4c51ca0e3b6f7', '1'),
+(21, 'hansini_perera', 'f25d7348f8d3b0edd99aebc35dddc7fb', '1'),
+(22, 'prasadi_gunaratne', '5eddb6baccd0ab8c02cba211c29b84f2', '1'),
+(23, 'gayathri_kumari', '039a812c956020f28557d2b3b5d802cd', '1'),
+(24, 'pradeep_dissanayaka', 'bf8918f8ee29a7f47638dad8d780e703', '1'),
+(25, 'pradeep_gunaratne', '2a8070b2f957156be7842d71ac0b248b', '1'),
+(26, 'sameera_dissanaya', '42d1bc14cff251c8ea21488de2d7a0cd', '1'),
+(27, 'palitha_dias', 'c370afd09a9c4a57686454425beba2c7', '1'),
+(28, 'aloka_ediriweera', 'a743789b534861757bf63ebd26ad61f5', '1'),
+(29, 'akila_dilshan', '1b2fed12803ede6932b16e7dbc304ae9', '1'),
+(30, 'ravindu_bhagya', 'b5cd2a7e5a76d15d751791bc3f6f1827', '1'),
+(31, 'sachini_nisansala', '6bf3156766989ea663e4da167877b45f', '1'),
+(36, 'hasara_perera', '362e400e9497897e3886cd7c1b821077', '1'),
+(37, 'prasanna_jayathilake', 'd7946be0433b9d03216db7ceb5449c16', '1'),
+(38, 'darshani_kariyawasam', '4cddbc163198af7a0370c48f8f6d4a4e', '1'),
+(39, 'keshani_perera', 'c830225164d2177747539fd92ff8bcae', '1'),
+(40, 'sithara_wijepala', '0c5cbe44415c02e4ef9136aa3e0f2af9', '1');
 
 -- --------------------------------------------------------
 
@@ -305,6 +336,19 @@ CREATE TABLE `technicianuser` (
   `TechnicianID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `technicianuser`
+--
+
+INSERT INTO `technicianuser` (`TechnicianID`, `UserID`) VALUES
+(2, 4),
+(1, 20),
+(3, 28),
+(4, 30),
+(5, 37),
+(6, 38),
+(7, 40);
 
 -- --------------------------------------------------------
 
@@ -377,7 +421,27 @@ INSERT INTO `user` (`UserID`, `RoleID`) VALUES
 (3, 3),
 (6, 3),
 (8, 3),
-(4, 4);
+(15, 3),
+(19, 3),
+(21, 3),
+(22, 3),
+(23, 3),
+(24, 3),
+(25, 3),
+(26, 3),
+(27, 3),
+(29, 3),
+(31, 3),
+(36, 3),
+(39, 3),
+(4, 4),
+(16, 4),
+(20, 4),
+(28, 4),
+(30, 4),
+(37, 4),
+(38, 4),
+(40, 4);
 
 -- --------------------------------------------------------
 
@@ -404,12 +468,31 @@ CREATE TABLE `userdetails` (
 --
 
 INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `Address`, `Gender`, `Age`, `PhoneNumber`, `Email`, `DOB`, `ProfilePicURL`, `CivilStatus`) VALUES
-(1, 'Induni', 'Dulanjalee', 'Badulla', 'F', 23, '0719598424', '', '1998-04-24', '', 'Single'),
-(2, 'Harsha', 'Abeyvickrama', 'Rakwana', 'M', 23, '0711425085', '', '1998-08-29', '', 'Single'),
-(3, 'Mushrifa', 'Mansoor', 'Mawanella', 'F', 22, '0775067556', '', '1999-07-07', '', 'Single'),
-(4, 'Ayisha', 'Siddeequa', 'Kandy', 'F', 22, '0764243353', '', '1999-08-14', '', 'Single'),
+(1, 'Induni', 'Dulanjalee', 'Badulla', 'F', 23, '0719598424', 'indunijd@gmail.com', '1998-04-24', '/assetPro/uploads/employees/1.jpg', 'Single'),
+(2, 'Harsha', 'Abeyvickrama', 'Rakwana', 'M', 23, '0711425085', 'harshaabeyvickrama@gmail.com', '1998-08-29', '/assetPro/uploads/employees/2.jpg', 'Single'),
+(3, 'Mushrifa', 'Mansoor', 'Mawanella', 'F', 22, '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '/assetPro/uploads/employees/3.jpg', 'Single'),
+(4, 'Ayisha', 'Siddeequa', 'Kandy', 'F', 22, '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '/assetPro/uploads/technicians/4.jpg', 'Single'),
 (6, 'Sashini', 'Madushani', 'colombo', 'F', 23, '0714562389', '', '2021-08-31', '', 'Single'),
-(8, 'Lalith', 'Gunasena', 'Polonnaruwa', 'M', 34, '0875612310', '', '1989-12-14', '', 'Married');
+(8, 'Lalith', 'Gunasena', 'Polonnaruwa', 'M', 34, '0875612310', '', '1989-12-14', '', 'Married'),
+(15, 'Kasun', 'Perera', 'Polonnaruwa', 'm', 23, '0719989796', 'kasunp@gmail.com', '2021-09-27', 'url', 'Married'),
+(19, 'Piyumi', 'Perera', 'Kegalle', 'f', 23, '0713353563', 'piyumip@gmail.com', '1998-07-07', 'url', 'Unmarried'),
+(20, 'Kumud', 'Bandara', 'Chillaw', 'm', 23, '0717783736', 'kumudbandara@gmail.com', '1992-07-11', 'url', 'Married'),
+(21, 'Hansini', 'Perera', 'Matale', 'f', 23, '0711234567', 'hansiniperera@gmail.com', '1988-02-17', 'url', 'Married'),
+(22, 'Prasadi', 'Gunaratne', 'Haputale', 'f', 23, '0773455656', 'prasadigunaratne@gmail.com', '1984-11-27', 'url', 'Married'),
+(23, 'Gayathri', 'Kumari', 'Colombo', 'f', 23, '0774563412', 'gayakumari5@gmail.com', '2000-05-17', 'url', 'Married'),
+(24, 'Pradeep', 'Dissanayaka', 'Bandarawela', 'm', 23, '0711121213', 'pradeep@yahoo.com', '1989-03-10', 'url', 'Married'),
+(25, 'Pradeep', 'Gunaratne', 'Bandarawela', 'm', 23, '0711234567', 'pradeep@yahoo.com', '1991-04-05', 'url', 'Married'),
+(26, 'Sameera', 'Dissanaya', 'Jaffna', 'm', 23, '0779909090', 'sameera@yahoo.com', '1998-12-31', 'url', 'Married'),
+(27, 'Palitha', 'Dias', 'Wauniya', 'm', 23, '0787767675', 'palithadias@gmail.com', '1992-07-22', 'url', 'Married'),
+(28, 'Aloka', 'Ediriweera', 'Matale', 'F', 23, '0663457867', 'alokaedi@yahoo.com', '1994-05-10', 'url', 'Married'),
+(29, 'Akila', 'Dilshan', 'Passara', 'm', 23, '0743443536', 'akiladil@yahoo.com', '1996-08-07', 'url', 'Unmarried'),
+(30, 'Ravindu', 'Bhagya', 'Monaragala', 'm', 23, '0764456767', 'ravindu05@gmail.com', '1993-05-17', 'url', 'Married'),
+(31, 'Sachini', 'Nisansala', 'Walasmulla', 'f', 23, '0718894545', 'sachinisansala@gmail.com', '1991-02-12', 'url', 'Married'),
+(36, 'Hasara', 'Perera', 'Anuradhapura', 'f', 23, '0764352718', 'hasara@gmail.com', '1996-03-06', '/assetPro/uploads/employees/36.jpg', 'Married'),
+(37, 'Prasanna', 'Jayathilake', 'Negombo', 'm', 23, '0713455790', 'prasannaj@gmail.com', '1969-10-09', 'url', 'Married'),
+(38, 'Darshani', 'Kariyawasam', 'Nugegoda', 'F', 23, '0775565657', 'darshanik@gmail.com', '1987-08-13', 'url', 'Married'),
+(39, 'Keshani', 'Perera', 'Nugegoda', 'f', 23, '0778867545', 'keshanip@gmail.com', '2000-01-03', '/assetPro/uploads/employees/39.jpg', 'Married'),
+(40, 'Sithara', 'Wijepala', 'Dabulla', 'f', 23, '0712235656', 'sitharaw@gmail.com', '1985-09-08', 'url', 'Unmarried');
 
 -- --------------------------------------------------------
 
@@ -424,6 +507,31 @@ CREATE TABLE `useremergency` (
   `lName` varchar(100) NOT NULL,
   `TelephoneNumber` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `useremergency`
+--
+
+INSERT INTO `useremergency` (`UserID`, `Relationship`, `fName`, `lName`, `TelephoneNumber`) VALUES
+(15, 'Father', 'Amarapaala', 'blah', '0418764500'),
+(19, 'Father', 'Thennakoon', 'blah', '0776676765'),
+(20, 'Father', 'Danapala', '', '0719983020'),
+(21, 'Mother', 'Gayani', 'blah', '0716676869'),
+(22, 'Mother', 'Sudeshika', 'blah', '0116675645'),
+(23, 'Father', 'Prasanna', 'blah', '0776675757'),
+(24, 'Father', 'Hasitha', 'blah', '0788888980'),
+(25, 'Father', 'Hasitha', 'blah', ''),
+(26, 'Mother', 'Priyangika', 'blah', '0455565657'),
+(27, 'Father', 'Dissanayaka', 'blah', '0712342323'),
+(28, 'Mother', 'Sumana', '', '0714565656'),
+(29, 'Father', 'Darshana', 'blah', '0553454545'),
+(30, 'Mother', 'Kusum', '', '0556767554'),
+(31, 'Mother', 'Geetha', 'blah', '0716676869'),
+(36, 'Mother', 'Malka', 'blah', '0716676869'),
+(37, 'Wife', 'Damayanthi', '', '0713455791'),
+(38, 'Mother', 'Malika', '', '0775565658'),
+(39, 'Mother', 'Maleesha', 'blah', '0778867544'),
+(40, 'Mother', 'Swarnalatha', '', '0712235657');
 
 --
 -- Indexes for dumped tables
@@ -574,7 +682,7 @@ ALTER TABLE `adminuser`
 -- AUTO_INCREMENT for table `asset`
 --
 ALTER TABLE `asset`
-  MODIFY `AssetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `AssetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `assetmanageruser`
@@ -586,7 +694,7 @@ ALTER TABLE `assetmanageruser`
 -- AUTO_INCREMENT for table `breakdown`
 --
 ALTER TABLE `breakdown`
-  MODIFY `BreakdownID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `BreakdownID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -598,7 +706,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `depreciation`
@@ -610,7 +718,7 @@ ALTER TABLE `depreciation`
 -- AUTO_INCREMENT for table `employeeuser`
 --
 ALTER TABLE `employeeuser`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -622,7 +730,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `technicianuser`
 --
 ALTER TABLE `technicianuser`
-  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `technicianuserspec`
@@ -640,7 +748,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables

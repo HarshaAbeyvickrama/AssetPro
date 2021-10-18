@@ -381,6 +381,7 @@
         });
     }
 
+    //Loading details of the selected department
     function loadDepartment(departmentID) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", `../model/Department.php?action=loadDepartment&departmentID=${departmentID}`, true);

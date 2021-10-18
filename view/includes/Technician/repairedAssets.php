@@ -151,83 +151,74 @@
             </div>
         </div>
 
-        <div>
-            <!-- <div class="statBox box4" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
-        <div>
-            <!-- <div class="statBox box5" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
     </div>
 
     <div>
         <div> Recent Activities </div>
     </div>
     <div class="contentSection scrollbar">
-        <div class="recent24">
-            <div class="recentTitle"> Last 24 Hours </div>
-
-            <div class="recentActivityTable table">
-                <div class="tableRowGroup">
-                    <div class="tableRow">
-                        <div class="tableCell"> 22/07/2020 </div>
-                        <div class="tableCell"> Wathsala </div>
-                        <div class="tableCell"> FA/12345 was assigned to you </div>
-                        <div class="tableCell"> 5 hours ago </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 22/07/2020 </div>
-                        <div class="tableCell"> Me </div>
-                        <div class="tableCell"> Successfully repaired FA/12346 </div>
-                        <div class="tableCell"> 3 hours ago </div>
-                    </div>
-                   
-                </div>
-            </div>
-        </div>
-
-        <hr>
 
         <div class="oldActivities">
-            <div class="recentTitle"> Earlier </div>
+            <div class="recentTitle">   </div>
 
             <div class="recentActivityTable table">
                 <div class="tableHeader">
-                    <div class="tableCell"> Date </div>
-                    <div class="tableCell"> Role </div>
-                    <div class="tableCell"> Task </div>
-                    <div class="tableCell"> Time </div>
+                    <div class="tableCell"> Number </div>
+                    <div class="tableCell"> Asset ID </div>
+                    <div class="tableCell"> Asset Name </div>
+                    <div class="tableCell"> Asset Type </div>
+                    <div class="tableCell"> Reported Employee </div>
+                    <div class="tableCell"> Status </div>
                 </div>
                 <div class="tableRowGroup">
                     <div class="tableRow">
-                        <div class="tableCell"> 18/07/2020 </div>
-                        <div class="tableCell"> Dasun </div>
-                        <div class="tableCell"> Reported a Breakdown of FA/23445 </div>
-                        <div class="tableCell"> 4 days ago </div>
+                        <div class="tableCell"> 1 </div>
+                        <div class="tableCell"> FA/12345 </div>
+                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Fixed Asset </div>
+                        <div class="tableCell"> Wathsala Perera </div>
+                        <div class="tableCell"> Done </div>
                     </div>
                     <div class="tableRow">
-                        <div class="tableCell"> 18/07/2020 </div>
-                        <div class="tableCell"> Kamal </div>
-                        <div class="tableCell"> Reported a Breakdown of FA/23456 </div>
-                        <div class="tableCell"> 4 days ago </div>
+                        <div class="tableCell"> 2 </div>
+                        <div class="tableCell"> FA/12346 </div>
+                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Fixed Asset </div>
+                        <div class="tableCell"> Shanaka Madhushan </div>
+                        <div class="tableCell"> Done </div>
                     </div>
                     <div class="tableRow">
-                        <div class="tableCell"> 17/07/2020 </div>
-                        <div class="tableCell"> Asset Manager </div>
-                        <div class="tableCell"> IA/34567 was unassigned from you </div>
-                        <div class="tableCell"> 5 days ago </div>
+                        <div class="tableCell"> 3 </div>
+                        <div class="tableCell"> CA/23456 </div>
+                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Current Asset </div>
+                        <div class="tableCell"> Nalin Perera </div>
+                        <div class="tableCell"> Done </div>
                     </div>
                     <div class="tableRow">
-                        <div class="tableCell"> 17/07/2020 </div>
-                        <div class="tableCell"> Me </div>
-                        <div class="tableCell"> Successfully repaired IA/34567 </div>
-                        <div class="tableCell"> 5 days ago </div>
+                        <div class="tableCell"> 4 </div>
+                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Current Asset </div>
+                        <div class="tableCell"> kasun Dias </div>
+                        <div class="tableCell"> Done </div>
                     </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 5 </div>
+                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Current Asset </div>
+                        <div class="tableCell"> kasun Dias </div>
+                        <div class="tableCell"> Done </div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 6 </div>
+                        <div class="tableCell"> FA/12345 </div>
+                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Fixed Asset </div>
+                        <div class="tableCell"> Wathsala Perera </div>
+                        <div class="tableCell"> Done </div>
+                    </div>      
                    
                 </div>
             </div>

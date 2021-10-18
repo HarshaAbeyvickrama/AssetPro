@@ -15,7 +15,7 @@
     .profile>div {
         background-color: white;
         border-radius: 10px;
-   
+
     }
     .leftSection,
     .rightSection{
@@ -228,48 +228,53 @@
 </style>
 
 
-<form action="" id="viewBreakdownReport" onsubmit="">
+<form action="" id="sendFeedbackForm" onsubmit="">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
 
             <div class="profileImageSection">
-                <image src="../Images/lap1.jpg"alt="laptop-1">
+                <image src="../Images/lap1.jpg" alt="laptop-1">
             </div>
 
             <div class="leftBottom">
                 <div class="basic-information">
 
-                    <div class="title">Basic Information</div>
-                    
+                    <div class="title"> Basic Information: </div>
+
                     <div class="col-h">
-                        <span for="assetId">Asset ID :</span>
-                        <input type="text" name="assetID" id="assetID" value="FA/12345" >
+                        <span for="errorId"> Error ID: </span>
+                        <input type="text" name="errorId" id="errorId" value="D/FA/12345">
+                    </div> 
+                    
+                    <div class="col-f">
+                        <span for="assetId"> Asset ID: </span>
+                        <input type="text" name="assetID" id="assetID" value="FA/12345">
                     </div>
                    
                     <div class="col-f">
-                        <span for="assetName">Asset Name :</span>
+                        <span for="assetName"> Asset Name: </span>
                         <input type="text" name="assetName" id="assetName" value="Asus Laptop">
                     </div>
 
                     <div class="col-f">
-                        <span for="AssetType">Asset Type :</span>
-                        <input type="text" name="assetType" id="assetType"  value="Fixed Asset" >
+                        <span for="AssetType"> Asset Type: </span>
+                        <input type="text" name="assetType" id="assetType" value="Fixed Asset">
                     </div>
 
                     <div class="col-f">
-                        <span for="category">Asset Category :</span>
+                        <span for="category"> Asset Category: </span>
                         <input type="text" name="category" id="category" value="Electronic" >
                     </div>
 
                     <div class="col-f">
-                        <span for="condition">Condition :</span>
+                        <span for="condition"> Condition:</span>
                         <input type="text" name="condition" id="condition"  value="Brand New">
                     </div>
 
                     <div class="col-f">
-                        <span for="purchaseDate">Purchase Date :</span>
-                        <input type="text" name="purchaseDate" id="purchaseDate" value="" >
+                        <span for="purchaseDate"> Purchase Date: </span>
+                        <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
                     </div>
             </div>
         </div>
@@ -279,24 +284,44 @@
         <div id="pRight" class="rightSection">
             <div class="basic-information">
 
-                <div class="title">Report Breakdown :</div>
+                <div class="title"> Report Breakdown: </div>
 
                 <div class="col-f">
-                    <span for="defectedParts">Defected Parts</span>
-                    <textarea class="textarea" cols="" rows="" id="defP"></textarea>
+                    <span for="reportedEmployee"> Reported Employee: </span>
+                    <textarea class="textarea" cols="" rows="" id="repE"></textarea>
                 </div>
 
                 <div class="col-f">
-                    <span for="explainDefect">Identified Defect</span>
-                    <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
+                    <span for="repairCost"> Repair Cost: </span>
+                    <textarea class="textarea" cols="" rows="" id="repC"></textarea>
+                </div>
+
+                <div class="col-f">
+                    <span for="nextrepairDate"> Next Repair date: </span>
+                    <textarea class="textarea" cols="" rows="" id="nextrepD"></textarea>
+                </div>
+
+                <div class="col-f">
+                    <span for="reasonsforMalfunction"> Reasons for malfunction: </span>
+                    <textarea class="textarea" cols="" rows="" id="reasonforMal"></textarea>
+                </div>
+
+                <div class="col-f">
+                    <span for="actionsTook"> Actions took: </span>
+                    <textarea class="textarea" cols="" rows="" id="actT"></textarea>
+                </div>
+
+                <div class="col-f">
+                    <span for="otherNotes"> Other Notes: </span>
+                    <textarea class="textarea" cols="" rows="" id="otherN"></textarea>
                 </div>
 
                
                 <div class="col-btn">
-                        <div id="FinalizeBreakdown">Finish</div>
-                        <div id="ErrorlogofAsset">Error Log</div>
-                    
-                    </div>
+                    <div class="sendfbBtn btnAction" id="sendFeedback"> Send Feedback </div>
+                    <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>     
+                </div>
+                  
 
             </div>
         </div>
@@ -304,34 +329,46 @@
 
 </form>
 
-
 <script>
-    document.querySelectorAll(".col-btn").forEach(button =>{
-        const cancelBtn = document.getElementById("cancelReport");
-        const reportBtn = document.getElementById("reportAsset");
-        button.addEventListener('click',function(event){
-            //event.preventDefault();
-            switch (event.target.id) {                       //event triggered when clicking the report btn
-                case 'cancelReport':
-                   
-                    break;
-                case 'reportAsset':
-                   const report = getFormdata();   
 
-                //    for (var pair of report.entries()) 
-                //    {
-                //    console.log(pair[0] + ': ' + pair[1]);
-                //    }
-                   
-                   if(report == null)
-                   {
-                     alert('Fields cannot be empty');
-                   }
-                   else
-                   {
-                    saveReport(report);
-                   }
-                   
+    // Enable / Disable the form fields
+
+    // formID = the Id of the form that should be diabled
+    // readonlyState ---->
+    //      true --> form disabled 
+    //      false --> form enabled 
+    
+    function formState(formId,readonlyState){
+        const form = document.getElementById(formId);
+        var elements = form.elements;
+        var len = elements.length;
+        for(var i=0; i<len; ++i){
+            elements[i].disabled=readonlyState;
+        }
+        document.getElementById("uploadBtn").disabled=readonlyState;
+    
+    }
+    
+    formState("sendFeedbackForm",true);
+
+    document.querySelectorAll(".col-btn").forEach(button =>{
+        const cancBtn = document.getElementById("cancelEdit");
+        const sendfbBtn = document.getElementById("sendFeedback");
+        button.addEventListener('click',function(event){
+            switch (event.target.id) {
+                case 'cancelEdit':
+                    formState("sendFeedbackForm",true);
+                    feedbackBtn.style.display = 'none';
+                    cancelBtn.style.display = 'none';
+                    /*...btnEditProfile.style.display = 'block';..*/
+                    
+                    break;
+                case 'sendFeedback':
+                    /*..btnEditProfile.style.display = 'none';..*/
+                    cancelBtn.style.display = 'block';
+                    feedbackBtn.style.display = 'block';
+                    /*..deleteBtn.style.display = 'none';..*/
+                    formState("sendFeedbackForm",false);
                     break;
             
                 default:
@@ -341,45 +378,5 @@
         
         })
     })
-
-    function getFormdata(){
-        reportForm = new FormData(document.getElementById('reportAssetForm'));
-        //console.log(reportForm);
-
-        defectedPart =  document.getElementById('defP').value;
-        reportForm.append('defP',defectedPart);
-
-        explainDefect = document.getElementById('exDef').value;
-        reportForm.append('exDef',explainDefect);
-        console.log(reportForm);
-
-        if(defectedPart == "" || explainDefect == "")
-        {
-            return null;
-        }
-        
-
-        return reportForm;
-    }
-
-    // function checkBlank() {
-    //     if( defectedPart && explainDefect== 0)
-    //     {
-    //     alert("empty");
-    //      }
-    // }
-
-
-    function saveReport(report){
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
-        
-        xhr.onload = function(){
-            if(this.status === 200){
-                alert(this.responseText);
-            }
-        }
-        xhr.send(report);
-    }
-
+       
 </script>

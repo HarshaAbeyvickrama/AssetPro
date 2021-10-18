@@ -286,7 +286,7 @@
             
         }
     }
-    //Remving the dynamically added scripts
+    //Removing the dynamically added scripts
 
     function removeScript(sectionId){
         const scripts = document.querySelectorAll(`.${sectionId}Script`);

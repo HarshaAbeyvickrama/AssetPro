@@ -56,10 +56,10 @@
     </div>
     <div class="contentSection">
         <div id="tabSections">
-            <!-- <div id="generalDetails">General Details</div>
-            <div id="departmentEmployeeList">Employees</div> -->
+            <div id="generalDetails">General Details</div>
+            <div id="departmentEmployeeList">Employees</div>
         </div>
-        <div id="tabContent">
+        <div id="tabContents">
             <?php
                 include("generalDetails.php");
             ?>

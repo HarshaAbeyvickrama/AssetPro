@@ -72,6 +72,7 @@
         color: black;
         background-color: white;
     }
+    
 </style>
 
 <div class="overviewLayout">
