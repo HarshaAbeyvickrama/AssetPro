@@ -128,7 +128,7 @@
         xhr.onload = function(){
             if(this.status == 200){
                 assetDetails = JSON.parse(this.responseText);
-                loadSection('centerSection','report',asset);
+                loadSection('centerSection','report');
                 // document.cookie=`assetID=${asset}`;
                 var json = JSON.stringify(assetDetails);
                 document.cookie=`assetID=${json}`;
