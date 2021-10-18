@@ -19,6 +19,8 @@
     .rightSection{
         overflow-y: hidden;
     }
+
+
     /* .leftSection::-webkit-scrollbar,
     .rightSection::-webkit-scrollbar{
         display: none;
@@ -200,13 +202,13 @@
     }
     /* .col-btn{
         z-index: 1;
-        /* position: absolute; 
+        position: absolute;
         left: 0px;
         bottom: 0px;
         right: calc(0%);
         cursor: pointer;
-    }*/
-    
+    } */
+  
 </style>
 
 
