@@ -200,16 +200,15 @@
     #pRight > div:nth-child(2){
         margin: 5px 15px 10px 5px;
     }
-
     /* .col-btn{
         z-index: 1;
-        /* position: absolute; 
+        position: absolute;
         left: 0px;
         bottom: 0px;
         right: calc(0%);
         cursor: pointer;
-    }*/
-    
+    } */
+  
 </style>
 
 
@@ -247,7 +246,7 @@
                     </div>
                     <div class="col-f">
                         <span for="condition">Condition</span>
-                        <input type="text" name="condition" id="condition"  value="Brand New">
+                        <input type="text" name="condition" id="condition" value="Brand New">
                     </div>
                     <!-- <div class="col-f">
                         <span for="purchaseDate">Purchase Date</span>
@@ -294,20 +293,15 @@
                     break;
                 case 'reportAsset':
                    const report = getFormdata();   
-                //    for (var pair of report.entries()) 
-                //    {
-                //    console.log(pair[0] + ': ' + pair[1]);
-                //    }
-                   
-                   if(report == null)
+                   for (var pair of report.entries()) 
                    {
-                     alert('Fields cannot be empty');
+                   console.log(pair[0] + ': ' + pair[1]);
                    }
-                   else
-                   {
+                   
+                   if(report == null){
+                     alert('Fields cannot be empty');
+                   }else{
                     saveReport(report);
-                    var alertMsg="Successfully Reported!";
-                    alert(alertMsg);
                    }
                    
                     break;
@@ -347,7 +341,7 @@
         
         xhr.onload = function(){
             if(this.status === 200){
-                alert(this.responseText);
+               alert(this.responseText); // 2nd alert
             }
         }
         xhr.send(report);
