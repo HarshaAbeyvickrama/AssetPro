@@ -227,24 +227,24 @@
                     
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
-                        <input type="text" name="assetID" id="assetID" value="FA/567">
+                        <input type="text" name="assetID" id="assetID" disabled>
                     </div>
                    
                     <div class="col-f">
                         <span for="assetName">Asset Name</span>
-                        <input type="text" name="assetName" id="assetName" value="Lenovo Laptop">
+                        <input type="text" name="assetName" id="assetName" disabled>
                     </div>
                     <div class="col-f">
                         <span for="AssetType">Asset Type</span>
-                        <input type="text" name="assetType" id="assetType"  value="Fixed Asset" >
+                        <input type="text" name="assetType" id="assetType" disabled >
                     </div>
                     <div class="col-f">
                         <span for="category">Asset Category</span>
-                        <input type="text" name="category" id="category" value="Electronic" >
+                        <input type="text" name="category" id="category" disabled >
                     </div>
                     <div class="col-f">
                         <span for="condition">Condition</span>
-                        <input type="text" name="condition" id="condition" value="Brand New">
+                        <input type="text" name="condition" id="condition" disabled>
                     </div>
                     <!-- <div class="col-f">
                         <span for="purchaseDate">Purchase Date</span>
@@ -277,9 +277,18 @@
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
+
+    var assetID = getCookieValue('assetID');  
+    var asset =   JSON.parse(assetID)[0];
+    console.log(asset); 
+    document.getElementById('assetID').value = asset.AssetID;
+    document.getElementById('assetName').value = asset.assetName;
+    document.getElementById('assetType').value = asset.assetType;
+    // document.getElementById('category').value = asset.;
+    document.getElementById('condition').value = asset.AssetCondition;
+
   
-    var assetID = getCookieValue('assetID');      
-    // console.log("Fetch asset details of the asset : ",assetID);   by using ajax request get the details of assetID
+   
     document.querySelectorAll(".col-btn").forEach(button =>{
         const cancelBtn = document.getElementById("cancelReport");
         const reportBtn = document.getElementById("reportAsset");
