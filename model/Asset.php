@@ -223,15 +223,49 @@
 
     function getCats(){
         global $mysql;
-        $sql = "SELECT
-                    c.*,
-                    t.TypeID,
-                    t.Name,
-                    t.TypeCode
-                FROM
-                    category c
-                INNER JOIN TYPE t ON
-                    t.CategoryID = c.CategoryID";
+        $sqlCategory = "SELECT * FROM category";
+        $allCategories = mysqli_query($mysql , $sqlCategory);
+        if($allCategories){
+            // Loop through cats
+            $catArray = array();
+
+            while($category = mysqli_fetch_assoc($allCategories)) {
+                $cat = new stdClass();
+                $catId = $category['CategoryID'];
+
+                $cat->categoryID = $catId;
+                $cat->categoryName = $category['Name'];
+                $sql = "SELECT
+                            TypeID,
+                            NAME,
+                            TypeCode
+                        FROM
+                            type
+                        WHERE
+                            CategoryID = $catId";
+                $types = mysqli_query($mysql , $sql);
+                
+                $typeArray = array();
+                if($types){
+                    while($type = mysqli_fetch_assoc($types)){
+                        $t = new stdClass();
+                        $t->typeID = $type['TypeID'];
+                        $t->name = $type['NAME'];
+                        // $t->typeCode = $type['TypeCode'];
+                        $typeArray[] = $t;
+                       
+                    }
+                }
+                $cat->types = $typeArray;
+                $catArray[] = $cat;
+
+                
+               
+
+            }
+            echo json_encode($catArray);
+            
+        }
              
     }
     function getAsset(){};
