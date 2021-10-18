@@ -142,7 +142,7 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text] {
+    .col-f input[type=text],input[type=number],input[type=date] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -155,7 +155,7 @@
         outline: none;
     }
 
-    .col-h input[type=text] {
+    .col-h input[type=text],input[type=number],input[type=date] {
         justify-content: center;
         align-items: center;
         width: calc(94% - 30px);
@@ -167,7 +167,11 @@
         margin-top: 10px;
         outline: none;
     }
-
+    .shortInput{
+        width: 35% !important;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
     .col-h,
     .col-f>span {
         display: block;
@@ -213,12 +217,153 @@
         right: calc(50%);
     }
 </style>
+<script>
+    // Event listener to chande asset Types
+    var categorySelect = document.getElementById('category');
+    categorySelect.addEventListener('change',function(event){
+        setTypes(categorySelect.value);
+    })
+
+    // Get categories and types
+    var categories = null;
+    
+    getCatogories().then(res => {
+        categories = res;
+        setCats();
+    })
+    
+    // Function to set categories
+    
+    function setCats(){
+        var select = document.getElementById("category");
+        categories.forEach(category =>{
+           var option = `<option value=${category.categoryID}>${category.categoryName}</option>`;
+           select.innerHTML += option;
+        });
+        setTypes(categories[0].categoryID);
+    }
+
+    function setTypes(id){
+        var select = document.getElementById("assetType");
+        categories.forEach(category =>{
+            if(category.categoryID == id){
+                select.innerHTML='';
+                category.types.forEach(type =>{
+                    var option = `<option value=${type.typeID}>${type.name}</option>`;
+                    select.innerHTML += option;
+                })
+            }
+        });
+    }
+
+    
+
+    // Enable / Disable the form fields
+
+    // formID = the Id of the form that should be diabled
+    // readonlyState ---->
+    //      true --> form disabled 
+    //      false --> form enabled 
+    var imageUpload = document.getElementById('image');
+    imageUpload.addEventListener('change',()=>{
+        const image = imageUpload.files[0];
+        if(image){
+            var src = URL.createObjectURL(image);
+            document.getElementById('imagePreview').src = src;
+        }
+
+    })
+
+    function formState(state){
+        document.getElementById('depriciationMethod').disabled = state;
+        document.getElementById('depriciaionRate').disabled = state;
+        document.getElementById('residualValue').disabled = state;
+        document.getElementById('usefulYears').disabled = state;
+    }
+    
+    // formState("userProfileForm",true);
+
+    document.querySelectorAll(".col-btn").forEach(button =>{
+        const cancelBtn = document.getElementById("cancelAddAsset");
+        const saveBtn = document.getElementById("btnSaveAsset");
+        button.addEventListener('click',function(event){
+            switch (event.target.id) {
+                case 'cancelAddAsset':
+                    setFocus('assets');
+                    loadSection("centerSection",'assets'); 
+                    break;
+                case 'btnSaveAsset':
+                    const asset = getFormdata();
+                    // for (var pair of asset.entries()) {
+                    //     console.log(pair[1].name);
+                    //     break;
+                    // }
+                    saveAsset(asset);
+                    
+                    break;
+            
+                default:
+                    break;
+            }
+        
+        
+        })
+    })
+    formState(true);
+    document.getElementById('depriciation').addEventListener('change',function(){
+            formState(!depriciation.checked);
+    })
+
+    document.getElementById('image').addEventListener('change',function(e){
+        // console.log(e.target.files[0].value)
+    })
+    
+
+    //get Form data
+
+    function getFormdata(){
+        return new FormData(document.getElementById('addAssetForm'));
+    }
+
+
+    //Save asset function ----->  Saving asset details through AJAX
+
+    function saveAsset(asset){
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","../model/Asset.php?action=addAsset",true);
+
+        xhr.onload = function(){
+            if(this.status === 200){
+                alert(this.responseText);
+            }
+        }
+        xhr.send(asset);
+    }
+    
+    async function getCatogories(){
+        return new Promise(function(resolve, reject){
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET","../model/Asset.php?action=getCats",true);
+            xhr.onload = function(){
+                if(this.status === 200){
+                    var cats = JSON.parse(this.responseText);
+                    // console.log(cats);
+                    resolve(cats);
+                }
+            }
+            xhr.send();
+        });    
+    }
+    
+
+</script>
+
 <form action="" id="addAssetForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
             <div class="profileImageSection">
-                <img src="../Images/profile.jpg" alt="" id="imagePreview">
+                <img src="../Images/addImage.png" alt="" id="imagePreview">
                 <input type="file" name="image" id="image" hidden>
                 <label for="image" id="uploadBtn">Choose Image</label>
             </div>
@@ -243,13 +388,12 @@
                     <div class="col-f">
                         <span for="category">Category</span>
                         <select name="category" id="category">
-                            <option value="1">Fixed Asset</option>
+                            
                         </select>
                     </div>
                     <div class="col-f">
                         <span for="assetType">Asset Type</span>
                         <select name="assetType" id="assetType">
-                            <option value="1">Furniture</option>
                         </select>
                     </div>
                     
@@ -279,15 +423,15 @@
                     </div>
                     <div class="col-f">
                         <span for="purchaseCost">Purchase Cost</span>
-                        <input type="datetime" name="purchaseCost" id="purchaseCost">
+                        <input type="number" name="purchaseCost" id="purchaseCost">
                     </div>
 
                     <div class="title" for="warrenty">Warrenty <input type="checkbox" name="warrenty" id="warrenty"></div>
 
                     <div class="col-f">
                         <span for="warrentyPeriod">Warrenty Period</span>
-                        <label for="fromDate">From</label><input type="date" name="fromDate" id="fromDate">
-                        <label for="toDate">To</label><input type="date" name="toDate" id="toDate">
+                        <label for="fromDate">From</label><input class="shortInput" type="date" name="fromDate" id="fromDate">
+                        <label for="toDate">To</label><input class="shortInput" type="date" name="toDate" id="toDate">
                     </div>
                     <div class="col-f">
                         <span for="otherInfo">Other Information</span>
@@ -372,103 +516,6 @@
 
 </form>
 
-<script>
 
-    // Enable / Disable the form fields
-
-    // formID = the Id of the form that should be diabled
-    // readonlyState ---->
-    //      true --> form disabled 
-    //      false --> form enabled 
-    var imageUpload = document.getElementById('image');
-    imageUpload.addEventListener('change',()=>{
-        const image = imageUpload.files[0];
-        if(image){
-            var src = URL.createObjectURL(image);
-            document.getElementById('imagePreview').src = src;
-        }
-
-    })
-
-    function formState(state){
-        document.getElementById('depriciationMethod').disabled = state;
-        document.getElementById('depriciaionRate').disabled = state;
-        document.getElementById('residualValue').disabled = state;
-        document.getElementById('usefulYears').disabled = state;
-    }
-    
-    // formState("userProfileForm",true);
-
-    document.querySelectorAll(".col-btn").forEach(button =>{
-        const cancelBtn = document.getElementById("cancelAddAsset");
-        const saveBtn = document.getElementById("btnSaveAsset");
-        button.addEventListener('click',function(event){
-            switch (event.target.id) {
-                case 'cancelAddAsset':
-                    setFocus('assets');
-                    loadSection("centerSection",'assets'); 
-                    break;
-                case 'btnSaveAsset':
-                    const asset = getFormdata();
-                    // for (var pair of asset.entries()) {
-                    //     console.log(pair[1].name);
-                    //     break;
-                    // }
-                    saveAsset(asset);
-                    
-                    break;
-            
-                default:
-                    break;
-            }
-        
-        
-        })
-    })
-    formState(true);
-    document.getElementById('depriciation').addEventListener('change',function(){
-            formState(!depriciation.checked);
-    })
-
-    document.getElementById('image').addEventListener('change',function(e){
-        // console.log(e.target.files[0].value)
-    })
-    
-
-    //get Form data
-
-    function getFormdata(){
-        return new FormData(document.getElementById('addAssetForm'));
-    }
-
-
-    //Save asset function ----->  Saving asset details through AJAX
-
-    function saveAsset(asset){
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Asset.php?action=addAsset",true);
-
-        xhr.onload = function(){
-            if(this.status === 200){
-                alert(this.responseText);
-            }
-        }
-        xhr.send(asset);
-    }
-
-    function getCatogories(){
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET","../model/Asset.php?action=getCats",true);
-
-        xhr.onload = function(){
-            if(this.status === 200){
-                console.log(this.responseText);
-            }
-        }
-        xhr.send();
-    }
-    
-
-</script>
 
     
