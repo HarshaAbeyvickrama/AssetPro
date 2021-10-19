@@ -63,17 +63,22 @@
 
     function getAssignedAssetById($asset_id){
         global $mysql;
-      
+
                 $sql = "SELECT
-                            asset.AssetID,
-                            assetdetails.Name as assetName,
-                            assetdetails.AssetCondition,
-                            TYPE.Name as assetType
-                        FROM asset
-                        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN type ON asset.TypeID = type.TypeID
-                        WHERE asset.AssetID = $asset_id
-                        ORDER BY asset.AssetID" ;
+                asset.AssetID,
+                assetdetails.Name AS assetName,
+                assetdetails.AssetCondition,
+                TYPE.Name AS assetType,
+                category.Name AS categoryName
+            FROM
+                asset
+            INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+            INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+            INNER JOIN category ON asset.CategoryID = category.CategoryID
+            WHERE
+                asset.AssetID = $asset_id
+            ORDER BY
+                asset.AssetID";
 
         //SELECT * FROM 'asset' INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID 
         //WHERE employeeuser.UserID = 3; 

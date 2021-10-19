@@ -284,7 +284,7 @@
     document.getElementById('assetID').value = asset.AssetID;
     document.getElementById('assetName').value = asset.assetName;
     document.getElementById('assetType').value = asset.assetType;
-    // document.getElementById('category').value = asset.;
+    document.getElementById('category').value = asset.categoryName;
     document.getElementById('condition').value = asset.AssetCondition;
 
   
