@@ -294,3 +294,15 @@
         </div>
     </div>
 </form>
+
+<!-- 
+    SELECT
+    userdetails.*,
+    useremergency.*
+FROM
+    userdetails
+Left JOIN useremergency ON useremergency.UserID = userdetails.UserID
+WHERE
+    userdetails.UserID = 1;
+
+ -->

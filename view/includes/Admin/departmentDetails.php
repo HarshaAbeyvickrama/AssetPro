@@ -49,6 +49,9 @@
         background-color: aliceblue;
         transition: 0.5s;
     }
+    #generalDetails {
+        background-image: linear-gradient(#EAEDF5, white);
+    }
 </style>
 <div class="overviewLayout">
     <div>
