@@ -284,7 +284,7 @@
     document.getElementById('assetID').value = asset.AssetID;
     document.getElementById('assetName').value = asset.assetName;
     document.getElementById('assetType').value = asset.assetType;
-    // document.getElementById('category').value = asset.;
+    document.getElementById('category').value = asset.categoryName;
     document.getElementById('condition').value = asset.AssetCondition;
 
   
@@ -306,7 +306,7 @@
                    }
                    
                    if(report == null){
-                    //  alert('Fields cannot be empty');
+                     alert('Fields cannot be empty');
                    }else{
                     saveReport(report);
                    }
@@ -328,7 +328,6 @@
         console.log(reportForm);
         if(defectedPart == "" || explainDefect == "")
         {
-            alert('Fields cannot be empty!!');
             return null;
         }   
         return reportForm;
