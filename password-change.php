@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <title>Reset Password</title>
     <style>
         * {
@@ -75,7 +80,8 @@
             height: 100px;
         }
 
-        .email {
+        .email,
+        .password {
             width: 100%;
             display: block;
             margin: 25px auto;
@@ -108,22 +114,48 @@
             color: #EAEDF5;
             cursor: pointer;
         }
+
+        .successAlert {
+            z-index: 500;
+            color: white;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
+    <!-- PLace to show the success message -->
+    <?php
+    if (isset($_SESSION['status'])) {
+    ?>
+        <div class="successAlert">
+            <h5><?= $_SESSION['status']; ?></h5>
+        </div>
+    <?php
+        unset($_SESSION['status']);
+    }
+    ?>
+
     <div class="bg-popup" id="closeForm">
         <div class="popup-content" id="popup-content">
 
             <!-- Form for entering the email address -->
-            <form action="#" id="Form3">
+            <form action="./controller/password-reset-code.php" method="POST">
                 <img src="./Images/newpass.png" alt="forgot password" style="width: 110px;">
                 <h4 class="emailText">Enter new password</h4>
-                <input type="text" placeholder="Email" class="email" required>
-                <input type="password" placeholder="New Password" class="email" required>
-                <input type="password" placeholder="Confirm Password" class="email" required>
+                <!-- Getting the token and set as hidden -->
+                <input type="hidden" name="password_token" value="<?php if (isset($_GET['token'])) {
+                                                                        echo $_GET['token'];
+                                                                    } ?>">
+
+                <input type="text" placeholder="Email" class="email" name="email" value="<?php if (isset($_GET['email'])) {
+                                                                                                echo $_GET['email'];
+                                                                                            } ?>" required>
+                <input type="password" placeholder="New Password" class="password" name="new_password" required>
+                <input type="password" placeholder="Confirm Password" class="password" name="confirm_password" required>
+
                 <div class="btn-box">
-                    <button type="button">Update</button>
+                    <button type="submit" name="password_update">Update</button>
                 </div>
             </form>
         </div>
