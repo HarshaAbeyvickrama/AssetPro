@@ -119,22 +119,85 @@
     function getCount($type){
         global $mysql;
 
-        switch ($type) {
-            case 'allAssets':
-                $query = "SELECT COUNT(*) FROM asset as count";
-                break;
-            case 'allEmployees':
-                $query = "SELECT COUNT(*) FROM employeeuser as count";
-                break;
-            case 'allTechnicians':
-                $query = "SELECT COUNT(*) FROM technicianuser as count";
-                break;
-            
-            default:
-                # code...
-                break;
-        }
+        switch($_SESSION['userType']){
+            case 'admin':
+                switch ($type) {
+                    case 'allAssets':
+                        $query = "SELECT COUNT(*) FROM asset as count";
+                        break;
+                    case 'allEmployees':
+                        $query = "SELECT COUNT(*) FROM employeeuser as count";
+                        break;
+                    case 'allTechnicians':
+                        $query = "SELECT COUNT(*) FROM technicianuser as count";
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
+            case 'assetManager':
+                switch ($type) {
+                    case 'allAssets':
+                        $query = "SELECT COUNT(*) FROM asset as count";
+                        break;
+                    case 'allEmployees':
+                        $query = "SELECT COUNT(*) FROM employeeuser as count";
+                        break;
+                    case 'allTechnicians':
+                        $query = "SELECT COUNT(*) FROM technicianuser as count";
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
+            case 'employee':
+                $userId = $_SESSION['userID'];
+                switch ($type) {
+                    case 'allAssets':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId)";
+                        break;
+                    case 'allTangible':
+                        $query = "SELECT COUNT(*) FROM asset AS COUNT WHERE EmployeeID = (SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 1 OR CategoryID = 2";
+                        break;             
+                    case 'allConsumables':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 2";
+                        break;
+                    case 'allFixed':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 1";
+                        break;
+                    case 'allIntangibles':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 3";
+                        break;
+                    }
 
+            case 'technician':
+                $technicianID = $_SESSION['userID'];
+                switch ($type) {
+                    case 'allAssets':
+                        // $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=$employeeID";
+                        break;
+                    case 'assignedAssets':
+                        
+    
+
+                    case 'inProgress':
+
+                    case 'repairedAssets':
+                   
+                    
+                    default:
+                        # code...
+                        break;
+                }
+
+            default:
+            
+
+        }
+       
+        // print_r($query);
         if($result = mysqli_query($mysql,$query)){
             $row = mysqli_fetch_array($result);
             echo($row[0]);
