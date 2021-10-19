@@ -281,7 +281,7 @@
 //     }
 
     var assetID = getCookieValue('assetID');  
-    var asset =   JSON.parse(assetID)[0];
+    var asset =   JSON.parse(assetID)[0];  //string to object
     console.log(asset); 
     document.getElementById('assetID').value = asset.AssetID;
     document.getElementById('assetName').value = asset.assetName;
