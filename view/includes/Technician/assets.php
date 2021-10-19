@@ -168,66 +168,13 @@
     }
 </style>
 
-<div class="overviewLayout">
-    <div>
-        <div>Dashboard Overview</div>
-    </div>
-    <div class="statSection">
-        <div>
-            <div class="statBox box1" >
-                <div class="statNumber" id="allAssets"> 16 </div>
-                <div class="statText"> All Assets </div>
-            </div>
-        </div>
-
-        <div>
-            <div class="statBox box2" id="assignedAssets">
-                    <div class="statNumber" id="assignedAssets"> 4 </div>
-                    <div class="statText"> Assigned Assets </div>
-            </div>
-        </div>
-            
-        <div>
-            <div class="statBox box3" id="inProgress">
-                <div class="statNumber" id="inProgress"> 6 </div>
-                    <div class="statText"> In Progress </div>
-            </div>
-        </div>
-        <div>
-            <div class="statBox box4" id="repairedAssets">
-                <div class="statNumber" id="repairedAssets"> 6 </div>
-                    <div class="statText"> Repaired Assets </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div>Recent Activities</div>
-    </div>
-    <div class="contentSection">
-        <div id="assetSections">
-            <div id="allAssets" class="activeTab">All Assets</div>
-            <div id="assignedAssets">Assigned Assets</div>
-            <div id="unassignedAssets">Unassigned Assets</div>
-            <div id="sharedAssets">Shared Assets</div>
-        </div>
-        <div id="assetContents">
-            <?php
-                include("allAssets.php");
-            ?>
-        </div>
-        <div class="buttonSection">
-            <div class="button" id="addAsset">Add Asset</div>
-        </div>
-    </div>
-</div>
-
-
 <script>
 
     //Get Asset Counts
     getCount('allAssets');
-    getCount('allEmployees');
-    getCount('allTechnicians');
+    getCount('assignedAssets');
+    getCount('inProgress');
+    getCount('repairedAssets');
     
     
 
@@ -239,16 +186,17 @@
             if(this.status === 200){
                 var assets = JSON.parse(this.responseText);
                 switch (type) {
-                    case 'all':
+                    case 'assigned':
                         for(var i = 0; i<assets.length;i++){
-                            var bd = document.getElementById('allAssetsTableBody')
+                            var bd = document.getElementById('assignedAssetsTableBody')
                             var row= `
                                     <div>${i+1}</div>
+                                    <div>${assets[i]['Number']}</div>
                                     <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>   
-                                    <div>${assets[i]['Status']}</div>
+                                    <div>${assets[i]['AssetName']}</div>
+                                    <div>${assets[i]['AssetType']}</div>
+                                    <div>${assets[i]['ReportedEmployee']}</div>   
+                                    <div>${assets[i]['StartRepairing']}</div>
                                 `;
                             var tableRow = document.createElement('div');
                             tableRow.className = 'tableRow';
@@ -260,52 +208,19 @@
 
                         }
                         break;
-                    case 'assigned':
+                    case 'inprogress':
                         for(var i = 0; i<assets.length;i++){
-                            var tb = document.getElementById('assignedAssetsTableBody');
+                            var tb = document.getElementById('inprogressAssetsTableBody');
                             tb.innerHTML += `
                                 <div class="tableRow">
                                     <div>${i+1}</div>
+                                    <div>${assets[i]['Number']}</div>
                                     <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>
-                                    <div>${assets[i]['employee']}</div>
+                                    <div>${assets[i]['AssetName']}</div>
+                                    <div>${assets[i]['AssetType']}</div>
+                                    <div>${assets[i]['ReportedEmployee']}</div>
+                                    <div>${assets[i]['MarkasDone']}</div>
                                 </div>`;
-                        }
-                        break;
-
-                    case 'shared':
-                        for(var i = 0; i<assets.length;i++){
-                            document.getElementById('sharedAssetsTableBody').innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>
-                                    <div>${assets[i]['department']}</div>
-                                </div>`;
-                        }
-                        break;
-                    case 'unassigned':
-                        for(var i = 0; i<assets.length;i++){
-                            const tb = document.getElementById('unassignedAssetsTableBody');
-                            tb.innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>
-                                    <div>
-                                        <div class='assignAssetButton' id=${assets[i]['AssetID']}>
-                                            Assign
-                                        </div>
-                                    </div>
-                                </div>`;
-
-                      
                         }
                         addEventListeners();
                         break;
@@ -360,4 +275,55 @@
         xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
     }
 </script>
+
+
+<div class="overviewLayout">
+    <div>
+        <div> Dashboard Overview </div>
+    </div>
+    <div class="statSection">
+        <div>
+            <div class="statBox box1" >
+                <div class="statNumber" id="allAssets"> 16 </div>
+                <div class="statText"> All Assets </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="statBox box2" id="assignedAssets">
+                    <div class="statNumber" id="assignedAssets"> 4 </div>
+                    <div class="statText"> Assigned Assets </div>
+            </div>
+        </div>
+            
+        <div>
+            <div class="statBox box3" id="inProgress">
+                <div class="statNumber" id="inProgress"> 6 </div>
+                    <div class="statText"> In Progress </div>
+            </div>
+        </div>
+        <div>
+            <div class="statBox box4" id="repairedAssets">
+                <div class="statNumber" id="repairedAssets"> 6 </div>
+                    <div class="statText"> Repaired Assets </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div> All Assigned Assets </div>
+    </div>
+    <div class="contentSection">
+        <div id="assetSections">
+            <div id="techAssignedAssets" class="activeTab"> Assigned Assets </div>
+            <div id="assetsinprogress"> In Progress </div>
+        </div>
+        <div id="assetContents">
+            <?php
+                include("techAssignedAssets.php");
+            ?>
+        </div>
+    </div>
+</div>
+
+
 
