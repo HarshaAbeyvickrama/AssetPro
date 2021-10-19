@@ -124,8 +124,10 @@
     viewBreakAsset();
 
 
-    function viewBreak(){
-         
+    function viewBreak(viewasset){
+         var viewAssetDetails = null;
+         const xhr = new XMLHttpRequest();
+         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakdownAssets&asset_id=${asset}`,true);
         loadSection('centerSection','viewBreakAssets');  
      }  
 </script>

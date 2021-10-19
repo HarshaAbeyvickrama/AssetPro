@@ -70,8 +70,8 @@
         <!-- <div id="username">Rocell Bathware</div> -->
         <div id="username">
             <?php
-                $loggedInUserType = $_SESSION['userType'];
-                echo $loggedInUserType;
+                $userId = $_SESSION['userID'];
+                $res = mysqli
             ?>
         </div>
         <div>

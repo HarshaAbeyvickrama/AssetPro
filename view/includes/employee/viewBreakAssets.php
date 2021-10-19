@@ -266,7 +266,7 @@
                     <textarea class="textarea" cols="10" rows="10" id="exDef"></textarea>
                 </div>
                 <div class="col-btn">
-                        <div id="cancelReport" onClick="cancelReport()">Cancel</div> 
+                        <div id="cancelReport" onClick="cancelReport()">Back</div> 
                 </div>
             </div>
         </div>

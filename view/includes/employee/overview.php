@@ -89,36 +89,36 @@
     </div>
     <div class="statSection">
         <div>
-            <div class="statBox box1" id="allAssets">
-                <div class="statNumber">100</div>
+            <div class="statBox box1" >
+                <div class="statNumber" id="allAssets"></div>
                 <div class="statText">All Assets</div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box2" id="allEmployees">
-                    <div class="statNumber">70</div>
+            <div class="statBox box2" >
+                    <div class="statNumber" id="Tangibles"></div>
                     <div class="statText">Tangible Assets</div>
             </div>
         </div>
             
         <div>
-            <div class="statBox box3" id="allTechnicians">
-                <div class="statNumber">40</div>
+            <div class="statBox box3" >
+                <div class="statNumber" id="Fixeds">40</div>
                     <div class="statText">Fixed Assets</div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box4" id="allAssets">
-                <div class="statNumber">30</div>
+            <div class="statBox box4" >
+                <div class="statNumber" id="Consumables">30</div>
                 <div class="statText">Consumable Assets</div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box5" id="allAssets">
-                <div class="statNumber">30</div>
+            <div class="statBox box5" >
+                <div class="statNumber" id="Intangibles">30</div>
                 <div class="statText">Intangible Assets</div>
             </div>
         </div>
@@ -171,3 +171,13 @@
         
     </div>
 </div>
+
+<script>
+    // document.getElementById('allAssets').innerHTML =  getCount('allAssets');
+    getCount('allAssets','allAssets');
+    getCount('allTangible','Tangibles');
+    getCount('allFixed','Fixeds');
+    getCount('allConsumables','Consumables');
+    getCount('allIntangibles','Intangibles');
+    // console.log('c : ',a);
+</script>
