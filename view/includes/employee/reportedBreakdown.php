@@ -125,11 +125,21 @@
 
 
     function viewBreak(viewasset){
-         var viewAssetDetails = null;
-         const xhr = new XMLHttpRequest();
-         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakdownAssets&asset_id=${asset}`,true);
-        loadSection('centerSection','viewBreakAssets');  
-     }  
+        var viewBreakAssetDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}`,true);
+        // xhr.onload = function(){
+    //         if(this.status == 200){
+    //          viewBreakAssetDetails = JSON.parse(this.responseText);
+             loadSection('centerSection','viewBreakAssets');  
+    
+    //          var json = JSON.stringify(viewBreakAssetDetails );       //object to string
+    //          document.cookie=`BreakdownID=${json}`;
+    //        }  
+    //    }
+    //    xhr.send();
+     }
+
 </script>
 
 
