@@ -29,9 +29,9 @@
         $reportassetquery = "INSERT into breakdown (AssetID,TechnicianID,EmployeeID,Date,Reason,DefectedParts)
         VALUES(42,1,5,now(),'$defectedPart','$reason')";
         if(mysqli_query($mysql,$reportassetquery )) {
-            echo("Yes");
+            echo("Successfully Reported!!");
         }else{
-            echo("No");
+            echo("Error in Submitting!!");
         }
          
 

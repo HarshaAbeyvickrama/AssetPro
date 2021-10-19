@@ -137,6 +137,7 @@
         height: 25px;
         border-radius: 9px;
         padding: 3px 3px;
+        /* padding: 8px 15px 8px 15px; */
         margin-top: 10px;
         outline: none;
     }
@@ -161,6 +162,7 @@
         /* height: 100px; */
         border-radius: 9px;
         padding: 3px 3px;
+        /* padding: 8px 15px 8px 15px; */
         margin-top: 10px;
         outline: none;
     }
@@ -248,10 +250,6 @@
                         <span for="condition">Condition</span>
                         <input type="text" name="condition" id="condition" disabled>
                     </div>
-                    <!-- <div class="col-f">
-                        <span for="purchaseDate">Purchase Date</span>
-                        <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
-                    </div> -->
             </div>
         </div>
      </div>
@@ -281,12 +279,12 @@
 //     }
 
     var assetID = getCookieValue('assetID');  
-    var asset =   JSON.parse(assetID)[0];
+    var asset =   JSON.parse(assetID)[0];  //string to object
     console.log(asset); 
     document.getElementById('assetID').value = asset.AssetID;
     document.getElementById('assetName').value = asset.assetName;
     document.getElementById('assetType').value = asset.assetType;
-    // document.getElementById('category').value = asset.;
+    document.getElementById('category').value = asset.categoryName;
     document.getElementById('condition').value = asset.AssetCondition;
 
   
@@ -312,7 +310,6 @@
                    }else{
                     saveReport(report);
                    }
-                   
                     break;
             
                 default:
@@ -324,7 +321,6 @@
     })
     function getFormdata(){
         reportForm = new FormData(document.getElementById('reportAssetForm'));
-        //console.log(reportForm);
         defectedPart =  document.getElementById('defP').value;
         reportForm.append('defP',defectedPart);
         explainDefect = document.getElementById('exDef').value;
@@ -333,17 +329,11 @@
         if(defectedPart == "" || explainDefect == "")
         {
             return null;
-        }
-        
+        }   
         return reportForm;
     }
     
-    // function checkBlank() {
-    //     if( defectedPart && explainDefect== 0)
-    //     {
-    //     alert("empty");
-    //      }
-    // }
+   
     function saveReport(report){
         var xhr = new XMLHttpRequest();
         xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST

@@ -130,7 +130,7 @@
                 assetDetails = JSON.parse(this.responseText);
                 loadSection('centerSection','report');
                 // document.cookie=`assetID=${asset}`;
-                var json = JSON.stringify(assetDetails);
+                var json = JSON.stringify(assetDetails);       //object to string
                 document.cookie=`assetID=${json}`;
             }                
         }
