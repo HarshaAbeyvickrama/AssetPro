@@ -147,7 +147,7 @@
 
     }
     .buttonSection{
-        all: revert;
+        /*all: revert;*/
         display: flex;
         align-items: center;
         justify-content: end;

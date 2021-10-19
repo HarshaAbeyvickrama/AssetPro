@@ -175,13 +175,13 @@
             <div class="recentActivityTable table">
                 <div class="tableRowGroup">
                     <div class="tableRow">
-                        <div class="tableCell"> 22/07/2020 </div>
+                        <div class="tableCell"> 22/07/2021 </div>
                         <div class="tableCell"> Wathsala </div>
                         <div class="tableCell"> FA/12345 was assigned to you </div>
                         <div class="tableCell"> 5 hours ago </div>
                     </div>
                     <div class="tableRow">
-                        <div class="tableCell"> 22/07/2020 </div>
+                        <div class="tableCell"> 22/07/2021 </div>
                         <div class="tableCell"> Me </div>
                         <div class="tableCell"> Successfully repaired FA/12346 </div>
                         <div class="tableCell"> 3 hours ago </div>
@@ -205,25 +205,25 @@
                 </div>
                 <div class="tableRowGroup">
                     <div class="tableRow">
-                        <div class="tableCell"> 18/07/2020 </div>
+                        <div class="tableCell"> 18/07/2021 </div>
                         <div class="tableCell"> Dasun </div>
                         <div class="tableCell"> Reported a Breakdown of FA/23445 </div>
                         <div class="tableCell"> 4 days ago </div>
                     </div>
                     <div class="tableRow">
-                        <div class="tableCell"> 18/07/2020 </div>
+                        <div class="tableCell"> 18/07/2021 </div>
                         <div class="tableCell"> Kamal </div>
                         <div class="tableCell"> Reported a Breakdown of FA/23456 </div>
                         <div class="tableCell"> 4 days ago </div>
                     </div>
                     <div class="tableRow">
-                        <div class="tableCell"> 17/07/2020 </div>
+                        <div class="tableCell"> 17/07/2021 </div>
                         <div class="tableCell"> Asset Manager </div>
                         <div class="tableCell"> IA/34567 was unassigned from you </div>
                         <div class="tableCell"> 5 days ago </div>
                     </div>
                     <div class="tableRow">
-                        <div class="tableCell"> 17/07/2020 </div>
+                        <div class="tableCell"> 17/07/2021 </div>
                         <div class="tableCell"> Me </div>
                         <div class="tableCell"> Successfully repaired IA/34567 </div>
                         <div class="tableCell"> 5 days ago </div>
