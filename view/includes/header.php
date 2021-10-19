@@ -1,7 +1,7 @@
 <style>
     .header{
         display: grid;
-        grid-template-columns: 7fr 0.5fr 2fr 0.5fr ;
+        grid-template-columns: 6fr 0.5fr 3fr 0.5fr ;
         height: 12vh;
         
     }
@@ -72,8 +72,9 @@
             <?php
                 include('../db/dbConnection.php');
                 $userId = $_SESSION['userID'];
+                // echo($userId);
                 $res = mysqli_query($mysql,"Select CONCAT(userdetails.fName,' ',userdetails.lName) AS name from userdetails where userID=$userId");
-                $name = mysqli_fetch_assoc($res);
+                $name = mysqli_fetch_assoc($res)['name'];
                 echo $name;
             ?>
         </div>
