@@ -108,7 +108,7 @@
             
     }
     .tableRow .tableCell{
-        padding:10px 0px;
+        padding:5px 0px;
         
     }
     hr{
@@ -116,6 +116,44 @@
         width: 100%;
         /* height: 1px; */
     }
+    .col-btn{
+        z-index: 1;
+        position: absolute; 
+        left: 0px;
+        bottom: 0px;
+        right: calc(0%);
+        cursor: pointer;
+    }
+
+    .col-btn > div:hover {
+        cursor: pointer;
+        background-color: #304068;
+        transition: .5s;
+    }
+
+    .col-btn {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        align-items: center;
+        margin: 10px 0px;   
+    }
+    .col-btn>div {
+        border-radius: 15px;
+        padding: 10px 20px;
+        color: white;
+        font-size: 16px;
+        background-color: #659B5C;
+        width: 80px;
+        max-height: 30px;
+        position: relative;
+        float: right;
+        margin-right: 10px;
+    }
+    .tableRow > div:nth-of-type(6){
+        text-align: left;
+    }
+
 
 </style>
 <div class="overviewLayout">
@@ -174,50 +212,62 @@
                     <div class="tableRow">
                         <div class="tableCell"> 1 </div>
                         <div class="tableCell"> FA/12345 </div>
-                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Laptop </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
-                        <div class="tableCell"> Done </div>
+                        <div class="tableCell">
+                            <div class="col-btn"> Done </div>
+                        </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 2 </div>
                         <div class="tableCell"> FA/12346 </div>
-                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Printer </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Shanaka Madhushan </div>
-                        <div class="tableCell"> Done </div>
+                        <div class="col-btn">
+                            <div class="tableCell" id="status"> Done </div>    
+                        </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 3 </div>
                         <div class="tableCell"> CA/23456 </div>
-                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Monitor </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> Nalin Perera </div>
-                        <div class="tableCell"> Done </div>
+                        <div class="col-btn">
+                            <div class="tableCell" id="status"> Done </div>    
+                        </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 4 </div>
                         <div class="tableCell"> CA/23458 </div>
-                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> CPU </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
-                        <div class="tableCell"> Done </div>
+                        <div class="col-btn">
+                            <div class="tableCell" id="status"> Done </div>    
+                        </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 5 </div>
                         <div class="tableCell"> CA/23458 </div>
-                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Web Cam </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
-                        <div class="tableCell"> Done </div>
+                        <div class="col-btn">
+                            <div class="tableCell" id="status"> Done </div>    
+                        </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 6 </div>
                         <div class="tableCell"> FA/12345 </div>
-                        <div class="tableCell"> Asset name here </div>
+                        <div class="tableCell"> Scanner </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
-                        <div class="tableCell"> Done </div>
+                        <div class="col-btn">
+                            <div class="tableCell" id="status"> Done </div>    
+                        </div>
                     </div>      
                    
                 </div>

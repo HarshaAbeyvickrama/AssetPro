@@ -296,15 +296,13 @@
         assetElement.addEventListener('click', (event) =>{
             var asset = event.target.parentElement;
             event.stopPropagation();
-            getAsset(assets.id)
+            document.cookie=`assetID=${asset.id}`;
+            loadSection('centerSection','viewAsset');
         })
     }
 
     //Get asset details by ID
-    function getAsset(assetID){
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
-    }
+    
 </script>
 <div class="overviewLayout">
     <div>

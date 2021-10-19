@@ -101,6 +101,7 @@
         
     </div>
     <script>
+        evaluateJs('centerSection');
        function getCount(type){
             const xhr = new XMLHttpRequest();
             xhr.open("GET",`../model/Asset.php?action=getCount&type=${type}`,true);
@@ -157,6 +158,8 @@
     function getCookieValue(name){
         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
     }
+
+    
     </script>
 </body>
 </html>

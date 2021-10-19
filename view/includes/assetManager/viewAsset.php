@@ -218,6 +218,10 @@
     }
 </style>
 <script>
+    // Load asset details
+    var assetID = getCookieValue('assetID');
+    alert(assetID);
+
     // Event listener to chande asset Types
     var categorySelect = document.getElementById('category');
     categorySelect.addEventListener('change',function(event){
@@ -356,6 +360,13 @@
     }
     
 
+    // Get asset Details
+    function getAsset(assetID){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET",`../model/Asset.php?action=getAsset&id=${assetID}`,true);
+        console.log(assetID);
+    }
+
 </script>
 
 <form action="" id="addAssetForm">
@@ -464,51 +475,7 @@
                     </div>
                 </div>
             </div>
-        <!-- <div class="basic-information">
-            <div class="col-f">
-                <span for="dob">Date of Birth</span>
-                <input type="datetime" name="dob" id="dob">
-            </div>
-            <div class="col-f">
-                <span>Marital Status</span>
-                <select name="maritalStatus" id="maritalStatus">
-                    <option value="Married">Married</option>
-                    <option value="Unmarried">Unmarried</option>
-                    <option value="Widowed">Widowed</option>
-                </select>
-            </div>
-            <div class="col-f">
-                <span for="address">Address</span>
-                <input type="text" name="address" id="address">
-            </div>
-            <div class="col-f">
-                <span for="contactNo">Address</span>
-                <input type="text" name="contactNo" id="contactNo">
-            </div>
-            <div class="col-f">
-                <span for="email">Address</span>
-                <input type="email" name="email" id="email">
-            </div>
-
-            <div class="title">Emergency Contact</div>
-
-            <div class="col-f">
-                <span for="eName">Name</span>
-                <input type="text" name="eName" id="eName">
-            </div>
-            <div class="col-f">
-                <span for="eRelationship">Relationship</span>
-                <input type="text" name="eRelationship" id="eRelationship">
-            </div>
-            <div class="col-f">
-                <span for="econtact">Telephone Number</span>
-                <input type="text" name="econtact" id="econtact">
-            </div>
-
-            
-                
-                
-              
+                      
         </div> -->
 
         </div>

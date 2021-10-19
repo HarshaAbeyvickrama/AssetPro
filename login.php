@@ -30,15 +30,20 @@
 
     .center {
       position: absolute;
-      top: 50%;
-      left: 79.7%;
-      transform: translate(-50%, -50%);
-      width: 83vh;
+      top: 0;
+      right: 0;
+      /* left: .7%; */
+      /* transform: translate(-50%, -50%); */
+      width: 42vw;
       height: 100vh;
       background: rgba(207, 207, 207, 0.1);
       backdrop-filter: blur(10px);
       color: whitesmoke;
       box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .center  input[type="submit"]{
+      text-align: center;
     }
 
     .center img {
