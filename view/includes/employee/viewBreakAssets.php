@@ -266,8 +266,7 @@
                     <textarea class="textarea" cols="10" rows="10" id="exDef"></textarea>
                 </div>
                 <div class="col-btn">
-                        <div id="cancelReport" onClick="cancelReport()">Cancel</div>
-                        <div id="reportAsset">Report</div>     
+                        <div id="cancelReport" onClick="cancelReport()">Cancel</div> 
                 </div>
             </div>
         </div>
@@ -334,19 +333,19 @@
     }
     
    
-    function saveReport(report){
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
+    // function saveReport(report){
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
         
-        xhr.onload = function(){
-            if(this.status === 200){
-               alert(this.responseText); // 2nd alert
-            }
-        }
-        xhr.send(report);
-    }
+    //     xhr.onload = function(){
+    //         if(this.status === 200){
+    //            alert(this.responseText); // 2nd alert
+    //         }
+    //     }
+    //     xhr.send(report);
+    // }
    function cancelReport(){
-    loadSection('centerSection','assignedAssets');
+    loadSection('centerSection','reportedBreakdown');
     // console.log(report);
    }
 </script>

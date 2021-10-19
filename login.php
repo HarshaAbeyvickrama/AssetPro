@@ -32,8 +32,6 @@
       position: absolute;
       top: 0;
       right: 0;
-      /* left: .7%; */
-      /* transform: translate(-50%, -50%); */
       width: 42vw;
       height: 100vh;
       background: rgba(207, 207, 207, 0.1);
