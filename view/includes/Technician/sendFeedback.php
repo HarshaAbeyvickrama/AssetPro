@@ -319,7 +319,8 @@
                
                 <div class="col-btn">
                     <div class="sendfbBtn btnAction" id="sendFeedback"> Send Feedback </div>
-                    <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>     
+                    <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>
+                    <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>
                 </div>
                   
 
@@ -352,21 +353,20 @@
     formState("sendFeedbackForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
-        const cancBtn = document.getElementById("cancelEdit");
         const sendfbBtn = document.getElementById("sendFeedback");
+        const cancBtn = document.getElementById("cancelEdit");
+        const errlogBtn = document.getElementById("errorLog");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
-                case 'cancelEdit':
+                case 'sendFeedback':
                     formState("sendFeedbackForm",true);
-                    feedbackBtn.style.display = 'none';
-                    cancelBtn.style.display = 'none';
-                    /*...btnEditProfile.style.display = 'block';..*/
+                    cancBtn.style.display = 'none';
+                    errlogBtn.style.display = 'none';
                     
                     break;
-                case 'sendFeedback':
-                    /*..btnEditProfile.style.display = 'none';..*/
-                    cancelBtn.style.display = 'block';
-                    feedbackBtn.style.display = 'block';
+                case 'cancelEdit':
+                    sendfbBtn.style.display = 'block';
+                    errlogBtn.style.display = 'block';
                     /*..deleteBtn.style.display = 'none';..*/
                     formState("sendFeedbackForm",false);
                     break;
