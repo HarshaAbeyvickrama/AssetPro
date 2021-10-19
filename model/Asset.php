@@ -5,7 +5,7 @@
     require_once("../db/dbConnection.php");
     $rootDir = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
     global $mysql;
-
+    
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     if(isset($_REQUEST['action'])){
@@ -20,6 +20,10 @@
 
             case 'getAssets':
                 getAssets($_REQUEST['type']);
+                break;
+
+            case 'getAsset':
+                getAsset($_REQUEST['id']);
                 break;
 
             case 'getCats':
@@ -79,9 +83,9 @@
 
             //Save image in the folder
             $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            $fileUrl = '/assetPro/uploads/assets/'.$assetId.'.'.$extension;
+            $fileUrl = '/uploads/assets/'.$assetId.'.'.$extension;
             $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , $rootDir.$fileUrl);
-
+           
             // Asset detail query
             $assetDetails = "insert into assetdetails values($assetId,'$assetName',$purchaseCost,'$condition','$fileUrl','$assetDescription','$purchaseDate')";
             mysqli_query($mysql,$assetDetails);
@@ -258,15 +262,34 @@
                 }
                 $cat->types = $typeArray;
                 $catArray[] = $cat;
-
-                
-               
-
             }
             echo json_encode($catArray);
-            
         }
-             
     }
-    function getAsset(){};
+
+    function getAsset($id){
+        global $mysql;
+        $sql = "SELECT
+                    a.*,
+                    ad.*,
+                    aw.*,
+                    d.*
+
+                FROM
+                    asset a
+                LEFT JOIN assetdetails ad ON
+                    a.AssetID = ad.AssetID
+                LEFT JOIN assetwarranty aw ON
+                    aw.AssetID = a.AssetID
+                LEFT JOIN depreciation d ON
+                    a.AssetID = d.AssetID
+                WHERE
+                    a.AssetID = $id";
+        $result = mysqli_query($mysql,$sql);
+        if($result){
+            echo json_encode(mysqli_fetch_assoc($result));
+        }else{
+            echo json_encode(array());
+        }
+    }
 ?>

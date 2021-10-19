@@ -218,10 +218,8 @@
     }
 </style>
 <script>
-    // Load asset details
-    var assetID = getCookieValue('assetID');
-    alert(assetID);
-
+   
+    disableInputs();
     // Event listener to chande asset Types
     var categorySelect = document.getElementById('category');
     categorySelect.addEventListener('change',function(event){
@@ -235,6 +233,10 @@
         categories = res;
         setCats();
     })
+
+     // Load asset details
+     var assetID = getCookieValue('assetID');
+    getAsset(assetID)
     
     // Function to set categories
     
@@ -278,13 +280,19 @@
 
     })
 
-    function formState(state){
-        document.getElementById('depriciationMethod').disabled = state;
-        document.getElementById('depriciaionRate').disabled = state;
-        document.getElementById('residualValue').disabled = state;
-        document.getElementById('usefulYears').disabled = state;
+    function formState(id,state){
+        document.getElementById(id).disabled = state;
     }
     
+    function disableInputs(){
+        var inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            if(input.type != 'checkbox'){
+                formState(input.id , true);
+            }
+        })
+    }
+
     // formState("userProfileForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
@@ -313,9 +321,19 @@
         
         })
     })
-    formState(true);
-    document.getElementById('depriciation').addEventListener('change',function(){
-            formState(!depriciation.checked);
+    // formState(true);
+    var depriciation = element('depriciation');
+    depriciation.addEventListener('change',function(){
+            formState('depriciationMethod',!depriciation.checked);
+            formState('depriciaionRate',!depriciation.checked);
+            formState('residualValue',!depriciation.checked);
+            formState('usefulYears',!depriciation.checked);
+    })
+    var warrenty = element('warrenty');
+    warrenty.addEventListener('change',function(){
+            formState('fromDate',!warrenty.checked);
+            formState('toDate',!warrenty.checked);
+            formState('otherInfo',!warrenty.checked);
     })
 
     document.getElementById('image').addEventListener('change',function(e){
@@ -364,7 +382,42 @@
     function getAsset(assetID){
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`../model/Asset.php?action=getAsset&id=${assetID}`,true);
-        console.log(assetID);
+        xhr.onload = function(){
+            if(this.status === 200){
+                console.log("call")
+                var asset = JSON.parse(this.responseText);
+                console.log(asset);
+                element('imagePreview').src = `../${asset.ImageURL}`;
+                element('assetName').value = asset.Name;
+                element('assetDescription').value = asset.Description;
+                setTypes(asset.CategoryID);
+                element('category').value = asset.CategoryID;
+                element('assetType').value = asset.TypeID;
+                element('condition').value = asset.AssetCondition;
+                element('purchaseDate').value = asset.PurchasedDate;
+                element('purchaseCost').value = asset.Cost;
+
+                if(asset.fromDate != null){
+                    element('warrenty').checked = true;
+                    element('fromDate').value = asset.fromDate;
+                    element('toDate').value = asset.toDate;
+                    element('otherInfo').value = asset.OtherInfo;
+                }
+
+                if(asset.DepriciaionRate != null){
+                    element('depriciation').checked = true;
+                    element('depriciaionRate').value = asset.DepriciaionRate;
+                    element('residualValue').value = asset.ResidualValue;
+                    element('usefulYears').value = asset.UsefulYears;
+                }
+
+            }
+        }
+        xhr.send();
+    }
+
+    function element(id){
+        return document.getElementById(id);
     }
 
 </script>
@@ -476,7 +529,7 @@
                 </div>
             </div>
                       
-        </div> -->
+        </div>
 
         </div>
     </div>
