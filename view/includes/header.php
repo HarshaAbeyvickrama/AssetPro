@@ -70,8 +70,11 @@
         <!-- <div id="username">Rocell Bathware</div> -->
         <div id="username">
             <?php
-                $loggedInUserType = $_SESSION['userType'];
-                echo $loggedInUserType;
+                include('../db/dbConnection.php');
+                $userId = $_SESSION['userID'];
+                $res = mysqli_query($mysql,"Select CONCAT(userdetails.fName,' ',userdetails.lName) AS name from userdetails where userID=$userId");
+                $name = mysqli_fetch_assoc($res);
+                echo $name;
             ?>
         </div>
         <div>
