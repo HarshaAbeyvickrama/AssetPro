@@ -116,9 +116,11 @@ session_start();
         }
 
         .successAlert {
-            z-index: 500;
+            z-index: 100;
+            position: absolute;
             color: white;
             text-align: center;
+            width: 100%;
         }
     </style>
 </head>
