@@ -86,7 +86,7 @@
             <textarea type="text" name="dDes" id="dDes" disabled></textarea>
         </div>
         <div class="col-btn">
-            <button class="editBtn" id="btnEditDepartment" type="submit">Submit</button>
+            <button class="editBtn" id="btnEditDepartment" type="submit">Edit</button>
         </div>
 
     </form>
@@ -95,7 +95,7 @@
 <script>
     var departmentID = getCookieValue('DepartmentID');
     var department = JSON.parse(departmentID)[0];
-    console.log(department);
+    // console.log(department);
     document.getElementById('dId').value = department.DepartmentID;
     document.getElementById('dCode').value = department.DepartmentCode;
     document.getElementById('dName').value = department.Name;

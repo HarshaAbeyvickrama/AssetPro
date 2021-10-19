@@ -314,7 +314,6 @@
     }
 
     // Getting the form data
-
     document.querySelectorAll(".col-btn").forEach(button => {
         // const cancBtn = document.getElementById('cancelAddDepartment');
         const saveBtn = document.getElementById("btnSaveDepartment");

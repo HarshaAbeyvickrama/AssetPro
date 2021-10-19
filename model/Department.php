@@ -53,18 +53,18 @@
     function loadDepartment($DepartmentID) {
         global $mysql;
 
-        $sql = "SELECT 
-                    DepartmentID,
-                    DepartmentCode,
-                    Name,
-                    description, 
-                    ContactNum, 
-                DATE(DateCreated) AS datecreated, 
-                DATE(LastModified) AS lastmodified 
-                FROM department
-                WHERE DepartmentID = $DepartmentID";
+        $viewDepartment = "SELECT 
+                                DepartmentID,
+                                DepartmentCode,
+                                Name,
+                                description, 
+                                ContactNum, 
+                            DATE(DateCreated) AS datecreated, 
+                            DATE(LastModified) AS lastmodified 
+                            FROM department
+                            WHERE DepartmentID = $DepartmentID";
 
-        $result = mysqli_query($mysql, $sql);
+        $result = mysqli_query($mysql, $viewDepartment);
         $rows = array();
         while($r = mysqli_fetch_array($result)) {
             $rows[] = $r;
