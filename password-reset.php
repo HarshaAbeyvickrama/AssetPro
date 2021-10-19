@@ -115,9 +115,11 @@
             cursor: pointer;
         }
         .successAlert {
-            z-index: 10;
+            z-index: 100;
+            position: absolute;
             color: white;
             text-align: center;
+            width: 100%;
         }
     </style>
 </head>

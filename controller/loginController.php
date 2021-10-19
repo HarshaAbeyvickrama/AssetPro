@@ -30,7 +30,7 @@ function login($Username, $Password)
 
         $result = mysqli_query($mysql, $sql);
         $rowcount = mysqli_num_rows($result);
-
+       
         $response = new stdClass();
         if ($rowcount == 0) {
             $response->status = "no";
@@ -39,7 +39,7 @@ function login($Username, $Password)
 
 
             $row = mysqli_fetch_array($result);
-
+            $_SESSION['userID'] = $row['UserID'];
             if ($row["RoleID"] == "1") {
                 $_SESSION['userType'] = 'admin';
             } elseif ($row["RoleID"] == "2") {

@@ -1,162 +1,145 @@
 <style>
-    .table{
+    .table {
         display: table;
         width: 100%;
         margin: 10px 0px;
         color: #5C6E9B;
-        overflow-y: hidden !important;   
-        
+        overflow-y: hidden !important;
+ 
     }
-    .tableHeader{
+ 
+    .tableHeader {
         width: 100%;
         display: table-header-group;
         font-size: 19px;
         padding: 15px;
         font-weight: bold;
         overflow-y: hidden !important;
-        
     }
-    .tableHeader > div { 
+ 
+    .tableHeader>div {
         display: table-cell;
     }
-    .table .tableRowGroup{
+ 
+    .table .tableRowGroup {
         display: table-row-group;
         overflow-y: auto !important;
-        
     }
-    .tableRow{
+ 
+    .tableRow {
         display: table-row;
+        position: relative;
     }
-    .tableCell{
-        display: table-cell;
-    }
-    .tableRowGroup .tableRow:hover{
+ 
+ 
+    .tableRowGroup .tableRow:hover {
         cursor: pointer;
         background-color: wheat;
+ 
     }
-    /* Table overflow */
-    .tableRowGroup{
+ 
+    .tableRowGroup {
         overflow-y: auto;
     }
-    .tableRow .tableCell{
-        padding:10px 0px;
-        
+ 
+    .tableRow .tableCell {
+        padding: 10px 0px;
+ 
     }
-    .tableRow > div{
+ 
+    .tableRow>div {
         display: table-cell;
-        padding:10px 0px;
+        padding: 10px 0px;
     }
-    .tableRow > div:first-of-type{
+ 
+    .tableRow>div:first-of-type {
         text-align: center;
     }
-    .tableHeader > div:first-of-type{
-        text-align: center;
-    }
-    .col-btn{
-        z-index: 1;
-        position: absolute; 
-        left: 0px;
-        bottom: 0px;
-        right: calc(0%);
-        cursor: pointer;
-    }
-
-    .col-btn > div:hover {
-        cursor: pointer;
-        background-color: #304068;
-        transition: .5s;
-    }
-
-    .col-btn {
-        position: relative;
-        text-align: center;
-        width: 100%;
-        align-items: center;
-        margin: 10px 0px;   
-    }
-    .col-btn>div {
-        border-radius: 15px;
+ 
+    .tableRow .btn {
+        border: 0;
+        background: #5C6E9B;
         padding: 10px 20px;
-        color: white;
-        font-size: 16px;
-        background-color: #5C6E9B;
-        width: 80px;
-        max-height: 30px;
-        position: relative;
-        float: right;
-        margin-right: 5px;
+        color: #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+ 
+    .tableRow .btn:focus {
+        border: 0;
+        background: #5C6E9B;
+        transform: scale(0.97);
+    }
+ 
+    .cell-center {
+        text-align: center;
+        width: 20%;
+    }
+ 
+    .tableHeader>div:first-of-type {
+        text-align: center;
     }
 </style>
+ 
 <div class="table scrollbar">
-    <div class="table">
-        <div class="tableHeader">
-            <div> Number </div>
-            <div> Asset ID </div>
-            <div> Asset Name </div>
-            <div> Asset Type </div>
-            <div> Reported Employee </div>
-            <div> Mark as Done </div>
-        </div>
-        <div class="tableRow">
-            <div> 1 </div>
-            <div> FA/12345 </div>
-            <div> Laptop </div>
-            <div> fixed Asset </div>
-            <div> Wathsala Perera </div>
-            <div class="col-btn">
-                <div class="tableCell" id="done"> Done </div>    
-            </div>
-        </div>
-        <div class="tableRow">
-            <div> 2 </div>
-            <div> FA/12346 </div>
-            <div> Printer </div>
-            <div> fixed Asset </div>
-            <div> Shanaka Madhushan </div>
-            <div class="col-btn">
-                <div class="tableCell" id="done"> Done </div>    
-            </div>
-        </div>
-        <div class="tableRow">
-            <div> 3 </div>
-            <div> CA/23456 </div>
-            <div> Monitor </div>
-            <div> Current Asset </div>
-            <div> Nalin Perera </div>
-            <div class="col-btn">
-                <div class="tableCell" id="done"> Done </div>    
-            </div>
-        </div>
-        <div class="tableRow">
-            <div> 4 </div>
-            <div> CA/23458 </div>
-            <div> CPU </div>
-            <div> Current Asset </div>
-            <div> Kasun Dias </div>
-            <div class="col-btn">
-                <div class="tableCell" id="done"> Done </div>    
-            </div>
-        </div>
-        <div class="tableRow">
-            <div> 5 </div>
-            <div> CA/23459 </div>
-            <div> Web Cam </div>
-            <div> Current Asset </div>
-            <div> kasun Dias </div>
-            <div class="col-btn">
-                <div class="tableCell" id="done"> Done </div>    
-            </div>
-        </div>
-        <div class="tableRow">
-            <div> 6 </div>
-            <div> FA/12347 </div>
-            <div> Scanner </div>
-            <div> Fixed Asset </div>
-            <div> Wathsala Perera </div>
-            <div class="col-btn">
-                <div class="tableCell" id="done"> Done </div>    
-            </div>
-        </div>
+    <div class="tableHeader">
+        <div> Number </div>
+        <div> Asset ID </div>
+        <div> Asset Name </div>
+        <div> Asset Type </div>
+        <div> Reported Employee </div>
+        <div class="cell-center"> Mark as Done </div>
+    </div>
+    <div class="tableRow">
+        <div> 1 </div>
+        <div> FA/12345 </div>
+        <div> Laptop </div>
+        <div> fixed Asset </div>
+        <div> Wathsala Perera </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+ 
+    </div>
+    <div class="tableRow">
+        <div> 2 </div>
+        <div> FA/12346 </div>
+        <div> Printer </div>
+        <div> Fixed Asset </div>
+        <div> shanaka Madhushan </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 3 </div>
+        <div> CA/23456 </div>
+        <div> Monitor </div>
+        <div> Current Asset </div>
+        <div> Nalin Perera </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 4 </div>
+        <div> CA/23458 </div>
+        <div> CPU </div>
+        <div> Current Asset </div>
+        <div> kasun Dias </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 5 </div>
+        <div> CA/23459 </div>
+        <div> Web Cam </div>
+        <div> Current Asset </div>
+        <div> kasun Dias </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 6 </div>
+        <div> FA/12347 </div>
+        <div> Scanner </div>
+        <div> Fixed Asset </div>
+        <div> Wathsala Perera </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
     
         <div class="tableRowGroup" id="inprogressAssetsTableBody">
         </div>

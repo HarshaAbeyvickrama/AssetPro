@@ -103,30 +103,35 @@
     </div>
     <script>
         evaluateJs('centerSection');
-       function getCount(type){
+       function getCount(type,id){
+           var count = 0 ; 
             const xhr = new XMLHttpRequest();
             xhr.open("GET",`../model/Asset.php?action=getCount&type=${type}`,true);
 
             xhr.onload = function(){
                 if(this.status === 200){
-                    switch (type) {
-                        case 'allAssets':
-                            document.getElementById('allAssetsCount').innerHTML = this.responseText;
-                            break;
-                        case 'allEmployees':
-                            document.getElementById('allEmployeesCount').innerHTML = this.responseText;
-                            break;
-                        case 'allTechnicians':
-                            document.getElementById('allTechniciansCount').innerHTML = this.responseText;
-                            break;
                     
-                        default:
-                            break;
-                    }
+                    document.getElementById(id).innerHTML = this.responseText;
+                    // switch (type) {
+                    //     case 'allAssets':
+                    //         document.getElementById('allAssetsCount').innerHTML = this.responseText;
+                    //         break;
+                    //     case 'allEmployees':
+                    //         document.getElementById('allEmployeesCount').innerHTML = this.responseText;
+                    //         break;
+                    //     case 'allTechnicians':
+                    //         document.getElementById('allTechniciansCount').innerHTML = this.responseText;
+                    //         break;
+                    
+                    //     default:
+                    //         break;
+                    // }
                     
                 }
+                return count;
             }
             xhr.send();
+
         }
 
 

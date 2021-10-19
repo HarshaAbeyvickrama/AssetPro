@@ -19,6 +19,10 @@ if (isset($_REQUEST['action'])) {
             getAllEmployees();
             break;
 
+        case 'loadEmployee';
+            loadEmployee($_REQUEST['EmployeeID']);
+            break;
+
         default:
             # code...
             break;
@@ -161,4 +165,10 @@ function getEmployees($employee)
         $rows[] = $r;
     }
     echo json_encode($rows);
+}
+
+function loadEmployee($EmployeeID) {
+    global $mysql;
+    echo json_encode(array());
+    $viewEmployee = "SELECT";
 }

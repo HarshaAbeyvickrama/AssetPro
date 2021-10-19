@@ -136,7 +136,7 @@
         text-align: center;
         width: 100%;
         align-items: center;
-        margin: 10px 0px;   
+        margin: 5px 0px;   
     }
     .col-btn>div {
         border-radius: 15px;

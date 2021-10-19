@@ -11,6 +11,11 @@
             saveDepartment();
             break;
         
+            case 'loadDepartment';
+            loadDepartment($_REQUEST['DepartmentID']);
+            break;
+
+        
         default:
             # code...
             break;
@@ -43,6 +48,29 @@
         } else {
             echo "Fail";
         }
+    }
+
+    function loadDepartment($DepartmentID) {
+        global $mysql;
+
+        $viewDepartment = "SELECT 
+                                DepartmentID,
+                                DepartmentCode,
+                                Name,
+                                description, 
+                                ContactNum, 
+                            DATE(DateCreated) AS datecreated, 
+                            DATE(LastModified) AS lastmodified 
+                            FROM department
+                            WHERE DepartmentID = $DepartmentID";
+
+        $result = mysqli_query($mysql, $viewDepartment);
+        $rows = array();
+        while($r = mysqli_fetch_array($result)) {
+            $rows[] = $r;
+        }
+        echo json_encode($rows);
+
     }
 
 ?>

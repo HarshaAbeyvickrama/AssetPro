@@ -349,11 +349,4 @@
     loadSection('centerSection','assignedAssets');
     // console.log(report);
    }
-   
-    
-    //  cancelBtn.addEventListener('click',function(){
-        
-    //     loadSection('centerSection','report');
-        
-    // });
 </script>

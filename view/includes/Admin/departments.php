@@ -314,7 +314,6 @@
     }
 
     // Getting the form data
-
     document.querySelectorAll(".col-btn").forEach(button => {
         // const cancBtn = document.getElementById('cancelAddDepartment');
         const saveBtn = document.getElementById("btnSaveDepartment");
@@ -382,14 +381,19 @@
     }
 
     //Loading details of the selected department
-    function loadDepartment(departmentID) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", `../model/Department.php?action=loadDepartment&departmentID=${departmentID}`, true);
+    function loadDepartment(DepartmentID) {
+        var departmentDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `../model/Department.php?action=loadDepartment&DepartmentID=${DepartmentID}`, true);
 
         xhr.onload = function() {
             if (this.status === 200) {
+                departmentDetails = JSON.parse(this.responseText);
                 // alert(this.responseText);
                 loadSection('centerSection', 'departmentDetails');
+
+                var json = JSON.stringify(departmentDetails);
+                document.cookie=`DepartmentID=${json}`;
             }
         }
         xhr.send();

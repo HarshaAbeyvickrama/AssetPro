@@ -171,9 +171,9 @@
 <script>
 
     //Get Asset Counts
-    getCount('allAssets');
-    getCount('allEmployees');
-    getCount('allTechnicians');
+    document.getElementById('allAssetsCount').innerHTML = getCount('allAssets');
+    document.getElementById('allEmployeesCount').innerHTML = getCount('allEmployees');
+    document.getElementById('allTechniciansCount').innerHTML = getCount('allTechnicians');
     
     
 

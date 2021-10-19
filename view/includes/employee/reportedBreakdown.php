@@ -72,7 +72,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div>Assigned Assets</div>
+        <div>Breakdown Assets</div>
     </div>
     <div class="contentSection">
         <div class="table-data">
@@ -101,19 +101,19 @@
         xhr.open("GET", "../model/AssignedAssetsEmp.php?action=viewAssetBreak", true);
         xhr.onload = function() {
             if (this.status === 200) {
-                var assets = JSON.parse(this.responseText);
-                console.log(assets);
-                for (var i = 0; i < assets.length; i++) {
+                var viewassets = JSON.parse(this.responseText);
+                console.log(viewassets);
+                for (var i = 0; i < viewassets.length; i++) {
                     document.getElementById('employeeTableBody').innerHTML += `
                                     <tr>
                                         <td>${i+1}</td>
-                                        <td>${assets[i]['reportedDate']}</td>
-                                        <td>${assets[i]['BreakdownID']}</td>
-                                        <td>${assets[i]['AssetID']}</td>
-                                        <td>${assets[i]['assetName']}</td>
-                                        <td>${assets[i]['assetType']}</td>
+                                        <td>${viewassets[i]['reportedDate']}</td>
+                                        <td>${viewassets[i]['BreakdownID']}</td>
+                                        <td>${viewassets[i]['AssetID']}</td>
+                                        <td>${viewassets[i]['assetName']}</td>
+                                        <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="report()">View</button>
+                                        <button class='btnAction' onClick="viewBreak()">View</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -122,27 +122,17 @@
         xhr.send();
     }
     viewBreakAsset();
+
+
+    function viewBreak(viewasset){
+         var viewAssetDetails = null;
+         const xhr = new XMLHttpRequest();
+         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakdownAssets&asset_id=${asset}`,true);
+        loadSection('centerSection','viewBreakAssets');  
+     }  
 </script>
 
 
 
     
         
-    <!-- function report(asset){
-        var assetDetails=null;
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=getAssignedAssetById&asset_id=${asset}`,true);
-        xhr.onload = function(){
-            if(this.status == 200){
-                assetDetails = JSON.parse(this.responseText);
-                loadSection('centerSection','report');
-                // document.cookie=`assetID=${asset}`;
-                var json = JSON.stringify(assetDetails);       //object to string
-                document.cookie=`assetID=${json}`;
-            }                
-        }
-        xhr.send();
-        // console.log(asset);
-       
-     }   -->
-</script>

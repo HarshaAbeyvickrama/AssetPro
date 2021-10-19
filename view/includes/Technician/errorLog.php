@@ -349,7 +349,11 @@
                         <div class="tableCell"> Muzni Ahamed </div>
                         <div class="tableCell"> 5 days </div>
                         <div class="tableCell"> 14,980 </div>
-                    </div>      
+                    </div> 
+                    <div class="col-btn">
+                        <div class="sendfbBtn btnAction" id="sendFeedback"> Finish </div>
+                        <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
+                </div>     
                    
                 </div>
             </div>
@@ -383,15 +387,20 @@
     formState("errorlogForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
+        const finishBtn = document.getElementById("finish");
         const backBtn = document.getElementById("back");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
-                case 'back':
+                case 'finish':
                     formState("errorlogForm",true);
-                    /*feedbackBtn.style.display = 'none';*/
+                    finishBtn.style.display = 'none';
                     backBtn.style.display = 'none';
-                    /*...btnEditProfile.style.display = 'block';..*/
                     
+                    
+                    break;
+                case 'back':
+                    finishBtn.style.display = 'block';
+                    formState("reportBreakdownForm",false);
                     break;
             
                 default:
