@@ -229,7 +229,7 @@
 
 
 </style>
-<form action="" id="userProfileForm">
+<form action="" id="errorlogForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
@@ -352,27 +352,19 @@
         
     }
     
-    formState("userProfileForm",true);
+    formState("errorlogForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
         const backBtn = document.getElementById("back");
-        const editBtn = document.getElementById("btnEditProfile");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
                 case 'back':
-                    formState("userProfileForm",true);
-                    saveBtn.style.display = 'none';
+                    formState("errorlogForm",true);
+                    /*saveBtn.style.display = 'none';
                     cancelBtn.style.display = 'none';
-                    btnEditProfile.style.display = 'block';
+                    btnEditProfile.style.display = 'block';*/
                 
                     
-                    break;
-                case 'btnEditProfile':
-                    btnEditProfile.style.display = 'none';
-                    cancelBtn.style.display = 'block';
-                    saveBtn.style.display = 'block';
-                    deleteBtn.style.display = 'none';
-                    formState("userProfileForm",false);
                     break;
             
                 default:

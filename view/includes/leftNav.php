@@ -172,7 +172,7 @@
             case 'technician':
                 
                 //Assigned Assets
-                echo "<div class='component' id='assignedAssets'>
+                echo "<div class='component' id='assets'>
                     <img src='../Images/NotSelected/Assets.png' >
                     <div class='componentText'></div>
                 </div>";
@@ -182,6 +182,13 @@
                     <img src='../Images/NotSelected/Repaired.png' >
                     <div class='componentText'></div>
                 </div>";
+                //Repaired Assets
+                echo "<div class='component' id='profile'>
+                    <img src='../Images/NotSelected/Repaired.png' >
+                    <div class='componentText'></div>
+                </div>";
+
+               
 
                 break;
 
@@ -232,6 +239,7 @@
                 break;
         }
     ?>
+   
         
     </div>
     <div id="logout">
