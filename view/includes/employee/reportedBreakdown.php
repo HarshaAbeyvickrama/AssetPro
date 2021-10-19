@@ -85,7 +85,7 @@
 </style>
 <div class="overviewLayout">
     <div>
-        <div>Dashboard Overview</div>
+        <div>Overview</div>
     </div>
     <div class="statSection">
         <div>
@@ -127,7 +127,7 @@
     </div>
 
     <div>
-    <div>Recent Activities</div>
+    <div>Reported Assets</div>
     </div>
 
     <div class="contentSection">
