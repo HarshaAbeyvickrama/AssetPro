@@ -170,7 +170,7 @@
                                 <td>" . $row["fName"] . "</td>
                                 <td>" . $row["lName"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td><button class='viewBtn'>View</button></td>
+                                <td id=".$row['EmployeeID']."><button id='view' class='viewBtn'>View</button></td>
                                 <td><button class='editBtn'>Edit</button></td>
                                 <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";
@@ -186,10 +186,39 @@
     </div>
 </div>
 <script type="text/javascript">
+    //Loading the add employee page
     var addEmployeeBtn = document.getElementById('addEmp');
     addEmployeeBtn.addEventListener('click', function() {
 
         loadSection('centerSection', 'addEmployee');
 
     });
+
+    //Viewing the employee details
+    var viewEmployeeBtn = document.querySelectorAll('#view');
+    for (var i = 0; i < viewEmployeeBtn.length; i++) {
+        viewEmployeeBtn[i].addEventListener('click', function() {
+            loadEmployee(event.target.parentElement.id);
+            console.log(event.target.parentElement.id);
+        });
+    }
+
+    //Loading the details of the selected employee
+    function loadEmployee(EmployeeID) {
+        var employeeDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `../model/Employee.php?action=loadEmployee&EmployeeID=${EmployeeID}`, true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                employeeDetails = JSON.parse(this.responseText);
+                // alert(this.responseText);
+                loadSection('centerSection', 'emprofile');
+
+                var json = JSON.stringify(employeeDetails);
+                document.cookie=`EmployeeID=${json}`;
+            }
+        }
+        xhr.send();
+    }
 </script>
