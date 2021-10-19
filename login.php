@@ -30,10 +30,10 @@
 
     .center {
       position: absolute;
-      top: 50%;
+      /* top: 50%; */
       left: 79.7%;
       transform: translate(-50%, -50%);
-      width: 83vh;
+      width: 83vw;
       height: 100vh;
       background: rgba(207, 207, 207, 0.1);
       backdrop-filter: blur(10px);
