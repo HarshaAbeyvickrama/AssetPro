@@ -13,13 +13,16 @@
             
 
             case 'getAssets':
-               // getAssets($_REQUEST['type']);
                getAssets();
                 break;
 
 
             case 'getAssignedAssetById':
                 getAssignedAssetById($_REQUEST['asset_id']);
+                break;
+
+            case 'viewAssetBreak':
+                viewAsset();
                 break;
 
 
@@ -34,7 +37,7 @@
 
 
  
-
+  //viewing AssignedAsset data from DB, connect with the page of assignedAssets.php 
     function getAssets(){
         global $mysql;
       
@@ -60,7 +63,7 @@
 
 
 
-
+    //Getting data to report.php form after connecting the data which come to assignedAsset.php page
     function getAssignedAssetById($asset_id){
         global $mysql;
 
@@ -90,9 +93,34 @@
         while($r = mysqli_fetch_assoc($result)){
             $rows[] = $r;
         }
+        echo json_encode($rows);    
+    }
+
+    //viewing the breakdown assets in the table
+    function viewAsset(){
+        global $mysql;
+      
+                $sql = "SELECT
+                asset.AssetID,
+                assetdetails.Name AS assetName,
+                TYPE.Name AS assetType,
+                DATE(breakdown.Date) AS reportedDate,
+                breakdown.BreakdownID
+            FROM
+                asset
+            INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+            INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+            INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
+            ORDER BY
+                asset.AssetID";
+                
+           
+        $result = mysqli_query($mysql,$sql);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)){
+            $rows[] = $r;
+        }
         echo json_encode($rows);
 
-
-        
     }
 ?>
