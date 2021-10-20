@@ -141,21 +141,42 @@
             xhr.open('GET',`../model/Employee.php?action=${type}`,true);
             xhr.onload = function(){
                 const res = JSON.parse(this.responseText);
-               
-                for(var i=0; i < res.length ; i++){
-                    console.log(i+1)
-                    var row = `
-                        <tr id=${res[i].UserID}>
-                            <td>${i+1}</td>
-                            <td>${res[i].EmployeeID}</td>
-                            <td>${res[i].name}</td>
-                            <td>${res[i].Gender == 'F' ? "Female" : "Male"}</td>
-                            <td><div class='btnAction'>View</div></td>
-                        </tr>
-                    `;
-                    console.log(row);
-                    tb.innerHTML += row;
+                console.log(res);
+                switch (type) {
+                    case 'allTechnicians':
+                        for(var i=0; i < res.length ; i++){
+                            var row = `
+                                <tr id=${res[i].UserID}>
+                                    <td>${i+1}</td>
+                                    <td>${res[i].EmployeeID}</td>
+                                    <td>${res[i].name}</td>
+                                    <td>${res[i].Gender == 'F' ? "Female" : "Male"}</td>
+                                    <td><div class='btnAction'>View</div></td>
+                                </tr>
+                            `;
+                            tb.innerHTML += row;
+                        }
+                        break;
+                
+                    case 'allEmployees':
+                        for(var i=0; i < res.length ; i++){
+                            var row = `
+                                <tr id=${res[i].UserID}>
+                                    <td>${i+1}</td>
+                                    <td>${res[i].EmployeeID}</td>
+                                    <td>${res[i].name}</td>
+                                    <td>${res[i].Gender == 'F' ? "Female" : "Male"}</td>
+                                    <td><div class='btnAction'>View</div></td>
+                                </tr>
+                            `;
+                            tb.innerHTML += row;
+                        }
+                        break;
+                
+                    default:
+                        break;
                 }
+                
             } 
             xhr.send();
         }
