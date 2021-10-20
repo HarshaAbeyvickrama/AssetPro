@@ -22,10 +22,13 @@
     }
 
     .contentSection {
+        display: flex;
+        justify-content: center;
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
+        align-items: flex-start !important;
     }
 
     .addDep #addDep {
@@ -42,10 +45,10 @@
     /* CSS for the departments table */
     .table-data {
         color: #304068;
-        margin: 4px 4px;
+        margin: 20px 4px;
         height: 500px;
         width: 99%;
-        margin-top: -100px;
+        /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -93,7 +96,7 @@
         padding: 10px;
         border: none;
         border-radius: 32px;
-        width: 91px;
+        width: 81px;
         height: 41px;
         cursor: pointer;
         font-size: 15px;
