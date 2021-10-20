@@ -246,8 +246,8 @@
                     </div>
                     <div class="col-f">
                         <span for="gender" id="gender">Gender</span>
-                        <input type="radio" name="gender" id="male" value="male"><label>Male</label>
-                        <input type="radio" name="gender" id="female" value="female"><label>Female</label>
+                        <input type="radio" name="gender" id="male" value="Male"><label>Male</label>
+                        <input type="radio" name="gender" id="female" value="Female"><label>Female</label>
                     </div>
 
                 </div>

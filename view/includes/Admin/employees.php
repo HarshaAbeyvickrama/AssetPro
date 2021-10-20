@@ -52,6 +52,7 @@
         /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
     }
 
     .empData {
@@ -60,6 +61,7 @@
         font-size: 20px;
         margin-left: 5vh;
         text-align: center;
+        text-align: left;
     }
 
     .table-data th {
@@ -130,7 +132,7 @@
         <div class="table-data">
             <table class="empData" id="empData">
                 <tr">
-                    <th id="num">Number</th>
+                    <th id="num">#</th>
                     <th>User ID</th>
                     <th>Employee ID</th>
                     <th>Department ID</th>
@@ -138,8 +140,8 @@
                     <th>Last Name</th>
                     <th>Gender</th>
                     <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <!-- <th>Edit</th>
+                    <th>Delete</th> -->
                     </tr>
 
                     <?php
@@ -174,8 +176,6 @@
                                 <td>" . $row["lName"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
                                 <td id=".$row['EmployeeID']."><button id='view' class='viewBtn'>View</button></td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";
                         }
                     } else {
