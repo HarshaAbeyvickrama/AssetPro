@@ -183,11 +183,7 @@
                     <div class='componentText'></div>
                 </div>";
                 //Repaired Assets
-                echo "<div class='component' id='profile'>
-                    <img src='../Images/NotSelected/Repaired.png' >
-                    <div class='componentText'></div>
-                </div>";
-
+                
                
 
                 break;
