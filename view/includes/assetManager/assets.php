@@ -141,7 +141,7 @@
         background-color: #EAEDF5;
     }
     #assetContents{
-        overflow-y: auto;
+        overflow-y: hidden;
         padding: 10px;
         /* height: 100%; */
 
@@ -191,15 +191,14 @@
                         for(var i = 0; i<assets.length;i++){
                             var bd = document.getElementById('allAssetsTableBody')
                             var row= `
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>   
-                                    <div>${assets[i]['Status']}</div>
+                                    <td>${i+1}</td>
+                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['assetName']}</td>
+                                    <td>${assets[i]['assetType']}</td>
+                                    <td>${assets[i]['AssetCondition']}</td>   
+                                    <td>${assets[i]['Status']}</td>
                                 `;
-                            var tableRow = document.createElement('div');
-                            tableRow.className = 'tableRow';
+                            var tableRow = document.createElement('tr');
                             tableRow.id = assets[i]['AssetID'];
                             tableRow.innerHTML = row;
                             addViewAssetListener(tableRow);
