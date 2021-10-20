@@ -94,11 +94,12 @@ function saveEmployee()
         //Inserting into employeeuser table
         $employeeuser = "INSERT INTO employeeuser VALUES
                         (NULL,'$userID','$departmentID')";
+                        print_r($employeeuser);
         mysqli_query($mysql, $employeeuser);
 
         //Inserting into useremergency table
         $useremergency = "INSERT INTO useremergency VALUES
-                         ('$userID','$eRelationship','$eName','blah','$econtact')";
+                         ('$userID','$eRelationship','$eName','','$econtact')";
         mysqli_query($mysql, $useremergency);
 
         //Getting a random username
@@ -119,7 +120,7 @@ function saveEmployee()
         $Password = substr(str_shuffle($chars), 0, 8);
         $encrypt_pwd = md5($Password); //Encrypting the password
 
-        $usernamePassword = "INSERT INTO login VALUES ('$userID','$username','$encrypt_pwd')";
+        $usernamePassword = "INSERT INTO login VALUES ('$userID','$username','$encrypt_pwd','')";
         mysqli_query($mysql, $usernamePassword);
 
         //Commit if everything is ok
@@ -127,6 +128,7 @@ function saveEmployee()
             mysqli_commit($mysql);
             echo ('OK');
         }
+        
     } catch (mysqli_sql_exception $exception) {
         mysqli_rollback($mysql);
         echo ('Not OK\n Exception' . $exception);

@@ -97,6 +97,7 @@
         margin-left: -100px;
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
     }
 
     td {
@@ -104,7 +105,7 @@
         border-collapse: collapse;
         font-size: 18px;
         margin-left: 5vh;
-        text-align: center;
+        text-align: left;
     }
 
     th {
@@ -171,35 +172,35 @@
                 <th>Time</th>
             </tr>
             <tr>
-                <td>21/09/2021</td>
+                <td>19/10/2021</td>
                 <td>Wathsala</td>
                 <td>Employee</td>
                 <td>Wathsala was added to the system</td>
                 <td>4 hours ago</td>
             </tr>
             <tr>
-                <td>21/09/2021</td>
+                <td>19/10/2021</td>
                 <td>Kasun</td>
                 <td>Employee</td>
                 <td>Kasun was added to the system</td>
-                <td>5hours ago</td>
+                <td>5 hours ago</td>
             </tr>
             <tr>
-                <td>21/09/2021</td>
+                <td>19/10/2021</td>
                 <td>Manoj</td>
                 <td>Technician</td>
                 <td>Manoj was added to the system</td>
                 <td>5 hours ago</td>
             </tr>
             <tr>
-                <td>20/09/2021</td>
+                <td>18/10/2021</td>
                 <td>Dasun</td>
                 <td>Technician</td>
                 <td>Dasun was added to the system</td>
                 <td>Yesterday</td>
             </tr>
             <tr>
-                <td>20/09/2021</td>
+                <td>18/10/2021</td>
                 <td>Amali</td>
                 <td>Employee</td>
                 <td>Amali was added to the system</td>
@@ -210,7 +211,7 @@
 </div>
 
 <script>
-    getCount('allAssets');
-    getCount('allEmployees');
-    getCount('allTechnicians');
+    getCount('allAssets', 'allAssetsCount');
+    getCount('allEmployees', 'allEmployeesCount');
+    getCount('allTechnicians', 'allTechniciansCount');
 </script>

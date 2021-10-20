@@ -11,7 +11,8 @@
         border-radius: 10px;
         z-index: 100;
         position: absolute;
-        left: 72%;
+        left: 65%;
+
         /* justify-content: center; */
         
     }

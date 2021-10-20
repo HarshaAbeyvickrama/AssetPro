@@ -22,10 +22,13 @@
     }
 
     .contentSection {
+        display: flex;
+        justify-content: center;
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
+        align-items: flex-start !important;
     }
 
     .addDep #addDep {
@@ -42,12 +45,13 @@
     /* CSS for the departments table */
     .table-data {
         color: #304068;
-        margin: 4px 4px;
+        margin: 20px 4px;
         height: 500px;
         width: 99%;
-        margin-top: -100px;
+        /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
     }
 
     .depData {
@@ -56,6 +60,7 @@
         font-size: 18px;
         margin-left: 5vh;
         text-align: center;
+        text-align: left;
     }
 
     .table-data th {
@@ -93,7 +98,7 @@
         padding: 10px;
         border: none;
         border-radius: 32px;
-        width: 91px;
+        width: 81px;
         height: 41px;
         cursor: pointer;
         font-size: 15px;
@@ -210,7 +215,7 @@
         <div class="table-data">
             <table class="depData">
                 <tr">
-                    <th>Number</th>
+                    <th>#</th>
                     <th>Department ID</th>
                     <th>Department Code</th>
                     <th>Department Name</th>
@@ -218,8 +223,8 @@
                     <th>Date Created</th>
                     <th>Last Modified</th>
                     <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <!-- <th>Edit</th>
+                    <th>Delete</th> -->
                     </tr>
 
                     <?php
@@ -248,8 +253,6 @@
                                 <td>" . $row["datecreated"] . "</td>
                                 <td>" . $row["lastmodified"] . "</td>
                                 <td id=".$row['DepartmentID']."><button id='view' class='viewBtn'>View</button></td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";
                         }
                     } else {
