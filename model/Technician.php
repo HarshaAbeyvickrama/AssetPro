@@ -88,7 +88,7 @@ function saveTechnician() {
         //Commit if everything is ok
         if ($imageSaved) {
             mysqli_commit($mysql);
-            echo ('OK');
+            echo ('Success');
         }
         
     } catch (mysqli_sql_exception $exception) {
