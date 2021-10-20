@@ -78,6 +78,20 @@
         background-color: white;
         overflow-y: auto;
     }
+    .contentSection > div{
+        margin:15px;
+        height: auto;
+    }
+    .recentTitle{
+        color: #304068;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    /*............Recent Activities CSS..............*/
+    
+
+
 
 
 
