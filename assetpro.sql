@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2021 at 05:17 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.18
+-- Generation Time: Oct 20, 2021 at 06:35 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -190,8 +190,9 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
-(1, 'FN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(2, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000');
+(1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(2, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(3, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000');
 
 -- --------------------------------------------------------
 
@@ -234,7 +235,10 @@ CREATE TABLE `employeeuser` (
 
 INSERT INTO `employeeuser` (`EmployeeID`, `UserID`, `DepartmentID`) VALUES
 (14, 5, 1),
-(15, 6, 2);
+(15, 6, 2),
+(17, 8, 3),
+(18, 9, 2),
+(19, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -259,7 +263,15 @@ INSERT INTO `login` (`UserID`, `Username`, `Password`, `verify_token`) VALUES
 (3, 'mushrifa', 'mushrifa77', NULL),
 (4, 'ayishasj', 'ayishasj', NULL),
 (5, 'namal_ranasinghe', '0fb35ef8274c519168b47d7ac21dda0c', ''),
-(6, 'jithendra_prianjalee', '2d0262cb88fbd15738c6644ade982158', '');
+(6, 'jithendra_prianjalee', '2d0262cb88fbd15738c6644ade982158', ''),
+(8, 'sara_desapriyan', '8f68e6e318085d3b4c3fd35801c15857', ''),
+(9, 'lakshman_kumar', '334404bdc07f5c601baafa0620061d67', ''),
+(10, 'muzni_ahamed', '45a7516ef909b86b3f48a1c3309a20e3', ''),
+(11, 'douglas_kumar', 'f3fb1e622dd3836affc83b92ca4fb315', ''),
+(12, 'andrew_dias', 'c4e86837f92bb6a3e1d646dcbea5729d', ''),
+(13, 'pavani_kumari', '08e43bb72810489c016a403bb00fd750', ''),
+(14, 'samanali_perea', '76eedd02cf177f45d5638873deaf920d', ''),
+(15, 'farhan_ahamed', '6b0e04a3322f25c4d4815604dbcdec3d', '');
 
 -- --------------------------------------------------------
 
@@ -292,6 +304,17 @@ CREATE TABLE `technicianuser` (
   `TechnicianID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `technicianuser`
+--
+
+INSERT INTO `technicianuser` (`TechnicianID`, `UserID`) VALUES
+(6, 11),
+(7, 12),
+(8, 13),
+(9, 14),
+(10, 15);
 
 -- --------------------------------------------------------
 
@@ -365,7 +388,15 @@ INSERT INTO `user` (`UserID`, `RoleID`) VALUES
 (3, 3),
 (5, 3),
 (6, 3),
-(4, 4);
+(8, 3),
+(9, 3),
+(10, 3),
+(4, 4),
+(11, 4),
+(12, 4),
+(13, 4),
+(14, 4),
+(15, 4);
 
 -- --------------------------------------------------------
 
@@ -397,7 +428,15 @@ INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `Address`, `Gender`, `Age
 (3, 'Mushrifa', 'Mansoor', 'Mawanella', 'Female', 22, '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '', 'Single'),
 (4, 'Ayisha', 'Siddeequa', 'Kandy', 'Female', 22, '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '', 'Single'),
 (5, 'Namal', 'Ranasinghe', 'Nugegoda', 'Male', 23, '0719989796', 'namalr@gmail.com', '1993-06-10', '/assetPro/uploads/employees/5.jpg', 'Married'),
-(6, 'Jithendra', 'Prianjalee', 'Bandarawela', 'Female', 23, '0764352718', 'jithendra@gmail.com', '1991-08-23', '/assetPro/uploads/employees/6.jpg', 'Married');
+(6, 'Jithendra', 'Prianjalee', 'Bandarawela', 'Female', 23, '0764352718', 'jithendra@gmail.com', '1991-08-23', '/assetPro/uploads/employees/6.jpg', 'Married'),
+(8, 'Sara', 'Desapriyan', 'Kurunegala', 'Female', 23, '0775081822', 'sara@gmail.com', '2003-02-20', '/assetPro/uploads/employees/8.jpg', 'Unmarried'),
+(9, 'Lakshman', 'Kumar', 'Galle', 'Male', 23, '0756789211', 'lakshman@gmail.com', '1995-02-20', '/assetPro/uploads/employees/9.jpg', 'Married'),
+(10, 'Muzni', 'Ahamed', 'Galle', 'Male', 23, '0765667891', 'ahamed@gmail.com', '1998-01-20', '/assetPro/uploads/employees/10.jpg', 'Unmarried'),
+(11, 'Douglas', 'Kumar', 'Kuruwita', 'Male', 23, '0782234789', 'douglas@gmail.com', '1994-03-20', '/assetPro/uploads/technicians/11.jpg', 'Unmarried'),
+(12, 'Andrew', 'Dias', 'Panadura', 'Male', 23, '0776545611', 'andrew@gmail,com', '1990-01-20', '/assetPro/uploads/technicians/12.jpg', 'Unmarried'),
+(13, 'Pavani', 'Kumari', 'Kuliyapitiya', 'Female', 23, '0777345678', 'pavani@gmail.com', '1989-01-20', '/assetPro/uploads/technicians/13.jpg', 'Unmarried'),
+(14, 'Samanali', 'Perea', 'Peradeniya', 'Female', 23, '0774563211', 'samanali@gmail.com', '1975-12-20', '/assetPro/uploads/technicians/14.jpg', 'Married'),
+(15, 'Farhan', 'Ahamed', 'Mawanella', 'Male', 23, '0775067551', 'farhan@gmail.com', '1992-07-20', '/assetPro/uploads/technicians/15.jpg', 'Married');
 
 -- --------------------------------------------------------
 
@@ -419,7 +458,15 @@ CREATE TABLE `useremergency` (
 
 INSERT INTO `useremergency` (`UserID`, `Relationship`, `fName`, `lName`, `TelephoneNumber`) VALUES
 (5, 'Father', 'Amarapaala', '', '0719989799'),
-(6, 'Mother', 'Sudeshika', '', '0764352719');
+(6, 'Mother', 'Sudeshika', '', '0764352719'),
+(8, 'Father', 'Desapriyan', '', '077508180'),
+(9, 'wife', 'Harini', '', '075678924'),
+(10, 'Father', 'Rashid', '', '0765667894'),
+(11, 'Father', 'Robert', '', '0782234789'),
+(12, 'Brother', 'Kapila', '', '0776545616'),
+(13, 'Mother', 'Kumari', '', '0777345671'),
+(14, 'Husband', 'Jhonson', '', '0774563212'),
+(15, 'wife', 'Ayesha', '', '0775067556');
 
 --
 -- Indexes for dumped tables
@@ -594,7 +641,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `depreciation`
@@ -606,7 +653,7 @@ ALTER TABLE `depreciation`
 -- AUTO_INCREMENT for table `employeeuser`
 --
 ALTER TABLE `employeeuser`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -618,7 +665,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `technicianuser`
 --
 ALTER TABLE `technicianuser`
-  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `technicianuserspec`
@@ -636,7 +683,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
