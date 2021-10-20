@@ -25,6 +25,11 @@
                 viewAsset();
                 break;
 
+            case 'viewBreakAssetById':
+                viewBreakAssetDetails($_REQUEST['view_id']);
+                break;
+                  
+
 
             default:
                 # code...
@@ -121,6 +126,38 @@
             $rows[] = $r;
         }
         echo json_encode($rows);
+
+    }
+
+    function  viewBreakAssetDetails(){
+        global $mysql;
+      
+                $sql = "SELECT
+                asset.AssetID,
+                assetdetails.Name AS assetName,
+                TYPE.Name AS assetType,
+                DATE(breakdown.Date) AS reportedDate,
+                breakdown.BreakdownID,
+                breakdown.Reason,
+                breakdown.DefectedParts
+            FROM
+                asset
+            INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+            INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+            INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
+            WHERE
+                asset.AssetID = $view_id
+            ORDER BY
+                asset.AssetID";
+                
+           
+        $result = mysqli_query($mysql,$sql);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)){
+            $rows[] = $r;
+        }
+        echo json_encode($rows);
+
 
     }
 ?>
