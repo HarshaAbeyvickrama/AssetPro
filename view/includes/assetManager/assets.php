@@ -345,7 +345,7 @@
         </div>
     </div>
     <div>
-        <div>Recent Activities</div>
+        <div>Assets</div>
     </div>
     <div class="contentSection">
         <div id="assetSections">
