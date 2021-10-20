@@ -127,10 +127,45 @@
         <div>Recent Activities</div>
     </div>
 
-     <div class="contentSection scrollbar">
-         <div class = "recent24">
-     </div>
+    <div class="contentSection">
+        <div class="recent24">
+            <div class="recentTitle">Last 24 Hours</div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Task</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
 
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/6789</td>
+                        <td>1 hour ago</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/1234</td>
+                        <td>2 hour ago</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>6 hour ago</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
     
 </div>
 <script>
