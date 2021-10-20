@@ -170,11 +170,11 @@
 
 <script>
 
-    //Get Asset Counts
     getCount('allAssets');
     getCount('assignedAssets');
     getCount('inProgress');
     getCount('repairedAssets');
+
     
     
 
