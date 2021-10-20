@@ -80,6 +80,42 @@
         font-size: 20px;
         font-weight: bold;
     }
+<<<<<<< HEAD
+=======
+
+
+    /* Recent activity Table CSS */
+    .table{
+        display: table;
+        width: 100%;
+        margin: 10px 0px;
+        color: #5C6E9B;
+    }
+    .tableHeader{
+        display: table-header-group;
+        font-size: 19px;
+        padding: 15px;
+        font-weight: bold;
+    }
+    .table .tableRowGroup{
+        display: table-row-group;
+    }
+    .tableRow{
+        display: table-row;
+    }
+    .tableCell{
+        display: table-cell;
+    }
+    .tableRowGroup .tableRow:hover{
+        cursor: pointer;
+        background-color: #EAEDF5;
+        
+    }
+    .tableRow .tableCell{
+        padding:10px 0px;
+        
+    }
+>>>>>>> e3692f1a844bff3e1e0f4652736745ebbf9c60db
     hr{
         background-color: #304068;
         width: 100%;

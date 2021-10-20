@@ -55,7 +55,7 @@
         font-weight: lighter;
     }
     .table-data tr:hover{
-        background-color: wheat;
+        background-color: #EAEDF5;
         cursor: pointer;
     }
     

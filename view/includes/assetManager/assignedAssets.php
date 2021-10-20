@@ -1,4 +1,3 @@
-
 <div class="table">
     <div class="tableHeader">
         <div>Number</div>
@@ -9,7 +8,7 @@
         <div>Assigned Employee</div>
     </div>
     <div class="tableRowGroup " id="assignedAssetsTableBody">
-        
+
     </div>
 </div>
 
