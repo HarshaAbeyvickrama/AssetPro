@@ -105,7 +105,7 @@
     }
     .tableRowGroup .tableRow:hover{
         cursor: pointer;
-        background-color: #EAEDF5;
+        background-color: #F1F4FF;
         
     }
     .tableRow .tableCell{

@@ -97,6 +97,7 @@
         margin-left: -100px;
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
     }
 
     td {
@@ -104,7 +105,7 @@
         border-collapse: collapse;
         font-size: 18px;
         margin-left: 5vh;
-        text-align: center;
+        text-align: left;
     }
 
     th {
@@ -182,7 +183,7 @@
                 <td>Kasun</td>
                 <td>Employee</td>
                 <td>Kasun was added to the system</td>
-                <td>5hours ago</td>
+                <td>5 hours ago</td>
             </tr>
             <tr>
                 <td>19/10/2021</td>
