@@ -51,6 +51,7 @@
         /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
     }
 
     .depData {
@@ -59,6 +60,7 @@
         font-size: 18px;
         margin-left: 5vh;
         text-align: center;
+        text-align: left;
     }
 
     .table-data th {
@@ -213,7 +215,7 @@
         <div class="table-data">
             <table class="depData">
                 <tr">
-                    <th>Number</th>
+                    <th>#</th>
                     <th>Department ID</th>
                     <th>Department Code</th>
                     <th>Department Name</th>
@@ -221,8 +223,8 @@
                     <th>Date Created</th>
                     <th>Last Modified</th>
                     <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <!-- <th>Edit</th>
+                    <th>Delete</th> -->
                     </tr>
 
                     <?php
@@ -251,8 +253,6 @@
                                 <td>" . $row["datecreated"] . "</td>
                                 <td>" . $row["lastmodified"] . "</td>
                                 <td id=".$row['DepartmentID']."><button id='view' class='viewBtn'>View</button></td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";
                         }
                     } else {
