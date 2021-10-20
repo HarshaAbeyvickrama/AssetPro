@@ -86,7 +86,7 @@
         display: table;
         width: 100%;
         margin: 10px 0px;
-        
+        color: #5C6E9B;
     }
     .tableHeader{
         display: table-header-group;
@@ -105,7 +105,7 @@
     }
     .tableRowGroup .tableRow:hover{
         cursor: pointer;
-        background-color: grey;
+        background-color: #EAEDF5;
         
     }
     .tableRow .tableCell{

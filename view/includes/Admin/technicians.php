@@ -23,10 +23,13 @@
     }
 
     .contentSection {
+        display: flex;
+        justify-content: center;
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
+        align-items: flex-start !important;
     }
 
     .addTec #addTec {
@@ -43,8 +46,8 @@
     /* CSS for the technicians table */
     .table-data {
         color: #304068;
-        margin: 4px 4px;
-        height: 600px;
+        margin: 20px 4px;
+        height: 500px;
         width: 99%;
         /* margin-top: -100px; */
         overflow-y: auto;

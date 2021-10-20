@@ -84,7 +84,7 @@
             //Save image in the folder
             $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $fileUrl = '/uploads/assets/'.$assetId.'.'.$extension;
-            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , $rootDir.$fileUrl);
+            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , '../'.$fileUrl);
            
             // Asset detail query
             $assetDetails = "insert into assetdetails values($assetId,'$assetName',$purchaseCost,'$condition','$fileUrl','$assetDescription','$purchaseDate')";
