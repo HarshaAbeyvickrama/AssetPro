@@ -2,14 +2,14 @@
     .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
-        height: 82vh;
+        /* height: 82vh;
         width: 87.5vw;
         overflow-y: auto;
         padding: 20px;
-        background-color: #F1F4FF;
+        background-color: #F1F4FF; */
     }
     .overviewLayout > div{
-        display: flex;
+        display: grid;
         align-items: center;
         color: #304068;
         font-size: 24px;
@@ -26,7 +26,6 @@
         width: 100%;
         height: 100%;
         display: flex;
-        /* justify-content: center; */
         align-items: center;
     }
     .statBox{
@@ -64,11 +63,23 @@
     .box5{
         background-color: #4E74AB;
     }
-    .contentSection{
+    /* .contentSection{
         background-color: white;
         border-radius: 15px;
         padding:15px;
+    } */
+
+    .overviewLayout .contentSection{
+        all: revert;
+        display: inline-block;
+        /* grid-template-rows: 1fr 1fr; */
+        border-radius: 15px;
+        padding: 10px;
+        background-color: white;
+        overflow-y: auto;
     }
+
+
 
 /*inside content section*/
     .econtainer1{     
