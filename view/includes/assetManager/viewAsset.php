@@ -124,12 +124,13 @@
     .col-btn {
         position: absolute;
         bottom: 0;
-        right: 0;
+        right: 0 !important;
         text-align: center;
-        /* width: 100%; */
-        align-items: center;
+        width: 40vw;
+        /* align-items: center; */
         /* margin: 10px 0px; */
         border: 1px solid red;
+        background-color: white;
         
     }
     .col-btn>div {
@@ -472,10 +473,10 @@
                         </select>
                     </div>
 
-                    <div class="col-btn">
+                    <!-- <div class="col-btn">
                         <div id="btnSaveAsset">Save</div>
                         <div id="cancelAddAsset">Cancel</div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
