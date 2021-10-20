@@ -121,6 +121,7 @@
 
         switch($_SESSION['userType']){
             case 'admin':
+                // echo('admin');
                 switch ($type) {
                     case 'allAssets':
                         $query = "SELECT COUNT(*) FROM asset as count";
@@ -136,7 +137,9 @@
                         # code...
                         break;
                 }
+            break;
             case 'assetManager':
+                // print_r('AM');
                 switch ($type) {
                     case 'allAssets':
                         $query = "SELECT COUNT(*) FROM asset as count";
@@ -147,11 +150,18 @@
                     case 'allTechnicians':
                         $query = "SELECT COUNT(*) FROM technicianuser as count";
                         break;
+                    case 'allTangible':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE CategoryID = 1 OR CategoryID = 2";
+                        break;
+                    case 'allConsumable':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE CategoryID = 2";
+                        break;
                     
                     default:
                         # code...
                         break;
                 }
+            break;
             case 'employee':
                 $userId = $_SESSION['userID'];
                 switch ($type) {
@@ -171,7 +181,7 @@
                         $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 3";
                         break;
                     }
-
+            break;
             case 'technician':
                 $technicianID = $_SESSION['userID'];
                 switch ($type) {
@@ -191,7 +201,7 @@
                         # code...
                         break;
                 }
-
+            break;
             default:
             
 
