@@ -171,9 +171,11 @@
 <script>
 
     //Get Asset Counts
-    document.getElementById('allAssetsCount').innerHTML = getCount('allAssets');
-    document.getElementById('allEmployeesCount').innerHTML = getCount('allEmployees');
-    document.getElementById('allTechniciansCount').innerHTML = getCount('allTechnicians');
+    getCount('allAssets','allAssetsCount');
+    getCount('allEmployees','allEmployeesCount');
+    getCount('allTechnicians','allTechniciansCount');
+    getCount('allTangible','allTangible');
+    getCount('allConsumable','allConsumable');
     
     
 
@@ -317,27 +319,27 @@
         </div>
 
         <div>
-            <div class="statBox box2" id="allEmployees">
+            <div class="statBox box2">
                     <div class="statNumber" id="allEmployeesCount"></div>
                     <div class="statText">All Employees</div>
             </div>
         </div>
             
         <div>
-            <div class="statBox box3" id="allTechnicians">
+            <div class="statBox box3" >
                 <div class="statNumber" id="allTechniciansCount"></div>
                     <div class="statText">All Technicians</div>
             </div>
         </div>
         <div>
-            <div class="statBox box4" id="allTechnicians">
-                <div class="statNumber">897</div>
+            <div class="statBox box4" >
+                <div class="statNumber" id="allTangible">897</div>
                     <div class="statText">Tangible Assets</div>
             </div>
         </div>
         <div>
-            <div class="statBox box5" id="allTechnicians">
-                <div class="statNumber">584</div>
+            <div class="statBox box5" >
+                <div class="statNumber" id="allConsumable">584</div>
                     <div class="statText">Cosumable Assets</div>
             </div>
         </div>

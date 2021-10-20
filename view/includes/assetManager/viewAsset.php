@@ -122,11 +122,14 @@
     }
 
     .col-btn {
-        position: relative;
+        position: absolute;
+        bottom: 0;
+        right: 0;
         text-align: center;
-        width: 100%;
+        /* width: 100%; */
         align-items: center;
-        margin: 10px 0px;
+        /* margin: 10px 0px; */
+        border: 1px solid red;
         
     }
     .col-btn>div {
