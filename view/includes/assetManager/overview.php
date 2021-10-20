@@ -124,21 +124,21 @@
     </div>
     <div class="statSection">
         <div>
-            <div class="statBox box1" id="allAssets">
+            <div class="statBox box1" >
                 <div class="statNumber" id="allAssetsCount"></div>
                 <div class="statText">All Assets</div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box2" id="allEmployees">
+            <div class="statBox box2" >
                     <div class="statNumber" id="allEmployeesCount"></div>
                     <div class="statText">All Employees</div>
             </div>
         </div>
             
         <div>
-            <div class="statBox box3" id="allTechnicians">
+            <div class="statBox box3" >
                 <div class="statNumber" id="allTechniciansCount"></div>
                     <div class="statText">All Technicians</div>
             </div>
@@ -283,7 +283,7 @@
 </div>
 
 <script>
-    getCount('allAssets');
-    getCount('allEmployees');
-    getCount('allTechnicians');
+    getCount('allAssets','allAssetsCount');
+    getCount('allEmployees','allEmployeesCount');
+    getCount('allTechnicians','allTechniciansCount');
 </script>
