@@ -89,7 +89,7 @@
         <div> Asset Name </div>
         <div> Asset Type </div>
         <div> Reported Employee </div>
-        <div class="cell-center"> Start Repairing </div>
+        <div class="cell-center"> View Breakdown </div>
     </div>
     <div class="tableRow">
         <div> 1 </div>
@@ -97,8 +97,7 @@
         <div> Laptop </div>
         <div> fixed Asset </div>
         <div> Wathsala Perera </div>
-        <div class="cell-center"><button class="btn commence">Commence</button></div>
- 
+        <div class="cell-center"><button class="btn view"> View </button></div>
     </div>
     <div class="tableRow">
         <div> 2 </div>
@@ -106,7 +105,7 @@
         <div> Printer </div>
         <div> Fixed Asset </div>
         <div> shanaka Madhushan </div>
-        <div class="cell-center"><button class="btn commence">Commence</button></div>
+        <div class="cell-center"><button class="btn view"> View </button></div>
     </div>
     <div class="tableRow">
         <div> 3 </div>
@@ -114,7 +113,7 @@
         <div> Monitor </div>
         <div> Current Asset </div>
         <div> Nalin Perera </div>
-        <div class="cell-center"><button class="btn commence">Commence</button></div>
+        <div class="cell-center"><button class="btn view"> View </button></div>
     </div>
     <div class="tableRow">
         <div> 4 </div>
@@ -122,7 +121,7 @@
         <div> CPU </div>
         <div> Current Asset </div>
         <div> kasun Dias </div>
-        <div class="cell-center"><button class="btn commence">Commence</button></div>
+        <div class="cell-center"><button class="btn view"> View </button></div>
     </div>
  
     <div class="tableRowGroup " id="assignedAssetsTableBody">
