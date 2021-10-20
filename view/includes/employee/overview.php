@@ -167,22 +167,21 @@
                 <div class="tableHeader">
                     <div class="tableCell">Date</div>
                     <div class="tableCell">Task</div>
-                   
                     <div class="tableCell">Time</div>
                 </div>
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                      
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                    
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                      
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                       
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                    
@@ -198,80 +197,80 @@
             <div class="recentActivityTable table">
                 <div class="tableHeader">
                     <div class="tableCell">Date</div>
-                    <div class="tableCell">Name</div>
+             
                     <div class="tableCell">Task</div>
-                    <div class="tableCell">Role</div>
+                
                     <div class="tableCell">Time</div>
                 </div>
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                   
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                        
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                      
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                      
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                    
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                      
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+              
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+         
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                    
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                 
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                 
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                     
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                    
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                       
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                      
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                     
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                      
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell">18/07/2020</div>
-                        <div class="tableCell">Wathsala</div>
+                     
                         <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
+                  
                         <div class="tableCell">5 Hours ago</div>
                     </div>
                    
