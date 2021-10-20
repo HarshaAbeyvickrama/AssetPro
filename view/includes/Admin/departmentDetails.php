@@ -49,6 +49,10 @@
         background-color: aliceblue;
         transition: 0.5s;
     }
+    #tabContents {
+        display: flex;
+        align-items: center !important;
+    }
     #generalDetails {
         background-image: linear-gradient(#EAEDF5, white);
     }

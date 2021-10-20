@@ -73,7 +73,7 @@
     }
     .btnAction:hover{
         color: black;
-        background-color: white;
+        background-color: #EAEDF5;
     }
 </style>
 
