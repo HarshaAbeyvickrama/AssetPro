@@ -146,13 +146,13 @@
         <div>
             <div class="statBox box4">
                 <div class="statNumber" id="allConsumables"></div>
-                    <div class="statText">allConsumables</div>
+                    <div class="statText">All Consumables</div>
             </div>
         </div>
         <div>
             <div class="statBox box5">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
+                <div class="statNumber" id="allIntangibles"></div>
+                    <div class="statText">All Consumables</div>
             </div>
         </div>
     </div>
@@ -166,9 +166,8 @@
             <div class="recentActivityTable table">
                 <div class="tableHeader">
                     <div class="tableCell">Date</div>
-                    <div class="tableCell">Name</div>
                     <div class="tableCell">Task</div>
-                    <div class="tableCell">Role</div>
+                   
                     <div class="tableCell">Time</div>
                 </div>
                 <div class="tableRowGroup">
@@ -282,8 +281,8 @@
     </div>
 </div>
 
-<!-- <script>
-    getCount('allAssets','allAssetsCount');
-    getCount('allEmployees','allEmployeesCount');
-    getCount('allTechnicians','allTechniciansCount');
-</script> -->
+<script>
+    getCount('allAssets','allAssets');
+    // getCount('allEmployees','allEmployeesCount');
+    // getCount('allTechnicians','allTechniciansCount');
+</script>
