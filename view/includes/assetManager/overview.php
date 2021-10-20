@@ -64,6 +64,7 @@
     .overviewLayout .contentSection{
         all: revert;
         display: inline-block;
+        width: auto;
         /* grid-template-rows: 1fr 1fr; */
         border-radius: 15px;
         padding: 10px;
@@ -79,43 +80,10 @@
         font-size: 20px;
         font-weight: bold;
     }
-
-
-    /* Recent activity Table CSS */
-    .table{
-        display: table;
-        width: 100%;
-        margin: 10px 0px;
-        
-    }
-    .tableHeader{
-        display: table-header-group;
-        font-size: 19px;
-        padding: 15px;
-        font-weight: bold;
-    }
-    .table .tableRowGroup{
-        display: table-row-group;
-    }
-    .tableRow{
-        display: table-row;
-    }
-    .tableCell{
-        display: table-cell;
-    }
-    .tableRowGroup .tableRow:hover{
-        cursor: pointer;
-        background-color: grey;
-        
-    }
-    .tableRow .tableCell{
-        padding:10px 0px;
-        
-    }
     hr{
         background-color: #304068;
         width: 100%;
-        /* height: 1px; */
+        height: 1px;
     }
 </style>
 <div class="overviewLayout">
@@ -159,36 +127,39 @@
     <div>
         <div>Recent Activities</div>
     </div>
-    <div class="contentSection scrollbar">
+    <div class="contentSection">
         <div class="recent24">
             <div class="recentTitle">Last 24 Hours</div>
 
-            <div class="recentActivityTable table">
-                <div class="tableHeader">
-                    <div class="tableCell">Date</div>
-                    <div class="tableCell">Name</div>
-                    <div class="tableCell">Task</div>
-                    <div class="tableCell">Role</div>
-                    <div class="tableCell">Time</div>
-                </div>
-                <div class="tableRowGroup">
-                    <div class="tableRow">
-                        <div class="tableCell">20/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">20/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="tableCell">Date</th>
+                        <th class="tableCell">Name</th>
+                        <th class="tableCell">Task</th>
+                        <th class="tableCell">Role</th>
+                        <th class="tableCell">Time</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <td class="tableCell">20/10/2021</td>
+                        <td class="tableCell">Wathsala</td>
+                        <td class="tableCell">Reported Breakdown: FA/12345</td>
+                        <td class="tableCell">Employee</td>
+                        <td class="tableCell">5 Hours ago</td>
+                    </tr>
+                    <tr>
+                        <td class="tableCell">20/10/2021</td>
+                        <td class="tableCell">Wathsala</td>
+                        <td class="tableCell">Reported Breakdown: FA/12345</td>
+                        <td class="tableCell">Employee</td>
+                        <td class="tableCell">5 Hours ago</td>
+                    </tr>
+                    
                    
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
 
         <hr>
@@ -196,88 +167,67 @@
         <div class="oldActivities">
             <div class="recentTitle">Earlier</div>
 
-            <div class="recentActivityTable table">
-                <div class="tableHeader">
-                    <div class="tableCell">Date</div>
-                    <div class="tableCell">Name</div>
-                    <div class="tableCell">Task</div>
-                    <div class="tableCell">Role</div>
-                    <div class="tableCell">Time</div>
-                </div>
-                <div class="tableRowGroup">
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell">17/10/2021</div>
-                        <div class="tableCell">Wathsala</div>
-                        <div class="tableCell">Reported Breakdown: FA/12345</div>
-                        <div class="tableCell">Employee</div>
-                        <div class="tableCell">5 Hours ago</div>
-                    </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Task</th>
+                        <th>Role</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>17/10/2021</td=>
+                        <td>Wathsala</td>
+                        <td>Reported Breakdown: FA/12345</td>
+                        <td>Employee</td>
+                        <td>5 Hours ago</td>
+                    </tr>
                    
-                </div>
-            </div>
+                    <tr>
+                        <td>17/10/2021</td=>
+                        <td>Wathsala</td>
+                        <td>Reported Breakdown: FA/12345</td>
+                        <td>Employee</td>
+                        <td>5 Hours ago</td>
+                    </tr>
+                   
+                    <tr>
+                        <td>17/10/2021</td=>
+                        <td>Wathsala</td>
+                        <td>Reported Breakdown: FA/12345</td>
+                        <td>Employee</td>
+                        <td>5 Hours ago</td>
+                    </tr>
+                   
+                    <tr>
+                        <td>17/10/2021</td=>
+                        <td>Wathsala</td>
+                        <td>Reported Breakdown: FA/12345</td>
+                        <td>Employee</td>
+                        <td>5 Hours ago</td>
+                    </tr>
+                   
+                    <tr>
+                        <td>17/10/2021</td=>
+                        <td>Wathsala</td>
+                        <td>Reported Breakdown: FA/12345</td>
+                        <td>Employee</td>
+                        <td>5 Hours ago</td>
+                    </tr>
+                   
+                    <tr>
+                        <td>17/10/2021</td=>
+                        <td>Wathsala</td>
+                        <td>Reported Breakdown: FA/12345</td>
+                        <td>Employee</td>
+                        <td>5 Hours ago</td>
+                    </tr>
+                   
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
