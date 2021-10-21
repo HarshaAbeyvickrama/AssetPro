@@ -336,8 +336,8 @@
    
     function saveReport(report){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
-        
+        xhr.open("POST",`../model/Report.php?action=reportBreakAsset&asset_id=${asset.AssetID}`,true);    //POST
+  
         xhr.onload = function(){
             if(this.status === 200){
                alert(this.responseText); // 2nd alert

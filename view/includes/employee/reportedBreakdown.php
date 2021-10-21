@@ -113,7 +113,7 @@
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']})">View</button>
+                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -124,10 +124,11 @@
     viewBreakAsset();
 
 
-    function viewBreak(viewasset){
+    function viewBreak(viewasset,viewassetid){
+       
         var viewBreakAssetDetails = null;
         const xhr = new XMLHttpRequest();
-        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}`,true);
+        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}&assetid=${viewassetid}`,true);
         xhr.onload = function(){
             if(this.status == 200){
              viewBreakAssetDetails = JSON.parse(this.responseText);
