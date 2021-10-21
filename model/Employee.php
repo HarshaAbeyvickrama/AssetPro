@@ -85,8 +85,8 @@ function saveEmployee()
         //Save image in the folder
         global $rootDir;
         $extension = pathinfo($_FILES['profileImage']['name'], PATHINFO_EXTENSION);
-        $fileUrl = '/assetPro/uploads/employees/' . $userID . '.' . $extension;
-        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], $rootDir . $fileUrl);
+        $fileUrl = '/uploads/employees/' . $userID . '.' . $extension;
+        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../'.$fileUrl);
 
         //Inserting into the userdetails table
         $userdetails = "INSERT INTO userdetails VALUES 
@@ -174,6 +174,36 @@ function getEmployees($employee)
 
 function loadEmployee($EmployeeID) {
     global $mysql;
-    echo json_encode(array());
-    $viewEmployee = "SELECT";
+    // echo json_encode(array());
+    $viewEmployee = "SELECT
+                        eu.EmployeeID,
+                        ud.fName,
+                        ud.lName,
+                        ud.NIC,
+                        ud.Gender,
+                        ud.DOB,
+                        ud.ProfilePicURL,
+                        ud.CivilStatus,
+                        ud.Address,
+                        ud.PhoneNumber,
+                        ud.Email,
+                        ue.fName AS eName,
+                        ue.Relationship,
+                        ue.TelephoneNumber
+                    FROM
+                        userdetails ud
+                    INNER JOIN employeeuser eu ON
+                        ud.UserID = eu.UserID
+                    INNER JOIN useremergency ue ON
+                        eu.UserID = ue.UserID
+                    WHERE EmployeeID = $EmployeeID";
+
+    $result = mysqli_query($mysql, $viewEmployee);
+    $rows = array();
+
+    while($r = mysqli_fetch_array($result)) {
+        // echo json_encode($r);
+        $rows[] = $r;
+    }
+    echo json_encode($rows);
 }

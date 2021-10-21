@@ -64,6 +64,10 @@
         text-align: center;
         text-align: left;
     }
+    .empData .heading {
+        text-align: center;
+        align-items: center;
+    }
 
     .table-data th {
         color: #5C6E9B;
@@ -143,7 +147,7 @@
                     <th>Employee ID</th>
                     <th>Name</th>
                     <th>Gender</th>
-                    <th>View</th>
+                    <th class="heading">View</th>
                 </tr>
 
                     <?php
@@ -155,7 +159,8 @@
                                 ud.UserID,
                                 CONCAT(ud.fName, ' ', ud.lName) AS Name,
                                 ud.Gender,
-                                CONCAT(d.DepartmentCode,'/EMP/',eu.EmployeeID) AS EmployeeID
+                                d.DepartmentCode,
+                                eu.EmployeeID
                             FROM
                                 userdetails ud
                             INNER JOIN employeeuser eu ON
@@ -169,7 +174,7 @@
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td></td>
-                                <td>" . $row["EmployeeID"] . "</td>
+                                <td>" .$row['DepartmentCode'].'/EMP/'. $row['EmployeeID'] . "</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
                                 <td id=".$row['EmployeeID']."><button id='view' class='viewBtn'>View</button></td>
@@ -194,17 +199,18 @@
 
     });
 
-    //Viewing the employee details
+    //Viewing the deaprtment details
     var viewEmployeeBtn = document.querySelectorAll('#view');
     for (var i = 0; i < viewEmployeeBtn.length; i++) {
         viewEmployeeBtn[i].addEventListener('click', function() {
-            loadEmployee(event.target.parentElement.id);
-            console.log(event.target.parentElement.id);
+            loadDepartment(event.target.parentElement.id);
+            // console.log(event.target.parentElement.id);
+
         });
     }
 
-    //Loading the details of the selected employee
-    function loadEmployee(EmployeeID) {
+    //Loading details of the selected department
+    function loadDepartment(EmployeeID) {
         var employeeDetails = null;
         const xhr = new XMLHttpRequest();
         xhr.open("POST", `../model/Employee.php?action=loadEmployee&EmployeeID=${EmployeeID}`, true);
@@ -212,11 +218,11 @@
         xhr.onload = function() {
             if (this.status === 200) {
                 employeeDetails = JSON.parse(this.responseText);
-                // alert(this.responseText);
+                console.log(employeeDetails);
                 loadSection('centerSection', 'emprofile');
 
                 var json = JSON.stringify(employeeDetails);
-                document.cookie=`EmployeeID=${json}`;
+                document.cookie = `EmployeeID=${json}`;
             }
         }
         xhr.send();

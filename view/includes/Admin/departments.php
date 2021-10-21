@@ -254,8 +254,8 @@
                                 <td>".$row['DepartmentCode']."</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["ContactNum"] . "</td>
-                                <td>" . $row["datecreated"] . "</td>
-                                <td>" . $row["lastmodified"] . "</td>
+                                <td>" . str_replace("-","/",$row["datecreated"]) . "</td>
+                                <td>" . str_replace("-","/",$row["lastmodified"]) . "</td>
                                 <td id=".$row['DepartmentID']."><button id='view' class='viewBtn'>View</button></td>
                               </tr>";
                         }
