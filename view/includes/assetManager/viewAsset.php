@@ -223,7 +223,6 @@
 </style>
 <script>
    
-    disableInputs();
     // Event listener to chande asset Types
     var categorySelect = document.getElementById('category');
     categorySelect.addEventListener('change',function(event){
@@ -287,13 +286,12 @@
     function formState(id,state){
         document.getElementById(id).disabled = state;
     }
-    
-    function disableInputs(){
-        var inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            if(input.type != 'checkbox'){
-                formState(input.id , true);
-            }
+    sectionState('addAssetForm',true)
+    function sectionState(sectionID, state){
+        var inputs = document.getElementById(sectionID).querySelectorAll("input, select");
+        inputs.forEach(input =>{
+            console.log(input);
+            input.disabled = state;
         })
     }
 
@@ -444,6 +442,10 @@
                         <input type="text" name="assetId" id="assetId">
                     </div>
                      -->
+                    <div class="col-f">
+                        <span for="assetName">Asset ID</span>
+                        <input type="text" name="assetID" id="assetID">
+                    </div>
                     <div class="col-f">
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName">

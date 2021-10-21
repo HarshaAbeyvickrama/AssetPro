@@ -11,23 +11,19 @@
         padding: 0px;
         height: 87vh;
     }
-
     .profile>div {
         display: grid;
         grid-template-rows: 0.5fr 9.5fr;
-
     }
    
     .leftSection,
     .rightSection{
         overflow-y: auto;
-
     }
     /* .leftSection::-webkit-scrollbar,
     .rightSection::-webkit-scrollbar{
         display: none;
     } */
-
     .profile .leftSection {
         margin: 15px 7.5px 15px 15px;   
     }
@@ -35,27 +31,23 @@
         /* height: 100%; */
         /* width: 100%; */
     }
-
     .profileImageSection>img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
     }
-
     .leftSection .leftBottom {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         height: 100%;
     }
-
     .profileImageSection {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-
     #uploadBtn {
         display: flex;
         align-items: center;
@@ -67,13 +59,11 @@
         color: #F1F4FF;
         border-radius: 30px;
     }
-
     #uploadBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
-
     /* Form styling */
     .basic-information {
         width: calc(100% - 40px);
@@ -83,7 +73,6 @@
         padding: 10px;
         /* justify-content: space-around; */
     }
-
     .title {
         width: 100%;
         color: #304068;
@@ -91,12 +80,10 @@
         margin: 10px 0px;
         font-size: 18px;
     }
-
     .col-f {
         width: 100%;
         color: #5C6E9B;
     }
-
     .col-f select{
         justify-content: center;
         align-items: center;
@@ -109,12 +96,10 @@
         margin-top: 10px;
         outline: none;
     }
-
     .col-h {
         width: 50%;
         color: #5C6E9B;
     }
-
     .col-btn {
         position: relative;
         text-align: center;
@@ -135,7 +120,6 @@
         float: right;
         margin-right: 5px;
     }
-
     .col-f input[type=text] {
         justify-content: center;
         align-items: center;
@@ -148,7 +132,6 @@
         margin-top: 10px;
         outline: none;
     }
-
     .col-h input[type=text] {
         justify-content: center;
         align-items: center;
@@ -161,7 +144,6 @@
         margin-top: 10px;
         outline: none;
     }
-
     .col-h,
     .col-f>span {
         display: block;
@@ -177,7 +159,6 @@
     .radio-group > input[type=radio]:hover{
         cursor: pointer;
     }
-
     .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
@@ -191,13 +172,11 @@
         bottom: 0px;
         right: calc(50%);
     }
-
     /* New */
     .sectionContent{
         background-color: white;
         border-radius: 10px;
         padding-left: 20px;
-
     }
     .sectionHeader{
         margin-top: 10px;
@@ -234,7 +213,7 @@
         display: table-header-group;
         font-size: 17px;
         padding: 15px;
-        font-weight: bold;
+        font-weight: 900;
         overflow-y: hidden !important;
         
     }
@@ -276,6 +255,7 @@
     .spanRow{
         color: #5C6E9B;
         font-size: 15px;
+        font-weight: bold;
     }
     .row{
         font-size: 14px;
@@ -283,6 +263,7 @@
     }
     .row td{
         text-align: center;
+        color: #5C6E9B;
     }
     .innerRow{
         padding-left: 10px;
@@ -290,6 +271,8 @@
     }
     .generalStats{
         margin: 0px 0px 15px 0px;
+        color: #5C6E9B;
+
     }
     .generalStats > div{
         margin-top: 5px;
@@ -378,7 +361,7 @@
                         <img src="../Images/AssetProLogo.png" alt="">
                     </div>
                 </div>
-                <div>
+                <div class="generalStats">
                     <div >Date : </div>
                     <div >Time : </div>
                 </div>
@@ -429,6 +412,4 @@
             
         </div> -->
     </div>
-
 </form>
-

@@ -26,9 +26,10 @@
                 break;
 
             case 'viewBreakAssetById':
-                viewBreakAssetDetails($_REQUEST['view_id']);
+                viewBreakAssetDetails($_REQUEST['view_id'],$_REQUEST['assetid']);
                 break;
                   
+            
 
 
             default:
@@ -69,6 +70,11 @@
                         // WHERE employeeuser.UserID = 3
                         // ORDER BY
                         // asset.AssetID";
+                         
+                        //create a session variable 
+                        // like  $empUserId = $_SESSION['userID'];
+                       // include where function EmployeeID=(SELECT employeeId from employeeUser where userId=$userId)
+                   
                 
            
         $result = mysqli_query($mysql,$sql);
@@ -141,27 +147,28 @@
         echo json_encode($rows);
 
     }
-
-    function  viewBreakAssetDetails(){
+  //viewing the details in the form including reason and defected parts
+    function  viewBreakAssetDetails($view_id,$assetid){
         global $mysql;
       
                 $sql = "SELECT
                 asset.AssetID,
                 assetdetails.Name AS assetName,
+                assetdetails.AssetCondition,
                 TYPE.Name AS assetType,
-                DATE(breakdown.Date) AS reportedDate,
-                breakdown.BreakdownID,
+                category.Name AS categoryName,
                 breakdown.Reason,
                 breakdown.DefectedParts
             FROM
                 asset
             INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
             INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
-            INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
+            INNER JOIN category ON asset.CategoryID = category.CategoryID
+            INNER JOIN breakdown ON breakdown.AssetID = asset.AssetID
             WHERE
-                asset.AssetID = $view_id
-            ORDER BY
-                asset.AssetID";
+                asset.AssetID = $assetid AND breakdown.BreakdownID = $view_id 
+            ORDER BY 
+                breakdown.BreakdownID";
                 
            
         $result = mysqli_query($mysql,$sql);

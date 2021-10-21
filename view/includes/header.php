@@ -1,73 +1,102 @@
 <style>
     .header{
-        display: grid;
-        grid-template-columns: 6fr 0.5fr 3fr 0.5fr ;
-        height: 12vh;
-        
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0px;
+        justify-content: right;
     }
-    .header >div{
-        border: 0px solid green;
+    .header > div{
+        margin: 0px 10px;
     }
-    #notificationIcon > img{
-        height: 30px;
-        width: 30px;
-    }
-    #notificationIcon{
+    .notificationBadge{
+        height: 50%;
+        margin: 0px;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    #notificationIcon:hover{
-        cursor: pointer;
+    .notificationBadge > img{
+        height: 30px;
+        width: 30px;
     }
     #notificationCount{
         position: absolute;
-        top: 15px;
-        right: 10px;
+        top: -5px;
+        right: -5px;
         background-color: red;
         border-radius: 50%;
         color: white;
         width: 20px;
         height: 20px;
-        display: flex;
+        /* display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
         font-size: 11px;
         font-weight: bold;
     }
     #userSection{
-        display: grid;
-        grid-template-columns: 7fr 3fr;
-    }
-    #userSection > div{
         display: flex;
-        justify-content: center;
         align-items: center;
-        text-align: right;
-        width: 100%;
+        /* border: 1px solid red; */
+        padding: 5px 10px;
+        box-shadow: 0 0px 2px #5c6e9b;
+        border-radius: 12px;
+    }
+    #userSection:hover{
+        cursor: pointer;
+    }
+    #userSection div{
+        margin: 0px 5px;
     }
     #userSection img{
-        width: 75px;
-        height: 75px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
     }
     #username{
         font-size: 20px;
+        font-weight: 900;
+        color: #304068;
+        /* height: 100%; */
     }
-    
-</style>
+    #username:hover{
+        cursor: pointer;
+    }
 
+    /* Dropdown */
+    .profile-dropdown{
+        display: none;
+        position: absolute;
+        width: 250px;
+        border-radius: 12px;
+        /* border: 1px solid red; */
+        padding: 15px 0px;
+        right: 0;
+        margin: 0px 10px;
+        background-color: white;
+        box-shadow: 0 0px 2px #5c6e9b;
+        z-index: 10;
+    }
+    .profile-dropdown > div{
+        padding: 0px 10px;
+    }
+    .profile-dropdown > hr{
+        width: 100%;
+        height: 0.5px;
+    }
+    #logout{
+       justify-content: left;
+    }
+</style>
 <div class="header">
-    <div>
-        
-    </div>
-    <div id="notificationIcon" class="notificationBadge">
+    <div class="notificationBadge">
         <img src="../Images/Notification.png" alt="" class="notificationBadge">
         <span id="notificationCount" class="notificationBadge">2</span>
     </div>
+
     <div id="userSection">
-        <!-- <div id="username">Rocell Bathware</div> -->
         <div id="username">
             <?php
                 include('../db/dbConnection.php');
@@ -78,63 +107,42 @@
                 echo $name;
             ?>
         </div>
-        <div>
+        <!-- <div> -->
             <img src="../Images/profile.jpg" alt="">
-        </div>
+        <!-- </div> -->
     </div>
-    <div></div>
 </div>
-<?php
-    include_once("notification.php")
-?>
-
-
+<div class="profile-dropdown" id="profiledropDown">
+    <div>Signed in as</div>
+    <div>
+        <?php
+            echo $name;
+        ?>
+    </div>
+    <hr>
+    <div id="your-profile">
+        Your Profile
+    </div>
+    <div id="logout">
+        Log Out
+    </div>
+</div>
 
 <script>
-    var icon = document.getElementById("notificationIcon");
-    icon.addEventListener("click",e =>{
-        var notification = document.querySelector(".notificationContainer");
-        if(notification.style.display ==="none"){
-            notification.style.display = "grid";
-        }else{
-            notification.style.display= "none";
+    var userSection = document.getElementById('userSection');
+    userSection.addEventListener('click',(e)=>{
+        if(e.target.parentNode.id == 'userSection'){
+            var dd = document.getElementById('profiledropDown');
+            var style = window.getComputedStyle(dd, null).getPropertyValue("display");
+            if(style == 'none'){
+                dd.style.display = 'block';
+            }else{
+                dd.style.display = 'none';
+            }
         }
     })
 
-    //Checking for notifications
-
-    window.onload = function(){
-    //    checkNewNotifications();
-    }
-   
-
-    function checkNewNotifications() {
-        setInterval(getCount, 2000);
-    }
-    var cows =1;
-    function getCount() {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open("GET","../controller/mainController.php?action=newNotifCount",true);
-
-        xhr.onload = function(){
-            if(this.status === 200){
-                console.log("හරකා Number "+cows+" 🐮🐮")
-                cows++;
-            }else{
-                
-            }
-        }
-        xhr.send();
-    }
-
-
-    //hide notification panel when clicked outside 
-    document.addEventListener('click',function(e){
-        notificationWindow = document.querySelector('.notificationContainer');
-        if(e.target.classList[0] !== 'notificationBadge' && window.getComputedStyle(notificationWindow).display !== "none"){
-            notificationWindow.style.display = 'none';
-            
-        }
+    document.getElementById('logout').addEventListener('click',(e) =>{
+        window.location.replace("../controller/mainController.php?action=logout");
     })
 </script>

@@ -25,7 +25,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div class="section-heading">All Employees</div>
+        <div class="section-heading">All Technicians</div>
     </div>
     <div class="contentSection">
 

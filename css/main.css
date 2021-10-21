@@ -1,20 +1,18 @@
 /* Default table styling */
-*{
+* {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
 /* Colors */
-:root{
+:root {
   --primary: #304068;
   /* --btn-assign:  */
 }
 
-
 .table,
 .table::before,
 .table::after {
-  all: unset;
   box-sizing: border-box;
   padding: 0;
 }
@@ -22,6 +20,8 @@
   border-collapse: collapse;
   background-color: white;
   text-align: left;
+  width: 90%;
+  
   /* height: 100px; */
   /* overflow-x: hidden; */
   /* overflow-y: scroll !important; */
@@ -41,6 +41,7 @@
   position: sticky;
   top: 0;
   z-index: 2;
+  background-color: #d4daeb;
 }
 .table td {
   padding: 5px 15px;
@@ -48,9 +49,16 @@
   max-height: 10px;
   white-space: normal;
 }
-.table tbody tr:hover {
+.table tbody tr:nth-child(even) {
   background-color: #eaedf5;
+}
+.table tbody tr:hover {
+  /* background-color: #eaedf5; */
   cursor: pointer;
+}
+.btncol{
+  display:flex;
+  justify-content:center;
 }
 
 /* Buttons */
@@ -63,14 +71,37 @@
   cursor: pointer;
   outline: inherit;
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 500;
-
+  display: inline-block;
 }
-.btn-assign{
+.btn-assign {
   background-color: var(--primary);
   color: white;
 }
 
+/* Headings */
+.section-heading {
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 700;
+}
 
+/* Sections */
+.overviewLayout {
+  height: 82vh;
+  overflow-y: hidden;
+  padding: 20px;
+  background-color: #f1f4ff;
+}
 
+.contentSection {
+  /* display: flex; */
+  justify-content: center;
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 15px;
+  height: 95%;
+  padding: 20px;
+}

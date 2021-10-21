@@ -42,7 +42,8 @@ function getAllEmployees(){
                 ud.UserID,
                 CONCAT(ud.fName, ' ', ud.lName) AS Name,
                 ud.Gender,
-                CONCAT(d.DepartmentCode,'/EMP/',eu.EmployeeID) AS EmployeeID
+                d.DepartmentCode,
+                eu.EmployeeID
             FROM
                 userdetails ud
             INNER JOIN employeeuser eu ON
