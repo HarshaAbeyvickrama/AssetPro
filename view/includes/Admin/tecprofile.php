@@ -143,7 +143,7 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text] {
+    .col-f input[type=text], input[type=number] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -234,7 +234,7 @@
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
             <div class="profileImageSection">
-                <img src="../Images/profile.jpg" alt="">
+                <img src="../Images/profile.jpg" alt="" name="profileImage" id="imagePrev">
                 <input type="file" name="profileImage" id="profileImage" hidden>
                 <label for="profileImage" id="uploadBtn"> Choose Image </label>
             </div>
@@ -258,15 +258,20 @@
                     </div>
 
                     <div class="col-f">
+                        <span for="NIC">NIC</span>
+                        <input type="text" name="NIC" id="NIC" maxlength="12">
+                    </div>
+
+                    <div class="col-f">
                         <span for="role"> Role: </span>
-                        <input type="text" name="role" id="role">
+                        <input type="text" name="role" id="role" value="Employee">
                     </div>
 
                     <div class="col-f">
                         <span for="gender"> Gender </span>
-                        <div class="radio-group">
-                            <input type="radio" name="gender" id="male" value="male"><label> Male </label>
-                            <input type="radio" name="gender" id="female" value="female"><label> Female </label>
+                        <div class="radio-group" id="radio-group">
+                            <input type="radio" name="gender" id="Male" value="male"><label> Male </label>
+                            <input type="radio" name="gender" id="Female" value="female"><label> Female </label>
                         </div>
                     </div>
                     
@@ -297,8 +302,8 @@
                 <input type="text" name="address" id="address">
             </div>
             <div class="col-f">
-                <span for="contactNo"> Contact No: </span>
-                <input type="text" name="contactNo" id="contactNo">
+                <span for="contactNo"> Contact Number: </span>
+                <input type="number" name="contactNo" id="contactNo" maxlength="10">
             </div>
             <div class="col-f">
                 <span for="email"> Email Address: </span>
@@ -317,7 +322,7 @@
             </div>
             <div class="col-f">
                 <span for="econtact"> Telephone Number: </span>
-                <input type="text" name="econtact" id="econtact">
+                <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
             <div class="col-btn">
                 <div class="btnAction" id="back"> Back </div>
@@ -374,6 +379,29 @@
         
         })
     })
-    
+
+    //Getting the employee details to the form
+    var employeeID = getCookieValue('EmployeeID');
+    var employee = JSON.parse(employeeID)[0];
+    console.log(employee);
+
+    document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
+    document.getElementById('empID').value = employee.EmployeeID;
+    document.getElementById('fName').value = employee.fName;
+    document.getElementById('lName').value = employee.lName;
+    document.getElementById('NIC').value = employee.NIC;
+    var radio = document.getElementById('radio-group').children;
+    // console.log(employee.Gender);
+    var gender = document.getElementById(employee.Gender)
+    gender.checked = true;
+    // document.getElementById(employee.Gender).checked = true;
+    document.getElementById('dob').value = employee.DOB;
+    document.getElementById('maritalStatus').value = employee.CivilStatus;
+    document.getElementById('address').value = employee.Address;
+    document.getElementById('contactNo').value = employee.PhoneNumber;
+    document.getElementById('email').value = employee.Email;
+    document.getElementById('eName').value = employee.eName;
+    document.getElementById('eRelationship').value = employee.Relationship;
+    document.getElementById('econtact').value = employee.TelephoneNumber;
     
 </script>

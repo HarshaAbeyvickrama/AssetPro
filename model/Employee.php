@@ -69,6 +69,7 @@ function saveEmployee(){
     $departmentID = $_POST['depID'];
     $firstName = $_POST['fName'];
     $lastName = $_POST['lName'];
+    $NIC = $_POST['NIC'];
     $gender = $_POST['gender'];
     $dob = $_POST['dob'];
     $maritalStatus = $_POST['maritalStatus'];
@@ -89,12 +90,12 @@ function saveEmployee(){
         //Save image in the folder
         global $rootDir;
         $extension = pathinfo($_FILES['profileImage']['name'], PATHINFO_EXTENSION);
-        $fileUrl = '/assetPro/uploads/employees/' . $userID . '.' . $extension;
-        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], $rootDir . $fileUrl);
+        $fileUrl = '/uploads/employees/' . $userID . '.' . $extension;
+        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../'.$fileUrl);
 
         //Inserting into the userdetails table
         $userdetails = "INSERT INTO userdetails VALUES 
-                       ('$userID','$firstName','$lastName','$address','$gender','23',
+                       ('$userID','$firstName','$lastName','$NIC','$address','$gender','23',
                        '$contactNo','$email','$dob','$fileUrl','$maritalStatus')";
         mysqli_query($mysql, $userdetails);
 
@@ -177,8 +178,40 @@ function getEmployees($employee){
 
 function loadEmployee($EmployeeID) {
     global $mysql;
-    echo json_encode(array());
-    $viewEmployee = "SELECT";
+
+    // echo json_encode(array());
+    $viewEmployee = "SELECT
+                        eu.EmployeeID,
+                        ud.fName,
+                        ud.lName,
+                        ud.NIC,
+                        ud.Gender,
+                        ud.DOB,
+                        ud.ProfilePicURL,
+                        ud.CivilStatus,
+                        ud.Address,
+                        ud.PhoneNumber,
+                        ud.Email,
+                        ue.fName AS eName,
+                        ue.Relationship,
+                        ue.TelephoneNumber
+                    FROM
+                        userdetails ud
+                    INNER JOIN employeeuser eu ON
+                        ud.UserID = eu.UserID
+                    INNER JOIN useremergency ue ON
+                        eu.UserID = ue.UserID
+                    WHERE EmployeeID = $EmployeeID";
+
+    $result = mysqli_query($mysql, $viewEmployee);
+    $rows = array();
+
+    while($r = mysqli_fetch_array($result)) {
+        // echo json_encode($r);
+        $rows[] = $r;
+    }
+    echo json_encode($rows);
+    
 }
 // Get all technicians
 function getAllTechnicians(){
@@ -205,4 +238,5 @@ function getAllTechnicians(){
         }
     }
     echo json_encode($technicians);
+
 }

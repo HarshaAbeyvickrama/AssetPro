@@ -302,7 +302,7 @@
                 <input type="text" name="address" id="address">
             </div>
             <div class="col-f">
-                <span for="contactNo"> Contact No: </span>
+                <span for="contactNo"> Contact Number: </span>
                 <input type="number" name="contactNo" id="contactNo" maxlength="10">
             </div>
             <div class="col-f">

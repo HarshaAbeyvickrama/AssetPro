@@ -91,33 +91,33 @@
     <div class="statSection">
         <div>
             <div class="statBox box1" >
-                <div class="statNumber" id="allAssets"></div>
+                <div class="statNumber" id="Assets"></div>
                 <div class="statText">All Assets</div>
             </div>
         </div>
 
         <div>
             <div class="statBox box2" >
-                    <div class="statNumber" id="allTangibles"></div>
+                    <div class="statNumber" id="Tangibles"></div>
                     <div class="statText">All Tangibles</div>
             </div>
         </div>
             
         <div>
             <div class="statBox box3" >
-                <div class="statNumber" id="allFixeds"></div>
+                <div class="statNumber" id="Fixeds"></div>
                     <div class="statText">All Fixeds</div>
             </div>
         </div>
         <div>
             <div class="statBox box4">
-                <div class="statNumber" id="allConsumables"></div>
+                <div class="statNumber" id="Consumables"></div>
                     <div class="statText">All Consumables</div>
             </div>
         </div>
         <div>
             <div class="statBox box5">
-                <div class="statNumber" id="allIntangibles"></div>
+                <div class="statNumber" id="Intangibles"></div>
                     <div class="statText">All Consumables</div>
             </div>
         </div>
@@ -182,50 +182,50 @@
                  <tbody>
                    <tr>
                         <td>1</td>
-                        <td>2021/10/22</td>
-                        <td>Successfully reported Breakdown: FA/6789</td>
+                        <td>2021/10/21</td>
+                        <td>Successfully reported Breakdown: FA/6542</td>
                         <td>1 day ago</td>
                    </tr>
 
                    <tr>
                         <td>2</td>
-                        <td>2021/10/22</td>
-                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>2021/10/17</td>
+                        <td>Successfully reported Breakdown: FA/8741</td>
                         <td>5 days ago</td>
                     </tr>
 
                     <tr>
                         <td>3</td>
-                        <td>2021/10/22</td>
-                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>2021/10/16</td>
+                        <td>Successfully reported Breakdown: FA/5121</td>
                         <td>6 days ago</td>
                     </tr>
 
                     <tr>
                         <td>4</td>
-                        <td>2021/10/22</td>
-                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>2021/10/14</td>
+                        <td>Successfully reported Breakdown: FA/1256</td>
                         <td>8 days ago</td>
                     </tr>
 
                     <tr>
                         <td>5</td>
-                        <td>2021/10/22</td>
-                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>2021/10/18</td>
+                        <td>Successfully reported Breakdown: FA/9843</td>
                         <td>4 days ago</td>
                     </tr>
 
                     <tr>
                         <td>6</td>
-                        <td>2021/10/22</td>
-                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>2021/10/18</td>
+                        <td>Successfully reported Breakdown: FA/5467</td>
                         <td>4 days ago</td>
                     </tr>
 
                     <tr>
                         <td>7</td>
-                        <td>2021/10/22</td>
-                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>2021/10/21</td>
+                        <td>Successfully reported Breakdown: FA/8765</td>
                         <td>1 day ago</td>
                     </tr>
                  </tbody>
@@ -235,7 +235,9 @@
     
 </div>
 <script>
-     getCount('allAssets','allAssets');
-    // getCount('allTangibles','allTangibles');
-    // getCount('allTechnicians','allTechniciansCount');
+    getCount('allAssets','Assets');
+    getCount('allTangible','Tangibles');
+    getCount('allFixed','Fixeds');
+    getCount('allConsumables','Consumables');
+    getCount('allIntangibles','Intangibles');
 </script>

@@ -118,7 +118,7 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text] {
+    .col-f input[type=text], input[type=number] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
