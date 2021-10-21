@@ -1,29 +1,33 @@
 <style>
-    .overviewLayout{
+    .overviewLayout {
         display: grid;
-        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
+        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
         background-color: #F1F4FF;
     }
-    .overviewLayout > div{
+
+    .overviewLayout>div {
         display: grid;
         align-items: center;
         color: #304068;
         font-size: 24px;
         font-weight: bold;
     }
-    .statSection{
+
+    .statSection {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
         height: 100%;
     }
-    .statSection > div{
+
+    .statSection>div {
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
     }
-    .statBox{
+
+    .statBox {
         display: grid;
         grid-template-rows: 3fr 2fr;
         color: white;
@@ -31,35 +35,43 @@
         width: 90%;
         border-radius: 12px;
     }
-    .statBox > div{
+
+    .statBox>div {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .statNumber{
+
+    .statNumber {
         font-size: 40px;
     }
-    .statText{
+
+    .statText {
         font-size: 17px;
         font-weight: lighter;
     }
-    .box1{
+
+    .box1 {
         background-color: #304068;
     }
-    .box2{
+
+    .box2 {
         background-color: #6A71D7;
     }
-    .box3{
+
+    .box3 {
         background-color: #3D7DDB;
     }
-    .box4{
+
+    .box4 {
         background-color: #6165A2;
     }
-    .box5{
+
+    .box5 {
         background-color: #4E74AB;
     }
 
-    .overviewLayout .contentSection{
+    .overviewLayout .contentSection {
         all: revert;
         display: grid;
         grid-template-rows: 1fr 8.5fr 0.5fr;
@@ -68,26 +80,29 @@
         padding: 0px 10px;
         background-color: white;
     }
-    .contentSection > div{
-        margin:8px 15px;
-        
-        
+
+    .contentSection>div {
+        margin: 8px 15px;
+
+
     }
-    .recentTitle{
+
+    .recentTitle {
         color: #304068;
         font-size: 20px;
         font-weight: bold;
     }
 
 
-    
-    #assetSections{
+
+    #assetSections {
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
     }
-    #assetSections > div{
+
+    #assetSections>div {
         width: 200px;
         display: flex;
         text-align: center;
@@ -97,64 +112,71 @@
         font-size: 20px;
         height: 100%;
         padding: 8px 0px;
-        
+
     }
-    #assetSections > div:hover{
+
+    #assetSections>div:hover {
         cursor: pointer;
         background-color: #EAEDF5;
     }
-    #assetContents{
+
+    #assetContents {
         overflow-y: hidden;
         /* padding: 10px; */
         display: flex;
+        justify-content: center;
+        align-items: flex-start;
 
     }
-    .buttonSection{
+
+    .buttonSection {
         display: flex;
         align-items: center;
         justify-content: right;
         /* padding-bottom: 10px; */
         float: right;
     }
-    .button{
+
+    .button {
         margin-right: 15px;
         background-color: #6A71D7;
         padding: 10px 20px;
         color: white;
         border-radius: 10px;
     }
-    .button:hover{
+
+    .button:hover {
         cursor: pointer;
     }
-    
-    .activeTab{
-        background-image: linear-gradient(#EAEDF5, white);;
+
+    .activeTab {
+        background-image: linear-gradient(#EAEDF5, white);
+        ;
     }
 </style>
 
 <script>
-
     //Get Asset Counts
-    getCount('allAssets','allAssetsCount');
-    getCount('allEmployees','allEmployeesCount');
-    getCount('allTechnicians','allTechniciansCount');
-    getCount('allTangible','allTangible');
-    getCount('allConsumable','allConsumable');
-    
-    
+    getCount('allAssets', 'allAssetsCount');
+    getCount('allEmployees', 'allEmployeesCount');
+    getCount('allTechnicians', 'allTechniciansCount');
+    getCount('allTangible', 'allTangible');
+    getCount('allConsumable', 'allConsumable');
 
-    function getAssets(type){
+
+
+    function getAssets(type) {
         const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
+        xhr.open("GET", `../model/Asset.php?action=getAssets&type=${type}`, true);
 
-        xhr.onload = function(){
-            if(this.status === 200){
+        xhr.onload = function() {
+            if (this.status === 200) {
                 var assets = JSON.parse(this.responseText);
                 switch (type) {
                     case 'all':
-                        for(var i = 0; i<assets.length;i++){
+                        for (var i = 0; i < assets.length; i++) {
                             var bd = document.getElementById('allAssetsTableBody')
-                            var row= `
+                            var row = `
                                     <td>${i+1}</td>
                                     <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
@@ -172,7 +194,7 @@
                         }
                         break;
                     case 'assigned':
-                        for(var i = 0; i<assets.length;i++){
+                        for (var i = 0; i < assets.length; i++) {
                             var tb = document.getElementById('assignedAssetsTableBody');
                             tb.innerHTML += `
                                 <tr>
@@ -187,7 +209,7 @@
                         break;
 
                     case 'shared':
-                        for(var i = 0; i<assets.length;i++){
+                        for (var i = 0; i < assets.length; i++) {
                             document.getElementById('sharedAssetsTableBody').innerHTML += `
                                 <tr>
                                     <td>${i+1}</td>
@@ -200,7 +222,7 @@
                         }
                         break;
                     case 'unassigned':
-                        for(var i = 0; i<assets.length;i++){
+                        for (var i = 0; i < assets.length; i++) {
                             const tb = document.getElementById('unassignedAssetsTableBody');
                             tb.innerHTML += `
                                 <tr>
@@ -218,54 +240,53 @@
                         }
                         addEventListeners();
                         break;
-                
+
                     default:
                         break;
                 }
-                
+
             }
         }
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send();
     }
 
-    document.getElementById("assetSections").addEventListener('click',function(e){
+    document.getElementById("assetSections").addEventListener('click', function(e) {
         const eventId = e.target.id;
-        if(eventId != 'assetSections'){
-            loadSection("assetContents",eventId);
+        if (eventId != 'assetSections') {
+            loadSection("assetContents", eventId);
             e.stopPropagation();
             setActiveTab(eventId);
         }
-        
+
     });
 
-    function setActiveTab(eventId){
+    function setActiveTab(eventId) {
         var tabs = document.querySelector('#assetSections').querySelectorAll('div');
-        tabs.forEach(tab =>{
+        tabs.forEach(tab => {
             tab.classList.remove('activeTab');
         })
         document.getElementById(eventId).classList.add('activeTab');
     }
-    document.getElementById("addAsset").addEventListener('click',function(e){
+    document.getElementById("addAsset").addEventListener('click', function(e) {
         const eventId = e.target.id;
-        if(eventId == "addAsset"){
-            loadSection("centerSection",eventId);
+        if (eventId == "addAsset") {
+            loadSection("centerSection", eventId);
         }
     })
 
 
     //Add event listener to listen for click events on each asset in all tables
-    function addViewAssetListener(assetElement){
-        assetElement.addEventListener('click', (event) =>{
+    function addViewAssetListener(assetElement) {
+        assetElement.addEventListener('click', (event) => {
             var asset = event.target.parentElement;
             event.stopPropagation();
-            document.cookie=`assetID=${asset.id}`;
-            loadSection('centerSection','viewAsset');
+            document.cookie = `assetID=${asset.id}`;
+            loadSection('centerSection', 'viewAsset');
         })
     }
 
     //Get asset details by ID
-    
 </script>
 <div class="overviewLayout">
     <div>
@@ -273,7 +294,7 @@
     </div>
     <div class="statSection">
         <div>
-            <div class="statBox box1" >
+            <div class="statBox box1">
                 <div class="statNumber" id="allAssetsCount"></div>
                 <div class="statText">All Assets</div>
             </div>
@@ -281,27 +302,27 @@
 
         <div>
             <div class="statBox box2">
-                    <div class="statNumber" id="allEmployeesCount"></div>
-                    <div class="statText">All Employees</div>
+                <div class="statNumber" id="allEmployeesCount"></div>
+                <div class="statText">All Employees</div>
             </div>
         </div>
-            
+
         <div>
-            <div class="statBox box3" >
+            <div class="statBox box3">
                 <div class="statNumber" id="allTechniciansCount"></div>
-                    <div class="statText">All Technicians</div>
+                <div class="statText">All Technicians</div>
             </div>
         </div>
         <div>
-            <div class="statBox box4" >
+            <div class="statBox box4">
                 <div class="statNumber" id="allTangible">897</div>
-                    <div class="statText">Tangible Assets</div>
+                <div class="statText">Tangible Assets</div>
             </div>
         </div>
         <div>
-            <div class="statBox box5" >
+            <div class="statBox box5">
                 <div class="statNumber" id="allConsumable">584</div>
-                    <div class="statText">Cosumable Assets</div>
+                <div class="statText">Cosumable Assets</div>
             </div>
         </div>
     </div>
@@ -317,7 +338,7 @@
         </div>
         <div id="assetContents">
             <?php
-                include("allAssets.php");
+            include("allAssets.php");
             ?>
         </div>
         <div class="buttonSection">
@@ -325,4 +346,3 @@
         </div>
     </div>
 </div>
-

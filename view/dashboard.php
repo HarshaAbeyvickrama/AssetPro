@@ -165,7 +165,7 @@
                                 <tr id=${res[i].UserID}>
                                     <td>${i+1}</td>
                                     <td>EMP/${res[i].EmployeeID}</td>
-                                    <td>${res[i].name}</td>
+                                    <td>${res[i].Name}</td>
                                     <td>${res[i].Gender}</td>
                                     <td><div class='btn btn-assign'>View</div></td>
                                 </tr>
