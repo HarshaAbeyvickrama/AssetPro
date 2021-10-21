@@ -1,15 +1,17 @@
 <style>
-    .header{
+    .header {
         display: flex;
         align-items: center;
         height: 100%;
         padding: 0px;
         justify-content: right;
     }
-    .header > div{
+
+    .header>div {
         margin: 0px 10px;
     }
-    .notificationBadge{
+
+    .notificationBadge {
         height: 50%;
         margin: 0px;
         position: relative;
@@ -17,11 +19,13 @@
         justify-content: center;
         align-items: center;
     }
-    .notificationBadge > img{
+
+    .notificationBadge>img {
         height: 30px;
         width: 30px;
     }
-    #notificationCount{
+
+    #notificationCount {
         position: absolute;
         top: -5px;
         right: -5px;
@@ -36,7 +40,8 @@
         font-size: 11px;
         font-weight: bold;
     }
-    #userSection{
+
+    #userSection {
         display: flex;
         align-items: center;
         /* border: 1px solid red; */
@@ -44,29 +49,35 @@
         box-shadow: 0 0px 2px #5c6e9b;
         border-radius: 12px;
     }
-    #userSection:hover{
+
+    #userSection:hover {
         cursor: pointer;
     }
-    #userSection div{
+
+    #userSection div {
         margin: 0px 5px;
     }
-    #userSection img{
+
+    #userSection img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
     }
-    #username{
+
+    #username {
         font-size: 20px;
         font-weight: 900;
         color: #304068;
         /* height: 100%; */
     }
-    #username:hover{
+
+    #username:hover {
         cursor: pointer;
     }
 
     /* Dropdown */
-    .profile-dropdown{
+    .profile-dropdown {
+        display: none;
         position: absolute;
         width: 250px;
         border-radius: 12px;
@@ -78,23 +89,29 @@
         box-shadow: 0 0px 2px #5c6e9b;
         z-index: 10;
     }
-    /* .profile-dropdown > div{
+
+    .profile-dropdown>div {
         padding: 0px 10px;
     }
-    .profile-dropdown > hr{
+
+    .profile-dropdown>hr {
         width: 100%;
         height: 0.5px;
     }
-    #logout{
-       justify-content: left;
+
+    #logout {
+        justify-content: left;
     }
-    .topic:hover, .log-out:hover {
+
+    .topic:hover,
+    .log-out:hover {
         color: #5c6e9b;
         background-color: #EAEDF5;
         cursor: pointer;
-    } */
-    .profile-dropdown .menu {
-        position: absolute;
+    }
+
+    /* .profile-dropdown .menu {
+        
         top: 80px;
         right: -10px;
         padding: 10px 20px;
@@ -107,7 +124,7 @@
 
     .profile-dropdown .menu::before {
         content: '';
-        position: absolute;
+        
         top: -5px;
         right: 28px;
         width: 20px;
@@ -145,8 +162,7 @@
     }
     .profile-dropdown .menu ul li:hover img {
         opacity: 1;
-    }
-
+    } */
 </style>
 <div class="header">
     <div class="notificationBadge">
@@ -157,25 +173,39 @@
     <div id="userSection">
         <div id="username">
             <?php
-                include('../db/dbConnection.php');
-                $userId = $_SESSION['userID'];
-                // echo($userId);
-                $res = mysqli_query($mysql,"Select CONCAT(userdetails.fName,' ',userdetails.lName) AS name from userdetails where userID=$userId");
-                $name = mysqli_fetch_assoc($res)['name'];
-                echo $name;
+            include('../db/dbConnection.php');
+            $userId = $_SESSION['userID'];
+            // echo($userId);
+            $res = mysqli_query($mysql, "Select CONCAT(userdetails.fName,' ',userdetails.lName) AS name from userdetails where userID=$userId");
+            $name = mysqli_fetch_assoc($res)['name'];
+            echo $name;
             ?>
         </div>
-        <div>
-            <img src="../Images/profile.jpg" alt="">
-        </div>
+        <!-- <div> -->
+        <img src="../Images/profile.jpg" alt="">
+        <!-- </div> -->
     </div>
 </div>
-<!-- <div class="profile-dropdown">
+
+<div class="profile-dropdown" id="profiledropDown">
+    <div>Signed in as</div>
+    <div>
+        <?php
+        echo $name;
+        ?>
+    </div>
+    <hr>
+    <div id="your-profile">
+        Your Profile
+    </div>
+    <div id="logout">
+        Log Out
+    </div>
+
+    <!-- <div class="profile-dropdown">
     <div class="maintopic">Signed in as</div>
     <div class="signedName">
-        <?php
-            echo $name;
-        ?>
+        
     </div>
     <hr>
     <div id="your-profile" class="topic">
@@ -184,14 +214,36 @@
     <div id="logout" class="log-out">
         Log Out
     </div>
+
 </div> -->
 
-<div class="profile-dropdown">
+    <!-- <div class="profile-dropdown" id="profiledropdown">
     <div class="menu">
-        <h3>Signed in as <br> <span> <?php echo $name?> </span></h3>
+        <h3>Signed in as <br> <span>  </span></h3>
         <ul>
             <li><img src="../Images/avatar.png" alt="">My Profile</li>
-            <li><img src="../Images/settings.jpg" alt="">My Profile</li>
+            <li><img src="../Images/settings.jpg" alt="">Log Out</li>
         </ul>
     </div>
+</div> -->
+
 </div>
+
+<script>
+    var userSection = document.getElementById('userSection');
+    userSection.addEventListener('click', (e) => {
+        if (e.target.parentNode.id == 'userSection') {
+            var dd = document.getElementById('profiledropDown');
+            var style = window.getComputedStyle(dd, null).getPropertyValue("display");
+            if (style == 'none') {
+                dd.style.display = 'block';
+            } else {
+                dd.style.display = 'none';
+            }
+        }
+    })
+
+    document.getElementById('logout').addEventListener('click', (e) => {
+        window.location.replace("../controller/mainController.php?action=logout");
+    })
+</script>

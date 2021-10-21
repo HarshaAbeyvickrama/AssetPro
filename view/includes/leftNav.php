@@ -326,12 +326,12 @@
     }
 
     //Logout button event listener
-    var btnLogout = document.getElementById("btnLogout");
-    if(btnLogout){
-        btnLogout.addEventListener("click",()=>{
-            window.location.replace("../controller/mainController.php?action=logout");
-        })
-    }
+    // var btnLogout = document.getElementById("btnLogout");
+    // if(btnLogout){
+    //     btnLogout.addEventListener("click",()=>{
+    //         window.location.replace("../controller/mainController.php?action=logout");
+    //     })
+    // }
 </script>
 
 
