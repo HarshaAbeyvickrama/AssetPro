@@ -141,8 +141,10 @@
         background-color: #EAEDF5;
     }
     #assetContents{
+        all: revert !important;
         overflow-y: hidden;
         padding: 10px;
+        display: flex;
         /* height: 100%; */
 
     }
