@@ -22,14 +22,7 @@
         height: 82vh;
         
     }
-    .table-data {
-        color: #304068;
-        margin: 4px 4px;
-        height: 500px;
-        width: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
+
     .employeeData {
         width: 90%;
         border-collapse: collapse;
@@ -37,21 +30,7 @@
         /* margin-left: 5vw; */
         text-align: center;
     }
-    .table-data th {
-        color: #5C6E9B;
-        padding: 8px;
-        position: sticky;
-        top: 0;
-        background-color: white;
-    }
-    .table-data td {
-        padding: 8px;
-        font-weight: lighter;
-    }
-    .table-data tr:hover{
-        background-color: wheat;
-        cursor: pointer;
-    }
+   
     .btnAction{
         color: white;
         background-color: #5C6E9B;
@@ -75,8 +54,7 @@
         <div>Assigned Assets</div>
     </div>
     <div class="contentSection">
-        <div class="table-data">
-            <table class="employeeData">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Number</th>
@@ -87,10 +65,8 @@
                     </tr>
                 </thead>
                 <tbody id="employeeTableBody"></tbody>
-             
             </table>
         </div>
-    </div>
 </div>
 
 
