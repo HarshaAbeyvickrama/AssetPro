@@ -5,22 +5,24 @@
 .table::after {
   all: unset;
   box-sizing: border-box;
-  margin: 20px 0px;
+  /* margin: 20px 0px; */
   padding: 0;
 }
 .table {
-  width: auto;
-  border-collapse: collapse;
+  width: 90%;
+  height: 200px;
+  /* border-collapse: collapse; */
   background-color: white;
-  text-align: left;
   overflow-x: hidden;
-  overflow-y: scroll !important;
+  overflow-y: auto !important;
+  text-align: left;
+  /* overflow-y: scroll !important; */
   /* box-shadow: 0 1px 5px rgba(128, 128, 128, 0.5); */
 }
 .table thead {
   /* box-shadow: 0 1px 5px rgba(128, 128, 128, 0.5); */
   color: #304068;
-  
+  /* background-color: red; */
 }
 .table th {
   padding: 1rem 2rem;
@@ -31,11 +33,12 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  
+  background-color: white;
 }
 .table td {
   padding: 1rem 2rem;
   color: #5c6e9b;
+  border-collapse: collapse;
 }
 .table tbody tr:hover{
     background-color: #EAEDF5;

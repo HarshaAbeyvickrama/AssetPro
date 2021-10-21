@@ -131,10 +131,9 @@
             <table class="tecData">
                 <tr">
                     <th>#</th>
-                    <th>User ID</th>
+                    <!-- <th>User ID</th> -->
                     <th>Technician ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Gender</th>
                     <th>View</th>
                     <!-- <th>Edit</th>
@@ -149,10 +148,9 @@
 
                     $sql = "SELECT
                                 USER.UserID,
-                                userdetails.fName,
-                                userdetails.lName,
+                                CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
                                 userdetails.Gender,
-                                tec.TechnicianID
+                                CONCAT('TEC/',tec.TechnicianID) AS TechnicianID
                             FROM
                                 technicianuser tec
                             INNER JOIN userdetails ON userdetails.UserID = tec.UserID
@@ -166,12 +164,10 @@
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td></td>
-                                <td>" . $row["UserID"] . "</td>
                                 <td>" . $row["TechnicianID"] . "</td>
-                                <td>" . $row["fName"] . "</td>
-                                <td>" . $row["lName"] . "</td>
+                                <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td><button class='viewBtn'>View</button></td>
+                                <td id=".$row['TechnicianID']."><button class='viewBtn'>View</button></td>
                               </tr>";
                         }
                     } else {

@@ -141,7 +141,7 @@
         background-color: #EAEDF5;
     }
     #assetContents{
-        overflow-y: hidden;
+        overflow-y: auto;
         padding: 10px;
         /* height: 100%; */
 
