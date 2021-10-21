@@ -147,7 +147,7 @@
 
     .col-btn > div:hover {
         cursor: pointer;
-        background-color: #;
+        background-color: #EAEDF5;
         transition: .5s;
     }
 
@@ -237,7 +237,7 @@
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell"> 1 </div>
-                        <div class="tableCell"> FA/12345 </div>
+                        <div class="tableCell"> FA/CC/1 </div>
                         <div class="tableCell"> Laptop </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
@@ -245,7 +245,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 2 </div>
-                        <div class="tableCell"> FA/12346 </div>
+                        <div class="tableCell"> FA/CP/1 </div>
                         <div class="tableCell"> Printer </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Shanaka Madhushan </div>
@@ -253,7 +253,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 3 </div>
-                        <div class="tableCell"> CA/23456 </div>
+                        <div class="tableCell"> CA/CP/2 </div>
                         <div class="tableCell"> Monitor </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> Nalin Perera </div>
@@ -261,7 +261,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 4 </div>
-                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> FA/CP/3 </div>
                         <div class="tableCell"> CPU </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
@@ -269,7 +269,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 5 </div>
-                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> CA/CP/4 </div>
                         <div class="tableCell"> Web Cam </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
@@ -277,7 +277,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 6 </div>
-                        <div class="tableCell"> FA/12345 </div>
+                        <div class="tableCell"> FA/CP/5 </div>
                         <div class="tableCell"> Scanner </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
