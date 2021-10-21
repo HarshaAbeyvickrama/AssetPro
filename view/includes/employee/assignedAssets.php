@@ -81,6 +81,11 @@
         font-size: 15px;
         align-items:center;
     }
+
+    .btnAction:hover{
+        color: black;
+        background-color: white;
+    }
 </style>
 
 <div class="overviewLayout">
