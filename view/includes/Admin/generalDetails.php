@@ -7,6 +7,8 @@
         /* text-align: center; */
         padding: 20px;
         position: relative;
+        font-size: 16px;
+        align-items: center;
     }
 
     .depInfo {
@@ -23,7 +25,7 @@
         width: calc(100% - 50px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 20px;
         border-radius: 9px;
         padding: 3px 3px;
         margin-top: 10px;
@@ -31,6 +33,7 @@
         outline: none;
         padding: 8px 15px 8px 15px;
         font-size: 18px;
+        color: #304068;
     }
 
     .col-h {
