@@ -47,21 +47,13 @@
     .table-data {
         color: #304068;
         margin: 20px 4px;
-        height: 500px;
-        width: 99%;
+        height: 400px;
+        width: 100%;
         /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
         text-align: left;
-    }
-
-    .tecData {
-        /* width: 100%; */
-        border-collapse: collapse;
-        font-size: 20px;
-        margin-left: 5vh;
-        text-align: center;
-        text-align: left;
+        font-size: 18px;
     }
 
     .table-data th {
@@ -75,6 +67,13 @@
     .table-data td {
         padding: 8px;
         font-weight: lighter;
+        color: #5C6E9B;
+        /* width: 20%; */
+    }
+
+    .table-data tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     table tr:nth-child(2) {
@@ -127,19 +126,19 @@
 
 
     <div class="contentSection ">
-        <div class="table-data">
-            <table class="tecData">
-                <tr">
-                    <th>#</th>
-                    <!-- <th>User ID</th> -->
-                    <th>Technician ID</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>View</th>
-                    <!-- <th>Edit</th>
+        <!-- <div> -->
+        <table class="table-data">
+            <tr">
+                <th>#</th>
+                <!-- <th>User ID</th> -->
+                <th>Technician ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>View</th>
+                <!-- <th>Edit</th>
                     <th>Delete</th> -->
-                    </tr>
-
+                </tr>
+                
                     <?php
 
                     // $conn = mysqli_connect("localhost", "root", "", "assetpro");
@@ -167,7 +166,7 @@
                                 <td>" . $row["TechnicianID"] . "</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td id=".$row['TechnicianID']."><button class='viewBtn'>View</button></td>
+                                <td id=" . $row['TechnicianID'] . "><button class='viewBtn'>View</button></td>
                               </tr>";
                         }
                     } else {
@@ -176,8 +175,9 @@
                     $mysql->close();
 
                     ?>
-            </table>
-        </div>
+                
+        </table>
+        <!-- </div> -->
     </div>
 </div>
 

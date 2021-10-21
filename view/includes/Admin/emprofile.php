@@ -55,6 +55,7 @@
 
     .profileImageSection>img {
         width: 200px;
+        height: 200px;
         border-radius: 50%;
     }
 
@@ -199,19 +200,6 @@
     .radio-group > input[type=radio]:hover{
         cursor: pointer;
     }
-
-    /* .editBtn,
-    .delBtn {
-        width: 80px;
-        height: 40px;
-        background-color: #5C6E9B;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        color: #F1F4FF;
-        margin-left: 70vh;
-    } */
-
     .editBtn:hover,
     .backBtn:hover {
         cursor: pointer;
@@ -219,22 +207,13 @@
         transition: .5s;
     }
 
-    
-    /* .BtnGroup{
-        border: 1px solid red;
-        display: block;
-        position: relative;
-        float: left;
-    } */
-
-
 </style>
 <form action="" id="errorlogForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
             <div class="profileImageSection">
-                <img src="../Images/profile.jpg" alt="">
+                <img src="../Images/profile.jpg" alt="" name="profileImage" id="imagePrev">
                 <input type="file" name="profileImage" id="profileImage" hidden>
                 <label for="profileImage" id="uploadBtn"> Choose Image </label>
             </div>
@@ -244,7 +223,7 @@
 
                     <div class="col-f">
                         <span for="empID"> Employee ID: </span>
-                        <input type="text" name="tecID" id="tecID">
+                        <input type="text" name="empID" id="empID">
                     </div>
                     
                     <div class="col-h">
@@ -264,14 +243,14 @@
 
                     <div class="col-f">
                         <span for="role"> Role: </span>
-                        <input type="text" name="role" id="role">
+                        <input type="text" name="role" id="role" value="Employee">
                     </div>
 
                     <div class="col-f">
                         <span for="gender"> Gender </span>
-                        <div class="radio-group">
-                            <input type="radio" name="gender" id="male" value="male"><label> Male </label>
-                            <input type="radio" name="gender" id="female" value="female"><label> Female </label>
+                        <div class="radio-group" id="radio-group">
+                            <input type="radio" name="gender" id="Male" value="male"><label> Male </label>
+                            <input type="radio" name="gender" id="Female" value="female"><label> Female </label>
                         </div>
                     </div>
                     
@@ -302,7 +281,7 @@
                 <input type="text" name="address" id="address">
             </div>
             <div class="col-f">
-                <span for="contactNo"> Contact No: </span>
+                <span for="contactNo"> Contact Number: </span>
                 <input type="number" name="contactNo" id="contactNo" maxlength="10">
             </div>
             <div class="col-f">
@@ -325,7 +304,7 @@
                 <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
             <div class="col-btn">
-                <div class="btnAction" id="back"> Back </div>
+                <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div>
             </div>
                     
               
@@ -379,6 +358,29 @@
         
         })
     })
-    
+
+    //Getting the employee details to the form
+    var employeeID = getCookieValue('EmployeeID');
+    var employee = JSON.parse(employeeID)[0];
+    console.log(employee);
+
+    document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
+    document.getElementById('empID').value = employee.EmployeeID;
+    document.getElementById('fName').value = employee.fName;
+    document.getElementById('lName').value = employee.lName;
+    document.getElementById('NIC').value = employee.NIC;
+    var radio = document.getElementById('radio-group').children;
+    // console.log(employee.Gender);
+    var gender = document.getElementById(employee.Gender)
+    gender.checked = true;
+    // document.getElementById(employee.Gender).checked = true;
+    document.getElementById('dob').value = employee.DOB;
+    document.getElementById('maritalStatus').value = employee.CivilStatus;
+    document.getElementById('address').value = employee.Address;
+    document.getElementById('contactNo').value = employee.PhoneNumber;
+    document.getElementById('email').value = employee.Email;
+    document.getElementById('eName').value = employee.eName;
+    document.getElementById('eRelationship').value = employee.Relationship;
+    document.getElementById('econtact').value = employee.TelephoneNumber;
     
 </script>
