@@ -10,7 +10,7 @@
         switch ($_REQUEST['action']) {
 
             case 'reportBreakAsset':
-                reportAsset();
+                reportAsset($_REQUEST['asset_id']);
                 break;
 
             default:
@@ -20,7 +20,7 @@
     }
 
 
-    function  reportAsset(){
+    function  reportAsset($asset_id){
        
         global $mysql;
 
@@ -28,7 +28,7 @@
         $reason = $_POST['exDef'];
       
         $reportassetquery = "INSERT into breakdown (AssetID,TechnicianID,EmployeeID,Date,Reason,DefectedParts)
-        VALUES(2,6,14,now(),'$defectedPart','$reason')";
+        VALUES('$asset_id',6,14,now(),'$reason','$defectedPart')";
         if(mysqli_query($mysql,$reportassetquery )) {
             echo("Successfully Reported!!");
         }else{

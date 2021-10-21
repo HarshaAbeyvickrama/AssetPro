@@ -26,9 +26,10 @@
                 break;
 
             case 'viewBreakAssetById':
-                viewBreakAssetDetails($_REQUEST['view_id']);
+                viewBreakAssetDetails($_REQUEST['view_id'],$_REQUEST['assetid']);
                 break;
                   
+            
 
 
             default:
@@ -147,7 +148,7 @@
 
     }
   //viewing the details in the form including reason and defected parts
-    function  viewBreakAssetDetails($view_id){
+    function  viewBreakAssetDetails($view_id,$assetid){
         global $mysql;
       
                 $sql = "SELECT
@@ -165,7 +166,8 @@
             INNER JOIN category ON asset.CategoryID = category.CategoryID
             INNER JOIN breakdown ON breakdown.AssetID = asset.AssetID
             WHERE
-                asset.AssetID = 2 AND breakdown.BreakdownID = $view_id";
+                asset.AssetID = $assetid AND breakdown.BreakdownID = $view_id 
+            ORDER BY BreakdownID";
                 
            
         $result = mysqli_query($mysql,$sql);
