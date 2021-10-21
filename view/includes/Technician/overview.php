@@ -66,7 +66,7 @@
         display: inline-block;
         /* grid-template-rows: 1fr 1fr; */
         border-radius: 15px;
-        padding: 10px;
+        padding: 20px;
         background-color: white;
         overflow-y: auto;
     }
@@ -126,46 +126,33 @@
     </div>
     <div class="statSection">
         <div>
-            <div class="statBox box1" id="allAssets">
-                <div class="statNumber" id="allAssets"> </div>
+            <div class="statBox box1">
+                <div class="statNumber" id="allAssets"> 7 </div>
                 <div class="statText"> All Assets </div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box2" id="assignedAssets">
-                    <div class="statNumber" id="assignedAssets"> </div>
+            <div class="statBox box2">
+                    <div class="statNumber" id="assignedAssets"> 3 </div>
                     <div class="statText"> Assigned Assets </div>
             </div>
         </div>
             
         <div>
-            <div class="statBox box3" id="inProgress">
-                <div class="statNumber" id="inProgress"> </div>
+            <div class="statBox box3">
+                <div class="statNumber" id="inProgress"> 3 </div>
                     <div class="statText"> In Progress </div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box4" id="repairedAssets">
-                <div class="statNumber" id="repairedAssets"> </div>
+            <div class="statBox box4">
+                <div class="statNumber" id="repairedAssets"> 1 </div>
                     <div class="statText"> Repaired Assets </div>
             </div>
         </div>
 
-        <div>
-            <!-- <div class="statBox box4" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
-
-        <div>
-            <!-- <div class="statBox box5" id="allTechnicians">
-                <div class="statNumber"></div>
-                    <div class="statText"></div>
-            </div> -->
-        </div>
     </div>
 
     <div>
@@ -184,12 +171,12 @@
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell"> 22/10/2021 </div>
-                        <div class="tableCell"> FA/12345 was assigned to you </div>
+                        <div class="tableCell"> FA/FU/1 was assigned to you </div>
                         <div class="tableCell"> 3 hours ago </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 21/10/2021 </div>
-                        <div class="tableCell"> Successfully repaired FA/12346 </div>
+                        <div class="tableCell"> Successfully repaired CA/PE/2 </div>
                         <div class="tableCell"> 18 hours ago </div>
                     </div>
                    
@@ -211,17 +198,17 @@
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell"> 18/10/2021 </div>
-                        <div class="tableCell"> Reported a Breakdown of FA/23445 </div>
+                        <div class="tableCell"> Reported a Breakdown of FA/EA/3 </div>
                         <div class="tableCell"> 4 days ago </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 21/07/2021 </div>
-                        <div class="tableCell"> Reported a Breakdown of FA/23456 </div>
+                        <div class="tableCell"> Reported a Breakdown of CA/PE/4 </div>
                         <div class="tableCell"> 1 day ago </div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 12/10/2021 </div>
-                        <div class="tableCell"> IA/34567 was unassigned from you </div>
+                        <div class="tableCell"> IA/SW/5 was unassigned from Ayisha Siddeequa </div>
                         <div class="tableCell"> 10 days ago </div>
                     </div>
                    
@@ -232,7 +219,7 @@
 </div>
 
 <script>
-    getCount('allAssets');
+    getCount('allAssets',);
     getCount('assignedAssets');
     getCount('inProgress');
     getCount('repairedAssets');

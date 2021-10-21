@@ -84,7 +84,7 @@
  
 <div class="table scrollbar">
     <div class="tableHeader">
-        <div> Number </div>
+        <div> # </div>
         <div> Asset ID </div>
         <div> Asset Name </div>
         <div> Asset Type </div>
@@ -93,48 +93,48 @@
     </div>
     <div class="tableRow">
         <div> 1 </div>
-        <div> FA/12345 </div>
-        <div> Laptop </div>
+        <div> FA/EA/1 </div>
+        <div> Acer Nitro </div>
         <div> fixed Asset </div>
-        <div> Wathsala Perera </div>
+        <div> Douglas Kumar </div>
         <div class="cell-center"><button class="btn done"> Done </button></div>
  
     </div>
     <div class="tableRow">
         <div> 2 </div>
-        <div> FA/12346 </div>
+        <div> FA/EA/3 </div>
         <div> Printer </div>
         <div> Fixed Asset </div>
-        <div> shanaka Madhushan </div>
+        <div> Andrew Dias </div>
         <div class="cell-center"><button class="btn done"> Done </button></div>
     </div>
     <div class="tableRow">
         <div> 3 </div>
-        <div> CA/23456 </div>
+        <div> CA/PE/2 </div>
         <div> Monitor </div>
         <div> Current Asset </div>
-        <div> Nalin Perera </div>
+        <div> Pavani Kumari </div>
         <div class="cell-center"><button class="btn done"> Done </button></div>
     </div>
     <div class="tableRow">
         <div> 4 </div>
-        <div> CA/23458 </div>
+        <div> CA/PE/4 </div>
         <div> CPU </div>
         <div> Current Asset </div>
-        <div> kasun Dias </div>
+        <div> Samanali Perera </div>
         <div class="cell-center"><button class="btn done"> Done </button></div>
     </div>
     <div class="tableRow">
         <div> 5 </div>
-        <div> CA/23459 </div>
+        <div> CA/PE/7 </div>
         <div> Web Cam </div>
         <div> Current Asset </div>
-        <div> kasun Dias </div>
+        <div> Farhan Ahamed </div>
         <div class="cell-center"><button class="btn done"> Done </button></div>
     </div>
     <div class="tableRow">
         <div> 6 </div>
-        <div> FA/12347 </div>
+        <div> IA/SW/5 </div>
         <div> Scanner </div>
         <div> Fixed Asset </div>
         <div> Wathsala Perera </div>

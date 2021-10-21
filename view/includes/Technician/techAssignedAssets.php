@@ -76,6 +76,7 @@
     .cell-center {
         text-align: center;
         width: 20%;
+        text-decoration: none;
     }
  
     .tableHeader>div:first-of-type {
@@ -85,7 +86,7 @@
  
 <div class="table scrollbar">
     <div class="tableHeader">
-        <div> Number </div>
+        <div> # </div>
         <div> Asset ID </div>
         <div> Asset Name </div>
         <div> Asset Type </div>

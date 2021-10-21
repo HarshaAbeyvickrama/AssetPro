@@ -189,28 +189,28 @@
     <div class="statSection">
         <div>
             <div class="statBox box1" id="allAssets">
-                <div class="statNumber" id="allAssets"> </div>
+                <div class="statNumber" id="allAssets"> 7 </div>
                 <div class="statText"> All Assets </div>
             </div>
         </div>
 
         <div>
             <div class="statBox box2" id="assignedAssets">
-                    <div class="statNumber" id="assignedAssets"> </div>
+                    <div class="statNumber" id="assignedAssets"> 3 </div>
                     <div class="statText"> Assigned Assets </div>
             </div>
         </div>
             
         <div>
             <div class="statBox box3" id="inProgress">
-                <div class="statNumber" id="inProgress"> </div>
+                <div class="statNumber" id="inProgress"> 3 </div>
                     <div class="statText"> In Progress </div>
             </div>
         </div>
 
         <div>
             <div class="statBox box4" id="repairedAssets">
-                <div class="statNumber" id="repairedAssets"> </div>
+                <div class="statNumber" id="repairedAssets"> 1 </div>
                     <div class="statText"> Repaired Assets </div>
             </div>
         </div>
@@ -227,7 +227,7 @@
 
             <div class="recentActivityTable table">
                 <div class="tableHeader">
-                    <div class="tableCell"> Number </div>
+                    <div class="tableCell"> # </div>
                     <div class="tableCell"> Asset ID </div>
                     <div class="tableCell"> Asset Name </div>
                     <div class="tableCell"> Asset Type </div>
@@ -237,7 +237,7 @@
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell"> 1 </div>
-                        <div class="tableCell"> FA/12345 </div>
+                        <div class="tableCell"> FA/FU/1 </div>
                         <div class="tableCell"> Laptop </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
@@ -245,7 +245,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 2 </div>
-                        <div class="tableCell"> FA/12346 </div>
+                        <div class="tableCell"> FA/EA/3 </div>
                         <div class="tableCell"> Printer </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Shanaka Madhushan </div>
@@ -253,7 +253,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 3 </div>
-                        <div class="tableCell"> CA/23456 </div>
+                        <div class="tableCell"> CA/PE/4 </div>
                         <div class="tableCell"> Monitor </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> Nalin Perera </div>
@@ -261,7 +261,7 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 4 </div>
-                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> CA/PE/2 </div>
                         <div class="tableCell"> CPU </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
@@ -269,20 +269,12 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 5 </div>
-                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> IA/SW/5 </div>
                         <div class="tableCell"> Web Cam </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
                         <div class="cell-center"><button class="btn done"> Done </button></div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 6 </div>
-                        <div class="tableCell"> FA/12345 </div>
-                        <div class="tableCell"> Scanner </div>
-                        <div class="tableCell"> Fixed Asset </div>
-                        <div class="tableCell"> Wathsala Perera </div>
-                        <div class="cell-center"><button class="btn done"> Done </button></div>
-                    </div>      
+                    </div>     
                    
                 </div>
             </div>
