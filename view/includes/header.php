@@ -67,7 +67,7 @@
 
     /* Dropdown */
     .profile-dropdown{
-        display: block;
+        display: none;
         position: absolute;
         width: 250px;
         border-radius: 12px;
@@ -131,7 +131,6 @@
 <script>
     var userSection = document.getElementById('userSection');
     userSection.addEventListener('click',(e)=>{
-        // console.log(e.target.parentNode.id)
         if(e.target.parentNode.id == 'userSection'){
             var dd = document.getElementById('profiledropDown');
             var style = window.getComputedStyle(dd, null).getPropertyValue("display");
@@ -144,7 +143,6 @@
     })
 
     document.getElementById('logout').addEventListener('click',(e) =>{
-        console.log("logout");
         window.location.replace("../controller/mainController.php?action=logout");
     })
 </script>
