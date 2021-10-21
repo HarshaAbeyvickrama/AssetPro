@@ -44,7 +44,6 @@
         <div>Breakdown Assets</div>
     </div>
     <div class="contentSection">
-        <div class="table-data">
             <table class="table">
                 <thead>
                     <tr>
@@ -60,7 +59,6 @@
                 <tbody id="employeeTableBody"></tbody>
              
             </table>
-        </div>
     </div>
 </div>
 
@@ -73,10 +71,13 @@
                 var viewassets = JSON.parse(this.responseText);
                 console.log(viewassets);
                 for (var i = 0; i < viewassets.length; i++) {
+                    var date = new Date(viewassets[i]['reportedDate']);
+                    var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
+                    var reportedDate = viewassets[i]['reportedDate'].replace(/-/gi, "/");
                     document.getElementById('employeeTableBody').innerHTML += `
                                     <tr>
                                         <td>${i+1}</td>
-                                        <td>${viewassets[i]['reportedDate']}</td>
+                                        <td>${newDate}</td>
                                         <td>${viewassets[i]['BreakdownID']}</td>
                                         <td>${viewassets[i]['AssetID']}</td>
                                         <td>${viewassets[i]['assetName']}</td>

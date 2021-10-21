@@ -73,7 +73,7 @@
                     document.getElementById('employeeTableBody').innerHTML += `
                                     <tr>
                                         <td>${i+1}</td>
-                                        <td>${assets[i]['AssetID']}</td>
+                                        <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                         <td>${assets[i]['assetName']}</td>
                                         <td>${assets[i]['assetType']}</td>
                                         <td>  
@@ -87,6 +87,7 @@
     }
     loadAssets();
     
+
         
     function report(asset){
         var assetDetails=null;
