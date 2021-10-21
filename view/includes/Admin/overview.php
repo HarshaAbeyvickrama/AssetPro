@@ -90,7 +90,7 @@
     }
 
     table {
-        color: #304068;
+        color: #5c6e9b;
         margin: 4px 4px;
         height: 400px;
         width: 80%;
@@ -98,6 +98,12 @@
         overflow-y: auto;
         overflow-x: hidden;
         text-align: left;
+        font-size: 18px;
+    }
+
+    table tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     td {
@@ -172,35 +178,35 @@
                 <th>Time</th>
             </tr>
             <tr>
-                <td>19/10/2021</td>
+                <td>21/10/2021</td>
                 <td>Wathsala</td>
                 <td>Employee</td>
                 <td>Wathsala was added to the system</td>
                 <td>4 hours ago</td>
             </tr>
             <tr>
-                <td>19/10/2021</td>
+                <td>21/10/2021</td>
                 <td>Kasun</td>
                 <td>Employee</td>
                 <td>Kasun was added to the system</td>
                 <td>5 hours ago</td>
             </tr>
             <tr>
-                <td>19/10/2021</td>
+                <td>21/10/2021</td>
                 <td>Manoj</td>
                 <td>Technician</td>
                 <td>Manoj was added to the system</td>
                 <td>5 hours ago</td>
             </tr>
             <tr>
-                <td>18/10/2021</td>
+                <td>20/10/2021</td>
                 <td>Dasun</td>
                 <td>Technician</td>
                 <td>Dasun was added to the system</td>
                 <td>Yesterday</td>
             </tr>
             <tr>
-                <td>18/10/2021</td>
+                <td>20/10/2021</td>
                 <td>Amali</td>
                 <td>Employee</td>
                 <td>Amali was added to the system</td>

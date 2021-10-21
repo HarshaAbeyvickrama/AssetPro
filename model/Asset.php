@@ -223,13 +223,18 @@
                 $sql = "SELECT
                             asset.AssetID,
                             asset.Status,
-                            assetdetails.Name as assetName,
+                            assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name as assetType
-                        FROM asset
+                            t.Name AS assetType,
+                            t.TypeCode,
+                            c.CategoryCode
+                        FROM
+                            asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN type ON asset.TypeID = type.TypeID
-                        ORDER BY asset.AssetID";
+                        Inner join category c on asset.CategoryID = c.CategoryID
+                        INNER join type t on t.TypeID = asset.TypeID
+                        ORDER BY
+                            asset.AssetID";
                 
                 break;
             case 'assigned':
@@ -238,13 +243,23 @@
                             asset.Status,
                             assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name AS assetType,
-                            CONCAT(userdetails.fName,' ',userdetails.lName) as employee
+                            t.Name AS assetType,
+                            c.CategoryCode,
+                            t.TypeCode,
+                            t.TypeID,
+                            CONCAT(
+                                userdetails.fName,
+                                ' ',
+                                userdetails.lName
+                            ) AS employee
                         FROM
                             asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
-                        INNER join userdetails ON asset.EmployeeID = userdetails.UserID
+                        INNER JOIN category c ON
+                            asset.CategoryID = c.CategoryID
+                        INNER JOIN TYPE t ON
+                            asset.TypeID = t.TypeID
+                        INNER JOIN userdetails ON asset.EmployeeID = userdetails.UserID
                         WHERE
                             asset.Status = 'assigned' AND asset.EmployeeID IS NOT NULL AND asset.DepartmentID IS NULL
                         ORDER BY
@@ -257,15 +272,21 @@
                             asset.Status,
                             assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name AS assetType,
+                            t.Name AS assetType,
+                            c.CategoryCode,
+                            t.TypeCode,
+                            t.TypeID,
                             department.Name AS department
                         FROM
                             asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+                        INNER JOIN category c ON
+                            asset.CategoryID = c.CategoryID
+                        INNER JOIN TYPE t ON
+                            asset.TypeID = t.TypeID
                         INNER JOIN department ON department.DepartmentID = asset.DepartmentID
                         WHERE
-                            asset.Status = 'assigned' AND asset.EmployeeID IS NULL AND asset.DepartmentID IS NOT NULL
+                            asset.Status = 'shared' AND asset.EmployeeID IS NULL AND asset.DepartmentID IS NOT NULL
                         ORDER BY
                             asset.AssetID";
                 break;
@@ -274,13 +295,22 @@
                 $sql = "SELECT
                             asset.AssetID,
                             asset.Status,
-                            assetdetails.Name as assetName,
+                            assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name as assetType
-                        FROM asset
+                            t.Name AS assetType,
+                            c.CategoryCode,
+                            t.TypeCode
+                        FROM
+                            asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN type ON asset.TypeID = type.TypeID WHERE asset.Status= 'unassigned'
-                        ORDER BY asset.AssetID";
+                        INNER JOIN category c ON
+                            asset.CategoryID = c.CategoryID
+                        INNER JOIN TYPE t ON
+                            asset.TypeID = t.TypeID
+                        WHERE
+                            asset.Status = 'unassigned'
+                        ORDER BY
+                            asset.AssetID";
                 
                 break;
            

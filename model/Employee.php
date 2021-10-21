@@ -19,6 +19,10 @@ if (isset($_REQUEST['action'])) {
             getAllEmployees();
             break;
 
+        case 'allTechnicians';
+            getAllTechnicians();
+            break;
+
         case 'loadEmployee';
             loadEmployee($_REQUEST['EmployeeID']);
             break;
@@ -31,18 +35,21 @@ if (isset($_REQUEST['action'])) {
 
 // Retrieve all employee details
 
-function getAllEmployees()
-{
+function getAllEmployees(){
     global $mysql;
 
     $sql = "SELECT
-                employeeuser.UserID,
-                employeeuser.EmployeeID,
-                CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
-                userdetails.Gender
+                ud.UserID,
+                CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                ud.Gender,
+                d.DepartmentCode,
+                eu.EmployeeID
             FROM
-                employeeuser
-            INNER JOIN userdetails ON employeeuser.UserID = userdetails.UserID";
+                userdetails ud
+            INNER JOIN employeeuser eu ON
+                ud.UserID = eu.UserID
+            INNER JOIN department d ON
+                eu.DepartmentID = d.DepartmentID";
 
     $result = mysqli_query($mysql, $sql);
     $employees = array();
@@ -54,8 +61,8 @@ function getAllEmployees()
     }
     echo json_encode($employees);
 }
-function saveEmployee()
-{
+
+function saveEmployee(){
     global $mysql;
     mysqli_begin_transaction($mysql);
 
@@ -94,7 +101,7 @@ function saveEmployee()
         //Inserting into employeeuser table
         $employeeuser = "INSERT INTO employeeuser VALUES
                         (NULL,'$userID','$departmentID')";
-                        print_r($employeeuser);
+                        
         mysqli_query($mysql, $employeeuser);
 
         //Inserting into useremergency table
@@ -136,8 +143,7 @@ function saveEmployee()
 }
 
 //getting the employee list (remove if meka not working)
-function getEmployees($employee)
-{
+function getEmployees($employee){
     global $mysql;
     switch ($employee) {
         case 'employees':
@@ -173,4 +179,30 @@ function loadEmployee($EmployeeID) {
     global $mysql;
     echo json_encode(array());
     $viewEmployee = "SELECT";
+}
+// Get all technicians
+function getAllTechnicians(){
+    global $mysql;
+    $sql = "SELECT
+                t.UserID,
+                t.TechnicianID,
+                CONCAT(
+                    userdetails.fName,
+                    ' ',
+                    userdetails.lName
+                ) AS name,
+                userdetails.Gender
+            FROM
+                technicianuser t
+            INNER JOIN userdetails ON t.UserID = userdetails.UserID";
+
+    $result = mysqli_query($mysql, $sql);
+    $technicians = array();
+
+    if ($result) {
+        while ($technician = mysqli_fetch_assoc($result)) {
+            $technicians[] = $technician;
+        }
+    }
+    echo json_encode($technicians);
 }
