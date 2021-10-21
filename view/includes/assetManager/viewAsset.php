@@ -389,6 +389,7 @@
                 console.log("call")
                 var asset = JSON.parse(this.responseText);
                 console.log(asset);
+                element('assetID').value = `${asset.CategoryCode}/${asset.TypeCode}/${assetID}`;
                 element('imagePreview').src = `../${asset.ImageURL}`;
                 element('assetName').value = asset.Name;
                 element('assetDescription').value = asset.Description;
