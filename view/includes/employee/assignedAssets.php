@@ -68,6 +68,19 @@
         background-color: white;
         overflow-y: auto;
     }
+
+    .btnAction{
+        color: white;
+        background-color: #5C6E9B;
+        padding: 10px;
+        border: none;
+        border-radius: 32px;
+        width: 80px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 15px;
+        align-items:center;
+    }
 </style>
 
 <div class="overviewLayout">
