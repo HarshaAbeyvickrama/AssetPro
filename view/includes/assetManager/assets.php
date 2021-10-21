@@ -80,44 +80,7 @@
     }
 
 
-    /* Recent activity Table CSS */
-    .table{
-        display: table;
-        width: 100%;
-        margin: 10px 0px;
-        
-    }
-    .tableHeader{
-        display: table-header-group;
-        font-size: 19px;
-        padding: 15px;
-        font-weight: bold;
-    }
-    .table .tableRowGroup{
-        display: table-row-group;
-    }
-    .tableRow{
-        display: table-row;
-    }
-    .tableCell{
-        display: table-cell;
-    }
-    .tableRowGroup .tableRow:hover{
-        cursor: pointer;
-        background-color: #EAEDF5;
-        
-    }
-    .tableRow .tableCell{
-        padding:10px 0px;
-        
-    }
-
-   
-    hr{
-        background-color: #304068;
-        width: 100%;
-        /* height: 1px; */
-    }
+    
     #assetSections{
         display: flex;
         justify-content: center;
@@ -141,21 +104,20 @@
         background-color: #EAEDF5;
     }
     #assetContents{
-        all: revert !important;
         overflow-y: hidden;
-        padding: 10px;
+        /* padding: 10px; */
         display: flex;
-        /* height: 100%; */
 
     }
     .buttonSection{
-        all: revert;
         display: flex;
         align-items: center;
-        justify-content: end;
-        padding-bottom: 10px;
+        justify-content: right;
+        /* padding-bottom: 10px; */
+        float: right;
     }
     .button{
+        margin-right: 15px;
         background-color: #6A71D7;
         padding: 10px 20px;
         color: white;
@@ -194,7 +156,7 @@
                             var bd = document.getElementById('allAssetsTableBody')
                             var row= `
                                     <td>${i+1}</td>
-                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
                                     <td>${assets[i]['AssetCondition']}</td>   
@@ -215,7 +177,7 @@
                             tb.innerHTML += `
                                 <tr>
                                     <td>${i+1}</td>
-                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
                                     <td>${assets[i]['AssetCondition']}</td>
@@ -229,7 +191,7 @@
                             document.getElementById('sharedAssetsTableBody').innerHTML += `
                                 <tr>
                                     <td>${i+1}</td>
-                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
                                     <td>${assets[i]['AssetCondition']}</td>
@@ -243,14 +205,14 @@
                             tb.innerHTML += `
                                 <tr>
                                     <td>${i+1}</td>
-                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
                                     <td>${assets[i]['AssetCondition']}</td>
                                     <td>
-                                        <div class='assignAssetButton' id=${assets[i]['AssetID']}>
+                                        <button class='btn btn-assign' id=${assets[i]['AssetID']}>
                                             Assign
-                                        </div>
+                                        </button>
                                     </td>
                                 </tr>`;
                         }
