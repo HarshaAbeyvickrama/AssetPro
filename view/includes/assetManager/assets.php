@@ -141,8 +141,10 @@
         background-color: #EAEDF5;
     }
     #assetContents{
+        all: revert !important;
         overflow-y: hidden;
         padding: 10px;
+        display: flex;
         /* height: 100%; */
 
     }
@@ -211,48 +213,46 @@
                         for(var i = 0; i<assets.length;i++){
                             var tb = document.getElementById('assignedAssetsTableBody');
                             tb.innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>
-                                    <div>${assets[i]['employee']}</div>
-                                </div>`;
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['assetName']}</td>
+                                    <td>${assets[i]['assetType']}</td>
+                                    <td>${assets[i]['AssetCondition']}</td>
+                                    <td>${assets[i]['employee']}</td>
+                                </tr>`;
                         }
                         break;
 
                     case 'shared':
                         for(var i = 0; i<assets.length;i++){
                             document.getElementById('sharedAssetsTableBody').innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>
-                                    <div>${assets[i]['department']}</div>
-                                </div>`;
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['assetName']}</td>
+                                    <td>${assets[i]['assetType']}</td>
+                                    <td>${assets[i]['AssetCondition']}</td>
+                                    <td>${assets[i]['department']}</td>
+                                </tr>`;
                         }
                         break;
                     case 'unassigned':
                         for(var i = 0; i<assets.length;i++){
                             const tb = document.getElementById('unassignedAssetsTableBody');
                             tb.innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['assetName']}</div>
-                                    <div>${assets[i]['assetType']}</div>
-                                    <div>${assets[i]['AssetCondition']}</div>
-                                    <div>
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['assetName']}</td>
+                                    <td>${assets[i]['assetType']}</td>
+                                    <td>${assets[i]['AssetCondition']}</td>
+                                    <td>
                                         <div class='assignAssetButton' id=${assets[i]['AssetID']}>
                                             Assign
                                         </div>
-                                    </div>
-                                </div>`;
-
-                      
+                                    </td>
+                                </tr>`;
                         }
                         addEventListeners();
                         break;

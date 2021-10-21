@@ -56,6 +56,19 @@
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
                         INNER JOIN type ON asset.TypeID = type.TypeID
                         ORDER BY asset.AssetID";
+
+                        // $sql ="SELECT
+                        // asset.AssetID,
+                        // assetdetails.Name AS assetName,
+                        // TYPE.Name AS assetType
+                        // FROM
+                        // asset
+                        // INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                        // INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+                        // INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID
+                        // WHERE employeeuser.UserID = 3
+                        // ORDER BY
+                        // asset.AssetID";
                 
            
         $result = mysqli_query($mysql,$sql);
