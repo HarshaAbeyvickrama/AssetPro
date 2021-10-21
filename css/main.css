@@ -41,4 +41,8 @@
     background-color: #EAEDF5;
     cursor: pointer;
 }
+.btncol{
+  display:flex;
+  justify-content:center;
+}
 

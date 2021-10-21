@@ -37,6 +37,7 @@
         color: black;
         background-color: white;
     }
+    
 </style>
 
 <div class="overviewLayout">
@@ -75,7 +76,7 @@
                                         <td>${assets[i]['AssetID']}</td>
                                         <td>${assets[i]['assetName']}</td>
                                         <td>${assets[i]['assetType']}</td>
-                                        <td>  
+                                        <td class="btncol">  
                                         <button class='btnAction' onClick="report(${assets[i]['AssetID']})">Report</button>
                                         </td> 
                                     </tr>`;

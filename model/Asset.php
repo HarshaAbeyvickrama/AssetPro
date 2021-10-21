@@ -169,7 +169,7 @@
                         $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId)";
                         break;
                     case 'allTangible':
-                        $query = "SELECT COUNT(*) FROM asset AS COUNT WHERE EmployeeID = (SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 1 OR CategoryID = 2";
+                        $query = "SELECT COUNT(*) FROM asset AS COUNT WHERE EmployeeID = (SELECT employeeId from employeeUser where userId=$userId) AND (CategoryID = 1 OR CategoryID = 2)";
                         break;             
                     case 'allConsumables':
                         $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 2";

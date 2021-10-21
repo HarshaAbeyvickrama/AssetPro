@@ -79,7 +79,7 @@
             <table class="employeeData">
                 <thead>
                     <tr>
-                        <th>Number</th>
+                        <th>#</th>
                         <th>Date</th>
                         <th>Error ID</th>
                         <th>Asset ID</th>
