@@ -143,23 +143,23 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>2021/10/22</td>
+                        <td>22/10/2021</td>
                         <td>Successfully reported Breakdown: FA/6789</td>
                         <td>1 hour ago</td>
                     </tr>
                     
                     <tr>
                         <td>2</td>
-                        <td>2021/10/22</td>
+                        <td>22/10/2021</td>
                         <td>Successfully reported Breakdown: FA/1234</td>
                         <td>2 hour ago</td>
                     </tr>
 
                     <tr>
                         <td>3</td>
-                        <td>2021/10/22</td>
+                        <td>22/10/2021</td>
                         <td>Successfully reported Breakdown: FA/9056</td>
-                        <td>6 hour ago</td>
+                        <td>2 hour ago</td>
                     </tr>
                 </tbody>
             </table>
@@ -182,51 +182,51 @@
                  <tbody>
                    <tr>
                         <td>1</td>
-                        <td>2021/10/21</td>
+                        <td>21/10/2021</td>
                         <td>Successfully reported Breakdown: FA/6542</td>
                         <td>1 day ago</td>
                    </tr>
 
                    <tr>
                         <td>2</td>
-                        <td>2021/10/17</td>
+                        <td>17/10/2021</td>
                         <td>Successfully reported Breakdown: FA/8741</td>
                         <td>5 days ago</td>
                     </tr>
 
                     <tr>
                         <td>3</td>
-                        <td>2021/10/16</td>
+                        <td>17/10/2021</td>
                         <td>Successfully reported Breakdown: FA/5121</td>
-                        <td>6 days ago</td>
+                        <td>5 days ago</td>
                     </tr>
 
                     <tr>
                         <td>4</td>
-                        <td>2021/10/14</td>
+                        <td>14/10/2021</td>
                         <td>Successfully reported Breakdown: FA/1256</td>
-                        <td>8 days ago</td>
+                        <td>7 days ago</td>
                     </tr>
 
                     <tr>
                         <td>5</td>
-                        <td>2021/10/18</td>
+                        <td>14/10/2021</td>
                         <td>Successfully reported Breakdown: FA/9843</td>
-                        <td>4 days ago</td>
+                        <td>7 days ago</td>
                     </tr>
 
                     <tr>
                         <td>6</td>
-                        <td>2021/10/18</td>
+                        <td>13/10/2021</td>
                         <td>Successfully reported Breakdown: FA/5467</td>
-                        <td>4 days ago</td>
+                        <td>8 days ago</td>
                     </tr>
 
                     <tr>
                         <td>7</td>
-                        <td>2021/10/21</td>
+                        <td>13/10/2021</td>
                         <td>Successfully reported Breakdown: FA/8765</td>
-                        <td>1 day ago</td>
+                        <td>8 day ago</td>
                     </tr>
                  </tbody>
             </table>

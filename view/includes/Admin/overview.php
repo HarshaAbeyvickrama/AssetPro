@@ -3,7 +3,7 @@
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
         height: 82vh;
-        width: 87.5vw;
+        /* width: 87.5vw; */
         overflow-y: auto;
         padding: 20px;
         background-color: #F1F4FF;
@@ -178,28 +178,28 @@
                 <th>Time</th>
             </tr>
             <tr>
-                <td>21/10/2021</td>
+                <td>22/10/2021</td>
                 <td>Wathsala</td>
                 <td>Employee</td>
                 <td>Wathsala was added to the system</td>
-                <td>4 hours ago</td>
+                <td>1 hours ago</td>
             </tr>
             <tr>
-                <td>21/10/2021</td>
+                <td>22/10/2021</td>
                 <td>Kasun</td>
                 <td>Employee</td>
                 <td>Kasun was added to the system</td>
-                <td>5 hours ago</td>
+                <td>1 hours ago</td>
             </tr>
             <tr>
-                <td>21/10/2021</td>
+                <td>22/10/2021</td>
                 <td>Manoj</td>
                 <td>Technician</td>
                 <td>Manoj was added to the system</td>
-                <td>5 hours ago</td>
+                <td>2 hours ago</td>
             </tr>
             <tr>
-                <td>20/10/2021</td>
+                <td>21/10/2021</td>
                 <td>Dasun</td>
                 <td>Technician</td>
                 <td>Dasun was added to the system</td>
@@ -210,7 +210,7 @@
                 <td>Amali</td>
                 <td>Employee</td>
                 <td>Amali was added to the system</td>
-                <td>Yesterday</td>
+                <td>2 Days ago</td>
             </tr>
         </table>
     </div>
