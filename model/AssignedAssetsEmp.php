@@ -167,7 +167,8 @@
             INNER JOIN breakdown ON breakdown.AssetID = asset.AssetID
             WHERE
                 asset.AssetID = $assetid AND breakdown.BreakdownID = $view_id 
-            ORDER BY BreakdownID";
+            ORDER BY 
+                breakdown.BreakdownID";
                 
            
         $result = mysqli_query($mysql,$sql);
