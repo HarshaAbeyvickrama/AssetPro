@@ -1,5 +1,5 @@
 <style>
-    /* .overviewLayout{
+    .overviewLayout{
         display: grid;  
     }
     .overviewLayout > div{
@@ -20,7 +20,7 @@
     .contentSection > div{
         margin:15px;
         height: auto;
-    } */
+    }
     .btnAction{
         color: white;
         background-color: #5C6E9B;
@@ -79,7 +79,7 @@
                                         <td>${i+1}</td>
                                         <td>${newDate}</td>
                                         <td>${viewassets[i]['BreakdownID']}</td>
-                                        <td>${viewassets[i]['AssetID']}</td>
+                                        <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
