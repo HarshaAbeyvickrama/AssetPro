@@ -113,7 +113,7 @@
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="viewBreak()">View</button>
+                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']})">View</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -128,16 +128,16 @@
         var viewBreakAssetDetails = null;
         const xhr = new XMLHttpRequest();
         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}`,true);
-        // xhr.onload = function(){
-    //         if(this.status == 200){
-    //          viewBreakAssetDetails = JSON.parse(this.responseText);
-             loadSection('centerSection','viewBreakAssets');  
-    
-    //          var json = JSON.stringify(viewBreakAssetDetails );       //object to string
-    //          document.cookie=`BreakdownID=${json}`;
-    //        }  
-    //    }
-    //    xhr.send();
+        xhr.onload = function(){
+            if(this.status == 200){
+             viewBreakAssetDetails = JSON.parse(this.responseText);
+             console.log(viewBreakAssetDetails);
+             loadSection('centerSection','viewBreakAssets');   
+             var json = JSON.stringify(viewBreakAssetDetails );       //object to string
+             document.cookie=`BreakdownID=${json}`;
+           }  
+       }
+       xhr.send();
      }
 
 </script>

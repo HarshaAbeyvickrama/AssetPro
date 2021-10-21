@@ -300,10 +300,10 @@
                     break;
                 case 'reportAsset':
                    const report = getFormdata();   
-                //    for (var pair of report.entries()) 
-                //    {
-                //    console.log(pair[0] + ': ' + pair[1]);
-                //    }
+                   for (var pair of report.entries()) 
+                   {
+                   console.log(pair[0] + ': ' + pair[1]);
+                   }
                    
                    if(report == null){
                      alert('Fields cannot be empty');
