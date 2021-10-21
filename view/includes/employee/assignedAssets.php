@@ -1,7 +1,6 @@
 <style>
-    .overviewLayout {
+    /* .overviewLayout {
         display: grid;
-        /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr; */
         height: 82vh;
         width: 87.5vw;
         overflow-y: scroll;
@@ -26,8 +25,7 @@
     .employeeData {
         width: 90%;
         border-collapse: collapse;
-        font-size: 18px;
-        /* margin-left: 5vw; */
+        font-size: 18px; 
         text-align: center;
     }
    
@@ -46,6 +44,12 @@
     .btnAction:hover{
         color: black;
         background-color: white;
+    } */
+
+    .overviewLayout{
+        display: grid;
+        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr 0.75fr;
+             
     }
 </style>
 
