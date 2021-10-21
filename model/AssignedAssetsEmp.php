@@ -46,30 +46,38 @@
   //viewing AssignedAsset data from DB, connect with the page of assignedAssets.php 
     function getAssets(){
         global $mysql;
-      
-                $sql = "SELECT
-                            asset.AssetID,
-                            asset.Status,
-                            assetdetails.Name as assetName,
-                            assetdetails.AssetCondition,
-                            TYPE.Name as assetType
-                        FROM asset
-                        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN type ON asset.TypeID = type.TypeID
-                        ORDER BY asset.AssetID";
 
-                        // $sql ="SELECT
-                        // asset.AssetID,
-                        // assetdetails.Name AS assetName,
-                        // TYPE.Name AS assetType
-                        // FROM
-                        // asset
-                        // INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        // INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
-                        // INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID
-                        // WHERE employeeuser.UserID = 3
-                        // ORDER BY
-                        // asset.AssetID";
+            //     $sql = "SELECT
+            //     asset.AssetID,
+            //     category.CategoryID,
+            //     t.TypeID,
+            //     assetdetails.Name,
+            //     t.Name,
+            //     t.TypeCode,
+            //     category.CategoryCode
+            // FROM
+            //     asset
+            // INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+            // INNER JOIN category ON asset.CategoryID = category.CategoryID
+            // INNER JOIN TYPE t ON
+            //     asset.TypeID = t.TypeID"
+
+                        $sql ="SELECT
+                        asset.AssetID,
+                        assetdetails.Name AS assetName,
+                        t.Name AS assetType,
+                        t.TypeCode,
+                        c.CategoryCode
+                    FROM
+                        asset
+                    INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                    INNER JOIN category c ON
+                        asset.CategoryID = c.CategoryID
+                    INNER JOIN TYPE t ON
+                        t.TypeID = asset.TypeID
+                    ORDER BY
+                        asset.AssetID";
+
                          
                         //create a session variable 
                         // like  $empUserId = $_SESSION['userID'];
@@ -120,6 +128,7 @@
         echo json_encode($rows);    
     }
 
+    //  DATE_FORMAT(breakdown.Date,'%m/%d/%y') AS reportedDate,
     //viewing the breakdown assets in the table
     function viewAsset(){
         global $mysql;
@@ -168,7 +177,7 @@
             WHERE
                 asset.AssetID = $assetid AND breakdown.BreakdownID = $view_id 
             ORDER BY 
-                breakdown.BreakdownID";
+                breakdown.BreakdownID ASC";
                 
            
         $result = mysqli_query($mysql,$sql);
