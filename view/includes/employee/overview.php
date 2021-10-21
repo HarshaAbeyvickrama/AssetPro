@@ -1,24 +1,19 @@
 <style>
     .overviewLayout{
         display: grid;
-        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
-        height: 82vh;
-        width: 87.5vw;
-        overflow-y: auto;
-        padding: 20px;
-        background-color: #F1F4FF;
+        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr 0.75fr;
+             
     }
     .overviewLayout > div{
-        display: flex;
+        display: grid;
         align-items: center;
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-        
     }
     .statSection{
         display: grid;
-        grid-template-columns: repeat(5 1fr);
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
         height: 100%;
     }
@@ -64,29 +59,35 @@
     .box5{
         background-color: #4E74AB;
     }
-    .contentSection{
-        background-color: white;
+
+    
+    .overviewLayout .contentSection{
+        all: revert;
+        display: inline-block;
         border-radius: 15px;
-        padding:15px;
+        padding: 10px;
+        background-color: white;
+        overflow-y: auto;
+    }
+    .contentSection > div{
+        margin:15px;
+        height: auto;
+    }
+    .recentTitle{
+        color: #304068;
+        font-size: 20px;
+        font-weight: bold;
     }
 
-/*inside content section*/
-    .econtainer1{     
-        width:100%;
-        height:100%;
-        display:grid;
-        grid-template-columns:1fr 1fr 2fr 1fr;
-        font-size:18px;
-        font-weight:lighter;
-        text-align:center;      
-    }
-   
-   
+
+
 </style>
+
 <div class="overviewLayout">
     <div>
         <div>Dashboard Overview</div>
     </div>
+
     <div class="statSection">
         <div>
             <div class="statBox box1" >
@@ -97,87 +98,144 @@
 
         <div>
             <div class="statBox box2" >
-                    <div class="statNumber" id="Tangibles"></div>
-                    <div class="statText">Tangible Assets</div>
+                    <div class="statNumber" id="allTangibles"></div>
+                    <div class="statText">All Tangibles</div>
             </div>
         </div>
             
         <div>
             <div class="statBox box3" >
-                <div class="statNumber" id="Fixeds">40</div>
-                    <div class="statText">Fixed Assets</div>
+                <div class="statNumber" id="allFixeds"></div>
+                    <div class="statText">All Fixeds</div>
             </div>
         </div>
-
         <div>
-            <div class="statBox box4" >
-                <div class="statNumber" id="Consumables">30</div>
-                <div class="statText">Consumable Assets</div>
+            <div class="statBox box4">
+                <div class="statNumber" id="allConsumables"></div>
+                    <div class="statText">All Consumables</div>
             </div>
         </div>
-
         <div>
-            <div class="statBox box5" >
-                <div class="statNumber" id="Intangibles">30</div>
-                <div class="statText">Intangible Assets</div>
+            <div class="statBox box5">
+                <div class="statNumber" id="allIntangibles"></div>
+                    <div class="statText">All Consumables</div>
             </div>
         </div>
-
-        
     </div>
 
     <div>
-    <div>Recent Activities</div>
+        <div>Recent Activities</div>
     </div>
 
     <div class="contentSection">
-        <div class="econtainer1"> 
-                 <div>
-                     <h5>Date</h5>
-                     <p>2021/9/09</p>
-                     <p>2021/7/07</p>
-                     <p>2021/1/09</p>
-                     <p>2021/1/19</p>
-                     <p>2021/7/09</p>
-                 </div>
+        <div class="recent24">
+            <div class="recentTitle">Last 24 Hours</div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Task</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
 
-                 <div>
-                     <h5>Role</h5>
-                     <p>Employee1</p>
-                     <p>Employee3</p>
-                     <p>Employee7</p>
-                     <p>Employee9</p>
-                     <p>Employee4</p>
-                 </div>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/6789</td>
+                        <td>1 hour ago</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/1234</td>
+                        <td>2 hour ago</td>
+                    </tr>
 
-                 <div>
-                     <h5>Task</h5>
-                     <p>Reported breakdown of the asset FA/C/123</p>
-                     <p>Reported breakdown of the asset CA/T/323</p>
-                     <p>Reported breakdown of the asset FA/C/190</p>
-                     <p>Reported breakdown of the asset FA/T/200</p>
-                     <p>Reported breakdown of the asset FA/T/890</p>
-                 </div>
-                 
-                 <div>
-                     <h5>Time</h5>
-                     <p>5 days ago</p>
-                     <p>7 days ago</p>
-                     <p>9 days ago</p>
-                     <p>3 days ago</p>
-                     <p>1 days ago</p>
-                 </div>
+                    <tr>
+                        <td>3</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>6 hour ago</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        
-    </div>
-</div>
 
+        <hr>
+
+        <div class="oldActivities">
+            <div class="recentTitle">Earlier</div>
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Task</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+
+                 <tbody>
+                   <tr>
+                        <td>1</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/6789</td>
+                        <td>1 day ago</td>
+                   </tr>
+
+                   <tr>
+                        <td>2</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>5 days ago</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>6 days ago</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>8 days ago</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>4 days ago</td>
+                    </tr>
+
+                    <tr>
+                        <td>6</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>4 days ago</td>
+                    </tr>
+
+                    <tr>
+                        <td>7</td>
+                        <td>2021/10/22</td>
+                        <td>Successfully reported Breakdown: FA/9056</td>
+                        <td>1 day ago</td>
+                    </tr>
+                 </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
 <script>
-    // document.getElementById('allAssets').innerHTML =  getCount('allAssets');
-    getCount('allAssets','allAssets');
-    getCount('allTangible','Tangibles');
-    getCount('allFixed','Fixeds');
-    getCount('allConsumables','Consumables');
-    getCount('allIntangibles','Intangibles');
-    // console.log('c : ',a);
+     getCount('allAssets','allAssets');
+    // getCount('allTangibles','allTangibles');
+    // getCount('allTechnicians','allTechniciansCount');
 </script>
