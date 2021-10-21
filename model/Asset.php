@@ -376,8 +376,9 @@
                     a.*,
                     ad.*,
                     aw.*,
-                    d.*
-
+                    d.*,
+                    t.TypeCode,
+                    c.CategoryCode
                 FROM
                     asset a
                 LEFT JOIN assetdetails ad ON
@@ -386,6 +387,10 @@
                     aw.AssetID = a.AssetID
                 LEFT JOIN depreciation d ON
                     a.AssetID = d.AssetID
+                LEFT JOIN type t ON
+                    t.TypeID = a.TypeID
+                LEFT JOIN category c ON
+                    c.CategoryID = a.CategoryID
                 WHERE
                     a.AssetID = $id";
         $result = mysqli_query($mysql,$sql);

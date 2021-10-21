@@ -78,6 +78,7 @@
     /* Dropdown */
     .profile-dropdown {
         display: none;
+        justify-content: center;
         position: absolute;
         width: 250px;
         border-radius: 12px;
@@ -110,28 +111,26 @@
         cursor: pointer;
     }
 
-    /* .profile-dropdown .menu {
-        
+    .profile-dropdown .menu {
         top: 80px;
         right: -10px;
         padding: 10px 20px;
         background: #FAFBFF;
         width: 200px;
-        box-sizing: 0 5px 25px rgba(0,0,0,0.1);
+        box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
         border-radius: 15px;
         transition: 0.5s;
     }
 
     .profile-dropdown .menu::before {
         content: '';
-        
-        top: -5px;
         right: 28px;
         width: 20px;
         height: 20px;
-        background: #FAFBFF;
+        background: red;
         transform: rotate(45deg);
     }
+
     .profile-dropdown .menu h3 {
         width: 100%;
         text-align: center;
@@ -141,6 +140,7 @@
         color: #304068;
         line-height: 1.2em;
     }
+
     .profile-dropdown .menu h3 span {
         font-size: 14px;
         color: #5c6e9b;
@@ -149,10 +149,11 @@
     .profile-dropdown .menu ul li {
         list-style: none;
         padding: 15px 0;
-        border-top: 1px solid rgba(0,0,0,0.05);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
         display: flex;
         align-items: center;
         color: #5c6e9b;
+        cursor: pointer;
     }
     .profile-dropdown .menu ul li img {
         max-width: 20px;
@@ -160,13 +161,15 @@
         opacity: 0.5;
         transform: 0.5s;
     }
+
     .profile-dropdown .menu ul li:hover img {
         opacity: 1;
-    } */
+    }
 </style>
+
 <div class="header">
     <div class="notificationBadge">
-        <img src="../Images/Notification.png" alt="" class="notificationBadge">
+        <img src="../Images/Notification.png" alt="" class="notificationBadge" id="notificationIcon">
         <span id="notificationCount" class="notificationBadge">2</span>
     </div>
 
@@ -187,12 +190,10 @@
     </div>
 </div>
 
-<div class="profile-dropdown" id="profiledropDown">
+<!-- <div class="profile-dropdown" id="profiledropDown">
     <div>Signed in as</div>
     <div>
-        <?php
-        echo $name;
-        ?>
+        
     </div>
     <hr>
     <div id="your-profile">
@@ -201,8 +202,8 @@
     <div id="logout">
         Log Out
     </div>
-
-    <!-- <div class="profile-dropdown">
+</div> -->
+<!-- <div class="profile-dropdown">
     <div class="maintopic">Signed in as</div>
     <div class="signedName">
         
@@ -217,26 +218,24 @@
 
 </div> -->
 
-    <!-- <div class="profile-dropdown" id="profiledropdown">
+<div class="profile-dropdown" id="profiledropdown">
     <div class="menu">
-        <h3>Signed in as <br> <span>  </span></h3>
+        <h3>Signed in as <br> <span><?php echo $name ?></span></h3>
         <ul>
             <li><img src="../Images/avatar.png" alt="">My Profile</li>
-            <li><img src="../Images/settings.jpg" alt="">Log Out</li>
+            <li id="logout"><img src="../Images/settings.jpg" alt="">Log Out</li>
         </ul>
     </div>
-</div> -->
-
 </div>
 
 <script>
     var userSection = document.getElementById('userSection');
     userSection.addEventListener('click', (e) => {
         if (e.target.parentNode.id == 'userSection') {
-            var dd = document.getElementById('profiledropDown');
+            var dd = document.getElementById('profiledropdown');
             var style = window.getComputedStyle(dd, null).getPropertyValue("display");
             if (style == 'none') {
-                dd.style.display = 'block';
+                dd.style.display = 'flex';
             } else {
                 dd.style.display = 'none';
             }
@@ -245,5 +244,15 @@
 
     document.getElementById('logout').addEventListener('click', (e) => {
         window.location.replace("../controller/mainController.php?action=logout");
+    })
+
+    var icon = document.getElementById("notificationIcon");
+    icon.addEventListener("click", e => {
+        var notification = document.querySelector(".notificationContainer");
+        if (notification.style.display === "none") {
+            notification.style.display = "grid";
+        } else {
+            notification.style.display = "none";
+        }
     })
 </script>

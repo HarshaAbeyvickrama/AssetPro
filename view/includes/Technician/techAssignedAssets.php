@@ -94,7 +94,7 @@
     </div>
     <div class="tableRow">
         <div> 1 </div>
-        <div> FA/12345 </div>
+        <div> FA/CC/1 </div>
         <div> Laptop </div>
         <div> fixed Asset </div>
         <div> Wathsala Perera </div>
@@ -102,7 +102,7 @@
     </div>
     <div class="tableRow">
         <div> 2 </div>
-        <div> FA/12346 </div>
+        <div> FA/CP/2 </div>
         <div> Printer </div>
         <div> Fixed Asset </div>
         <div> shanaka Madhushan </div>
@@ -110,7 +110,7 @@
     </div>
     <div class="tableRow">
         <div> 3 </div>
-        <div> CA/23456 </div>
+        <div> FA/CP/3 </div>
         <div> Monitor </div>
         <div> Current Asset </div>
         <div> Nalin Perera </div>
@@ -118,7 +118,7 @@
     </div>
     <div class="tableRow">
         <div> 4 </div>
-        <div> CA/23458 </div>
+        <div> FA/CP/4 </div>
         <div> CPU </div>
         <div> Current Asset </div>
         <div> kasun Dias </div>
@@ -130,7 +130,7 @@
 </div>
  
 <script type="text/javascript">
-    getAssets('assigned');
+    // getAssets('assigned');
 
     var viewBreakdownBtn = document.getElementById('') /*Loading the viewReportBreakdown page*/
     viewBreakdownBtn.addEventListener('click', function()
