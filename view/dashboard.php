@@ -149,10 +149,10 @@
                             var row = `
                                 <tr id=${res[i].UserID}>
                                     <td>${i+1}</td>
-                                    <td>${res[i].EmployeeID}</td>
+                                    <td>TECH/${res[i].TechnicianID}</td>
                                     <td>${res[i].name}</td>
-                                    <td>${res[i].Gender == 'F' ? "Female" : "Male"}</td>
-                                    <td><div class='btnAction'>View</div></td>
+                                    <td>${res[i].Gender}</td>
+                                    <td><button class='btn btn-assign'>View</button></td>
                                 </tr>
                             `;
                             tb.innerHTML += row;
@@ -164,10 +164,10 @@
                             var row = `
                                 <tr id=${res[i].UserID}>
                                     <td>${i+1}</td>
-                                    <td>${res[i].EmployeeID}</td>
+                                    <td>EMP/${res[i].EmployeeID}</td>
                                     <td>${res[i].name}</td>
-                                    <td>${res[i].Gender == 'F' ? "Female" : "Male"}</td>
-                                    <td><div class='btnAction'>View</div></td>
+                                    <td>${res[i].Gender}</td>
+                                    <td><div class='btn btn-assign'>View</div></td>
                                 </tr>
                             `;
                             tb.innerHTML += row;
