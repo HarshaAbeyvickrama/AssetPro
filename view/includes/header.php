@@ -164,6 +164,7 @@
         opacity: 1;
     }
 </style>
+
 <div class="header">
     <div class="notificationBadge">
         <img src="../Images/Notification.png" alt="" class="notificationBadge" id="notificationIcon">
@@ -224,8 +225,6 @@
         </ul>
     </div>
 </div>
-
-
 
 <script>
     var userSection = document.getElementById('userSection');
