@@ -43,7 +43,7 @@
             function alert_success($message) {
                 echo "('$message')";
             }
-            alert_success("Successfully reported!");
+            alert_success("Successfully Added!");
 
         } else {
             echo "Fail";
