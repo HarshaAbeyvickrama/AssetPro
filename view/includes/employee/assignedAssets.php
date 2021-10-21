@@ -1,56 +1,25 @@
 <style>
-    .overviewLayout {
-        display: grid;
-        /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr; */
-        height: 82vh;
-        width: 87.5vw;
-        overflow-y: scroll;
-        padding: 20px;
-        background-color: #F1F4FF;
+    .overviewLayout{
+        display: grid;  
     }
-    .overviewLayout>div {
-        display: flex;
+    .overviewLayout > div{
+        display: grid;
         align-items: center;
         color: #304068;
         font-size: 24px;
         font-weight: bold;
     }
-    .contentSection {
-        background-color: white;
+    .overviewLayout .contentSection{
+        all: revert;
+        display: inline-block;
         border-radius: 15px;
-        margin-top: 15px;
-        height: 82vh;
-        
-    }
-    .table-data {
-        color: #304068;
-        margin: 4px 4px;
-        height: 500px;
-        width: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-    .employeeData {
-        width: 90%;
-        border-collapse: collapse;
-        font-size: 18px;
-        /* margin-left: 5vw; */
-        text-align: center;
-    }
-    .table-data th {
-        color: #5C6E9B;
-        padding: 8px;
-        position: sticky;
-        top: 0;
+        padding: 10px;
         background-color: white;
+        overflow-y: auto;
     }
-    .table-data td {
-        padding: 8px;
-        font-weight: lighter;
-    }
-    .table-data tr:hover{
-        background-color: wheat;
-        cursor: pointer;
+    .contentSection > div{
+        margin:15px;
+        height: auto;
     }
     .btnAction{
         color: white;
@@ -68,6 +37,7 @@
         color: black;
         background-color: white;
     }
+    
 </style>
 
 <div class="overviewLayout">
@@ -75,11 +45,10 @@
         <div>Assigned Assets</div>
     </div>
     <div class="contentSection">
-        <div class="table-data">
-            <table class="employeeData">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th>Number</th>
+                        <th>#</th>
                         <th>Asset ID</th>
                         <th>Asset Name</th>
                         <th>Asset Type</th>
@@ -87,10 +56,8 @@
                     </tr>
                 </thead>
                 <tbody id="employeeTableBody"></tbody>
-             
             </table>
         </div>
-    </div>
 </div>
 
 

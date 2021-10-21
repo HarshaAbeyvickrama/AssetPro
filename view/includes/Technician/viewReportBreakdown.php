@@ -13,13 +13,9 @@
     }
 
     .profile>div {
-        /* margin: 15px; */
         background-color: white;
         border-radius: 10px;
-        /* height: calc(100% - 100px); */
-        /* height: 100%; */
-        /* padding: 10px; */
-
+   
     }
     .leftSection,
     .rightSection{
@@ -36,16 +32,7 @@
         justify-content: center;
         align-items: center;
         margin: 15px 7.5px 15px 15px;
-        padding: 10px;
-        
-    }
-    
-    .rightSection {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 15px 15px 15px 7.5px;
-        padding: 10px;
+        padding: 10px;    
     }
 
     .leftSection>div {
@@ -55,11 +42,7 @@
 
     .profileImageSection>img {
         width: 200px;
-        border-radius: 50%;
-    }
-
-    .rightSection {
-        /* border: 1px solid black; */
+        border-radius: 0%;
     }
 
     .leftSection .leftBottom {
@@ -68,7 +51,7 @@
         align-items: flex-start;
         height: 100%;
     }
-
+   
     .profileImageSection {
         display: flex;
         flex-direction: column;
@@ -115,6 +98,19 @@
     .col-f {
         width: 100%;
         color: #5C6E9B;
+    }
+
+    .col-f select{
+        justify-content: center;
+        align-items: center;
+        width: calc(94% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 35px;
+        border-radius: 9px;
+        padding: 3px 3px;
+        margin-top: 10px;
+        outline: none;
     }
 
     .col-h {
@@ -169,27 +165,25 @@
         outline: none;
     }
 
+    .textarea{
+        justify-content: center;
+        align-items: center;
+        width: calc(94% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 250px;
+        border-radius: 9px;
+        padding: 3px 3px;
+        margin-top: 10px;
+        outline: none;
+    }
+
     .col-h,
     .col-f>span {
         display: block;
         margin-top: 5px;
     }
-
-    .leftSection>div {}
-
-    #email,
-    #dob,
-    #maritalStatus {
-        width: calc(97% - 30px);
-        border: none;
-        background-color: #F1F4FF;
-        height: 25px;
-        border-radius: 9px;
-        margin-top: 10px;
-        outline: none;
-        padding: 3px 3px;
-    }
-
+    
     .radio-group{
         margin: 5px 0px;
     }
@@ -200,132 +194,108 @@
         cursor: pointer;
     }
 
-    /* .editBtn,
-    .delBtn {
-        width: 80px;
-        height: 40px;
-        background-color: #5C6E9B;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        color: #F1F4FF;
-        margin-left: 70vh;
-    } */
-
-    .editBtn:hover,
-    .backBtn:hover {
+    .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
-
-    
-    /* .BtnGroup{
-        border: 1px solid red;
-        display: block;
-        position: relative;
-        float: left;
-    } */
-
-
+    #pRight{
+        background-color: #F1F4FF;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        overflow-x: hidden;
+    }
+    #pRight > div{
+        background-color: white;
+        border-radius: 10px;
+    }
+    #pRight > div:nth-child(1){
+        margin: 15px 10px 5px 5px;
+    }
+    #pRight > div:nth-child(2){
+        margin: 5px 15px 10px 5px;
+    }
+    .col-btn{
+        z-index: 1;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        right: calc(0%);
+        cursor: pointer;
+    }
 </style>
-<form action="" id="errorlogForm">
+
+
+<form action="" id="viewReportBreakdownForm" onsubmit="">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
+
             <div class="profileImageSection">
-                <img src="../Images/profile.jpg" alt="">
-                <input type="file" name="profileImage" id="profileImage" hidden>
-                <label for="profileImage" id="uploadBtn"> Choose Image </label>
+                <image src="../Images/lap1.jpg"alt="laptop-1">
             </div>
+
             <div class="leftBottom">
                 <div class="basic-information">
-                    <div class="title"> Basic Information: </div>
 
-                    <div class="col-f">
-                        <span for="empID"> Technician ID: </span>
-                        <input type="text" name="tecID" id="tecID">
-                    </div>
+                    <div class="title">Basic Information</div>
                     
                     <div class="col-h">
-                        <span for="fName"> First Name: </span>
-                        <input type="text" name="fName" id="fName">
+                        <span for="assetId">Asset ID :</span>
+                        <input type="text" name="assetID" id="assetID" value="FA/12345" >
                     </div>
-
-                    <div class="col-h">
-                        <span for="lName"> Last Name: </span>
-                        <input type="text" name="lName" id="lName">
+                   
+                    <div class="col-f">
+                        <span for="assetName"> Asset Name: </span>
+                        <input type="text" name="assetName" id="assetName" value="Asus Laptop">
                     </div>
 
                     <div class="col-f">
-                        <span for="role"> Role: </span>
-                        <input type="text" name="role" id="role">
+                        <span for="AssetType"> Asset Type: </span>
+                        <input type="text" name="assetType" id="assetType"  value="Fixed Asset" >
                     </div>
 
                     <div class="col-f">
-                        <span for="gender"> Gender </span>
-                        <div class="radio-group">
-                            <input type="radio" name="gender" id="male" value="male"><label> Male </label>
-                            <input type="radio" name="gender" id="female" value="female"><label> Female </label>
-                        </div>
-                    </div>
-                    
-                    <div class="col-btn">
-                        <div class="btnAction" id="btnEditProfile"> Edit </div>
+                        <span for="category"> Asset Category: </span>
+                        <input type="text" name="category" id="category" value="Electronic" >
                     </div>
 
+                    <div class="col-f">
+                        <span for="condition"> Condition: </span>
+                        <input type="text" name="condition" id="condition"  value="Brand New">
+                    </div>
+
+                    <div class="col-f">
+                        <span for="purchaseDate"> Purchase Date: </span>
+                        <input type="text" name="purchaseDate" id="purchaseDate" value="" >
+                    </div>
+            </div>
+        </div>
+    </div>
+
+        
+        <div id="pRight" class="rightSection">
+            <div class="basic-information">
+
+                <div class="title"> Report Breakdown: </div>
+
+                <div class="col-f">
+                    <span for="defectedParts"> Defected Parts: </span>
+                    <textarea class="textarea" cols="" rows="" id="defP"></textarea>
                 </div>
-                
-            </div>
-        </div>
-        <div id="pRight" class="rightSection scrollBar">
-        <div class="basic-information">
-            <div class="col-f">
-                <span for="dob"> Date of Birth: </span>
-                <input type="datetime" name="dob" id="dob">
-            </div>
-            <div class="col-f">
-                <span> Marital Status: </span>
-                <select name="maritalStatus" id="maritalStatus">
-                    <option value="Married"> Married </option>
-                    <option value="Unmarried"> Unmarried </option>
-                    <option value="Widowed"> Widowed </option>
-                </select>
-            </div>
-            <div class="col-f">
-                <span for="address"> Address: </span>
-                <input type="text" name="address" id="address">
-            </div>
-            <div class="col-f">
-                <span for="contactNo"> Contact No: </span>
-                <input type="text" name="contactNo" id="contactNo">
-            </div>
-            <div class="col-f">
-                <span for="email"> Email Address: </span>
-                <input type="email" name="email" id="email">
-            </div>
 
-            <div class="title"> Emergency Contact: </div>
+                <div class="col-f">
+                    <span for="explainDefect"> Identified Defect: </span>
+                    <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
+                </div>
 
-            <div class="col-f">
-                <span for="eName"> Name: </span>
-                <input type="text" name="eName" id="eName">
-            </div>
-            <div class="col-f">
-                <span for="eRelationship"> Relationship: </span>
-                <input type="text" name="eRelationship" id="eRelationship">
-            </div>
-            <div class="col-f">
-                <span for="econtact"> Telephone Number: </span>
-                <input type="text" name="econtact" id="econtact">
-            </div>
-            <div class="col-btn">
-                <div class="btnAction" id="back"> Back </div>
-            </div>
-                    
-              
-        </div>
+               
+                <div class="col-btn">
+                    <div class="commenceBtn btnAction" id="commence"> Commence </div>
+                    <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>     
+                </div>
 
+            </div>
         </div>
     </div>
 
@@ -348,23 +318,27 @@
             elements[i].disabled=readonlyState;
         }
         document.getElementById("uploadBtn").disabled=readonlyState;
-
-        
+    
     }
     
-    formState("errorlogForm",true);
+    formState("viewReportBreakdownForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
-        const backBtn = document.getElementById("back");
+        const commenceBtn = document.getElementById("commence");
+        const errlogBtn = document.getElementById("errorLog");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
-                case 'back':
-                    formState("errorlogForm",true);
-                    /*saveBtn.style.display = 'none';
-                    cancelBtn.style.display = 'none';
-                    btnEditProfile.style.display = 'block';*/
-                
+                case 'commence':
+                    formState("viewReportBreakdownForm",true);
+                    commenceBtn.style.display = 'none';
+                    errlogBtn.style.display = 'none';
                     
+                    
+                    break;
+                case 'errorLog':
+                    errlogBtn.style.display = 'block';
+                    commenceBtn.style.display = 'block';
+                    formState("viewReportBreakdownForm",false);
                     break;
             
                 default:
@@ -374,6 +348,5 @@
         
         })
     })
-    
-    
+       
 </script>

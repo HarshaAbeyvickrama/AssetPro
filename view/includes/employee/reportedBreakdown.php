@@ -79,7 +79,7 @@
             <table class="employeeData">
                 <thead>
                     <tr>
-                        <th>Number</th>
+                        <th>#</th>
                         <th>Date</th>
                         <th>Error ID</th>
                         <th>Asset ID</th>
@@ -113,7 +113,7 @@
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="viewBreak()">View</button>
+                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -124,20 +124,21 @@
     viewBreakAsset();
 
 
-    function viewBreak(viewasset){
+    function viewBreak(viewasset,viewassetid){
+       
         var viewBreakAssetDetails = null;
         const xhr = new XMLHttpRequest();
-        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}`,true);
-        // xhr.onload = function(){
-    //         if(this.status == 200){
-    //          viewBreakAssetDetails = JSON.parse(this.responseText);
-             loadSection('centerSection','viewBreakAssets');  
-    
-    //          var json = JSON.stringify(viewBreakAssetDetails );       //object to string
-    //          document.cookie=`BreakdownID=${json}`;
-    //        }  
-    //    }
-    //    xhr.send();
+        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}&assetid=${viewassetid}`,true);
+        xhr.onload = function(){
+            if(this.status == 200){
+             viewBreakAssetDetails = JSON.parse(this.responseText);
+             console.log(viewBreakAssetDetails);
+             loadSection('centerSection','viewBreakAssets');   
+             var json = JSON.stringify(viewBreakAssetDetails );       //object to string
+             document.cookie=`BreakdownID=${json}`;
+           }  
+       }
+       xhr.send();
      }
 
 </script>

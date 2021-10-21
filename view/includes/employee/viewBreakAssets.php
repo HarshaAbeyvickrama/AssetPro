@@ -259,11 +259,11 @@
                 <div class="title">Report Breakdown:</div>
                 <div class="col-f">
                     <span for="defectedParts">Defected Parts</span>
-                    <textarea class="textarea" cols="8.5" rows="8.5" id="defP"></textarea>
+                    <textarea class="textarea" cols="8.5" rows="8.5" id="defP" disabled></textarea>
                 </div>
                 <div class="col-f">
                     <span for="explainDefect">Explain the defect</span>
-                    <textarea class="textarea" cols="10" rows="10" id="exDef"></textarea>
+                    <textarea class="textarea" cols="10" rows="10" id="exDef" disabled></textarea>
                 </div>
                 <div class="col-btn">
                         <div id="cancelReport" onClick="cancelReport()">Back</div> 
@@ -277,14 +277,18 @@
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
 
-    var assetID = getCookieValue('assetID');  
-    var asset =   JSON.parse(assetID)[0];  //string to object
-    console.log(asset); 
-    document.getElementById('assetID').value = asset.AssetID;
-    document.getElementById('assetName').value = asset.assetName;
-    document.getElementById('assetType').value = asset.assetType;
-    document.getElementById('category').value = asset.categoryName;
-    document.getElementById('condition').value = asset.AssetCondition;
+    var breakdownID = getCookieValue('BreakdownID');  
+    var breakdown =   JSON.parse(breakdownID)[0];  //string to object
+    console.log(breakdown); 
+    document.getElementById('assetID').value = breakdown.AssetID;
+    document.getElementById('assetName').value = breakdown.assetName;
+    document.getElementById('assetType').value = breakdown.assetType;
+    document.getElementById('category').value =breakdown.categoryName;
+    document.getElementById('condition').value = breakdown.AssetCondition;
+    document.getElementById('defP').value = breakdown.DefectedParts;
+    document.getElementById('exDef').value = breakdown.Reason;
+   
+    
 
   
    
