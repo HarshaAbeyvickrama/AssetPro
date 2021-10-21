@@ -46,6 +46,7 @@
         width: 200px;
         height: 200px;
         border-radius: 50%;
+        object-fit: cover;
     }
 
     .leftSection .leftBottom {
@@ -142,7 +143,7 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text],input[type=number],input[type=date] {
+    .col-f input[type=text],input[type=number],input[type=date],select{
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -155,7 +156,7 @@
         outline: none;
     }
 
-    .col-h input[type=text],input[type=number],input[type=date] {
+    .col-h input[type=text],input[type=number],input[type=date],select {
         justify-content: center;
         align-items: center;
         width: calc(94% - 30px);
@@ -274,11 +275,17 @@
 
     })
 
-    function formState(state){
-        document.getElementById('depriciationMethod').disabled = state;
-        document.getElementById('depriciaionRate').disabled = state;
-        document.getElementById('residualValue').disabled = state;
-        document.getElementById('usefulYears').disabled = state;
+
+    sectionState('warrentySection',true);
+    sectionState('depriciationSection',true);
+
+
+    function sectionState(sectionID, state){
+        var inputs = document.getElementById(sectionID).querySelectorAll("input, select");
+        inputs.forEach(input =>{
+            console.log(input);
+            input.disabled = state;
+        })
     }
     
     // formState("userProfileForm",true);
@@ -309,9 +316,16 @@
         
         })
     })
-    formState(true);
-    document.getElementById('depriciation').addEventListener('change',function(){
-            formState(!depriciation.checked);
+    var depriciation = document.getElementById('depriciation');
+    depriciation.addEventListener('change',function(){
+            sectionState('depriciationSection',!depriciation.checked);
+            console.log(!depriciation.checked);
+    })
+
+    var warrenty = document.getElementById('warrenty');
+    warrenty.addEventListener('change',function(){
+            sectionState('warrentySection',!warrenty.checked);
+            console.log(!warrenty.checked);
     })
 
     document.getElementById('image').addEventListener('change',function(e){
@@ -425,92 +439,49 @@
                         <span for="purchaseCost">Purchase Cost</span>
                         <input type="number" name="purchaseCost" id="purchaseCost">
                     </div>
-
                     <div class="title" for="warrenty">Warrenty <input type="checkbox" name="warrenty" id="warrenty"></div>
+                    <div id="warrentySection">
+    
+                        <div class="col-f">
+                            <span for="warrentyPeriod">Warrenty Period</span>
+                            <label for="fromDate">From</label><input class="shortInput" type="date" name="fromDate" id="fromDate">
+                            <label for="toDate">To</label><input class="shortInput" type="date" name="toDate" id="toDate">
+                        </div>
+                        <div class="col-f">
+                            <span for="otherInfo">Other Information</span>
+                            <input type="text" name="otherInfo" id="otherInfo">
+                        </div>
 
-                    <div class="col-f">
-                        <span for="warrentyPeriod">Warrenty Period</span>
-                        <label for="fromDate">From</label><input class="shortInput" type="date" name="fromDate" id="fromDate">
-                        <label for="toDate">To</label><input class="shortInput" type="date" name="toDate" id="toDate">
-                    </div>
-                    <div class="col-f">
-                        <span for="otherInfo">Other Information</span>
-                        <input type="text" name="otherInfo" id="otherInfo">
                     </div>
                 </div>
 
             </div>
 
-            <div id="depriciationSection">
+            <div >
                 <div class="basic-information">
                     <div class="title" for="depriciation">Depriciation <input type="checkbox" name="depriciation" id="depriciation"></div>
-                    <div class="col-f">
-                        <span for="depriciationMethod">Depriciation Method</span>
-                        <select name="depriciationMethod" id="depriciationMethod">
-                            <option value="Staright Line">Straight Line Method</option>
-                        </select>
-                    </div>
-                    <div class="col-f">
-                            <span for="depriciaionRate">Depriciation Rate</span>
-                            <input type="number" name="depriciaionRate" id="depriciaionRate" step=".01">
-                    </div>
-                    <div class="col-f">
-                            <span for="residualValue">Residual Value</span>
-                            <input type="number" name="residualValue" id="residualValue" >
-                    </div>
-                    <div class="col-f">
-                            <span for="usefulYears">Useful Years</span>
-                            <input type="number" name="usefulYears" id="usefulYears" step="1">
+                    <div id="depriciationSection">
+                        <div class="col-f">
+                            <span for="depriciationMethod">Depriciation Method</span>
+                            <select name="depriciationMethod" id="depriciationMethod">
+                                <option value="Staright Line">Straight Line Method</option>
+                            </select>
+                        </div>
+                        <div class="col-f">
+                                <span for="depriciaionRate">Depriciation Rate</span>
+                                <input type="number" name="depriciaionRate" id="depriciaionRate" step=".01">
+                        </div>
+                        <div class="col-f">
+                                <span for="residualValue">Residual Value</span>
+                                <input type="number" name="residualValue" id="residualValue" >
+                        </div>
+                        <div class="col-f">
+                                <span for="usefulYears">Useful Years</span>
+                                <input type="number" name="usefulYears" id="usefulYears" step="1">
+                        </div>
                     </div>
                 </div>
             </div>
-        <!-- <div class="basic-information">
-            <div class="col-f">
-                <span for="dob">Date of Birth</span>
-                <input type="datetime" name="dob" id="dob">
-            </div>
-            <div class="col-f">
-                <span>Marital Status</span>
-                <select name="maritalStatus" id="maritalStatus">
-                    <option value="Married">Married</option>
-                    <option value="Unmarried">Unmarried</option>
-                    <option value="Widowed">Widowed</option>
-                </select>
-            </div>
-            <div class="col-f">
-                <span for="address">Address</span>
-                <input type="text" name="address" id="address">
-            </div>
-            <div class="col-f">
-                <span for="contactNo">Address</span>
-                <input type="text" name="contactNo" id="contactNo">
-            </div>
-            <div class="col-f">
-                <span for="email">Address</span>
-                <input type="email" name="email" id="email">
-            </div>
-
-            <div class="title">Emergency Contact</div>
-
-            <div class="col-f">
-                <span for="eName">Name</span>
-                <input type="text" name="eName" id="eName">
-            </div>
-            <div class="col-f">
-                <span for="eRelationship">Relationship</span>
-                <input type="text" name="eRelationship" id="eRelationship">
-            </div>
-            <div class="col-f">
-                <span for="econtact">Telephone Number</span>
-                <input type="text" name="econtact" id="econtact">
-            </div>
-
-            
-                
-                
-              
-        </div> -->
-
         </div>
     </div>
 

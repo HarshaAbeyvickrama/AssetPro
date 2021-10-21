@@ -27,7 +27,7 @@
                     <td>Fixed Asset</td>
                     <td>Kalum De Silva</td>
                     <td>
-                        <button class='btn btn-submit'>View</button>
+                        <button class='btn btn-assign'>View</button>
                     </td>
                 </tr>
                 
