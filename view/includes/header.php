@@ -67,6 +67,7 @@
 
     /* Dropdown */
     .profile-dropdown{
+        display: block;
         position: absolute;
         width: 250px;
         border-radius: 12px;
@@ -106,12 +107,12 @@
                 echo $name;
             ?>
         </div>
-        <div>
+        <!-- <div> -->
             <img src="../Images/profile.jpg" alt="">
-        </div>
+        <!-- </div> -->
     </div>
 </div>
-<div class="profile-dropdown">
+<div class="profile-dropdown" id="profiledropDown">
     <div>Signed in as</div>
     <div>
         <?php
@@ -126,3 +127,24 @@
         Log Out
     </div>
 </div>
+
+<script>
+    var userSection = document.getElementById('userSection');
+    userSection.addEventListener('click',(e)=>{
+        // console.log(e.target.parentNode.id)
+        if(e.target.parentNode.id == 'userSection'){
+            var dd = document.getElementById('profiledropDown');
+            var style = window.getComputedStyle(dd, null).getPropertyValue("display");
+            if(style == 'none'){
+                dd.style.display = 'block';
+            }else{
+                dd.style.display = 'none';
+            }
+        }
+    })
+
+    document.getElementById('logout').addEventListener('click',(e) =>{
+        console.log("logout");
+        window.location.replace("../controller/mainController.php?action=logout");
+    })
+</script>
