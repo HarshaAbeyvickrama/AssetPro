@@ -226,7 +226,7 @@
 </style>
 
 
-<form action="" id="reportBreakdownForm" onsubmit="">
+<form action="" id="viewReportBreakdownForm" onsubmit="">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
@@ -291,7 +291,7 @@
 
                
                 <div class="col-btn">
-                    <div class="finishBtn btnAction" id="finish"> Finish </div>
+                    <div class="commenceBtn btnAction" id="commence"> Commence </div>
                     <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>     
                 </div>
 
@@ -321,24 +321,24 @@
     
     }
     
-    formState("reportBreakdownForm",true);
+    formState("viewReportBreakdownForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
-        const finishBtn = document.getElementById("finish");
+        const commenceBtn = document.getElementById("commence");
         const errlogBtn = document.getElementById("errorLog");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
-                case 'finish':
-                    formState("reportBreakdownForm",true);
-                    finishBtn.style.display = 'none';
+                case 'commence':
+                    formState("viewReportBreakdownForm",true);
+                    commenceBtn.style.display = 'none';
                     errlogBtn.style.display = 'none';
                     
                     
                     break;
                 case 'errorLog':
                     errlogBtn.style.display = 'block';
-                    finishBtn.style.display = 'block';
-                    formState("reportBreakdownForm",false);
+                    commenceBtn.style.display = 'block';
+                    formState("viewReportBreakdownForm",false);
                     break;
             
                 default:
