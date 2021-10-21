@@ -69,6 +69,11 @@
                         // WHERE employeeuser.UserID = 3
                         // ORDER BY
                         // asset.AssetID";
+                         
+                        //create a session variable 
+                        // like  $empUserId = $_SESSION['userID'];
+                       // include where function EmployeeID=(SELECT employeeId from employeeUser where userId=$userId)
+                   
                 
            
         $result = mysqli_query($mysql,$sql);
