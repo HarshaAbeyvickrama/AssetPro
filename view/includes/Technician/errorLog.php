@@ -292,7 +292,7 @@
 
                 <div class="recentActivityTable table">
                     <div class="tableHeader">
-                        <div class="tableCell"> Number </div>
+                        <div class="tableCell"> # </div>
                         <div class="tableCell"> Asset ID </div>
                         <div class="tableCell"> Error ID </div>
                         <div class="tableCell"> Asset Name </div>
@@ -304,8 +304,8 @@
                     <div class="tableRowGroup">
                         <div class="tableRow">
                             <div class="tableCell"> 1 </div>
-                            <div class="tableCell"> FA/12345 </div>
-                            <div class="tableCell"> D/FA/12345 </div>
+                            <div class="tableCell"> FA/CC/1 </div>
+                            <div class="tableCell"> ERR/1 </div>
                             <div class="tableCell"> Laptop </div>
                             <div class="tableCell"> 2021/02/20 </div>
                             <div class="tableCell"> Dinithi Upeksha </div>
@@ -314,8 +314,8 @@
                         </div>
                         <div class="tableRow">
                             <div class="tableCell"> 2 </div>
-                            <div class="tableCell"> FA/12346 </div>
-                            <div class="tableCell"> D/FA/12346 </div>
+                            <div class="tableCell"> FA/CP/2 </div>
+                            <div class="tableCell"> ERR/2 </div>
                             <div class="tableCell"> Printer </div>
                             <div class="tableCell"> 2020/04/10 </div>
                             <div class="tableCell"> Nayana Kalhara </div>
@@ -324,8 +324,8 @@
                         </div>
                         <div class="tableRow">
                             <div class="tableCell"> 3 </div>
-                            <div class="tableCell"> FA/12347 </div>
-                            <div class="tableCell"> D/FA/12347 </div>
+                            <div class="tableCell"> FA/CP/3 </div>
+                            <div class="tableCell"> ERR/3 </div>
                             <div class="tableCell"> Scanner </div>
                             <div class="tableCell"> 2020/03/08 </div>
                             <div class="tableCell"> Awantha Kanakarathnam </div>
@@ -334,8 +334,8 @@
                         </div>
                         <div class="tableRow">
                             <div class="tableCell"> 4 </div>
-                            <div class="tableCell"> CA/22345 </div>
-                            <div class="tableCell"> D/CA/22345 </div>
+                            <div class="tableCell"> CA/CP/3 </div>
+                            <div class="tableCell"> ERR/4 </div>
                             <div class="tableCell"> Monitor </div>
                             <div class="tableCell"> 2020/02/11 </div>
                             <div class="tableCell"> Kasun Chamika </div>
@@ -344,8 +344,8 @@
                         </div>
                         <div class="tableRow">
                             <div class="tableCell"> 5 </div>
-                            <div class="tableCell"> CA/22346 </div>
-                            <div class="tableCell"> D/CA/22346 </div>
+                            <div class="tableCell"> CA/CP/4 </div>
+                            <div class="tableCell"> ERR/5 </div>
                             <div class="tableCell"> Web Cam </div>
                             <div class="tableCell"> 2019/05/24 </div>
                             <div class="tableCell"> Muzni Ahamed </div>

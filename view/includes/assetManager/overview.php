@@ -176,18 +176,18 @@
                 </thead>
                 <tbody >
                     <tr>
-                        <td class="tableCell">20/10/2021</td>
+                        <td class="tableCell">22/10/2021</td>
                         <td class="tableCell">Wathsala</td>
                         <td class="tableCell">Reported Breakdown: FA/12345</td>
                         <td class="tableCell">Employee</td>
-                        <td class="tableCell">5 Hours ago</td>
+                        <td class="tableCell">1 Hours ago</td>
                     </tr>
                     <tr>
-                        <td class="tableCell">20/10/2021</td>
+                        <td class="tableCell">22/10/2021</td>
                         <td class="tableCell">Wathsala</td>
                         <td class="tableCell">Reported Breakdown: FA/12345</td>
                         <td class="tableCell">Employee</td>
-                        <td class="tableCell">5 Hours ago</td>
+                        <td class="tableCell">1 Hours ago</td>
                     </tr>
                     
                    
@@ -216,7 +216,7 @@
                         <td>Wathsala</td>
                         <td>Reported Breakdown: FA/12345</td>
                         <td>Employee</td>
-                        <td>5 Hours ago</td>
+                        <td>5 Days ago</td>
                     </tr>
                    
                     <tr>
@@ -224,7 +224,7 @@
                         <td>Wathsala</td>
                         <td>Reported Breakdown: FA/12345</td>
                         <td>Employee</td>
-                        <td>5 Hours ago</td>
+                        <td>5 Days ago</td>
                     </tr>
                    
                     <tr>
@@ -232,7 +232,7 @@
                         <td>Wathsala</td>
                         <td>Reported Breakdown: FA/12345</td>
                         <td>Employee</td>
-                        <td>5 Hours ago</td>
+                        <td>5 Days ago</td>
                     </tr>
                    
                     <tr>
@@ -240,7 +240,7 @@
                         <td>Wathsala</td>
                         <td>Reported Breakdown: FA/12345</td>
                         <td>Employee</td>
-                        <td>5 Hours ago</td>
+                        <td>5 Days ago</td>
                     </tr>
                    
                     <tr>
@@ -248,7 +248,7 @@
                         <td>Wathsala</td>
                         <td>Reported Breakdown: FA/12345</td>
                         <td>Employee</td>
-                        <td>5 Hours ago</td>
+                        <td>5 Days ago</td>
                     </tr>
                    
                     <tr>
@@ -256,7 +256,7 @@
                         <td>Wathsala</td>
                         <td>Reported Breakdown: FA/12345</td>
                         <td>Employee</td>
-                        <td>5 Hours ago</td>
+                        <td>5 Days ago</td>
                     </tr>
                    
                 </tbody>

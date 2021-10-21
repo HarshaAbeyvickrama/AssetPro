@@ -246,4 +246,17 @@
     document.getElementById('logout').addEventListener('click', (e) => {
         window.location.replace("../controller/mainController.php?action=logout");
     })
+
+    var icon = document.getElementById("notificationIcon");
+    icon.addEventListener("click",e =>{
+        var notification = document.querySelector(".notificationContainer");
+        if(notification.style.display ==="none"){
+            notification.style.display = "grid";
+        }else{
+            notification.style.display= "none";
+        }
+    })
+
+
+    
 </script>
