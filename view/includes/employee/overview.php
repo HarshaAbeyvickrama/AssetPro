@@ -91,33 +91,33 @@
     <div class="statSection">
         <div>
             <div class="statBox box1" >
-                <div class="statNumber" id="allAssets"></div>
+                <div class="statNumber" id="Assets"></div>
                 <div class="statText">All Assets</div>
             </div>
         </div>
 
         <div>
             <div class="statBox box2" >
-                    <div class="statNumber" id="allTangibles"></div>
+                    <div class="statNumber" id="Tangibles"></div>
                     <div class="statText">All Tangibles</div>
             </div>
         </div>
             
         <div>
             <div class="statBox box3" >
-                <div class="statNumber" id="allFixeds"></div>
+                <div class="statNumber" id="Fixeds"></div>
                     <div class="statText">All Fixeds</div>
             </div>
         </div>
         <div>
             <div class="statBox box4">
-                <div class="statNumber" id="allConsumables"></div>
+                <div class="statNumber" id="Consumables"></div>
                     <div class="statText">All Consumables</div>
             </div>
         </div>
         <div>
             <div class="statBox box5">
-                <div class="statNumber" id="allIntangibles"></div>
+                <div class="statNumber" id="Intangibles"></div>
                     <div class="statText">All Consumables</div>
             </div>
         </div>
@@ -235,7 +235,9 @@
     
 </div>
 <script>
-     getCount('allAssets','allAssets');
-    // getCount('allTangibles','allTangibles');
-    // getCount('allTechnicians','allTechniciansCount');
+    getCount('allAssets','Assets');
+    getCount('allTangible','Tangibles');
+    getCount('allFixed','Fixeds');
+    getCount('allConsumables','Consumables');
+    getCount('allIntangibles','Intangibles');
 </script>
