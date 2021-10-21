@@ -44,7 +44,6 @@
         <div class="section-heading">Breakdown Assets</div>
     </div>
     <div class="contentSection">
-        <!-- <div class="table-data"> -->
             <table class="table">
                 <thead>
                     <tr>
@@ -60,7 +59,6 @@
                 <tbody id="employeeTableBody"></tbody>
              
             </table>
-        <!-- </div> -->
     </div>
 </div>
 
