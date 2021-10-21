@@ -48,8 +48,25 @@
 
     .overviewLayout{
         display: grid;
-        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr 0.75fr;
+        /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr 0.75fr; */
              
+    }
+
+    .overviewLayout > div{
+        display: grid;
+        align-items: center;
+        color: #304068;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .overviewLayout .contentSection{
+        all: revert;
+        display: inline-block;
+        border-radius: 15px;
+        padding: 10px;
+        background-color: white;
+        overflow-y: auto;
     }
 </style>
 
