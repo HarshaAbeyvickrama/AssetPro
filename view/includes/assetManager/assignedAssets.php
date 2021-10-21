@@ -1,7 +1,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Number</th>
+            <th>#</th>
             <th>Asset ID</th>
             <th>Asset Name</th>
             <th>Asset Type</th>
