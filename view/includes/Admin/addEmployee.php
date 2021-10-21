@@ -241,6 +241,10 @@
                         <input type="text" name="lName" id="lName">
                     </div>
                     <div class="col-f">
+                        <span for="NIC">NIC</span>
+                        <input type="text" name="NIC" id="NIC" maxlength="12" minlength="10">
+                    </div>
+                    <div class="col-f">
                         <span for="role">Role</span>
                         <input type="text" name="role" id="role" value="Employee">
                     </div>
@@ -274,7 +278,7 @@
                 </div>
                 <div class="col-f">
                     <span for="contactNo">Contact Number</span>
-                    <input type="text" name="contactNo" id="contactNo">
+                    <input type="number" name="contactNo" id="contactNo" maxlength="10" minlength="10">
                 </div>
                 <div class="col-f">
                     <span for="email">Email Address</span>
@@ -293,7 +297,7 @@
                 </div>
                 <div class="col-f">
                     <span for="econtact">Telephone Number</span>
-                    <input type="text" name="econtact" id="econtact">
+                    <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
                 </div>
 
                 <!-- Add and Cancel button to add -->

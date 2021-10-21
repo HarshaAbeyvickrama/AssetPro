@@ -39,13 +39,16 @@ function getAllEmployees(){
     global $mysql;
 
     $sql = "SELECT
-                employeeuser.UserID,
-                employeeuser.EmployeeID,
-                CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
-                userdetails.Gender
+                ud.UserID,
+                CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                ud.Gender,
+                CONCAT(d.DepartmentCode,'/EMP/',eu.EmployeeID) AS EmployeeID
             FROM
-                employeeuser
-            INNER JOIN userdetails ON employeeuser.UserID = userdetails.UserID";
+                userdetails ud
+            INNER JOIN employeeuser eu ON
+                ud.UserID = eu.UserID
+            INNER JOIN department d ON
+                eu.DepartmentID = d.DepartmentID";
 
     $result = mysqli_query($mysql, $sql);
     $employees = array();
@@ -97,7 +100,7 @@ function saveEmployee(){
         //Inserting into employeeuser table
         $employeeuser = "INSERT INTO employeeuser VALUES
                         (NULL,'$userID','$departmentID')";
-                        print_r($employeeuser);
+                        
         mysqli_query($mysql, $employeeuser);
 
         //Inserting into useremergency table

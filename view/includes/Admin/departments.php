@@ -74,6 +74,12 @@
     .table-data td {
         padding: 8px;
         font-weight: lighter;
+        color: #5c6e9b;
+    }
+
+    .table-data tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     table tr:nth-child(2) {
@@ -217,7 +223,6 @@
                 <tr">
                     <th>#</th>
                     <th>Department ID</th>
-                    <th>Department Code</th>
                     <th>Department Name</th>
                     <th>Contact Number</th>
                     <th>Date Created</th>
@@ -233,7 +238,7 @@
                     global $mysql;
 
                     $sql = "SELECT DepartmentID,
-                            DepartmentCode,
+                            CONCAT(DepartmentCode,'/',DepartmentID) AS DepartmentCode,
                             Name, 
                             ContactNum, 
                             DATE(DateCreated) AS datecreated, 
@@ -246,8 +251,7 @@
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td></td>
-                                <td>" . $row["DepartmentID"] . "</td>
-                                <td>" . $row["DepartmentCode"] . "</td>
+                                <td>".$row['DepartmentCode']."</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["ContactNum"] . "</td>
                                 <td>" . $row["datecreated"] . "</td>
@@ -396,7 +400,7 @@
                 loadSection('centerSection', 'departmentDetails');
 
                 var json = JSON.stringify(departmentDetails);
-                document.cookie=`DepartmentID=${json}`;
+                document.cookie = `DepartmentID=${json}`;
             }
         }
         xhr.send();

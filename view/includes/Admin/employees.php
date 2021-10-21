@@ -48,11 +48,12 @@
         color: #304068;
         margin: 20px 4px;
         height: 500px;
-        width: 99%;
+        width: 100%;
         /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
         text-align: left;
+        font-size: 18px;
     }
 
     .empData {
@@ -75,6 +76,11 @@
     .table-data td {
         padding: 8px;
         font-weight: lighter;
+        color: #5c6e9b;
+    }
+    .table-data tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     table tr:nth-child(2) {
@@ -131,18 +137,14 @@
     <div class="contentSection">
         <div class="table-data">
             <table class="empData" id="empData">
-                <tr">
+                <tr>
                     <th id="num">#</th>
-                    <th>User ID</th>
+                    <!-- <th>User ID</th> -->
                     <th>Employee ID</th>
-                    <th>Department ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Gender</th>
                     <th>View</th>
-                    <!-- <th>Edit</th>
-                    <th>Delete</th> -->
-                    </tr>
+                </tr>
 
                     <?php
 
@@ -150,18 +152,16 @@
                     global $mysql;
 
                     $sql = "SELECT
-                                USER.UserID,
-                                userdetails.fName,
-                                userdetails.lName,
-                                userdetails.Gender,
-                                emp.EmployeeID,
-                                emp.DepartmentID
+                                ud.UserID,
+                                CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                                ud.Gender,
+                                CONCAT(d.DepartmentCode,'/EMP/',eu.EmployeeID) AS EmployeeID
                             FROM
-                                employeeuser emp
-                            INNER JOIN userdetails ON userdetails.UserID = emp.UserID
-                            JOIN USER ON USER.UserID = userdetails.UserID
-                            WHERE
-                                USER.RoleID = 3";
+                                userdetails ud
+                            INNER JOIN employeeuser eu ON
+                                ud.UserID = eu.UserID
+                            INNER JOIN department d ON
+                                eu.DepartmentID = d.DepartmentID";
 
                     $result = $mysql->query($sql);
 
@@ -169,11 +169,8 @@
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td></td>
-                                <td>" . $row["UserID"] . "</td>
                                 <td>" . $row["EmployeeID"] . "</td>
-                                <td>" . $row["DepartmentID"] . "</td>
-                                <td>" . $row["fName"] . "</td>
-                                <td>" . $row["lName"] . "</td>
+                                <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
                                 <td id=".$row['EmployeeID']."><button id='view' class='viewBtn'>View</button></td>
                               </tr>";

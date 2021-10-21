@@ -80,8 +80,6 @@
         font-size: 20px;
         font-weight: bold;
     }
-<<<<<<< HEAD
-=======
 
 
     /* Recent activity Table CSS */
@@ -115,7 +113,6 @@
         padding:10px 0px;
         
     }
->>>>>>> e3692f1a844bff3e1e0f4652736745ebbf9c60db
     hr{
         background-color: #304068;
         width: 100%;
