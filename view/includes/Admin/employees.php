@@ -45,6 +45,7 @@
 
     /* CSS for the employee table */
     .table-data {
+        display: block;
         color: #304068;
         margin: 20px 4px;
         height: 500px;
@@ -56,18 +57,6 @@
         font-size: 18px;
     }
 
-    .empData {
-        /* width: 100%; */
-        border-collapse: collapse;
-        font-size: 20px;
-        margin-left: 5vh;
-        text-align: center;
-        text-align: left;
-    }
-    .empData .heading {
-        text-align: center;
-        align-items: center;
-    }
 
     .table-data th {
         color: #5C6E9B;
@@ -77,11 +66,25 @@
         background-color: white;
     }
 
+    /* tbody {
+        display: block;
+        height: 500px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    } */
+
     .table-data td {
         padding: 8px;
         font-weight: lighter;
         color: #5c6e9b;
+        width: 20%;
     }
+
+    .table-data .heading {
+        align-items: center;
+        text-align: left;
+    }
+
     .table-data tr:hover {
         background-color: #EAEDF5;
         cursor: pointer;
@@ -139,23 +142,23 @@
 
 
     <div class="contentSection">
-        <div class="table-data">
-            <table class="empData" id="empData">
-                <tr>
-                    <th id="num">#</th>
-                    <!-- <th>User ID</th> -->
-                    <th>Employee ID</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th class="heading">View</th>
-                </tr>
+        <!-- <div> -->
+        <table class="table-data" id="empData">
+            <tr>
+                <th class="heading">#</th>
+                <!-- <th>User ID</th> -->
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th class="heading">View</th>
+            </tr>
+            <!-- <tbody> -->
+                <?php
 
-                    <?php
+                require_once('../db/dbConnection.php');
+                global $mysql;
 
-                    require_once('../db/dbConnection.php');
-                    global $mysql;
-
-                    $sql = "SELECT
+                $sql = "SELECT
                                 ud.UserID,
                                 CONCAT(ud.fName, ' ', ud.lName) AS Name,
                                 ud.Gender,
@@ -166,28 +169,30 @@
                             INNER JOIN employeeuser eu ON
                                 ud.UserID = eu.UserID
                             INNER JOIN department d ON
-                                eu.DepartmentID = d.DepartmentID";
+                                eu.DepartmentID = d.DepartmentID
+                            ORDER BY eu.EmployeeID";
 
-                    $result = $mysql->query($sql);
+                $result = $mysql->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
                                 <td></td>
-                                <td>" .$row['DepartmentCode'].'/EMP/'. $row['EmployeeID'] . "</td>
+                                <td>" . $row['DepartmentCode'] . '/EMP/' . $row['EmployeeID'] . "</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td id=".$row['EmployeeID']."><button id='view' class='viewBtn'>View</button></td>
+                                <td id=" . $row['EmployeeID'] . "><button id='view' class='viewBtn'>View</button></td>
                               </tr>";
-                        }
-                    } else {
-                        echo "No Results :(";
                     }
-                    $mysql->close();
+                } else {
+                    echo "No Results :(";
+                }
+                $mysql->close();
 
-                    ?>
-            </table>
-        </div>
+                ?>
+            <!-- </tbody> -->
+        </table>
+        <!-- </div> -->
     </div>
 </div>
 <script type="text/javascript">
@@ -226,5 +231,10 @@
             }
         }
         xhr.send();
+    }
+
+    //Function to go back
+    function goBack() {
+        loadSection('centerSection', 'employees');
     }
 </script>

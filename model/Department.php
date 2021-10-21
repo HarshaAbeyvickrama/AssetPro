@@ -15,6 +15,10 @@
             loadDepartment($_REQUEST['DepartmentID']);
             break;
 
+            case 'loadEmployeeDepartment';
+            loadEmployeeDepartment($_REQUEST['DepartmentID']);
+            break;
+
         
         default:
             # code...
@@ -71,6 +75,15 @@
         }
         echo json_encode($rows);
 
+    }
+
+    function loadEmployeeDepartment($DepartmentID) {
+        global $mysql;
+
+        $viewDepartmentEmployees = "";
+
+        $result = mysqli_query($mysql, $viewDepartmentEmployees);
+        $rows = array();
     }
 
 ?>

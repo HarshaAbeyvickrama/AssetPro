@@ -57,7 +57,7 @@
     .depData {
         /* width: 100%; */
         border-collapse: collapse;
-        font-size: 18px;
+        font-size: 20px;
         margin-left: 5vh;
         text-align: center;
         text-align: left;
@@ -75,6 +75,7 @@
         padding: 8px;
         font-weight: lighter;
         color: #5c6e9b;
+        width: 5%;
     }
 
     .table-data tr:hover {
@@ -238,7 +239,7 @@
                     global $mysql;
 
                     $sql = "SELECT DepartmentID,
-                            CONCAT(DepartmentCode,'/',DepartmentID) AS DepartmentCode,
+                            DepartmentCode,
                             Name, 
                             ContactNum, 
                             DATE(DateCreated) AS datecreated, 
@@ -398,6 +399,25 @@
                 departmentDetails = JSON.parse(this.responseText);
                 // alert(this.responseText);
                 loadSection('centerSection', 'departmentDetails');
+
+                var json = JSON.stringify(departmentDetails);
+                document.cookie = `DepartmentID=${json}`;
+            }
+        }
+        xhr.send();
+    }
+
+    //Loading the employee list of the selected department
+    function loadEmploeeDepartment(DepartmentID) {
+        var departmentEMployeeDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `../model/Department.php?action=loadEmployeeDepartment&DepartmentID=${DepartmentID}`, true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                departmentEmployeeDetails = JSON.parse(this.responseText);
+                // alert(this.responseText);
+                // loadSection('centerSection', 'departmentDetails');
 
                 var json = JSON.stringify(departmentDetails);
                 document.cookie = `DepartmentID=${json}`;

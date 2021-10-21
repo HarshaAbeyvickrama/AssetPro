@@ -69,6 +69,7 @@ function saveEmployee(){
     $departmentID = $_POST['depID'];
     $firstName = $_POST['fName'];
     $lastName = $_POST['lName'];
+    $NIC = $_POST['NIC'];
     $gender = $_POST['gender'];
     $dob = $_POST['dob'];
     $maritalStatus = $_POST['maritalStatus'];
@@ -94,7 +95,7 @@ function saveEmployee(){
 
         //Inserting into the userdetails table
         $userdetails = "INSERT INTO userdetails VALUES 
-                       ('$userID','$firstName','$lastName','$address','$gender','23',
+                       ('$userID','$firstName','$lastName','$NIC','$address','$gender','23',
                        '$contactNo','$email','$dob','$fileUrl','$maritalStatus')";
         mysqli_query($mysql, $userdetails);
 

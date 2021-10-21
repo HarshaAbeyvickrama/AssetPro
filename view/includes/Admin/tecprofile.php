@@ -55,7 +55,6 @@
 
     .profileImageSection>img {
         width: 200px;
-        height: 200px;
         border-radius: 50%;
     }
 
@@ -200,12 +199,34 @@
     .radio-group > input[type=radio]:hover{
         cursor: pointer;
     }
+
+    /* .editBtn,
+    .delBtn {
+        width: 80px;
+        height: 40px;
+        background-color: #5C6E9B;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        color: #F1F4FF;
+        margin-left: 70vh;
+    } */
+
     .editBtn:hover,
     .backBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
+
+    
+    /* .BtnGroup{
+        border: 1px solid red;
+        display: block;
+        position: relative;
+        float: left;
+    } */
+
 
 </style>
 <form action="" id="errorlogForm">
@@ -222,8 +243,8 @@
                     <div class="title"> Basic Information: </div>
 
                     <div class="col-f">
-                        <span for="empID"> Employee ID: </span>
-                        <input type="text" name="empID" id="empID">
+                        <span for="empID"> Technician ID: </span>
+                        <input type="text" name="tecID" id="tecID">
                     </div>
                     
                     <div class="col-h">
@@ -304,7 +325,7 @@
                 <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
             <div class="col-btn">
-                <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div>
+                <div class="btnAction" id="back"> Back </div>
             </div>
                     
               

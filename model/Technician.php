@@ -25,6 +25,7 @@ function saveTechnician() {
     
     $firstName = $_POST['fName'];
     $lastName = $_POST['lName'];
+    $NIC = $_POST['NIC'];
     $gender = $_POST['gender'];
     $dob = $_POST['dob'];
     $maritalStatus = $_POST['maritalStatus'];
@@ -45,12 +46,12 @@ function saveTechnician() {
         //Save image in the folder
         global $rootDir;
         $extension = pathinfo($_FILES['profileImage']['name'], PATHINFO_EXTENSION);
-        $fileUrl = '/assetPro/uploads/technicians/' . $userID . '.' . $extension;
-        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], $rootDir . $fileUrl);
+        $fileUrl = '/uploads/technicians/' . $userID . '.' . $extension;
+        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../'.$fileUrl);
 
         //Inserting into the userdetails table
         $userdetails = "INSERT INTO userdetails VALUES 
-                       ('$userID','$firstName','$lastName','$address','$gender','23',
+                       ('$userID','$firstName','$lastName','$NIC','$address','$gender','23',
                        '$contactNo','$email','$dob','$fileUrl','$maritalStatus')";
         mysqli_query($mysql,$userdetails);
 
