@@ -117,7 +117,7 @@
 
     .tableRow .btn {
         border: 0;
-        background: #5C6E9B;
+        background: #659B5C;
         padding: 10px 20px;
         color: #fff;
         border-radius: 15px;
@@ -127,7 +127,7 @@
 
     .tableRow .btn:focus {
         border: 0;
-        background: #5C6E9B;
+        /*background: #5C6E9B;*/
         transform: scale(0.97);
     }
 
@@ -147,7 +147,7 @@
 
     .col-btn > div:hover {
         cursor: pointer;
-        background-color: #304068;
+        background-color: #;
         transition: .5s;
     }
 
@@ -189,28 +189,28 @@
     <div class="statSection">
         <div>
             <div class="statBox box1" id="allAssets">
-                <div class="statNumber" id="allAssets"> 10 </div>
+                <div class="statNumber" id="allAssets"> </div>
                 <div class="statText"> All Assets </div>
             </div>
         </div>
 
         <div>
             <div class="statBox box2" id="assignedAssets">
-                    <div class="statNumber" id="assignedAssets"> 4 </div>
+                    <div class="statNumber" id="assignedAssets"> </div>
                     <div class="statText"> Assigned Assets </div>
             </div>
         </div>
             
         <div>
             <div class="statBox box3" id="inProgress">
-                <div class="statNumber" id="inProgress"> 6 </div>
+                <div class="statNumber" id="inProgress"> </div>
                     <div class="statText"> In Progress </div>
             </div>
         </div>
 
         <div>
             <div class="statBox box4" id="repairedAssets">
-                <div class="statNumber" id="repairedAssets"> 6 </div>
+                <div class="statNumber" id="repairedAssets"> </div>
                     <div class="statText"> Repaired Assets </div>
             </div>
         </div>
@@ -289,3 +289,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    getCount('allAssets');
+    getCount('assignedAssets');
+    getCount('inProgress');
+    getCount('repairedAssets');
+</script>

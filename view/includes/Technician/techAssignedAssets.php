@@ -12,6 +12,7 @@
         width: 100%;
         display: table-header-group;
         font-size: 19px;
+        position: sticky;
         padding: 15px;
         font-weight: bold;
         overflow-y: hidden !important;
@@ -128,8 +129,14 @@
     </div>
 </div>
  
-<script>
+<script type="text/javascript">
     getAssets('assigned');
+
+    var viewBreakdownBtn = document.getElementById('') /*Loading the viewReportBreakdown page*/
+    viewBreakdownBtn.addEventListener('click', function()
+    {
+        loadSection('centersection','viewBreakdown');
+    });
 </script>
 
 

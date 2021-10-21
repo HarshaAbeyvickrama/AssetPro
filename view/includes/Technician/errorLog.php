@@ -5,11 +5,12 @@
     .profile {
         all: revert;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         background-color: #F1F4FF;
         overflow:hidden;
-        padding: 0px;
+        padding: 150px;
         height: 87vh;
+        margin: 15px 7.5px 15px 15px;
     }
 
     .profile>div {
@@ -32,10 +33,8 @@
         justify-content: center;
         align-items: center;
         margin: 15px 7.5px 15px 15px;
-        padding: 10px;
-        
+        padding: 150px;    
     }
-
 
     .upSection>div {
         /* height: 100%; */
@@ -47,7 +46,7 @@
         border-radius: 0%;
     }
 
-    .upSection .upRight {
+    .upSection .upperPart {
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -56,7 +55,7 @@
    
     .profileImageSection {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
     }
@@ -227,134 +226,136 @@
     }
 </style>
 
-
-<form action="" id="errorlogForm" onsubmit="">
-
-    <div class="profile">
+<div class="profile">
+    <form action="" id="errorlogForm" onsubmit="">
         <div id="pUp" class="upSection scrollBar"> 
 
             <div class="profileImageSection">
                 <image src="../Images/lap1.jpg" alt="laptop-1">
             </div>
 
-            <div class="upRight">
+            <div class="upperPart">
                 <div class="basic-information">
 
                     <div class="title"> Basic Information: </div>
-
-                    <div class="col-h">
-                        <span for="errorId"> Error ID: </span>
-                        <input type="text" name="errorId" id="errorId" value="D/FA/12345">
-                    </div> 
+                    <div>
+                        <div class="col-h">
+                            <span for="errorId"> Error ID: </span>
+                            <input type="text" name="errorId" id="errorId" value="D/FA/12345">
+                        </div> 
                     
-                    <div class="col-f">
-                        <span for="assetId"> Asset ID: </span>
-                        <input type="text" name="assetID" id="assetID" value="FA/12345">
-                    </div>
+                        <div class="col-f">
+                            <span for="assetId"> Asset ID: </span>
+                            <input type="text" name="assetID" id="assetID" value="FA/12345">
+                        </div>
                    
-                    <div class="col-f">
-                        <span for="assetName"> Asset Name: </span>
-                        <input type="text" name="assetName" id="assetName" value="Asus Laptop">
+                        <div class="col-f">
+                            <span for="assetName"> Asset Name: </span>
+                            <input type="text" name="assetName" id="assetName" value="Asus Laptop">
+                        </div>
                     </div>
+                    <div>
+                        <div class="col-f">
+                            <span for="condition"> Condition:</span>
+                            <input type="text" name="condition" id="condition"  value="Brand New">
+                        </div>
 
-                    <div class="col-f">
-                        <span for="condition"> Condition:</span>
-                        <input type="text" name="condition" id="condition"  value="Brand New">
-                    </div>
+                        <div class="col-f">
+                            <span for="purchaseDate"> Purchase Date: </span>
+                            <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
+                        </div>
 
-                    <div class="col-f">
-                        <span for="purchaseDate"> Purchase Date: </span>
-                        <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
-                    </div>
+                        <div>
+                            <div class="col-f">
+                                <span for="AssetType"> Asset Type: </span>
+                                <input type="text" name="assetType" id="assetType" value="Fixed Asset">
+                            </div>
 
-                    <div class="col-f">
-                        <span for="AssetType"> Asset Type: </span>
-                        <input type="text" name="assetType" id="assetType" value="Fixed Asset">
+                            <div class="col-f">
+                                <span for="category"> Asset Category: </span>
+                                <input type="text" name="category" id="category" value="Electronic" >
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-f">
-                        <span for="category"> Asset Category: </span>
-                        <input type="text" name="category" id="category" value="Electronic" >
-                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <div>
         <div> Error Log: </div>
     </div>
-    <div class="contentSection scrollbar">
+        <div class="contentSection scrollbar">
 
-        <div class="oldActivities">
-            <div class="recentTitle">   </div>
+            <div class="oldActivities">
+                <div class="recentTitle">   </div>
 
-            <div class="recentActivityTable table">
-                <div class="tableHeader">
-                    <div class="tableCell"> Number </div>
-                    <div class="tableCell"> Asset ID </div>
-                    <div class="tableCell"> Error ID </div>
-                    <div class="tableCell"> Asset Name </div>
-                    <div class="tableCell"> Last repaired </div>
-                    <div class="tableCell"> Technician </div>
-                    <div class="tableCell"> MTTR </div>
-                    <div class="tableCell"> Cost(Rs) </div>
-                </div>
-                <div class="tableRowGroup">
-                    <div class="tableRow">
-                        <div class="tableCell"> 1 </div>
-                        <div class="tableCell"> FA/12345 </div>
-                        <div class="tableCell"> D/FA/12345 </div>
-                        <div class="tableCell"> Laptop </div>
-                        <div class="tableCell"> 2021/02/20 </div>
-                        <div class="tableCell"> Dinithi Upeksha </div>
-                        <div class="tableCell"> 2 days </div>
-                        <div class="tableCell"> 10,000 </div>
+                <div class="recentActivityTable table">
+                    <div class="tableHeader">
+                        <div class="tableCell"> Number </div>
+                        <div class="tableCell"> Asset ID </div>
+                        <div class="tableCell"> Error ID </div>
+                        <div class="tableCell"> Asset Name </div>
+                        <div class="tableCell"> Last repaired </div>
+                        <div class="tableCell"> Technician </div>
+                        <div class="tableCell"> MTTR </div>
+                        <div class="tableCell"> Cost(Rs) </div>
                     </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 2 </div>
-                        <div class="tableCell"> FA/12346 </div>
-                        <div class="tableCell"> D/FA/12346 </div>
-                        <div class="tableCell"> Printer </div>
-                        <div class="tableCell"> 2020/04/10 </div>
-                        <div class="tableCell"> Nayana Kalhara </div>
-                        <div class="tableCell"> 3 days </div>
-                        <div class="tableCell"> 15,050 </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 3 </div>
-                        <div class="tableCell"> FA/12347 </div>
-                        <div class="tableCell"> D/FA/12347 </div>
-                        <div class="tableCell"> Scanner </div>
-                        <div class="tableCell"> 2020/03/08 </div>
-                        <div class="tableCell"> Awantha Kanakarathnam </div>
-                        <div class="tableCell"> 7 days </div>
-                        <div class="tableCell"> 42,560 </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 4 </div>
-                        <div class="tableCell"> CA/22345 </div>
-                        <div class="tableCell"> D/CA/22345 </div>
-                        <div class="tableCell"> Monitor </div>
-                        <div class="tableCell"> 2020/02/11 </div>
-                        <div class="tableCell"> Kasun Chamika </div>
-                        <div class="tableCell"> 1 day </div>
-                        <div class="tableCell"> 2,500 </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 5 </div>
-                        <div class="tableCell"> CA/22346 </div>
-                        <div class="tableCell"> D/CA/22346 </div>
-                        <div class="tableCell"> Web Cam </div>
-                        <div class="tableCell"> 2019/05/24 </div>
-                        <div class="tableCell"> Muzni Ahamed </div>
-                        <div class="tableCell"> 5 days </div>
-                        <div class="tableCell"> 14,980 </div>
-                    </div> 
-                    <div class="col-btn">
-                        <div class="sendfbBtn btnAction" id="sendFeedback"> Finish </div>
-                        <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
-                </div>     
-                   
+                    <div class="tableRowGroup">
+                        <div class="tableRow">
+                            <div class="tableCell"> 1 </div>
+                            <div class="tableCell"> FA/12345 </div>
+                            <div class="tableCell"> D/FA/12345 </div>
+                            <div class="tableCell"> Laptop </div>
+                            <div class="tableCell"> 2021/02/20 </div>
+                            <div class="tableCell"> Dinithi Upeksha </div>
+                            <div class="tableCell"> 2 days </div>
+                            <div class="tableCell"> 10,000 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 2 </div>
+                            <div class="tableCell"> FA/12346 </div>
+                            <div class="tableCell"> D/FA/12346 </div>
+                            <div class="tableCell"> Printer </div>
+                            <div class="tableCell"> 2020/04/10 </div>
+                            <div class="tableCell"> Nayana Kalhara </div>
+                            <div class="tableCell"> 3 days </div>
+                            <div class="tableCell"> 15,050 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 3 </div>
+                            <div class="tableCell"> FA/12347 </div>
+                            <div class="tableCell"> D/FA/12347 </div>
+                            <div class="tableCell"> Scanner </div>
+                            <div class="tableCell"> 2020/03/08 </div>
+                            <div class="tableCell"> Awantha Kanakarathnam </div>
+                            <div class="tableCell"> 7 days </div>
+                            <div class="tableCell"> 42,560 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 4 </div>
+                            <div class="tableCell"> CA/22345 </div>
+                            <div class="tableCell"> D/CA/22345 </div>
+                            <div class="tableCell"> Monitor </div>
+                            <div class="tableCell"> 2020/02/11 </div>
+                            <div class="tableCell"> Kasun Chamika </div>
+                            <div class="tableCell"> 1 day </div>
+                            <div class="tableCell"> 2,500 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 5 </div>
+                            <div class="tableCell"> CA/22346 </div>
+                            <div class="tableCell"> D/CA/22346 </div>
+                            <div class="tableCell"> Web Cam </div>
+                            <div class="tableCell"> 2019/05/24 </div>
+                            <div class="tableCell"> Muzni Ahamed </div>
+                            <div class="tableCell"> 5 days </div>
+                            <div class="tableCell"> 14,980 </div>
+                        </div> 
+                        <div class="col-btn">
+                            <div class="sendfbBtn btnAction" id="sendFeedback"> Finish </div>
+                            <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
+                        </div>     
                 </div>
             </div>
         </div>
