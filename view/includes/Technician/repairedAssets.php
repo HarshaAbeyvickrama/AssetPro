@@ -147,7 +147,7 @@
 
     .col-btn > div:hover {
         cursor: pointer;
-        background-color: #;
+        background-color: #EAEDF5;
         transition: .5s;
     }
 
@@ -237,7 +237,11 @@
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell"> 1 </div>
+<<<<<<< HEAD
                         <div class="tableCell"> FA/FU/1 </div>
+=======
+                        <div class="tableCell"> FA/CC/1 </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                         <div class="tableCell"> Laptop </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
@@ -245,7 +249,11 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 2 </div>
+<<<<<<< HEAD
                         <div class="tableCell"> FA/EA/3 </div>
+=======
+                        <div class="tableCell"> FA/CP/1 </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                         <div class="tableCell"> Printer </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Shanaka Madhushan </div>
@@ -253,7 +261,11 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 3 </div>
+<<<<<<< HEAD
                         <div class="tableCell"> CA/PE/4 </div>
+=======
+                        <div class="tableCell"> CA/CP/2 </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                         <div class="tableCell"> Monitor </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> Nalin Perera </div>
@@ -261,7 +273,11 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 4 </div>
+<<<<<<< HEAD
                         <div class="tableCell"> CA/PE/2 </div>
+=======
+                        <div class="tableCell"> FA/CP/3 </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                         <div class="tableCell"> CPU </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
@@ -269,12 +285,28 @@
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 5 </div>
+<<<<<<< HEAD
                         <div class="tableCell"> IA/SW/5 </div>
+=======
+                        <div class="tableCell"> CA/CP/4 </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                         <div class="tableCell"> Web Cam </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
                         <div class="cell-center"><button class="btn done"> Done </button></div>
+<<<<<<< HEAD
                     </div>     
+=======
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 6 </div>
+                        <div class="tableCell"> FA/CP/5 </div>
+                        <div class="tableCell"> Scanner </div>
+                        <div class="tableCell"> Fixed Asset </div>
+                        <div class="tableCell"> Wathsala Perera </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
+                    </div>      
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                    
                 </div>
             </div>

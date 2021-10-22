@@ -364,7 +364,10 @@
     var employee = JSON.parse(employeeID)[0];
     console.log(employee);
 
+    console.log(employee.ProfilePicURL);
+
     document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
+    
     document.getElementById('empID').value = employee.EmployeeID;
     document.getElementById('fName').value = employee.fName;
     document.getElementById('lName').value = employee.lName;

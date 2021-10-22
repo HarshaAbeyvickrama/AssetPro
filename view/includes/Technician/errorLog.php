@@ -357,6 +357,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
         
         <div id="pRight" class="rightSection">
@@ -377,6 +378,79 @@
                
                 <div class="col-btn">
                     <div class="backBtn btnAction" id="back"> back </div>    
+=======
+        <div class="contentSection scrollbar">
+
+            <div class="oldActivities">
+                <div class="recentTitle">   </div>
+
+                <div class="recentActivityTable table">
+                    <div class="tableHeader">
+                        <div class="tableCell"> # </div>
+                        <div class="tableCell"> Asset ID </div>
+                        <div class="tableCell"> Error ID </div>
+                        <div class="tableCell"> Asset Name </div>
+                        <div class="tableCell"> Last repaired </div>
+                        <div class="tableCell"> Technician </div>
+                        <div class="tableCell"> MTTR </div>
+                        <div class="tableCell"> Cost(Rs) </div>
+                    </div>
+                    <div class="tableRowGroup">
+                        <div class="tableRow">
+                            <div class="tableCell"> 1 </div>
+                            <div class="tableCell"> FA/CC/1 </div>
+                            <div class="tableCell"> ERR/1 </div>
+                            <div class="tableCell"> Laptop </div>
+                            <div class="tableCell"> 2021/02/20 </div>
+                            <div class="tableCell"> Dinithi Upeksha </div>
+                            <div class="tableCell"> 2 days </div>
+                            <div class="tableCell"> 10,000 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 2 </div>
+                            <div class="tableCell"> FA/CP/2 </div>
+                            <div class="tableCell"> ERR/2 </div>
+                            <div class="tableCell"> Printer </div>
+                            <div class="tableCell"> 2020/04/10 </div>
+                            <div class="tableCell"> Nayana Kalhara </div>
+                            <div class="tableCell"> 3 days </div>
+                            <div class="tableCell"> 15,050 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 3 </div>
+                            <div class="tableCell"> FA/CP/3 </div>
+                            <div class="tableCell"> ERR/3 </div>
+                            <div class="tableCell"> Scanner </div>
+                            <div class="tableCell"> 2020/03/08 </div>
+                            <div class="tableCell"> Awantha Kanakarathnam </div>
+                            <div class="tableCell"> 7 days </div>
+                            <div class="tableCell"> 42,560 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 4 </div>
+                            <div class="tableCell"> CA/CP/3 </div>
+                            <div class="tableCell"> ERR/4 </div>
+                            <div class="tableCell"> Monitor </div>
+                            <div class="tableCell"> 2020/02/11 </div>
+                            <div class="tableCell"> Kasun Chamika </div>
+                            <div class="tableCell"> 1 day </div>
+                            <div class="tableCell"> 2,500 </div>
+                        </div>
+                        <div class="tableRow">
+                            <div class="tableCell"> 5 </div>
+                            <div class="tableCell"> CA/CP/4 </div>
+                            <div class="tableCell"> ERR/5 </div>
+                            <div class="tableCell"> Web Cam </div>
+                            <div class="tableCell"> 2019/05/24 </div>
+                            <div class="tableCell"> Muzni Ahamed </div>
+                            <div class="tableCell"> 5 days </div>
+                            <div class="tableCell"> 14,980 </div>
+                        </div> 
+                        <div class="col-btn">
+                            <div class="sendfbBtn btnAction" id="sendFeedback"> Finish </div>
+                            <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
+                        </div>     
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                 </div>
 
             </div>

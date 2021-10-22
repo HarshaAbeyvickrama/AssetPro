@@ -16,7 +16,11 @@
     
     <!-- <div class="tableRow">
         <div> 1 </div>
+<<<<<<< HEAD
         <div> FA/CP/1 </div>
+=======
+        <div> FA/CC/1 </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
         <div> Laptop </div>
         <div> fixed Asset </div>
         <div> Jithendra Priyanjalee </div>
@@ -32,18 +36,32 @@
     </div>
     <div class="tableRow">
         <div> 3 </div>
+<<<<<<< HEAD
         <div> CA/PE/2 </div>
         <div> CPU </div>
         <div> Consumable Asset </div>
         <div> Sara Desapriyan </div>
+=======
+        <div> FA/CP/3 </div>
+        <div> Monitor </div>
+        <div> Current Asset </div>
+        <div> Nalin Perera </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
         <div class="cell-center"><button class="btn view"> View </button></div>
     </div>
     <div class="tableRow">
         <div> 4 </div>
+<<<<<<< HEAD
         <div> CA/PE/4 </div>
         <div> Mouse </div>
         <div> Consumable Asset </div>
         <div> Namal Ranasinghe </div>
+=======
+        <div> FA/CP/4 </div>
+        <div> CPU </div>
+        <div> Current Asset </div>
+        <div> kasun Dias </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
         <div class="cell-center"><button class="btn view"> View </button></div>
     </div> -->
  
@@ -52,7 +70,7 @@
 </table>
  
 <script type="text/javascript">
-    getAssets('assigned');
+    // getAssets('assigned');
 
     var viewBtn = document.getElementById('') /*Loading the viewReportBreakdown page*/
     viewBtn.addEventListener('click', function()

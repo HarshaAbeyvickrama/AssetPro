@@ -172,6 +172,7 @@
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell"> 22/10/2021 </div>
+<<<<<<< HEAD
                         <div class="tableCell"> FA/FU/1 was assigned to you </div>
                         <div class="tableCell"> 3 hours ago </div>
                     </div>
@@ -179,6 +180,15 @@
                         <div class="tableCell"> 21/10/2021 </div>
                         <div class="tableCell"> Successfully repaired CA/PE/2 </div>
                         <div class="tableCell"> 18 hours ago </div>
+=======
+                        <div class="tableCell"> FA/CP/1 was assigned to you </div>
+                        <div class="tableCell"> 1 hours ago </div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 22/10/2021 </div>
+                        <div class="tableCell"> Successfully repaired FA/12346 </div>
+                        <div class="tableCell"> 2 hours ago </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                     </div>
                    
                 </div>
@@ -198,6 +208,7 @@
                 </div>
                 <div class="tableRowGroup">
                     <div class="tableRow">
+<<<<<<< HEAD
                         <div class="tableCell"> 18/10/2021 </div>
                         <div class="tableCell"> Reported a Breakdown of FA/EA/3 </div>
                         <div class="tableCell"> 4 days ago </div>
@@ -206,6 +217,16 @@
                         <div class="tableCell"> 21/07/2021 </div>
                         <div class="tableCell"> Reported a Breakdown of CA/PE/4 </div>
                         <div class="tableCell"> 1 day ago </div>
+=======
+                        <div class="tableCell"> 20/10/2021 </div>
+                        <div class="tableCell"> Reported a Breakdown of FA/23445 </div>
+                        <div class="tableCell"> 2 days ago </div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 18/10/2021 </div>
+                        <div class="tableCell"> Reported a Breakdown of FA/23456 </div>
+                        <div class="tableCell"> 4 day ago </div>
+>>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 12/10/2021 </div>
