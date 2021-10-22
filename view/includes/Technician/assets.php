@@ -80,38 +80,7 @@
     }
 
 
-    /* Recent activity Table CSS */
-    .table{
-        display: table;
-        width: 100%;
-        margin: 10px 0px;
-        
-    }
-    .tableHeader{
-        display: table-header-group;
-        font-size: 19px;
-        padding: 15px;
-        font-weight: bold;
-    }
-    .table .tableRowGroup{
-        display: table-row-group;
-    }
-    .tableRow{
-        display: table-row;
-    }
-    .tableCell{
-        display: table-cell;
-    }
-    .tableRowGroup .tableRow:hover{
-        cursor: pointer;
-        background-color: grey;
-        
-    }
-    .tableRow .tableCell{
-        padding:10px 0px;
-        
-    }
-
+    
    
     hr{
         background-color: #304068;
@@ -180,47 +149,52 @@
 
     function getAssets(type){
         const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
+        xhr.open("GET",`../model/Technician.php?action=getAssets&type=${type}`,true);
 
         xhr.onload = function(){
             if(this.status === 200){
                 var assets = JSON.parse(this.responseText);
+                // console.log(assets);
                 switch (type) {
                     case 'assigned':
                         for(var i = 0; i<assets.length;i++){
-                            var bd = document.getElementById('assignedAssetsTableBody')
-                            var row= `
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['Number']}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['AssetName']}</div>
-                                    <div>${assets[i]['AssetType']}</div>
-                                    <div>${assets[i]['ReportedEmployee']}</div>   
-                                    <div>${assets[i]['StartRepairing']}</div>
-                                `;
-                            var tableRow = document.createElement('div');
-                            tableRow.className = 'tableRow';
-                            tableRow.id = assets[i]['AssetID'];
-                            tableRow.innerHTML = row;
-                            addViewAssetListener(tableRow);
-                            bd.appendChild(tableRow);
+                            var tb = document.getElementById('assignedAssetsTableBody')
+                            tb.innerHTML += `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['assetName']}</td>
+                                    <td>${assets[i]['Name']}</td>
+                                    <td>${assets[i]['employeeName']}</td>
+                                    <td>
+                                        <button class='btn btn-assign'>
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>`;
+                            // var tableRow = document.createElement('div');
+                            // tableRow.className = 'tableRow';
+                            // tableRow.id = assets[i]['AssetID'];
+                            // tableRow.innerHTML = row;
+                            // addViewAssetListener(tableRow);
+                            // bd.appendChild(tableRow);
 
 
                         }
                         break;
                     case 'inprogress':
                         for(var i = 0; i<assets.length;i++){
-                            var tb = document.getElementById('inprogressAssetsTableBody');
-                            tb.innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['Number']}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['AssetName']}</div>
-                                    <div>${assets[i]['AssetType']}</div>
-                                    <div>${assets[i]['ReportedEmployee']}</div>
-                                    <div>${assets[i]['MarkasDone']}</div>
-                                </div>`;
+                            var tb = document.getElementById('assignedAssetsTableBody');
+                            console.log(assets[i]);
+                            // tb.innerHTML += `
+                            //     <tr>
+                            //         <td>${i+1}</td>
+                            //         <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+                            //         <td>${assets[i]['assetName']}</td>
+                            //         <td>${assets[i]['Name']}</td>
+                            //         <td>${assets[i]['employeeName']}</td>
+                            //         <td>${assets[i]['MarkasDone']}</td>
+                            //     </tr>`;
                         }
                         addEventListeners();
                         break;

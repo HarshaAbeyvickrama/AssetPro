@@ -376,8 +376,7 @@
 
                
                 <div class="col-btn">
-                    <div class="commenceBtn btnAction" id="commence"> Commence </div>
-                    <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>     
+                    <div class="backBtn btnAction" id="back"> back </div>    
                 </div>
 
             </div>
@@ -416,14 +415,8 @@
                 case 'commence':
                     formState("viewReportBreakdownForm",true);
                     commenceBtn.style.display = 'none';
-                    errlogBtn.style.display = 'none';
                     
                     
-                    break;
-                case 'errorLog':
-                    errlogBtn.style.display = 'block';
-                    commenceBtn.style.display = 'block';
-                    formState("viewReportBreakdownForm",false);
                     break;
             
                 default:
@@ -435,3 +428,31 @@
     })
        
 </script>
+
+//get the details of reported Breakdowns in the view//
+    //to viewReportBreakdown file//
+
+    function viewReportBreakdownById($asset_id){
+        global $mysql;
+      
+                $sql = "SELECT
+                            asset.AssetID,
+                            assetdetails.Name as assetName,
+                            category.Name,
+                            type.Name as assetYpe
+                            assetdetails.AssetCondition,
+                        FROM asset,assetdetails,category,type
+                        WHERE asset.AssetID = $asset_id
+                        ORDER BY asset.AssetID" ;
+                
+           
+        $result = mysqli_query($mysql,$sql);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)){
+            $rows[] = $r;
+        }
+        echo json_encode($rows);
+
+        
+    }
+?>

@@ -288,27 +288,27 @@
 
                 <div class="col-f">
                     <span for="reportedEmployee"> Reported Employee: </span>
-                    <textarea class="textarea" cols="" rows="" id="repE"></textarea>
+                    <input type="text" name="repEmp" id="repEmpe" value="">
                 </div>
 
                 <div class="col-f">
                     <span for="repairCost"> Repair Cost: </span>
-                    <textarea class="textarea" cols="" rows="" id="repC"></textarea>
+                    <input type="text" name="repCost" id="repCost" value="">
                 </div>
 
                 <div class="col-f">
                     <span for="nextrepairDate"> Next Repair date: </span>
-                    <textarea class="textarea" cols="" rows="" id="nextrepD"></textarea>
+                    <input type="text" name="nextrepDate" id="nextrepDate" value="">
                 </div>
 
                 <div class="col-f">
                     <span for="reasonsforMalfunction"> Reasons for malfunction: </span>
-                    <textarea class="textarea" cols="" rows="" id="reasonforMal"></textarea>
+                    <input type="text" name="reasonsforMal" id="reasonsforMal" value="">
                 </div>
 
                 <div class="col-f">
                     <span for="actionsTook"> Actions took: </span>
-                    <textarea class="textarea" cols="" rows="" id="actT"></textarea>
+                    <input type="text" name="actionTook" id="actionTook" value="">
                 </div>
 
                 <div class="col-f">
@@ -318,9 +318,8 @@
 
                
                 <div class="col-btn">
+                <div class="backBtn btnAction" id="back"> Back </div>
                     <div class="sendfbBtn btnAction" id="sendFeedback"> Send Feedback </div>
-                    <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>
-                    <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>
                 </div>
                   
 
@@ -354,20 +353,16 @@
 
     document.querySelectorAll(".col-btn").forEach(button =>{
         const sendfbBtn = document.getElementById("sendFeedback");
-        const cancBtn = document.getElementById("cancelEdit");
-        const errlogBtn = document.getElementById("errorLog");
+        const backBtn = document.getElementById("back");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
                 case 'sendFeedback':
                     formState("sendFeedbackForm",true);
-                    cancBtn.style.display = 'none';
-                    errlogBtn.style.display = 'none';
+                    backBtn.style.display = 'none';
                     
                     break;
-                case 'cancelEdit':
+                case 'back':
                     sendfbBtn.style.display = 'block';
-                    errlogBtn.style.display = 'block';
-                    /*..deleteBtn.style.display = 'none';..*/
                     formState("sendFeedbackForm",false);
                     break;
             
@@ -380,3 +375,11 @@
     })
        
 </script>
+
+   
+    //Inserting into sendFeedback file from breakdown table// 
+        $breakdown = "INSERT INTO breakdown 
+                        VALUES ('$BreakdownID','$AssetID','$TechnicianID','$EmployeeID','$Date','$Reason','$DefectedParts')";
+                        mysqli_query($mysql, $breakdown);
+
+

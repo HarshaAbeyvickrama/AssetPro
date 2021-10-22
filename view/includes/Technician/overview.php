@@ -69,6 +69,7 @@
         padding: 20px;
         background-color: white;
         overflow-y: auto;
+        text-align: left;
     }
     .contentSection > div{
         margin:15px;
