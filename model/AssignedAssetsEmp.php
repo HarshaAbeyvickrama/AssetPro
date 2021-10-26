@@ -128,24 +128,43 @@
         echo json_encode($rows);    
     }
 
-    //  DATE_FORMAT(breakdown.Date,'%m/%d/%y') AS reportedDate,
+   
     //viewing the breakdown assets in the table
     function viewAsset(){
         global $mysql;
       
+            //     $sql = "SELECT
+            //     asset.AssetID,
+            //     assetdetails.Name AS assetName,
+            //     TYPE.Name AS assetType,
+            //     DATE(breakdown.Date) AS reportedDate,
+            //     breakdown.BreakdownID
+            // FROM
+            //     asset
+            // INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+            // INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+            // INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
+            // ORDER BY
+            //     asset.AssetID";
+
                 $sql = "SELECT
                 asset.AssetID,
+                breakdown.BreakdownID,
                 assetdetails.Name AS assetName,
-                TYPE.Name AS assetType,
+                t.Name AS assetType,
                 DATE(breakdown.Date) AS reportedDate,
-                breakdown.BreakdownID
+                t.TypeCode,
+                c.CategoryCode
             FROM
                 asset
             INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-            INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+            INNER JOIN category c ON
+                asset.CategoryID = c.CategoryID
+            INNER JOIN TYPE t ON
+                t.TypeID = asset.TypeID
             INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
             ORDER BY
-                asset.AssetID";
+                breakdown.BreakdownID ASC";
                 
            
         $result = mysqli_query($mysql,$sql);

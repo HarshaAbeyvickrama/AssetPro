@@ -103,7 +103,6 @@
             }                
         }
         xhr.send();
-        // console.log(asset);
        
      }  
 </script>
