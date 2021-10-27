@@ -41,7 +41,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div class="section-heading">Breakdown Assets</div>
+        <div>Breakdown Assets</div>
     </div>
     <div class="contentSection">
             <table class="table">
@@ -56,10 +56,9 @@
                         <th>view Breakdown</th>
                     </tr>
                 </thead>
-                <tbody id="employeeTableBody"></tbody>
-             
+                <tbody id="employeeTableBody"></tbody>     
             </table>
-    </div>
+        </div>
 </div>
 
 <script>
