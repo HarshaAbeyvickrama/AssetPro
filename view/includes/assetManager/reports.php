@@ -1,53 +1,61 @@
 <style>
-    form{
+    form {
         height: 87vh;
     }
+
     .profile {
         all: revert;
         display: grid;
         grid-template-columns: 1fr 1fr;
         background-color: #F1F4FF;
-        overflow:hidden;
+        overflow: hidden;
         padding: 0px;
         height: 87vh;
     }
+
     .profile>div {
         display: grid;
         grid-template-rows: 0.5fr 9.5fr;
     }
-   
+
     .leftSection,
-    .rightSection{
+    .rightSection {
         overflow-y: auto;
     }
+
     /* .leftSection::-webkit-scrollbar,
     .rightSection::-webkit-scrollbar{
         display: none;
     } */
     .profile .leftSection {
-        margin: 15px 7.5px 15px 15px;   
+        margin: 15px 7.5px 15px 15px;
     }
+
     .leftSection>div {
         /* height: 100%; */
         /* width: 100%; */
     }
+
     .profileImageSection>img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
     }
+
     .leftSection .leftBottom {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         height: 100%;
     }
+
     .profileImageSection {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+
     #uploadBtn {
         display: flex;
         align-items: center;
@@ -59,11 +67,13 @@
         color: #F1F4FF;
         border-radius: 30px;
     }
+
     #uploadBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
+
     /* Form styling */
     .basic-information {
         width: calc(100% - 40px);
@@ -73,18 +83,18 @@
         padding: 10px;
         /* justify-content: space-around; */
     }
+
     .title {
-        width: 100%;
         color: #304068;
-        font-weight: bolder;
         margin: 10px 0px;
-        font-size: 18px;
     }
+
     .col-f {
         width: 100%;
         color: #5C6E9B;
     }
-    .col-f select{
+
+    .col-f select {
         justify-content: center;
         align-items: center;
         width: calc(94% - 30px);
@@ -96,18 +106,21 @@
         margin-top: 10px;
         outline: none;
     }
+
     .col-h {
         width: 50%;
         color: #5C6E9B;
     }
+
     .col-btn {
         position: relative;
         text-align: center;
         width: 100%;
         align-items: center;
         margin: 10px 0px;
-        
+
     }
+
     .col-btn>div {
         border-radius: 15px;
         padding: 10px 20px;
@@ -120,6 +133,7 @@
         float: right;
         margin-right: 5px;
     }
+
     .col-f input[type=text] {
         justify-content: center;
         align-items: center;
@@ -132,6 +146,7 @@
         margin-top: 10px;
         outline: none;
     }
+
     .col-h input[type=text] {
         justify-content: center;
         align-items: center;
@@ -144,145 +159,144 @@
         margin-top: 10px;
         outline: none;
     }
+
     .col-h,
     .col-f>span {
         display: block;
         margin-top: 5px;
     }
-    
-    .radio-group{
-        margin: 5px 0px;
-    }
-    .radio-group > label { 
-        margin-left: 5px;
-    }
-    .radio-group > input[type=radio]:hover{
-        cursor: pointer;
-    }
-    .col-btn > div:hover {
-        cursor: pointer;
-        background-color: #304068;
-        transition: .5s;
-    }
-   
-    .col-btn{
-        z-index: 1;
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        right: calc(50%);
-    }
+
+
     /* New */
-    .sectionContent{
+    .sectionContent {
         background-color: white;
         border-radius: 10px;
         padding-left: 20px;
     }
-    .sectionHeader{
+
+    .sectionHeader {
         margin-top: 10px;
         display: grid;
         grid-template-columns: 6fr 4fr;
     }
-    .sectionHeader > div{
+
+    .sectionHeader>div {
         /* border: 1px solid red; */
     }
-    .sectionHeaderImage{
+
+    .sectionHeaderImage {
         text-align: center;
     }
-    .sectionHeaderImage > img{
+
+    .sectionHeaderImage>img {
         width: 100px;
     }
-    .sectionHeaderText{
+
+    .sectionHeaderText {
         padding: 15px 0px 0px 0px;
         width: 100%;
         color: #304068;
         font-weight: bold;
         font-size: 32px;
     }
-    
+
     /* Table styling */
-    .table{
+    .table {
         display: table;
         width: 100%;
         margin: 10px 0px;
         color: #5C6E9B;
         overflow-y: hidden !important;
     }
-    .tableHeader{
+
+    .tableHeader {
         width: 100%;
         display: table-header-group;
         font-size: 17px;
         padding: 15px;
         font-weight: 900;
         overflow-y: hidden !important;
-        
+
     }
-    .tableHeader > div { 
+
+    .tableHeader>div {
         display: table-cell;
     }
-    .table .tableRowGroup{
+
+    .table .tableRowGroup {
         display: table-row-group;
         overflow-y: auto !important;
-        
+
     }
-    .tableRow{
+
+    .tableRow {
         display: table-row;
     }
-    .tableCell{
+
+    .tableCell {
         display: table-cell;
     }
+
     /* .tableRowGroup .tableRow:hover{
         cursor: pointer;
         background-color: wheat;
     } */
     /* Table overflow */
-    .tableRowGroup{
+    .tableRowGroup {
         overflow-y: auto;
     }
-    .tableRow .tableCell{
-        padding:10px 0px;
-        
+
+    .tableRow .tableCell {
+        padding: 10px 0px;
+
     }
-    .tableRow > div{
+
+    .tableRow>div {
         display: table-cell;
-        padding:10px 0px;
+        padding: 10px 0px;
     }
-    
-    th{
+
+    th {
         color: #5C6E9B;
         padding: 10px;
     }
-    .spanRow{
+
+    .spanRow {
         color: #5C6E9B;
         font-size: 15px;
         font-weight: bold;
     }
-    .row{
+
+    .row {
         font-size: 14px;
         margin-top: 13px;
     }
-    .row td{
+
+    .row td {
         text-align: center;
         color: #5C6E9B;
     }
-    .innerRow{
+
+    .innerRow {
         padding-left: 10px;
         text-align: left !important;
     }
-    .generalStats{
+
+    .generalStats {
         margin: 0px 0px 15px 0px;
         color: #5C6E9B;
 
     }
-    .generalStats > div{
+
+    .generalStats>div {
         margin-top: 5px;
     }
 </style>
 <form action="" id="reports">
 
     <div class="profile">
-        <div id="pLeft" class="leftSection scrollBar"> 
-            <div class="title">
+        <div id="pLeft" class="leftSection scroll">
+            <div class="section-heading">
                 Asset Level Report
             </div>
             <div class="sectionContent">
@@ -295,9 +309,9 @@
                     </div>
                 </div>
                 <div class="generalStats">
-                    <div >Date : </div>
-                    <div >Time : </div>
-                    <div >Depriciation Method : </div>
+                    <div>Date : </div>
+                    <div>Time : </div>
+                    <div>Depriciation Method : </div>
                 </div>
                 <div class="table">
                     <div class="tableHeader">
@@ -310,6 +324,7 @@
                     <div class="tableRowGroup" id="allAssetsTableBody">
                         <div class="tableRow">
                             <div>Count</div>
+
                             <div>3</div>
                             <div>4</div>
                             <div>7</div> 
@@ -342,15 +357,16 @@
                             <div>4</div>
                             <div>7</div> 
                             <div>14</div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
-        <div id="pLeft" class="leftSection scrollBar"> 
-        <div class="title">
-               Repair And Maintanance Report
+
+        <div id="pLeft" class="leftSection scroll">
+            <div class="section-heading">
+                Repair And Maintanance Report
             </div>
             <div class="sectionContent">
                 <div class="sectionHeader">
@@ -362,8 +378,8 @@
                     </div>
                 </div>
                 <div class="generalStats">
-                    <div >Date : </div>
-                    <div >Time : </div>
+                    <div>Date : </div>
+                    <div>Time : </div>
                 </div>
                 <table class="">
                     <tr class="">
@@ -380,34 +396,42 @@
                         <td class="innerRow">Furniture</td>
                         <td>14</td>
                         <td>4</td>
+
                         <td>4</td> 
                         <td>14</td>
                     </tr>                      
+
                     <tr class="row">
                         <td class="innerRow">Machinery</td>
                         <td>14</td>
                         <td>4</td>
+
                         <td>4</td> 
                         <td>14</td>
                     </tr>                      
+
                     <tr class="row">
                         <td class="innerRow">Computer</td>
                         <td>14</td>
                         <td>4</td>
+
                         <td>4</td> 
                         <td>14</td>
                     </tr>                      
+
                     <tr class="row">
                         <td class="innerRow">Printers</td>
                         <td>14</td>
                         <td>4</td>
+
                         <td>4</td> 
                         <td>14</td>
                     </tr>                      
+
                 </table>
             </div>
         </div>
-        
+
         <!-- <div id="pRight" class="rightSection scrollBar">
             
         </div> -->

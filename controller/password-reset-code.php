@@ -6,8 +6,9 @@ require_once("../db/dbConnection.php");
 //If user clicks on forgot password
 
 //sending the mail function
-function send_password_reset($get_email, $token)
-{
+
+function send_password_reset($get_email, $token){
+
     $to_email = "$get_email";
     $subject = "Reset Password";
     $body = "Hello,

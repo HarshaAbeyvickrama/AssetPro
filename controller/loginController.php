@@ -5,8 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once("../db/dbConnection.php");
 
-function login($Username, $Password)
-{
+function login($Username, $Password){
     // Accessing the global variables from dbConnection.php
     global $mysql;
 
