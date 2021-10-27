@@ -26,7 +26,8 @@
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
-        height: 82vh;
+        /* height: 82vh; */
+        display: absolute;
     }
     #tabSections {
         display: flex;

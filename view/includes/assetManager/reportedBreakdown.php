@@ -22,7 +22,7 @@
                 <tr>
                     <td>1</td>
                     <td>2021/07/20</td>
-                    <td>FA/12345</td>
+                    <td>FA/CC/1</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>Kalum De Silva</td>

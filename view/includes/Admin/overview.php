@@ -203,14 +203,14 @@
                 <td>Dasun</td>
                 <td>Technician</td>
                 <td>Dasun was added to the system</td>
-                <td>Yesterday</td>
+                <td>1 Day ago</td>
             </tr>
             <tr>
-                <td>20/10/2021</td>
+                <td>21/10/2021</td>
                 <td>Amali</td>
                 <td>Employee</td>
                 <td>Amali was added to the system</td>
-                <td>2 Days ago</td>
+                <td>1 Day ago</td>
             </tr>
         </table>
     </div>
