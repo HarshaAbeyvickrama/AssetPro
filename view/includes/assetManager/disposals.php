@@ -1,9 +1,7 @@
 <div class="overviewLayout">
-    <div>
-        <div class="section-heading">Asset Disposal</div>
-    </div>
-    <div class="contentSection">
+    <div class="section-heading">Asset Disposal</div>
 
+    <div class="contentSection">
         <table class="table">
             <thead>
                 <tr>
@@ -23,7 +21,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -33,7 +31,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -43,7 +41,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -53,7 +51,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -63,7 +61,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -73,7 +71,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -83,7 +81,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -93,7 +91,7 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
                 <tr>
@@ -103,16 +101,12 @@
                     <td>Fixed Asset</td>
                     <td>5</td>
                     <td>
-                        <button class='btn btn-assign'>Submit</button>
+                        <button class='btn btn-submit'>Submit</button>
                     </td>
                 </tr>
-               
-                
+
+
             </tbody>
         </table>
     </div>
 </div>
-
-<script>
-    // getAll('allEmployees','employeeTableBody');
-</script>

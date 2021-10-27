@@ -1,100 +1,4 @@
 <style>
-    .overviewLayout {
-        display: grid;
-        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
-        background-color: #F1F4FF;
-    }
-
-    .overviewLayout>div {
-        display: grid;
-        align-items: center;
-        color: #304068;
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .statSection {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        width: 100%;
-        height: 100%;
-    }
-
-    .statSection>div {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    .statBox {
-        display: grid;
-        grid-template-rows: 3fr 2fr;
-        color: white;
-        height: 95%;
-        width: 90%;
-        border-radius: 12px;
-    }
-
-    .statBox>div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .statNumber {
-        font-size: 40px;
-    }
-
-    .statText {
-        font-size: 17px;
-        font-weight: lighter;
-    }
-
-    .box1 {
-        background-color: #304068;
-    }
-
-    .box2 {
-        background-color: #6A71D7;
-    }
-
-    .box3 {
-        background-color: #3D7DDB;
-    }
-
-    .box4 {
-        background-color: #6165A2;
-    }
-
-    .box5 {
-        background-color: #4E74AB;
-    }
-
-    .overviewLayout .contentSection {
-        all: revert;
-        display: grid;
-        grid-template-rows: 1fr 8.5fr 0.5fr;
-        border-radius: 15px;
-        overflow-y: hidden;
-        padding: 0px 10px;
-        background-color: white;
-    }
-
-    .contentSection>div {
-        margin: 8px 15px;
-
-
-    }
-
-    .recentTitle {
-        color: #304068;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-
-
     #assetSections {
         display: flex;
         justify-content: center;
@@ -147,11 +51,6 @@
 
     .button:hover {
         cursor: pointer;
-    }
-
-    .activeTab {
-        background-image: linear-gradient(#EAEDF5, white);
-        ;
     }
 </style>
 
@@ -289,9 +188,8 @@
     //Get asset details by ID
 </script>
 <div class="overviewLayout">
-    <div>
-        <div>Dashboard Overview</div>
-    </div>
+    <div class="section-heading">Dashboard Overview</div>
+
     <div class="statSection">
         <div>
             <div class="statBox box1">
@@ -327,7 +225,7 @@
         </div>
     </div>
     <div>
-        <div>Assets</div>
+        <div class="section-subHeading">Assets</div>
     </div>
     <div class="contentSection">
         <div id="assetSections">

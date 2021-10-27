@@ -1,4 +1,3 @@
-/* Default table styling */
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -10,6 +9,8 @@
   /* --btn-assign:  */
 }
 
+/* ===========================Default table styling============================================================== */
+
 .table,
 .table::before,
 .table::after {
@@ -20,17 +21,10 @@
   border-collapse: collapse;
   background-color: white;
   text-align: left;
-  width: 90%;
-  
-  /* height: 100px; */
-  /* overflow-x: hidden; */
-  /* overflow-y: scroll !important; */
-  /* box-shadow: 0 1px 5px rgba(128, 128, 128, 0.5); */
+  width: 100%;
 }
 .table thead {
-  /* box-shadow: 0 1px 5px rgba(128, 128, 128, 0.5); */
   color: #304068;
-  /* background-color: red; */
 }
 .table th {
   padding: 5px 15px;
@@ -38,9 +32,9 @@
   text-transform: uppercase;
   font-weight: 900;
   font-size: 1rem;
-  position: sticky;
+  /* position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 2; */
   background-color: #d4daeb;
 }
 .table td {
@@ -56,13 +50,14 @@
   /* background-color: #eaedf5; */
   cursor: pointer;
 }
-.btncol{
-  display:flex;
-  justify-content:center;
+.btncol {
+  display: flex;
+  justify-content: center;
 }
 
-/* Buttons */
+/* =========================================== Buttons ===================================================== */
 
+/* All buttons should be give the btn class and the button should be <button> */
 .btn {
   /* border: 1px solid red !important; */
   padding: 5px 15px;
@@ -75,33 +70,147 @@
   font-weight: 500;
   display: inline-block;
 }
+
+/* Assign button */
 .btn-assign {
   background-color: var(--primary);
   color: white;
 }
+.btn-submit {
+  background-color: var(--primary);
+  color: white;
+}
 
-/* Headings */
+/* =================================================== Headings =================================================== */
 .section-heading {
   color: var(--primary);
   font-size: 24px;
   font-weight: 700;
 }
 
-/* Sections */
+.section-subHeading {
+  color: #304068;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px 0px;
+}
+
+.h3 {
+  color: #304068;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 0px;
+}
+
+/* =================================================== Sections ===================================================*/
+
+/* Center section outer div */
 .overviewLayout {
   height: 82vh;
   overflow-y: hidden;
   padding: 20px;
   background-color: #f1f4ff;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Content section inside overview layout */
 .contentSection {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: flex-start; */
   background-color: white;
   border-radius: 15px;
   margin-top: 15px;
-  height: 95%;
   padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.recentActivities {
+  /* width: 100%; */
+}
+/* =================================================== Stat sections ===================================================*/
+
+.statSection {
+  display: flex;
+  width: 100%;
+}
+
+.statSection > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.statBox {
+  display: grid;
+  grid-template-rows: 3fr 2fr;
+  color: white;
+  height: 95%;
+  width: 90%;
+  border-radius: 12px;
+}
+
+.statBox > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statNumber {
+  font-size: 40px;
+}
+
+.statText {
+  font-size: 17px;
+  font-weight: lighter;
+}
+
+.box1 {
+  background-color: #304068;
+}
+
+.box2 {
+  background-color: #6a71d7;
+}
+
+.box3 {
+  background-color: #3d7ddb;
+}
+
+.box4 {
+  background-color: #6165a2;
+}
+
+.box5 {
+  background-color: #4e74ab;
+}
+
+/* ============================================= Scroll Effect =============================================*/
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: #eaedf5;
+  border: 6px solid rgba(0, 0, 0, 0.2);
+}
+/* #components::-webkit-scrollbar{
+  display: none;
+} */
+
+.scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+/* =============================================== States ===============================================*/
+.activeTab {
+  background-image: linear-gradient(#eaedf5, white);
 }

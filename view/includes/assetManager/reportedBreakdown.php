@@ -1,9 +1,5 @@
-
-
 <div class="overviewLayout">
-    <div>
-        <div class="section-heading">Reported Breakdowns</div>
-    </div>
+    <div class="section-heading">Reported Breakdowns</div>
     <div class="contentSection">
 
         <table class="table">
@@ -30,13 +26,9 @@
                         <button class='btn btn-assign'>View</button>
                     </td>
                 </tr>
-                
+
 
             </tbody>
         </table>
     </div>
 </div>
-
-<script>
-    // getAll('allEmployees','employeeTableBody');
-</script>
