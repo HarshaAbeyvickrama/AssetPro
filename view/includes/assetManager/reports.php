@@ -324,38 +324,40 @@
                     <div class="tableRowGroup" id="allAssetsTableBody">
                         <div class="tableRow">
                             <div>Count</div>
-                            <div>313</div>
-                            <div>584</div>
-                            <div>577</div>
-                            <div>1890</div>
+
+                            <div>3</div>
+                            <div>4</div>
+                            <div>7</div> 
+                            <div>14</div>
                         </div>
                         <div class="tableRow">
                             <div>Number of Brakdowns</div>
-                            <div>313</div>
-                            <div>584</div>
-                            <div>577</div>
-                            <div>1890</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div>7</div> 
+                            <div>14</div>
                         </div>
                         <div class="tableRow">
                             <div>Number of Repaired Assets</div>
-                            <div>313</div>
-                            <div>584</div>
-                            <div>577</div>
-                            <div>1890</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div>7</div> 
+                            <div>14</div>
                         </div>
                         <div class="tableRow">
                             <div>Total Value of Assets</div>
-                            <div>313</div>
-                            <div>584</div>
-                            <div>577</div>
-                            <div>1890</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div>7</div> 
+                            <div>14</div>
                         </div>
                         <div class="tableRow">
                             <div>Sent for disposal</div>
-                            <div>313</div>
-                            <div>584</div>
-                            <div>577</div>
-                            <div>1890</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div>7</div> 
+                            <div>14</div>
+
                         </div>
                     </div>
                 </div>
@@ -392,32 +394,40 @@
                     </tr>
                     <tr class="row">
                         <td class="innerRow">Furniture</td>
-                        <td>187</td>
+                        <td>14</td>
                         <td>4</td>
-                        <td>4</td>
-                        <td>187</td>
-                    </tr>
+
+                        <td>4</td> 
+                        <td>14</td>
+                    </tr>                      
+
                     <tr class="row">
                         <td class="innerRow">Machinery</td>
-                        <td>187</td>
+                        <td>14</td>
                         <td>4</td>
-                        <td>4</td>
-                        <td>187</td>
-                    </tr>
+
+                        <td>4</td> 
+                        <td>14</td>
+                    </tr>                      
+
                     <tr class="row">
                         <td class="innerRow">Computer</td>
-                        <td>187</td>
+                        <td>14</td>
                         <td>4</td>
-                        <td>4</td>
-                        <td>187</td>
-                    </tr>
+
+                        <td>4</td> 
+                        <td>14</td>
+                    </tr>                      
+
                     <tr class="row">
                         <td class="innerRow">Printers</td>
-                        <td>187</td>
+                        <td>14</td>
                         <td>4</td>
-                        <td>4</td>
-                        <td>187</td>
-                    </tr>
+
+                        <td>4</td> 
+                        <td>14</td>
+                    </tr>                      
+
                 </table>
             </div>
         </div>

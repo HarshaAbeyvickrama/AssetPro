@@ -16,6 +16,7 @@ function login($Username, $Password){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // $Username = $_POST["Username"];
         // $Password = $_POST["Password"];
+        $encrpyt_password = md5($Password);
 
         $sql =
             "select * from user
@@ -24,7 +25,7 @@ function login($Username, $Password){
             where login.UserID in ( 
                 select login.UserID
                 from login
-                where login.Username='" . $Username . "' and login.Password='" . $Password . "'
+                where login.Username='" . $Username . "' and login.Password='" . $encrpyt_password . "'
             )";
 
         $result = mysqli_query($mysql, $sql);

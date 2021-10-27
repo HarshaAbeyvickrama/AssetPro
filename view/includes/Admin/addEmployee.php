@@ -118,7 +118,7 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text], input[type=number] {
+    .col-f input[type=text], input[type=number], select {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -229,7 +229,7 @@
 
                     <div class="col-f">
                         <span for="depID">Department ID</span>
-                        <input type="text" name="depID" id="depID">
+                        <select name="depID" id="depID"></select>
                     </div>
 
                     <div class="col-h">
@@ -382,5 +382,27 @@
     //Function to go back
     function goBack() {
         loadSection('centerSection', 'employees');
+    }
+
+getDepartments();
+    function getDepartments() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../model/Department.php?action=getDepartments", true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var departments = JSON.parse(this.responseText);
+                // console.log(departments);
+                var select = document.getElementById('depID');
+
+                for(var i = 0; i<departments.length; i++) {
+                    console.log(departments[i]);
+                    var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
+                    select.innerHTML+=option;
+
+                }
+            }
+        }
+        xhr.send();
     }
 </script>

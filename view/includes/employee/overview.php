@@ -118,7 +118,7 @@
         <div>
             <div class="statBox box5">
                 <div class="statNumber" id="Intangibles"></div>
-                    <div class="statText">All Consumables</div>
+                    <div class="statText">All Intangible</div>
             </div>
         </div>
     </div>

@@ -35,7 +35,8 @@ if (isset($_REQUEST['action'])) {
 
 // Retrieve all employee details
 
-function getAllEmployees(){
+function getAllEmployees()
+{
     global $mysql;
 
     $sql = "SELECT
@@ -62,7 +63,8 @@ function getAllEmployees(){
     echo json_encode($employees);
 }
 
-function saveEmployee(){
+function saveEmployee()
+{
     global $mysql;
     mysqli_begin_transaction($mysql);
 
@@ -91,7 +93,7 @@ function saveEmployee(){
         global $rootDir;
         $extension = pathinfo($_FILES['profileImage']['name'], PATHINFO_EXTENSION);
         $fileUrl = '/uploads/employees/' . $userID . '.' . $extension;
-        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../'.$fileUrl);
+        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../' . $fileUrl);
 
         //Inserting into the userdetails table
         $userdetails = "INSERT INTO userdetails VALUES 
@@ -102,7 +104,7 @@ function saveEmployee(){
         //Inserting into employeeuser table
         $employeeuser = "INSERT INTO employeeuser VALUES
                         (NULL,'$userID','$departmentID')";
-                        
+
         mysqli_query($mysql, $employeeuser);
 
         //Inserting into useremergency table
@@ -134,9 +136,20 @@ function saveEmployee(){
         //Commit if everything is ok
         if ($imageSaved) {
             mysqli_commit($mysql);
+
+            //sending email
+            send_password_reset($email,$username,$Password);
+
             echo ('OK');
+
+            // header("location: ../controller/password-reset-code.php?password_reset_link=true&email=$email");
+
+        } else {
+            mysqli_rollback($mysql);
         }
-        
+
+
+
     } catch (mysqli_sql_exception $exception) {
         mysqli_rollback($mysql);
         echo ('Not OK\n Exception' . $exception);
@@ -144,7 +157,8 @@ function saveEmployee(){
 }
 
 //getting the employee list (remove if meka not working)
-function getEmployees($employee){
+function getEmployees($employee)
+{
     global $mysql;
     switch ($employee) {
         case 'employees':
@@ -176,7 +190,8 @@ function getEmployees($employee){
     echo json_encode($rows);
 }
 
-function loadEmployee($EmployeeID) {
+function loadEmployee($EmployeeID)
+{
     global $mysql;
 
     // echo json_encode(array());
@@ -206,15 +221,15 @@ function loadEmployee($EmployeeID) {
     $result = mysqli_query($mysql, $viewEmployee);
     $rows = array();
 
-    while($r = mysqli_fetch_array($result)) {
+    while ($r = mysqli_fetch_array($result)) {
         // echo json_encode($r);
         $rows[] = $r;
     }
     echo json_encode($rows);
-    
 }
 // Get all technicians
-function getAllTechnicians(){
+function getAllTechnicians()
+{
     global $mysql;
     $sql = "SELECT
                 t.UserID,
@@ -238,5 +253,29 @@ function getAllTechnicians(){
         }
     }
     echo json_encode($technicians);
+}
 
+
+function send_password_reset($email, $username, $Password)
+{
+    $email = "$email";
+    $subject = "New User Registration";
+    $body = "Hello,
+     Welcome to AssetPro!
+     Here you have received your Username and Password.
+     Be sure to change them after you login.
+     
+     Username=$username
+     Password=$Password
+
+     AssetPro
+    ";
+    $headers = "From: 18assetpro@gmail.com";
+
+    if (mail($email, $subject, $body, $headers)) { //PHP function send mail
+        // echo '<script>alert("Email successfully sent to $to_email...")</script>';
+    } else {
+
+        // echo '<script>console.log("Email sending Failed")</script>';
+    }
 }

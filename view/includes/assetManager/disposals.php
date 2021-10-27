@@ -16,7 +16,7 @@
             <tbody id="employeeTableBody">
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/1</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/2</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/3</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/4</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/5</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -66,7 +66,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/6</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/7</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -86,7 +86,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/8</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>
@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>FA/CP/12345</td>
+                    <td>FA/CC/9</td>
                     <td>Computer</td>
                     <td>Fixed Asset</td>
                     <td>5</td>

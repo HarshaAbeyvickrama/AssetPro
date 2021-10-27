@@ -19,6 +19,10 @@
             loadEmployeeDepartment($_REQUEST['DepartmentID']);
             break;
 
+            case 'getDepartments';
+            getDepartments();
+            break;
+
         
         default:
             # code...
@@ -84,6 +88,19 @@
 
         $result = mysqli_query($mysql, $viewDepartmentEmployees);
         $rows = array();
+    }
+
+    function getDepartments() {
+        global $mysql;
+        $getDpartments = "SELECT DepartmentID, Name, DepartmentCode FROM department";
+        $result = mysqli_query($mysql,$getDpartments);
+        if($result) {
+            $d= array();
+            while($r = mysqli_fetch_assoc($result)) {
+                $d[] = $r;
+            }
+            echo json_encode($d);
+        }
     }
 
 ?>
