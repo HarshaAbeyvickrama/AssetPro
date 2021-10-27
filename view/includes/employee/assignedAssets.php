@@ -57,7 +57,7 @@
                 </thead>
                 <tbody id="employeeTableBody"></tbody>
             </table>
-        </div>
+    </div>
 </div>
 
 
@@ -106,4 +106,5 @@
        
      }  
 </script>
+
 
