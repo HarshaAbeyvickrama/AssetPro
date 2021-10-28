@@ -5,10 +5,10 @@
     .profile {
         all: revert;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         background-color: #F1F4FF;
         overflow:hidden;
-        padding: 0px;
+        padding: 150px;
         height: 87vh;
     }
 
@@ -32,10 +32,8 @@
         justify-content: center;
         align-items: center;
         margin: 15px 7.5px 15px 15px;
-        padding: 10px;
-        
+        padding: 0px;    
     }
-
 
     .upSection>div {
         /* height: 100%; */
@@ -47,7 +45,7 @@
         border-radius: 0%;
     }
 
-    .upSection .upRight {
+    .upSection .upperPart {
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -56,7 +54,7 @@
    
     .profileImageSection {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
     }
@@ -225,145 +223,200 @@
         right: calc(0%);
         cursor: pointer;
     }
+
+    .table {
+        display: table;
+        width: 100%;
+        margin: 10px 0px;
+        color: #5C6E9B;
+        overflow-y: hidden !important;
+ 
+    }
+ 
+    .tableHeader {
+        width: 100%;
+        display: table-header-group;
+        font-size: 19px;
+        position: sticky;
+        padding: 15px;
+        font-weight: bold;
+        overflow-y: hidden !important;
+    }
+ 
+    .tableHeader>div {
+        display: table-cell;
+    }
+ 
+    .table .tableRowGroup {
+        display: table-row-group;
+        overflow-y: auto !important;
+    }
+ 
+    .tableRow {
+        display: table-row;
+        position: relative;
+    }
+ 
+ 
+    .tableRowGroup .tableRow:hover {
+        cursor: pointer;
+        background-color: wheat;
+ 
+    }
+ 
+    .tableRowGroup {
+        overflow-y: auto;
+    }
+ 
+    .tableRow .tableCell {
+        padding: 10px 0px;
+ 
+    }
+ 
+    .tableRow>div {
+        display: table-cell;
+        padding: 10px 0px;
+    }
+ 
+    .tableRow>div:first-of-type {
+        text-align: center;
+    }
+ 
+    .tableRow .btn {
+        border: 0;
+        background: #5C6E9B;
+        padding: 10px 20px;
+        color: #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+ 
+    .tableRow .btn:focus {
+        border: 0;
+        background: #5C6E9B;
+        transform: scale(0.97);
+    }
+ 
+    .cell-center {
+        text-align: center;
+        width: 20%;
+    }
+ 
+    .tableHeader>div:first-of-type {
+        text-align: center;
+    }
 </style>
 
-
-<form action="" id="errorlogForm" onsubmit="">
-
-    <div class="profile">
+<div class="profile">
+    <form action="" id="errorlogForm" onsubmit="">
         <div id="pUp" class="upSection scrollBar"> 
 
             <div class="profileImageSection">
                 <image src="../Images/lap1.jpg" alt="laptop-1">
             </div>
 
-            <div class="upRight">
+            <div class="upperPart">
                 <div class="basic-information">
 
                     <div class="title"> Basic Information: </div>
-
-                    <div class="col-h">
-                        <span for="errorId"> Error ID: </span>
-                        <input type="text" name="errorId" id="errorId" value="D/FA/12345">
-                    </div> 
+                    <div>
+                        <div class="col-h">
+                            <span for="errorId"> Error ID: </span>
+                            <input type="text" name="errorId" id="errorId" value="D/FA/12345">
+                        </div> 
                     
-                    <div class="col-f">
-                        <span for="assetId"> Asset ID: </span>
-                        <input type="text" name="assetID" id="assetID" value="FA/12345">
-                    </div>
+                        <div class="col-f">
+                            <span for="assetId"> Asset ID: </span>
+                            <input type="text" name="assetID" id="assetID" value="FA/12345">
+                        </div>
                    
-                    <div class="col-f">
-                        <span for="assetName"> Asset Name: </span>
-                        <input type="text" name="assetName" id="assetName" value="Asus Laptop">
+                        <div class="col-f">
+                            <span for="assetName"> Asset Name: </span>
+                            <input type="text" name="assetName" id="assetName" value="Asus Laptop">
+                        </div>
                     </div>
+                    <div>
+                        <div class="col-f">
+                            <span for="condition"> Condition:</span>
+                            <input type="text" name="condition" id="condition"  value="Brand New">
+                        </div>
 
-                    <div class="col-f">
-                        <span for="condition"> Condition:</span>
-                        <input type="text" name="condition" id="condition"  value="Brand New">
-                    </div>
+                        <div class="col-f">
+                            <span for="purchaseDate"> Purchase Date: </span>
+                            <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
+                        </div>
 
-                    <div class="col-f">
-                        <span for="purchaseDate"> Purchase Date: </span>
-                        <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
-                    </div>
+                        <div>
+                            <div class="col-f">
+                                <span for="AssetType"> Asset Type: </span>
+                                <input type="text" name="assetType" id="assetType" value="Fixed Asset">
+                            </div>
 
-                    <div class="col-f">
-                        <span for="AssetType"> Asset Type: </span>
-                        <input type="text" name="assetType" id="assetType" value="Fixed Asset">
+                            <div class="col-f">
+                                <span for="category"> Asset Category: </span>
+                                <input type="text" name="category" id="category" value="Electronic" >
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-f">
-                        <span for="category"> Asset Category: </span>
-                        <input type="text" name="category" id="category" value="Electronic" >
-                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <div>
         <div> Error Log: </div>
     </div>
-    <div class="contentSection scrollbar">
+        <div class="contentSection scrollbar">
 
-        <div class="oldActivities">
-            <div class="recentTitle">   </div>
-
-            <div class="recentActivityTable table">
-                <div class="tableHeader">
-                    <div class="tableCell"> Number </div>
-                    <div class="tableCell"> Asset ID </div>
-                    <div class="tableCell"> Error ID </div>
-                    <div class="tableCell"> Asset Name </div>
-                    <div class="tableCell"> Last repaired </div>
-                    <div class="tableCell"> Technician </div>
-                    <div class="tableCell"> MTTR </div>
-                    <div class="tableCell"> Cost(Rs) </div>
-                </div>
-                <div class="tableRowGroup">
-                    <div class="tableRow">
-                        <div class="tableCell"> 1 </div>
-                        <div class="tableCell"> FA/12345 </div>
-                        <div class="tableCell"> D/FA/12345 </div>
-                        <div class="tableCell"> Laptop </div>
-                        <div class="tableCell"> 2021/02/20 </div>
-                        <div class="tableCell"> Dinithi Upeksha </div>
-                        <div class="tableCell"> 2 days </div>
-                        <div class="tableCell"> 10,000 </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 2 </div>
-                        <div class="tableCell"> FA/12346 </div>
-                        <div class="tableCell"> D/FA/12346 </div>
-                        <div class="tableCell"> Printer </div>
-                        <div class="tableCell"> 2020/04/10 </div>
-                        <div class="tableCell"> Nayana Kalhara </div>
-                        <div class="tableCell"> 3 days </div>
-                        <div class="tableCell"> 15,050 </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 3 </div>
-                        <div class="tableCell"> FA/12347 </div>
-                        <div class="tableCell"> D/FA/12347 </div>
-                        <div class="tableCell"> Scanner </div>
-                        <div class="tableCell"> 2020/03/08 </div>
-                        <div class="tableCell"> Awantha Kanakarathnam </div>
-                        <div class="tableCell"> 7 days </div>
-                        <div class="tableCell"> 42,560 </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 4 </div>
-                        <div class="tableCell"> CA/22345 </div>
-                        <div class="tableCell"> D/CA/22345 </div>
-                        <div class="tableCell"> Monitor </div>
-                        <div class="tableCell"> 2020/02/11 </div>
-                        <div class="tableCell"> Kasun Chamika </div>
-                        <div class="tableCell"> 1 day </div>
-                        <div class="tableCell"> 2,500 </div>
-                    </div>
-                    <div class="tableRow">
-                        <div class="tableCell"> 5 </div>
-                        <div class="tableCell"> CA/22346 </div>
-                        <div class="tableCell"> D/CA/22346 </div>
-                        <div class="tableCell"> Web Cam </div>
-                        <div class="tableCell"> 2019/05/24 </div>
-                        <div class="tableCell"> Muzni Ahamed </div>
-                        <div class="tableCell"> 5 days </div>
-                        <div class="tableCell"> 14,980 </div>
-                    </div> 
-                    <div class="col-btn">
-                        <div class="sendfbBtn btnAction" id="sendFeedback"> Finish </div>
-                        <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
+            <div class="tableHeader">
+                <div> Number </div>
+                <div> Asset ID </div>
+                <div> Error ID </div>
+                <div> Asset Name </div>
+                <div> Last repaired </div>
+                <div> Technician </div>
+                <div class="cell-center"> View Breakdown </div>
+            </div>
+            <div class="tableRow">
+                <div> 1 </div>
+                <div> FA/12345 </div>
+                <div> Laptop </div>
+                <div> fixed Asset </div>
+                <div> Wathsala Perera </div>
+                <div class="cell-center"><button class="btn view"> View </button></div>
+            </div>
+            <div class="tableRow">
+                <div> 2 </div>
+                <div> FA/12346 </div>
+                <div> Printer </div>
+                <div> Fixed Asset </div>
+                <div> shanaka Madhushan </div>
+                <div class="cell-center"><button class="btn view"> View </button></div>
+            </div>
+            <div class="tableRow">
+                <div> 3 </div>
+                <div> CA/23456 </div>
+                <div> Monitor </div>
+                <div> Current Asset </div>
+                <div> Nalin Perera </div>
+                <div class="cell-center"><button class="btn view"> View </button></div>
+            </div>
+            <div class="tableRow">
+                <div> 4 </div>
+                <div> CA/23458 </div>
+                <div> CPU </div>
+                <div> Current Asset </div>
+                <div> kasun Dias </div>
+                <div class="cell-center"><button class="btn view"> View </button></div>
+            </div>
+            <div class="col-btn">
+                <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
                 </div>     
-                   
                 </div>
             </div>
         </div>
-    </div>    
-        
-    </div>
-
-</form>
-
+</div>
 <script>
 
     // Enable / Disable the form fields
@@ -373,7 +426,7 @@
     //      true --> form disabled 
     //      false --> form enabled 
     
-    function formState(formId,readonlyState){
+    /*function formState(formId,readonlyState){
         const form = document.getElementById(formId);
         var elements = form.elements;
         var len = elements.length;
@@ -409,6 +462,6 @@
         
         
         })
-    })
+    })*/
        
 </script>
