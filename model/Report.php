@@ -8,8 +8,9 @@
    
     if(isset($_REQUEST['action'])){
         switch ($_REQUEST['action']) {
+
             case 'reportBreakAsset':
-                reportAsset();
+                reportAsset($_REQUEST['asset_id']);
                 break;
 
             default:
@@ -18,20 +19,20 @@
         }
     }
 
-    function  reportAsset(){
+
+    function  reportAsset($asset_id){
        
         global $mysql;
 
         $defectedPart = $_POST['defP'];
         $reason = $_POST['exDef'];
-        //print_r($defectedPart);
-        //print_r($reason);
+      
         $reportassetquery = "INSERT into breakdown (AssetID,TechnicianID,EmployeeID,Date,Reason,DefectedParts)
-        VALUES(42,1,5,now(),'$defectedPart','$reason')";
+        VALUES('$asset_id',6,14,now(),'$reason','$defectedPart')";
         if(mysqli_query($mysql,$reportassetquery )) {
-            echo("Yes");
+            echo("Successfully Reported!!");
         }else{
-            echo("No");
+            echo("Error in Submitting!!");
         }
          
 
@@ -49,10 +50,7 @@
         // }
         //    function_alert("Welcome to Geeks for Geeks");
         // }
-
-
-
-        
+ 
         
     }
     

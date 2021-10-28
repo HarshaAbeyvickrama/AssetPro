@@ -5,7 +5,7 @@
     require_once("../db/dbConnection.php");
     $rootDir = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
     global $mysql;
-
+    
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     if(isset($_REQUEST['action'])){
@@ -20,6 +20,10 @@
 
             case 'getAssets':
                 getAssets($_REQUEST['type']);
+                break;
+
+            case 'getAsset':
+                getAsset($_REQUEST['id']);
                 break;
 
             case 'getCats':
@@ -79,9 +83,9 @@
 
             //Save image in the folder
             $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            $fileUrl = '/assetPro/uploads/assets/'.$assetId.'.'.$extension;
-            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , $rootDir.$fileUrl);
-
+            $fileUrl = '/uploads/assets/'.$assetId.'.'.$extension;
+            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , '../'.$fileUrl);
+           
             // Asset detail query
             $assetDetails = "insert into assetdetails values($assetId,'$assetName',$purchaseCost,'$condition','$fileUrl','$assetDescription','$purchaseDate')";
             mysqli_query($mysql,$assetDetails);
@@ -115,22 +119,95 @@
     function getCount($type){
         global $mysql;
 
-        switch ($type) {
-            case 'allAssets':
-                $query = "SELECT COUNT(*) FROM asset as count";
-                break;
-            case 'allEmployees':
-                $query = "SELECT COUNT(*) FROM employeeuser as count";
-                break;
-            case 'allTechnicians':
-                $query = "SELECT COUNT(*) FROM technicianuser as count";
-                break;
-            
-            default:
-                # code...
-                break;
-        }
+        switch($_SESSION['userType']){
+            case 'admin':
+                // echo('admin');
+                switch ($type) {
+                    case 'allAssets':
+                        $query = "SELECT COUNT(*) FROM asset as count";
+                        break;
+                    case 'allEmployees':
+                        $query = "SELECT COUNT(*) FROM employeeuser as count";
+                        break;
+                    case 'allTechnicians':
+                        $query = "SELECT COUNT(*) FROM technicianuser as count";
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
+            break;
+            case 'assetManager':
+                // print_r('AM');
+                switch ($type) {
+                    case 'allAssets':
+                        $query = "SELECT COUNT(*) FROM asset as count";
+                        break;
+                    case 'allEmployees':
+                        $query = "SELECT COUNT(*) FROM employeeuser as count";
+                        break;
+                    case 'allTechnicians':
+                        $query = "SELECT COUNT(*) FROM technicianuser as count";
+                        break;
+                    case 'allTangible':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE CategoryID = 1 OR CategoryID = 2";
+                        break;
+                    case 'allConsumable':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE CategoryID = 2";
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
+            break;
+            case 'employee':
+                $userId = $_SESSION['userID'];
+                switch ($type) {
+                    case 'allAssets':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId)";
+                        break;
+                    case 'allTangible':
+                        $query = "SELECT COUNT(*) FROM asset AS COUNT WHERE EmployeeID = (SELECT employeeId from employeeUser where userId=$userId) AND (CategoryID = 1 OR CategoryID = 2)";
+                        break;             
+                    case 'allConsumables':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 2";
+                        break;
+                    case 'allFixed':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 1";
+                        break;
+                    case 'allIntangibles':
+                        $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=(SELECT employeeId from employeeUser where userId=$userId) AND CategoryID = 3";
+                        break;
+                    }
+            break;
+            case 'technician':
+                $technicianID = $_SESSION['userID'];
+                switch ($type) {
+                    case 'allAssets':
+                        // $query = "SELECT COUNT(*) FROM asset as count WHERE EmployeeID=$employeeID";
+                        break;
+                    case 'assignedAssets':
+                        
+    
 
+                    case 'inProgress':
+
+                    case 'repairedAssets':
+                   
+                    
+                    default:
+                        # code...
+                        break;
+                }
+            break;
+            default:
+            
+
+        }
+       
+        // print_r($query);
         if($result = mysqli_query($mysql,$query)){
             $row = mysqli_fetch_array($result);
             echo($row[0]);
@@ -146,13 +223,18 @@
                 $sql = "SELECT
                             asset.AssetID,
                             asset.Status,
-                            assetdetails.Name as assetName,
+                            assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name as assetType
-                        FROM asset
+                            t.Name AS assetType,
+                            t.TypeCode,
+                            c.CategoryCode
+                        FROM
+                            asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN type ON asset.TypeID = type.TypeID
-                        ORDER BY asset.AssetID";
+                        Inner join category c on asset.CategoryID = c.CategoryID
+                        INNER join type t on t.TypeID = asset.TypeID
+                        ORDER BY
+                            asset.AssetID";
                 
                 break;
             case 'assigned':
@@ -161,13 +243,23 @@
                             asset.Status,
                             assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name AS assetType,
-                            CONCAT(userdetails.fName,' ',userdetails.lName) as employee
+                            t.Name AS assetType,
+                            c.CategoryCode,
+                            t.TypeCode,
+                            t.TypeID,
+                            CONCAT(
+                                userdetails.fName,
+                                ' ',
+                                userdetails.lName
+                            ) AS employee
                         FROM
                             asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
-                        INNER join userdetails ON asset.EmployeeID = userdetails.UserID
+                        INNER JOIN category c ON
+                            asset.CategoryID = c.CategoryID
+                        INNER JOIN TYPE t ON
+                            asset.TypeID = t.TypeID
+                        INNER JOIN userdetails ON asset.EmployeeID = userdetails.UserID
                         WHERE
                             asset.Status = 'assigned' AND asset.EmployeeID IS NOT NULL AND asset.DepartmentID IS NULL
                         ORDER BY
@@ -180,15 +272,21 @@
                             asset.Status,
                             assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name AS assetType,
+                            t.Name AS assetType,
+                            c.CategoryCode,
+                            t.TypeCode,
+                            t.TypeID,
                             department.Name AS department
                         FROM
                             asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+                        INNER JOIN category c ON
+                            asset.CategoryID = c.CategoryID
+                        INNER JOIN TYPE t ON
+                            asset.TypeID = t.TypeID
                         INNER JOIN department ON department.DepartmentID = asset.DepartmentID
                         WHERE
-                            asset.Status = 'assigned' AND asset.EmployeeID IS NULL AND asset.DepartmentID IS NOT NULL
+                            asset.Status = 'shared' AND asset.EmployeeID IS NULL AND asset.DepartmentID IS NOT NULL
                         ORDER BY
                             asset.AssetID";
                 break;
@@ -197,13 +295,22 @@
                 $sql = "SELECT
                             asset.AssetID,
                             asset.Status,
-                            assetdetails.Name as assetName,
+                            assetdetails.Name AS assetName,
                             assetdetails.AssetCondition,
-                            TYPE.Name as assetType
-                        FROM asset
+                            t.Name AS assetType,
+                            c.CategoryCode,
+                            t.TypeCode
+                        FROM
+                            asset
                         INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                        INNER JOIN type ON asset.TypeID = type.TypeID WHERE asset.Status= 'unassigned'
-                        ORDER BY asset.AssetID";
+                        INNER JOIN category c ON
+                            asset.CategoryID = c.CategoryID
+                        INNER JOIN TYPE t ON
+                            asset.TypeID = t.TypeID
+                        WHERE
+                            asset.Status = 'unassigned'
+                        ORDER BY
+                            asset.AssetID";
                 
                 break;
            
@@ -258,15 +365,39 @@
                 }
                 $cat->types = $typeArray;
                 $catArray[] = $cat;
-
-                
-               
-
             }
             echo json_encode($catArray);
-            
         }
-             
     }
-    function getAsset(){};
+
+    function getAsset($id){
+        global $mysql;
+        $sql = "SELECT
+                    a.*,
+                    ad.*,
+                    aw.*,
+                    d.*,
+                    t.TypeCode,
+                    c.CategoryCode
+                FROM
+                    asset a
+                LEFT JOIN assetdetails ad ON
+                    a.AssetID = ad.AssetID
+                LEFT JOIN assetwarranty aw ON
+                    aw.AssetID = a.AssetID
+                LEFT JOIN depreciation d ON
+                    a.AssetID = d.AssetID
+                LEFT JOIN type t ON
+                    t.TypeID = a.TypeID
+                LEFT JOIN category c ON
+                    c.CategoryID = a.CategoryID
+                WHERE
+                    a.AssetID = $id";
+        $result = mysqli_query($mysql,$sql);
+        if($result){
+            echo json_encode(mysqli_fetch_assoc($result));
+        }else{
+            echo json_encode(array());
+        }
+    }
 ?>

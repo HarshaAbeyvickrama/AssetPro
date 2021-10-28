@@ -66,7 +66,7 @@
         display: inline-block;
         /* grid-template-rows: 1fr 1fr; */
         border-radius: 15px;
-        padding: 10px;
+        padding: 20px;
         background-color: white;
         overflow-y: auto;
     }
@@ -86,6 +86,8 @@
         display: table;
         width: 100%;
         margin: 10px 0px;
+        color: #5C6E9B;
+        overflow-y: hidden !important;
         
     }
     .tableHeader{
@@ -93,6 +95,7 @@
         font-size: 19px;
         padding: 15px;
         font-weight: bold;
+        overflow-y: hidden !important;
     }
     .table .tableRowGroup{
         display: table-row-group;
@@ -108,9 +111,26 @@
             
     }
     .tableRow .tableCell{
-        padding:5px 0px;
+        padding:15px 0px;
         
     }
+
+    .tableRow .btn {
+        border: 0;
+        background: #659B5C;
+        padding: 10px 20px;
+        color: #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .tableRow .btn:focus {
+        border: 0;
+        /*background: #5C6E9B;*/
+        transform: scale(0.97);
+    }
+
     hr{
         background-color: #304068;
         width: 100%;
@@ -127,7 +147,7 @@
 
     .col-btn > div:hover {
         cursor: pointer;
-        background-color: #304068;
+        background-color: #EAEDF5;
         transition: .5s;
     }
 
@@ -150,6 +170,12 @@
         float: right;
         margin-right: 10px;
     }
+
+    .cell-center {
+        text-align: center;
+        width: 20%;
+    }
+
     .tableRow > div:nth-of-type(6){
         text-align: left;
     }
@@ -158,12 +184,12 @@
 </style>
 <div class="overviewLayout">
     <div>
-        <div> Dashboard Overview </div>
+        <div> Overview </div>
     </div>
     <div class="statSection">
         <div>
             <div class="statBox box1" id="allAssets">
-                <div class="statNumber" id="allAssets"> 10 </div>
+                <div class="statNumber" id="allAssets"> 16 </div>
                 <div class="statText"> All Assets </div>
             </div>
         </div>
@@ -192,7 +218,7 @@
     </div>
 
     <div>
-        <div> Recent Activities </div>
+        <div> Repaired Assets </div>
     </div>
     <div class="contentSection scrollbar">
 
@@ -206,68 +232,56 @@
                     <div class="tableCell"> Asset Name </div>
                     <div class="tableCell"> Asset Type </div>
                     <div class="tableCell"> Reported Employee </div>
-                    <div class="tableCell"> Status </div>
+                    <div class="cell-center"> Status </div>
                 </div>
                 <div class="tableRowGroup">
                     <div class="tableRow">
                         <div class="tableCell"> 1 </div>
-                        <div class="tableCell"> FA/12345 </div>
+                        <div class="tableCell"> FA/CC/1 </div>
                         <div class="tableCell"> Laptop </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
-                        <div class="tableCell">
-                            <div class="col-btn"> Done </div>
-                        </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 2 </div>
-                        <div class="tableCell"> FA/12346 </div>
+                        <div class="tableCell"> FA/CP/1 </div>
                         <div class="tableCell"> Printer </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Shanaka Madhushan </div>
-                        <div class="col-btn">
-                            <div class="tableCell" id="status"> Done </div>    
-                        </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 3 </div>
-                        <div class="tableCell"> CA/23456 </div>
+                        <div class="tableCell"> CA/CP/2 </div>
                         <div class="tableCell"> Monitor </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> Nalin Perera </div>
-                        <div class="col-btn">
-                            <div class="tableCell" id="status"> Done </div>    
-                        </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 4 </div>
-                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> FA/CP/3 </div>
                         <div class="tableCell"> CPU </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
-                        <div class="col-btn">
-                            <div class="tableCell" id="status"> Done </div>    
-                        </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 5 </div>
-                        <div class="tableCell"> CA/23458 </div>
+                        <div class="tableCell"> CA/CP/4 </div>
                         <div class="tableCell"> Web Cam </div>
                         <div class="tableCell"> Current Asset </div>
                         <div class="tableCell"> kasun Dias </div>
-                        <div class="col-btn">
-                            <div class="tableCell" id="status"> Done </div>    
-                        </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
                     </div>
                     <div class="tableRow">
                         <div class="tableCell"> 6 </div>
-                        <div class="tableCell"> FA/12345 </div>
+                        <div class="tableCell"> FA/CP/5 </div>
                         <div class="tableCell"> Scanner </div>
                         <div class="tableCell"> Fixed Asset </div>
                         <div class="tableCell"> Wathsala Perera </div>
-                        <div class="col-btn">
-                            <div class="tableCell" id="status"> Done </div>    
-                        </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
                     </div>      
                    
                 </div>
@@ -275,3 +289,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    getCount('allAssets');
+    getCount('assignedAssets');
+    getCount('inProgress');
+    getCount('repairedAssets');
+</script>

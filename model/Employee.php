@@ -19,6 +19,14 @@ if (isset($_REQUEST['action'])) {
             getAllEmployees();
             break;
 
+        case 'allTechnicians';
+            getAllTechnicians();
+            break;
+
+        case 'loadEmployee';
+            loadEmployee($_REQUEST['EmployeeID']);
+            break;
+
         default:
             # code...
             break;
@@ -32,13 +40,17 @@ function getAllEmployees()
     global $mysql;
 
     $sql = "SELECT
-                employeeuser.UserID,
-                employeeuser.EmployeeID,
-                CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
-                userdetails.Gender
+                ud.UserID,
+                CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                ud.Gender,
+                d.DepartmentCode,
+                eu.EmployeeID
             FROM
-                employeeuser
-            INNER JOIN userdetails ON employeeuser.UserID = userdetails.UserID";
+                userdetails ud
+            INNER JOIN employeeuser eu ON
+                ud.UserID = eu.UserID
+            INNER JOIN department d ON
+                eu.DepartmentID = d.DepartmentID";
 
     $result = mysqli_query($mysql, $sql);
     $employees = array();
@@ -50,6 +62,7 @@ function getAllEmployees()
     }
     echo json_encode($employees);
 }
+
 function saveEmployee()
 {
     global $mysql;
@@ -58,6 +71,7 @@ function saveEmployee()
     $departmentID = $_POST['depID'];
     $firstName = $_POST['fName'];
     $lastName = $_POST['lName'];
+    $NIC = $_POST['NIC'];
     $gender = $_POST['gender'];
     $dob = $_POST['dob'];
     $maritalStatus = $_POST['maritalStatus'];
@@ -78,23 +92,24 @@ function saveEmployee()
         //Save image in the folder
         global $rootDir;
         $extension = pathinfo($_FILES['profileImage']['name'], PATHINFO_EXTENSION);
-        $fileUrl = '/assetPro/uploads/employees/' . $userID . '.' . $extension;
-        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], $rootDir . $fileUrl);
+        $fileUrl = '/uploads/employees/' . $userID . '.' . $extension;
+        $imageSaved = move_uploaded_file($_FILES['profileImage']['tmp_name'], '../' . $fileUrl);
 
         //Inserting into the userdetails table
         $userdetails = "INSERT INTO userdetails VALUES 
-                       ('$userID','$firstName','$lastName','$address','$gender','23',
+                       ('$userID','$firstName','$lastName','$NIC','$address','$gender','23',
                        '$contactNo','$email','$dob','$fileUrl','$maritalStatus')";
         mysqli_query($mysql, $userdetails);
 
         //Inserting into employeeuser table
         $employeeuser = "INSERT INTO employeeuser VALUES
                         (NULL,'$userID','$departmentID')";
+
         mysqli_query($mysql, $employeeuser);
 
         //Inserting into useremergency table
         $useremergency = "INSERT INTO useremergency VALUES
-                         ('$userID','$eRelationship','$eName','blah','$econtact')";
+                         ('$userID','$eRelationship','$eName','','$econtact')";
         mysqli_query($mysql, $useremergency);
 
         //Getting a random username
@@ -115,14 +130,26 @@ function saveEmployee()
         $Password = substr(str_shuffle($chars), 0, 8);
         $encrypt_pwd = md5($Password); //Encrypting the password
 
-        $usernamePassword = "INSERT INTO login VALUES ('$userID','$username','$encrypt_pwd')";
+        $usernamePassword = "INSERT INTO login VALUES ('$userID','$username','$encrypt_pwd','')";
         mysqli_query($mysql, $usernamePassword);
 
         //Commit if everything is ok
         if ($imageSaved) {
             mysqli_commit($mysql);
+
+            //sending email
+            send_password_reset($email,$username,$Password);
+
             echo ('OK');
+
+            // header("location: ../controller/password-reset-code.php?password_reset_link=true&email=$email");
+
+        } else {
+            mysqli_rollback($mysql);
         }
+
+
+
     } catch (mysqli_sql_exception $exception) {
         mysqli_rollback($mysql);
         echo ('Not OK\n Exception' . $exception);
@@ -161,4 +188,94 @@ function getEmployees($employee)
         $rows[] = $r;
     }
     echo json_encode($rows);
+}
+
+function loadEmployee($EmployeeID)
+{
+    global $mysql;
+
+    // echo json_encode(array());
+    $viewEmployee = "SELECT
+                        eu.EmployeeID,
+                        ud.fName,
+                        ud.lName,
+                        ud.NIC,
+                        ud.Gender,
+                        ud.DOB,
+                        ud.ProfilePicURL,
+                        ud.CivilStatus,
+                        ud.Address,
+                        ud.PhoneNumber,
+                        ud.Email,
+                        ue.fName AS eName,
+                        ue.Relationship,
+                        ue.TelephoneNumber
+                    FROM
+                        userdetails ud
+                    INNER JOIN employeeuser eu ON
+                        ud.UserID = eu.UserID
+                    INNER JOIN useremergency ue ON
+                        eu.UserID = ue.UserID
+                    WHERE EmployeeID = $EmployeeID";
+
+    $result = mysqli_query($mysql, $viewEmployee);
+    $rows = array();
+
+    while ($r = mysqli_fetch_array($result)) {
+        // echo json_encode($r);
+        $rows[] = $r;
+    }
+    echo json_encode($rows);
+}
+// Get all technicians
+function getAllTechnicians()
+{
+    global $mysql;
+    $sql = "SELECT
+                t.UserID,
+                t.TechnicianID,
+                CONCAT(
+                    userdetails.fName,
+                    ' ',
+                    userdetails.lName
+                ) AS name,
+                userdetails.Gender
+            FROM
+                technicianuser t
+            INNER JOIN userdetails ON t.UserID = userdetails.UserID";
+
+    $result = mysqli_query($mysql, $sql);
+    $technicians = array();
+
+    if ($result) {
+        while ($technician = mysqli_fetch_assoc($result)) {
+            $technicians[] = $technician;
+        }
+    }
+    echo json_encode($technicians);
+}
+
+
+function send_password_reset($email, $username, $Password)
+{
+    $email = "$email";
+    $subject = "New User Registration";
+    $body = "Hello,
+     Welcome to AssetPro!
+     Here you have received your Username and Password.
+     Be sure to change them after you login.
+     
+     Username=$username
+     Password=$Password
+
+     AssetPro
+    ";
+    $headers = "From: 18assetpro@gmail.com";
+
+    if (mail($email, $subject, $body, $headers)) { //PHP function send mail
+        // echo '<script>alert("Email successfully sent to $to_email...")</script>';
+    } else {
+
+        // echo '<script>console.log("Email sending Failed")</script>';
+    }
 }

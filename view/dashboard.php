@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">  
+    <link rel="stylesheet" href="../css/main.css">
     <title>Dashboard</title>
     <style>
         .container{
@@ -44,8 +45,9 @@
             background-color: #F1F4FF;
         }
         /* Scrollbar styling */
-       .scrollBar{
-       }
+        .scrollBar{
+            overflow-y: auto;
+        }
         .scrollBar::-webkit-scrollbar-track{
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
             background-color: #F5F5F5 !important;
@@ -102,30 +104,35 @@
     </div>
     <script>
         evaluateJs('centerSection');
-       function getCount(type){
+       function getCount(type,id){
+           var count = 0 ; 
             const xhr = new XMLHttpRequest();
             xhr.open("GET",`../model/Asset.php?action=getCount&type=${type}`,true);
 
             xhr.onload = function(){
                 if(this.status === 200){
-                    switch (type) {
-                        case 'allAssets':
-                            document.getElementById('allAssetsCount').innerHTML = this.responseText;
-                            break;
-                        case 'allEmployees':
-                            document.getElementById('allEmployeesCount').innerHTML = this.responseText;
-                            break;
-                        case 'allTechnicians':
-                            document.getElementById('allTechniciansCount').innerHTML = this.responseText;
-                            break;
                     
-                        default:
-                            break;
-                    }
+                    document.getElementById(id).innerHTML = this.responseText;
+                    // switch (type) {
+                    //     case 'allAssets':
+                    //         document.getElementById('allAssetsCount').innerHTML = this.responseText;
+                    //         break;
+                    //     case 'allEmployees':
+                    //         document.getElementById('allEmployeesCount').innerHTML = this.responseText;
+                    //         break;
+                    //     case 'allTechnicians':
+                    //         document.getElementById('allTechniciansCount').innerHTML = this.responseText;
+                    //         break;
+                    
+                    //     default:
+                    //         break;
+                    // }
                     
                 }
+                return count;
             }
             xhr.send();
+
         }
 
 
@@ -135,21 +142,42 @@
             xhr.open('GET',`../model/Employee.php?action=${type}`,true);
             xhr.onload = function(){
                 const res = JSON.parse(this.responseText);
-               
-                for(var i=0; i < res.length ; i++){
-                    console.log(i+1)
-                    var row = `
-                        <tr id=${res[i].UserID}>
-                            <td>${i+1}</td>
-                            <td>${res[i].EmployeeID}</td>
-                            <td>${res[i].name}</td>
-                            <td>${res[i].Gender == 'F' ? "Female" : "Male"}</td>
-                            <td><div class='btnAction'>View</div></td>
-                        </tr>
-                    `;
-                    console.log(row);
-                    tb.innerHTML += row;
+                console.log(res);
+                switch (type) {
+                    case 'allTechnicians':
+                        for(var i=0; i < res.length ; i++){
+                            var row = `
+                                <tr id=${res[i].UserID}>
+                                    <td>${i+1}</td>
+                                    <td>TECH/${res[i].TechnicianID}</td>
+                                    <td>${res[i].name}</td>
+                                    <td>${res[i].Gender}</td>
+                                    <td><button class='btn btn-assign'>View</button></td>
+                                </tr>
+                            `;
+                            tb.innerHTML += row;
+                        }
+                        break;
+                
+                    case 'allEmployees':
+                        for(var i=0; i < res.length ; i++){
+                            var row = `
+                                <tr id=${res[i].UserID}>
+                                    <td>${i+1}</td>
+                                    <td>EMP/${res[i].EmployeeID}</td>
+                                    <td>${res[i].Name}</td>
+                                    <td>${res[i].Gender}</td>
+                                    <td><div class='btn btn-assign'>View</div></td>
+                                </tr>
+                            `;
+                            tb.innerHTML += row;
+                        }
+                        break;
+                
+                    default:
+                        break;
                 }
+                
             } 
             xhr.send();
         }

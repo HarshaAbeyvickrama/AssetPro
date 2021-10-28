@@ -2,7 +2,6 @@
     form{
         height: 87vh;
     }
-
     .profile {
         all: revert;
         display: grid;
@@ -144,7 +143,7 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text] {
+    .col-f input[type=text], input[type=number] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -201,16 +200,8 @@
         cursor: pointer;
     }
 
-
-    .saveBtn:hover,
-    .cancBtn:hover {
-        cursor: pointer;
-        background-color: #304068;
-        transition: .5s;
-    }
-
-    /* .saveBtn,
-    .cancBtn {
+    /* .editBtn,
+    .delBtn {
         width: 80px;
         height: 40px;
         background-color: #5C6E9B;
@@ -220,6 +211,15 @@
         color: #F1F4FF;
         margin-left: 70vh;
     } */
+
+    .editBtn:hover,
+    .backBtn:hover {
+        cursor: pointer;
+        background-color: #304068;
+        transition: .5s;
+    }
+
+    
     /* .BtnGroup{
         border: 1px solid red;
         display: block;
@@ -227,19 +227,14 @@
         float: left;
     } */
 
-    /* Hide save and cancel buttons initially */
-    #cancelEdit,
-    #saveInfo{
-        display: none;
-    }
 
 </style>
-<form action="" id="userProfileForm">
+<form action="" id="errorlogForm">
 
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
             <div class="profileImageSection">
-                <img src="../Images/profile.jpg" alt="">
+                <img src="../Images/profile.jpg" alt="" name="profileImage" id="imagePrev">
                 <input type="file" name="profileImage" id="profileImage" hidden>
                 <label for="profileImage" id="uploadBtn"> Choose Image </label>
             </div>
@@ -263,18 +258,26 @@
                     </div>
 
                     <div class="col-f">
+                        <span for="NIC">NIC</span>
+                        <input type="text" name="NIC" id="NIC" maxlength="12">
+                    </div>
+
+                    <div class="col-f">
                         <span for="role"> Role: </span>
-                        <input type="text" name="role" id="role">
+                        <input type="text" name="role" id="role" value="Employee">
                     </div>
 
                     <div class="col-f">
                         <span for="gender"> Gender </span>
-                        <div class="radio-group">
-                            <input type="radio" name="gender" id="male" value="male"><label> Male </label>
-                            <input type="radio" name="gender" id="female" value="female"><label> Female </label>
+                        <div class="radio-group" id="radio-group">
+                            <input type="radio" name="gender" id="Male" value="male"><label> Male </label>
+                            <input type="radio" name="gender" id="Female" value="female"><label> Female </label>
                         </div>
                     </div>
                     
+                    <div class="col-btn">
+                        <div class="btnAction" id="btnEditProfile"> Edit </div>
+                    </div>
 
                 </div>
                 
@@ -299,15 +302,15 @@
                 <input type="text" name="address" id="address">
             </div>
             <div class="col-f">
-                <span for="contactNo"> Contact No: </span>
-                <input type="text" name="contactNo" id="contactNo">
+                <span for="contactNo"> Contact Number: </span>
+                <input type="number" name="contactNo" id="contactNo" maxlength="10">
             </div>
             <div class="col-f">
                 <span for="email"> Email Address: </span>
                 <input type="email" name="email" id="email">
             </div>
 
-            <div class="title">Emergency Contact</div>
+            <div class="title"> Emergency Contact: </div>
 
             <div class="col-f">
                 <span for="eName"> Name: </span>
@@ -319,13 +322,13 @@
             </div>
             <div class="col-f">
                 <span for="econtact"> Telephone Number: </span>
-                <input type="text" name="econtact" id="econtact">
+                <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
             <div class="col-btn">
-                <div class="saveBtn btnAction" id="saveInfo"> Save </div>
-                <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>
+                <div class="btnAction" id="back"> Back </div>
             </div>
-                      
+                    
+              
         </div>
 
         </div>
@@ -350,29 +353,23 @@
             elements[i].disabled=readonlyState;
         }
         document.getElementById("uploadBtn").disabled=readonlyState;
-    
+
+        
     }
     
-    formState("userProfileForm",true);
+    formState("errorlogForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
-        const cancBtn = document.getElementById("cancelEdit");
-        const saveBtn = document.getElementById("saveInfo");
+        const backBtn = document.getElementById("back");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
-                case 'cancelEdit':
-                    formState("userProfileForm",true);
-                    saveBtn.style.display = 'none';
+                case 'back':
+                    formState("errorlogForm",true);
+                    /*saveBtn.style.display = 'none';
                     cancelBtn.style.display = 'none';
-                    btnEditProfile.style.display = 'block';
+                    btnEditProfile.style.display = 'block';*/
+                
                     
-                    break;
-                case 'saveInfo':
-                    btnEditProfile.style.display = 'none';
-                    cancelBtn.style.display = 'block';
-                    saveBtn.style.display = 'block';
-                    deleteBtn.style.display = 'none';
-                    formState("userProfileForm",false);
                     break;
             
                 default:
@@ -382,5 +379,29 @@
         
         })
     })
-       
+
+    //Getting the employee details to the form
+    var employeeID = getCookieValue('EmployeeID');
+    var employee = JSON.parse(employeeID)[0];
+    console.log(employee);
+
+    document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
+    document.getElementById('empID').value = employee.EmployeeID;
+    document.getElementById('fName').value = employee.fName;
+    document.getElementById('lName').value = employee.lName;
+    document.getElementById('NIC').value = employee.NIC;
+    var radio = document.getElementById('radio-group').children;
+    // console.log(employee.Gender);
+    var gender = document.getElementById(employee.Gender)
+    gender.checked = true;
+    // document.getElementById(employee.Gender).checked = true;
+    document.getElementById('dob').value = employee.DOB;
+    document.getElementById('maritalStatus').value = employee.CivilStatus;
+    document.getElementById('address').value = employee.Address;
+    document.getElementById('contactNo').value = employee.PhoneNumber;
+    document.getElementById('email').value = employee.Email;
+    document.getElementById('eName').value = employee.eName;
+    document.getElementById('eRelationship').value = employee.Relationship;
+    document.getElementById('econtact').value = employee.TelephoneNumber;
+    
 </script>

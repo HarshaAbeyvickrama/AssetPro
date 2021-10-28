@@ -110,7 +110,7 @@
         background-color: #5C6E9B;
     }
 
-    .col-f input[type=text] {
+    .col-f input[type=text], input[type=number] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -227,13 +227,17 @@
                         <input type="text" name="lName" id="lName">
                     </div>
                     <div class="col-f">
+                        <span for="NIC">NIC</span>
+                        <input type="text" name="NIC" id="NIC" maxlength="12" minlength="10">
+                    </div>
+                    <div class="col-f">
                         <span for="role">Role</span>
                         <input type="text" name="role" id="role" value="Technician">
                     </div>
                     <div class="col-f">
                         <span for="gender" id="gender">Gender</span>
-                        <input type="radio" name="gender" id="male" value="male"><label>Male</label>
-                        <input type="radio" name="gender" id="female" value="female"><label>Female</label>
+                        <input type="radio" name="gender" id="male" value="Male"><label>Male</label>
+                        <input type="radio" name="gender" id="female" value="Female"><label>Female</label>
                     </div>
 
                 </div>
@@ -260,7 +264,7 @@
                 </div>
                 <div class="col-f">
                     <span for="contactNo">Contact Number</span>
-                    <input type="text" name="contactNo" id="contactNo">
+                    <input type="number" name="contactNo" id="contactNo" maxlength="10" minlength="10">
                 </div>
                 <div class="col-f">
                     <span for="email">Email Address</span>
@@ -279,7 +283,7 @@
                 </div>
                 <div class="col-f">
                     <span for="econtact">Telephone Number</span>
-                    <input type="text" name="econtact" id="econtact">
+                    <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
                 </div>
 
                 <!-- Add and Cancel button to add -->

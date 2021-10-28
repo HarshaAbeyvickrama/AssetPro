@@ -1,136 +1,258 @@
 <style>
-    .header{
-        display: grid;
-        grid-template-columns: 7fr 0.5fr 2fr 0.5fr ;
-        height: 12vh;
-        
+    .header {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0px;
+        justify-content: right;
     }
-    .header >div{
-        border: 0px solid green;
+
+    .header>div {
+        margin: 0px 10px;
     }
-    #notificationIcon > img{
-        height: 30px;
-        width: 30px;
-    }
-    #notificationIcon{
+
+    .notificationBadge {
+        height: 50%;
+        margin: 0px;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    #notificationIcon:hover{
-        cursor: pointer;
+
+    .notificationBadge>img {
+        height: 30px;
+        width: 30px;
     }
-    #notificationCount{
+
+    #notificationCount {
         position: absolute;
-        top: 15px;
-        right: 10px;
+        top: -5px;
+        right: -5px;
         background-color: red;
         border-radius: 50%;
         color: white;
         width: 20px;
         height: 20px;
-        display: flex;
+        /* display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
         font-size: 11px;
         font-weight: bold;
     }
-    #userSection{
-        display: grid;
-        grid-template-columns: 7fr 3fr;
-    }
-    #userSection > div{
+
+    #userSection {
         display: flex;
-        justify-content: center;
         align-items: center;
-        text-align: right;
-        width: 100%;
+        /* border: 1px solid red; */
+        padding: 5px 10px;
+        box-shadow: 0 0px 2px #5c6e9b;
+        border-radius: 12px;
     }
-    #userSection img{
-        width: 75px;
-        height: 75px;
+
+    #userSection:hover {
+        cursor: pointer;
+    }
+
+    #userSection div {
+        margin: 0px 5px;
+    }
+
+    #userSection img {
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
     }
-    #username{
+
+    #username {
         font-size: 20px;
+        font-weight: 900;
+        color: #304068;
+        /* height: 100%; */
     }
-    
+
+    #username:hover {
+        cursor: pointer;
+    }
+
+    /* Dropdown */
+    .profile-dropdown {
+        display: none;
+        justify-content: center;
+        position: absolute;
+        width: 250px;
+        border-radius: 12px;
+        /* border: 1px solid red; */
+        padding: 15px 0px;
+        right: 0;
+        margin: 0px 10px;
+        background-color: white;
+        box-shadow: 0 0px 2px #5c6e9b;
+        z-index: 10;
+    }
+
+    .profile-dropdown>div {
+        padding: 0px 10px;
+    }
+
+    .profile-dropdown>hr {
+        width: 100%;
+        height: 0.5px;
+    }
+
+    #logout {
+        justify-content: left;
+    }
+
+    .topic:hover,
+    .log-out:hover {
+        color: #5c6e9b;
+        background-color: #EAEDF5;
+        cursor: pointer;
+    }
+
+    .profile-dropdown .menu {
+        top: 80px;
+        right: -10px;
+        padding: 10px 20px;
+        background: #FAFBFF;
+        width: 200px;
+        box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        transition: 0.5s;
+    }
+
+    .profile-dropdown .menu::before {
+        content: '';
+        right: 28px;
+        width: 20px;
+        height: 20px;
+        background: red;
+        transform: rotate(45deg);
+    }
+
+    .profile-dropdown .menu h3 {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        padding: 20px 0;
+        font-weight: 500;
+        color: #304068;
+        line-height: 1.2em;
+    }
+
+    .profile-dropdown .menu h3 span {
+        font-size: 14px;
+        color: #5c6e9b;
+        font-weight: 400;
+    }
+    .profile-dropdown .menu ul li {
+        list-style: none;
+        padding: 15px 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        color: #5c6e9b;
+        cursor: pointer;
+    }
+    .profile-dropdown .menu ul li img {
+        max-width: 20px;
+        margin-right: 10px;
+        opacity: 0.5;
+        transform: 0.5s;
+    }
+
+    .profile-dropdown .menu ul li:hover img {
+        opacity: 1;
+    }
 </style>
 
 <div class="header">
+    <div class="notificationBadge">
+        <img src="../Images/Notification.png" alt="" class="notificationBadge" id="notificationIcon">
+        <span id="notificationCount" class="notificationBadge">2</span>
+    </div>
+
+    <div id="userSection">
+        <div id="username">
+            <?php
+            include('../db/dbConnection.php');
+            $userId = $_SESSION['userID'];
+            // echo($userId);
+            $res = mysqli_query($mysql, "Select CONCAT(userdetails.fName,' ',userdetails.lName) AS name from userdetails where userID=$userId");
+            $name = mysqli_fetch_assoc($res)['name'];
+            echo $name;
+            ?>
+        </div>
+        <!-- <div> -->
+        <img src="../Images/profile.jpg" alt="">
+        <!-- </div> -->
+    </div>
+</div>
+
+<!-- <div class="profile-dropdown" id="profiledropDown">
+    <div>Signed in as</div>
     <div>
         
     </div>
-    <div id="notificationIcon" class="notificationBadge">
-        <img src="../Images/Notification.png" alt="" class="notificationBadge">
-        <span id="notificationCount" class="notificationBadge">2</span>
+    <hr>
+    <div id="your-profile">
+        Your Profile
     </div>
-    <div id="userSection">
-        <!-- <div id="username">Rocell Bathware</div> -->
-        <div id="username">
-            <?php
-                $loggedInUserType = $_SESSION['userType'];
-                echo $loggedInUserType;
-            ?>
-        </div>
-        <div>
-            <img src="../Images/profile.jpg" alt="">
-        </div>
+    <div id="logout">
+        Log Out
     </div>
-    <div></div>
+</div> -->
+<!-- <div class="profile-dropdown">
+    <div class="maintopic">Signed in as</div>
+    <div class="signedName">
+        
+    </div>
+    <hr>
+    <div id="your-profile" class="topic">
+        Your Profile
+    </div>
+    <div id="logout" class="log-out">
+        Log Out
+    </div>
+
+</div> -->
+
+<div class="profile-dropdown" id="profiledropdown">
+    <div class="menu">
+        <h3>Signed in as <br> <span><?php echo $name ?></span></h3>
+        <ul>
+            <li><img src="../Images/avatar.png" alt="">My Profile</li>
+            <li id="logout"><img src="../Images/settings.jpg" alt="">Log Out</li>
+        </ul>
+    </div>
 </div>
-<?php
-    include_once("notification.php")
-?>
-
-
 
 <script>
-    var icon = document.getElementById("notificationIcon");
-    icon.addEventListener("click",e =>{
-        var notification = document.querySelector(".notificationContainer");
-        if(notification.style.display ==="none"){
-            notification.style.display = "grid";
-        }else{
-            notification.style.display= "none";
+    var userSection = document.getElementById('userSection');
+    userSection.addEventListener('click', (e) => {
+        if (e.target.parentNode.id == 'userSection') {
+            var dd = document.getElementById('profiledropdown');
+            var style = window.getComputedStyle(dd, null).getPropertyValue("display");
+            if (style == 'none') {
+                dd.style.display = 'flex';
+            } else {
+                dd.style.display = 'none';
+            }
         }
     })
 
-    //Checking for notifications
+    document.getElementById('logout').addEventListener('click', (e) => {
+        window.location.replace("../controller/mainController.php?action=logout");
+    })
 
-    window.onload = function(){
-    //    checkNewNotifications();
-    }
-   
-
-    function checkNewNotifications() {
-        setInterval(getCount, 2000);
-    }
-    var cows =1;
-    function getCount() {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open("GET","../controller/mainController.php?action=newNotifCount",true);
-
-        xhr.onload = function(){
-            if(this.status === 200){
-                console.log("හරකා Number "+cows+" 🐮🐮")
-                cows++;
-            }else{
-                
-            }
-        }
-        xhr.send();
-    }
-
-
-    //hide notification panel when clicked outside 
-    document.addEventListener('click',function(e){
-        notificationWindow = document.querySelector('.notificationContainer');
-        if(e.target.classList[0] !== 'notificationBadge' && window.getComputedStyle(notificationWindow).display !== "none"){
-            notificationWindow.style.display = 'none';
-            
+    var icon = document.getElementById("notificationIcon");
+    icon.addEventListener("click", e => {
+        var notification = document.querySelector(".notificationContainer");
+        if (notification.style.display === "none") {
+            notification.style.display = "grid";
+        } else {
+            notification.style.display = "none";
         }
     })
 </script>

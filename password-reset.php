@@ -114,15 +114,22 @@
             color: #EAEDF5;
             cursor: pointer;
         }
+        .successAlert {
+            z-index: 100;
+            position: absolute;
+            color: white;
+            text-align: center;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
-
+    <!-- PLace to show the success message -->
     <?php
         if(isset($_SESSION['status'])) {
             ?>
-            <div class="success alert">
+            <div class="successAlert">
                 <h5><?= $_SESSION['status']; ?></h5>
             </div>
             <?php

@@ -118,7 +118,7 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text] {
+    .col-f input[type=text], input[type=number], select {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -229,7 +229,7 @@
 
                     <div class="col-f">
                         <span for="depID">Department ID</span>
-                        <input type="text" name="depID" id="depID">
+                        <select name="depID" id="depID"></select>
                     </div>
 
                     <div class="col-h">
@@ -241,13 +241,17 @@
                         <input type="text" name="lName" id="lName">
                     </div>
                     <div class="col-f">
+                        <span for="NIC">NIC</span>
+                        <input type="text" name="NIC" id="NIC" maxlength="12" minlength="10">
+                    </div>
+                    <div class="col-f">
                         <span for="role">Role</span>
                         <input type="text" name="role" id="role" value="Employee">
                     </div>
                     <div class="col-f">
                         <span for="gender" id="gender">Gender</span>
-                        <input type="radio" name="gender" id="male" value="male"><label>Male</label>
-                        <input type="radio" name="gender" id="female" value="female"><label>Female</label>
+                        <input type="radio" name="gender" id="male" value="Male"><label>Male</label>
+                        <input type="radio" name="gender" id="female" value="Female"><label>Female</label>
                     </div>
 
                 </div>
@@ -274,7 +278,7 @@
                 </div>
                 <div class="col-f">
                     <span for="contactNo">Contact Number</span>
-                    <input type="text" name="contactNo" id="contactNo">
+                    <input type="number" name="contactNo" id="contactNo" maxlength="10" minlength="10">
                 </div>
                 <div class="col-f">
                     <span for="email">Email Address</span>
@@ -293,7 +297,7 @@
                 </div>
                 <div class="col-f">
                     <span for="econtact">Telephone Number</span>
-                    <input type="text" name="econtact" id="econtact">
+                    <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
                 </div>
 
                 <!-- Add and Cancel button to add -->
@@ -378,5 +382,27 @@
     //Function to go back
     function goBack() {
         loadSection('centerSection', 'employees');
+    }
+
+getDepartments();
+    function getDepartments() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../model/Department.php?action=getDepartments", true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var departments = JSON.parse(this.responseText);
+                // console.log(departments);
+                var select = document.getElementById('depID');
+
+                for(var i = 0; i<departments.length; i++) {
+                    console.log(departments[i]);
+                    var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
+                    select.innerHTML+=option;
+
+                }
+            }
+        }
+        xhr.send();
     }
 </script>

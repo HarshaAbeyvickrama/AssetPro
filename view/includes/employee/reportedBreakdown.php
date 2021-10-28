@@ -1,207 +1,118 @@
 <style>
     .overviewLayout{
-        display: grid;
-        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
-        height: 82vh;
-        width: 87.5vw;
-        overflow-y: auto;
-        padding: 20px;
-        background-color: #F1F4FF;
+        display: grid;  
     }
     .overviewLayout > div{
-        display: flex;
+        display: grid;
         align-items: center;
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-        
     }
-    .statSection{
-        display: grid;
-        grid-template-columns: repeat(5 1fr);
-        width: 100%;
-        height: 100%;
-    }
-    .statSection > div{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        /* justify-content: center; */
-        align-items: center;
-    }
-    .statBox{
-        display: grid;
-        grid-template-rows: 3fr 2fr;
-        color: white;
-        height: 95%;
-        width: 90%;
-        border-radius: 12px;
-    }
-    .statBox > div{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .statNumber{
-        font-size: 40px;
-    }
-    .statText{
-        font-size: 17px;
-        font-weight: lighter;
-    
-    }
-    .box1{
-        background-color: #304068;
-    }
-    .box2{
-        background-color: #6A71D7;
-    }
-    .box3{
-        background-color: #3D7DDB;
-    }
-    .box4{
-        background-color: #6165A2;
-    }
-    .box5{
-        background-color: #4E74AB;
-    }
-    .contentSection{
-        background-color: white;
+    .overviewLayout .contentSection{
+        all: revert;
+        display: inline-block;
         border-radius: 15px;
-        padding:15px;
+        padding: 10px;
+        background-color: white;
+        overflow-y: auto;
     }
-
-/*inside content section*/
-    .econtainer1{     
-        width:100%;
-        height:100%;
-        display:grid;
-        grid-template-columns:repeat(6,1fr);
-        font-size:18px;
-        font-weight:lighter;  
-        text-align:center;   
+    .contentSection > div{
+        margin:15px;
+        height: auto;
     }
-  
+    .btnAction{
+        color: white;
+        background-color: #5C6E9B;
+        padding: 10px;
+        border: none;
+        border-radius: 32px;
+        width: 80px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 15px;
+        align-items:center;
+    }
+    .btnAction:hover{
+        color: black;
+        background-color: white;
+    }
 </style>
+
 <div class="overviewLayout">
     <div>
-        <div>Dashboard Overview</div>
+        <div>Breakdown Assets</div>
     </div>
-    <div class="statSection">
-        <div>
-            <div class="statBox box1" id="allAssets">
-                <div class="statNumber">100</div>
-                <div class="statText">All Assets</div>
-            </div>
-        </div>
-
-        <div>
-            <div class="statBox box2" id="allEmployees">
-                    <div class="statNumber">70</div>
-                    <div class="statText">Tangible Assets</div>
-            </div>
-        </div>
-            
-        <div>
-            <div class="statBox box3" id="allTechnicians">
-                <div class="statNumber">40</div>
-                    <div class="statText">Fixed Assets</div>
-            </div>
-        </div>
-
-        <div>
-            <div class="statBox box4" id="allAssets">
-                <div class="statNumber">30</div>
-                <div class="statText">Consumable Assets</div>
-            </div>
-        </div>
-
-        <div>
-            <div class="statBox box5" id="allAssets">
-                <div class="statNumber">30</div>
-                <div class="statText">Intangible Assets</div>
-            </div>
-        </div>
-
-        
-    </div>
-
-    <div>
-    <div>Recent Activities</div>
-    </div>
-
     <div class="contentSection">
-        <div class="econtainer1"> 
-                 <div>
-                     <h5>Number</h5>
-                     <p>1</p>
-                     <p>2</p>
-                     <p>3</p>
-                     <p>4</p>
-                     <p>5</p>
-                    
-                 </div>
-
-                 <div>
-                     <h5>Date</h5>
-                     <p>2021/07/20</p>
-                     <p>2021/07/29</p>
-                     <p>2021/08/01</p>
-                     <p>2021/09/01</p>
-                     <p>2021/09/12</p>
-                  
-
-                   
-                 </div>
-
-                 <div>
-                     <h5>Error ID</h5>
-                     <p>D/FA/12345</p>
-                     <p>D/FA/89011</p>
-                     <p>D/FA/99763</p>
-                     <p>D/FA/90763</p>
-                     <p>D/FA/89052</p>
-                     
-                   
-                 </div>
-                 
-                 <div>
-                     <h5>Asset ID</h5>
-                     <p>FA/12345</p>
-                     <p>FA/89011</p>
-                     <p>FA/99763</p>
-                     <p>FA/90763</p>
-                     <p>FA/89052</p>
-                    
-                     
-                 </div>
-
-                 <div>
-                     <h5>Asset Name</h5>
-                    <p>Laptop</p>
-                    <p>Scanner</p>
-                    <p>Printer</p>
-                    <p>Laptop</p>
-                    <p>Printer</p>
-                 </div>
-
-                 <div>
-                     <h5>Asset Type</h5>
-                    <p>Fixed Asset</p>
-                    <p>Fixed Asset</p>
-                    <p>Fixed Asset</p>
-                    <p>Fixed Asset</p>
-                    <p>Fixed Asset</p>
-                    
-                 </div>
-
-
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Error ID</th>
+                        <th>Asset ID</th>
+                        <th>Asset Name</th>
+                        <th>Asset Type</th>
+                        <th>view Breakdown</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody"></tbody>     
+            </table>
         </div>
-        
-    </div>
 </div>
 
 <script>
- 
+    function viewBreakAsset(){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "../model/AssignedAssetsEmp.php?action=viewAssetBreak", true);
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var viewassets = JSON.parse(this.responseText);
+                console.log(viewassets);
+                for (var i = 0; i < viewassets.length; i++) {
+                    var date = new Date(viewassets[i]['reportedDate']);
+                    var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
+                    var reportedDate = viewassets[i]['reportedDate'].replace(/-/gi, "/");
+                    document.getElementById('employeeTableBody').innerHTML += `
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${newDate}</td>
+                                        <td>${viewassets[i]['BreakdownID']}</td>
+                                        <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
+                                        <td>${viewassets[i]['assetName']}</td>
+                                        <td>${viewassets[i]['assetType']}</td>
+                                        <td>  
+                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
+                                        </td> 
+                                    </tr>`;
+                }
+            }
+        }
+        xhr.send();
+    }
+    viewBreakAsset();
+
+
+    function viewBreak(viewasset,viewassetid){
+       
+        var viewBreakAssetDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}&assetid=${viewassetid}`,true);
+        xhr.onload = function(){
+            if(this.status == 200){
+             viewBreakAssetDetails = JSON.parse(this.responseText);
+             console.log(viewBreakAssetDetails);
+             loadSection('centerSection','viewBreakAssets');   
+             var json = JSON.stringify(viewBreakAssetDetails );       //object to string
+             document.cookie=`BreakdownID=${json}`;
+           }  
+       }
+       xhr.send();
+     }
 
 </script>
+
+
+
+    
+        

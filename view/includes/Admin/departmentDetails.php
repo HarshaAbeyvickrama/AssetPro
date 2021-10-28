@@ -7,7 +7,7 @@
         display: grid;
         /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ; */
         height: 82vh;
-        width: 87.5vw;
+        /* width: 87.5vw; */
         overflow-y: scroll;
         padding: 20px;
         background-color: #F1F4FF;
@@ -26,7 +26,8 @@
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
-        height: 82vh;
+        /* height: 82vh; */
+        display: absolute;
     }
     #tabSections {
         display: flex;
@@ -48,6 +49,13 @@
         cursor: pointer;
         background-color: aliceblue;
         transition: 0.5s;
+    }
+    #tabContents {
+        display: flex;
+        align-items: center !important;
+    }
+    #generalDetails {
+        background-image: linear-gradient(#EAEDF5, white);
     }
 </style>
 <div class="overviewLayout">

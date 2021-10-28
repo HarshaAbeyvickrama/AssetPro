@@ -122,11 +122,15 @@
     }
 
     .col-btn {
-        position: relative;
+        position: absolute;
+        bottom: 0;
+        right: 0 !important;
         text-align: center;
-        width: 100%;
-        align-items: center;
-        margin: 10px 0px;
+        width: 40vw;
+        /* align-items: center; */
+        /* margin: 10px 0px; */
+        border: 1px solid red;
+        background-color: white;
         
     }
     .col-btn>div {
@@ -218,10 +222,7 @@
     }
 </style>
 <script>
-    // Load asset details
-    var assetID = getCookieValue('assetID');
-    alert(assetID);
-
+   
     // Event listener to chande asset Types
     var categorySelect = document.getElementById('category');
     categorySelect.addEventListener('change',function(event){
@@ -235,6 +236,10 @@
         categories = res;
         setCats();
     })
+
+     // Load asset details
+     var assetID = getCookieValue('assetID');
+    getAsset(assetID)
     
     // Function to set categories
     
@@ -278,13 +283,18 @@
 
     })
 
-    function formState(state){
-        document.getElementById('depriciationMethod').disabled = state;
-        document.getElementById('depriciaionRate').disabled = state;
-        document.getElementById('residualValue').disabled = state;
-        document.getElementById('usefulYears').disabled = state;
+    function formState(id,state){
+        document.getElementById(id).disabled = state;
     }
-    
+    sectionState('addAssetForm',true)
+    function sectionState(sectionID, state){
+        var inputs = document.getElementById(sectionID).querySelectorAll("input, select");
+        inputs.forEach(input =>{
+            console.log(input);
+            input.disabled = state;
+        })
+    }
+
     // formState("userProfileForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
@@ -313,9 +323,19 @@
         
         })
     })
-    formState(true);
-    document.getElementById('depriciation').addEventListener('change',function(){
-            formState(!depriciation.checked);
+    // formState(true);
+    var depriciation = element('depriciation');
+    depriciation.addEventListener('change',function(){
+            formState('depriciationMethod',!depriciation.checked);
+            formState('depriciaionRate',!depriciation.checked);
+            formState('residualValue',!depriciation.checked);
+            formState('usefulYears',!depriciation.checked);
+    })
+    var warrenty = element('warrenty');
+    warrenty.addEventListener('change',function(){
+            formState('fromDate',!warrenty.checked);
+            formState('toDate',!warrenty.checked);
+            formState('otherInfo',!warrenty.checked);
     })
 
     document.getElementById('image').addEventListener('change',function(e){
@@ -364,7 +384,43 @@
     function getAsset(assetID){
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`../model/Asset.php?action=getAsset&id=${assetID}`,true);
-        console.log(assetID);
+        xhr.onload = function(){
+            if(this.status === 200){
+                console.log("call")
+                var asset = JSON.parse(this.responseText);
+                console.log(asset);
+                element('assetID').value = `${asset.CategoryCode}/${asset.TypeCode}/${assetID}`;
+                element('imagePreview').src = `../${asset.ImageURL}`;
+                element('assetName').value = asset.Name;
+                element('assetDescription').value = asset.Description;
+                setTypes(asset.CategoryID);
+                element('category').value = asset.CategoryID;
+                element('assetType').value = asset.TypeID;
+                element('condition').value = asset.AssetCondition;
+                element('purchaseDate').value = asset.PurchasedDate;
+                element('purchaseCost').value = asset.Cost;
+
+                if(asset.fromDate != null){
+                    element('warrenty').checked = true;
+                    element('fromDate').value = asset.fromDate;
+                    element('toDate').value = asset.toDate;
+                    element('otherInfo').value = asset.OtherInfo;
+                }
+
+                if(asset.DepriciaionRate != null){
+                    element('depriciation').checked = true;
+                    element('depriciaionRate').value = asset.DepriciaionRate;
+                    element('residualValue').value = asset.ResidualValue;
+                    element('usefulYears').value = asset.UsefulYears;
+                }
+
+            }
+        }
+        xhr.send();
+    }
+
+    function element(id){
+        return document.getElementById(id);
     }
 
 </script>
@@ -387,6 +443,10 @@
                         <input type="text" name="assetId" id="assetId">
                     </div>
                      -->
+                    <div class="col-f">
+                        <span for="assetName">Asset ID</span>
+                        <input type="text" name="assetID" id="assetID">
+                    </div>
                     <div class="col-f">
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName">
@@ -416,10 +476,10 @@
                         </select>
                     </div>
 
-                    <div class="col-btn">
+                    <!-- <div class="col-btn">
                         <div id="btnSaveAsset">Save</div>
                         <div id="cancelAddAsset">Cancel</div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -476,7 +536,7 @@
                 </div>
             </div>
                       
-        </div> -->
+        </div>
 
         </div>
     </div>

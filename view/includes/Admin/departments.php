@@ -5,7 +5,7 @@
 
     .overviewLayout {
         display: grid;
-        /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr; */
+        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
         height: 82vh;
         width: 87.5vw;
         overflow-y: scroll;
@@ -22,10 +22,13 @@
     }
 
     .contentSection {
+        display: flex;
+        justify-content: center;
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
+        align-items: flex-start !important;
     }
 
     .addDep #addDep {
@@ -36,26 +39,28 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 63vw;
+        margin-left: 60vw;
     }
 
     /* CSS for the departments table */
     .table-data {
         color: #304068;
-        margin: 4px 4px;
+        margin: 20px 4px;
         height: 500px;
         width: 99%;
-        margin-top: -100px;
+        /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
     }
 
     .depData {
         /* width: 100%; */
         border-collapse: collapse;
-        font-size: 18px;
+        font-size: 20px;
         margin-left: 5vh;
         text-align: center;
+        text-align: left;
     }
 
     .table-data th {
@@ -69,6 +74,13 @@
     .table-data td {
         padding: 8px;
         font-weight: lighter;
+        color: #5c6e9b;
+        width: 5%;
+    }
+
+    .table-data tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     table tr:nth-child(2) {
@@ -93,7 +105,7 @@
         padding: 10px;
         border: none;
         border-radius: 32px;
-        width: 91px;
+        width: 81px;
         height: 41px;
         cursor: pointer;
         font-size: 15px;
@@ -210,16 +222,15 @@
         <div class="table-data">
             <table class="depData">
                 <tr">
-                    <th>Number</th>
+                    <th>#</th>
                     <th>Department ID</th>
-                    <th>Department Code</th>
                     <th>Department Name</th>
                     <th>Contact Number</th>
                     <th>Date Created</th>
                     <th>Last Modified</th>
                     <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <!-- <th>Edit</th>
+                    <th>Delete</th> -->
                     </tr>
 
                     <?php
@@ -241,15 +252,12 @@
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td></td>
-                                <td>" . $row["DepartmentID"] . "</td>
-                                <td>" . $row["DepartmentCode"] . "</td>
+                                <td>".$row['DepartmentCode']."</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["ContactNum"] . "</td>
-                                <td>" . $row["datecreated"] . "</td>
-                                <td>" . $row["lastmodified"] . "</td>
+                                <td>" . str_replace("-","/",$row["datecreated"]) . "</td>
+                                <td>" . str_replace("-","/",$row["lastmodified"]) . "</td>
                                 <td id=".$row['DepartmentID']."><button id='view' class='viewBtn'>View</button></td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
                               </tr>";
                         }
                     } else {
@@ -314,7 +322,6 @@
     }
 
     // Getting the form data
-
     document.querySelectorAll(".col-btn").forEach(button => {
         // const cancBtn = document.getElementById('cancelAddDepartment');
         const saveBtn = document.getElementById("btnSaveDepartment");
@@ -382,14 +389,38 @@
     }
 
     //Loading details of the selected department
-    function loadDepartment(departmentID) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", `../model/Department.php?action=loadDepartment&departmentID=${departmentID}`, true);
+    function loadDepartment(DepartmentID) {
+        var departmentDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `../model/Department.php?action=loadDepartment&DepartmentID=${DepartmentID}`, true);
 
         xhr.onload = function() {
             if (this.status === 200) {
+                departmentDetails = JSON.parse(this.responseText);
                 // alert(this.responseText);
                 loadSection('centerSection', 'departmentDetails');
+
+                var json = JSON.stringify(departmentDetails);
+                document.cookie = `DepartmentID=${json}`;
+            }
+        }
+        xhr.send();
+    }
+
+    //Loading the employee list of the selected department
+    function loadEmploeeDepartment(DepartmentID) {
+        var departmentEMployeeDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `../model/Department.php?action=loadEmployeeDepartment&DepartmentID=${DepartmentID}`, true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                departmentEmployeeDetails = JSON.parse(this.responseText);
+                // alert(this.responseText);
+                // loadSection('centerSection', 'departmentDetails');
+
+                var json = JSON.stringify(departmentDetails);
+                document.cookie = `DepartmentID=${json}`;
             }
         }
         xhr.send();

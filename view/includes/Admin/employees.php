@@ -7,7 +7,7 @@
         display: grid;
         /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ; */
         height: 82vh;
-        width: 87.5vw;
+        /* width: 87.5vw; */
         overflow-y: scroll;
         padding: 20px;
         background-color: #F1F4FF;
@@ -23,10 +23,13 @@
     }
 
     .contentSection {
+        display: flex;
+        justify-content: center;
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
+        align-items: flex-start !important;
     }
 
     .addEmp #addEmp {
@@ -37,27 +40,23 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 65vw;
+        margin-left: 62vw;
     }
 
     /* CSS for the employee table */
     .table-data {
+        display: block;
         color: #304068;
-        margin: 4px 4px;
+        margin: 20px 4px;
         height: 500px;
-        width: 99%;
-        margin-top: -100px;
+        width: 100%;
+        /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
+        font-size: 18px;
     }
 
-    .empData {
-        /* width: 100%; */
-        border-collapse: collapse;
-        font-size: 20px;
-        margin-left: 5vh;
-        text-align: center;
-    }
 
     .table-data th {
         color: #5C6E9B;
@@ -67,9 +66,28 @@
         background-color: white;
     }
 
+    /* tbody {
+        display: block;
+        height: 500px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    } */
+
     .table-data td {
         padding: 8px;
         font-weight: lighter;
+        color: #5c6e9b;
+        width: 20%;
+    }
+
+    .table-data .heading {
+        align-items: center;
+        text-align: left;
+    }
+
+    .table-data tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     table tr:nth-child(2) {
@@ -124,72 +142,99 @@
 
 
     <div class="contentSection">
-        <div class="table-data">
-            <table class="empData" id="empData">
-                <tr">
-                    <th id="num">Number</th>
-                    <th>User ID</th>
-                    <th>Employee ID</th>
-                    <th>Department ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>
-                    <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    </tr>
+        <!-- <div> -->
+        <table class="table-data" id="empData">
+            <tr>
+                <th class="heading">#</th>
+                <!-- <th>User ID</th> -->
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th class="heading">View</th>
+            </tr>
+            <!-- <tbody> -->
+                <?php
 
-                    <?php
+                require_once('../db/dbConnection.php');
+                global $mysql;
 
-                    require_once('../db/dbConnection.php');
-                    global $mysql;
-
-                    $sql = "SELECT
-                                USER.UserID,
-                                userdetails.fName,
-                                userdetails.lName,
-                                userdetails.Gender,
-                                emp.EmployeeID,
-                                emp.DepartmentID
+                $sql = "SELECT
+                                ud.UserID,
+                                CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                                ud.Gender,
+                                d.DepartmentCode,
+                                eu.EmployeeID
                             FROM
-                                employeeuser emp
-                            INNER JOIN userdetails ON userdetails.UserID = emp.UserID
-                            JOIN USER ON USER.UserID = userdetails.UserID
-                            WHERE
-                                USER.RoleID = 3";
+                                userdetails ud
+                            INNER JOIN employeeuser eu ON
+                                ud.UserID = eu.UserID
+                            INNER JOIN department d ON
+                                eu.DepartmentID = d.DepartmentID
+                            ORDER BY eu.EmployeeID";
 
-                    $result = $mysql->query($sql);
+                $result = $mysql->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
                                 <td></td>
-                                <td>" . $row["UserID"] . "</td>
-                                <td>" . $row["EmployeeID"] . "</td>
-                                <td>" . $row["DepartmentID"] . "</td>
-                                <td>" . $row["fName"] . "</td>
-                                <td>" . $row["lName"] . "</td>
+                                <td>" . $row['DepartmentCode'] . '/EMP/' . $row['EmployeeID'] . "</td>
+                                <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td><button class='viewBtn'>View</button></td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
+                                <td id=" . $row['EmployeeID'] . "><button id='view' class='viewBtn'>View</button></td>
                               </tr>";
-                        }
-                    } else {
-                        echo "No Results :(";
                     }
-                    $mysql->close();
+                } else {
+                    echo "No Results :(";
+                }
+                $mysql->close();
 
-                    ?>
-            </table>
-        </div>
+                ?>
+            <!-- </tbody> -->
+        </table>
+        <!-- </div> -->
     </div>
 </div>
 <script type="text/javascript">
+    //Loading the add employee page
     var addEmployeeBtn = document.getElementById('addEmp');
     addEmployeeBtn.addEventListener('click', function() {
 
         loadSection('centerSection', 'addEmployee');
 
     });
+
+    //Viewing the deaprtment details
+    var viewEmployeeBtn = document.querySelectorAll('#view');
+    for (var i = 0; i < viewEmployeeBtn.length; i++) {
+        viewEmployeeBtn[i].addEventListener('click', function() {
+            loadDepartment(event.target.parentElement.id);
+            // console.log(event.target.parentElement.id);
+
+        });
+    }
+
+    //Loading details of the selected department
+    function loadDepartment(EmployeeID) {
+        var employeeDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `../model/Employee.php?action=loadEmployee&EmployeeID=${EmployeeID}`, true);
+
+        xhr.onload = function() {
+            if (this.status === 200) {
+                employeeDetails = JSON.parse(this.responseText);
+                console.log(employeeDetails);
+                loadSection('centerSection', 'emprofile');
+
+                var json = JSON.stringify(employeeDetails);
+                document.cookie = `EmployeeID=${json}`;
+            }
+        }
+        xhr.send();
+    }
+
+    //Function to go back
+    function goBack() {
+        loadSection('centerSection', 'employees');
+    }
 </script>

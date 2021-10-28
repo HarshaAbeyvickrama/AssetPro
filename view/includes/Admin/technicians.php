@@ -7,7 +7,7 @@
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
         height: 82vh;
-        width: 87.5vw;
+        /* width: 87.5vw; */
         overflow-y: auto;
         padding: 20px;
         background-color: #F1F4FF;
@@ -23,10 +23,13 @@
     }
 
     .contentSection {
+        display: flex;
+        justify-content: center;
         background-color: white;
         border-radius: 15px;
         margin-top: 15px;
         height: 82vh;
+        align-items: flex-start !important;
     }
 
     .addTec #addTec {
@@ -37,26 +40,20 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 64vw;
+        margin-left: 62vw;
     }
 
     /* CSS for the technicians table */
     .table-data {
         color: #304068;
-        margin: 4px 4px;
-        height: 600px;
-        width: 99%;
+        margin: 20px 4px;
+        height: 400px;
+        width: 100%;
         /* margin-top: -100px; */
         overflow-y: auto;
         overflow-x: hidden;
-    }
-
-    .tecData {
-        /* width: 100%; */
-        border-collapse: collapse;
-        font-size: 20px;
-        margin-left: 5vh;
-        text-align: center;
+        text-align: left;
+        font-size: 18px;
     }
 
     .table-data th {
@@ -70,6 +67,13 @@
     .table-data td {
         padding: 8px;
         font-weight: lighter;
+        color: #5C6E9B;
+        /* width: 20%; */
+    }
+
+    .table-data tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     table tr:nth-child(2) {
@@ -122,20 +126,19 @@
 
 
     <div class="contentSection ">
-        <div class="table-data">
-            <table class="tecData">
-                <tr">
-                    <th>Number</th>
-                    <th>User ID</th>
-                    <th>Technician ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>
-                    <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    </tr>
-
+        <!-- <div> -->
+        <table class="table-data">
+            <tr">
+                <th>#</th>
+                <!-- <th>User ID</th> -->
+                <th>Technician ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>View</th>
+                <!-- <th>Edit</th>
+                    <th>Delete</th> -->
+                </tr>
+                
                     <?php
 
                     // $conn = mysqli_connect("localhost", "root", "", "assetpro");
@@ -144,10 +147,9 @@
 
                     $sql = "SELECT
                                 USER.UserID,
-                                userdetails.fName,
-                                userdetails.lName,
+                                CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
                                 userdetails.Gender,
-                                tec.TechnicianID
+                                CONCAT('TEC/',tec.TechnicianID) AS TechnicianID
                             FROM
                                 technicianuser tec
                             INNER JOIN userdetails ON userdetails.UserID = tec.UserID
@@ -161,14 +163,10 @@
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td></td>
-                                <td>" . $row["UserID"] . "</td>
                                 <td>" . $row["TechnicianID"] . "</td>
-                                <td>" . $row["fName"] . "</td>
-                                <td>" . $row["lName"] . "</td>
+                                <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td><button class='viewBtn'>View</button></td>
-                                <td><button class='editBtn'>Edit</button></td>
-                                <td><button class='deleteBtn'>Delete</button></td>
+                                <td id=" . $row['TechnicianID'] . "><button class='viewBtn'>View</button></td>
                               </tr>";
                         }
                     } else {
@@ -177,8 +175,9 @@
                     $mysql->close();
 
                     ?>
-            </table>
-        </div>
+                
+        </table>
+        <!-- </div> -->
     </div>
 </div>
 

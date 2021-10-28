@@ -1,5 +1,3 @@
-
-
 <style>
     body{
         padding: 0;
@@ -11,7 +9,7 @@
         width: 12.5;
         height: 100vh;
         display: grid;
-        grid-template-rows: 2fr 7fr 1fr;
+        grid-template-rows: 2fr 8fr;
          
       
     }
@@ -27,18 +25,21 @@
     #components{
         overflow-y: scroll;
         overflow-x: hidden;
+        margin-bottom: 10px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(128, 128, 128, 0.5);
         
     }
-    /* #components::-webkit-scrollbar-thumb {
+    #components::-webkit-scrollbar-thumb {
         border-radius: 100px;
-        background: #8070D4;
+        background: #eaedf5;
         border: 6px solid rgba(0,0,0,0.2);
-    } */
-    #components::-webkit-scrollbar{
+    }
+    /* #components::-webkit-scrollbar{
         display: none;
-     }
+     } */
 
-     /* #components::-webkit-scrollbar-track{
+     #components::-webkit-scrollbar-track{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         background-color: #F5F5F5;
     }
@@ -49,7 +50,7 @@
         background-color: #F5F5F5;
     }
 
-    #components::-webkit-scrollbar-thumb{
+    /* #components::-webkit-scrollbar-thumb{
         background-color: #000000;
     } */
     .component{
@@ -183,11 +184,7 @@
                     <div class='componentText'></div>
                 </div>";
                 //Repaired Assets
-                echo "<div class='component' id='profile'>
-                    <img src='../Images/NotSelected/Repaired.png' >
-                    <div class='componentText'></div>
-                </div>";
-
+                
                
 
                 break;
@@ -238,13 +235,9 @@
                 # code...
                 break;
         }
-    ?>
-   
-        
+    ?>   
     </div>
-    <div id="logout">
-        <div id="btnLogout">Log Out</div>
-    </div>
+    
 </div>
 
 <script> 
@@ -253,9 +246,12 @@
     var components = document.getElementById("components");
     components.addEventListener("click", (event)=> {
         // event.preventDefault();
+       
         var eventId = event.path[1].id;
-        setFocus(eventId);
-        loadSection("centerSection",eventId);   
+        if(eventId != 'components'){
+            setFocus(eventId);
+            loadSection("centerSection",eventId);   
+        }
        
             
     });
@@ -326,10 +322,12 @@
     }
 
     //Logout button event listener
-    var btnLogout = document.getElementById("btnLogout");
-    btnLogout.addEventListener("click",()=>{
-        window.location.replace("../controller/mainController.php?action=logout");
-    })
+    // var btnLogout = document.getElementById("btnLogout");
+    // if(btnLogout){
+    //     btnLogout.addEventListener("click",()=>{
+    //         window.location.replace("../controller/mainController.php?action=logout");
+    //     })
+    // }
 </script>
 
 

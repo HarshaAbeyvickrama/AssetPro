@@ -7,6 +7,8 @@
         /* text-align: center; */
         padding: 20px;
         position: relative;
+        font-size: 16px;
+        align-items: center;
     }
 
     .depInfo {
@@ -23,7 +25,7 @@
         width: calc(100% - 50px);
         border: none;
         background-color: #F1F4FF;
-        height: 25px;
+        height: 20px;
         border-radius: 9px;
         padding: 3px 3px;
         margin-top: 10px;
@@ -31,6 +33,7 @@
         outline: none;
         padding: 8px 15px 8px 15px;
         font-size: 18px;
+        color: #304068;
     }
 
     .col-h {
@@ -67,27 +70,38 @@
     <form action="" id="addDepartmentForm">
         <div class="col-f">
             <span for="dId" id="fieldName">Department ID</span>
-            <input type="text" name="dId" id="dId" value="1">
+            <input type="text" name="dId" id="dId" disabled>
         </div>
         <div class="col-f">
             <span for="dCode" id="fieldName">Department Code</span>
-            <input type="text" name="dCode" id="dCode" value="FN">
+            <input type="text" name="dCode" id="dCode" disabled>
         </div>
         <div class="col-f">
             <span for="dName" id="fieldName">Department Name</span>
-            <input type="text" name="dName" id="dName" value="Finance">
+            <input type="text" name="dName" id="dName" disabled>
         </div>
         <div class="col-f">
             <span for="dCon" id="fieldName">Contact Number</span>
-            <input type="text" name="dCon" id="dCon" value="0452245696">
+            <input type="text" name="dCon" id="dCon" disabled>
         </div>
         <div class="col-f">
             <span for="dDes" id="fieldName">Description</span>
-            <textarea type="text" name="dDes" id="dDes"></textarea>
+            <textarea type="text" name="dDes" id="dDes" disabled></textarea>
         </div>
         <div class="col-btn">
-            <button class="editBtn" id="btnEditDepartment" type="submit">Submit</button>
+            <button class="editBtn" id="btnEditDepartment" type="submit">Edit</button>
         </div>
 
     </form>
 </div>
+
+<script>
+    var departmentID = getCookieValue('DepartmentID');
+    var department = JSON.parse(departmentID)[0];
+    // console.log(department);
+    document.getElementById('dId').value = department.DepartmentID;
+    document.getElementById('dCode').value = department.DepartmentCode;
+    document.getElementById('dName').value = department.Name;
+    document.getElementById('dCon').value = department.ContactNum;
+    document.getElementById('dDes').value = department.description;
+</script>

@@ -57,9 +57,6 @@
         echo json_encode($rows);
     }
 
-
-
-
     function getrepairedAssetById($asset_id){
         global $mysql;
       

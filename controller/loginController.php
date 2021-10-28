@@ -5,8 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once("../db/dbConnection.php");
 
-function login($Username, $Password)
-{
+function login($Username, $Password){
     // Accessing the global variables from dbConnection.php
     global $mysql;
 
@@ -17,6 +16,7 @@ function login($Username, $Password)
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // $Username = $_POST["Username"];
         // $Password = $_POST["Password"];
+        $encrpyt_password = md5($Password);
 
         $sql =
             "select * from user
@@ -25,12 +25,12 @@ function login($Username, $Password)
             where login.UserID in ( 
                 select login.UserID
                 from login
-                where login.Username='" . $Username . "' and login.Password='" . $Password . "'
+                where login.Username='" . $Username . "' and login.Password='" . $encrpyt_password . "'
             )";
 
         $result = mysqli_query($mysql, $sql);
         $rowcount = mysqli_num_rows($result);
-
+       
         $response = new stdClass();
         if ($rowcount == 0) {
             $response->status = "no";
@@ -39,7 +39,7 @@ function login($Username, $Password)
 
 
             $row = mysqli_fetch_array($result);
-
+            $_SESSION['userID'] = $row['UserID'];
             if ($row["RoleID"] == "1") {
                 $_SESSION['userType'] = 'admin';
             } elseif ($row["RoleID"] == "2") {

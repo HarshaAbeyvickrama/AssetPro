@@ -3,7 +3,7 @@
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
         height: 82vh;
-        width: 87.5vw;
+        /* width: 87.5vw; */
         overflow-y: auto;
         padding: 20px;
         background-color: #F1F4FF;
@@ -90,13 +90,20 @@
     }
 
     table {
-        color: #304068;
+        color: #5c6e9b;
         margin: 4px 4px;
         height: 400px;
         width: 80%;
         margin-left: -100px;
         overflow-y: auto;
         overflow-x: hidden;
+        text-align: left;
+        font-size: 18px;
+    }
+
+    table tr:hover {
+        background-color: #EAEDF5;
+        cursor: pointer;
     }
 
     td {
@@ -104,7 +111,7 @@
         border-collapse: collapse;
         font-size: 18px;
         margin-left: 5vh;
-        text-align: center;
+        text-align: left;
     }
 
     th {
@@ -171,46 +178,46 @@
                 <th>Time</th>
             </tr>
             <tr>
-                <td>21/09/2021</td>
+                <td>22/10/2021</td>
                 <td>Wathsala</td>
                 <td>Employee</td>
                 <td>Wathsala was added to the system</td>
-                <td>4 hours ago</td>
+                <td>1 hours ago</td>
             </tr>
             <tr>
-                <td>21/09/2021</td>
+                <td>22/10/2021</td>
                 <td>Kasun</td>
                 <td>Employee</td>
                 <td>Kasun was added to the system</td>
-                <td>5hours ago</td>
+                <td>1 hours ago</td>
             </tr>
             <tr>
-                <td>21/09/2021</td>
+                <td>22/10/2021</td>
                 <td>Manoj</td>
                 <td>Technician</td>
                 <td>Manoj was added to the system</td>
-                <td>5 hours ago</td>
+                <td>2 hours ago</td>
             </tr>
             <tr>
-                <td>20/09/2021</td>
+                <td>21/10/2021</td>
                 <td>Dasun</td>
                 <td>Technician</td>
                 <td>Dasun was added to the system</td>
-                <td>Yesterday</td>
+                <td>1 Day ago</td>
             </tr>
             <tr>
-                <td>20/09/2021</td>
+                <td>21/10/2021</td>
                 <td>Amali</td>
                 <td>Employee</td>
                 <td>Amali was added to the system</td>
-                <td>Yesterday</td>
+                <td>1 Day ago</td>
             </tr>
         </table>
     </div>
 </div>
 
 <script>
-    getCount('allAssets');
-    getCount('allEmployees');
-    getCount('allTechnicians');
+    getCount('allAssets', 'allAssetsCount');
+    getCount('allEmployees', 'allEmployeesCount');
+    getCount('allTechnicians', 'allTechniciansCount');
 </script>
