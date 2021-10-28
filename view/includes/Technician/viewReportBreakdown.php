@@ -330,7 +330,7 @@
             switch (event.target.id) {
                 case 'commence':
                     formState("viewReportBreakdownForm",true);
-                    commenceBtn.style.display = 'none';
+                    /*commenceBtn.style.display = 'none';*/
                     errlogBtn.style.display = 'none';
                     
                     

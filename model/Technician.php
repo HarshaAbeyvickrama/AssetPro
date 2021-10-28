@@ -13,12 +13,71 @@ if (isset($_REQUEST['action'])) {
             saveTechnician();
             break;
 
+        case 'getAssets';
+            getAssets($_REQUEST['type']);
+            // echo 'getAsseeeeer';
+            // echo($_REQUEST['type']);
+            break;
+
         default:
             # code...
             break;
     }
 }
+function getAssets($type){
+    $userId = $_SESSION['userID'];
+    global $mysql;
+    switch ($type) {
+        case 'assigned':
+            $sql = "SELECT
+                    b.AssetID,
+                    a.Name as assetName,
+                    c.CategoryCode,
+                    t.TypeCode,
+                    t.Name,
+                    CONCAT(ud.fName,' ',ud.lName) as employeeName
+                FROM
+                    breakdown b
+                INNER JOIN assetdetails a ON
+                    a.AssetID = b.AssetID
+                INNER JOIN asset ON asset.AssetID = b.AssetID
+                INNER JOIN category c ON
+                    c.CategoryID = asset.CategoryID
+                INNER JOIN TYPE t ON
+                    t.TypeID = asset.TypeID
+                INNER JOIN employeeuser eu ON
+                    eu.EmployeeID = b.EmployeeID
+                INNER JOIN userdetails ud ON
+                    ud.UserID = eu.UserID
+                WHERE
+                    b.TechnicianID =(
+                    SELECT
+                        te.TechnicianID
+                    FROM
+                        technicianuser te
+                    WHERE
+                        te.UserID = $userId
+                )";
+            // print_r
+            $result = mysqli_query($mysql , $sql);
+            // print_r($result);
+            if($result){
+                $breakdowns = array();
+                while($r = mysqli_fetch_assoc($result)){
+                    $breakdowns[] = $r;
+                }
+                echo json_encode($breakdowns);
 
+            }else{
+                echo json_encode(array());
+            }
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
 function saveTechnician() {
     global $mysql;
     mysqli_begin_transaction($mysql);
