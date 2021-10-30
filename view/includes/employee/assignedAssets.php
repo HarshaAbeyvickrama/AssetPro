@@ -43,7 +43,7 @@
 <div class="overviewLayout">
     <div>
         <div>Assigned Assets</div>
-    </div><div></div>
+    </div>
     <div class="contentSection">
             <table class="table">
                 <thead>
