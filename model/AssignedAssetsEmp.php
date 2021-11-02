@@ -29,16 +29,13 @@
                 viewBreakAssetDetails($_REQUEST['view_id'],$_REQUEST['assetid']);
                 break;
                   
-            
-
-
             default:
                 # code...
                 break;
+
+
         }
     }
-
-    
 
 
 
@@ -47,41 +44,33 @@
     function getAssets(){
         global $mysql;
 
-            //     $sql = "SELECT
-            //     asset.AssetID,
-            //     category.CategoryID,
-            //     t.TypeID,
-            //     assetdetails.Name,
-            //     t.Name,
-            //     t.TypeCode,
-            //     category.CategoryCode
-            // FROM
-            //     asset
-            // INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-            // INNER JOIN category ON asset.CategoryID = category.CategoryID
-            // INNER JOIN TYPE t ON
-            //     asset.TypeID = t.TypeID"
+                     $empUserId = $_SESSION['userID'];
 
                         $sql ="SELECT
-                        asset.AssetID,
-                        assetdetails.Name AS assetName,
-                        t.Name AS assetType,
-                        t.TypeCode,
-                        c.CategoryCode
-                    FROM
-                        asset
-                    INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-                    INNER JOIN category c ON
-                        asset.CategoryID = c.CategoryID
-                    INNER JOIN TYPE t ON
-                        t.TypeID = asset.TypeID
-                    ORDER BY
-                        asset.AssetID";
+                            asset.AssetID,
+                            assetdetails.Name AS assetName,
+                            t.Name AS assetType,
+                            t.TypeCode,
+                            c.CategoryCode
+                        FROM
+                            asset
+                        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                        INNER JOIN category c ON
+                            asset.CategoryID = c.CategoryID
+                        INNER JOIN TYPE t ON
+                            t.TypeID = asset.TypeID
+                        WHERE
+                            EmployeeID =(
+                            SELECT
+                                EmployeeID
+                            FROM
+                                employeeuser
+                            WHERE
+                                userId = $empUserId
+                        )
+                        ORDER BY
+                            asset.AssetID";
 
-                         
-                        //create a session variable 
-                        // like  $empUserId = $_SESSION['userID'];
-                       // include where function EmployeeID=(SELECT employeeId from employeeUser where userId=$userId)
                    
                 
            
@@ -146,6 +135,8 @@
             // INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
             // ORDER BY
             //     asset.AssetID";
+            $empUserId = $_SESSION['userID'];
+
 
                 $sql = "SELECT
                 asset.AssetID,
@@ -163,6 +154,15 @@
             INNER JOIN TYPE t ON
                 t.TypeID = asset.TypeID
             INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
+            WHERE
+                breakdown.EmployeeID =(
+                SELECT
+                    EmployeeID
+                FROM
+                    employeeuser
+                WHERE
+                    UserID = $empUserId
+            )
             ORDER BY
                 breakdown.BreakdownID ASC";
                 
