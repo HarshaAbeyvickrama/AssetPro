@@ -68,7 +68,7 @@
         </div>
         <div id="tabContents">
             <?php
-                 include("assignedAssets.php");
+                //  include("assignedAssets.php");
             ?>
         </div>
     </div>

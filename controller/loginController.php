@@ -54,6 +54,28 @@ function login($Username, $Password){
             $response->location = "view/dashboard.php";
 
             // header("location:./view/dashboard.php");
+            
+
+            //-------------------------GETTING SESSION FOR EMPLOYEEID-------------------------------
+            $empUserId = $_SESSION['userID'];
+            $sqlEmpID = "SELECT
+                    EmployeeID
+                FROM
+                    employeeuser
+                INNER JOIN USER ON employeeuser.UserID = user.UserID
+                WHERE
+                    user.UserID = $empUserId";
+
+                $resultEmpID = mysqli_query($mysql,$sqlEmpID);
+                $rowcountEmpID = mysqli_num_rows($resultEmpID);
+
+                $rowEmpID = mysqli_fetch_array($resultEmpID);
+                
+                if($rowcountEmpID > 0){
+                $_SESSION['employeeID'] = $rowEmpID['EmployeeID'];
+                }
+
+
         }
         echo json_encode($response);
     }

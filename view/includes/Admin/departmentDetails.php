@@ -1,34 +1,34 @@
 <style>
-    * {
+    /* * {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
 
     .overviewLayout {
-        display: grid;
+        display: grid; */
         /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ; */
-        height: 82vh;
+        /* height: 82vh; */
         /* width: 87.5vw; */
-        overflow-y: scroll;
+        /* overflow-y: scroll;
         padding: 20px;
         background-color: #F1F4FF;
-    }
+    } */
 
-    .overviewLayout>div {
+    /* .overviewLayout>div { */
         /* display: flex;
         align-items: center; */
-        color: #304068;
-        font-size: 18px;
+        /* color: #304068;
+        font-size: 18px; */
         /* font-weight: bold; */
+/* 
+    } */
 
-    }
-
-    .contentSection {
+    /* .contentSection {
         background-color: white;
         border-radius: 15px;
-        margin-top: 15px;
+        margin-top: 15px; */
         /* height: 82vh; */
-        display: absolute;
-    }
+        /* display: absolute; */
+    /* } */
     #tabSections {
         display: flex;
         justify-content: center;
@@ -60,7 +60,7 @@
 </style>
 <div class="overviewLayout">
     <div>
-        <div>Department Details</div>
+        <div class="section-heading">Department Details</div>
     </div>
     <div class="contentSection">
         <div id="tabSections">
