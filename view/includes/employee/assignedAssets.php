@@ -1,5 +1,5 @@
 <style>
-    .overviewLayout{
+    /* .overviewLayout{
         display: grid;  
     }
     .overviewLayout > div{
@@ -20,7 +20,7 @@
     .contentSection > div{
         margin:15px;
         height: auto;
-    }
+    } */
     .btnAction{
         color: white;
         background-color: #5C6E9B;
@@ -48,7 +48,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div>Assigned Assets</div>
+        <div class="section-heading">Assigned Assets</div>
     </div>
     <div class="contentSection">
             <table class="table" id="filterTable">
