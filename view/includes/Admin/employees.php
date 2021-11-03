@@ -1,19 +1,19 @@
 <style>
-    * {
+    /* * {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
 
     .overviewLayout {
-        display: grid;
+        display: grid; */
         /* grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ; */
-        height: 82vh;
+        /* height: 82vh; */
         /* width: 87.5vw; */
-        overflow-y: scroll;
+        /* overflow-y: scroll;
         padding: 20px;
         background-color: #F1F4FF;
-    }
+    } */
 
-    .overviewLayout>div {
+    /* .overviewLayout>div {
         display: flex;
         align-items: center;
         color: #304068;
@@ -30,9 +30,9 @@
         margin-top: 15px;
         height: 82vh;
         align-items: flex-start !important;
-    }
+    } */
 
-    .addEmp #addEmp {
+    /* .addUser #addEmp {
         color: white;
         background-color: #6A71D7;
         cursor: pointer;
@@ -41,30 +41,30 @@
         font-size: 20px;
         border: none;
         margin-left: 62vw;
-    }
+    } */
 
     /* CSS for the employee table */
-    .table-data {
+    /* .table-data {
         display: block;
         color: #304068;
         margin: 20px 4px;
         height: 500px;
-        width: 100%;
+        width: 100%; */
         /* margin-top: -100px; */
-        overflow-y: auto;
+        /* overflow-y: auto;
         overflow-x: hidden;
         text-align: left;
         font-size: 18px;
-    }
+    } */
 
 
-    .table-data th {
+    /* .table-data th {
         color: #5C6E9B;
         padding: 8px;
         position: sticky;
         top: 0;
         background-color: white;
-    }
+    } */
 
     /* tbody {
         display: block;
@@ -73,7 +73,7 @@
         overflow-x: hidden;
     } */
 
-    .table-data td {
+    /* .table-data td {
         padding: 8px;
         font-weight: lighter;
         color: #5c6e9b;
@@ -88,7 +88,7 @@
     .table-data tr:hover {
         background-color: #EAEDF5;
         cursor: pointer;
-    }
+    } */
 
     table tr:nth-child(2) {
         counter-reset: rowNumber;
@@ -132,10 +132,10 @@
 </style>
 <div class="overviewLayout">
     <div>
-        <div>All Employees</div>
+        <div class="section-heading">All Employees</div>
         <div>
-            <div class="addEmp">
-                <button id="addEmp">Add Employee</button>
+            <div class="addUser">
+                <button class="addUser" id="addEmp">Add Employee</button>
             </div>
         </div>
     </div>
@@ -143,15 +143,18 @@
 
     <div class="contentSection">
         <!-- <div> -->
-        <table class="table-data" id="empData">
+        <table class="table" id="empData">
+            <thead>
             <tr>
-                <th class="heading">#</th>
+                <th>#</th>
                 <!-- <th>User ID</th> -->
                 <th>Employee ID</th>
                 <th>Name</th>
                 <th>Gender</th>
-                <th class="heading">View</th>
+                <th>View</th>
             </tr>
+            </thead>
+            
             <!-- <tbody> -->
                 <?php
 

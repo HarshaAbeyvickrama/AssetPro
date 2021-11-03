@@ -48,7 +48,7 @@
     span {
         color: #5C6E9B;
     }
-    .editBtn {
+    /* .editBtn {
         width: 80px;
         height: 40px;
         background-color: #5C6E9B;
@@ -57,13 +57,13 @@
         cursor: pointer;
         color: #F1F4FF;
         margin-left: 95vh;
-    }
+    } */
 
-    .editBtn:hover {
+    /* .editBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
-    }
+    } */
 </style>
 
 <div class="popup-content" id="popup-content">
