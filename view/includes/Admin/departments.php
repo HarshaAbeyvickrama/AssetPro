@@ -1,5 +1,5 @@
 <style>
-    * {
+    /* * {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
 
@@ -19,9 +19,9 @@
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-    }
+    } */
 
-    .contentSection {
+    /* .contentSection {
         display: flex;
         justify-content: center;
         background-color: white;
@@ -29,9 +29,9 @@
         margin-top: 15px;
         height: 82vh;
         align-items: flex-start !important;
-    }
+    } */
 
-    .addDep #addDep {
+    /* .addDep #addDep {
         color: white;
         background-color: #6A71D7;
         cursor: pointer;
@@ -40,30 +40,30 @@
         font-size: 20px;
         border: none;
         margin-left: 60vw;
-    }
+    } */
 
     /* CSS for the departments table */
-    .table-data {
+    /* .table-data {
         color: #304068;
         margin: 20px 4px;
         height: 500px;
-        width: 99%;
+        width: 99%; */
         /* margin-top: -100px; */
-        overflow-y: auto;
+        /* overflow-y: auto;
         overflow-x: hidden;
         text-align: left;
-    }
+    } */
 
-    .depData {
+    /* .depData { */
         /* width: 100%; */
-        border-collapse: collapse;
+        /* border-collapse: collapse;
         font-size: 20px;
         margin-left: 5vh;
         text-align: center;
         text-align: left;
-    }
+    } */
 
-    .table-data th {
+    /* .table-data th {
         color: #5C6E9B;
         padding: 8px;
         position: sticky;
@@ -81,7 +81,7 @@
     .table-data tr:hover {
         background-color: #EAEDF5;
         cursor: pointer;
-    }
+    } */
 
     table tr:nth-child(2) {
         counter-reset: rowNumber;
@@ -97,7 +97,7 @@
         margin-right: 0.5px;
     }
 
-    .viewBtn,
+    /* .viewBtn,
     .editBtn,
     .deleteBtn {
         color: white;
@@ -121,7 +121,7 @@
 
     .deleteBtn {
         background-color: #394564;
-    }
+    } */
 
     /* CSS for pop-up form */
     .bg-popup {
@@ -182,7 +182,7 @@
         color: #5C6E9B;
     }
 
-    .addBtn {
+    /* .addBtn {
         width: 80px;
         height: 40px;
         background-color: #5C6E9B;
@@ -197,9 +197,9 @@
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
-    }
+    } */
 
-    .close {
+    /* .close {
         position: absolute;
         top: 0;
         right: 14px;
@@ -207,21 +207,22 @@
         transform: rotate(45deg);
         cursor: pointer;
         color: #5C6E9B;
-    }
+    } */
 </style>
 
 <div class="overviewLayout">
     <div>
-        <div>All Departments</div>
+        <div class="section-heading">All Departments</div>
         <div class="addDep">
             <button id="addDep">Add Department</button>
         </div>
     </div>
 
     <div class="contentSection ">
-        <div class="table-data">
-            <table class="depData">
-                <tr">
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
                     <th>#</th>
                     <th>Department ID</th>
                     <th>Department Name</th>
@@ -232,6 +233,7 @@
                     <!-- <th>Edit</th>
                     <th>Delete</th> -->
                     </tr>
+                </thead>
 
                     <?php
 

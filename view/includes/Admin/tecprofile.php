@@ -112,7 +112,7 @@
         font-size: 20px;
     }
 
-    .col-f {
+    /* .col-f {
         width: 100%;
         color: #5C6E9B;
     }
@@ -120,9 +120,9 @@
     .col-h {
         width: 50%;
         color: #5C6E9B;
-    }
+    } */
 
-    .col-btn {
+    /* .col-btn {
         position: relative;
         text-align: center;
         width: 100%;
@@ -141,7 +141,7 @@
         position: relative;
         float: right;
         margin-right: 5px;
-    }
+    } */
 
     .col-f input[type=text], input[type=number] {
         justify-content: center;
