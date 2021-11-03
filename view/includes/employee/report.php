@@ -224,6 +224,10 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
+
+                    <?php
+                    echo md5('namal');
+                    ?>
                     <!-- <div class="col-h">
                         <span for="errorId">Error ID</span>
                         <input type="text" name="errorId" id="errorId" value="D/FA/2346">
