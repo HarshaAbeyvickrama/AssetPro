@@ -1,5 +1,5 @@
 <style>
-    .overviewLayout{
+    /* .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr 0.75fr;
              
@@ -10,8 +10,8 @@
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-    }
-    .statSection{
+    } */
+    /* .statSection{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
@@ -21,7 +21,6 @@
         width: 100%;
         height: 100%;
         display: flex;
-        /* justify-content: center; */
         align-items: center;
     }
     .statBox{
@@ -58,10 +57,10 @@
     }
     .box5{
         background-color: #4E74AB;
-    }
+    } */
 
     
-    .overviewLayout .contentSection{
+    /* .overviewLayout .contentSection{
         all: revert;
         display: inline-block;
         border-radius: 15px;
@@ -72,7 +71,7 @@
     .contentSection > div{
         margin:15px;
         height: auto;
-    }
+    } */
     .recentTitle{
         color: #304068;
         font-size: 20px;
@@ -90,7 +89,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div>Dashboard Overview</div>
+        <div class="section-heading">Dashboard Overview</div>
     </div>
 
     <div class="statSection">
@@ -129,12 +128,12 @@
     </div>
 
     <div>
-        <div>Recent Activities</div>
+        <div class="section-subHeading">Recent Activities</div>
     </div>
 
     <div class="contentSection">
-        <div class="recent24">
-            <div class="recentTitle">Last 24 Hours</div>
+        <div>
+            <div class="h3">Last 24 Hours</div>
             <table class="table">
                 <thead>
                 <tr>
@@ -172,8 +171,8 @@
 
         <hr>
 
-        <div class="oldActivities">
-            <div class="recentTitle">Earlier</div>
+        <div>
+            <div class="h3">Earlier</div>
             <table class="table" id="filterTable">
             <thead>
                 <tr>
