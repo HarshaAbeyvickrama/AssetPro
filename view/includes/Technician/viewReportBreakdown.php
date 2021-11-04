@@ -284,13 +284,13 @@
                     <textarea class="textarea" cols="" rows="" id="defP"></textarea>
                 </div>
 
-                <div class="col-f">
+                <div class="col-f">   
                     <span for="explainDefect"> Identified Defect: </span>
                     <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
                 </div>
 
                
-                <div class="col-btn">
+                <div class="col-btn">   
                     <div class="commenceBtn btnAction" id="commence"> Commence </div>
                     <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>     
                 </div>
