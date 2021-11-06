@@ -21,7 +21,7 @@
         margin:15px;
         height: auto;
     } */
-    .btnAction{
+    /* .btnAction{
         color: white;
         background-color: #5C6E9B;
         padding: 10px;
@@ -36,7 +36,7 @@
     .btnAction:hover{
         color: black;
         background-color: white;
-    }
+    } */
     .hidden {
         display: none;
     }   
