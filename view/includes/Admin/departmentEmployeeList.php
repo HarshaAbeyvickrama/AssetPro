@@ -1,38 +1,38 @@
 <style>
-    /* .table-data {
+    .table-data {
         color: #304068;
         margin: 4px 4px;
         height: 500px;
-        width: 100%; */
+        width: 100%;
         /* margin-top: -100px; */
-        /* overflow-y: auto;
-        overflow-x: hidden; */
+        overflow-y: auto;
+        overflow-x: hidden;
         /* font-size: 16px; */
-        /* font-size: 20px;
+        font-size: 20px;
         text-align: left;
-    } */
+    }
 
-    .table {
+    .empData {
         /* width: 100%; */
         border-collapse: collapse;
         margin-left: 5vh;
         text-align: left;
     }
 
-    /* .table-data th {
+    .table-data th {
         color: #5C6E9B;
         padding: 8px;
         position: sticky;
         top: 0;
         background-color: white;
-    } */
+    }
 
-    /* .table-data td {
+    .table-data td {
         padding: 8px;
         font-weight: lighter;
         font-size: 20px;
         color: #5c6e9b;
-    } */
+    }
 
     table tr:nth-child(2) {
         counter-reset: rowNumber;
@@ -66,18 +66,18 @@
         background-color: #7A90C9;
     }
 
-    /* .editBtn {
+    .editBtn {
         background-color: #5C6E9B;
     }
 
     .deleteBtn {
         background-color: #394564;
-    } */
+    }
 </style>
 
 <div>
-    <div>
-        <table class="table" id="empData">
+    <div class="table-data">
+        <table class="empData" id="empData">
         <tr>
                     <th id="num">#</th>
                     <!-- <th>User ID</th> -->

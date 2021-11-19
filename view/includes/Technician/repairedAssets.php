@@ -1,5 +1,5 @@
 <style>
-    /*.overviewLayout{
+    .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
              
@@ -22,7 +22,7 @@
         height: 100%;
         display: flex;
         /* justify-content: center; */
-        /*align-items: center;
+        align-items: center;
     }
     .statBox{
         display: grid;
@@ -65,7 +65,7 @@
         all: revert;
         display: inline-block;
         /* grid-template-rows: 1fr 1fr; */
-        /*border-radius: 15px;
+        border-radius: 15px;
         padding: 20px;
         background-color: white;
         overflow-y: auto;
@@ -82,7 +82,7 @@
 
 
     /* Recent activity Table CSS */
-    /*.table{
+    .table{
         display: table;
         width: 100%;
         margin: 10px 0px;
@@ -128,7 +128,7 @@
     .tableRow .btn:focus {
         border: 0;
         /*background: #5C6E9B;*/
-        /*transform: scale(0.97);
+        transform: scale(0.97);
     }
 
     hr{
@@ -136,7 +136,7 @@
         width: 100%;
         /* height: 1px; */
     }
-    /*.col-btn{
+    .col-btn{
         z-index: 1;
         position: absolute; 
         left: 0px;
@@ -178,108 +178,115 @@
 
     .tableRow > div:nth-of-type(6){
         text-align: left;
-    }*/
-</style>
+    }
 
+
+</style>
 <div class="overviewLayout">
-    <div class="section-heading"> Overview </div>
-    
+    <div>
+        <div> Overview </div>
+    </div>
     <div class="statSection">
         <div>
-            <div class="statBox box1">
-                <div class="statNumber" id="allAssets"> 7 </div>
+            <div class="statBox box1" id="allAssets">
+                <div class="statNumber" id="allAssets"> 16 </div>
                 <div class="statText"> All Assets </div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box2">
-                <div class="statNumber" id="assignedAssets"> 3 </div>
-                <div class="statText"> Assigned Assets </div>
+            <div class="statBox box2" id="assignedAssets">
+                    <div class="statNumber" id="assignedAssets"> 4 </div>
+                    <div class="statText"> Assigned Assets </div>
             </div>
         </div>
             
         <div>
-            <div class="statBox box3">
-                <div class="statNumber" id="inProgress"> 3 </div>
-                <div class="statText"> In Progress </div>
+            <div class="statBox box3" id="inProgress">
+                <div class="statNumber" id="inProgress"> 6 </div>
+                    <div class="statText"> In Progress </div>
             </div>
         </div>
 
         <div>
-            <div class="statBox box4">
-                <div class="statNumber" id="repairedAssets"> 1 </div>
-                <div class="statText"> Repaired Assets </div>
+            <div class="statBox box4" id="repairedAssets">
+                <div class="statNumber" id="repairedAssets"> 6 </div>
+                    <div class="statText"> Repaired Assets </div>
             </div>
         </div>
 
     </div>
 
-    <div class="section-subHeading"> Repaired Assets </div>
-    
+    <div>
+        <div> Repaired Assets </div>
+    </div>
     <div class="contentSection scrollbar">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th> # </th>
-                        <th> Asset ID </th>
-                        <th> Asset Name </th>
-                        <th> Asset Type </th>
-                        <th> Reported Employee </th>
-                        <th> Status </th>
-                    </tr>
-                </thead>
-                <tbody class="tableRowGroup" id="repairedAssetsTableBody">
-                    <tr>
-                        <td> 1 </td>
-                        <td> FA/CC/1 </td>
-                        <td> Laptop </td>
-                        <td> Fixed Asset </td>
-                        <td> Wathsala Perera </td>
-                        <td> <button class="btncol"> Done </button> </td>
-                    </tr>
-                    <tr>
-                        <td class="tableCell"> 2 </td>
-                        <td class="tableCell"> FA/CP/1 </td>
-                        <td class="tableCell"> Printer </td>
-                        <td class="tableCell"> Fixed Asset </td>
-                        <td class="tableCell"> Shanaka Madhushan </td>
-                        <td> <button class="btncol"> Done </button> </td>
-                    </tr>
-                    <tr>
-                        <td class="tableCell"> 3 </td>
-                        <td class="tableCell"> CA/CP/2 </td>
-                        <td class="tableCell"> Monitor </td>
-                        <td class="tableCell"> Current Asset </td>
-                        <td class="tableCell"> Nalin Perera </td>
-                        <td> <button class="btncol"> Done </button> </td>
-                    </tr>
-                    <tr>
-                        <td class="tableCell"> 4 </td>
-                        <td class="tableCell"> CA/PE/2 </td>
-                        <td class="tableCell"> CPU </td>
-                        <td class="tableCell"> Current Asset </td>
-                        <td class="tableCell"> kasun Dias </td>
-                        <td> <button class="btncol"> Done </button> </td>
-                    </tr>
-                    <tr>
-                        <td class="tableCell"> 5 </td>
-                        <td class="tableCell"> CA/CP/4 </td>
-                        <td class="tableCell"> Web Cam </td>
-                        <td class="tableCell"> Current Asset </td>
-                        <td class="tableCell"> kasun Dias </td>
-                        <td> <button class="btncol"> Done </button> </td>
-                    </tr>     
-                    <tr>
-                        <td class="tableCell"> 6 </td>
-                        <td class="tableCell"> FA/CP/5 </td>
-                        <td class="tableCell"> Scanner </td>
-                        <td class="tableCell"> Fixed Asset </td>
-                        <td class="tableCell"> Wathsala Perera </td>
-                        <td> <button class="btncol"> Done </button> </td>
-                    <tr>      
-                </tbody>   
-            </table>
+
+        <div class="oldActivities">
+            <div class="recentTitle">   </div>
+
+            <div class="recentActivityTable table">
+                <div class="tableHeader">
+                    <div class="tableCell"> Number </div>
+                    <div class="tableCell"> Asset ID </div>
+                    <div class="tableCell"> Asset Name </div>
+                    <div class="tableCell"> Asset Type </div>
+                    <div class="tableCell"> Reported Employee </div>
+                    <div class="cell-center"> Status </div>
+                </div>
+                <div class="tableRowGroup">
+                    <div class="tableRow">
+                        <div class="tableCell"> 1 </div>
+                        <div class="tableCell"> FA/CC/1 </div>
+                        <div class="tableCell"> Laptop </div>
+                        <div class="tableCell"> Fixed Asset </div>
+                        <div class="tableCell"> Wathsala Perera </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 2 </div>
+                        <div class="tableCell"> FA/CP/1 </div>
+                        <div class="tableCell"> Printer </div>
+                        <div class="tableCell"> Fixed Asset </div>
+                        <div class="tableCell"> Shanaka Madhushan </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 3 </div>
+                        <div class="tableCell"> CA/CP/2 </div>
+                        <div class="tableCell"> Monitor </div>
+                        <div class="tableCell"> Current Asset </div>
+                        <div class="tableCell"> Nalin Perera </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 4 </div>
+                        <div class="tableCell"> FA/CP/3 </div>
+                        <div class="tableCell"> CPU </div>
+                        <div class="tableCell"> Current Asset </div>
+                        <div class="tableCell"> kasun Dias </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 5 </div>
+                        <div class="tableCell"> CA/CP/4 </div>
+                        <div class="tableCell"> Web Cam </div>
+                        <div class="tableCell"> Current Asset </div>
+                        <div class="tableCell"> kasun Dias </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="tableCell"> 6 </div>
+                        <div class="tableCell"> FA/CP/5 </div>
+                        <div class="tableCell"> Scanner </div>
+                        <div class="tableCell"> Fixed Asset </div>
+                        <div class="tableCell"> Wathsala Perera </div>
+                        <div class="cell-center"><button class="btn done"> Done </button></div>
+                    </div>      
+                   
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
