@@ -1,5 +1,5 @@
 <style>
-    /* .overviewLayout{
+    .overviewLayout{
         display: grid;  
     }
     .overviewLayout > div{
@@ -20,7 +20,7 @@
     .contentSection > div{
         margin:15px;
         height: auto;
-    } */
+    }
     .btnAction{
         color: white;
         background-color: #5C6E9B;
@@ -56,9 +56,10 @@
                         <th>view Breakdown</th>
                     </tr>
                 </thead>
-                <tbody id="employeeTableBody"></tbody>     
+                <tbody id="employeeTableBody"></tbody>
+             
             </table>
-        </div>
+    </div>
 </div>
 
 <script>

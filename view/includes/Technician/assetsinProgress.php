@@ -1,5 +1,5 @@
 <style>
-    /*.table {
+    .table {
         display: table;
         width: 100%;
         margin: 10px 0px;
@@ -79,71 +79,72 @@
  
     .tableHeader>div:first-of-type {
         text-align: center;
-    }*/
+    }
 </style>
  
-<table class="table">
-    <thead>
-        <tr>
-            <th> # </th>
-            <th> Asset ID </th>
-            <th> Asset Name </th>
-            <th> Asset Type </th>
-            <th> Reported Employee </th>
-            <th> Mark as Done </th>
-        </tr>
-    </thead>
-    <tbody class="tableRowGroup" id="inprogressAssetsTableBody">
-        <tr>
-            <td> 1 </td>
-            <td> FA/EA/1 </td>
-            <td> Acer Nitro </td>
-            <td> fixed Asset </td>
-            <td> Douglas Kumar </td>
-            <td> <button class="btncol"> Done </button> </td>
-        </tr>
-        <tr>
-            <td> 2 </td>
-            <td> FA/CP/2 </td>
-            <td> Printer </td>
-            <td> Fixed Asset </td>
-            <td> Andrew Dias </td>
-            <td> <button class="btncol"> Done </button> </td>
-        </tr>
-        <tr>
-            <td> 3 </td>
-            <td> CA/PE/2 </td>
-            <td> Monitor </td>
-            <td> Current Asset </td>
-            <td> Pavani Kumari </td>
-            <td> <button class="btncol"> Done </button> </td>
-        </tr>
-        <tr>
-            <td> 4 </td>
-            <td> CA/CP/3 </td>
-            <td> Monitor </td>
-            <td> Consumable Asset </td>
-            <td> Nalin Perera </td>
-            <td> <button class="btncol"> Done </button> </td>
-        </tr>
-        <tr>
-            <td> 5 </td>
-            <td> CA/PE/7 </td>
-            <td> Web Cam </td>
-            <td> Current Asset </td>
-            <td> Farhan Ahamed </td>
-            <td> <button class="btncol"> Done </button> </td>
-        </tr>
-        <tr>
-            <td> 6 </td>
-            <td> CA/CP/5 </td>
-            <td> Web Cam </td>
-            <td> Consumable Asset </td>
-            <td> kasun Dias </td>
-            <td> <button class="btncol"> Done </button> </td>
-        </tr>
-    </tbody>
-</table>    
+<div class="table scrollbar">
+    <div class="tableHeader">
+        <div> # </div>
+        <div> Asset ID </div>
+        <div> Asset Name </div>
+        <div> Asset Type </div>
+        <div> Reported Employee </div>
+        <div class="cell-center"> Mark as Done </div>
+    </div>
+    <div class="tableRow">
+        <div> 1 </div>
+        <div> FA/CC/1 </div>
+        <div> Laptop </div>
+        <div> fixed Asset </div>
+        <div> Wathsala Perera </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+ 
+    </div>
+    <div class="tableRow">
+        <div> 2 </div>
+        <div> FA/CP/2 </div>
+        <div> Printer </div>
+        <div> Fixed Asset </div>
+        <div> shanaka Madhushan </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 3 </div>
+        <div> CA/CP/3 </div>
+        <div> Monitor </div>
+        <div> Consumable Asset </div>
+        <div> Nalin Perera </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 4 </div>
+        <div> FA/CP/4 </div>
+        <div> CPU </div>
+        <div> Consumable Asset </div>
+        <div> kasun Dias </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 5 </div>
+        <div> CA/CP/5 </div>
+        <div> Web Cam </div>
+        <div> Consumable Asset </div>
+        <div> kasun Dias </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    <div class="tableRow">
+        <div> 6 </div>
+        <div> FA/CP/6 </div>
+        <div> Scanner </div>
+        <div> Fixed Asset </div>
+        <div> Wathsala Perera </div>
+        <div class="cell-center"><button class="btn done"> Done </button></div>
+    </div>
+    
+        <div class="tableRowGroup" id="inprogressAssetsTableBody">
+        </div>
+    </div>
+</div>
 
 <script>
     getAssets('inprogress');

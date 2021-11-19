@@ -168,7 +168,7 @@
         margin-bottom: 10px;
     }
 
-    /* .editBtn,
+    .editBtn,
     .delBtn {
         width: 80px;
         height: 40px;
@@ -199,8 +199,10 @@
         cursor: pointer;
         color: #F1F4FF;
         margin-left: 70vh;
-    } */
+    }
 </style>
+
+
 
 
 <form action="" id="addTechnicianForm">
