@@ -84,7 +84,7 @@
 </style>
 <label>
     <span>Search:</span>
-    <input placeholder="Enter search term" type="search" id="searchInput">
+    <input placeholder="Enter search term" type="search" id="searchInput1">
 </label>
 
 <div class="overviewLayout">
@@ -173,7 +173,7 @@
 
         <div>
             <div class="h3">Earlier</div>
-            <table class="table" id="filterTable">
+            <table class="table" id="filterTable1">
             <thead>
                 <tr>
                     <th>#</th>
@@ -247,8 +247,8 @@
 </script>
 
 <script>
-const searchInput = document.getElementById('searchInput')
-const table = document.getElementById('filterTable')
+const searchInput = document.getElementById('searchInput1')
+const table = document.getElementById('filterTable1')
 const trArray = Array.prototype.slice.call(table.querySelectorAll('tbody tr'))
 
 const filterTable = event => {

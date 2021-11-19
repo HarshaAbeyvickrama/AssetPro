@@ -82,7 +82,7 @@
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
+                                        <button class='btn btn-submit' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
                                         </td> 
                                     </tr>`;
                 }

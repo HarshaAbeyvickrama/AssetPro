@@ -83,7 +83,7 @@
                                         <td>${assets[i]['assetName']}</td>
                                         <td>${assets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="report(${assets[i]['AssetID']})">Report</button>
+                                        <button class='btn btn-assign' onClick="report(${assets[i]['AssetID']})">Report</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -112,6 +112,7 @@
        
      }  
 </script>
+
 <script>
 const searchInput = document.getElementById('searchInput')
 const table = document.getElementById('filterTable')
