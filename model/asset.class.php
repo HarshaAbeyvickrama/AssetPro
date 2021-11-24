@@ -1,6 +1,5 @@
 <?php
-class Asset extends DBConnection
-{
+class Asset extends DBConnection{
 
     protected function getAll($type){
         $dbConnection = $this->connect();
@@ -107,6 +106,33 @@ class Asset extends DBConnection
         return $result;
     }
 
+    protected function getAssigned($id){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                    asset.AssetID,
+                    asset.Status,
+                    assetdetails.Name AS assetName,
+                    assetdetails.AssetCondition,
+                    t.Name AS assetType,
+                    t.TypeCode,
+                    c.CategoryCode
+                FROM
+                    asset
+                INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                INNER JOIN category c ON
+                    asset.CategoryID = c.CategoryID
+                INNER JOIN TYPE t ON
+                    t.TypeID = asset.TypeID
+                WHERE
+                    asset.EmployeeID = ?
+                ORDER BY
+                    asset.AssetID";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($id));
+        return $pstm;
+
+    }
+
     protected function get($id){
         $dbConnection = $this->connect();
         $sql = "SELECT
@@ -133,5 +159,20 @@ class Asset extends DBConnection
         $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$id]);
         return $stmt;
+    }
+
+    protected function delete($id){
+        
+    }
+
+    protected function update(){
+
+    }
+    protected function add(){
+
+    }
+
+    protected function getAllCounts(){
+        
     }
 }
