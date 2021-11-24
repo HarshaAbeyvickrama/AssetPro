@@ -1,6 +1,7 @@
 <?php
 
 class DBConnection{
+    
     public function connect()    {
         try {
             $username = "root";
