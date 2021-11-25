@@ -339,44 +339,44 @@
     //      true --> form disabled 
     //      false --> form enabled 
     
-    function formState(formId,readonlyState){
-        const form = document.getElementById(formId);
-        var elements = form.elements;
-        var len = elements.length;
-        for(var i=0; i<len; ++i){
-            elements[i].disabled=readonlyState;
-        }
-        document.getElementById("uploadBtn").disabled=readonlyState;
+    // function formState(formId,readonlyState){
+    //     const form = document.getElementById(formId);
+    //     var elements = form.elements;
+    //     var len = elements.length;
+    //     for(var i=0; i<len; ++i){
+    //         elements[i].disabled=readonlyState;
+    //     }
+    //     document.getElementById("uploadBtn").disabled=readonlyState;
     
-    }
+    // }
     
-    formState("sendFeedbackForm",true);
+    // formState("sendFeedbackForm",true);
 
-    document.querySelectorAll(".col-btn").forEach(button =>{
-        const sendfbBtn = document.getElementById("sendFeedback");
-        const cancBtn = document.getElementById("cancelEdit");
-        const errlogBtn = document.getElementById("errorLog");
-        button.addEventListener('click',function(event){
-            switch (event.target.id) {
-                case 'sendFeedback':
-                    formState("sendFeedbackForm",true);
-                    cancBtn.style.display = 'none';
-                    errlogBtn.style.display = 'none';
+    // document.querySelectorAll(".col-btn").forEach(button =>{
+    //     const sendfbBtn = document.getElementById("sendFeedback");
+    //     const cancBtn = document.getElementById("cancelEdit");
+    //     const errlogBtn = document.getElementById("errorLog");
+    //     button.addEventListener('click',function(event){
+    //         switch (event.target.id) {
+    //             case 'sendFeedback':
+    //                 formState("sendFeedbackForm",true);
+    //                 cancBtn.style.display = 'none';
+    //                 errlogBtn.style.display = 'none';
                     
-                    break;
-                case 'cancelEdit':
-                    sendfbBtn.style.display = 'block';
-                    errlogBtn.style.display = 'block';
-                    /*..deleteBtn.style.display = 'none';..*/
-                    formState("sendFeedbackForm",false);
-                    break;
+    //                 break;
+    //             case 'cancelEdit':
+    //                 sendfbBtn.style.display = 'block';
+    //                 errlogBtn.style.display = 'block';
+    //                 /*..deleteBtn.style.display = 'none';..*/
+    //                 formState("sendFeedbackForm",false);
+    //                 break;
             
-                default:
-                    break;
-            }
+    //             default:
+    //                 break;
+    //         }
         
         
-        })
-    })
+    //     })
+    // })
        
 </script>
