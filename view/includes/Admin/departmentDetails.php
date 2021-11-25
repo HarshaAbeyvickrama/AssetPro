@@ -76,7 +76,7 @@
 
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     document.getElementById('tabSections').addEventListener('click',function(e) {
         const eventId = e.target.id;
         if(eventId != 'tabSections') {
@@ -99,4 +99,4 @@
     //         }
     //     }
     // }
-</script>
+</script> -->

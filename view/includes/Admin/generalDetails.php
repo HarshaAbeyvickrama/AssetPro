@@ -95,7 +95,7 @@
     </form>
 </div>
 
-<script>
+<!-- <script>
     var departmentID = getCookieValue('DepartmentID');
     var department = JSON.parse(departmentID)[0];
     // console.log(department);
@@ -104,4 +104,4 @@
     document.getElementById('dName').value = department.Name;
     document.getElementById('dCon').value = department.ContactNum;
     document.getElementById('dDes').value = department.description;
-</script>
+</script> -->

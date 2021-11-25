@@ -300,7 +300,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     //JS for pop-up form
     document.getElementById('addDep').addEventListener('click',
         function popForm() {
@@ -425,4 +425,4 @@
         }
         xhr.send();
     }
-</script>
+</script> -->
