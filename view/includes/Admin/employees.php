@@ -181,7 +181,7 @@
                                 <td>" . $row['DepartmentCode'] . '/EMP/' . $row['EmployeeID'] . "</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td id=" . $row['EmployeeID'] . "><button id='view' class='viewBtn'>View</button></td>
+                                <td id=" . $row['EmployeeID'] . "><button id='view' class='btn btn-submit'>View</button></td>
                               </tr>";
                     }
                 } else {
