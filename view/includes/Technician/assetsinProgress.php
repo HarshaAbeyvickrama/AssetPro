@@ -146,6 +146,6 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
     getAssets('inprogress');
-</script>
+</script> -->

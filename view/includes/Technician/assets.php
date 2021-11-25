@@ -168,7 +168,8 @@
     }
 </style>
 
-<script>
+
+<!-- <script>
 
     getCount('allAssets');
     getCount('assignedAssets');
@@ -274,7 +275,8 @@
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
     }
-</script>
+</script> -->
+
 
 
 <div class="overviewLayout">
