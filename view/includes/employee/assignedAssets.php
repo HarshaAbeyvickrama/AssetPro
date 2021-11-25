@@ -61,7 +61,7 @@
 </div>
 
 
-<script>
+<!-- <script>
    function loadAssets(){
         const xhr = new XMLHttpRequest();
         xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
@@ -106,4 +106,4 @@
        
      }  
 </script>
-
+ -->

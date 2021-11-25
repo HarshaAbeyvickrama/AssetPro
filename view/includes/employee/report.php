@@ -273,7 +273,8 @@
         </div>
     </div>
 </form>
-<script>
+
+<!-- <script>
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
@@ -349,4 +350,4 @@
     loadSection('centerSection','assignedAssets');
     // console.log(report);
    }
-</script>
+</script> -->

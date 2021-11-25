@@ -181,7 +181,7 @@
                                 <td>" . $row['DepartmentCode'] . '/EMP/' . $row['EmployeeID'] . "</td>
                                 <td>" . $row["Name"] . "</td>
                                 <td>" . $row["Gender"] . "</td>
-                                <td id=" . $row['EmployeeID'] . "><button id='view' class='viewBtn'>View</button></td>
+                                <td id=" . $row['EmployeeID'] . "><button id='view' class='btn btn-submit'>View</button></td>
                               </tr>";
                     }
                 } else {
@@ -195,7 +195,8 @@
         <!-- </div> -->
     </div>
 </div>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
     //Loading the add employee page
     var addEmployeeBtn = document.getElementById('addEmp');
     addEmployeeBtn.addEventListener('click', function() {
@@ -237,4 +238,4 @@
     function goBack() {
         loadSection('centerSection', 'employees');
     }
-</script>
+</script> -->

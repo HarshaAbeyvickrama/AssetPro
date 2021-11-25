@@ -216,8 +216,8 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
     getCount('allAssets', 'allAssetsCount');
     getCount('allEmployees', 'allEmployeesCount');
     getCount('allTechnicians', 'allTechniciansCount');
-</script>
+</script> -->

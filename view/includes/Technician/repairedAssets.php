@@ -290,9 +290,9 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
     getCount('allAssets');
     getCount('assignedAssets');
     getCount('inProgress');
     getCount('repairedAssets');
-</script>
+</script> -->
