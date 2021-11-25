@@ -234,21 +234,8 @@ function loadAssets(){
         return reportForm;
     }
     
-   
-    // function saveReport(report){
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
-        
-    //     xhr.onload = function(){
-    //         if(this.status === 200){
-    //            alert(this.responseText); // 2nd alert
-    //         }
-    //     }
-    //     xhr.send(report);
-    // }
    function cancelReport(){
     loadSection('centerSection','reportedBreakdown');
-    // console.log(report);
    }
 
 
