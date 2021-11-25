@@ -129,7 +129,7 @@
     </div>
 </div>
  
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     // getAssets('assigned');
 
     var viewBreakdownBtn = document.getElementById('') /*Loading the viewReportBreakdown page*/
@@ -137,6 +137,6 @@
     {
         loadSection('centersection','viewBreakdown');
     });
-</script>
+</script> -->
 
 
