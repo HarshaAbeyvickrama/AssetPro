@@ -312,7 +312,7 @@
 
 </form>
 
-<script>
+<!-- <script>
     document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddEmployee');
         const saveBtn = document.getElementById("btnSaveEmployee");
@@ -405,4 +405,4 @@ getDepartments();
         }
         xhr.send();
     }
-</script>
+</script> -->

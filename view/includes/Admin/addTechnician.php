@@ -298,7 +298,7 @@
 
 </form>
 
-<script>
+<!-- <script>
     document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddTechnician');
         const saveBtn = document.getElementById("btnSaveTechnician");
@@ -357,4 +357,4 @@
     function goBack() {
         loadSection('centerSection', 'technicians');
     }
-</script>
+</script> -->

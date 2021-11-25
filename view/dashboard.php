@@ -14,6 +14,9 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/index.js"></script>
+    <script src="../js/assetmanager.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/hod.js"></script>
     <title>Dashboard</title>
     <style>
         .container {

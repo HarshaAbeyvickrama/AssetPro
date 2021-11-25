@@ -195,7 +195,8 @@
         <!-- </div> -->
     </div>
 </div>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
     //Loading the add employee page
     var addEmployeeBtn = document.getElementById('addEmp');
     addEmployeeBtn.addEventListener('click', function() {
@@ -237,4 +238,4 @@
     function goBack() {
         loadSection('centerSection', 'employees');
     }
-</script>
+</script> -->

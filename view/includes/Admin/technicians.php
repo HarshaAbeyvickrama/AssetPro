@@ -181,7 +181,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var addTechnicianBtn = document.getElementById('addTec');
     addTechnicianBtn.addEventListener('click', function() {
 
@@ -191,4 +191,4 @@
 
         // alert("hemlo 👽") 
     });
-</script>
+</script> -->
