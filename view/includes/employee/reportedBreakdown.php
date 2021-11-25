@@ -62,7 +62,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
     function viewBreakAsset(){
         const xhr = new XMLHttpRequest();
         xhr.open("GET", "../model/AssignedAssetsEmp.php?action=viewAssetBreak", true);
@@ -111,7 +111,7 @@
        xhr.send();
      }
 
-</script>
+</script> -->
 
 
 
