@@ -16,6 +16,8 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="../js/index.js"></script>
     <script src="../js/assetmanager.js"></script>
     <script src="../js/admin.js"></script>
+    <script src="../js/employee.js"></script>
+    <script src="../js/technician.js"></script>
     <script src="../js/hod.js"></script>
     <title>Dashboard</title>
     <style>
