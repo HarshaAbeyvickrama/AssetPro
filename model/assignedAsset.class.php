@@ -2,7 +2,7 @@
 
 class AssignedAsset extends DBConnection{
     
-
+   //============================EMPLOYEE MODULE========================================
   //viewing AssignedAsset data from DB, connect with the page of assignedAssets.php 
   //set session ID for employee
     protected function getAssets($empUserId){
@@ -42,7 +42,6 @@ class AssignedAsset extends DBConnection{
     }
 
 
-
     //Getting data to report.php form after connecting the data which come to assignedAsset.php page
     protected function getAssignedAssetById($asset_id){
         $dbConnection = $this->connect();
@@ -64,30 +63,17 @@ class AssignedAsset extends DBConnection{
                 asset.AssetID";
 
 
-            $pstm = $dbConnection->prepare($sql);
-            $pstm->execute(array($asset_id));
-            return $pstm;  
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($asset_id));
+        return $pstm;  
     }
 
    
     //viewing the breakdown assets in the table
-    function viewAsset(){
+    protected function viewAsset($empUserId){
         global $mysql;
       
-            //     $sql = "SELECT
-            //     asset.AssetID,
-            //     assetdetails.Name AS assetName,
-            //     TYPE.Name AS assetType,
-            //     DATE(breakdown.Date) AS reportedDate,
-            //     breakdown.BreakdownID
-            // FROM
-            //     asset
-            // INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-            // INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
-            // INNER JOIN breakdown ON asset.AssetID = breakdown.AssetID
-            // ORDER BY
-            //     asset.AssetID";
-            $empUserId = $_SESSION['userID'];
+            //$empUserId = $_SESSION['userID'];
 
 
                 $sql = "SELECT
@@ -113,22 +99,19 @@ class AssignedAsset extends DBConnection{
                 FROM
                     employeeuser
                 WHERE
-                    UserID = $empUserId
+                    UserID = ?
             )
             ORDER BY
                 breakdown.BreakdownID ASC";
                 
-           
-        $result = mysqli_query($mysql,$sql);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)){
-            $rows[] = $r;
-        }
-        echo json_encode($rows);
-
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($empUserId));
+        return $pstm;
     }
+
+
   //viewing the details in the form including reason and defected parts
-    function  viewBreakAssetDetails($view_id,$assetid){
+    protected function viewBreakAssetDetails($assetid,$view_id){
         global $mysql;
       
                 $sql = "SELECT
@@ -146,19 +129,13 @@ class AssignedAsset extends DBConnection{
             INNER JOIN category ON asset.CategoryID = category.CategoryID
             INNER JOIN breakdown ON breakdown.AssetID = asset.AssetID
             WHERE
-                asset.AssetID = $assetid AND breakdown.BreakdownID = $view_id 
+                asset.AssetID = ? AND breakdown.BreakdownID = ?
             ORDER BY 
                 breakdown.BreakdownID ASC";
                 
-           
-        $result = mysqli_query($mysql,$sql);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)){
-            $rows[] = $r;
-        }
-        echo json_encode($rows);
 
-
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($assetid,$view_id));
+        return $pstm;
     }
 }
-?>

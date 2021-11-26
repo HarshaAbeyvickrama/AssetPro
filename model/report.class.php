@@ -1,7 +1,7 @@
 <?php
 
 class report extends DBConnection{
-
+    //============================EMPLOYEE MODULE========================================
     public function reportAsset($asset_id, $technician_id, $employee_id, $date, $reason, $defectedPart){
         $dbConnection = $this->connect();
         //insert the status column as well
