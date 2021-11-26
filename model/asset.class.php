@@ -169,7 +169,19 @@ class Asset extends DBConnection{
 
     }
     protected function add(){
+        
+        //Get the Id after adding the asset
+        $assetId = null;
+        $notification = new Notification();
+        $notification->createNotification(
+            type:"addAsset",
+            message:"Added New Asset",
+            userId:$_SESSION['userID'],
+            assetId:$assetId,
+            targetUser:$_SESSION['userID']
+        );
 
+        return true;
     }
 
     protected function getAllCounts(){
