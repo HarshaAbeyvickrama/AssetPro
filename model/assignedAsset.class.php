@@ -45,9 +45,7 @@ class AssignedAsset extends DBConnection{
 
     //Getting data to report.php form after connecting the data which come to assignedAsset.php page
     protected function getAssignedAssetById($asset_id){
-        
         $dbConnection = $this->connect();
-        global $mysql;
 
                 $sql = "SELECT
                 asset.AssetID,
@@ -61,21 +59,14 @@ class AssignedAsset extends DBConnection{
             INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
             INNER JOIN category ON asset.CategoryID = category.CategoryID
             WHERE
-                asset.AssetID = $asset_id
+                asset.AssetID = ?
             ORDER BY
                 asset.AssetID";
 
-        //SELECT * FROM 'asset' INNER JOIN employeeuser ON asset.EmployeeID = employeeuser.EmployeeID 
-        //WHERE employeeuser.UserID = 3; 
-        //ny uing this code the assets for partcular employee will be shown and one UI is enough
-                
-           
-        $result = mysqli_query($mysql,$sql);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)){
-            $rows[] = $r;
-        }
-        echo json_encode($rows);    
+
+            $pstm = $dbConnection->prepare($sql);
+            $pstm->execute(array($asset_id));
+            return $pstm;  
     }
 
    
