@@ -206,6 +206,5 @@
         }
         echo json_encode($rows);
 
-
     }
 ?>
