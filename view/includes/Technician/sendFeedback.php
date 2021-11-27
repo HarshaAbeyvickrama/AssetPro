@@ -288,27 +288,27 @@
 
                 <div class="col-f">
                     <span for="reportedEmployee"> Reported Employee: </span>
-                    <input type="text" name="repEmp" id="repEmpe" value="">
+                    <textarea class="textarea" cols="" rows="" id="repE"></textarea>
                 </div>
 
                 <div class="col-f">
                     <span for="repairCost"> Repair Cost: </span>
-                    <input type="text" name="repCost" id="repCost" value="">
+                    <textarea class="textarea" cols="" rows="" id="repC"></textarea>
                 </div>
 
                 <div class="col-f">
                     <span for="nextrepairDate"> Next Repair date: </span>
-                    <input type="text" name="nextrepDate" id="nextrepDate" value="">
+                    <textarea class="textarea" cols="" rows="" id="nextrepD"></textarea>
                 </div>
 
                 <div class="col-f">
                     <span for="reasonsforMalfunction"> Reasons for malfunction: </span>
-                    <input type="text" name="reasonsforMal" id="reasonsforMal" value="">
+                    <textarea class="textarea" cols="" rows="" id="reasonforMal"></textarea>
                 </div>
 
                 <div class="col-f">
                     <span for="actionsTook"> Actions took: </span>
-                    <input type="text" name="actionTook" id="actionTook" value="">
+                    <textarea class="textarea" cols="" rows="" id="actT"></textarea>
                 </div>
 
                 <div class="col-f">
@@ -318,8 +318,9 @@
 
                
                 <div class="col-btn">
-                <div class="backBtn btnAction" id="back"> Back </div>
                     <div class="sendfbBtn btnAction" id="sendFeedback"> Send Feedback </div>
+                    <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>
+                    <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>
                 </div>
                   
 
@@ -338,48 +339,44 @@
     //      true --> form disabled 
     //      false --> form enabled 
     
-    function formState(formId,readonlyState){
-        const form = document.getElementById(formId);
-        var elements = form.elements;
-        var len = elements.length;
-        for(var i=0; i<len; ++i){
-            elements[i].disabled=readonlyState;
-        }
-        document.getElementById("uploadBtn").disabled=readonlyState;
+    // function formState(formId,readonlyState){
+    //     const form = document.getElementById(formId);
+    //     var elements = form.elements;
+    //     var len = elements.length;
+    //     for(var i=0; i<len; ++i){
+    //         elements[i].disabled=readonlyState;
+    //     }
+    //     document.getElementById("uploadBtn").disabled=readonlyState;
     
-    }
+    // }
     
-    formState("sendFeedbackForm",true);
+    // formState("sendFeedbackForm",true);
 
-    document.querySelectorAll(".col-btn").forEach(button =>{
-        const sendfbBtn = document.getElementById("sendFeedback");
-        const backBtn = document.getElementById("back");
-        button.addEventListener('click',function(event){
-            switch (event.target.id) {
-                case 'sendFeedback':
-                    formState("sendFeedbackForm",true);
-                    backBtn.style.display = 'none';
+    // document.querySelectorAll(".col-btn").forEach(button =>{
+    //     const sendfbBtn = document.getElementById("sendFeedback");
+    //     const cancBtn = document.getElementById("cancelEdit");
+    //     const errlogBtn = document.getElementById("errorLog");
+    //     button.addEventListener('click',function(event){
+    //         switch (event.target.id) {
+    //             case 'sendFeedback':
+    //                 formState("sendFeedbackForm",true);
+    //                 cancBtn.style.display = 'none';
+    //                 errlogBtn.style.display = 'none';
                     
-                    break;
-                case 'back':
-                    sendfbBtn.style.display = 'block';
-                    formState("sendFeedbackForm",false);
-                    break;
+    //                 break;
+    //             case 'cancelEdit':
+    //                 sendfbBtn.style.display = 'block';
+    //                 errlogBtn.style.display = 'block';
+    //                 /*..deleteBtn.style.display = 'none';..*/
+    //                 formState("sendFeedbackForm",false);
+    //                 break;
             
-                default:
-                    break;
-            }
+    //             default:
+    //                 break;
+    //         }
         
         
-        })
-    })
+    //     })
+    // })
        
 </script>
-
-   
-    //Inserting into sendFeedback file from breakdown table// 
-        $breakdown = "INSERT INTO breakdown 
-                        VALUES ('$BreakdownID','$AssetID','$TechnicianID','$EmployeeID','$Date','$Reason','$DefectedParts')";
-                        mysqli_query($mysql, $breakdown);
-
-

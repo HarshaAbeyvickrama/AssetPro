@@ -168,7 +168,7 @@
         margin-bottom: 10px;
     }
 
-    /* .editBtn,
+    .editBtn,
     .delBtn {
         width: 80px;
         height: 40px;
@@ -199,8 +199,10 @@
         cursor: pointer;
         color: #F1F4FF;
         margin-left: 70vh;
-    } */
+    }
 </style>
+
+
 
 
 <form action="" id="addTechnicianForm">
@@ -296,7 +298,7 @@
 
 </form>
 
-<script>
+<!-- <script>
     document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddTechnician');
         const saveBtn = document.getElementById("btnSaveTechnician");
@@ -355,4 +357,4 @@
     function goBack() {
         loadSection('centerSection', 'technicians');
     }
-</script>
+</script> -->

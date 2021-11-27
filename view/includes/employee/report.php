@@ -224,7 +224,6 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
-
                     <!-- <div class="col-h">
                         <span for="errorId">Error ID</span>
                         <input type="text" name="errorId" id="errorId" value="D/FA/2346">
@@ -274,7 +273,8 @@
         </div>
     </div>
 </form>
-<script>
+
+<!-- <script>
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
@@ -350,4 +350,4 @@
     loadSection('centerSection','assignedAssets');
     // console.log(report);
    }
-</script>
+</script> -->

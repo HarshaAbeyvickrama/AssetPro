@@ -1,5 +1,5 @@
 <style>
-    /* .overviewLayout{
+    .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr 0.75fr;
              
@@ -10,8 +10,8 @@
         color: #304068;
         font-size: 24px;
         font-weight: bold;
-    } */
-    /* .statSection{
+    }
+    .statSection{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
@@ -21,6 +21,7 @@
         width: 100%;
         height: 100%;
         display: flex;
+        /* justify-content: center; */
         align-items: center;
     }
     .statBox{
@@ -57,10 +58,10 @@
     }
     .box5{
         background-color: #4E74AB;
-    } */
+    }
 
     
-    /* .overviewLayout .contentSection{
+    .overviewLayout .contentSection{
         all: revert;
         display: inline-block;
         border-radius: 15px;
@@ -71,25 +72,20 @@
     .contentSection > div{
         margin:15px;
         height: auto;
-    } */
+    }
     .recentTitle{
         color: #304068;
         font-size: 20px;
         font-weight: bold;
     }
-    /*---------------------------------CSS FOR SEARCH---------------------*/
-    .hidden {
-        display: none;
-    }
+
+
+
 </style>
-<label>
-    <span>Search:</span>
-    <input placeholder="Enter search term" type="search" id="searchInput1">
-</label>
 
 <div class="overviewLayout">
     <div>
-        <div class="section-heading">Dashboard Overview</div>
+        <div>Dashboard Overview</div>
     </div>
 
     <div class="statSection">
@@ -128,12 +124,12 @@
     </div>
 
     <div>
-        <div class="section-subHeading">Recent Activities</div>
+        <div>Recent Activities</div>
     </div>
 
     <div class="contentSection">
-        <div>
-            <div class="h3">Last 24 Hours</div>
+        <div class="recent24">
+            <div class="recentTitle">Last 24 Hours</div>
             <table class="table">
                 <thead>
                 <tr>
@@ -171,9 +167,9 @@
 
         <hr>
 
-        <div>
-            <div class="h3">Earlier</div>
-            <table class="table" id="filterTable1">
+        <div class="oldActivities">
+            <div class="recentTitle">Earlier</div>
+            <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -244,25 +240,4 @@
     getCount('allFixed','Fixeds');
     getCount('allConsumables','Consumables');
     getCount('allIntangibles','Intangibles');
-</script>
-
-<script>
-const searchInput = document.getElementById('searchInput1')
-const table = document.getElementById('filterTable1')
-const trArray = Array.prototype.slice.call(table.querySelectorAll('tbody tr'))
-
-const filterTable = event => {
-  const searchTerm = event.target.value.toLowerCase()
-  trArray.forEach(row => {
-    row.classList.add('hidden')
-    const tdArray = Array.prototype.slice.call(row.getElementsByTagName('td'))
-    tdArray.forEach(cell => {
-      if (cell.innerText.toLowerCase().indexOf(searchTerm) > -1) {
-        row.classList.remove('hidden')
-      } 
-    })
-  })
-}
-
-searchInput.addEventListener('keyup', filterTable, false)
 </script>

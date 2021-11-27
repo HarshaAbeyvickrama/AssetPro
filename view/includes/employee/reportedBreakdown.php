@@ -1,5 +1,5 @@
 <style>
-    /* .overviewLayout{
+    .overviewLayout{
         display: grid;  
     }
     .overviewLayout > div{
@@ -20,8 +20,8 @@
     .contentSection > div{
         margin:15px;
         height: auto;
-    } */
-    /* .btnAction{
+    }
+    .btnAction{
         color: white;
         background-color: #5C6E9B;
         padding: 10px;
@@ -56,12 +56,13 @@
                         <th>view Breakdown</th>
                     </tr>
                 </thead>
-                <tbody id="employeeTableBody"></tbody>     
+                <tbody id="employeeTableBody"></tbody>
+             
             </table>
-        </div>
+    </div>
 </div>
 
-<script>
+<!-- <script>
     function viewBreakAsset(){
         const xhr = new XMLHttpRequest();
         xhr.open("GET", "../model/AssignedAssetsEmp.php?action=viewAssetBreak", true);
@@ -82,7 +83,7 @@
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btn btn-submit' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
+                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -110,7 +111,7 @@
        xhr.send();
      }
 
-</script>
+</script> -->
 
 
 

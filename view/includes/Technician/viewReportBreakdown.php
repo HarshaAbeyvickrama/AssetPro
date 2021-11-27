@@ -284,13 +284,13 @@
                     <textarea class="textarea" cols="" rows="" id="defP"></textarea>
                 </div>
 
-                <div class="col-f">   
+                <div class="col-f">
                     <span for="explainDefect"> Identified Defect: </span>
                     <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
                 </div>
 
                
-                <div class="col-btn">   
+                <div class="col-btn">
                     <div class="commenceBtn btnAction" id="commence"> Commence </div>
                     <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>     
                 </div>
@@ -310,43 +310,43 @@
     //      true --> form disabled 
     //      false --> form enabled 
     
-    function formState(formId,readonlyState){
-        const form = document.getElementById(formId);
-        var elements = form.elements;
-        var len = elements.length;
-        for(var i=0; i<len; ++i){
-            elements[i].disabled=readonlyState;
-        }
-        document.getElementById("uploadBtn").disabled=readonlyState;
+    // function formState(formId,readonlyState){
+    //     const form = document.getElementById(formId);
+    //     var elements = form.elements;
+    //     var len = elements.length;
+    //     for(var i=0; i<len; ++i){
+    //         elements[i].disabled=readonlyState;
+    //     }
+    //     document.getElementById("uploadBtn").disabled=readonlyState;
     
-    }
+    // }
     
-    formState("viewReportBreakdownForm",true);
+    // formState("viewReportBreakdownForm",true);
 
-    document.querySelectorAll(".col-btn").forEach(button =>{
-        const commenceBtn = document.getElementById("commence");
-        const errlogBtn = document.getElementById("errorLog");
-        button.addEventListener('click',function(event){
-            switch (event.target.id) {
-                case 'commence':
-                    formState("viewReportBreakdownForm",true);
-                    /*commenceBtn.style.display = 'none';*/
-                    errlogBtn.style.display = 'none';
+    // document.querySelectorAll(".col-btn").forEach(button =>{
+    //     const commenceBtn = document.getElementById("commence");
+    //     const errlogBtn = document.getElementById("errorLog");
+    //     button.addEventListener('click',function(event){
+    //         switch (event.target.id) {
+    //             case 'commence':
+    //                 formState("viewReportBreakdownForm",true);
+    //                 commenceBtn.style.display = 'none';
+    //                 errlogBtn.style.display = 'none';
                     
                     
-                    break;
-                case 'errorLog':
-                    errlogBtn.style.display = 'block';
-                    commenceBtn.style.display = 'block';
-                    formState("viewReportBreakdownForm",false);
-                    break;
+    //                 break;
+    //             case 'errorLog':
+    //                 errlogBtn.style.display = 'block';
+    //                 commenceBtn.style.display = 'block';
+    //                 formState("viewReportBreakdownForm",false);
+    //                 break;
             
-                default:
-                    break;
-            }
+    //             default:
+    //                 break;
+    //         }
         
         
-        })
-    })
+    //     })
+    // })
        
 </script>

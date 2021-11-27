@@ -97,7 +97,7 @@
         color: #5C6E9B;
     }
 
-    /* .col-btn {
+    .col-btn {
         position: relative;
         text-align: center;
         width: 100%;
@@ -116,7 +116,7 @@
         position: relative;
         float: right;
         margin-right: 5px;
-    } */
+    }
 
     .col-f input[type=text], input[type=number], select {
         justify-content: center;
@@ -175,7 +175,7 @@
         margin-bottom: 10px;
     }
 
-    /* .editBtn,
+    .editBtn,
     .delBtn {
         width: 80px;
         height: 40px;
@@ -206,7 +206,7 @@
         cursor: pointer;
         color: #F1F4FF;
         margin-left: 70vh;
-    } */
+    }
 
     #imagePreview {
         height: 200px;
@@ -312,7 +312,7 @@
 
 </form>
 
-<script>
+<!-- <script>
     document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddEmployee');
         const saveBtn = document.getElementById("btnSaveEmployee");
@@ -405,4 +405,4 @@ getDepartments();
         }
         xhr.send();
     }
-</script>
+</script> -->

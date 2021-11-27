@@ -5,45 +5,38 @@
     .profile {
         all: revert;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         background-color: #F1F4FF;
         overflow:hidden;
-        padding: 0px;
+        padding: 150px;
         height: 87vh;
+        margin: 15px 7.5px 15px 15px;
     }
 
     .profile>div {
         background-color: white;
         border-radius: 10px;
-   
+
     }
-    .leftSection,
-    .rightSection{
+    .upSection,
+    .bottomSection{
         overflow-y: auto;
     }
-    /* .leftSection::-webkit-scrollbar,
+    /* .upSection::-webkit-scrollbar,
     .rightSection::-webkit-scrollbar{
         display: none;
     } */
 
-    .profile .leftSection {
+    .profile .upSection {
         display: grid;
         grid-template-rows: 4fr 6fr;
         justify-content: center;
         align-items: center;
         margin: 15px 7.5px 15px 15px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        padding: 0px;    
-=======
         padding: 150px;    
->>>>>>> upstream/main
-=======
-        padding: 10px;    
->>>>>>> 727d1d6de6aeddce1135ba9f6a74f9cecb4f7201
     }
 
-    .leftSection>div {
+    .upSection>div {
         /* height: 100%; */
         /* width: 100%; */
     }
@@ -53,7 +46,7 @@
         border-radius: 0%;
     }
 
-    .leftSection .leftBottom {
+    .upSection .upperPart {
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -62,7 +55,7 @@
    
     .profileImageSection {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
     }
@@ -231,225 +224,69 @@
         right: calc(0%);
         cursor: pointer;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 727d1d6de6aeddce1135ba9f6a74f9cecb4f7201
-    .table {
-        display: table;
-        width: 100%;
-        margin: 10px 0px;
-        color: #5C6E9B;
-        overflow-y: hidden !important;
- 
-    }
- 
-    .tableHeader {
-        width: 100%;
-        display: table-header-group;
-        font-size: 19px;
-<<<<<<< HEAD
-        position: sticky;
-=======
->>>>>>> 727d1d6de6aeddce1135ba9f6a74f9cecb4f7201
-        padding: 15px;
-        font-weight: bold;
-        overflow-y: hidden !important;
-    }
- 
-    .tableHeader>div {
-        display: table-cell;
-    }
- 
-    .table .tableRowGroup {
-        display: table-row-group;
-        overflow-y: auto !important;
-    }
- 
-    .tableRow {
-        display: table-row;
-        position: relative;
-    }
- 
- 
-    .tableRowGroup .tableRow:hover {
-        cursor: pointer;
-        background-color: wheat;
- 
-    }
- 
-    .tableRowGroup {
-        overflow-y: auto;
-    }
- 
-    .tableRow .tableCell {
-        padding: 10px 0px;
- 
-    }
- 
-    .tableRow>div {
-        display: table-cell;
-        padding: 10px 0px;
-    }
- 
-    .tableRow>div:first-of-type {
-        text-align: center;
-    }
- 
-    .tableRow .btn {
-        border: 0;
-        background: #5C6E9B;
-        padding: 10px 20px;
-        color: #fff;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: 0.2s ease;
-    }
- 
-    .tableRow .btn:focus {
-        border: 0;
-        background: #5C6E9B;
-        transform: scale(0.97);
-    }
- 
-    .cell-center {
-        text-align: center;
-        width: 20%;
-    }
- 
-    .tableHeader>div:first-of-type {
-        text-align: center;
-<<<<<<< HEAD
-    }
-=======
->>>>>>> upstream/main
-=======
->>>>>>> 727d1d6de6aeddce1135ba9f6a74f9cecb4f7201
 </style>
 
-
-<form action="" id="errorLogForm" onsubmit="">
-
-    <div class="profile">
-        <div id="pLeft" class="leftSection scrollBar"> 
+<div class="profile">
+    <form action="" id="errorlogForm" onsubmit="">
+        <div id="pUp" class="upSection scrollBar"> 
 
             <div class="profileImageSection">
-                <image src="../Images/lap1.jpg"alt="laptop-1">
+                <image src="../Images/lap1.jpg" alt="laptop-1">
             </div>
 
-            <div class="leftBottom">
+            <div class="upperPart">
                 <div class="basic-information">
 
-                    <div class="title">Basic Information</div>
-
-                    <div class="col-h">
-                        <span for="assetId"> Error ID : </span>
-                        <input type="text" name="assetID" id="assetID" value="FA/12345" >
-                    </div>
+                    <div class="title"> Basic Information: </div>
+                    <div>
+                        <div class="col-h">
+                            <span for="errorId"> Error ID: </span>
+                            <input type="text" name="errorId" id="errorId" value="D/FA/12345">
+                        </div> 
                     
-                    <div class="col-h">
-                        <span for="assetId"> Asset ID : </span>
-                        <input type="text" name="assetID" id="assetID" value="FA/12345" >
-                    </div>
+                        <div class="col-f">
+                            <span for="assetId"> Asset ID: </span>
+                            <input type="text" name="assetID" id="assetID" value="FA/12345">
+                        </div>
                    
-                    <div class="col-f">
-                        <span for="assetName"> Asset Name: </span>
-                        <input type="text" name="assetName" id="assetName" value="Asus Laptop">
+                        <div class="col-f">
+                            <span for="assetName"> Asset Name: </span>
+                            <input type="text" name="assetName" id="assetName" value="Asus Laptop">
+                        </div>
                     </div>
+                    <div>
+                        <div class="col-f">
+                            <span for="condition"> Condition:</span>
+                            <input type="text" name="condition" id="condition"  value="Brand New">
+                        </div>
 
-                    <div class="col-f">
-                        <span for="condition"> Condition: </span>
-                        <input type="text" name="condition" id="condition"  value="Brand New">
-                    </div>
+                        <div class="col-f">
+                            <span for="purchaseDate"> Purchase Date: </span>
+                            <input type="text" name="purchaseDate" id="purchaseDate" value="2018/07/09" >
+                        </div>
 
-                    <div class="col-f">
-                        <span for="purchaseDate"> Purchase Date: </span>
-                        <input type="text" name="purchaseDate" id="purchaseDate" value="" >
-                    </div>
+                        <div>
+                            <div class="col-f">
+                                <span for="AssetType"> Asset Type: </span>
+                                <input type="text" name="assetType" id="assetType" value="Fixed Asset">
+                            </div>
 
-                    <div class="col-f">
-                        <span for="AssetType"> Asset Type: </span>
-                        <input type="text" name="assetType" id="assetType"  value="Fixed Asset" >
+                            <div class="col-f">
+                                <span for="category"> Asset Category: </span>
+                                <input type="text" name="category" id="category" value="Electronic" >
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-f">
-                        <span for="category"> Asset Category: </span>
-                        <input type="text" name="category" id="category" value="Electronic" >
-                    </div>
+                </div>
             </div>
         </div>
+    </form>
+
+    <div>
+        <div> Error Log: </div>
     </div>
-<<<<<<< HEAD
-
-        
-        <div id="pRight" class="rightSection">
-            <div class="basic-information">
-
-                <div class="title"> Error Log: </div>
-
-                <div class="col-f">
-                    <span for="defectedParts"> Defected Parts: </span>
-                    <textarea class="textarea" cols="" rows="" id="defP"></textarea>
-                </div>
-
-                <div class="col-f">
-                    <span for="explainDefect"> Identified Defect: </span>
-                    <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
-                </div>
-
-               
-                <div class="col-btn">
-                    <div class="backBtn btnAction" id="back"> back </div>    
-=======
         <div class="contentSection scrollbar">
 
-<<<<<<< HEAD
-            <div class="tableHeader">
-                <div> Number </div>
-                <div> Asset ID </div>
-                <div> Error ID </div>
-                <div> Asset Name </div>
-                <div> Last repaired </div>
-                <div> Technician </div>
-                <div class="cell-center"> View Breakdown </div>
-            </div>
-            <div class="tableRow">
-                <div> 1 </div>
-                <div> FA/12345 </div>
-                <div> Laptop </div>
-                <div> fixed Asset </div>
-                <div> Wathsala Perera </div>
-                <div class="cell-center"><button class="btn view"> View </button></div>
-            </div>
-            <div class="tableRow">
-                <div> 2 </div>
-                <div> FA/12346 </div>
-                <div> Printer </div>
-                <div> Fixed Asset </div>
-                <div> shanaka Madhushan </div>
-                <div class="cell-center"><button class="btn view"> View </button></div>
-            </div>
-            <div class="tableRow">
-                <div> 3 </div>
-                <div> CA/23456 </div>
-                <div> Monitor </div>
-                <div> Current Asset </div>
-                <div> Nalin Perera </div>
-                <div class="cell-center"><button class="btn view"> View </button></div>
-            </div>
-            <div class="tableRow">
-                <div> 4 </div>
-                <div> CA/23458 </div>
-                <div> CPU </div>
-                <div> Current Asset </div>
-                <div> kasun Dias </div>
-                <div class="cell-center"><button class="btn view"> View </button></div>
-            </div>
-            <div class="col-btn">
-                <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
-                </div>     
-=======
             <div class="oldActivities">
                 <div class="recentTitle">   </div>
 
@@ -519,23 +356,15 @@
                             <div class="sendfbBtn btnAction" id="sendFeedback"> Finish </div>
                             <div class="cancBtn btnAction" id="cancelEdit"> Back </div>
                         </div>     
-<<<<<<< HEAD
->>>>>>> upstream/main
-=======
->>>>>>> 49757877ce54d74a85bddae7963dac56bc696f8d
->>>>>>> 727d1d6de6aeddce1135ba9f6a74f9cecb4f7201
                 </div>
-
             </div>
         </div>
-<<<<<<< HEAD
-</div>
-=======
+    </div>    
+        
     </div>
 
 </form>
 
->>>>>>> 727d1d6de6aeddce1135ba9f6a74f9cecb4f7201
 <script>
 
     // Enable / Disable the form fields
@@ -545,7 +374,7 @@
     //      true --> form disabled 
     //      false --> form enabled 
     
-    function formState(formId,readonlyState){
+    /*function formState(formId,readonlyState){
         const form = document.getElementById(formId);
         var elements = form.elements;
         var len = elements.length;
@@ -556,18 +385,23 @@
     
     }
     
-    formState("viewReportBreakdownForm",true);
+    formState("errorlogForm",true);
 
     document.querySelectorAll(".col-btn").forEach(button =>{
-        const commenceBtn = document.getElementById("commence");
-        const errlogBtn = document.getElementById("errorLog");
+        const finishBtn = document.getElementById("finish");
+        const backBtn = document.getElementById("back");
         button.addEventListener('click',function(event){
             switch (event.target.id) {
-                case 'commence':
-                    formState("viewReportBreakdownForm",true);
-                    commenceBtn.style.display = 'none';
+                case 'finish':
+                    formState("errorlogForm",true);
+                    finishBtn.style.display = 'none';
+                    backBtn.style.display = 'none';
                     
                     
+                    break;
+                case 'back':
+                    finishBtn.style.display = 'block';
+                    formState("reportBreakdownForm",false);
                     break;
             
                 default:
@@ -579,31 +413,3 @@
     })
        
 </script>
-
-//get the details of reported Breakdowns in the view//
-    //to viewReportBreakdown file//
-
-    function viewReportBreakdownById($asset_id){
-        global $mysql;
-      
-                $sql = "SELECT
-                            asset.AssetID,
-                            assetdetails.Name as assetName,
-                            category.Name,
-                            type.Name as assetYpe
-                            assetdetails.AssetCondition,
-                        FROM asset,assetdetails,category,type
-                        WHERE asset.AssetID = $asset_id
-                        ORDER BY asset.AssetID" ;
-                
-           
-        $result = mysqli_query($mysql,$sql);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)){
-            $rows[] = $r;
-        }
-        echo json_encode($rows);
-
-        
-    }
-?>
