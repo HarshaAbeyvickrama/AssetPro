@@ -136,5 +136,6 @@ class AssignedAsset extends DBConnection{
         $pstm = $dbConnection->prepare($sql);
         $pstm->execute(array($assetid,$view_id));
         return $pstm;
+        
     }
 }
