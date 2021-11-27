@@ -14,7 +14,6 @@ class report extends DBConnection{
         $stmt->bindParam(':date' ,$date );
         $stmt->bindParam(':reason' ,$reason);
         $stmt->bindParam(':defected_part' ,$defectedPart);
-        $stmt->execute();
-        
+        $stmt->execute();      
     }
 }

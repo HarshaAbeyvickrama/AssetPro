@@ -133,7 +133,6 @@ class AssignedAsset extends DBConnection{
             ORDER BY 
                 breakdown.BreakdownID ASC";
                 
-
         $pstm = $dbConnection->prepare($sql);
         $pstm->execute(array($assetid,$view_id));
         return $pstm;
