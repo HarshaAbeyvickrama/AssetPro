@@ -3,9 +3,45 @@
 class AssignedAsset extends DBConnection{
     
    //============================EMPLOYEE MODULE========================================
-  //viewing AssignedAsset data from DB, connect with the page of assignedAssets.php 
+  //viewing AssignedAsset table from DB, connect with the page of assignedAssets.php 
   //set session ID for employee
-    protected function getAssets($empUserId){
+    // protected function getAssets($empUserId){
+    //     $dbConnection = $this->connect();
+     
+    //                 //$empUserId = $_SESSION['userID'];
+    //                 //when calling the getAsset function only, we set the session there
+
+    //                 $sql = "SELECT
+    //                 asset.AssetID,
+    //                 assetdetails.Name AS assetName,
+    //                 t.Name AS assetType,
+    //                 t.TypeCode,
+    //                 c.CategoryCode
+    //             FROM
+    //                 asset
+    //             INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+    //             INNER JOIN category c ON
+    //                 asset.CategoryID = c.CategoryID
+    //             INNER JOIN TYPE t ON
+    //                 t.TypeID = asset.TypeID
+    //             WHERE
+    //                 EmployeeID =(
+    //                 SELECT
+    //                     EmployeeID
+    //                 FROM
+    //                     employeeuser
+    //                 WHERE
+    //                     userId = ?
+    //             )
+    //             ORDER BY
+    //                 asset.AssetID";
+
+    //     $pstm = $dbConnection->prepare($sql);
+    //     $pstm->execute(array($empUserId));
+    //     return $pstm;
+    // }
+
+    protected function getAssets(){
         $dbConnection = $this->connect();
      
                     //$empUserId = $_SESSION['userID'];
@@ -31,15 +67,24 @@ class AssignedAsset extends DBConnection{
                     FROM
                         employeeuser
                     WHERE
-                        userId = ?
+                        userId = 3
                 )
                 ORDER BY
                     asset.AssetID";
 
-        $pstm = $dbConnection->prepare($sql);
-        $pstm->execute(array($empUserId));
-        return $pstm;
+        $result = $dbConnection->query($sql);
+        // $pstm->execute(array($empUserId));
+        // return $pstm;
+        $numRows = $result->num_rows;
+        if($numRows > 0){
+            while($row = $result->fetch_assoc()){
+                $data[] = $row;
+            }
+            return $data;
+        }
+       
     }
+
 
 
     //Getting data to report.php form after connecting the data which come to assignedAsset.php page
