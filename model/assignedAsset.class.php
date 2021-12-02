@@ -75,12 +75,8 @@ class AssignedAsset extends DBConnection{
         $result = $dbConnection->query($sql);
         // $pstm->execute(array($empUserId));
         // return $pstm;
-        $numRows = $result->num_rows;
-        if($numRows > 0){
-            while($row = $result->fetch_assoc()){
-                $data[] = $row;
-            }
-            return $data;
+        while($row = $result->fetch()){
+            
         }
        
     }
