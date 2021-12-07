@@ -41,6 +41,22 @@ include_once '../controller/userController.php';
                 return false;
             }
         }
+        
+        //===================query for setting EmployeeID session==============
+        // public function getEmployeeIdByUser($userId){
+        //     $result = $this->dbConnection->query('SELECT
+        //     EmployeeID
+        // FROM
+        //     employeeuser
+        // INNER JOIN USER ON employeeuser.UserID = user.UserID
+        // WHERE
+        //     user.UserID = :userId');
+
+        //     return $result->EmployeeID;
+
+        // }
     }
+
+
 
 ?>

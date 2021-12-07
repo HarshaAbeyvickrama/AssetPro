@@ -26,6 +26,10 @@
                 $loggedInUser = $this->userModel->login($data['Username']);
                 if($loggedInUser) {
                     //Create session
+                    // if($loggedInUser->RoleID==3){
+                    // $empid = $this->userModel->getEmployeeIdByUser($loggedInUser->UserID);
+                    // $this->createEmployeeSession($empid);
+                    // }
                     $this->createUserSession($loggedInUser);
                 } else {
                     flash("Login", "Password Incorrect");
@@ -51,6 +55,11 @@
             session_destroy();
             redirect("../view/login.php");
         }
+
+        //=================Getting session for Employee-ID======================
+        // public function createEmployeeSession($empUserId){
+        //     $_SESSION['employeeID'] = $empUserId;
+        // }
     }
 
     //Ensure that user is sending a POST request
