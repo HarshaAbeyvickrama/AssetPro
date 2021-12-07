@@ -92,18 +92,18 @@ if (session_status() === PHP_SESSION_NONE) {
             <div id="centerSection">
                 <?php
                 // Adding the relevant overview section related to the user and role
-                switch ($_SESSION['userType']) {
-                    case 'admin':
+                switch ($_SESSION['RoleID']) {
+                    case '1':
                         include_once("includes/Admin/overview.php");
                         break;
-                    case 'employee':
+                    case '3':
                         include_once("includes/employee/overview.php");
                         break;
 
-                    case 'technician':
+                    case '4':
                         include_once("includes/technician/overview.php");
                         break;
-                    case 'assetManager':
+                    case '2':
                         include_once("includes/assetManager/overview.php");
                         break;
                 }

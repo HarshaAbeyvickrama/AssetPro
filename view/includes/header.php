@@ -177,7 +177,7 @@
         <div id="username">
             <?php
             include('../db/dbConnection.php');
-            $userId = $_SESSION['userID'];
+            $userId = $_SESSION['UserID'];
             // echo($userId);
             $res = mysqli_query($mysql, "Select CONCAT(userdetails.fName,' ',userdetails.lName) AS name from userdetails where userID=$userId");
             $name = mysqli_fetch_assoc($res)['name'];

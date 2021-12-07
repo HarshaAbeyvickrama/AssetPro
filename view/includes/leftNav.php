@@ -130,8 +130,8 @@
             <div class='componentText selectedBtn' ></div>
         </div>
     <?php
-        switch ($_SESSION['userType']) {
-            case 'admin':
+        switch ($_SESSION['RoleID']) {
+            case '1':
                 //Employees
                 echo "<div class='component' id='employees'>
                     <img src='../Images/NotSelected/Employees.png' >
@@ -153,7 +153,7 @@
 
                 break;
 
-            case 'employee':
+            case '3':
 
                 //Assigned Assets
                 echo "<div class='component' id='assignedAssets'>
@@ -170,7 +170,7 @@
                 break;
 
             //Technician
-            case 'technician':
+            case '4':
                 
                 //Assigned Assets
                 echo "<div class='component' id='assets'>
@@ -190,7 +190,7 @@
                 break;
 
             //Asset Manager
-            case 'assetManager':
+            case '2':
                 
                 //Assets
                 echo "<div class='component' id='assets'>
