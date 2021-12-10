@@ -14,7 +14,7 @@
 </head>
 
 <?php
-  //create the helper page and it's functions
+  //The helper page and it's functions
   include_once '../helpers/sessionHelper.php';
 ?>
 
@@ -38,7 +38,7 @@
         <span></span>
         <label>Password</label>
       </div>
-      <input type="submit" value="Login" id="btnLogin" />
+      <button type="submit" value="Login" id="btnLogin" name="submit">Login</button>
       <br>
       <a href="password-reset.php" class="pass" id="forgotPass">Forgot Password?</a>
       
