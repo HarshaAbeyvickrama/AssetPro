@@ -10,7 +10,7 @@
     if ($url == '/' || $url[0] == 'a' || $url[0] == 'dashboard') {
         // dashboard
         // echo 'dashboard';
-        header("location: ./a.php");
+        header("location: ./view/dashboard.php");
     } else {
         require_once './controller/autoloadController.php';
         $controller = $url[0];
