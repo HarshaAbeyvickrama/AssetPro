@@ -130,7 +130,6 @@ class Asset extends DBConnection{
         $pstm = $dbConnection->prepare($sql);
         $pstm->execute(array($id));
         return $pstm;
-
     }
 
     protected function get($id){

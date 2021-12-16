@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION['UserID'])){
+        header("Location: ./view/login.php");
+    }
 
     $url = isset($_SERVER['PATH_INFO']) ? explode("/", ltrim($_SERVER['PATH_INFO'], '/')) : '/';
 
