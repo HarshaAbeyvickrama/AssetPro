@@ -6,10 +6,10 @@ function classLoader($className){
 
     if (strpos($className, 'Controller') !== false) {
         $ext = ".php";
-        $path = '';
+        $path = './controller/';
     } else {
         $ext = ".class.php";
-        $path = '../model/';
+        $path = './model/';
     }
    
     

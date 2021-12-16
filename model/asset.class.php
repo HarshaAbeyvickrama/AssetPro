@@ -130,7 +130,6 @@ class Asset extends DBConnection{
         $pstm = $dbConnection->prepare($sql);
         $pstm->execute(array($id));
         return $pstm;
-
     }
 
     protected function get($id){
@@ -162,7 +161,13 @@ class Asset extends DBConnection{
     }
 
     protected function delete($id){
-        
+        $dbConnection = $this->connect();
+        $sql = "delete * from asset where assetId=:assetID";
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->bindParam(":assetID" , $assetId);
+        $stmt->execute();
+        return $stmt;
+
     }
 
     protected function update(){
@@ -178,7 +183,7 @@ class Asset extends DBConnection{
             message:"Added New Asset",
             userId:$_SESSION['userID'],
             assetId:$assetId,
-            targetUser:$_SESSION['userID']
+            targetUsers:$_SESSION['userID']
         );
 
         return true;

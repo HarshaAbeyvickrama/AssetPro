@@ -7,14 +7,15 @@
         // Only available for Asset Manager
         public function getAllAssets($type){
             $accessManager = new AccessManager();
-
-            if($accessManager->validateAccess(type:"ALL_ASSETS")){
-                $result = $this->getAll($type);
-                http_response_code(200);
-                return json_encode($result->fetchAll());
-            }else{
-                return $accessManager->setResponseCode(403);
-            }
+            $result = $this->getAll($type);
+            return json_encode($result->fetchAll());
+            // if($accessManager->validateAccess(type:"ALL_ASSETS")){
+            //     $result = $this->getAll($type);
+            //     http_response_code(200);
+            //     return json_encode($result->fetchAll());
+            // }else{
+            //     return $accessManager->setResponseCode(403);
+            // }
         }
 
         public function getAsset($id){

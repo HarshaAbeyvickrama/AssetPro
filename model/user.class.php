@@ -57,7 +57,6 @@ require_once '../model/dbConnection.class.php';
             //     return false;
             // }
         }
-
     }
 
 ?>

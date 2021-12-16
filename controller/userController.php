@@ -93,6 +93,11 @@
                 return false;
             }
         }
+
+        //=================Getting session for Employee-ID======================
+        // public function createEmployeeSession($empUserId){
+        //     $_SESSION['employeeID'] = $empUserId;
+        // }
     }
 
     $init = new userController;
