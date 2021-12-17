@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .overviewLayout{
         display: grid;  
     }
@@ -58,7 +58,7 @@
                 <tbody id="employeeTableBody"></tbody>
             </table>
         </div>
-</div>
+</div> -->
 
 
 <!-- <script>
@@ -107,3 +107,20 @@
      }  
 </script>
  -->
+
+
+
+ <?php
+
+class ViewAssignedAsset extends AssignedAsset{
+
+    public function showAssets() {
+        $datas = $this->getAssets();
+        foreach($datas as $data){
+            echo $data['AssetID']."<br>";
+            echo $data['CategoryID']."<br>";
+        }
+
+    }
+}
+
