@@ -1,12 +1,14 @@
 <?php
     include_once 'autoloadController.php';
+    // include '../model/asset.class.php';
+    // include '../model/dbconnection.class.php';
     
     class AssetController extends Asset{
 
         // Done
         // Only available for Asset Manager
         public function getAllAssets($type){
-            $accessManager = new AccessManager();
+            // $accessManager = new AccessManager();
             $result = $this->getAll($type);
             return json_encode($result->fetchAll());
             // if($accessManager->validateAccess(type:"ALL_ASSETS")){
@@ -29,8 +31,27 @@
             $result = $this->delete($id);
         }
 
-        public function addAsset(){
-            $newAsset = new Asset();
+        public function addAsset($assetName , $assetType , $category , $condition , $purchaseDate , $purchaseCost , $otherInfo = null , $extension , $hasWarrenty = false , $warrentyStart = null, $warrentyEnd = null , $hasDepriciation = false , $depriciationMethod = 'straightLine' , $usefulYears = null , $depriciaionRate = null , $residualValue = null){
+            $newAsset = new Asset(
+                assetName:$assetName , 
+                assetType:$assetType,
+                category:$category,
+                condition:$condition,
+                otherInfo:$otherInfo,
+                extension:$extension,
+                hasWarrenty:$hasWarrenty,
+                warrentyStart:$warrentyStart,
+                warrentyEnd:$warrentyEnd,
+                hasDepriciation:$hasDepriciation,
+                depriciationMethod:$depriciationMethod,
+                depriciaionRate:$depriciaionRate,
+                residualValue:$residualValue,
+                usefulYears:$usefulYears,
+                purchaseDate:$purchaseDate,
+                purchaseCost:$purchaseCost
+            );
+            $res = $newAsset->save();
+            return json_encode($res);
         }
 
         public function updateAsset(){
@@ -40,6 +61,22 @@
         public function getAllAssignedAssets($id){
             $result = $this->getAssigned($id);
             return json_encode($result->fetchAll());
+        }
+
+        public function getAllAssetCounts(){
+            $res = $this->getAllCounts();
+            return json_encode($res->fetchAll());
+        }
+        
+        public function getAssetCount($type){
+            if($type == '' || $type == NULL){
+                $result = array(
+                    "status" => "404",
+                    "message" => "Invalid type");
+                return json_encode($result);
+            }
+            $res = $this->getCount('all');
+            json_encode($res->fetchAll());
         }
 
     }
