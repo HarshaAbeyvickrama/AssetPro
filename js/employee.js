@@ -5,7 +5,7 @@
 //query.--> roleID=3
 function loadAssets(){
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost/AssetPro/model/asset/getAllAssEmp/", true);
+        xhr.open("GET", "http://localhost/AssetPro/asset/getAllAssEmp/", true);
         xhr.onload = function() {
             if (this.status === 200) {
                 var assets = JSON.parse(this.responseText);
