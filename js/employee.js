@@ -1,9 +1,11 @@
 //==============================assignedAssets.php================================================
 //========Reporting the particular asset from the table of assigned assets=======================
   
+//pass whats the type?all,assigned... & $empuser = $_SESSION[;userID]; 
+//query.--> roleID=3
 function loadAssets(){
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", "../model/AssignedAssetsEmp.php?action=getAssets", true);
+        xhr.open("GET", "http://localhost/AssetPro/model/asset/getAllAssEmp/", true);
         xhr.onload = function() {
             if (this.status === 200) {
                 var assets = JSON.parse(this.responseText);
@@ -24,7 +26,9 @@ function loadAssets(){
         }
         xhr.send();
     }
-    loadAssets();
+    // loadAssets();
+    
+
     
     //click Report button to redirect to the page of report.php 
     function report(asset){

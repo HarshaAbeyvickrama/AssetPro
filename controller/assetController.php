@@ -42,6 +42,11 @@
             return json_encode($result->fetchAll());
         }
 
+        //=============EMP===================
+        public function getAllAssetsEmp(){
+            return $this->getAllAssEmp();
+        }
+
     }
 
 

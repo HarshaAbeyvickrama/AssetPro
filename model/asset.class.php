@@ -193,4 +193,5 @@ class Asset extends DBConnection{
     protected function getAllCounts(){
         
     }
+
 }

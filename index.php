@@ -25,6 +25,10 @@
                         echo $ac->getAllAssets($url[2]);
                         break;
                     
+                    case 'getAllAssetsEmp':
+                        echo $ac->getAllAssetsEmp();
+                        break;
+                    
                     default:
                         # code...
                         break;
