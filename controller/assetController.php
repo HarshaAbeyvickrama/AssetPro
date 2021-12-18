@@ -67,7 +67,8 @@
 
         public function getAllAssetCounts(){
             $res = $this->getAllCounts();
-            return json_encode($res->fetchAll());
+            $count = $res->fetchAll();
+            return json_encode($count[0]);
         }
         
         public function getAssetCount($type){
@@ -78,7 +79,7 @@
                 return json_encode($result);
             }
             $res = $this->getCount('all');
-            json_encode($res->fetchAll());
+            return json_encode($res->fetchAll());
         }
 
     }

@@ -349,7 +349,8 @@ class Asset extends DBConnection{
                 (SELECT COUNT(*) FROM asset WHERE CategoryID = 1 OR CategoryID = 2) as tangibleAssets,
                 (SELECT COUNT(*) FROM asset as count WHERE CategoryID = 2) as consumableAssets
                 from DUAL";
-        $stmt = $this->dbConnection->prepare($sql);
+        $stmt = $this->connect()->prepare($sql);
+        
         $stmt->execute();
         return $stmt;
     }
