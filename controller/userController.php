@@ -44,11 +44,13 @@
                     $this->createUserSession($login);
                 } else {
                     flash("Login", "Password Incorrect");
-                    // redirect("../view/login.php");
+                    // echo "Password incorrect";
+                    redirect("../view/login.php");
                 }
             } else {
                 flash("Login", "No user found!");
-                // redirect("../view/login.php");
+                // echo "No user found";
+                redirect("../view/login.php");
             }
         }
 
