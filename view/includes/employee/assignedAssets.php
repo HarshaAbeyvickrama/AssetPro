@@ -60,7 +60,10 @@
 </div>
 
 <script>
-loadAssets();
+<?php
+echo 'var userID ='. $_SESSION['UserID'];
+?>
+loadAssets(userID);
 </script>
 
 

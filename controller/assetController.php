@@ -61,7 +61,9 @@
         }
         
         public function getAllAssignedAssets($id){
+            echo "HIIIIII";
             $result = $this->getAssigned($id);
+            print_r($result);
             return json_encode($result->fetchAll());
         }
 

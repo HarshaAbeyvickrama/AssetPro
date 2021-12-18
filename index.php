@@ -34,7 +34,7 @@
                         echo $ac->getAllAssets($url[2]);
                         break;
                     
-                    case 'getAllAssignedAssets':
+                    case 'getAllAssignedAsset':
                         echo $ac->getAllAssignedAssets($url[2]);
                         break;
                     

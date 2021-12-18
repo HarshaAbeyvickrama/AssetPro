@@ -4,26 +4,26 @@
 //pass whats the type?all,assigned... & $empuser = $_SESSION[;userID]; 
 //query.--> roleID=3
 
-function loadAssets(){
+function loadAssets(userID){
         const xhr = new XMLHttpRequest();
         //should define the userID like to which user
         xhr.open("GET", `http://localhost/AssetPro/asset/getAllAssignedAsset/${userID}`, true);
         xhr.onload = function() {
             if (this.status === 200) {
-                var assets = JSON.parse(this.responseText);
+                var assets = JSON.parse(this.response);
                 console.log(assets);
-                for (var i = 0; i < assets.length; i++) {
-                    document.getElementById('employeeTableBody').innerHTML += `
-                                    <tr>
-                                        <td>${i+1}</td>
-                                        <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
-                                        <td>${assets[i]['assetName']}</td>
-                                        <td>${assets[i]['assetType']}</td>
-                                        <td>  
-                                        <button class='btnAction' onClick="report(${assets[i]['AssetID']})">Report</button>
-                                        </td> 
-                                    </tr>`;
-                }
+                // for (var i = 0; i < assets.length; i++) {
+                //     document.getElementById('employeeTableBody').innerHTML += `
+                //                     <tr>
+                //                         <td>${i+1}</td>
+                //                         <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+                //                         <td>${assets[i]['assetName']}</td>
+                //                         <td>${assets[i]['assetType']}</td>
+                //                         <td>  
+                //                         <button class='btnAction' onClick="report(${assets[i]['AssetID']})">Report</button>
+                //                         </td> 
+                //                     </tr>`;
+                // }
             }
         }
         xhr.send();
