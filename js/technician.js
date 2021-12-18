@@ -208,13 +208,33 @@ document.querySelectorAll(".col-btn").forEach(button =>{
 
 /* ===========================script of techAssignedAssets.php==================================================== */
 
-    // getAssets('assigned');
+    
+    getAssets('assigned');
 
-    var viewBreakdownBtn = document.getElementById('') /*Loading the viewReportBreakdown page*/
-    viewBreakdownBtn.addEventListener('click', function()
-    {
+    function ajaxcall () {                  //GET DATA
+        var data = new FormData();
+        data.append("Number", document.getElementById("new").value);
+        data.append("Asset ID", document.getElementById("new").value);
+        data.append("Asset Name", document.getElementById("new").value);
+        data.append("Asset Type", document.getElementById("new").value);
+        data.append("Reported Employee", document.getElementById("new").value);
+        data.append("View Breakdown", document.getElementById("").value);
+
+
+        var xhr = new XMLHttpRequest();        //AJAX CALL
+        xhr.open("POST" , "...\AssetPro\view\includes\Technician\viewReportBreakdown.php");
+        xhr.onload = function() {
+            console.log(this.response);
+        };
+        xhr.send(data);
+
+        var Btnview = document.getElementById('')           //Loading the viewReportBreakdown page
+        Btnview.addEventListener('click', function() {
         loadSection('centersection','viewBreakdown');
-    });
+        });
+        }
+
+    
 
 /* ===========================script of viewreportbreakdown.php==================================================== */
     script>
