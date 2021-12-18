@@ -31,7 +31,7 @@
             $result = $this->delete($id);
         }
 
-        public function addAsset($assetName , $assetType , $category , $condition , $purchaseDate , $purchaseCost , $otherInfo = null , $extension , $hasWarrenty = false , $warrentyStart = null, $warrentyEnd = null , $hasDepriciation = false , $depriciationMethod = 'straightLine' , $usefulYears = null , $depriciaionRate = null , $residualValue = null){
+        public function addAsset($assetName = null , $assetType = null , $category = null , $condition = null , $purchaseDate = null , $purchaseCost = null , $otherInfo = null , $extension = null , $hasWarrenty = false , $warrentyStart = null, $warrentyEnd = null , $hasDepriciation = false , $depriciationMethod = 'straightLine' , $usefulYears = null , $depriciaionRate = null , $residualValue = null){
             $newAsset = new Asset(
                 assetName:$assetName , 
                 assetType:$assetType,
