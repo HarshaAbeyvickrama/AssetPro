@@ -176,12 +176,7 @@
     <div id="userSection">
         <div id="username">
             <?php
-            include('../db/dbConnection.php');
-            $userId = $_SESSION['UserID'];
-            // echo($userId);
-            $res = mysqli_query($mysql, "Select CONCAT(userdetails.fName,' ',userdetails.lName) AS name from userdetails where userID=$userId");
-            $name = mysqli_fetch_assoc($res)['name'];
-            echo $name;
+            echo $_SESSION['name'];
             ?>
         </div>
         <!-- <div> -->
@@ -220,7 +215,7 @@
 
 <div class="profile-dropdown" id="profiledropdown">
     <div class="menu">
-        <h3>Signed in as <br> <span><?php echo $name ?></span></h3>
+        <h3>Signed in as <br> <span><?php echo $_SESSION['name'] ?></span></h3>
         <ul>
             <li><img src="../Images/avatar.png" alt="">My Profile</li>
             <li id="logout"><img src="../Images/settings.jpg" alt="">Log Out</li>
@@ -243,7 +238,7 @@
     })
 
     document.getElementById('logout').addEventListener('click', (e) => {
-        window.location.replace("../controller/mainController.php?action=logout");
+        window.location.replace("http://localhost/assetpro/logout");
     })
 
     var icon = document.getElementById("notificationIcon");
