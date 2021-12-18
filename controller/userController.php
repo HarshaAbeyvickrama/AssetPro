@@ -58,6 +58,7 @@
             $_SESSION['RoleID'] = $user['RoleID'];
             $_SESSION['UserID'] = $user['UserID'];
             $_SESSION['Username'] = $user['Username'];
+            $_SESSION['name'] = $user['name'];
             $_SESSION['Email'] = $user['Email'];
 
             if($_SESSION['RoleID'] == 1){
