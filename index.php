@@ -33,6 +33,12 @@
                     case 'getAllAssets':
                         echo $ac->getAllAssets($url[2]);
                         break;
+                    case 'count':
+                        echo $ac->getAllAssetCounts();
+                        break;
+                    case 'assigned':
+                        echo $ac->getAllAssignedAssets($url[2]);
+                        break;
                     
                     default:
                         # code...

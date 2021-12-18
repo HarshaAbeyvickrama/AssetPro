@@ -174,7 +174,7 @@ class Asset extends DBConnection{
 
     // Get all the assets assigned to a particular user by the userID
     protected function getAssigned($userID){
-        // $dbConnection = $this->connect();
+        $dbConnection = $this->connect();
         $sql = "SELECT
                     asset.AssetID,
                     asset.Status,
@@ -194,7 +194,7 @@ class Asset extends DBConnection{
                     asset.assignedUser = ?
                 ORDER BY
                     asset.AssetID";
-        $pstm = $this->dbConnection->prepare($sql);
+        $pstm = $dbConnection->prepare($sql);
         $pstm->execute(array($userID));
         return $pstm;
     }
