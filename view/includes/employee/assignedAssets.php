@@ -59,7 +59,6 @@
     </div>
 </div>
 
-
 <script>
 loadAssets();
 </script>

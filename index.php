@@ -30,8 +30,8 @@
                         echo $ac->getAllAssets($url[2]);
                         break;
                     
-                    case 'getAllAssetsEmp':
-                        echo $ac->getAllAssetsEmp();
+                    case 'getAllAssignedAssets':
+                        echo $ac->getAllAssignedAssets($url[2]);
                         break;
                     
                     default:
