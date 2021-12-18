@@ -1,7 +1,9 @@
 <?php
     session_start();
+    
     if(!isset($_SESSION['UserID'])){
         header("Location: ./view/login.php");
+        return;
     }
 
     $url = isset($_SERVER['PATH_INFO']) ? explode("/", ltrim($_SERVER['PATH_INFO'], '/')) : '/';
@@ -10,7 +12,7 @@
     //     header("location: ./view/login.php");
     // }
 
-    if ($url == '/' || $url[0] == 'a' || $url[0] == 'dashboard') {
+    if ($url == '/' || $url[0] == 'dashboard') {
         // dashboard
         // echo 'dashboard';
         header("location: ./view/dashboard.php");
