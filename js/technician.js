@@ -106,9 +106,32 @@
 
 /* ===========================script of assetsinProgress.php================================================== */
 
-<script>
+
     getAssets('inprogress');
-</script>
+
+    function ajaxcall () {                  //GET DATA
+        var data = new FormData();
+        data.append("#", document.getElementById("new").value);
+        data.append("Asset ID", document.getElementById("new").value);
+        data.append("Asset Name", document.getElementById("new").value);
+        data.append("Asset Type", document.getElementById("new").value);
+        data.append("Reported Employee", document.getElementById("new").value);
+        data.append("Mark as Done", document.getElementById("").value);
+
+
+        var xhr = new XMLHttpRequest();        //AJAX CALL
+        xhr.open("POST" , "...\AssetPro\view\includes\Technician\sendFeedback.php");
+        xhr.onload = function() {
+            console.log(this.response);
+        };
+        xhr.send(data);
+
+        var Btnview = document.getElementById('')           //Loading the senFeedback.php page
+        Btnview.addEventListener('click', function() {
+        //loadSection('centersection','');
+        });
+        }
+
 
 /* ===========================script of errorLog.php========================================================= */
 
@@ -230,7 +253,7 @@ document.querySelectorAll(".col-btn").forEach(button =>{
 
         var Btnview = document.getElementById('')           //Loading the viewReportBreakdown page
         Btnview.addEventListener('click', function() {
-        loadSection('centersection','viewBreakdown');
+        //loadSection('centersection','viewBreakdown');
         });
         }
 
@@ -253,7 +276,7 @@ document.querySelectorAll(".col-btn").forEach(button =>{
         for(var i=0; i<len; ++i){
             elements[i].disabled=readonlyState;
         }
-        document.getElementById("uploadBtn").disabled=readonlyState;
+        document.getElementById("commenceBtn").disabled=readonlyState;
     
     }
     
@@ -268,9 +291,8 @@ document.querySelectorAll(".col-btn").forEach(button =>{
                     formState("viewReportBreakdownForm",true);
                     commenceBtn.style.display = 'none';
                     errlogBtn.style.display = 'none';
-                    
-                    
                     break;
+
                 case 'errorLog':
                     errlogBtn.style.display = 'block';
                     commenceBtn.style.display = 'block';
