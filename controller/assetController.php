@@ -21,11 +21,11 @@
         }
 
         public function getAsset($id){
-            $accessManager = new AccessManager();
-            if($accessManager->validateAccess(type:"GET_ASSET" , assetID:$id)){
-                $result = $this->get($id);
-                return json_encode($result->fetchAll());
-            }
+            // $accessManager = new AccessManager();
+            // if($accessManager->validateAccess(type:"GET_ASSET" , assetID:$id)){
+                // }
+            $result = $this->get($id);
+            return json_encode($result->fetchAll());
         }
         public function deleteAsset($id){
             $result = $this->delete($id);
