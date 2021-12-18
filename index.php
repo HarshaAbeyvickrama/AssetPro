@@ -16,7 +16,11 @@
         // dashboard
         // echo 'dashboard';
         header("location: ./view/dashboard.php");
-    } else {
+    } elseif($url[0] == 'logout') {
+        session_destroy();
+        header("location: ./view/login.php");
+
+    }else {
         require_once './controller/autoloadController.php';
         $controller = $url[0];
         $action = $url[1];

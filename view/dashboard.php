@@ -74,6 +74,9 @@ if (session_status() === PHP_SESSION_NONE) {
             background-color: #5C6E9B !important;
         }
     </style>
+    <script>
+        getCount(); 
+    </script>
 </head>
 
 <body>
