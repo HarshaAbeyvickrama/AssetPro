@@ -9,12 +9,7 @@
 <body>
     <h1>page</h1>
     <script src="./js/employee.js"></script>
-
-
-
     <script>
-        
-       loadAssets(3);
         // let xhr = new XMLHttpRequest();
         // xhr.open('GET' , 'http://localhost/assetpro/asset/getAllAssets/shared');
         // xhr.onload = function(){

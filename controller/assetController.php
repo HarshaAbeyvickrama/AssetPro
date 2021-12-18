@@ -35,7 +35,7 @@
 
         public function addAsset($assetName = null , $assetType = null , $category = null , $condition = null , $purchaseDate = null , $purchaseCost = null , $otherInfo = null , $extension = null , $hasWarrenty = false , $warrentyStart = null, $warrentyEnd = null , $hasDepriciation = false , $depriciationMethod = 'straightLine' , $usefulYears = null , $depriciaionRate = null , $residualValue = null){
             $newAsset = new Asset(
-                assetName:$assetName , 
+                assetName:$assetName, 
                 assetType:$assetType,
                 category:$category,
                 condition:$condition,
@@ -50,8 +50,7 @@
                 residualValue:$residualValue,
                 usefulYears:$usefulYears,
                 purchaseDate:$purchaseDate,
-                purchaseCost:$purchaseCost
-            );
+                purchaseCost:$purchaseCost);
             $res = $newAsset->save();
             return json_encode($res);
         }

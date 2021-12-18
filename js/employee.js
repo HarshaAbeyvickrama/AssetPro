@@ -1,17 +1,13 @@
 //==============================assignedAssets.php================================================
 //========Reporting the particular asset from the table of assigned assets=======================
   
-//pass whats the type?all,assigned... & $empuser = $_SESSION[;userID]; 
-//query.--> roleID=3
-
 function loadAssets(userID){
         const xhr = new XMLHttpRequest();
-        //should define the userID like to which user
-        xhr.open("GET", `http://localhost/AssetPro/asset/getAllAssignedAsset/${userID}`, true);
+        xhr.open("GET", `http://localhost/assetpro/asset/assigned/${userID}`, true);
         xhr.onload = function() {
             if (this.status === 200) {
-                var assets = JSON.parse(this.response);
-                console.log(assets);
+                // var assets = JSON.parse(this.responseText);
+                console.log(this.response);
                 // for (var i = 0; i < assets.length; i++) {
                 //     document.getElementById('employeeTableBody').innerHTML += `
                 //                     <tr>

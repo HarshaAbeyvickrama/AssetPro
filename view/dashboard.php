@@ -75,7 +75,7 @@ if (session_status() === PHP_SESSION_NONE) {
         }
     </style>
     <script>
-        getCount(); 
+        getCount();
         loadAssets(3);
     </script>
 </head>
