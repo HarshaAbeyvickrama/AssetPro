@@ -5,6 +5,8 @@
     
     class AssetController extends Asset{
 
+        public function __construct(){
+        }
         // Done
         // Only available for Asset Manager
         public function getAllAssets($type){
@@ -21,17 +23,17 @@
         }
 
         public function getAsset($id){
-            $accessManager = new AccessManager();
-            if($accessManager->validateAccess(type:"GET_ASSET" , assetID:$id)){
-                $result = $this->get($id);
-                return json_encode($result->fetchAll());
-            }
+            // $accessManager = new AccessManager();
+            // if($accessManager->validateAccess(type:"GET_ASSET" , assetID:$id)){
+                // }
+            $result = $this->get($id);
+            return json_encode($result->fetchAll());
         }
         public function deleteAsset($id){
             $result = $this->delete($id);
         }
 
-        public function addAsset($assetName , $assetType , $category , $condition , $purchaseDate , $purchaseCost , $otherInfo = null , $extension , $hasWarrenty = false , $warrentyStart = null, $warrentyEnd = null , $hasDepriciation = false , $depriciationMethod = 'straightLine' , $usefulYears = null , $depriciaionRate = null , $residualValue = null){
+        public function addAsset($assetName = null , $assetType = null , $category = null , $condition = null , $purchaseDate = null , $purchaseCost = null , $otherInfo = null , $extension = null , $hasWarrenty = false , $warrentyStart = null, $warrentyEnd = null , $hasDepriciation = false , $depriciationMethod = 'straightLine' , $usefulYears = null , $depriciaionRate = null , $residualValue = null){
             $newAsset = new Asset(
                 assetName:$assetName , 
                 assetType:$assetType,
@@ -65,7 +67,8 @@
 
         public function getAllAssetCounts(){
             $res = $this->getAllCounts();
-            return json_encode($res->fetchAll());
+            $count = $res->fetchAll();
+            return json_encode($count[0]);
         }
         
         public function getAssetCount($type){
@@ -76,7 +79,7 @@
                 return json_encode($result);
             }
             $res = $this->getCount('all');
-            json_encode($res->fetchAll());
+            return json_encode($res->fetchAll());
         }
 
     }
