@@ -44,10 +44,18 @@
                     $this->createUserSession($login);
                 } else {
                     flash("Login", "Password Incorrect");
+<<<<<<< HEAD
+=======
+                    // echo "Password incorrect";
+>>>>>>> upstream/main
                     redirect("../view/login.php");
                 }
             } else {
                 flash("Login", "No user found!");
+<<<<<<< HEAD
+=======
+                // echo "No user found";
+>>>>>>> upstream/main
                 redirect("../view/login.php");
             }
         }
@@ -56,6 +64,7 @@
             $_SESSION['RoleID'] = $user['RoleID'];
             $_SESSION['UserID'] = $user['UserID'];
             $_SESSION['Username'] = $user['Username'];
+            $_SESSION['name'] = $user['name'];
             $_SESSION['Email'] = $user['Email'];
 
             if($_SESSION['RoleID'] == 1){
