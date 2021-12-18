@@ -5,6 +5,8 @@
     
     class AssetController extends Asset{
 
+        public function __construct(){
+        }
         // Done
         // Only available for Asset Manager
         public function getAllAssets($type){
