@@ -17,6 +17,7 @@ require_once '../model/dbConnection.class.php';
                         login.Username,
                         login.Password AS Password,
                         userdetails.Email AS Email,
+                        CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
                         user.RoleID
                     FROM
                         login
