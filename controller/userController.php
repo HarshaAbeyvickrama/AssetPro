@@ -61,21 +61,30 @@
             $_SESSION['name'] = $user['name'];
             $_SESSION['Email'] = $user['Email'];
 
-            if($_SESSION['RoleID'] == 1){
-                header('location: ../view/includes/dashboard.php');
-            }
-            if($_SESSION['RoleID'] == 2){
-                header('location: ../view/includes/dashboard.php');
-            }
-            if($_SESSION['RoleID'] == 3){
-                header('location: ../view/includes/dashboard.php');
-            }
-            if($_SESSION['RoleID'] == 4){
-                header('location: ../view/includes/dashboard.php');
-            }
-            if($_SESSION['RoleID'] == 5){
-                header('location: ../view/includes/dashboard.php');
-            }
+            // switch ($_SESSION['RoleID']) {
+            //     case '1':
+                    
+            //         break;
+                
+            //     default:
+            //         # code...
+            //         break;
+            // }
+            // if($_SESSION['RoleID'] == 1){
+            //     $_SESSION['UserID'] = $user['UserID'];
+            // }
+            // if($_SESSION['RoleID'] == 2){
+            //     header('location: ../view/includes/dashboard.php');
+            // }
+            // if($_SESSION['RoleID'] == 3){
+            //     header('location: ../view/includes/dashboard.php');
+            // }
+            // if($_SESSION['RoleID'] == 4){
+            //     header('location: ../view/includes/dashboard.php');
+            // }
+            // if($_SESSION['RoleID'] == 5){
+            //     header('location: ../view/includes/dashboard.php');
+            // }
 
             redirect("../view/dashboard.php");
         }

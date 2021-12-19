@@ -3,6 +3,8 @@
 class AssignedAsset extends DBConnection{
     
    //============================EMPLOYEE MODULE========================================
+
+   
   //viewing AssignedAsset table from DB, connect with the page of assignedAssets.php 
   //set session ID for employee
     // protected function getAssets($empUserId){
@@ -43,7 +45,7 @@ class AssignedAsset extends DBConnection{
 
     protected function getAssets(){
         $dbConnection = $this->connect();
-     
+                    //viewing AssignedAsset table from DB, connect with the page of assignedAssets.php 
                     //$empUserId = $_SESSION['userID'];
                     //when calling the getAsset function only, we set the session there
 
