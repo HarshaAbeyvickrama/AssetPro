@@ -1,8 +1,9 @@
 <?php
+require_once './controller/autoloadController.php';
 
 class Breakdown extends DBConnection{
-
-    protected function getAssigned($userID){
+     // Get all the breakdown assets assigned to a particular user by the userID
+    protected function getAssignedBreakdowns($userID){
         $dbConnection = $this->connect();
         $sql = "SELECT
                 asset.AssetID,
@@ -32,7 +33,7 @@ class Breakdown extends DBConnection{
             ORDER BY
                 breakdown.BreakdownID ASC";
 
-        $pstm = $this->dbConnection->prepare($sql);
+        $pstm = $dbConnection->prepare($sql);
         $pstm->execute(array($userID));
         return $pstm;
     }

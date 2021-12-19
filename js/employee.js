@@ -1,3 +1,5 @@
+
+
 //==============================assignedAssets.php================================================
 //========Reporting the particular asset from the table of assigned assets=======================
   
@@ -8,24 +10,56 @@ function loadAssets(userID){
             if (this.status === 200) {
                 // var assets = JSON.parse(this.responseText);
                 console.log(this.response);
-                // for (var i = 0; i < assets.length; i++) {
-                //     document.getElementById('employeeTableBody').innerHTML += `
-                //                     <tr>
-                //                         <td>${i+1}</td>
-                //                         <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
-                //                         <td>${assets[i]['assetName']}</td>
-                //                         <td>${assets[i]['assetType']}</td>
-                //                         <td>  
-                //                         <button class='btnAction' onClick="report(${assets[i]['AssetID']})">Report</button>
-                //                         </td> 
-                //                     </tr>`;
-                // }
+                for (var i = 0; i < assets.length; i++) {
+                    document.getElementById('employeeTableBody').innerHTML += `
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+                                        <td>${assets[i]['assetName']}</td>
+                                        <td>${assets[i]['assetType']}</td>
+                                        <td>  
+                                        <button class='btnAction' onClick="report(${assets[i]['AssetID']})">Report</button>
+                                        </td> 
+                                    </tr>`;
+                }
             }
         }
         xhr.send();
     }
     // loadAssets();
     
+
+//==========================reportedBreakdown.php=======================================
+//===================viewing the reported assets in table==============================
+    function viewBreakAsset(userID){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `localhost/AssetPro/breakdown/assigned/${userID}`, true);
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var viewassets = JSON.parse(this.responseText);
+                console.log(viewassets);
+                for (var i = 0; i < viewassets.length; i++) {
+                    var date = new Date(viewassets[i]['reportedDate']);
+                    var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
+                    var reportedDate = viewassets[i]['reportedDate'].replace(/-/gi, "/");
+                    document.getElementById('employeeTableBody').innerHTML += `
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${newDate}</td>
+                                        <td>${viewassets[i]['BreakdownID']}</td>
+                                        <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
+                                        <td>${viewassets[i]['assetName']}</td>
+                                        <td>${viewassets[i]['assetType']}</td>
+                                        <td>  
+                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
+                                        </td> 
+                                    </tr>`;
+                }
+            }
+        }
+        xhr.send();
+    }
+    // viewBreakAsset();
 
     
     //click Report button to redirect to the page of report.php 
@@ -124,37 +158,7 @@ function loadAssets(userID){
 //    }
 
    
-//   //====================reportedBreakdown.php===========================
-//   //===================viewing the reported assets in table===================
-//     function viewBreakAsset(){
-//         const xhr = new XMLHttpRequest();
-//         xhr.open("GET", "../model/AssignedAssetsEmp.php?action=viewAssetBreak", true);
-//         xhr.onload = function() {
-//             if (this.status === 200) {
-//                 var viewassets = JSON.parse(this.responseText);
-//                 console.log(viewassets);
-//                 for (var i = 0; i < viewassets.length; i++) {
-//                     var date = new Date(viewassets[i]['reportedDate']);
-//                     var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
-//                     var reportedDate = viewassets[i]['reportedDate'].replace(/-/gi, "/");
-//                     document.getElementById('employeeTableBody').innerHTML += `
-//                                     <tr>
-//                                         <td>${i+1}</td>
-//                                         <td>${newDate}</td>
-//                                         <td>${viewassets[i]['BreakdownID']}</td>
-//                                         <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
-//                                         <td>${viewassets[i]['assetName']}</td>
-//                                         <td>${viewassets[i]['assetType']}</td>
-//                                         <td>  
-//                                         <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
-//                                         </td> 
-//                                     </tr>`;
-//                 }
-//             }
-//         }
-//         xhr.send();
-//     }
-//     viewBreakAsset();
+
 
 // //==================click view will redirect to the viewBreakAssets.php file===================== 
 //     function viewBreak(viewasset,viewassetid){
