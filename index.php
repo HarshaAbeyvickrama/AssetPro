@@ -40,11 +40,23 @@
                         echo $ac->getAllAssignedAssets($url[2]);
                         break;
                     
+                    // case 'getAllAssignedAsset':
+                    //     echo $ac->getAllAssignedAssets($url[2]);
+                    //     break;
+                    
                     default:
                         # code...
                         break;
                 }
                 break;
+            case 'breakdown':
+                $bc = new BreakdownController();
+                switch($action){
+                    case 'assigned':
+                        echo $bc->getAllAssignedBreakdowns($url[2]);
+                        break;
+                }
+            
             case 'view':
                 $vc = new ViewController();
                 $vc->renderView($url[1]);

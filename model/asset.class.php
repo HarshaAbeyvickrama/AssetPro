@@ -380,4 +380,5 @@ class Asset extends DBConnection{
         $pstm->execute();
         return $pstm;
     }
+
 }

@@ -36,7 +36,7 @@
     .btnAction:hover{
         color: black;
         background-color: white;
-    } */
+    } 
 </style>
 
 <div class="overviewLayout">
@@ -61,6 +61,13 @@
             </table>
     </div>
 </div>
+
+<script>
+    <?php
+    echo 'var userID ='.$_SESSION['UserID']
+    ?>
+     viewBreakAsset(userID);
+</script>
 
 <!-- <script>
     function viewBreakAsset(){
@@ -111,7 +118,7 @@
        xhr.send();
      }
 
-</script> -->
+</script>  -->
 
 
 
