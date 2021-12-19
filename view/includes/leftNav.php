@@ -263,7 +263,7 @@
         var section = document.getElementById(sectionId);
         const xhr = new XMLHttpRequest();
         
-        xhr.open('GET',`../controller/mainController.php?action=renderView&view=${eventId}`,true);
+        xhr.open('GET',`http://localhost/assetpro/view/${eventId}`,true);
         xhr.setRequestHeader("Content-type", "text/javascript");
         xhr.onload = function(){
             if(this.status ===200){
