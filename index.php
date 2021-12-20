@@ -39,11 +39,10 @@
                     case 'assigned':
                         echo $ac->getAllAssignedAssets($url[2]);
                         break;
-                    
-                    // case 'getAllAssignedAsset':
-                    //     echo $ac->getAllAssignedAssets($url[2]);
-                    //     break;
-                    
+                    case 'getAsset':
+                        echo $ac->getAsset($url[2]);
+                        break;
+                   
                     default:
                         # code...
                         break;

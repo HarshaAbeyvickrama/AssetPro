@@ -26,7 +26,27 @@ function loadAssets(userID){
         }
         xhr.send();
     }
-    // loadAssets();
+    
+//==============================assignedAssets.php================================================
+//=======click Report button to redirect to the page of report.php FORM for partcular asset======
+//'AssetID' is assigned to (asset)
+//by using the par assetID,can get the assetDetails and put that to a string and then create a cookie for 'assetID'
+    function report(assetId){       
+        var assetDetails=null;
+        const xhr = new XMLHttpRequest();           
+        xhr.open('GET',`http://localhost/assetpro/asset/getAsset/${assetId}`,true);
+        xhr.onload = function(){
+            if(this.status == 200){
+                assetDetails = JSON.parse(this.responseText);
+                loadSection('centerSection','report');
+                var json = JSON.stringify(assetDetails);       //object to string ==> the details of (partcular asset) will be stored as a string
+                document.cookie=`assetID=${json}`;
+            }                
+        }
+        xhr.send();
+       
+     }  
+
     
 
 //==========================reportedBreakdown.php=======================================
