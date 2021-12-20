@@ -59,7 +59,7 @@
     } */
     .component{
         margin: 20px 0px 5px 15px;
-        padding: 5px;
+        padding: 10px 5px;
         /* width: 80%; */
         text-align: center;
         height: 30px;
@@ -84,6 +84,7 @@
         display: inline-flex;
         width: 25px;
         margin-left: 10px;
+        margin-right: 5px;
     }
     .componentText{
         color: white;
@@ -351,13 +352,13 @@
             // var path = "../Images/";
             if(id == item.querySelector("img").parentNode.id){
                 // item.querySelector("img").src = path+"Selected/"+filename;
-                item.querySelector(".componentText").classList.remove("unselectedBtn");
+                // item.querySelector(".componentText").classList.remove("unselectedBtn");
                 item.querySelector(".componentText").classList.add("selectedBtn");
                 item.classList.add("selectedComponent");
             }else{
                 // item.querySelector("img").src = path+"NotSelected/"+filename;
                 item.querySelector(".componentText").classList.remove("selectedBtn");
-                item.querySelector(".componentText").classList.add("unselectedBtn");
+                // item.querySelector(".componentText").classList.add("unselectedBtn");
                 item.classList.remove("selectedComponent");
             }
         })
