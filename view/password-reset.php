@@ -23,7 +23,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url(./Images/loginBackground.png);
+            background-image: url(../Images/loginBackground.png);
             background-position: center;
             background-size: cover;
             height: 100vh;
@@ -141,14 +141,15 @@
         <div class="popup-content" id="popup-content">
 
             <!-- Form for entering the email address -->
-            <form action="./controller/password-reset-code.php" method="POST">
+            <form action="../controller/passwordResetController.php" method="POST">
+                <input type="hidden" name="email" value="send">
                 <h3 class="forgotPasswordInfo">Forgot Password</h3>
-                <img src="./Images/forgotpass.png" alt="forgot password">
+                <img src="../Images/forgotpass.png" alt="forgot password">
                 <h4 class="emailText">Enter your email address below</h4>
                 <input type="text" placeholder="E-Mail" class="email" name="email" autocomplete="off" required>
                 <div class="btn-box">
                     <a href="login.php"><button type="button">Back</button></a>
-                    <button type="submit" name="password_reset_link">Send Link</button>
+                    <button type="submit" name="submit">Send Link</button>
                 </div>
             </form>
         </div>

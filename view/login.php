@@ -14,14 +14,15 @@
 </head>
 
 <?php
-  //The helper page and it's functions
-  include_once '../helpers/sessionHelper.php';
+//The helper page and it's functions
+include_once '../helpers/sessionHelper.php';
 ?>
 
 <body>
   <div class="center">
-
-    <?php flash('login') ?>
+    <div class="alert-message">
+      <?php flash('login') ?>
+    </div>
 
     <div class="logo">
       <img src="../Images/AssetProLogo.png" alt="AssetPro Logo">
@@ -41,7 +42,7 @@
       <button type="submit" value="Login" id="btnLogin" name="submit">Login</button>
       <br>
       <a href="password-reset.php" class="pass" id="forgotPass">Forgot Password?</a>
-      
+
     </form>
   </div>
 
