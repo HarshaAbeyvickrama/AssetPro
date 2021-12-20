@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <style>
         .container {
             display: grid;
-            grid-template-columns: 12.5vw 87.5vw;
+            grid-template-columns: 10vw 90vw;
             overflow: hidden;
             z-index: 0;
 

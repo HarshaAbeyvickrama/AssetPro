@@ -6,12 +6,12 @@
         /* overflow: hidden; */
     }
     .navWrapper{
-        width: 12.5;
+        width: 10vw;
         height: 100vh;
         display: grid;
         grid-template-rows: 2fr 8fr;
-         
-      
+        background-color: #304068;
+        padding-right: 0px;
     }
     
     #logo{
@@ -23,23 +23,27 @@
         height: auto;
     }
     #components{
-        overflow-y: scroll;
+        margin-top: 20px;
+        overflow-y: hidden;
         overflow-x: hidden;
         margin-bottom: 10px;
-        background-color: white;
-        box-shadow: 0 2px 5px rgba(128, 128, 128, 0.5);
+        margin-right: 0px;
+        padding-right: 0px;
+        /* background-color: white; */
+        /* box-shadow: 0 2px 5px rgba(128, 128, 128, 0.5); */
         
     }
-    #components::-webkit-scrollbar-thumb {
+
+    /* #components::-webkit-scrollbar-thumb {
         border-radius: 100px;
         background: #eaedf5;
         border: 6px solid rgba(0,0,0,0.2);
-    }
+    } */
     /* #components::-webkit-scrollbar{
         display: none;
      } */
 
-     #components::-webkit-scrollbar-track{
+     /* #components::-webkit-scrollbar-track{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         background-color: #F5F5F5;
     }
@@ -48,28 +52,41 @@
     {
         width: 6px;
         background-color: #F5F5F5;
-    }
+    } */
 
     /* #components::-webkit-scrollbar-thumb{
         background-color: #000000;
     } */
     .component{
-        
-        margin: 5px 0px 5px 0px;
+        margin: 20px 0px 5px 15px;
         padding: 5px;
-        width: 100%;
+        /* width: 80%; */
         text-align: center;
+        height: 30px;
+        /* border: 1px solid red; */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        right: 0px;
+
     }
-    .component div{
-        
-        text-align: center;
-        margin: 10px;
+    .component span{
+        margin-left: 5px;
+        z-index: 5;
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px;
+        height: 30px;
+        width: fit-content;
+        text-align: left;
     }
     .component img{
-        max-width:8vw;
+        display: inline-flex;
+        width: 25px;
+        margin-left: 10px;
     }
     .componentText{
-        color: #929292;
+        color: white;
         font-size: 20px;
     }
     .component:hover{
@@ -77,17 +94,45 @@
         
     }
     .selectedComponent{
+        /* z-index: -5; */
+        position: relative;
         /* border: 1px solid green; */
+        background-color: #F1F4FF;
+        border-radius: 25px 0px 0px 25px;
     }
-    .component::selection{
+    .selectedComponent::before{
+        z-index: 0;
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        right: 0;
+        top: -50px;
+        border-bottom-right-radius: 25px;
+        box-shadow: 0 25px 0 0 #F1F4FF;
+    }
+    .selectedComponent::after{
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        right: 0;
+        bottom: -50px;
+        border-top-right-radius: 25px;
+        box-shadow: 0 -25px 0 0 #F1F4FF;
+    }
+    /* .component::selection{
         color: #FFA712;
-    }
+    } */
     .components a{
         text-decoration: none;
         
     }
     .selectedBtn{
-        color: #FFA712;
+        color: black;
+        font-weight: bolder;
     }
     .unselectedBtn{
         color: #929292;
@@ -97,10 +142,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
-        
-
-    }
+     }
     #logout > div{
         background-color: #304068;
         padding: 10px 30px;
@@ -126,27 +168,27 @@
 
         <!-- Dashboard component -->
         <div class='component selectedComponent' id='overview'>
-            <img src='../Images/Selected/Dashboard.png' >
-            <div class='componentText selectedBtn' ></div>
+            <img src='../Images/icons/dashbaord.png' >
+            <span class='componentText selectedBtn'>Dashboard</span>
         </div>
     <?php
         switch ($_SESSION['RoleID']) {
             case '1':
                 //Employees
                 echo "<div class='component' id='employees'>
-                    <img src='../Images/NotSelected/Employees.png' >
+                    <img src='../Images/icons/employees.png' >
                     <div class='componentText'></div>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
-                    <img src='../Images/NotSelected/Technicians.png' >
+                    <img src='../Images/icons/Technicians.png' >
                     <div class='componentText'></div>
                 </div>";
 
                 //Departments
                 echo "<div class='component' id='departments'>
-                    <img src='../Images/NotSelected/Departments.png' >
+                    <img src='../Images/icons/Departments.png' >
                     <div class='componentText'></div>
                 </div>";
 
@@ -157,13 +199,13 @@
 
                 //Assigned Assets
                 echo "<div class='component' id='assignedAssets'>
-                    <img src='../Images/NotSelected/Assets.png' >
+                    <img src='../Images/icons/Assets.png' >
                     <div class='componentText'></div>
                 </div>";
 
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
-                    <img src='../Images/NotSelected/Breakdowns.png' >
+                    <img src='../Images/icons/Breakdowns.png' >
                     <div class='componentText'></div>
                 </div>";
 
@@ -174,13 +216,13 @@
                 
                 //Assigned Assets
                 echo "<div class='component' id='assets'>
-                    <img src='../Images/NotSelected/Assets.png' >
+                    <img src='../Images/icons/Assets.png' >
                     <div class='componentText'></div>
                 </div>";
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
-                    <img src='../Images/NotSelected/Repaired.png' >
+                    <img src='../Images/icons/Repaired.png' >
                     <div class='componentText'></div>
                 </div>";
                 //Repaired Assets
@@ -194,38 +236,38 @@
                 
                 //Assets
                 echo "<div class='component' id='assets'>
-                    <img src='../Images/NotSelected/Assets.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/Assets.png' >
+                    <span class='componentText'>Assets</span>
                 </div>";
 
                 //Employees
                 echo "<div class='component' id='employees'>
-                    <img src='../Images/NotSelected/Employees.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/Employees.png' >
+                    <span class='componentText'>Employees</span>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
-                    <img src='../Images/NotSelected/Technicians.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/Technician.png' >
+                    <span class='componentText'>Technicians</span>
                 </div>";
                     
                 //Disposals
                 echo "<div class='component' id='disposals'>
-                    <img src='../Images/NotSelected/Disposals.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/disposal.png' >
+                    <span class='componentText'>Disposals</span>
                 </div>";
                     
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
-                    <img src='../Images/NotSelected/Breakdowns.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/reportedBreakdowns.png' >
+                    <span class='componentText'>Reported Breakdowns</span>
                 </div>";
 
                 //Reports
                 echo "<div class='component' id='reports'>
-                    <img src='../Images/NotSelected/Reports.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/report.png' >
+                    <span class='componentText'>Reports</span>
                 </div>";
 
 
@@ -304,16 +346,16 @@
     function setFocus(id){
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item =>{
-            var imageSrc = item.querySelector("img").src;
-            var filename = imageSrc.replace(/^.*[\\\/]/, '');
-            var path = "../Images/";
+            // var imageSrc = item.querySelector("img").src;
+            // var filename = imageSrc.replace(/^.*[\\\/]/, '');
+            // var path = "../Images/";
             if(id == item.querySelector("img").parentNode.id){
-                item.querySelector("img").src = path+"Selected/"+filename;
+                // item.querySelector("img").src = path+"Selected/"+filename;
                 item.querySelector(".componentText").classList.remove("unselectedBtn");
                 item.querySelector(".componentText").classList.add("selectedBtn");
                 item.classList.add("selectedComponent");
             }else{
-                item.querySelector("img").src = path+"NotSelected/"+filename;
+                // item.querySelector("img").src = path+"NotSelected/"+filename;
                 item.querySelector(".componentText").classList.remove("selectedBtn");
                 item.querySelector(".componentText").classList.add("unselectedBtn");
                 item.classList.remove("selectedComponent");
