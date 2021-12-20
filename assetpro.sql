@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2021 at 09:14 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.18
+-- Generation Time: Dec 18, 2021 at 01:09 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,8 +50,7 @@ CREATE TABLE `asset` (
   `CategoryID` int(11) NOT NULL,
   `TypeID` int(11) NOT NULL,
   `DepartmentID` int(11) DEFAULT NULL,
-  `LocationID` int(11) DEFAULT NULL,
-  `EmployeeID` int(11) DEFAULT NULL,
+  `assignedUser` int(11) DEFAULT NULL,
   `DateCreated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `LastModified` timestamp NOT NULL DEFAULT current_timestamp(),
   `Status` varchar(20) NOT NULL
@@ -61,18 +60,18 @@ CREATE TABLE `asset` (
 -- Dumping data for table `asset`
 --
 
-INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `LocationID`, `EmployeeID`, `DateCreated`, `LastModified`, `Status`) VALUES
-(1, 1, 2, NULL, NULL, NULL, '2021-10-20 10:21:20', '2021-10-20 10:21:20', 'Unassigned'),
-(2, 1, 1, NULL, NULL, NULL, '2021-10-20 10:26:31', '2021-10-20 10:26:31', 'Unassigned'),
-(3, 2, 5, NULL, NULL, 3, '2021-10-21 15:47:26', '2021-10-20 10:30:46', 'Assigned'),
-(4, 2, 5, NULL, NULL, 3, '2021-10-21 15:48:18', '2021-10-20 10:32:38', 'Assigned'),
-(5, 3, 6, NULL, NULL, 3, '2021-10-21 15:48:21', '2021-10-20 10:34:02', 'Assigned'),
-(6, 3, 6, 1, NULL, NULL, '2021-10-21 15:48:27', '2021-10-20 10:35:21', 'Shared'),
-(7, 1, 2, 1, NULL, NULL, '2021-10-21 15:48:31', '2021-10-20 10:38:07', 'Shared'),
-(8, 2, 5, NULL, NULL, NULL, '2021-10-21 12:43:31', '2021-10-21 12:43:31', 'Unassigned'),
-(13, 2, 5, NULL, NULL, NULL, '2021-10-21 16:15:18', '2021-10-21 16:15:18', 'Unassigned'),
-(14, 1, 2, NULL, NULL, NULL, '2021-10-22 00:21:51', '2021-10-22 00:21:51', 'Unassigned'),
-(15, 1, 2, NULL, NULL, NULL, '2021-10-22 01:30:14', '2021-10-22 01:30:14', 'Unassigned');
+INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assignedUser`, `DateCreated`, `LastModified`, `Status`) VALUES
+(1, 1, 2, NULL, NULL, '2021-10-20 10:21:20', '2021-10-20 10:21:20', 'Unassigned'),
+(2, 1, 1, NULL, NULL, '2021-10-20 10:26:31', '2021-10-20 10:26:31', 'Unassigned'),
+(3, 2, 5, NULL, 3, '2021-10-21 15:47:26', '2021-10-20 10:30:46', 'Assigned'),
+(4, 2, 5, NULL, 3, '2021-10-21 15:48:18', '2021-10-20 10:32:38', 'Assigned'),
+(5, 3, 6, NULL, 3, '2021-10-21 15:48:21', '2021-10-20 10:34:02', 'Assigned'),
+(6, 3, 6, 1, NULL, '2021-10-21 15:48:27', '2021-10-20 10:35:21', 'Shared'),
+(7, 1, 2, 1, NULL, '2021-10-21 15:48:31', '2021-10-20 10:38:07', 'Shared'),
+(8, 2, 5, NULL, NULL, '2021-10-21 12:43:31', '2021-10-21 12:43:31', 'Unassigned'),
+(13, 2, 5, NULL, NULL, '2021-10-21 16:15:18', '2021-10-21 16:15:18', 'Unassigned'),
+(14, 1, 2, NULL, NULL, '2021-10-22 00:21:51', '2021-10-22 00:21:51', 'Unassigned'),
+(15, 1, 2, NULL, NULL, '2021-10-22 01:30:14', '2021-10-22 01:30:14', 'Unassigned');
 
 -- --------------------------------------------------------
 
@@ -158,19 +157,18 @@ CREATE TABLE `breakdown` (
   `EmployeeID` int(11) NOT NULL,
   `Date` datetime(6) NOT NULL,
   `Reason` longtext NOT NULL,
-  `DefectedParts` longtext NOT NULL,
-  `Status` varchar(200) NOT NULL DEFAULT 'Reported'
+  `DefectedParts` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `breakdown`
 --
 
-INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `TechnicianID`, `EmployeeID`, `Date`, `Reason`, `DefectedParts`, `Status`) VALUES
-(1, 1, 12, 14, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering', 'Reported'),
-(2, 1, 12, 14, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys', 'Reported'),
-(3, 4, 6, 14, '2021-10-22 09:16:07.000000', 'Lense Damaged', 'Camera lense', 'Reported'),
-(4, 1, 6, 14, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard', 'Reported');
+INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `TechnicianID`, `EmployeeID`, `Date`, `Reason`, `DefectedParts`) VALUES
+(1, 1, 12, 14, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering'),
+(2, 1, 12, 14, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys'),
+(3, 4, 6, 14, '2021-10-22 09:16:07.000000', 'Lense Damaged', 'Camera lense'),
+(4, 1, 6, 14, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard');
 
 -- --------------------------------------------------------
 
@@ -246,69 +244,35 @@ INSERT INTO `depreciation` (`DepreciationID`, `AssetID`, `UsefulYears`, `Deprici
 -- --------------------------------------------------------
 
 --
--- Table structure for table `designation`
---
-
-CREATE TABLE `designation` (
-  `DesignationID` int(11) NOT NULL,
-  `jobTitle` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `designation`
---
-
-INSERT INTO `designation` (`DesignationID`, `jobTitle`) VALUES
-(1, 'Clerk'),
-(2, 'Assistant'),
-(3, 'Typist'),
-(4, 'Bookkeeper'),
-(5, 'Accountant');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `dheaduser`
---
-
-CREATE TABLE `dheaduser` (
-  `HeadID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `employeeuser`
 --
 
 CREATE TABLE `employeeuser` (
   `EmployeeID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
-  `DepartmentID` int(11) NOT NULL,
-  `DesignationID` int(200) DEFAULT NULL
+  `DepartmentID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employeeuser`
 --
 
-INSERT INTO `employeeuser` (`EmployeeID`, `UserID`, `DepartmentID`, `DesignationID`) VALUES
-(3, 3, 1, 1),
-(14, 5, 1, 1),
-(15, 6, 2, 1),
-(17, 8, 3, 2),
-(18, 9, 2, 2),
-(19, 10, 1, 2),
-(20, 18, 1, 3),
-(21, 19, 1, 3),
-(22, 20, 1, 3),
-(23, 22, 1, 4),
-(24, 23, 1, 4),
-(25, 24, 1, 4),
-(26, 25, 1, 5),
-(27, 26, 1, 5),
-(28, 27, 1, 5);
+INSERT INTO `employeeuser` (`EmployeeID`, `UserID`, `DepartmentID`) VALUES
+(3, 3, 1),
+(14, 5, 1),
+(15, 6, 2),
+(17, 8, 3),
+(18, 9, 2),
+(19, 10, 1),
+(20, 18, 1),
+(21, 19, 1),
+(22, 20, 1),
+(23, 22, 1),
+(24, 23, 1),
+(25, 24, 1),
+(26, 25, 1),
+(27, 26, 1),
+(28, 27, 1);
 
 -- --------------------------------------------------------
 
@@ -328,7 +292,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`UserID`, `Username`, `Password`, `verify_token`) VALUES
-(1, 'indunijd', 'c8570278255fb9bfae19e45c9bdc420f', '2af21b05a4ba8ba9faa7981671825dae'),
+(1, 'indunijd', 'c8570278255fb9bfae19e45c9bdc420f', '27f9319ec884a678b29c38d202a28434'),
 (2, 'VH', '226280c5dd9b1bd4e67c72ff2c94bf1b', NULL),
 (3, 'mushrifa', '3eeb6fd7cbd23574cdcafad11e3f4ef3', NULL),
 (4, 'ayishasj', '3ac8a3088d3f1c205f4f6b40fe7db7ea', NULL),
@@ -356,6 +320,34 @@ INSERT INTO `login` (`UserID`, `Username`, `Password`, `verify_token`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `createdBy` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `assetId` int(11) DEFAULT NULL,
+  `addedUser` int(11) DEFAULT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notificationusers`
+--
+
+CREATE TABLE `notificationusers` (
+  `notificationId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `seen` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `role`
 --
 
@@ -372,29 +364,7 @@ INSERT INTO `role` (`RoleID`, `RoleName`) VALUES
 (1, 'Admin'),
 (2, 'Asset Manager'),
 (3, 'Employee'),
-(4, 'Technician'),
-(5, 'Department Head');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `specialization`
---
-
-CREATE TABLE `specialization` (
-  `SpecializationID` int(11) NOT NULL,
-  `SpecializationName` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `specialization`
---
-
-INSERT INTO `specialization` (`SpecializationID`, `SpecializationName`) VALUES
-(1, 'Electrician'),
-(2, 'Plumber'),
-(3, 'Carpenter'),
-(4, 'Computer Hardware Technician');
+(4, 'Technician');
 
 -- --------------------------------------------------------
 
@@ -428,7 +398,7 @@ INSERT INTO `technicianuser` (`TechnicianID`, `UserID`) VALUES
 
 CREATE TABLE `technicianuserspec` (
   `TechnicianID` int(11) NOT NULL,
-  `SpecializationID` int(10) NOT NULL
+  `Specialization` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -623,8 +593,7 @@ ALTER TABLE `asset`
   ADD KEY `ctg_fk` (`CategoryID`),
   ADD KEY `tp_fk` (`TypeID`),
   ADD KEY `dpt_fk` (`DepartmentID`),
-  ADD KEY `empl_fk` (`EmployeeID`),
-  ADD KEY `LocationID` (`LocationID`);
+  ADD KEY `empl_fk` (`assignedUser`);
 
 --
 -- Indexes for table `assetdetails`
@@ -674,26 +643,12 @@ ALTER TABLE `depreciation`
   ADD KEY `dep_fk` (`AssetID`);
 
 --
--- Indexes for table `designation`
---
-ALTER TABLE `designation`
-  ADD PRIMARY KEY (`DesignationID`);
-
---
--- Indexes for table `dheaduser`
---
-ALTER TABLE `dheaduser`
-  ADD PRIMARY KEY (`HeadID`),
-  ADD KEY `UserID` (`UserID`);
-
---
 -- Indexes for table `employeeuser`
 --
 ALTER TABLE `employeeuser`
   ADD PRIMARY KEY (`EmployeeID`),
   ADD KEY `user_fk` (`UserID`),
-  ADD KEY `department_fk` (`DepartmentID`),
-  ADD KEY `DesignationID` (`DesignationID`);
+  ADD KEY `department_fk` (`DepartmentID`);
 
 --
 -- Indexes for table `login`
@@ -703,16 +658,26 @@ ALTER TABLE `login`
   ADD UNIQUE KEY `Username` (`Username`);
 
 --
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notification_ibfk_1` (`createdBy`),
+  ADD KEY `notification_ibfk_2` (`assetId`),
+  ADD KEY `addedUser` (`addedUser`);
+
+--
+-- Indexes for table `notificationusers`
+--
+ALTER TABLE `notificationusers`
+  ADD PRIMARY KEY (`notificationId`,`userId`),
+  ADD KEY `userId` (`userId`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`RoleID`);
-
---
--- Indexes for table `specialization`
---
-ALTER TABLE `specialization`
-  ADD PRIMARY KEY (`SpecializationID`);
 
 --
 -- Indexes for table `technicianuser`
@@ -725,8 +690,7 @@ ALTER TABLE `technicianuser`
 -- Indexes for table `technicianuserspec`
 --
 ALTER TABLE `technicianuserspec`
-  ADD PRIMARY KEY (`TechnicianID`,`SpecializationID`),
-  ADD KEY `SpecializationID` (`SpecializationID`);
+  ADD PRIMARY KEY (`TechnicianID`,`Specialization`);
 
 --
 -- Indexes for table `techrepairbreak`
@@ -808,40 +772,28 @@ ALTER TABLE `depreciation`
   MODIFY `DepreciationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `designation`
---
-ALTER TABLE `designation`
-  MODIFY `DesignationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `dheaduser`
---
-ALTER TABLE `dheaduser`
-  MODIFY `HeadID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `employeeuser`
 --
 ALTER TABLE `employeeuser`
   MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `RoleID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `specialization`
---
-ALTER TABLE `specialization`
-  MODIFY `SpecializationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `RoleID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `technicianuser`
 --
 ALTER TABLE `technicianuser`
-  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `technicianuserspec`
@@ -859,7 +811,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
@@ -875,10 +827,9 @@ ALTER TABLE `adminuser`
 -- Constraints for table `asset`
 --
 ALTER TABLE `asset`
-  ADD CONSTRAINT `asset_ibfk_1` FOREIGN KEY (`LocationID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ctg_fk` FOREIGN KEY (`CategoryID`) REFERENCES `category` (`CategoryID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dpt_fk` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `empl_fk` FOREIGN KEY (`EmployeeID`) REFERENCES `employeeuser` (`EmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `empl_fk` FOREIGN KEY (`assignedUser`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tp_fk` FOREIGN KEY (`TypeID`) REFERENCES `type` (`TypeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -914,17 +865,10 @@ ALTER TABLE `depreciation`
   ADD CONSTRAINT `dep_fk` FOREIGN KEY (`AssetID`) REFERENCES `asset` (`AssetID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `dheaduser`
---
-ALTER TABLE `dheaduser`
-  ADD CONSTRAINT `dheaduser_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `employeeuser`
 --
 ALTER TABLE `employeeuser`
   ADD CONSTRAINT `department_fk` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `employeeuser_ibfk_1` FOREIGN KEY (`DesignationID`) REFERENCES `designation` (`DesignationID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_fk` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -932,6 +876,21 @@ ALTER TABLE `employeeuser`
 --
 ALTER TABLE `login`
   ADD CONSTRAINT `login_FK` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`createdBy`) REFERENCES `user` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `notification_ibfk_2` FOREIGN KEY (`assetId`) REFERENCES `asset` (`AssetID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `notification_ibfk_3` FOREIGN KEY (`addedUser`) REFERENCES `user` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notificationusers`
+--
+ALTER TABLE `notificationusers`
+  ADD CONSTRAINT `notificationusers_ibfk_1` FOREIGN KEY (`notificationId`) REFERENCES `notification` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `notificationusers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `technicianuser`
@@ -943,7 +902,6 @@ ALTER TABLE `technicianuser`
 -- Constraints for table `technicianuserspec`
 --
 ALTER TABLE `technicianuserspec`
-  ADD CONSTRAINT `technicianuserspec_ibfk_1` FOREIGN KEY (`SpecializationID`) REFERENCES `specialization` (`SpecializationID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tus_fk` FOREIGN KEY (`TechnicianID`) REFERENCES `technicianuser` (`TechnicianID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
