@@ -45,6 +45,7 @@
 
     #userSection {
         display: flex;
+        position: relative;
         align-items: center;
         /* border: 1px solid red; */
         padding: 5px 10px;
@@ -75,6 +76,14 @@
 
     #username:hover {
         cursor: pointer;
+    }
+    #userSectionMask{
+        background-color: transparent;
+        width: 230px;
+        height: 45px;
+        position: absolute;
+        z-index: 10;
+        color: transparent;
     }
 
     /* Dropdown */
@@ -166,6 +175,7 @@
         transform: 0.5s;
     }
 
+
     .profile-dropdown .menu ul li:hover img {
         opacity: 1;
     }
@@ -184,9 +194,9 @@
             echo $_SESSION['name'];
             ?>
         </div>
-
-        <!-- <div> -->
-        <!-- </div> -->
+        <div id="userSectionMask">
+    5
+        </div>
     </div>
 </div>
 <?php
@@ -232,23 +242,26 @@ include_once("notification.php")
 </div>
 
 <script>
-    var userSection = document.getElementById('userSection');
-    userSection.addEventListener('click', (e) => {
-        showNotification(true);
-    })
+    var userSectionMask = document.getElementById('userSectionMask');
+    userSectionMask.addEventListener('click',showUserSection(true));
 
-    function showUserSection(visible = true) {
+    function showUserSection(visible) {
         var dd = document.getElementById('profiledropdown');
-        console.log(visible);
-        if(!visible){
-            dd.style.display = "none";
-            return;
+        if(visible) {
+            dd.style.display = 'block';
+        } else {
+            dd.style.display = 'none';
         }
-        if(dd.style.display == "block"){
-            dd.style.display = "none";
-        }else{
-            dd.style.display = "block";
-        }
+        // if(!visible){
+        //     dd.style.display = "none";
+        //     console.log("User Section : " + dd.style.display);
+        //     return;
+        // }
+        // if(dd.style.display == "block"){
+        //     dd.style.display = "none";
+        // }else{
+        //     dd.style.display = "block";
+        // }
 
     }
 
@@ -265,13 +278,14 @@ include_once("notification.php")
     // Handle all the clicks outside the dropdown
     document.addEventListener('click', (e) => {
         console.log(e.target.id);
-        if(e.targer.id == 'userSection' || e.target.id == 'username'){
-            showUserSection(true);
-        }
-        if (e.target.id != 'notificationIcon') {
+        // if(e.targer.id == 'userSection' || e.target.id == 'username'){
+        //     showUserSection(true);
+        // }
+        if (e.target.id != 'notificationIcon' ) {
             showNotification(false);
         }
-        if(e.target.id != 'userSection' || e.target.id != 'username'){
+        if(e.target.id != 'userSectionMask'){
+            console.log('Not profile');
             showUserSection(false);
         }
     })
