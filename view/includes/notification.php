@@ -163,6 +163,21 @@
             console.log("clear All")
         }
     })
+
+    function showNotification(visible = true){
+        var notificationContainer = document.getElementsByClassName("notificationContainer")[0];
+        console.log(visible);
+        if(!visible){
+            notificationContainer.style.display = "none";
+            return;
+        }
+        if(notificationContainer.style.display == "grid"){
+            notificationContainer.style.display = "none";
+        }else{
+            notificationContainer.style.display = "grid";
+        }
+    
+    }
     
 
 
