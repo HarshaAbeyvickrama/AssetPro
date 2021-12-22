@@ -59,7 +59,7 @@
     } */
     .component{
         margin: 20px 0px 5px 15px;
-        padding: 5px;
+        padding: 10px 5px;
         /* width: 80%; */
         text-align: center;
         height: 30px;
@@ -84,6 +84,7 @@
         display: inline-flex;
         width: 25px;
         margin-left: 10px;
+        margin-right: 5px;
     }
     .componentText{
         color: white;
@@ -168,7 +169,7 @@
 
         <!-- Dashboard component -->
         <div class='component selectedComponent' id='overview'>
-            <img src='../Images/icons/NotSelected/dashboard.png' >
+            <img src='../Images/icons/Selected/dashboard.png' >
             <span class='componentText selectedBtn'>Dashboard</span>
         </div>
     <?php
@@ -183,12 +184,6 @@
                 //Technicians
                 echo "<div class='component' id='technicians'>
                     <img src='../Images/icons/NotSelected/technician.png' >
-                    <div class='componentText'></div>
-                </div>";
-
-                //Department heads
-                echo "<div class='component' id='departmentHead'>
-                    <img src='../Images/icons/NotSelected/dh.png' >
                     <div class='componentText'></div>
                 </div>";
 
@@ -228,7 +223,7 @@
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
-                    <img src='../Images/icons/NotSelected/repaired.png' >
+                    <img src='../Images/icons/NotSelected/Repaired.png' >
                     <div class='componentText'></div>
                 </div>";
                 //Repaired Assets
@@ -242,19 +237,31 @@
                 
                 //Assets
                 echo "<div class='component' id='assets'>
+<<<<<<< HEAD
                     <img src='../Images/icons/NotSelected/assets.png' >
+=======
+                    <img src='../Images/icons/NotSelected/Assets.png' >
+>>>>>>> upstream/main
                     <span class='componentText'>Assets</span>
                 </div>";
 
                 //Employees
                 echo "<div class='component' id='employees'>
+<<<<<<< HEAD
                     <img src='../Images/icons/NotSelected/employees.png' >
+=======
+                    <img src='../Images/icons/NotSelected/Employees.png' >
+>>>>>>> upstream/main
                     <span class='componentText'>Employees</span>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
+<<<<<<< HEAD
                     <img src='../Images/icons/NotSelected/technician.png' >
+=======
+                    <img src='../Images/icons/NotSelected/Technician.png' >
+>>>>>>> upstream/main
                     <span class='componentText'>Technicians</span>
                 </div>";
                     
@@ -352,18 +359,20 @@
     function setFocus(id){
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item =>{
-            // var imageSrc = item.querySelector("img").src;
-            // var filename = imageSrc.replace(/^.*[\\\/]/, '');
-            // var path = "../Images/";
+            var imageSrc = item.querySelector("img").src;
+            console.log(imageSrc);
+            var filename = imageSrc.replace(/^.*[\\\/]/, '');
+            console.log(filename);
+            var path = "../Images/icons/";
             if(id == item.querySelector("img").parentNode.id){
-                // item.querySelector("img").src = path+"Selected/"+filename;
-                item.querySelector(".componentText").classList.remove("unselectedBtn");
+                item.querySelector("img").src = path+"Selected/"+filename;
+                // item.querySelector(".componentText").classList.remove("unselectedBtn");
                 item.querySelector(".componentText").classList.add("selectedBtn");
                 item.classList.add("selectedComponent");
             }else{
-                // item.querySelector("img").src = path+"NotSelected/"+filename;
+                item.querySelector("img").src = path+"NotSelected/"+filename;
                 item.querySelector(".componentText").classList.remove("selectedBtn");
-                item.querySelector(".componentText").classList.add("unselectedBtn");
+                // item.querySelector(".componentText").classList.add("unselectedBtn");
                 item.classList.remove("selectedComponent");
             }
         })

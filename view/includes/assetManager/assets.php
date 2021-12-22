@@ -56,11 +56,18 @@
 
 <script>
     //Get Asset Counts
-    getCount('allAssets', 'allAssetsCount');
-    getCount('allEmployees', 'allEmployeesCount');
-    getCount('allTechnicians', 'allTechniciansCount');
-    getCount('allTangible', 'allTangible');
-    getCount('allConsumable', 'allConsumable');
+    // getCount('allAssets', 'allAssetsCount');
+    // getCount('allEmployees', 'allEmployeesCount');
+    // getCount('allTechnicians', 'allTechniciansCount');
+    // getCount('allTangible', 'allTangible');
+    // getCount('allConsumable', 'allConsumable');
+    console.log(getCount());
+    // document.getElementById('allAssetsCount').innerHTML = data.allAssetsCount;
+        // document.getElementById('allEmployeesCount').innerHTML = data.allEmployeesCount;
+        // document.getElementById('allTechniciansCount').innerHTML = data.allTechniciansCount;
+        // document.getElementById('allTangible').innerHTML = data.allTangible;
+        // document.getElementById('allConsumable').innerHTML = data.allConsumable;
+    
 
 
 

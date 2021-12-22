@@ -34,17 +34,21 @@
 function getCount(type =null) {
   const xhr = new XMLHttpRequest();
   if(!type){
-    xhr.open("GET", `http://localhost/assetpro/asset/count/`, true);
+    xhr.open("GET", `http://localhost/assetpro/stats/all/`, true);
   }else{
     return;
-    xhr.open("GET", `http://localhost/assetpro/asset/count/${type}`, true);
+    xhr.open("GET", `http://localhost/assetpro/stats/count/${type}`, true);
   }
 
+
   xhr.onload = function () {
+    var result;
     if (this.status === 200) {
-      var res = JSON.parse(this.response);
-      console.log(res);
-      // return res;
+      result = JSON.parse(this.response);
+      document.getElementById("allAssetsCount").innerHTML = res.allAssets;
+      document.getElementById("allEmployeesCount").innerHTML = res.allEmployees;
+      document.getElementById("allTechniciansCount").innerHTML = res.allTechnicians;
+      return result;
 
     } 
   };
