@@ -60,6 +60,14 @@
                 $vc = new ViewController();
                 $vc->renderView($url[1]);
                 break;
+
+            case 'stats':
+                $vc = new StatController();
+                switch($action){
+                    case 'all':
+                        echo $vc->getAllStats();
+                        break;
+                }
             default:
                 # code...
                 break;
