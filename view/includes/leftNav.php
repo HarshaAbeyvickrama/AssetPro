@@ -160,7 +160,6 @@
     
 </style>
 
-
 <div class="navWrapper">
     <div id="logo">
         <img src="../Images/AssetProLogo.png" alt="">

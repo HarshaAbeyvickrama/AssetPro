@@ -68,7 +68,7 @@ class Asset extends DBConnection{
     // Get all assets in the db (for asset manager)
     // $type = the typeof assets to retrieve (all , assigned , shared , unassigned)
     protected function getAll($type){
-        // $dbConnection = $this->connect();
+        $dbConnection = $this->connect();
         switch ($type) {
             case 'all':
                 $sql = "SELECT
@@ -110,9 +110,9 @@ class Asset extends DBConnection{
                                 asset.CategoryID = c.CategoryID
                             INNER JOIN TYPE t ON
                                 asset.TypeID = t.TypeID
-                            INNER JOIN userdetails ON asset.EmployeeID = userdetails.UserID
+                            INNER JOIN userdetails ON asset.assignedUser = userdetails.UserID
                             WHERE
-                                asset.Status = 'assigned' AND asset.EmployeeID IS NOT NULL AND asset.DepartmentID IS NULL
+                                asset.Status = 'assigned' AND asset.assignedUser IS NOT NULL AND asset.DepartmentID IS NULL
                             ORDER BY
                                 asset.AssetID";
 
@@ -137,7 +137,7 @@ class Asset extends DBConnection{
                                 asset.TypeID = t.TypeID
                             INNER JOIN department ON department.DepartmentID = asset.DepartmentID
                             WHERE
-                                asset.Status = 'shared' AND asset.EmployeeID IS NULL AND asset.DepartmentID IS NOT NULL
+                                asset.Status = 'shared' AND asset.assignedUser IS NULL AND asset.DepartmentID IS NOT NULL
                             ORDER BY
                                 asset.AssetID";
                 break;
@@ -168,7 +168,7 @@ class Asset extends DBConnection{
                 # code...
                 break;
         }
-        $result = $this->dbConnection->query($sql);
+        $result = $dbConnection->query($sql);
         return $result;
     }
 
