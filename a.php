@@ -8,13 +8,14 @@
 </head>
 <body>
     <h1>page</h1>
+    <script src="./js/employee.js"></script>
     <script>
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET' , 'http://localhost/assetpro/asset/getAllAssets/shared');
-        xhr.onload = function(){
-            console.log(this.responseText);
-        }
-        xhr.send();
+        // let xhr = new XMLHttpRequest();
+        // xhr.open('GET' , 'http://localhost/assetpro/asset/getAllAssets/shared');
+        // xhr.onload = function(){
+        //     console.log(this.responseText);
+        // }
+        // xhr.send();
     </script>
 </body>
 </html>

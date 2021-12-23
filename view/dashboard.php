@@ -24,7 +24,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <style>
         .container {
             display: grid;
-            grid-template-columns: 12.5vw 87.5vw;
+            grid-template-columns: 10vw 90vw;
             overflow: hidden;
             z-index: 0;
 
@@ -76,7 +76,8 @@ if (session_status() === PHP_SESSION_NONE) {
         }
     </style>
     <script>
-        getCount(); 
+        getCount();
+        loadAssets(3);
     </script>
 </head>
 
@@ -103,12 +104,14 @@ if (session_status() === PHP_SESSION_NONE) {
                     case '3':
                         include_once("includes/employee/overview.php");
                         break;
-
                     case '4':
                         include_once("includes/technician/overview.php");
                         break;
                     case '2':
                         include_once("includes/assetManager/overview.php");
+                        break;
+                    case '5':
+                        include_once("includes/head/overview.php");
                         break;
                 }
                 ?>

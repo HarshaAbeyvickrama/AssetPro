@@ -2,9 +2,11 @@
     .header {
         display: flex;
         align-items: center;
-        height: 100%;
-        padding: 0px;
+        /* height: 100%; */
+        padding: 5px 0px;
         justify-content: right;
+        background-color: #F1F4FF;
+        border: 1px solid red;
     }
 
     .header>div {
@@ -12,7 +14,7 @@
     }
 
     .notificationBadge {
-        height: 50%;
+        height: 40%;
         margin: 0px;
         position: relative;
         display: flex;
@@ -21,8 +23,8 @@
     }
 
     .notificationBadge>img {
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
     }
 
     #notificationCount {
@@ -32,8 +34,8 @@
         background-color: red;
         border-radius: 50%;
         color: white;
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         /* display: flex;
         justify-content: center;
         align-items: center; */
@@ -43,11 +45,12 @@
 
     #userSection {
         display: flex;
+        position: relative;
         align-items: center;
         /* border: 1px solid red; */
         padding: 5px 10px;
-        box-shadow: 0 0px 2px #5c6e9b;
-        border-radius: 12px;
+        /* box-shadow: 0 0px 2px #5c6e9b; */
+        /* border-radius: 12px; */
     }
 
     #userSection:hover {
@@ -59,13 +62,13 @@
     }
 
     #userSection img {
-        width: 50px;
-        height: 50px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
     }
 
     #username {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 900;
         color: #304068;
         /* height: 100%; */
@@ -73,6 +76,14 @@
 
     #username:hover {
         cursor: pointer;
+    }
+    #userSectionMask{
+        background-color: transparent;
+        width: 230px;
+        height: 45px;
+        position: absolute;
+        z-index: 10;
+        color: transparent;
     }
 
     /* Dropdown */
@@ -146,6 +157,7 @@
         color: #5c6e9b;
         font-weight: 400;
     }
+
     .profile-dropdown .menu ul li {
         list-style: none;
         padding: 15px 0;
@@ -155,12 +167,14 @@
         color: #5c6e9b;
         cursor: pointer;
     }
+
     .profile-dropdown .menu ul li img {
         max-width: 20px;
         margin-right: 10px;
         opacity: 0.5;
         transform: 0.5s;
     }
+
 
     .profile-dropdown .menu ul li:hover img {
         opacity: 1;
@@ -174,16 +188,20 @@
     </div>
 
     <div id="userSection">
+        <img src="../Images/profile.jpg" alt="">
         <div id="username">
             <?php
             echo $_SESSION['name'];
             ?>
         </div>
-        <!-- <div> -->
-        <img src="../Images/profile.jpg" alt="">
-        <!-- </div> -->
+        <div id="userSectionMask">
+    5
+        </div>
     </div>
 </div>
+<?php
+include_once("notification.php")
+?>
 
 <!-- <div class="profile-dropdown" id="profiledropDown">
     <div>Signed in as</div>
@@ -224,18 +242,28 @@
 </div>
 
 <script>
-    var userSection = document.getElementById('userSection');
-    userSection.addEventListener('click', (e) => {
-        if (e.target.parentNode.id == 'userSection') {
-            var dd = document.getElementById('profiledropdown');
-            var style = window.getComputedStyle(dd, null).getPropertyValue("display");
-            if (style == 'none') {
-                dd.style.display = 'flex';
-            } else {
-                dd.style.display = 'none';
-            }
+    var userSectionMask = document.getElementById('userSectionMask');
+    userSectionMask.addEventListener('click',showUserSection(true));
+
+    function showUserSection(visible) {
+        var dd = document.getElementById('profiledropdown');
+        if(visible) {
+            dd.style.display = 'block';
+        } else {
+            dd.style.display = 'none';
         }
-    })
+        // if(!visible){
+        //     dd.style.display = "none";
+        //     console.log("User Section : " + dd.style.display);
+        //     return;
+        // }
+        // if(dd.style.display == "block"){
+        //     dd.style.display = "none";
+        // }else{
+        //     dd.style.display = "block";
+        // }
+
+    }
 
     document.getElementById('logout').addEventListener('click', (e) => {
         window.location.replace("http://localhost/assetpro/logout");
@@ -243,11 +271,22 @@
 
     var icon = document.getElementById("notificationIcon");
     icon.addEventListener("click", e => {
-        var notification = document.querySelector(".notificationContainer");
-        if (notification.style.display === "none") {
-            notification.style.display = "grid";
-        } else {
-            notification.style.display = "none";
+        showNotification();
+    })
+
+
+    // Handle all the clicks outside the dropdown
+    document.addEventListener('click', (e) => {
+        console.log(e.target.id);
+        // if(e.targer.id == 'userSection' || e.target.id == 'username'){
+        //     showUserSection(true);
+        // }
+        if (e.target.id != 'notificationIcon' ) {
+            showNotification(false);
+        }
+        if(e.target.id != 'userSectionMask'){
+            console.log('Not profile');
+            showUserSection(false);
         }
     })
 </script>

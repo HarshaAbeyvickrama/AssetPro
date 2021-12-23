@@ -36,16 +36,15 @@
     .btnAction:hover{
         color: black;
         background-color: white;
-    }
-    
-</style>
+    }   
+</style> -->
 
 <div class="overviewLayout">
     <div>
-        <div>Assigned Assets</div>
+        <div class="section-heading">Assigned Assets</div>
     </div>
     <div class="contentSection">
-            <table class="table">
+            <table class="table" id="filterTable">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -57,8 +56,18 @@
                 </thead>
                 <tbody id="employeeTableBody"></tbody>
             </table>
-        </div>
-</div> -->
+    </div>
+</div>
+
+<script>
+<?php
+echo 'var userID ='. $_SESSION['UserID'];
+?>
+loadAssets(userID);
+</script>
+
+
+
 
 
 <!-- <script>
@@ -110,17 +119,5 @@
 
 
 
- <?php
 
-class ViewAssignedAsset extends AssignedAsset{
-
-    public function showAssets() {
-        $datas = $this->getAssets();
-        foreach($datas as $data){
-            echo $data['AssetID']."<br>";
-            echo $data['CategoryID']."<br>";
-        }
-
-    }
-}
 
