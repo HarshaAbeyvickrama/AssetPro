@@ -87,7 +87,7 @@
         margin-right: 5px;
     }
     .componentText{
-        color: white;
+        color: #F1F4FF;
         font-size: 20px;
     }
     .component:hover{
@@ -132,7 +132,7 @@
         
     }
     .selectedBtn{
-        color: black;
+        color: #304068;
         font-weight: bolder;
     }
     .unselectedBtn{

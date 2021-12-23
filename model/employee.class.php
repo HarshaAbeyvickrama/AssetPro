@@ -17,10 +17,10 @@ class Employee extends DBConnection {
     private $contactNo;
     private $email;
     private $eName;
-    private $eRelarionship;
+    private $eRelationship;
     private $eContact;
 
-    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelarionship, $eContact)
+    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
         $this->DBConnection = $this->connect();
         $this->departmentID = $departmentID;
@@ -34,7 +34,7 @@ class Employee extends DBConnection {
         $this->contactNo = $contactNo;
         $this->email = $email;
         $this->eName = $eName;
-        $this->eRelarionship = $eRelarionship;
+        $this->eRelationship = $eRelationship;
         $this->eContact = $eContact;
     }
 
@@ -139,7 +139,7 @@ class Employee extends DBConnection {
             $stmt = $this->DBConnection->prepare($userEmergency);
             
             $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('eRelationship', $eRelarionship);
+            $stmt->bindParam('eRelationship', $eRelationship);
             $stmt->bindParam('eName', $eName);
             $stmt->bindParam('eContact', $eContact);
 
