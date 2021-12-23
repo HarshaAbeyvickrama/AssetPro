@@ -178,19 +178,31 @@
                 //Employees
                 echo "<div class='component' id='employees'>
                     <img src='../Images/icons/NotSelected/employees.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Employees</span>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
                     <img src='../Images/icons/NotSelected/technician.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Technicians</span>
+                </div>";
+
+                //Department head
+                echo "<div class='component' id='dhead'>
+                    <img src='../Images/icons/NotSelected/dh.png' >
+                    <span class='componentText'>Department head</span>
                 </div>";
 
                 //Departments
                 echo "<div class='component' id='departments'>
                     <img src='../Images/icons/NotSelected/department.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Departments</span>
+                </div>";
+
+                //Assigned assets
+                echo "<div class='component' id='assignedAssets'>
+                    <img src='../Images/icons/NotSelected/assignedassets.png' >
+                    <span class='componentText'>Assigned Assets</span>
                 </div>";
 
 
@@ -237,31 +249,19 @@
                 
                 //Assets
                 echo "<div class='component' id='assets'>
-<<<<<<< HEAD
-                    <img src='../Images/icons/NotSelected/assets.png' >
-=======
                     <img src='../Images/icons/NotSelected/Assets.png' >
->>>>>>> upstream/main
                     <span class='componentText'>Assets</span>
                 </div>";
 
                 //Employees
                 echo "<div class='component' id='employees'>
-<<<<<<< HEAD
-                    <img src='../Images/icons/NotSelected/employees.png' >
-=======
                     <img src='../Images/icons/NotSelected/Employees.png' >
->>>>>>> upstream/main
                     <span class='componentText'>Employees</span>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
-<<<<<<< HEAD
-                    <img src='../Images/icons/NotSelected/technician.png' >
-=======
                     <img src='../Images/icons/NotSelected/Technician.png' >
->>>>>>> upstream/main
                     <span class='componentText'>Technicians</span>
                 </div>";
                     
