@@ -177,19 +177,31 @@
                 //Employees
                 echo "<div class='component' id='employees'>
                     <img src='../Images/icons/NotSelected/employees.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Employees</span>
                 </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
-                    <img src='../Images/icons/NotSelected/Technicians.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/NotSelected/technician.png' >
+                    <span class='componentText'>Technicians</span>
+                </div>";
+
+                //Department head
+                echo "<div class='component' id='dhead'>
+                    <img src='../Images/icons/NotSelected/dh.png' >
+                    <span class='componentText'>Department head</span>
                 </div>";
 
                 //Departments
                 echo "<div class='component' id='departments'>
-                    <img src='../Images/icons/NotSelected/Departments.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/NotSelected/department.png' >
+                    <span class='componentText'>Departments</span>
+                </div>";
+
+                //Assigned assets
+                echo "<div class='component' id='assignedAssets'>
+                    <img src='../Images/icons/NotSelected/assignedassets.png' >
+                    <span class='componentText'>Assigned Assets</span>
                 </div>";
 
 
@@ -199,13 +211,13 @@
 
                 //Assigned Assets
                 echo "<div class='component' id='assignedAssets'>
-                    <img src='../Images/icons/NotSelected/Assets.png' >
+                    <img src='../Images/icons/NotSelected/assets.png' >
                     <div class='componentText'></div>
                 </div>";
 
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
-                    <img src='../Images/icons/NotSelected/Breakdowns.png' >
+                    <img src='../Images/icons/NotSelected/reportedBreakdowns.png' >
                     <div class='componentText'></div>
                 </div>";
 
@@ -216,7 +228,7 @@
                 
                 //Assigned Assets
                 echo "<div class='component' id='assets'>
-                    <img src='../Images/icons/NotSelected/Assets.png' >
+                    <img src='../Images/icons/NotSelected/assets.png' >
                     <div class='componentText'></div>
                 </div>";
 

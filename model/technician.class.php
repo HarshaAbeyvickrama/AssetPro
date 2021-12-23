@@ -2,7 +2,7 @@
 
 require_once './controller/autoloadController.php';
 
-class Employee extends DBConnection {
+class Technician extends DBConnection {
     //Database connection
     private $DBConnection;
 
@@ -38,30 +38,29 @@ class Employee extends DBConnection {
         $this->eContact = $eContact;
     }
 
-    //Getting all the employees
+    //Getting all the technicians
     protected function getAll() {
         $sql = "SELECT
-                    ud.UserID,
-                    CONCAT(ud.fName, ' ', ud.lName) AS Name,
-                    ud.Gender,
-                    d.DepartmentCode,
-                    eu.EmployeeID
+                    USER.UserID,
+                    CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
+                    userdetails.Gender,
+                    CONCAT('TEC/',tec.TechnicianID) AS TechnicianID
                 FROM
-                    userdetails ud
-                INNER JOIN employeeuser eu ON
-                    ud.UserID = eu.UserID
-                INNER JOIN department d ON
-                    eu.DepartmentID = d.DepartmentID";
+                    technicianuser tec
+                INNER JOIN userdetails ON userdetails.UserID = tec.UserID
+                JOIN USER ON USER.UserID = userdetails.UserID
+                WHERE
+                    USER.RoleID = 4";
 
         $pstm = $this->dbConnection->prepare($sql);
         $pstm->execute();
         return $pstm;
     }
 
-    //Getting the employee details using EmployeeID
-    protected function get($EmployeeID) {
+    //Getting a technician detail using TechnicianID
+    protected function get($TechnicianID) {
         $sql = "SELECT
-                    eu.EmployeeID,
+                    tu.TechnicianID,
                     ud.fName,
                     ud.lName,
                     ud.NIC,
@@ -77,31 +76,31 @@ class Employee extends DBConnection {
                     ue.TelephoneNumber
                 FROM
                     userdetails ud
-                INNER JOIN employeeuser eu ON
-                    ud.UserID = eu.UserID
+                INNER JOIN technicianuser tu ON
+                    ud.UserID = tu.UserID
                 INNER JOIN useremergency ue ON
-                    eu.UserID = ue.UserID
-                WHERE EmployeeID = $EmployeeID";
+                    tu.UserID = ue.UserID
+                WHERE TechnicianID = $TechnicianID";
         
         $stmt = $this->DBConnection->prepare($sql);
-        $stmt->execute([$EmployeeID]);
+        $stmt->execute([$TechnicianID]);
         return $stmt;
     }
 
-    //Adding an employee
+    //Adding a technician
     protected function add() {
         try {
             $this->DBConnection->beginTransaction();
 
-            //INserting into the user table
-            $addEmployee = "INSERT INTO user VALUES (NULL, '3')";
-            $stmt = $this->DBConnection->prepare($addEmployee);
+            //Inserting into the user table
+            $addTechnician = "INSERT INTO user VALUES (NULL, '4')";
+            $stmt = $this->DBConnection->prepare($addTechnician);
             $stmt->execute();
 
             $UserID = $this->dbConnection->lastInsertId();
 
             //Saving the image
-            $fileUrl = '/uploads/employees/'.$UserID.'.'.$this->extention;
+            $fileUrl = '/uploads/technicians/'.$UserID.'.'.$this->extention;
             $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , '../'.$fileUrl);
 
             if(!$imageSaved) {
@@ -125,9 +124,9 @@ class Employee extends DBConnection {
 
             $stmt->execute();
 
-            //Inserting into employeeuser table
-            $employeeuser = "INSERT INTO employeeuser VALUES (NULL, userID, departmentID)";
-            $stmt = $this->DBConnection->prepare($employeeuser);
+            //Inserting into technicianuser table
+            $technicianuser = "INSERT INTO technicianuser VALUES (NULL, userID, departmentID)";
+            $stmt = $this->DBConnection->prepare($technicianuser);
 
             $stmt->bindParam('userID', $UserID);
             $stmt->bindParam('departmentID', $departmentID);

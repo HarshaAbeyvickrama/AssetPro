@@ -183,7 +183,7 @@
 
 <div class="header">
     <div class="notificationBadge">
-        <img src="../Images/Notification.png" alt="" class="notificationBadge" id="notificationIcon">
+        <img src="../Images/Notifications.png" alt="" class="notificationBadge" id="notificationIcon">
         <span id="notificationCount" class="notificationBadge">2</span>
     </div>
 
@@ -236,7 +236,7 @@ include_once("notification.php")
         <h3>Signed in as <br> <span><?php echo $_SESSION['name'] ?></span></h3>
         <ul>
             <li><img src="../Images/avatar.png" alt="">My Profile</li>
-            <li id="logout"><img src="../Images/settings.jpg" alt="">Log Out</li>
+            <li id="logout"><img src="../Images/settings.png" alt="">Log Out</li>
         </ul>
     </div>
 </div>
