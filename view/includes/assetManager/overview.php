@@ -151,7 +151,10 @@
 </div>
 
 <script>
-    getCount('allAssets', 'allAssetsCount');
-    getCount('allEmployees', 'allEmployeesCount');
-    getCount('allTechnicians', 'allTechniciansCount');
+    // Adding
+    getData('http://localhost/assetpro/stats/all/', (data) => {
+        document.getElementById('allAssetsCount').innerHTML = data.allAssets;
+        document.getElementById('allEmployeesCount').innerHTML = data.allEmployees;
+        document.getElementById('allTechniciansCount').innerHTML = data.allTechnicians;
+    });
 </script>
