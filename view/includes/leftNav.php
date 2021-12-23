@@ -201,13 +201,13 @@
                 //Assigned Assets
                 echo "<div class='component' id='assignedAssets'>
                     <img src='../Images/icons/NotSelected/Assets.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Assigned assets</span>
                 </div>";
 
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
                     <img src='../Images/icons/NotSelected/Breakdowns.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Reported Breakdowns</span>
                 </div>";
 
                 break;
@@ -218,13 +218,13 @@
                 //Assigned Assets
                 echo "<div class='component' id='assets'>
                     <img src='../Images/icons/NotSelected/Assets.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Breakdowns</span>
                 </div>";
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
                     <img src='../Images/icons/NotSelected/Repaired.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Repaired Assets</span>
                 </div>";
                 //Repaired Assets
                 

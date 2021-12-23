@@ -8,9 +8,12 @@ function loadAssets(userID){
         xhr.open("GET", `http://localhost/assetpro/asset/assigned/${userID}`, true);
         xhr.onload = function() {
             if (this.status === 200) {
-                // var assets = JSON.parse(this.responseText);
-                console.log(this.response);
+                var assets = JSON.parse(this.response);
+                console.log(assets);
                 for (var i = 0; i < assets.length; i++) {
+                    console.log(assets[i]['CategoryCode']);
+                    var tableBody = document.getElementById('employeeTableBody');
+                    console.log(tableBody);
                     document.getElementById('employeeTableBody').innerHTML += `
                                     <tr>
                                         <td>${i+1}</td>
@@ -18,7 +21,7 @@ function loadAssets(userID){
                                         <td>${assets[i]['assetName']}</td>
                                         <td>${assets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="report(${assets[i]['AssetID']})">Report</button>
+                                        <button class='btn btn-submit ' onClick="report(${assets[i]['AssetID']})">Report</button>
                                         </td> 
                                     </tr>`;
                 }

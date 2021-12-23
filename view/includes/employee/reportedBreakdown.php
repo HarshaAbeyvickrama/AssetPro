@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .overviewLayout{
         display: grid;  
     }
@@ -37,7 +37,7 @@
         color: black;
         background-color: white;
     } 
-</style>
+</style> -->
 
 <div class="overviewLayout">
     <div>
@@ -66,7 +66,8 @@
     <?php
     echo 'var userID ='.$_SESSION['UserID']
     ?>
-     viewBreakAsset(userID);
+    //  viewBreakAsset(userID);
+     window.addEventListener('load', viewBreakAsset(userID))
 </script>
 
 <!-- <script>
