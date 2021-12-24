@@ -62,32 +62,16 @@ class Stats extends DBConnection
 
     // Dashboard stats function
 
-    function getBreakdowns($employee = null, $technician = null)
+    function getBreakdowns($departmentID = null)
     {
         $dbConnection = $this->connect();
-
-        if ($employee != null && $technician != null) {
-            $sql = "SELECT Date , GROUP_CONCAT(BreakdownID) as IDs from breakdown where EmployeeID = :employee AND TechnicianID = :technician GROUP by Date ORDER by Date ";
-            $stmt = $dbConnection->prepare($sql);
-            $stmt->bindParam(':employee', $employee);
-            $stmt->bindParam(':technician', $technician);
-            $stmt->execute();
-        } elseif ($employee != null) {
-            $sql = "SELECT Date , GROUP_CONCAT(BreakdownID) as IDs from breakdown where EmployeeID = :employee GROUP by Date ORDER by Date ";
-            $stmt = $dbConnection->prepare($sql);
-            $stmt->bindParam(':employee', $employee);
-            $stmt->execute();
-        } elseif ($technician != null) {
-            $sql = "SELECT Date , GROUP_CONCAT(BreakdownID) as IDs from breakdown where TechnicianID = :technician GROUP by Date ORDER by Date ";
-            $stmt = $dbConnection->prepare($sql);
-            $stmt->bindParam(':technician', $technician);
-            $stmt->execute();
-        } else {
+        if($departmentID != null){
+            //Add the methods to get breakdowns of the particular department
+        }else{
             $sql = 'SELECT Date , GROUP_CONCAT(BreakdownID)  as IDs from breakdown GROUP by Date ORDER by Date';
             $stmt = $dbConnection->prepare($sql);
             $stmt->execute();
         }
-        // $stmt->execute();
         return $stmt;
     }
 }

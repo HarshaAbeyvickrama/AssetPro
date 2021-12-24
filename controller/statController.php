@@ -13,7 +13,7 @@ class StatController extends Stats{
     function getAllBreakdowns(){
         if($_SESSION['Role'])
         $stats = new Stats();
-        $stats = $stats->getBreakdowns(technician:12 , employee:14 );
+        $stats = $stats->getBreakdowns();
         return json_encode($stats->fetchAll());
     }
 }
