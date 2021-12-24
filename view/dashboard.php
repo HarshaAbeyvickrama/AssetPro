@@ -26,6 +26,7 @@ if (session_status() === PHP_SESSION_NONE) {
             grid-template-columns: 10vw 90vw;
             overflow: hidden;
             z-index: 0;
+            background-color: #F1F4FF;
 
         }
 
@@ -37,19 +38,21 @@ if (session_status() === PHP_SESSION_NONE) {
         }
 
         #headerDiv {
+            /* display: grid; */
             border: none;
             border-left: 4px solid #F1F4FF;
             margin: 0;
             padding: 0;
+            align-items: center;
         }
 
         .dashboardRight {
             display: grid;
-            grid-template-rows: 12vh 88vh;
+            grid-template-rows: 10vh 90vh;
         }
 
         #centerSection>div:first-of-type {
-            height: 82vh;
+            height: 87vh;
             overflow: hidden;
             padding: 20px;
             background-color: #F1F4FF;

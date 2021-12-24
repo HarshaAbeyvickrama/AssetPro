@@ -6,7 +6,7 @@
         padding: 5px 0px;
         justify-content: right;
         background-color: #F1F4FF;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
     .header>div {
