@@ -16,7 +16,13 @@ class StatController extends Stats{
         $stats = $stats->getBreakdowns();
         return json_encode($stats->fetchAll());
     }
+
+    function getTotalAssetValues(){
+        $stats = new Stats();
+        $res = $stats->getTotalValues();
+        return json_encode($res->fetchAll()[0]);
+    }
 }
 
 $sc = new StatController();
-print_r($sc->getAllBreakdowns());
+print_r($sc->getTotalAssetValues());
