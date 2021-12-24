@@ -72,6 +72,7 @@ class Stats extends DBConnection
         return $stmt;
 
     }
+    
     function getBreakdowns($departmentID = null)
     {
         $dbConnection = $this->connect();
