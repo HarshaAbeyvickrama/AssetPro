@@ -82,5 +82,85 @@ if ($url == '/' || $url[0] == 'dashboard') {
         default:
             # code...
             break;
+        switch ($controller) {
+            case 'asset':
+                // require_once './controller/assetController.php';
+                $ac = new AssetController();
+                switch ($action) {
+                    case 'getAllAssets':
+                        echo $ac->getAllAssets($url[2]);
+                        break;
+                    case 'count':
+                        echo $ac->getAllAssetCounts();
+                        break;
+                    case 'assigned':
+                        echo $ac->getAllAssignedAssets($url[2]);
+                        break;
+                    case 'getAsset':
+                        echo $ac->getAsset($url[2]);
+                        break;
+                   
+                    default:
+                        # code...
+                        break;
+                }
+                break;
+                
+            case 'breakdown':
+                $bc = new BreakdownController();
+                switch($action){
+                    case 'assigned':
+                        echo $bc->getAllAssignedBreakdowns($url[2]);
+                        break;
+                }
+                break;
+
+            case 'view':
+                $vc = new ViewController();
+                $vc->renderView($url[1]);
+                break;
+
+            case 'stats':
+                $vc = new StatController();
+                switch($action){
+                    case 'all':
+                        echo $vc->getAllStats();
+                        break;
+                }
+                break;
+            case 'employees':
+                $ec = new EmployeeController();
+                switch($action) {
+                    case 'all':
+                        echo $ec->getAllEmployees($url[2]);
+                        break;
+                    case 'getEmployee':
+                        echo $ec->getEmployee($url[2]);
+                }
+                break;
+            case 'technicians':
+                $tc = new TechnicianController();
+                switch($action) {
+                    case 'all':
+                        echo $tc->getAllTechnicians();
+                        break;
+                    case 'getTechnician':
+                        echo $tc->getTechnician($url[2]);
+                }
+                break;
+            case 'departments':
+                $dc = new departmentController();
+                switch($action) {
+                    case 'all':
+                        echo $dc->getAllDepartments();
+                        break;
+                    case 'getDepartment':
+                        echo $dc->getDepartment($url[2]);
+                }
+                break;
+            default:
+                # code...
+                break;
+        }
     }
 }

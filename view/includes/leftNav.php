@@ -87,7 +87,7 @@
         margin-right: 5px;
     }
     .componentText{
-        color: white;
+        color: #F1F4FF;
         font-size: 20px;
     }
     .component:hover{
@@ -132,7 +132,7 @@
         
     }
     .selectedBtn{
-        color: black;
+        color: #304068;
         font-weight: bolder;
     }
     .unselectedBtn{
@@ -211,14 +211,14 @@
 
                 //Assigned Assets
                 echo "<div class='component' id='assignedAssets'>
-                    <img src='../Images/icons/NotSelected/assets.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/NotSelected/Assets.png' >
+                    <span class='componentText'>Assigned assets</span>
                 </div>";
 
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
                     <img src='../Images/icons/NotSelected/reportedBreakdowns.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Reported Breakdowns</span>
                 </div>";
 
                 break;
@@ -228,14 +228,14 @@
                 
                 //Assigned Assets
                 echo "<div class='component' id='assets'>
-                    <img src='../Images/icons/NotSelected/assets.png' >
-                    <div class='componentText'></div>
+                    <img src='../Images/icons/NotSelected/Assets.png' >
+                    <span class='componentText'>Breakdowns</span>
                 </div>";
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
                     <img src='../Images/icons/NotSelected/Repaired.png' >
-                    <div class='componentText'></div>
+                    <span class='componentText'>Repaired Assets</span>
                 </div>";
                 //Repaired Assets
                 

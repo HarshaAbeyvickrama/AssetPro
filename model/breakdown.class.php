@@ -3,7 +3,7 @@ require_once './controller/autoloadController.php';
 
 class Breakdown extends DBConnection{
      // Get all the breakdown assets assigned to a particular user by the userID
-    protected function getAssignedBreakdowns($userID){
+    protected function getAssigned($userID){
         $dbConnection = $this->connect();
         $sql = "SELECT
                 asset.AssetID,

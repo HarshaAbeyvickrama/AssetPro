@@ -143,7 +143,7 @@
 
     <div class="contentSection">
         <!-- <div> -->
-        <table class="table-data" id="empData">
+        <table class="table" id="empData">
             <tr>
                 <th class="heading">#</th>
                 <!-- <th>User ID</th> -->
@@ -152,49 +152,37 @@
                 <th>Gender</th>
                 <th class="heading">View</th>
             </tr>
-            <!-- <tbody> -->
-                <?php
+            <tbody class="tableRowGroup" id="employeeTableData">
 
-                require_once('../db/dbConnection.php');
-                global $mysql;
-
-                $sql = "SELECT
-                                ud.UserID,
-                                CONCAT(ud.fName, ' ', ud.lName) AS Name,
-                                ud.Gender,
-                                d.DepartmentCode,
-                                eu.EmployeeID
-                            FROM
-                                userdetails ud
-                            INNER JOIN employeeuser eu ON
-                                ud.UserID = eu.UserID
-                            INNER JOIN department d ON
-                                eu.DepartmentID = d.DepartmentID
-                            ORDER BY eu.EmployeeID";
-
-                $result = $mysql->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td></td>
-                                <td>" . $row['DepartmentCode'] . '/EMP/' . $row['EmployeeID'] . "</td>
-                                <td>" . $row["Name"] . "</td>
-                                <td>" . $row["Gender"] . "</td>
-                                <td id=" . $row['EmployeeID'] . "><button id='view' class='btn btn-submit'>View</button></td>
-                              </tr>";
-                    }
-                } else {
-                    echo "No Results :(";
-                }
-                $mysql->close();
-
-                ?>
-            <!-- </tbody> -->
+            </tbody>
         </table>
-        <!-- </div> -->
     </div>
 </div>
+
+<script>
+    getData('http://localhost/assetpro/employee/getAllEmployees', (data) => {
+        data.foreach((employee, index) => {
+            var tb = document.getElementById('employeeTableData');
+            row = `
+                <tr>
+                    <td>${i+1}</td>
+                    <td>${employee.DepartmentCode}/EMP/${employee.employeeID}</td>
+                    <td>${employee.Name}</td>
+                    <td>${employee.gender}</td>
+                    <td>${employee.employeeID}</td>
+                    <td>
+                        <button class = 'viewBtn' id='view' onClick='view(${employee[i]['EmployeeID']})'>View</button>
+                    </td>
+                </tr>`;
+            var tableRow = document.createElement('tr');
+            tableRow.id = employee.EmployeeID;
+            tableRow.innerHTML = row;
+            addViewEmployeeListener(tableRow);
+            tb.appendChild(tableRow);
+        });
+    })
+</script>
+
 
 <!-- <script type="text/javascript">
     //Loading the add employee page
