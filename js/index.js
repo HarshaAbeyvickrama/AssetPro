@@ -18,7 +18,16 @@ function postData(url, data, callback) {
       callback(JSON.parse(xhr.response));
     }
   };
+  console.log(data);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));
+}
+
+function addViewAssetListener(element , callback) {
+  element.addEventListener("click", function (e) {
+    // popup = document.getElementById("popup");
+    // popup.style.display = "grid";
+    callback(this.id);
+  });
 }
