@@ -55,6 +55,9 @@
                     case 'assigned':
                         echo $bc->getAllAssignedBreakdowns($url[2]);
                         break;
+                    case 'getBreakdown':
+                        echo $bc->getBreakdown($url[2],$url[3]);
+                        break;
                 }
                 break;
 

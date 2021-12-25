@@ -15,7 +15,6 @@ function loadAssets(userID){
                                         <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                         <td>${assets[i]['assetName']}</td>
                                         <td>${assets[i]['assetType']}</td>
-                                        <td>${assets[i]['Status']}</td>
                                         <td>  
                                         <button class='btn btn-submit ' onClick="report(${assets[i]['AssetID']})">Report</button>
                                         </td> 
@@ -57,7 +56,6 @@ function loadAssets(userID){
         xhr.onload = function() {
             if (this.status === 200) {
                 var viewassets = JSON.parse(this.response);
-                console.log(viewassets);
                 for (var i = 0; i < viewassets.length; i++) {
                     var date = new Date(viewassets[i]['reportedDate']);
                     var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
@@ -71,7 +69,7 @@ function loadAssets(userID){
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btn btn-submit' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
+                                        <button class='btn btn-submit' onClick="viewBreak(${viewassets[i]['AssetID']},${viewassets[i]['BreakdownID']})">View</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -81,13 +79,13 @@ function loadAssets(userID){
     }
 //==========================reportedBreakdown.php=============================================== 
 //==========click view will redirect to the viewBreakAssets.php file FORM of part. asset========
-    function viewBreak(breakdownId,assetId){   
+    function viewBreak(assetId,breakdownId){   
         var viewBreakAssetDetails = null;
         const xhr = new XMLHttpRequest();
-        xhr.open('GET',`http://localhost/assetpro/`,true);
+        xhr.open('GET',`http://localhost/assetpro/breakdown/getBreakdown/${assetId}/${breakdownId}`,true);
         xhr.onload = function(){
             if(this.status == 200){
-             viewBreakAssetDetails = JSON.parse(this.responseText);
+             viewBreakAssetDetails = JSON.parse(this.response);
              console.log(viewBreakAssetDetails);
              loadSection('centerSection','viewBreakAssets');   
              var json = JSON.stringify(viewBreakAssetDetails );       //object to string
