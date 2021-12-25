@@ -68,6 +68,33 @@
                         echo $vc->getAllStats();
                         break;
                 }
+            case 'employees':
+                $ec = new EmployeeController();
+                switch($action) {
+                    case 'all':
+                        echo $ec->getAllEmployees($url[2]);
+                        break;
+                    case 'getEmployee':
+                        echo $ec->getEmployee($url[2]);
+                }
+            case 'technicians':
+                $tc = new TechnicianController();
+                switch($action) {
+                    case 'all':
+                        echo $tc->getAllTechnicians();
+                        break;
+                    case 'getTechnician':
+                        echo $tc->getTechnician($url[2]);
+                }
+            case 'departments':
+                $dc = new departmentController();
+                switch($action) {
+                    case 'all':
+                        echo $dc->getAllDepartments();
+                        break;
+                    case 'getDepartment':
+                        echo $dc->getDepartment($url[2]);
+                }
             default:
                 # code...
                 break;

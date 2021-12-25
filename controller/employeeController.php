@@ -19,7 +19,36 @@ class EmployeeController extends Employee {
         return json_encode($result->fetchAll());
     }
 
-    
+    //Adding an employee
+    public function addTechnician($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
+        $newEmployee = new Employee (
+            firstName:$firstName,
+            lastName:$lastName,
+            NIC:$NIC,
+            address:$address,
+            gender:$gender,
+            contactNo:$contactNo,
+            email:$email,
+            dob:$dob,
+            departmentID:$departmentID,
+            maritalStatus:$maritalStatus,
+            eName:$eName,
+            eRelationship:$eRelationship,
+            eContact:$eContact);
+        
+        $result = $newEmployee->add();
+        return json_encode($result);
+    }
+
+    //Updating employee details
+    public function updateEmployee($id) {
+        
+    }
+
+    //Deleting an employee
+    public function deleteEmployee($id) {
+        $result = $this->delete($id);
+    }
 
 }
 
