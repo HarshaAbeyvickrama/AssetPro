@@ -13,18 +13,36 @@
 </table>
 
 <script>
-    getAssets('unassigned');
+    getData('http://localhost/assetpro/asset/getAllAssets/unassigned', (data) => {
+        data.forEach((asset, index) => {
+            var tb = document.getElementById('unassignedAssetsTableBody');
+            row = `
+                <tr>
+                    <td>${index+1}</td>
+                    <td>${asset.CategoryCode}/${asset.TypeCode}/${asset.AssetID}</td>
+                    <td>${asset.assetName}</td>
+                    <td>${asset.assetType}</td>
+                    <td>${asset.AssetCondition}</td>
+                </tr>`;
+            var tableRow = document.createElement('tr');
+            tableRow.id = asset.AssetID;
+            tableRow.innerHTML = row;
+            addViewAssetListener(tableRow);
+            tb.appendChild(tableRow);
+        });
 
-    function addEventListeners(){
+    })
+
+    function addEventListeners() {
         const buttonArray = document.querySelectorAll('.assignAssetButton');
-        for(var i=0 ; i < buttonArray.length ; i++ ){
-            buttonArray[i].addEventListener('click',(e) => {
+        for (var i = 0; i < buttonArray.length; i++) {
+            buttonArray[i].addEventListener('click', (e) => {
                 AssignAsset(e.target.id)
             })
         }
     }
 
-    function AssignAsset(assetId){
-        console.log('Assigned' , assetId)
+    function AssignAsset(assetId) {
+        console.log('Assigned', assetId)
     }
 </script>

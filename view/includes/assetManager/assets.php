@@ -55,18 +55,15 @@
 </style>
 
 <script>
-    //Get Asset Counts
-    // getCount('allAssets', 'allAssetsCount');
-    // getCount('allEmployees', 'allEmployeesCount');
-    // getCount('allTechnicians', 'allTechniciansCount');
-    // getCount('allTangible', 'allTangible');
-    // getCount('allConsumable', 'allConsumable');
-    console.log(getCount());
-    // document.getElementById('allAssetsCount').innerHTML = data.allAssetsCount;
-        // document.getElementById('allEmployeesCount').innerHTML = data.allEmployeesCount;
-        // document.getElementById('allTechniciansCount').innerHTML = data.allTechniciansCount;
-        // document.getElementById('allTangible').innerHTML = data.allTangible;
-        // document.getElementById('allConsumable').innerHTML = data.allConsumable;
+    // Retrieve and set all counts
+    getData('http://localhost/assetpro/stats/all/', (data) => {
+        document.getElementById('allAssetsCount').innerHTML = data.allAssets;
+        document.getElementById('allEmployeesCount').innerHTML = data.allEmployees;
+        document.getElementById('allTechniciansCount').innerHTML = data.allTechnicians;
+        document.getElementById('allTangible').innerHTML = data.tangibleAssets;
+        document.getElementById('allConsumable').innerHTML = data.consumableAssets;
+    });
+    
     
 
 

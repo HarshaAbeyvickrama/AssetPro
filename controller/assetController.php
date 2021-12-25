@@ -12,6 +12,8 @@
         public function getAllAssets($type){
             // $accessManager = new AccessManager();
             $result = $this->getAll($type);
+            // print_r($result->fetchAll());
+
             return json_encode($result->fetchAll());
             // if($accessManager->validateAccess(type:"ALL_ASSETS")){
             //     $result = $this->getAll($type);

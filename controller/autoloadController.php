@@ -16,3 +16,4 @@ function classLoader($className){
     $fullPath = $path . $className . $ext;
     include_once $fullPath;
 }
+
