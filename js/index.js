@@ -24,10 +24,3 @@ function postData(url, data, callback) {
   xhr.send(JSON.stringify(data));
 }
 
-function addViewAssetListener(element , callback) {
-  element.addEventListener("click", function (e) {
-    // popup = document.getElementById("popup");
-    // popup.style.display = "grid";
-    callback(this.id);
-  });
-}

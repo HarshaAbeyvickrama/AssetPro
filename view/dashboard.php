@@ -83,10 +83,13 @@ if (session_status() === PHP_SESSION_NONE) {
             left: 0;
             bottom: 0;
             right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 9999;
+            align-items: center;
+            justify-items: center;
+            padding: 20px;
         }
     </style>
     <script>

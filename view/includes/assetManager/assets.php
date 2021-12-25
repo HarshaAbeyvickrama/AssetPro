@@ -57,17 +57,12 @@
 <script>
     // Retrieve and set all counts
     getData('http://localhost/assetpro/stats/all/', (data) => {
-        console.log(data);
         document.getElementById('allAssetsCount').innerHTML = data.allAssets;
         document.getElementById('allEmployeesCount').innerHTML = data.allEmployees;
         document.getElementById('allTechniciansCount').innerHTML = data.allTechnicians;
         document.getElementById('allTangible').innerHTML = data.tangibleAssets;
         document.getElementById('allConsumable').innerHTML = data.consumableAssets;
     });
-    
-    
-
-
 
     function getAssets(type) {
         const xhr = new XMLHttpRequest();
@@ -181,15 +176,20 @@
 
 
     //Add event listener to listen for click events on each asset in all tables
-    function addViewAssetListener(assetElement) {
-        assetElement.addEventListener('click', (event) => {
-            var asset = event.target.parentElement;
-            event.stopPropagation();
-            document.cookie = `assetID=${asset.id}`;
-            loadSection('centerSection', 'viewAsset');
-        })
-    }
+    // function addViewAssetListener(assetElement) {
+    //     assetElement.addEventListener('click', (event) => {
+    //         var asset = event.target.parentElement;
+    //         event.stopPropagation();
+    //         document.cookie = `assetID=${asset.id}`;
+    //         loadSection('centerSection', 'viewAsset');
+    //     })
+    // }
 
+    function addViewAssetListener(element, callback) {
+        element.addEventListener("click", function(e) {
+            callback(this.id);
+        });
+    }
     //Get asset details by ID
 </script>
 <div class="overviewLayout">
