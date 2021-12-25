@@ -218,7 +218,7 @@
                 //Reported Breakdowns
                 echo "<div class='component' id='reportedBreakdown'>
                     <img src='../Images/icons/NotSelected/reportedBreakdowns.png' >
-                    <div class='componentText'></div>
+                    <div class='componentText'>Reported Breakdowns</div>
                 </div>";
 
                 break;
