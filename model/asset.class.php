@@ -201,7 +201,7 @@ class Asset extends DBConnection{
 
     // Get all the details of a particular asset by assetID
     protected function get($assetId){
-        // $dbConnection = $this->connect();
+        $dbConnection = $this->connect();
         $sql = "SELECT
                     a.*,
                     ad.*,
@@ -223,7 +223,7 @@ class Asset extends DBConnection{
                     c.CategoryID = a.CategoryID
                 WHERE
                     a.AssetID = ?";
-        $stmt = $this->dbConnection->prepare($sql);
+        $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$assetId]);
         return $stmt;
     }
