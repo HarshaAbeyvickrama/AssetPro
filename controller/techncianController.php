@@ -7,16 +7,47 @@ class TechnicianController extends Technician {
     {
         
     }
-    //Getting all the employees
+    //Getting all the technicians
     public function getAllTechnicians() {
         $result = $this->getAll();
         return json_encode($result->fetchAll());
     }
 
-    //Getting an employee
+    //Getting a technician
     public function getTechnician($id) {
         $result = $this->get($id);
         return json_encode($result->fetchAll());
+    }
+
+    //Adding a technician
+    public function addTechnician($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
+        $newTechnician = new Technician (
+            firstName:$firstName,
+            lastName:$lastName,
+            NIC:$NIC,
+            address:$address,
+            gender:$gender,
+            contactNo:$contactNo,
+            email:$email,
+            dob:$dob,
+            departmentID:$departmentID,
+            maritalStatus:$maritalStatus,
+            eName:$eName,
+            eRelationship:$eRelationship,
+            eContact:$eContact);
+        
+        $result = $newTechnician->add();
+        return json_encode($result);
+    }
+
+    //Updating technician details
+    public function updateTechnician() {
+
+    }
+
+    //Deleting a technician
+    public function deleteTechnician($id) {
+        $result = $this->delete($id);
     }
 
     
