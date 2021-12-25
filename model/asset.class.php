@@ -1,5 +1,4 @@
 <?php
-require_once './controller/autoloadController.php';
 // enum Types: string{
 //     case ALL ="all";
 //     case ASSIGNED ="assigned";
@@ -172,6 +171,27 @@ class Asset extends DBConnection{
         return $result;
     }
 
+    function getByCategory($category){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                    ad.AssetID,
+                    ad.Cost,
+                    d.UsefulYears,
+                    d.ResidualValue,
+                    ad.PurchasedDate
+                FROM
+                    assetdetails ad
+                INNER JOIN depreciation d ON
+                    d.AssetID = ad.AssetID
+                INNER JOIN asset ON asset.AssetID = ad.AssetID
+                INNER JOIN category c ON
+                    asset.CategoryID = c.CategoryID
+                    where asset.CategoryID = :categoryID";
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->bindParam(':categoryID', $category);
+        $stmt->execute();
+        return $stmt;
+    }
     // Get all the assets assigned to a particular user by the userID
     protected function getAssigned($userID){
         $dbConnection = $this->connect();
@@ -201,7 +221,7 @@ class Asset extends DBConnection{
 
     // Get all the details of a particular asset by assetID
     protected function get($assetId){
-        // $dbConnection = $this->connect();
+        $dbConnection = $this->connect();
         $sql = "SELECT
                     a.*,
                     ad.*,
@@ -223,7 +243,7 @@ class Asset extends DBConnection{
                     c.CategoryID = a.CategoryID
                 WHERE
                     a.AssetID = ?";
-        $stmt = $this->dbConnection->prepare($sql);
+        $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$assetId]);
         return $stmt;
     }
