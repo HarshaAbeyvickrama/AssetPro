@@ -48,6 +48,7 @@
                         break;
                 }
                 break;
+                
             case 'breakdown':
                 $bc = new BreakdownController();
                 switch($action){
@@ -55,7 +56,8 @@
                         echo $bc->getAllAssignedBreakdowns($url[2]);
                         break;
                 }
-            
+                break;
+
             case 'view':
                 $vc = new ViewController();
                 $vc->renderView($url[1]);
