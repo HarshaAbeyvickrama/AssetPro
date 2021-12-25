@@ -1,25 +1,21 @@
 
 
 //==============================assignedAssets.php================================================
-//========Reporting the particular asset from the table of assigned assets=======================
-  
+//========Reporting the particular asset from the table of assigned assets======================= 
 function loadAssets(userID){
         const xhr = new XMLHttpRequest();
         xhr.open("GET", `http://localhost/assetpro/asset/assigned/${userID}`, true);
         xhr.onload = function() {
             if (this.status === 200) {
                 var assets = JSON.parse(this.response);
-                console.log(assets);
                 for (var i = 0; i < assets.length; i++) {
-                    console.log(assets[i]['CategoryCode']);
-                    var tableBody = document.getElementById('employeeTableBody');
-                    console.log(tableBody);
                     document.getElementById('employeeTableBody').innerHTML += `
                                     <tr>
                                         <td>${i+1}</td>
                                         <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                         <td>${assets[i]['assetName']}</td>
                                         <td>${assets[i]['assetType']}</td>
+                                        <td>${assets[i]['Status']}</td>
                                         <td>  
                                         <button class='btn btn-submit ' onClick="report(${assets[i]['AssetID']})">Report</button>
                                         </td> 
@@ -40,7 +36,8 @@ function loadAssets(userID){
         xhr.open('GET',`http://localhost/assetpro/asset/getAsset/${assetId}`,true);
         xhr.onload = function(){
             if(this.status == 200){
-                assetDetails = JSON.parse(this.responseText);
+                assetDetails = JSON.parse(this.response);
+                console.log(assetDetails);
                 loadSection('centerSection','report');
                 var json = JSON.stringify(assetDetails);       //object to string ==> the details of (partcular asset) will be stored as a string
                 document.cookie=`assetID=${json}`;
@@ -56,10 +53,10 @@ function loadAssets(userID){
 //===================viewing the reported assets in table==============================
     function viewBreakAsset(userID){
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", `localhost/AssetPro/breakdown/assigned/${userID}`, true);
+        xhr.open("GET", `http://localhost/assetpro/breakdown/assigned/${userID}`, true);
         xhr.onload = function() {
             if (this.status === 200) {
-                var viewassets = JSON.parse(this.responseText);
+                var viewassets = JSON.parse(this.response);
                 console.log(viewassets);
                 for (var i = 0; i < viewassets.length; i++) {
                     var date = new Date(viewassets[i]['reportedDate']);
@@ -74,7 +71,7 @@ function loadAssets(userID){
                                         <td>${viewassets[i]['assetName']}</td>
                                         <td>${viewassets[i]['assetType']}</td>
                                         <td>  
-                                        <button class='btnAction' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
+                                        <button class='btn btn-submit' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
                                         </td> 
                                     </tr>`;
                 }
@@ -82,26 +79,25 @@ function loadAssets(userID){
         }
         xhr.send();
     }
-    // viewBreakAsset();
-
+//==========================reportedBreakdown.php=============================================== 
+//==========click view will redirect to the viewBreakAssets.php file FORM of part. asset========
+    function viewBreak(breakdownId,assetId){   
+        var viewBreakAssetDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET',`http://localhost/assetpro/`,true);
+        xhr.onload = function(){
+            if(this.status == 200){
+             viewBreakAssetDetails = JSON.parse(this.responseText);
+             console.log(viewBreakAssetDetails);
+             loadSection('centerSection','viewBreakAssets');   
+             var json = JSON.stringify(viewBreakAssetDetails );       //object to string
+             document.cookie=`BreakdownID=${json}`;
+           }  
+       }
+       xhr.send();
+     }
     
-    //click Report button to redirect to the page of report.php 
-//     function report(asset){
-//         var assetDetails=null;
-//         const xhr = new XMLHttpRequest();
-//         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=getAssignedAssetById&asset_id=${asset}`,true);
-//         xhr.onload = function(){
-//             if(this.status == 200){
-//                 assetDetails = JSON.parse(this.responseText);
-//                 loadSection('centerSection','report');
-//                 // document.cookie=`assetID=${asset}`;
-//                 var json = JSON.stringify(assetDetails);       //object to string
-//                 document.cookie=`assetID=${json}`;
-//             }                
-//         }
-//         xhr.send();
-       
-//      }  
+    
 
  
      
@@ -183,25 +179,7 @@ function loadAssets(userID){
    
 
 
-// //==================click view will redirect to the viewBreakAssets.php file===================== 
-//     function viewBreak(viewasset,viewassetid){
-       
-//         var viewBreakAssetDetails = null;
-//         const xhr = new XMLHttpRequest();
-//         xhr.open('GET',`../model/AssignedAssetsEmp.php?action=viewBreakAssetById&view_id=${viewasset}&assetid=${viewassetid}`,true);
-//         xhr.onload = function(){
-//             if(this.status == 200){
-//              viewBreakAssetDetails = JSON.parse(this.responseText);
-//              console.log(viewBreakAssetDetails);
-//              loadSection('centerSection','viewBreakAssets');   
-//              var json = JSON.stringify(viewBreakAssetDetails );       //object to string
-//              document.cookie=`BreakdownID=${json}`;
-//            }  
-//        }
-//        xhr.send();
-//      }
-
-     
+    
     
 //      //======================viewBreakAssets.php===============================
 //      //the basic information of the asset will be displayed default including reason & defected parts
