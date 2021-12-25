@@ -1,6 +1,6 @@
 <?php
-require_once '../model/dbConnection.class.php';
-require_once '../model/stats.class.php';
+// require_once '../model/dbConnection.class.php';
+// require_once '../model/stats.class.php';
 
 class StatController extends Stats{
    
@@ -24,5 +24,5 @@ class StatController extends Stats{
     }
 }
 
-$sc = new StatController();
-print_r($sc->getTotalAssetValues());
+// $sc = new StatController();
+// print_r($sc->getTotalAssetValues());

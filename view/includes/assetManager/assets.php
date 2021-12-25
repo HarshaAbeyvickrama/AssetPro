@@ -57,6 +57,7 @@
 <script>
     // Retrieve and set all counts
     getData('http://localhost/assetpro/stats/all/', (data) => {
+        console.log(data);
         document.getElementById('allAssetsCount').innerHTML = data.allAssets;
         document.getElementById('allEmployeesCount').innerHTML = data.allEmployees;
         document.getElementById('allTechniciansCount').innerHTML = data.allTechnicians;
