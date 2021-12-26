@@ -44,8 +44,7 @@ class Stats extends DBConnection
         return $pstm;
     }
 
-    function getAllValues()
-    {
+    function getAllValues(){
         $sql = "select (select count(*)from asset)  as allAssets ,
                 (select count(*) from asset where assignedUser IS NOT NULL) as assignedAssets ,
                 (select count(*) from asset where assignedUser IS NULL AND DepartmentID IS NULL) as unassignedAssets,
@@ -62,32 +61,28 @@ class Stats extends DBConnection
 
     // Dashboard stats function
 
-    function getBreakdowns($employee = null, $technician = null)
+    function getTotalValues(){
+        $sql = "select (SELECT SUM(Cost) FROM `assetdetails`)  as total ,
+        (SELECT sum(Cost) from assetdetails INNER join asset on asset.AssetID = assetdetails.AssetID INNER join category on asset.CategoryID = category.CategoryID where asset.CategoryID = 1) as fixed ,
+        (SELECT sum(Cost) from assetdetails INNER join asset on asset.AssetID = assetdetails.AssetID INNER join category on asset.CategoryID = category.CategoryID where asset.CategoryID = 2) as intangible , 
+        (SELECT sum(Cost) from assetdetails INNER join asset on asset.AssetID = assetdetails.AssetID INNER join category on asset.CategoryID = category.CategoryID where asset.CategoryID = 3) as consumable from DUAl";
+        $dbConnection = $this->connect();
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+
+    }
+    
+    function getBreakdowns($departmentID = null)
     {
         $dbConnection = $this->connect();
-
-        if ($employee != null && $technician != null) {
-            $sql = "SELECT Date , GROUP_CONCAT(BreakdownID) as IDs from breakdown where EmployeeID = :employee AND TechnicianID = :technician GROUP by Date ORDER by Date ";
-            $stmt = $dbConnection->prepare($sql);
-            $stmt->bindParam(':employee', $employee);
-            $stmt->bindParam(':technician', $technician);
-            $stmt->execute();
-        } elseif ($employee != null) {
-            $sql = "SELECT Date , GROUP_CONCAT(BreakdownID) as IDs from breakdown where EmployeeID = :employee GROUP by Date ORDER by Date ";
-            $stmt = $dbConnection->prepare($sql);
-            $stmt->bindParam(':employee', $employee);
-            $stmt->execute();
-        } elseif ($technician != null) {
-            $sql = "SELECT Date , GROUP_CONCAT(BreakdownID) as IDs from breakdown where TechnicianID = :technician GROUP by Date ORDER by Date ";
-            $stmt = $dbConnection->prepare($sql);
-            $stmt->bindParam(':technician', $technician);
-            $stmt->execute();
+        if ($departmentID != null) {
+            //Add the methods to get breakdowns of the particular department
         } else {
             $sql = 'SELECT Date , GROUP_CONCAT(BreakdownID)  as IDs from breakdown GROUP by Date ORDER by Date';
             $stmt = $dbConnection->prepare($sql);
             $stmt->execute();
         }
-        // $stmt->execute();
         return $stmt;
     }
 }

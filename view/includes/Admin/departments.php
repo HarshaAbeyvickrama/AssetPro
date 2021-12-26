@@ -219,7 +219,7 @@
     </div>
 
     <div class="contentSection ">
-        <div class="table-data">
+        <div class="table">
             <table class="depData">
                 <tr">
                     <th>#</th>
@@ -233,39 +233,7 @@
                     <th>Delete</th> -->
                     </tr>
 
-                    <?php
-
-                    require_once('../db/dbConnection.php');
-                    global $mysql;
-
-                    $sql = "SELECT DepartmentID,
-                            DepartmentCode,
-                            Name, 
-                            ContactNum, 
-                            DATE(DateCreated) AS datecreated, 
-                            DATE(LastModified) AS lastmodified 
-                            FROM department";
-
-                    $result = $mysql->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
-                                <td></td>
-                                <td>".$row['DepartmentCode']."</td>
-                                <td>" . $row["Name"] . "</td>
-                                <td>" . $row["ContactNum"] . "</td>
-                                <td>" . str_replace("-","/",$row["datecreated"]) . "</td>
-                                <td>" . str_replace("-","/",$row["lastmodified"]) . "</td>
-                                <td id=".$row['DepartmentID']."><button id='view' class='viewBtn'>View</button></td>
-                              </tr>";
-                        }
-                    } else {
-                        echo "No Results :(";
-                    }
-                    $mysql->close();
-
-                    ?>
+                    
             </table>
         </div>
     </div>

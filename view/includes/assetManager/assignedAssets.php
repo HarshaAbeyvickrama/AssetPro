@@ -31,7 +31,13 @@
             var tableRow = document.createElement('tr');
             tableRow.id = asset.AssetID;
             tableRow.innerHTML = row;
-            addViewAssetListener(tableRow);
+            addViewAssetListener(tableRow, (id) => {
+                popup = document.getElementById('popup');
+                popup.style.display = 'grid';
+                event.stopPropagation();
+                document.cookie = `assetID=${id}`;
+                loadSection('popup', 'viewAsset');
+            });
             tb.appendChild(tableRow);
         });
 

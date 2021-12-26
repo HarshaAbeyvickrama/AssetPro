@@ -127,7 +127,7 @@
 
     <div class="contentSection ">
         <!-- <div> -->
-        <table class="table-data">
+        <table class="table">
             <tr">
                 <th>#</th>
                 <!-- <th>User ID</th> -->
@@ -137,44 +137,7 @@
                 <th>View</th>
                 <!-- <th>Edit</th>
                     <th>Delete</th> -->
-                </tr>
                 
-                    <?php
-
-                    // $conn = mysqli_connect("localhost", "root", "", "assetpro");
-                    require_once('../db/dbConnection.php');
-                    global $mysql;
-
-                    $sql = "SELECT
-                                USER.UserID,
-                                CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
-                                userdetails.Gender,
-                                CONCAT('TEC/',tec.TechnicianID) AS TechnicianID
-                            FROM
-                                technicianuser tec
-                            INNER JOIN userdetails ON userdetails.UserID = tec.UserID
-                            JOIN USER ON USER.UserID = userdetails.UserID
-                            WHERE
-                                USER.RoleID = 4";
-
-                    $result = $mysql->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
-                                <td></td>
-                                <td>" . $row["TechnicianID"] . "</td>
-                                <td>" . $row["Name"] . "</td>
-                                <td>" . $row["Gender"] . "</td>
-                                <td id=" . $row['TechnicianID'] . "><button class='viewBtn'>View</button></td>
-                              </tr>";
-                        }
-                    } else {
-                        echo "No Results :(";
-                    }
-                    $mysql->close();
-
-                    ?>
                 
         </table>
         <!-- </div> -->
