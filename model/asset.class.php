@@ -401,4 +401,19 @@ class Asset extends DBConnection{
         return $pstm;
     }
 
+    protected function getCategories(){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                    c.*,
+                    GROUP_CONCAT(CONCAT('{',t.TypeID, ',' ,  t.TypeCode , '}') ) as types
+                FROM
+                    `category` c
+                INNER JOIN TYPE t ON
+                    t.CategoryID = c.CategoryID
+                    GROUP by c.CategoryID";
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+
+    }
 }

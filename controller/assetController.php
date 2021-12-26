@@ -103,4 +103,12 @@ class AssetController extends Asset
         $res = $this->getCount('all');
         return json_encode($res->fetchAll());
     }
+
+    public function getAssetCategories(){
+        $res = $this->getCategories();
+        return json_encode($res->fetchAll());
+    }
 }
+
+// $ac = new AssetController();
+// print_r($ac->getAssetCategories());
