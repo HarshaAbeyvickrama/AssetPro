@@ -3,7 +3,6 @@
         //Database connection
         private $DBConnection;
 
-        private $DepartmentID;
         private $departmentCode;
         private $Name;
         private $description;
@@ -11,7 +10,7 @@
         private $DateCreated;
         private $LastModified;
 
-        private function __construct($departmentCode, $Name, $description, $ContactNum, $DateCreated, $LastModified)
+        public function __construct($departmentCode, $Name, $description, $ContactNum, $DateCreated, $LastModified)
         {
             $this->DBConnection = $this->connect();
             $this->departmentCode = $departmentCode;
@@ -33,7 +32,7 @@
                         DATE(LastModified) AS lastmodified 
                     FROM 
                         department";
-            $pstm = $this->DBConnection->prepare($sql);
+            $pstm = $this->connect()->prepare($sql);
             $pstm->execute();
             return $pstm;
         }
@@ -46,7 +45,8 @@
                         DepartmentCode,
                         description
                     FROM
-                        department";
+                        department
+                    WHERE DepartmentID = $DepartmentID";
             $pstm = $this->DBConnection->prepare($sql);
             $pstm->execute();
             return $pstm;
@@ -56,6 +56,9 @@
         protected function add() {
             try {
                 $this->DBConnection->beginTransaction();
+
+                $DateCreated = date("Y-m-d H:i:s");
+                $LastModified = date("Y-m-d H:i:s");
 
                 //Inserting into the department table
                 $addDepartment = "INSERT INTO department VALUES (DepartmentCode, Name, Description, ContactNum, DateCreated, LastModified)";

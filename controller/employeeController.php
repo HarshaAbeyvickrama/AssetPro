@@ -1,12 +1,13 @@
 <?php
 
-include_once 'autoloadController.php';
+// include_once 'autoloadController.php';
 
 class EmployeeController extends Employee {
     public function __construct()
     {
         
     }
+    
     //Getting all the employees
     public function getAllEmployees() {
         $result = $this->getAll();

@@ -70,15 +70,20 @@
                         echo $vc->getAllStats();
                         break;
                 }
+                break;
+            
             case 'employees':
                 $ec = new EmployeeController();
                 switch($action) {
                     case 'all':
-                        echo $ec->getAllEmployees($url[2]);
+                        echo $ec->getAllEmployees();
                         break;
                     case 'getEmployee':
                         echo $ec->getEmployee($url[2]);
+                        break;
                 }
+                break;
+
             case 'technicians':
                 $tc = new TechnicianController();
                 switch($action) {
@@ -88,8 +93,10 @@
                     case 'getTechnician':
                         echo $tc->getTechnician($url[2]);
                 }
+                break;
+
             case 'departments':
-                $dc = new departmentController();
+                $dc = new DepartmentController();
                 switch($action) {
                     case 'all':
                         echo $dc->getAllDepartments();
@@ -97,6 +104,8 @@
                     case 'getDepartment':
                         echo $dc->getDepartment($url[2]);
                 }
+                break;
+                
             default:
                 # code...
                 break;

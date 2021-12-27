@@ -44,7 +44,7 @@ class Technician extends DBConnection {
                     USER.UserID,
                     CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
                     userdetails.Gender,
-                    CONCAT('TEC/',tec.TechnicianID) AS TechnicianID
+                    tec.TechnicianID
                 FROM
                     technicianuser tec
                 INNER JOIN userdetails ON userdetails.UserID = tec.UserID
@@ -52,7 +52,7 @@ class Technician extends DBConnection {
                 WHERE
                     USER.RoleID = 4";
 
-        $pstm = $this->dbConnection->prepare($sql);
+        $pstm = $this->connect()->prepare($sql);
         $pstm->execute();
         return $pstm;
     }
