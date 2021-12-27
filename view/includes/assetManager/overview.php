@@ -71,13 +71,27 @@
         padding: 10px 20px;
         display: grid;
         align-items: center;
+        color: #304068;
     }
     .boxTitle{
-        border: 1px solid red;
-        font-size: 18px;
+        color: #707ea1;
+        font-size: 15px;
+        font-weight: bold;
+
     }
     .boxCount{
-        border: 1px solid red;
+        margin-top: 22px;
+        position: relative;
+        font-size: 30px;
+    }
+    .boxCount::before{
+        position: absolute;
+        left: 0;
+        top: -22px;
+        color: #707ea1;
+        font-size: 15px;
+        font-weight: bold;
+        content: attr(title)
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -90,12 +104,12 @@
         <canvas id="assetDistributionChart"></canvas>
     </div>
     <div class="gridRow three box">
-        <div class="boxTitle">Total Value</div>
-        <div class="boxCount">Rs.785,000</div>
+        <!-- <div class="boxTitle">Total Value</div> -->
+        <div class="boxCount" title="Total Value">Rs.785,000</div>
     </div>
     <div class="gridRow four box">
-        <div class="boxTitle">Net Value</div>
-        <div class="boxCount">Rs.555,000</div>
+        <!-- <div class="boxTitle">Net Value</div> -->
+        <div class="boxCount" title="Net Value">Rs.555,000</div>
     </div>
     <div class="gridRow five">
         <canvas id="assetCategoriesChart"></canvas>

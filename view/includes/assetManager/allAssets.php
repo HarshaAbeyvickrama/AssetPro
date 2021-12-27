@@ -15,7 +15,7 @@
 </table>
 <script>
     getData('http://localhost/assetpro/asset/getAllAssets/all', (data) => {
-        data.forEach((asset , index) => {
+        data.forEach((asset, index) => {
             var bd = document.getElementById('allAssetsTableBody');
             var row = `
                 <td>${index}</td>
@@ -28,11 +28,17 @@
             var tableRow = document.createElement('tr');
             tableRow.id = asset['AssetID'];
             tableRow.innerHTML = row;
-            addViewAssetListener(tableRow);
+
+            addViewAssetListener(tableRow, (id) => {
+                popup = document.getElementById('popup');
+                popup.style.display = 'grid';
+                event.stopPropagation();
+                document.cookie = `assetID=${id}`;
+                loadSection('popup', 'viewAsset');
+            });
+
             bd.appendChild(tableRow);
         });
-       
-    })
-   
 
+    })
 </script>

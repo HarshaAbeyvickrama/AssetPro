@@ -1,5 +1,4 @@
 <?php
-require_once './controller/autoloadController.php';
 // enum Types: string{
 //     case ALL ="all";
 //     case ASSIGNED ="assigned";
@@ -172,6 +171,27 @@ class Asset extends DBConnection{
         return $result;
     }
 
+    function getByCategory($category){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                    ad.AssetID,
+                    ad.Cost,
+                    d.UsefulYears,
+                    d.ResidualValue,
+                    ad.PurchasedDate
+                FROM
+                    assetdetails ad
+                INNER JOIN depreciation d ON
+                    d.AssetID = ad.AssetID
+                INNER JOIN asset ON asset.AssetID = ad.AssetID
+                INNER JOIN category c ON
+                    asset.CategoryID = c.CategoryID
+                    where asset.CategoryID = :categoryID";
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->bindParam(':categoryID', $category);
+        $stmt->execute();
+        return $stmt;
+    }
     // Get all the assets assigned to a particular user by the userID
     protected function getAssigned($userID){
         $dbConnection = $this->connect();
@@ -381,4 +401,19 @@ class Asset extends DBConnection{
         return $pstm;
     }
 
+    protected function getCategories(){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                    c.*,
+                    GROUP_CONCAT(CONCAT('{',t.TypeID, ',' ,  t.TypeCode , '}') ) as types
+                FROM
+                    `category` c
+                INNER JOIN TYPE t ON
+                    t.CategoryID = c.CategoryID
+                    GROUP by c.CategoryID";
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+
+    }
 }
