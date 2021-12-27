@@ -23,25 +23,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
     require_once './controller/autoloadController.php';
     $controller = $url[0];
     $action = $url[1];
-
-    // switch ($controller) {
-    //     case 'asset':
-    //         // require_once './controller/assetController.php';
-    //         $ac = new AssetController();
-    //         switch ($action) {
-    //             case 'getAllAssets':
-    //                 echo $ac->getAllAssets($url[2]);
-    //                 break;
-    //             case 'count':
-    //                 echo $ac->getAllAssetCounts();
-    //                 break;
-    //             case 'assigned':
-    //                 echo $ac->getAllAssignedAssets($url[2]);
-    //                 break;
-    //             case 'getAsset':
-    //                 echo $ac->getAsset($url[2]);
-    //                 break;
-
+    
         switch ($controller) {
             case 'asset':
                 // require_once './controller/assetController.php';
