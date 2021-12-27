@@ -9,10 +9,11 @@
                     <tr>
                         <th>#</th>
                         <th>Date</th>
-                        <th>Error ID</th>
+                        <!-- <th>Error ID</th> -->
                         <th>Asset ID</th>
                         <th>Asset Name</th>
                         <th>Asset Type</th>
+                        <th>Status</th>
                         <th>view Breakdown</th>
                     </tr>
                 </thead>

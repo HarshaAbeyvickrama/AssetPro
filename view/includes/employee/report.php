@@ -224,16 +224,11 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
-                    <!-- <div class="col-h">
-                        <span for="errorId">Error ID</span>
-                        <input type="text" name="errorId" id="errorId" value="D/FA/2346">
-                    </div> -->
                     
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
                         <input type="text" name="assetID" id="assetID" disabled>
                     </div>
-                   
                     <div class="col-f">
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName" disabled>
@@ -250,6 +245,7 @@
                         <span for="condition">Condition</span>
                         <input type="text" name="condition" id="condition" disabled>
                     </div>
+                    
             </div>
         </div>
      </div>
@@ -274,16 +270,16 @@
     </div>
 </form>
 
-<!-- <script>
+<script>
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
 
     var assetID = getCookieValue('assetID');  
     var asset =   JSON.parse(assetID)[0];  //string to object
-    console.log(asset); 
+    // console.log(asset); 
     document.getElementById('assetID').value = asset.AssetID;
-    document.getElementById('assetName').value = asset.assetName;
+    document.getElementById('assetName').value = asset.Name;
     document.getElementById('assetType').value = asset.assetType;
     document.getElementById('category').value = asset.categoryName;
     document.getElementById('condition').value = asset.AssetCondition;
@@ -337,8 +333,7 @@
    
     function saveReport(report){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST",`../model/Report.php?action=reportBreakAsset&asset_id=${asset.AssetID}`,true);    //POST
-  
+        xhr.open("POST",`http://localhost/assetpro/breakdown/reportBreakdown/${asset.AssetID}`,true);
         xhr.onload = function(){
             if(this.status === 200){
                alert(this.responseText); // 2nd alert
@@ -348,6 +343,5 @@
     }
    function cancelReport(){
     loadSection('centerSection','assignedAssets');
-    // console.log(report);
    }
-</script> -->
+</script>

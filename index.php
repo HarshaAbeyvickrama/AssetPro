@@ -58,6 +58,9 @@
                     case 'getBreakdown':
                         echo $bc->getBreakdown($url[2],$url[3]);
                         break;
+                    case 'reportBreakdown':
+                        echo $bc->reportBreakdown($url[2]);
+                        break;
                 }
                 break;
 

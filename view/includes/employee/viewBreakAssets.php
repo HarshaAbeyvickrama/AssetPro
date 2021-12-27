@@ -272,7 +272,7 @@
         </div>
     </div>
 </form>
-<!-- <script>
+ <script>
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
@@ -352,4 +352,4 @@
     loadSection('centerSection','reportedBreakdown');
     // console.log(report);
    }
-</script> -->
+</script> 
