@@ -1,36 +1,4 @@
 <style>
-    * {
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
-
-    .overviewLayout {
-        display: grid;
-        grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr;
-        height: 82vh;
-        width: 87.5vw;
-        overflow-y: scroll;
-        padding: 20px;
-        background-color: #F1F4FF;
-    }
-
-    .overviewLayout>div {
-        display: flex;
-        align-items: center;
-        color: #304068;
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .contentSection {
-        display: flex;
-        justify-content: center;
-        background-color: white;
-        border-radius: 15px;
-        margin-top: 15px;
-        height: 82vh;
-        align-items: flex-start !important;
-    }
-
     .addDep #addDep {
         color: white;
         background-color: #6A71D7;
@@ -41,62 +9,6 @@
         border: none;
         margin-left: 60vw;
     }
-
-    /* CSS for the departments table */
-    .table-data {
-        color: #304068;
-        margin: 20px 4px;
-        height: 500px;
-        width: 99%;
-        /* margin-top: -100px; */
-        overflow-y: auto;
-        overflow-x: hidden;
-        text-align: left;
-    }
-
-    .depData {
-        /* width: 100%; */
-        border-collapse: collapse;
-        font-size: 20px;
-        margin-left: 5vh;
-        text-align: center;
-        text-align: left;
-    }
-
-    .table-data th {
-        color: #5C6E9B;
-        padding: 8px;
-        position: sticky;
-        top: 0;
-        background-color: white;
-    }
-
-    .table-data td {
-        padding: 8px;
-        font-weight: lighter;
-        color: #5c6e9b;
-        width: 5%;
-    }
-
-    .table-data tr:hover {
-        background-color: #EAEDF5;
-        cursor: pointer;
-    }
-
-    table tr:nth-child(2) {
-        counter-reset: rowNumber;
-    }
-
-    table tr {
-        counter-increment: rowNumber;
-    }
-
-    table tr td:first-child::before {
-        content: counter(rowNumber);
-        min-width: 1em;
-        margin-right: 0.5px;
-    }
-
     .viewBtn,
     .editBtn,
     .deleteBtn {
@@ -220,20 +132,17 @@
 
     <div class="contentSection ">
         <div class="table">
-            <table class="depData">
-                <tr">
-                    <th>#</th>
-                    <th>Department ID</th>
-                    <th>Department Name</th>
-                    <th>Contact Number</th>
-                    <th>Date Created</th>
-                    <th>Last Modified</th>
-                    <th>View</th>
-                    <!-- <th>Edit</th>
-                    <th>Delete</th> -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Department ID</th>
+                        <th>Department Name</th>
+                        <th>Contact Number</th>
+                        <th>View</th>
                     </tr>
-
-                    
+                </thead>
+                <tbody class="tableRowGroup" id="departmentTableBody"></tbody>
             </table>
         </div>
     </div>
@@ -267,6 +176,10 @@
         </form>
     </div>
 </div>
+
+<script>
+    window.addEventListener('load', loadDepartments());
+</script>
 
 <!-- <script type="text/javascript">
     //JS for pop-up form

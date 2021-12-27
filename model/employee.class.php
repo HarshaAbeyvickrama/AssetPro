@@ -1,6 +1,6 @@
 <?php
 
-require_once './controller/autoloadController.php';
+// require_once './controller/autoloadController.php';
 
 class Employee extends DBConnection {
     //Database connection
@@ -53,7 +53,7 @@ class Employee extends DBConnection {
                 INNER JOIN department d ON
                     eu.DepartmentID = d.DepartmentID";
 
-        $pstm = $this->dbConnection->prepare($sql);
+        $pstm = $this->connect()->prepare($sql);
         $pstm->execute();
         return $pstm;
     }
