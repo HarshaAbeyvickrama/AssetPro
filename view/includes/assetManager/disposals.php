@@ -8,105 +8,60 @@
                     <th>#</th>
                     <th>Asset ID</th>
                     <th>Asset Name</th>
-                    <th>Asset Type</th>
                     <th>Useful Years</th>
                     <th>Submit for disposal</th>
                 </tr>
             </thead>
-            <tbody id="employeeTableBody">
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/1</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/2</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/3</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/4</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/5</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/6</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/7</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/8</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>FA/CC/9</td>
-                    <td>Computer</td>
-                    <td>Fixed Asset</td>
-                    <td>5</td>
-                    <td>
-                        <button class='btn btn-submit'>Submit</button>
-                    </td>
-                </tr>
-
+            <tbody id="disposalTableBody" >
 
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    getData('http://localhost/assetpro/depricated/all', (data) => {
+        console.log(data);
+        data.forEach((asset, index) => {
+            var tb = document.getElementById('disposalTableBody');
+            row = `
+                <tr>
+                    <td>${index+1}</td>
+                    <td>${asset.CategoryCode}/${asset.TypeCode}/${asset.AssetID}</td>
+                    <td>${asset.Name}</td>
+                    <td>${asset.UsefulYears}</td>
+                    <td>
+                        ${
+                            (()=>{
+                                if(asset.isDisposed == 1){
+                                    return `Submitted`;
+                                }else{
+                                    return `<button class='btn btn-submit' onclick="submitForDisposal(${asset.AssetID})">Submit</button>`;
+                                }
+                            })()
+                            
+                        }
+                    </td>
+                </tr>`;
+            var tableRow = document.createElement('tr');
+            tableRow.id = asset.AssetID;
+            tableRow.innerHTML = row;
+            addViewAssetListener(tableRow , (id)=>{
+                console.log("Assed Id "+ id);
+            });
+            tb.appendChild(tableRow);
+        });
+    })
+
+
+    function submitForDisposal(assetID) {
+        postData(`http://localhost/assetpro/depricated/dispose/${assetID}`, {
+            assetID:assetID
+        }, (data) => {
+            if(data.status == 'success'){
+                alert('Successfully Submitted for disposal');
+                location.reload();
+            }
+        })
+    }
+</script>

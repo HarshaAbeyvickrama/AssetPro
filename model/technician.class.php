@@ -17,10 +17,10 @@ class Technician extends DBConnection {
     private $contactNo;
     private $email;
     private $eName;
-    private $eRelarionship;
+    private $eRelationship;
     private $eContact;
 
-    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelarionship, $eContact)
+    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
         $this->DBConnection = $this->connect();
         $this->departmentID = $departmentID;
@@ -34,7 +34,7 @@ class Technician extends DBConnection {
         $this->contactNo = $contactNo;
         $this->email = $email;
         $this->eName = $eName;
-        $this->eRelarionship = $eRelarionship;
+        $this->eRelationship = $eRelationship;
         $this->eContact = $eContact;
     }
 
@@ -44,7 +44,7 @@ class Technician extends DBConnection {
                     USER.UserID,
                     CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
                     userdetails.Gender,
-                    CONCAT('TEC/',tec.TechnicianID) AS TechnicianID
+                    tec.TechnicianID
                 FROM
                     technicianuser tec
                 INNER JOIN userdetails ON userdetails.UserID = tec.UserID
@@ -52,7 +52,7 @@ class Technician extends DBConnection {
                 WHERE
                     USER.RoleID = 4";
 
-        $pstm = $this->dbConnection->prepare($sql);
+        $pstm = $this->connect()->prepare($sql);
         $pstm->execute();
         return $pstm;
     }
@@ -138,17 +138,37 @@ class Technician extends DBConnection {
             $stmt = $this->DBConnection->prepare($userEmergency);
             
             $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('eRelationship', $eRelarionship);
+            $stmt->bindParam('eRelationship', $eRelationship);
             $stmt->bindParam('eName', $eName);
             $stmt->bindParam('eContact', $eContact);
 
             $stmt->execute();
 
-
-
         } catch (PDOException | Exception $e) {
-            
+            $this->DBConnection->rollBack();
+
+            $result = array(
+                "status"=>"Failed",
+                "Error"=>$e->getMessage(),
+                "Message"=>"Cannot add an Employee"
+            );
+
+            return $result;
         }
+    }
+
+    //Updating technician details
+    protected function update($TechnicianID) {
+
+    }
+
+    //Deleting a technician
+    protected function delete($TechnicianID) {
+        $sql = "DELETE FROM ";
+        $stmt = $this->DBConnection->prepare($sql);
+        $stmt->bindParam("TechnicianID", $TechnicianID);
+        $stmt->execute();
+        return $stmt;
     }
 
 }

@@ -76,6 +76,21 @@ if (session_status() === PHP_SESSION_NONE) {
         .scrollBar::-webkit-scrollbar-thumb {
             background-color: #5C6E9B !important;
         }
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-items: center;
+            padding: 20px;
+        }
     </style>
     <script>
         getCount();
@@ -122,6 +137,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
     </div>
+    <div class="popup-container" id="popup"></div>
     <script>
         evaluateJs('centerSection');
 

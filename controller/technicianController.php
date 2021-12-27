@@ -1,28 +1,27 @@
 <?php
 
-// include_once 'autoloadController.php';
+include_once 'autoloadController.php';
 
-class EmployeeController extends Employee {
+class TechnicianController extends Technician {
     public function __construct()
     {
         
     }
-    
-    //Getting all the employees
-    public function getAllEmployees() {
+    //Getting all the technicians
+    public function getAllTechnicians() {
         $result = $this->getAll();
         return json_encode($result->fetchAll());
     }
 
-    //Getting an employee
-    public function getEmployee($id) {
+    //Getting a technician
+    public function getTechnician($id) {
         $result = $this->get($id);
         return json_encode($result->fetchAll());
     }
 
-    //Adding an employee
+    //Adding a technician
     public function addTechnician($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
-        $newEmployee = new Employee (
+        $newTechnician = new Technician (
             firstName:$firstName,
             lastName:$lastName,
             NIC:$NIC,
@@ -37,19 +36,21 @@ class EmployeeController extends Employee {
             eRelationship:$eRelationship,
             eContact:$eContact);
         
-        $result = $newEmployee->add();
+        $result = $newTechnician->add();
         return json_encode($result);
     }
 
-    //Updating employee details
-    public function updateEmployee($id) {
-        
+    //Updating technician details
+    public function updateTechnician() {
+
     }
 
-    //Deleting an employee
-    public function deleteEmployee($id) {
+    //Deleting a technician
+    public function deleteTechnician($id) {
         $result = $this->delete($id);
     }
+
+    
 
 }
 

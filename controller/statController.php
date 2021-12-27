@@ -1,6 +1,6 @@
 <?php
-require_once '../model/dbConnection.class.php';
-require_once '../model/stats.class.php';
+// require_once '../model/dbConnection.class.php';
+// require_once '../model/stats.class.php';
 
 class StatController extends Stats{
    
@@ -13,10 +13,16 @@ class StatController extends Stats{
     function getAllBreakdowns(){
         if($_SESSION['Role'])
         $stats = new Stats();
-        $stats = $stats->getBreakdowns(technician:12 , employee:14 );
+        $stats = $stats->getBreakdowns();
         return json_encode($stats->fetchAll());
+    }
+
+    function getTotalAssetValues(){
+        $stats = new Stats();
+        $res = $stats->getTotalValues();
+        return json_encode($res->fetchAll()[0]);
     }
 }
 
-$sc = new StatController();
-print_r($sc->getAllBreakdowns());
+// $sc = new StatController();
+// print_r($sc->getTotalAssetValues());

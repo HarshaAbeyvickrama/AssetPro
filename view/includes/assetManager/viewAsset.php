@@ -1,15 +1,19 @@
 <style>
-    form{
-        height: 87vh;
+    form {
+        height: 90%;
+        width: 90%;
+        border-radius: 15px;
     }
+
     .profile {
         all: revert;
         display: grid;
         grid-template-columns: 1fr 1fr;
         background-color: #F1F4FF;
-        overflow:hidden;
+        overflow: hidden;
         padding: 0px;
-        height: 87vh;
+        height: 90vh;
+        border-radius: 15px;
     }
 
     .profile>div {
@@ -17,10 +21,12 @@
         border-radius: 10px;
 
     }
+
     .leftSection,
-    .rightSection{
+    .rightSection {
         overflow-y: auto;
     }
+
     /* .leftSection::-webkit-scrollbar,
     .rightSection::-webkit-scrollbar{
         display: none;
@@ -33,7 +39,7 @@
         align-items: center;
         margin: 15px 7.5px 15px 15px;
         padding: 10px;
-        
+
     }
 
 
@@ -103,7 +109,7 @@
         color: #5C6E9B;
     }
 
-    .col-f select{
+    .col-f select {
         justify-content: center;
         align-items: center;
         width: calc(94% - 30px);
@@ -131,8 +137,9 @@
         /* margin: 10px 0px; */
         border: 1px solid red;
         background-color: white;
-        
+
     }
+
     .col-btn>div {
         border-radius: 15px;
         padding: 10px 20px;
@@ -146,7 +153,9 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text],input[type=number],input[type=date] {
+    .col-f input[type=text],
+    input[type=number],
+    input[type=date] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -159,7 +168,9 @@
         outline: none;
     }
 
-    .col-h input[type=text],input[type=number],input[type=date] {
+    .col-h input[type=text],
+    input[type=number],
+    input[type=date] {
         justify-content: center;
         align-items: center;
         width: calc(94% - 30px);
@@ -171,49 +182,58 @@
         margin-top: 10px;
         outline: none;
     }
-    .shortInput{
+
+    .shortInput {
         width: 35% !important;
         margin-left: 5px;
         margin-right: 5px;
     }
+
     .col-h,
     .col-f>span {
         display: block;
         margin-top: 5px;
     }
-    
-    .radio-group{
+
+    .radio-group {
         margin: 5px 0px;
     }
-    .radio-group > label { 
+
+    .radio-group>label {
         margin-left: 5px;
     }
-    .radio-group > input[type=radio]:hover{
+
+    .radio-group>input[type=radio]:hover {
         cursor: pointer;
     }
 
-    .col-btn > div:hover {
+    .col-btn>div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
-    #pRight{
+
+    #pRight {
         background-color: #F1F4FF;
         display: grid;
         grid-template-rows: 1fr 1fr;
         overflow-x: hidden;
     }
-    #pRight > div{
+
+    #pRight>div {
         background-color: white;
         border-radius: 10px;
     }
-    #pRight > div:nth-child(1){
+
+    #pRight>div:nth-child(1) {
         margin: 15px 10px 5px 5px;
     }
-    #pRight > div:nth-child(2){
+
+    #pRight>div:nth-child(2) {
         margin: 5px 15px 10px 5px;
     }
-    .col-btn{
+
+    .col-btn {
         z-index: 1;
         position: absolute;
         left: 0px;
@@ -222,42 +242,43 @@
     }
 </style>
 <script>
-   
     // Event listener to chande asset Types
     var categorySelect = document.getElementById('category');
-    categorySelect.addEventListener('change',function(event){
+    categorySelect.addEventListener('change', function(event) {
         setTypes(categorySelect.value);
     })
 
     // Get categories and types
     var categories = null;
-    
+
     getCatogories().then(res => {
         categories = res;
         setCats();
     })
 
-     // Load asset details
-     var assetID = getCookieValue('assetID');
-    getAsset(assetID)
-    
+    // Load asset details
+    var assetID = getCookieValue('assetID');
+    console.log("Aset id is : " + assetID);
+    // getAsset(assetID)
+
     // Function to set categories
-    
-    function setCats(){
+    getData(`http://localhost/assetpro/asset/getAsset/${assetID}`, populateData);
+
+    function setCats() {
         var select = document.getElementById("category");
-        categories.forEach(category =>{
-           var option = `<option value=${category.categoryID}>${category.categoryName}</option>`;
-           select.innerHTML += option;
+        categories.forEach(category => {
+            var option = `<option value=${category.categoryID}>${category.categoryName}</option>`;
+            select.innerHTML += option;
         });
         setTypes(categories[0].categoryID);
     }
 
-    function setTypes(id){
+    function setTypes(id) {
         var select = document.getElementById("assetType");
-        categories.forEach(category =>{
-            if(category.categoryID == id){
-                select.innerHTML='';
-                category.types.forEach(type =>{
+        categories.forEach(category => {
+            if (category.categoryID == id) {
+                select.innerHTML = '';
+                category.types.forEach(type => {
                     var option = `<option value=${type.typeID}>${type.name}</option>`;
                     select.innerHTML += option;
                 })
@@ -265,7 +286,7 @@
         });
     }
 
-    
+
 
     // Enable / Disable the form fields
 
@@ -274,37 +295,37 @@
     //      true --> form disabled 
     //      false --> form enabled 
     var imageUpload = document.getElementById('image');
-    imageUpload.addEventListener('change',()=>{
+    imageUpload.addEventListener('change', () => {
         const image = imageUpload.files[0];
-        if(image){
+        if (image) {
             var src = URL.createObjectURL(image);
             document.getElementById('imagePreview').src = src;
         }
 
     })
 
-    function formState(id,state){
+    function formState(id, state) {
         document.getElementById(id).disabled = state;
     }
-    sectionState('addAssetForm',true)
-    function sectionState(sectionID, state){
+    sectionState('addAssetForm', true)
+
+    function sectionState(sectionID, state) {
         var inputs = document.getElementById(sectionID).querySelectorAll("input, select");
-        inputs.forEach(input =>{
-            console.log(input);
+        inputs.forEach(input => {
             input.disabled = state;
         })
     }
 
     // formState("userProfileForm",true);
 
-    document.querySelectorAll(".col-btn").forEach(button =>{
+    document.querySelectorAll(".col-btn").forEach(button => {
         const cancelBtn = document.getElementById("cancelAddAsset");
         const saveBtn = document.getElementById("btnSaveAsset");
-        button.addEventListener('click',function(event){
+        button.addEventListener('click', function(event) {
             switch (event.target.id) {
                 case 'cancelAddAsset':
                     setFocus('assets');
-                    loadSection("centerSection",'assets'); 
+                    loadSection("centerSection", 'assets');
                     break;
                 case 'btnSaveAsset':
                     const asset = getFormdata();
@@ -313,122 +334,121 @@
                     //     break;
                     // }
                     saveAsset(asset);
-                    
+
                     break;
-            
+
                 default:
                     break;
             }
-        
-        
+
+
         })
     })
     // formState(true);
     var depriciation = element('depriciation');
-    depriciation.addEventListener('change',function(){
-            formState('depriciationMethod',!depriciation.checked);
-            formState('depriciaionRate',!depriciation.checked);
-            formState('residualValue',!depriciation.checked);
-            formState('usefulYears',!depriciation.checked);
+    depriciation.addEventListener('change', function() {
+        formState('depriciationMethod', !depriciation.checked);
+        formState('depriciaionRate', !depriciation.checked);
+        formState('residualValue', !depriciation.checked);
+        formState('usefulYears', !depriciation.checked);
     })
     var warrenty = element('warrenty');
-    warrenty.addEventListener('change',function(){
-            formState('fromDate',!warrenty.checked);
-            formState('toDate',!warrenty.checked);
-            formState('otherInfo',!warrenty.checked);
+    warrenty.addEventListener('change', function() {
+        formState('fromDate', !warrenty.checked);
+        formState('toDate', !warrenty.checked);
+        formState('otherInfo', !warrenty.checked);
     })
 
-    document.getElementById('image').addEventListener('change',function(e){
+    document.getElementById('image').addEventListener('change', function(e) {
         // console.log(e.target.files[0].value)
     })
-    
+
 
     //get Form data
 
-    function getFormdata(){
+    function getFormdata() {
         return new FormData(document.getElementById('addAssetForm'));
     }
 
 
     //Save asset function ----->  Saving asset details through AJAX
 
-    function saveAsset(asset){
+    function saveAsset(asset) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST","../model/Asset.php?action=addAsset",true);
+        xhr.open("POST", "../model/Asset.php?action=addAsset", true);
 
-        xhr.onload = function(){
-            if(this.status === 200){
+        xhr.onload = function() {
+            if (this.status === 200) {
                 alert(this.responseText);
             }
         }
         xhr.send(asset);
     }
-    
-    async function getCatogories(){
-        return new Promise(function(resolve, reject){
+
+    async function getCatogories() {
+        return new Promise(function(resolve, reject) {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET","../model/Asset.php?action=getCats",true);
-            xhr.onload = function(){
-                if(this.status === 200){
+            xhr.open("GET", "../model/Asset.php?action=getCats", true);
+            xhr.onload = function() {
+                if (this.status === 200) {
                     var cats = JSON.parse(this.responseText);
                     // console.log(cats);
                     resolve(cats);
                 }
             }
             xhr.send();
-        });    
+        });
     }
-    
+
 
     // Get asset Details
-    function getAsset(assetID){
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getAsset&id=${assetID}`,true);
-        xhr.onload = function(){
-            if(this.status === 200){
-                console.log("call")
-                var asset = JSON.parse(this.responseText);
-                console.log(asset);
-                element('assetID').value = `${asset.CategoryCode}/${asset.TypeCode}/${assetID}`;
-                element('imagePreview').src = `../${asset.ImageURL}`;
-                element('assetName').value = asset.Name;
-                element('assetDescription').value = asset.Description;
-                setTypes(asset.CategoryID);
-                element('category').value = asset.CategoryID;
-                element('assetType').value = asset.TypeID;
-                element('condition').value = asset.AssetCondition;
-                element('purchaseDate').value = asset.PurchasedDate;
-                element('purchaseCost').value = asset.Cost;
+    function populateData(asset) {
+        // const xhr = new XMLHttpRequest();
+        // xhr.open("GET",`../model/Asset.php?action=getAsset&id=${assetID}`,true);
+        // xhr.onload = function(){
+        //     if(this.status === 200){
+        //         var asset = JSON.parse(this.responseText);
 
-                if(asset.fromDate != null){
-                    element('warrenty').checked = true;
-                    element('fromDate').value = asset.fromDate;
-                    element('toDate').value = asset.toDate;
-                    element('otherInfo').value = asset.OtherInfo;
-                }
 
-                if(asset.DepriciaionRate != null){
-                    element('depriciation').checked = true;
-                    element('depriciaionRate').value = asset.DepriciaionRate;
-                    element('residualValue').value = asset.ResidualValue;
-                    element('usefulYears').value = asset.UsefulYears;
-                }
+        //     }
+        // }
+        // xhr.send();
+        console.log(asset);
+        element('assetID').value = `${asset.CategoryCode}/${asset.TypeCode}/${asset.AssetID}`;
+        element('imagePreview').src = `../${asset.ImageURL}`;
+        element('assetName').value = asset.Name;
+        element('assetDescription').value = asset.Description;
+        setTypes(asset.CategoryID);
+        element('category').value = asset.CategoryID;
+        element('assetType').value = asset.TypeID;
+        element('condition').value = asset.AssetCondition;
+        element('purchaseDate').value = asset.PurchasedDate;
+        element('purchaseCost').value = asset.Cost;
 
-            }
+        if (asset.fromDate != null) {
+            element('warrenty').checked = true;
+            element('fromDate').value = asset.fromDate;
+            element('toDate').value = asset.toDate;
+            element('otherInfo').value = asset.OtherInfo;
         }
-        xhr.send();
+
+        if (asset.DepriciaionRate != null) {
+            element('depriciation').checked = true;
+            element('depriciaionRate').value = asset.DepriciaionRate;
+            element('residualValue').value = asset.ResidualValue;
+            element('usefulYears').value = asset.UsefulYears;
+        }
     }
 
-    function element(id){
+    function element(id) {
         return document.getElementById(id);
     }
-
 </script>
 
 <form action="" id="addAssetForm">
 
     <div class="profile">
-        <div id="pLeft" class="leftSection scrollBar"> 
+        <div id="pLeft" class="leftSection scrollBar">
             <div class="profileImageSection">
                 <img src="../Images/addImage.png" alt="" id="imagePreview">
                 <input type="file" name="image" id="image" hidden>
@@ -459,7 +479,7 @@
                     <div class="col-f">
                         <span for="category">Category</span>
                         <select name="category" id="category">
-                            
+
                         </select>
                     </div>
                     <div class="col-f">
@@ -467,7 +487,7 @@
                         <select name="assetType" id="assetType">
                         </select>
                     </div>
-                    
+
                     <div class="col-f">
                         <span for="condition">condition</span>
                         <select name="condition" id="condition">
@@ -484,7 +504,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="pRight" class="rightSection scrollBar">
             <div id="rightTop">
                 <div class="basic-information">
@@ -522,27 +542,23 @@
                         </select>
                     </div>
                     <div class="col-f">
-                            <span for="depriciaionRate">Depriciation Rate</span>
-                            <input type="number" name="depriciaionRate" id="depriciaionRate" step=".01">
+                        <span for="depriciaionRate">Depriciation Rate</span>
+                        <input type="number" name="depriciaionRate" id="depriciaionRate" step=".01">
                     </div>
                     <div class="col-f">
-                            <span for="residualValue">Residual Value</span>
-                            <input type="number" name="residualValue" id="residualValue" >
+                        <span for="residualValue">Residual Value</span>
+                        <input type="number" name="residualValue" id="residualValue">
                     </div>
                     <div class="col-f">
-                            <span for="usefulYears">Useful Years</span>
-                            <input type="number" name="usefulYears" id="usefulYears" step="1">
+                        <span for="usefulYears">Useful Years</span>
+                        <input type="number" name="usefulYears" id="usefulYears" step="1">
                     </div>
                 </div>
             </div>
-                      
-        </div>
 
         </div>
+
+    </div>
     </div>
 
 </form>
-
-
-
-    
