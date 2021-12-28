@@ -223,30 +223,33 @@ class Asset extends DBConnection{
     protected function get($assetId){
         $dbConnection = $this->connect();
         $sql = "SELECT
-                    a.*,
-                    ad.*,
-                    aw.*,
-                    d.*,
-                    t.TypeCode,
-                    c.CategoryCode
-                FROM
-                    asset a
-                LEFT JOIN assetdetails ad ON
-                    a.AssetID = ad.AssetID
-                LEFT JOIN assetwarranty aw ON
-                    aw.AssetID = a.AssetID
-                LEFT JOIN depreciation d ON
-                    a.AssetID = d.AssetID
-                LEFT JOIN type t ON
-                    t.TypeID = a.TypeID
-                LEFT JOIN category c ON
-                    c.CategoryID = a.CategoryID
-                WHERE
-                    a.AssetID = ?";
+                a.*,
+                ad.*,
+                aw.*,
+                d.*,
+                t.TypeCode,
+                t.Name AS assetType,
+                c.CategoryCode,
+                c.Name AS categoryName
+            FROM
+                asset a
+            LEFT JOIN assetdetails ad ON
+                a.AssetID = ad.AssetID
+            LEFT JOIN assetwarranty aw ON
+                aw.AssetID = a.AssetID
+            LEFT JOIN depreciation d ON
+                a.AssetID = d.AssetID
+            LEFT JOIN TYPE t ON
+                t.TypeID = a.TypeID
+            LEFT JOIN category c ON
+                c.CategoryID = a.CategoryID
+            WHERE
+                a.AssetID = ?";
         $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$assetId]);
         return $stmt;
     }
+
 
     // Delete an asset by the ID
     protected function delete($assetId){
