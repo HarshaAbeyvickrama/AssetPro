@@ -244,9 +244,7 @@ class Asset extends DBConnection{
             LEFT JOIN category c ON
                 c.CategoryID = a.CategoryID
             WHERE
-                a.AssetID = ?
-            ORDER BY
-                a.AssetID";
+                a.AssetID = ?";
         $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$assetId]);
         return $stmt;

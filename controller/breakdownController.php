@@ -17,5 +17,11 @@ class BreakdownController extends Breakdown{
       $result = $this->reportAsset($aid);
       // return json_encode($result->fetchAll());
     }
+
+    public function getAllAssignedTechBreakdowns(){
+      $result = $this->getAssignedBreakdowns();
+      return json_encode($result->fetchAll());
+
+    }
 }
 ?> 

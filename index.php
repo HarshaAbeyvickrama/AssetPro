@@ -60,6 +60,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     case 'reportBreakdown':
                         echo $bc->reportBreakdown($url[2]);
                         break;
+                    case 'getAssignedBreakdownT':
+                        echo $bc->getAllAssignedTechBreakdowns();
+                        break;
                 }
                 break;
 

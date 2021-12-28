@@ -40,7 +40,7 @@ function loadAssets(userID){
                 var json = JSON.stringify(assetDetails);       //object to string ==> the details of (partcular asset) will be stored as a string
                 document.cookie=`assetID=${json}`;
             }    
-            console.log(assetDetails);            
+            // console.log(assetDetails);            
         }
         xhr.send();
        

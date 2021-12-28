@@ -94,6 +94,29 @@ class Breakdown extends DBConnection{
         //     echo("Error in Submitting!!");
         // }
     }
+//===================techinicians========================
+    protected function getAssignedBreakdowns(){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                    assetdetails.AssetID,
+                    assetdetails.Name,
+                    TYPE.Name AS typeName,
+                    breakdown.EmployeeID AS reportedEmployee,
+                    department.DepartmentCode,
+                    category.CategoryCode,
+                    TYPE.TypeCode
+                FROM
+                    breakdown
+                INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
+                INNER JOIN asset ON asset.AssetID = breakdown.AssetID
+                INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
+                INNER JOIN category ON category.CategoryID = asset.CategoryID
+                INNER JOIN employeeuser ON employeeuser.EmployeeID = breakdown.EmployeeID
+                INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID";
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
          
 
 }
