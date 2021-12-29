@@ -31,6 +31,7 @@ function loadAssets(userID){
 //by using the par assetID,can get the assetDetails and put that to a string and then create a cookie for 'assetID'
     function report(assetId){       
         var assetDetails=null;
+         console.log('assetId = ' + assetId);
         const xhr = new XMLHttpRequest();      
         xhr.open('GET',`http://localhost/assetpro/asset/getAsset/${assetId}`,true);
         xhr.onload = function(){

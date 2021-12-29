@@ -122,9 +122,9 @@
     //     xhr.send();
     // }
 
-    function getAssets(){
+    function getAssets(userID){
         const xhr = new XMLHttpRequest();
-        xhr.open("GET",`http://localhost/assetpro/breakdown/getAssignedBreakdownT`,true);
+        xhr.open("GET",`http://localhost/assetpro/breakdown/getAssignedBreakdownT/${userID}`,true);
         xhr.onload = function(){
             if(this.status === 200){
                 var assets = JSON.parse(this.responseText);
