@@ -281,42 +281,44 @@
 
 <div class="overviewLayout">
     <div>
-        <div> Dashboard Overview </div>
+        <!-- <div> Dashboard Overview </div> -->
     </div>
     <div class="statSection">
-        <div>
+        <!-- <div>
             <div class="statBox box1" >
                 <div class="statNumber" id="allAssets"> 16 </div>
                 <div class="statText"> All Assets </div>
             </div>
-        </div>
+        </div> -->
 
-        <div>
+        <!-- <div>
             <div class="statBox box2" id="assignedAssets">
                     <div class="statNumber" id="assignedAssets"> 4 </div>
                     <div class="statText"> Assigned Assets </div>
             </div>
-        </div>
+        </div> -->
             
-        <div>
+        <!-- <div>
             <div class="statBox box3" id="inProgress">
                 <div class="statNumber" id="inProgress"> 6 </div>
                     <div class="statText"> In Progress </div>
             </div>
-        </div>
-        <div>
+        </div> -->
+        <!-- <div>
             <div class="statBox box4" id="repairedAssets">
                 <div class="statNumber" id="repairedAssets"> 6 </div>
                     <div class="statText"> Repaired Assets </div>
             </div>
-        </div>
+        </div> -->
     </div>
+
     <div>
-        <div> All Assigned Assets </div>
+        <div> All Assigned Breakdowns </div>
     </div>
+
     <div class="contentSection">
         <div id="assetSections">
-            <div id="techAssignedAssets" class="activeTab"> Assigned Assets </div>
+            <div id="techAssignedAssets" class="activeTab"> Assigned Breakdowns </div>
             <div id="assetsinprogress"> In Progress </div>
         </div>
         <div id="assetContents">

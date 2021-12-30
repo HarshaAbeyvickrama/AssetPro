@@ -226,18 +226,23 @@
             //Technician
             case '4':
                 
-                //Assigned Assets
+                //Assigned Breakdowns
                 echo "<div class='component' id='assets'>
-                    <img src='../Images/icons/NotSelected/Assets.png' >
+                    <img src='../Images/icons/NotSelected/Breakdowns.png' >
                     <span class='componentText'>Breakdowns</span>
                 </div>";
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
-                    <img src='../Images/icons/NotSelected/Repaired.png' >
+                    <img src='../Images/icons/NotSelected/broken.png' >
                     <span class='componentText'>Repaired Assets</span>
                 </div>";
-                //Repaired Assets
+                
+                //Assigned Assets
+                echo "<div class='component' id='assignedAssets'>
+                    <img src='../Images/icons/NotSelected/assignedassets.png' >
+                    <span class='componentText'>Assigned assets</span>
+                </div>";
                 
                
 

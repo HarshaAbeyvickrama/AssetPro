@@ -23,38 +23,48 @@ if ($url == '/' || $url[0] == 'dashboard') {
     require_once './controller/autoloadController.php';
     $controller = $url[0];
     $action = $url[1];
-
-    switch ($controller) {
-        case 'asset':
-            // require_once './controller/assetController.php';
-            $ac = new AssetController();
-            switch ($action) {
-                case 'getAllAssets':
-                    echo $ac->getAllAssets($url[2]);
-                    break;
-                case 'count':
-                    echo $ac->getAllAssetCounts();
-                    break;
-                case 'assigned':
-                    echo $ac->getAllAssignedAssets($url[2]);
-                    break;
-                case 'getAsset':
-                    echo $ac->getAsset($url[2]);
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
-            break;
-        case 'breakdown':
-            $bc = new BreakdownController();
-            switch ($action) {
-                case 'assigned':
-                    echo $bc->getAllAssignedBreakdowns($url[2]);
-                    break;
-            }
-            break;
+    
+        switch ($controller) {
+            case 'asset':
+                // require_once './controller/assetController.php';
+                $ac = new AssetController();
+                switch ($action) {
+                    case 'getAllAssets':
+                        echo $ac->getAllAssets($url[2]);
+                        break;
+                    case 'count':
+                        echo $ac->getAllAssetCounts();
+                        break;
+                    case 'assigned':
+                        echo $ac->getAllAssignedAssets($url[2]);
+                        break;
+                    case 'getAsset':
+                        echo $ac->getAsset($url[2]);
+                        break;
+                   
+                    default:
+                        # code...
+                        break;
+                }
+                break;
+                
+            case 'breakdown':
+                $bc = new BreakdownController();
+                switch($action){
+                    case 'assigned':
+                        echo $bc->getAllAssignedBreakdowns($url[2]);
+                        break;
+                    case 'getBreakdown':
+                        echo $bc->getBreakdown($url[2],$url[3]);
+                        break;
+                    case 'reportBreakdown':
+                        echo $bc->reportBreakdown($url[2]);
+                        break;
+                    case 'getAssignedBreakdownT':
+                        echo $bc->getAllAssignedTechBreakdowns();
+                        break;
+                }
+                break;
 
         case 'view':
             $vc = new ViewController();

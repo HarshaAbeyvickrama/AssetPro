@@ -210,7 +210,63 @@
         right: calc(0%);
         cursor: pointer;
     } */
-  
+        /* CSS for pop-up form */
+        .bg-popup {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+        z-index: 10;
+        left: 0px;
+    }
+
+    .popup-content {
+        width: 600px;
+        height: 130px;
+        background-color: white;
+        border-radius: 20px;
+        /* text-align: center; */
+        padding: 20px;
+        position: relative;
+    }
+
+    .depInfo {
+        text-align: center;
+        margin-left: 20px;
+        color: #304068;
+    }
+
+    .addBtn {
+        width: 80px;
+        height: 40px;
+        background-color: #5C6E9B;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        color: #F1F4FF;
+        margin-left: 95vh;
+    }
+
+    .addBtn:hover {
+        cursor: pointer;
+        background-color: #304068;
+        transition: .5s;
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 14px;
+        font-size: 50px;
+        transform: rotate(45deg);
+        cursor: pointer;
+        color: #5C6E9B;
+    }
 </style>
 
 
@@ -224,16 +280,11 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
-                    <!-- <div class="col-h">
-                        <span for="errorId">Error ID</span>
-                        <input type="text" name="errorId" id="errorId" value="D/FA/2346">
-                    </div> -->
                     
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
                         <input type="text" name="assetID" id="assetID" disabled>
                     </div>
-                   
                     <div class="col-f">
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName" disabled>
@@ -250,6 +301,7 @@
                         <span for="condition">Condition</span>
                         <input type="text" name="condition" id="condition" disabled>
                     </div>
+                    
             </div>
         </div>
      </div>
@@ -274,16 +326,26 @@
     </div>
 </form>
 
-<!-- <script>
-// function getCookieValue(name){
-//         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
-//     }
+<!-- ===========================pop-up-form========================================= -->
+<div class="bg-popup" id="closeForm">
+    <div class="popup-content" id="popup-content">
+        <div class="close" id="cancelAddTechnician">+</div>
+        <h2 class="depInfo">Do you really want to report?</h2>
+            <div class="col-btn">
+                <button class="addBtn" id="btnSaveDepartment" type="submit">Yes</button>
+                <button class="addBtn" id="btnSaveDepartment" type="submit">No</button>
+            </div>
+    </div>
+</div>
+
+
+<script>
 
     var assetID = getCookieValue('assetID');  
     var asset =   JSON.parse(assetID)[0];  //string to object
     console.log(asset); 
     document.getElementById('assetID').value = asset.AssetID;
-    document.getElementById('assetName').value = asset.assetName;
+    document.getElementById('assetName').value = asset.Name;
     document.getElementById('assetType').value = asset.assetType;
     document.getElementById('category').value = asset.categoryName;
     document.getElementById('condition').value = asset.AssetCondition;
@@ -320,6 +382,7 @@
         
         })
     })
+
     function getFormdata(){
         reportForm = new FormData(document.getElementById('reportAssetForm'));
         defectedPart =  document.getElementById('defP').value;
@@ -333,12 +396,10 @@
         }   
         return reportForm;
     }
-    
-   
+     
     function saveReport(report){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST",`../model/Report.php?action=reportBreakAsset&asset_id=${asset.AssetID}`,true);    //POST
-  
+        xhr.open("POST",`http://localhost/assetpro/breakdown/reportBreakdown/${asset.AssetID}`,true);
         xhr.onload = function(){
             if(this.status === 200){
                alert(this.responseText); // 2nd alert
@@ -346,8 +407,24 @@
         }
         xhr.send(report);
     }
+
    function cancelReport(){
     loadSection('centerSection','assignedAssets');
-    // console.log(report);
    }
-</script> -->
+
+
+   //JS for pop-up form
+   document.getElementById('reportAsset').addEventListener('click',
+        function popForm() {
+            document.querySelector('.bg-popup').style.display = 'flex';
+        });
+
+    function popForm() {
+        document.getElementById('bg-popup').style.display = 'flex';
+    }
+
+    document.querySelector('.close').addEventListener('click',
+        function popForm() {
+            document.querySelector('.bg-popup').style.display = 'none';
+        });
+</script>
