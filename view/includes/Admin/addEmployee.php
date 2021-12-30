@@ -312,97 +312,97 @@
 
 </form>
 
-<!-- <script>
-    document.querySelectorAll(".col-btn").forEach(button => {
-        const cancBtn = document.getElementById('cancelAddEmployee');
-        const saveBtn = document.getElementById("btnSaveEmployee");
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            switch (event.target.id) {
-                case 'cancelAddEmployee':
+<script>
+    // document.querySelectorAll(".col-btn").forEach(button => {
+    //     const cancBtn = document.getElementById('cancelAddEmployee');
+    //     const saveBtn = document.getElementById("btnSaveEmployee");
+    //     button.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         switch (event.target.id) {
+    //             case 'cancelAddEmployee':
 
-                    break;
-                case 'btnSaveEmployee':
-                    const employee = getFormdata();
-                    // saveDepartment(department);
-                    var isEmpty = false;
-                    for (var pair of employee.entries()) {
-                        // console.log(pair[0] + ': ' + pair[1]);
-                        if (pair[1] == '') {
-                            isEmpty = true;
-                        }
-                    }
-                    if (!isEmpty) {
-                        saveEmployee(employee);
-                    } else {
-                        alert('Fill the form!');
-                    }
+    //                 break;
+    //             case 'btnSaveEmployee':
+    //                 const employee = getFormdata();
+    //                 // saveDepartment(department);
+    //                 var isEmpty = false;
+    //                 for (var pair of employee.entries()) {
+    //                     // console.log(pair[0] + ': ' + pair[1]);
+    //                     if (pair[1] == '') {
+    //                         isEmpty = true;
+    //                     }
+    //                 }
+    //                 if (!isEmpty) {
+    //                     saveEmployee(employee);
+    //                 } else {
+    //                     alert('Fill the form!');
+    //                 }
 
-                    break;
+    //                 break;
 
-                default:
-                    break;
-            }
-        })
-    })
+    //             default:
+    //                 break;
+    //         }
+    //     })
+    // })
 
     //getting the form data
 
-    function getFormdata() {
-        return new FormData(document.getElementById('addEmployeeForm'));
-    }
+    // function getFormdata() {
+    //     return new FormData(document.getElementById('addEmployeeForm'));
+    // }
 
     //Getting the image preview
-    var imageUpload = document.getElementById('profileImage');
-    imageUpload.addEventListener('change', () => {
-        const image = imageUpload.files[0];
-        if (image) {
-            var src = URL.createObjectURL(image);
-            document.getElementById('imagePreview').src = src;
-        }
+    // var imageUpload = document.getElementById('profileImage');
+    // imageUpload.addEventListener('change', () => {
+    //     const image = imageUpload.files[0];
+    //     if (image) {
+    //         var src = URL.createObjectURL(image);
+    //         document.getElementById('imagePreview').src = src;
+    //     }
 
-    });
+    // });
 
     //Saving the employee function
     //Saving employee details through AJAX
 
-    function saveEmployee(employee) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../model/Employee.php?action=addEmployee", true);
+    // function saveEmployee(employee) {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("POST", "../model/Employee.php?action=addEmployee", true);
 
-        xhr.onload = function() {
-            if (this.status === 200) {
-                console.log(this.responseText);
-                alert("Successfully added to the system!");
-            }
-        }
-        xhr.send(employee);
-    }
+    //     xhr.onload = function() {
+    //         if (this.status === 200) {
+    //             console.log(this.responseText);
+    //             alert("Successfully added to the system!");
+    //         }
+    //     }
+    //     xhr.send(employee);
+    // }
 
     //Function to go back
     function goBack() {
         loadSection('centerSection', 'employees');
     }
 
-getDepartments();
-    function getDepartments() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../model/Department.php?action=getDepartments", true);
+// getDepartments();
+//     function getDepartments() {
+//         var xhr = new XMLHttpRequest();
+//         xhr.open("POST", "../model/Department.php?action=getDepartments", true);
 
-        xhr.onload = function() {
-            if (this.status === 200) {
-                var departments = JSON.parse(this.responseText);
-                // console.log(departments);
-                var select = document.getElementById('depID');
+//         xhr.onload = function() {
+//             if (this.status === 200) {
+//                 var departments = JSON.parse(this.responseText);
+//                 // console.log(departments);
+//                 var select = document.getElementById('depID');
 
-                for(var i = 0; i<departments.length; i++) {
-                    console.log(departments[i]);
-                    var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
-                    select.innerHTML+=option;
+//                 for(var i = 0; i<departments.length; i++) {
+//                     console.log(departments[i]);
+//                     var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
+//                     select.innerHTML+=option;
 
-                }
-            }
-        }
-        xhr.send();
-    }
-</script> -->
+//                 }
+//             }
+//         }
+//         xhr.send();
+//     }
+</script>

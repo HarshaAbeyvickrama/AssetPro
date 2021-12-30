@@ -362,17 +362,15 @@ for (var i = 0; i < viewEmployeeBtn.length; i++) {
 function loadEmployee(EmployeeID) {
   var employeeDetails = null;
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", `http://localhost/assetpro/employee/getEmployee/${EmployeeID}`, true);
-
+  xhr.open("GET", `http://localhost/assetpro/employees/getEmployee/${EmployeeID}`, true);
   xhr.onload = function () {
     if (this.status === 200) {
       employeeDetails = JSON.parse(this.responseText);
-      console.log(employeeDetails);
-      loadSection("centerSection", "emprofile");
-
+      loadSection('centerSection', 'emprofile');
       var json = JSON.stringify(employeeDetails);
       document.cookie = `EmployeeID=${json}`;
     }
+    console.log(employeeDetails);
   };
   xhr.send();
 }
@@ -563,3 +561,31 @@ document.getElementById("email").value = employee.Email;
 document.getElementById("eName").value = employee.eName;
 document.getElementById("eRelationship").value = employee.Relationship;
 document.getElementById("econtact").value = employee.TelephoneNumber;
+
+
+// ************************* dhead.php ************************ //
+
+//Getting all the department heads
+function loadDepartmentHeads() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", 'http://localhost/assetpro/departmentheads/all', true);
+  xhr.onload = function() {
+    if(this.status == 200) {
+      var departmenthead = JSON.parse(this.response);
+      console.log(departmenthead);
+      for(var i = 0; i < departmenthead.length; i++) {
+        document.getElementById('headTableBody').innerHTML += `
+          <tr>
+            <td>${i+1}</td>
+            <td>${departmenthead[i]['DepartmentCode']}/DH/${departmenthead[i]['HeadID']}</td>
+            <td>${departmenthead[i]['Name']}</td>
+            <td>${departmenthead[i]['ContactNum']}</td>
+            <td>
+              <button class='btn btn-submit ' id='view' onClick="loadDepartmentHead(${departmenthead[i]['HeadID']})">View</button>
+            </td>
+          </tr>`;
+      }
+    }
+  }
+  xhr.send();
+}

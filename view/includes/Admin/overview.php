@@ -1,98 +1,40 @@
+<style>
+    /* Recent activity Table CSS */
+    hr {
+        background-color: #304068;
+        width: 100%;
+        height: 1px;
+    }
 
-<div class="overviewLayout">
-    <div>
-        <div>Dashboard Overview</div>
-    </div>
-    <div class="statSection">
-        <div>
-            <div class="statBox box1" id="allAssets">
-                <div class="statNumber" id="allAssetsCount"></div>
-                <div class="statText">All Assets</div>
-            </div>
-        </div>
+    #centerSection>div:first-of-type {
+        padding: 0px 20px 20px 20px;
+    }
 
-        <div>
-            <div class="statBox box2" id="allEmployees">
-                <div class="statNumber" id="allEmployeesCount"></div>
-                <div class="statText">All Employees</div>
-            </div>
-        </div>
+    
 
-        <div>
-            <div class="statBox box3" id="allTechnicians">
-                <div class="statNumber" id="allTechniciansCount"></div>
-                <div class="statText">All Technicians</div>
-            </div>
-        </div>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 16% 16% 16% 50%;
+        grid-template-rows: 50% 50%;
+    }
+    .wrapper > div{
+        background: #eee;
+        padding: 1em;
+    }
+    .wrapper > div:nth-child(odd) {
+        background: #ddd;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <div>
-            <!-- <div class="statBox box4" id="allTechnicians">
-                <div class="statNumber">56</div>
-                    <div class="statText">All Technicians</div>
-            </div> -->
-        </div>
+<div class="wrapper">
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate magni, illo quibusdam laborum deleniti illum sequi, reiciendis veniam debitis velit quidem quae deserunt at, ut culpa explicabo optio unde nobis doloremque quod quas incidunt nulla? Consequatur illum distinctio laborum, nesciunt molestias, iste velit repellat ea eum ex exercitationem eius eos, necessitatibus sit dolore. Inventore ipsa quibusdam tenetur quos vel atque doloremque beatae recusandae, expedita autem ipsum illum sit fuga voluptates voluptate totam. Rem labore eligendi eos eaque corrupti ex sequi.</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
 
-        <div>
-            <!-- <div class="statBox box5" id="allTechnicians">
-                <div class="statNumber">56</div>
-                    <div class="statText">All Technicians</div>
-            </div> -->
-        </div>
-    </div>
-    <div>
-        <div>Recent Activities</div>
-    </div>
-    <div class="contentSection">
-        <h2>Last 24 hours</h2>
-        <table class="table">
-            <tr>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Task</th>
-                <th>Time</th>
-            </tr>
-            <tr>
-                <td>22/10/2021</td>
-                <td>Wathsala</td>
-                <td>Employee</td>
-                <td>Wathsala was added to the system</td>
-                <td>1 hours ago</td>
-            </tr>
-            <tr>
-                <td>22/10/2021</td>
-                <td>Kasun</td>
-                <td>Employee</td>
-                <td>Kasun was added to the system</td>
-                <td>1 hours ago</td>
-            </tr>
-            <tr>
-                <td>22/10/2021</td>
-                <td>Manoj</td>
-                <td>Technician</td>
-                <td>Manoj was added to the system</td>
-                <td>2 hours ago</td>
-            </tr>
-            <tr>
-                <td>21/10/2021</td>
-                <td>Dasun</td>
-                <td>Technician</td>
-                <td>Dasun was added to the system</td>
-                <td>1 Day ago</td>
-            </tr>
-            <tr>
-                <td>21/10/2021</td>
-                <td>Amali</td>
-                <td>Employee</td>
-                <td>Amali was added to the system</td>
-                <td>1 Day ago</td>
-            </tr>
-        </table>
-    </div>
 </div>
 
-<!-- <script>
-    getCount('allAssets', 'allAssetsCount');
-    getCount('allEmployees', 'allEmployeesCount');
-    getCount('allTechnicians', 'allTechniciansCount');
-</script> -->
+
+</script>

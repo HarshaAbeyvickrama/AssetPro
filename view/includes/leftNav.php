@@ -285,6 +285,35 @@
 
 
                 break;
+
+                case '5':
+                    //Employees
+                    echo "<div class='component' id='employees'>
+                        <img src='../Images/icons/NotSelected/employees.png' >
+                        <span class='componentText'>Employees</span>
+                    </div>";
+    
+                    //Assets
+                    echo "<div class='component' id='assets'>
+                        <img src='../Images/icons/NotSelected/assets.png' >
+                        <span class='componentText'>Assets</span>
+                    </div>";
+
+    
+                    //Assigned assets
+                    echo "<div class='component' id='assignedAssets'>
+                        <img src='../Images/icons/NotSelected/assignedassets.png' >
+                        <span class='componentText'>Assigned Assets</span>
+                    </div>";
+
+                    //Assigned assets
+                    echo "<div class='component' id='reports'>
+                        <img src='../Images/icons/NotSelected/report.png' >
+                        <span class='componentText'>Reports</span>
+                    </div>";
+    
+    
+                    break;
             default:
                 # code...
                 break;
