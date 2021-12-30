@@ -1,6 +1,6 @@
 <?php
 
-require_once './controller/autoloadController.php';
+// require_once './controller/autoloadController.php';
 
 class Technician extends DBConnection {
     //Database connection
@@ -50,7 +50,8 @@ class Technician extends DBConnection {
                 INNER JOIN userdetails ON userdetails.UserID = tec.UserID
                 JOIN USER ON USER.UserID = userdetails.UserID
                 WHERE
-                    USER.RoleID = 4";
+                    USER.RoleID = 4
+                ORDER BY tec.TechnicianID";
 
         $pstm = $this->connect()->prepare($sql);
         $pstm->execute();
@@ -150,7 +151,7 @@ class Technician extends DBConnection {
             $result = array(
                 "status"=>"Failed",
                 "Error"=>$e->getMessage(),
-                "Message"=>"Cannot add an Employee"
+                "Message"=>"Cannot add a Technician"
             );
 
             return $result;

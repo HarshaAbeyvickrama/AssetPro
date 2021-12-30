@@ -79,6 +79,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
             }
             break;
+
         case 'depricated':
             $dc = new DepriciationController();
             switch ($action) {
@@ -91,16 +92,19 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
             }
             break;
+
         case 'employees':
             $ec = new EmployeeController();
             switch ($action) {
                 case 'all':
-                    echo $ec->getAllEmployees($url[2]);
+                    echo $ec->getAllEmployees();
                     break;
                 case 'getEmployee':
                     echo $ec->getEmployee($url[2]);
+                    break;
             }
             break;
+
         case 'technicians':
             $tc = new TechnicianController();
             switch ($action) {
@@ -109,18 +113,34 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getTechnician':
                     echo $tc->getTechnician($url[2]);
+                    break;
             }
             break;
+
         case 'departments':
-            $dc = new departmentController();
+            $dc = new DepartmentController();
             switch ($action) {
                 case 'all':
                     echo $dc->getAllDepartments();
                     break;
                 case 'getDepartment':
                     echo $dc->getDepartment($url[2]);
+                    break;
             }
             break;
+
+        case 'departmentheads':
+            $dhc = new DepartmentHeadController();
+            switch ($action) {
+                case 'all':
+                    echo $dhc->getAllDepartmentHeads();
+                    break;
+                case 'getDepartmentHead':
+                    echo $dhc->getDepartmentHead($url[2]);
+                    break;
+            }
+            break;
+
         default:
         
     }
