@@ -95,7 +95,7 @@ class Breakdown extends DBConnection{
         // }
     }
 //===================techinicians========================
-    protected function getAssignedBreakdowns(){
+    protected function getAssignedBreakdowns($userID){
         $dbConnection = $this->connect();
         $sql = "SELECT
                     assetdetails.AssetID,
@@ -112,10 +112,20 @@ class Breakdown extends DBConnection{
                 INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
                 INNER JOIN category ON category.CategoryID = asset.CategoryID
                 INNER JOIN employeeuser ON employeeuser.EmployeeID = breakdown.EmployeeID
-                INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID";
-        $stmt = $dbConnection->prepare($sql);
-        $stmt->execute();
-        return $stmt;
+                INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID
+                INNER JOIN techrepairbreak ON techrepairbreak.BreakdownID = breakdown.BreakdownID
+                WHERE
+                    techrepairbreak.TechnicianID =(
+                    SELECT
+                        technicianuser.TechnicianID
+                    FROM
+                        technicianuser
+                    WHERE
+                        technicianuser.UserID = ?
+                )";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($userID));
+        return $pstm;
     }
          
 

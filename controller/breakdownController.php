@@ -18,8 +18,8 @@ class BreakdownController extends Breakdown{
       // return json_encode($result->fetchAll());
     }
 
-    public function getAllAssignedTechBreakdowns(){
-      $result = $this->getAssignedBreakdowns();
+    public function getAllAssignedTechBreakdowns($id){
+      $result = $this->getAssignedBreakdowns($id);
       return json_encode($result->fetchAll());
 
     }

@@ -159,7 +159,11 @@
 </div>
 
 <script>
-window.addEventListener('load',getAssets());
+<?php 
+echo 'var userID ='. $_SESSION['UserID']; 
+?>
+
+window.addEventListener('load',getAssets(userID));
 </script>
 
 
