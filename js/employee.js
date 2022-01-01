@@ -78,7 +78,7 @@ function loadAssets(userID){
         xhr.send();
     }
 //==========================reportedBreakdown.php=============================================== 
-//==========click view will redirect to the viewBreakAssets.php file FORM of part. asset========
+//================click view will redirect to the viewBreakAssets.php file FORM ================
     function viewBreak(assetId,breakdownId){   
         var viewBreakAssetDetails = null;
         const xhr = new XMLHttpRequest();

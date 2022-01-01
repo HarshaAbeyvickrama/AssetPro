@@ -42,23 +42,25 @@ class Breakdown extends DBConnection{
     protected function get($assetId,$breakdownId){
         $dbConnection = $this->connect();
         $sql = "SELECT
-            asset.AssetID,
-            assetdetails.Name AS assetName,
-            assetdetails.AssetCondition,
-            type.Name AS assetType,
-            category.Name AS categoryName,
-            breakdown.Reason,
-            breakdown.DefectedParts
-        FROM
-            asset
-        INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
-        INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
-        INNER JOIN category ON asset.CategoryID = category.CategoryID
-        INNER JOIN breakdown ON breakdown.AssetID = asset.AssetID
-        WHERE
-            asset.AssetID = ? AND breakdown.BreakdownID = ?
-        ORDER BY 
-            breakdown.BreakdownID ASC";
+                    asset.AssetID,
+                    assetdetails.Name AS assetName,
+                    assetdetails.AssetCondition,
+                    TYPE.Name AS assetType,
+                    category.Name AS categoryName,
+                    breakdown.Reason,
+                    breakdown.DefectedParts,
+                    category.CategoryCode,
+                    type.TypeCode
+                FROM
+                    asset
+                INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+                INNER JOIN category ON asset.CategoryID = category.CategoryID
+                INNER JOIN breakdown ON breakdown.AssetID = asset.AssetID
+                WHERE
+                    asset.AssetID = ? AND breakdown.BreakdownID = ?
+                ORDER BY
+                    breakdown.BreakdownID ASC";
 
         $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$assetId,$breakdownId]);
