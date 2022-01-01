@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2021 at 10:30 AM
+-- Generation Time: Jan 01, 2022 at 12:33 PM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -164,10 +164,10 @@ CREATE TABLE `breakdown` (
 --
 
 INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `EmployeeID`, `Date`, `Reason`, `DefectedParts`) VALUES
-(1, 1, 3, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering'),
-(2, 1, 3, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys'),
-(3, 4, 3, '2021-10-22 09:16:07.000000', 'Lense Damaged', 'Camera lense'),
-(4, 1, 3, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard');
+(1, 1, 14, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering'),
+(2, 1, 14, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys'),
+(3, 4, 14, '2021-10-22 09:16:07.000000', 'Lense Damaged', 'Camera lense'),
+(4, 1, 14, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard');
 
 -- --------------------------------------------------------
 
@@ -213,7 +213,27 @@ CREATE TABLE `department` (
 INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
 (1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
 (2, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(3, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000');
+(3, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
+(4, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departmentheaduser`
+--
+
+CREATE TABLE `departmentheaduser` (
+  `HeadID` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `DepartmentID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `departmentheaduser`
+--
+
+INSERT INTO `departmentheaduser` (`HeadID`, `UserID`, `DepartmentID`) VALUES
+(1, 28, 1);
 
 -- --------------------------------------------------------
 
@@ -314,7 +334,8 @@ INSERT INTO `login` (`UserID`, `Username`, `Password`, `verify_token`) VALUES
 (24, 'herath_bandara', 'fb3d3f4a6298b90312dde1ef4b40df2c', ''),
 (25, 'sachini_thennakoon', 'c26d007adce5c991f21e43d8baf76d98', ''),
 (26, 'herath_thennakoon', 'b9e28ac44f43f0f0895f2b70ea45a378', ''),
-(27, 'dinithi_perera', 'c0f03fb6b7d747efd399833ff8a79d8a', '');
+(27, 'dinithi_perera', 'c0f03fb6b7d747efd399833ff8a79d8a', ''),
+(28, 'AshenS', 'caf551e6ca8f6b485e13c0de50b0c838', NULL);
 
 -- --------------------------------------------------------
 
@@ -363,7 +384,8 @@ INSERT INTO `role` (`RoleID`, `RoleName`) VALUES
 (1, 'Admin'),
 (2, 'Asset Manager'),
 (3, 'Employee'),
-(4, 'Technician');
+(4, 'Technician'),
+(5, 'Department Head');
 
 -- --------------------------------------------------------
 
@@ -373,21 +395,22 @@ INSERT INTO `role` (`RoleID`, `RoleName`) VALUES
 
 CREATE TABLE `technicianuser` (
   `TechnicianID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL
+  `UserID` int(11) NOT NULL,
+  `DepartmentID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `technicianuser`
 --
 
-INSERT INTO `technicianuser` (`TechnicianID`, `UserID`) VALUES
-(12, 4),
-(6, 11),
-(7, 12),
-(8, 13),
-(9, 14),
-(10, 15),
-(11, 21);
+INSERT INTO `technicianuser` (`TechnicianID`, `UserID`, `DepartmentID`) VALUES
+(6, 11, 4),
+(7, 12, 4),
+(8, 13, 4),
+(9, 14, 4),
+(10, 15, 4),
+(11, 21, 4),
+(12, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -412,8 +435,7 @@ CREATE TABLE `techrepairbreak` (
   `StarDate` datetime NOT NULL,
   `EndDate` datetime NOT NULL,
   `FoundIssue` longtext NOT NULL,
-  `Feedback` longtext NOT NULL,
-  `Status` varchar(50) NOT NULL DEFAULT 'Reported'
+  `Feedback` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -480,7 +502,8 @@ INSERT INTO `user` (`UserID`, `RoleID`) VALUES
 (13, 4),
 (14, 4),
 (15, 4),
-(21, 4);
+(21, 4),
+(28, 5);
 
 -- --------------------------------------------------------
 
@@ -510,7 +533,7 @@ INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender
 (1, 'Induni', 'Dulanjalee', '986151010V', 'Badulla', 'Female', '0719598424', 'indunijd@gmail.com', '1998-04-24', '', 'Single'),
 (2, 'Harsha', 'Abeyvickrama', '199824200890', 'Rakwana', 'Male', '0711425085', 'harshaabeyvickrama@gmail.com\r\n', '1998-08-29', '', 'Single'),
 (3, 'Mushrifa', 'Mansoor', '996893758V', 'Mawanella', 'Female', '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '/uploads/employees/3.jpg', 'Single'),
-(4, 'Ayisha', 'Siddeequa', '997271386V', 'Kandy', 'Female', '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '', 'Single'),
+(4, 'Ayisha', 'Siddeequa', '997271386V', 'Kandy', 'Female', '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '/uploads/technicians/4.jpg', 'Single'),
 (5, 'Namal', 'Ranasinghe', '936987123V', 'Nugegoda', 'Male', '0719989796', 'namalr@gmail.com', '1993-06-10', '/uploads/employees/5.jpg', 'Married'),
 (6, 'Jithendra', 'Prianjalee', '913456770V', 'Bandarawela', 'Female', '0764352718', 'jithendra@gmail.com', '1991-08-23', '/uploads/employees/6.jpg', 'Married'),
 (8, 'Sara', 'Desapriyan', '200323045691', 'Kurunegala', 'Female', '0775081822', 'sara@gmail.com', '2003-02-20', '/uploads/employees/8.jpg', 'Unmarried'),
@@ -530,7 +553,8 @@ INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender
 (24, 'Herath', 'Bandara', '987234678V', 'Polonnaruwa', 'Male', '0764352718', 'herath@gmail.com', '1998-07-16', '/uploads/employees/24.jpg', 'Married'),
 (25, 'Sachini', 'Thennakoon', '854123678V', 'Bandarawela', 'Female', '0712348790', 'delegates.revolux@gmail.com', '1985-05-20', '/uploads/employees/25.jpg', 'Married'),
 (26, 'Herath', 'Thennakoon', '765234789V', 'Anuradhapura', 'Male', '0764352718', 'delegates.revolux@gmail.com', '1976-05-16', '/uploads/employees/26.jpg', 'Married'),
-(27, 'Dinithi', 'Perera', '987123678V', 'Polonnaruwa', 'Female', '0712348790', 'dinithi@gmail.com', '1998-04-17', '/uploads/employees/27.jpeg', 'Married');
+(27, 'Dinithi', 'Perera', '987123678V', 'Polonnaruwa', 'Female', '0712348790', 'dinithi@gmail.com', '1998-04-17', '/uploads/employees/27.jpeg', 'Married'),
+(28, 'Ashen', 'Senadheera', '692876108V', 'Kurunegala', 'Male', '0774462819', 'ashenS@gmail.com', '1969-01-14', '', 'Married');
 
 -- --------------------------------------------------------
 
@@ -551,6 +575,7 @@ CREATE TABLE `useremergency` (
 
 INSERT INTO `useremergency` (`UserID`, `Relationship`, `fName`, `TelephoneNumber`) VALUES
 (3, 'Mother', 'zeenathul\r\n', '0775564712'),
+(4, 'Mother', 'a', '0775564700'),
 (5, 'Father', 'Amarapaala', '0719989799'),
 (6, 'Mother', 'Sudeshika', '0764352719'),
 (8, 'Father', 'Desapriyan', '0775081800'),
@@ -570,7 +595,8 @@ INSERT INTO `useremergency` (`UserID`, `Relationship`, `fName`, `TelephoneNumber
 (24, 'Wife', 'Wasana', '0764352719'),
 (25, 'Father', 'Amarapaala', '0712348796'),
 (26, 'Wife', 'Damayanthi', '0764352710'),
-(27, 'Mother', 'Hema', '0712348723');
+(27, 'Mother', 'Hema', '0712348723'),
+(28, 'Wife', 'Sangeetha', '0775564718');
 
 --
 -- Indexes for dumped tables
@@ -633,6 +659,14 @@ ALTER TABLE `department`
   ADD PRIMARY KEY (`DepartmentID`);
 
 --
+-- Indexes for table `departmentheaduser`
+--
+ALTER TABLE `departmentheaduser`
+  ADD PRIMARY KEY (`HeadID`),
+  ADD KEY `departmentheaduser_ibfk_1` (`DepartmentID`),
+  ADD KEY `departmentheaduser_ibfk_2` (`UserID`);
+
+--
 -- Indexes for table `depreciation`
 --
 ALTER TABLE `depreciation`
@@ -681,7 +715,8 @@ ALTER TABLE `role`
 --
 ALTER TABLE `technicianuser`
   ADD PRIMARY KEY (`TechnicianID`),
-  ADD KEY `tech_fk` (`UserID`);
+  ADD KEY `tech_fk` (`UserID`),
+  ADD KEY `DepartmentID` (`DepartmentID`);
 
 --
 -- Indexes for table `technicianuserspec`
@@ -760,7 +795,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `departmentheaduser`
+--
+ALTER TABLE `departmentheaduser`
+  MODIFY `HeadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `depreciation`
@@ -784,7 +825,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `RoleID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `RoleID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `technicianuser`
@@ -808,7 +849,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
@@ -855,6 +896,13 @@ ALTER TABLE `breakdown`
   ADD CONSTRAINT `bemp_fk` FOREIGN KEY (`EmployeeID`) REFERENCES `employeeuser` (`EmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `departmentheaduser`
+--
+ALTER TABLE `departmentheaduser`
+  ADD CONSTRAINT `departmentheaduser_ibfk_1` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `departmentheaduser_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `depreciation`
 --
 ALTER TABLE `depreciation`
@@ -892,7 +940,8 @@ ALTER TABLE `notificationusers`
 -- Constraints for table `technicianuser`
 --
 ALTER TABLE `technicianuser`
-  ADD CONSTRAINT `tech_fk` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tech_fk` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `technicianuser_ibfk_1` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `technicianuserspec`

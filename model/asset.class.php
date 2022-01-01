@@ -222,36 +222,46 @@ class Asset extends DBConnection{
     // Get all the details of a particular asset by assetID
     protected function get($assetId){
         $dbConnection = $this->connect();
-        // $sql = "SELECT
-        //         a.*,
-        //         ad.*,
-        //         aw.*,
-        //         d.*,
-        //         t.TypeCode,
-        //         t.Name AS assetType,
-        //         c.CategoryCode,
-        //         c.Name AS categoryName
-        //     FROM
-        //         asset a
-        //     LEFT JOIN assetdetails ad ON
-        //         a.AssetID = ad.AssetID
-        //     LEFT JOIN assetwarranty aw ON
-        //         aw.AssetID = a.AssetID
-        //     LEFT JOIN depreciation d ON
-        //         a.AssetID = d.AssetID
-        //     LEFT JOIN TYPE t ON
-        //         t.TypeID = a.TypeID
-        //     LEFT JOIN category c ON
-        //         c.CategoryID = a.CategoryID
-        //     WHERE
-        //         a.AssetID = ?";
+        $sql = "SELECT
+                a.*,
+                ad.*,
+                aw.*,
+                d.*,
+                t.TypeCode,
+                t.Name AS assetType,
+                c.CategoryCode,
+                c.Name AS categoryName
+            FROM
+                asset a
+            LEFT JOIN assetdetails ad ON
+                a.AssetID = ad.AssetID
+            LEFT JOIN assetwarranty aw ON
+                aw.AssetID = a.AssetID
+            LEFT JOIN depreciation d ON
+                a.AssetID = d.AssetID
+            LEFT JOIN TYPE t ON
+                t.TypeID = a.TypeID
+            LEFT JOIN category c ON
+                c.CategoryID = a.CategoryID
+            WHERE
+                a.AssetID = ?";
 
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute([$assetId]);
+        return $stmt;
+    }
+
+    // data to form report.php
+    protected function getAssetForm($assetId){   
+        $dbConnection = $this->connect();
         $sql = "SELECT
                     asset.AssetID,
                     assetdetails.Name AS assetName,
                     assetdetails.AssetCondition,
                     TYPE.Name AS assetType,
-                    category.Name AS categoryName
+                    category.Name AS categoryName,
+                    category.CategoryCode,
+                    type.TypeCode
                 FROM
                     asset
                 INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
