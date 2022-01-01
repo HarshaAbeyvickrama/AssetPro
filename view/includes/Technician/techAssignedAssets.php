@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .table {
         display: table;
         width: 100%;
@@ -127,7 +127,7 @@
  
     <div class="tableRowGroup " id="assignedAssetsTableBody">
     </div>
-</div>
+</div> -->
  
 <!-- <script type="text/javascript">
     // getAssets('assigned');
@@ -138,5 +138,35 @@
         loadSection('centersection','viewBreakdown');
     });
 </script> -->
+
+
+<div>
+    <div class="contentSection">
+            <table class="table" id="filterTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Asset ID</th>
+                        <th>Asset Name</th>
+                        <th>Asset Type</th>
+                        <th>Reported Employee</th>
+                        <th>View Breakdown</th>
+                    </tr>
+                </thead>
+                <tbody id="techniciantable"></tbody>
+            </table>
+    </div>
+</div>
+
+<script>
+<?php 
+echo 'var userID ='. $_SESSION['UserID']; 
+?>
+
+window.addEventListener('load',getAssets(userID));
+</script>
+
+
+
 
 

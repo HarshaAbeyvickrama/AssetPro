@@ -15,7 +15,6 @@ function loadAssets(userID){
                                         <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                         <td>${assets[i]['assetName']}</td>
                                         <td>${assets[i]['assetType']}</td>
-                                        <td>${assets[i]['Status']}</td>
                                         <td>  
                                         <button class='btn btn-submit ' onClick="report(${assets[i]['AssetID']})">Report</button>
                                         </td> 
@@ -32,77 +31,25 @@ function loadAssets(userID){
 //by using the par assetID,can get the assetDetails and put that to a string and then create a cookie for 'assetID'
     function report(assetId){       
         var assetDetails=null;
-        const xhr = new XMLHttpRequest();           
+         console.log('assetId = ' + assetId);
+        const xhr = new XMLHttpRequest();      
         xhr.open('GET',`http://localhost/assetpro/asset/getAsset/${assetId}`,true);
         xhr.onload = function(){
             if(this.status == 200){
                 assetDetails = JSON.parse(this.response);
-                console.log(assetDetails);
                 loadSection('centerSection','report');
                 var json = JSON.stringify(assetDetails);       //object to string ==> the details of (partcular asset) will be stored as a string
                 document.cookie=`assetID=${json}`;
-            }                
+            }    
+            // console.log(assetDetails);            
         }
         xhr.send();
        
      }  
 
-    
 
-//==========================reportedBreakdown.php=======================================
-//===================viewing the reported assets in table==============================
-    function viewBreakAsset(userID){
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", `http://localhost/assetpro/breakdown/assigned/${userID}`, true);
-        xhr.onload = function() {
-            if (this.status === 200) {
-                var viewassets = JSON.parse(this.response);
-                console.log(viewassets);
-                for (var i = 0; i < viewassets.length; i++) {
-                    var date = new Date(viewassets[i]['reportedDate']);
-                    var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
-                    var reportedDate = viewassets[i]['reportedDate'].replace(/-/gi, "/");
-                    document.getElementById('employeeTableBody').innerHTML += `
-                                    <tr>
-                                        <td>${i+1}</td>
-                                        <td>${newDate}</td>
-                                        <td>${viewassets[i]['BreakdownID']}</td>
-                                        <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
-                                        <td>${viewassets[i]['assetName']}</td>
-                                        <td>${viewassets[i]['assetType']}</td>
-                                        <td>  
-                                        <button class='btn btn-submit' onClick="viewBreak(${viewassets[i]['BreakdownID']},${viewassets[i]['AssetID']})">View</button>
-                                        </td> 
-                                    </tr>`;
-                }
-            }
-        }
-        xhr.send();
-    }
-//==========================reportedBreakdown.php=============================================== 
-//==========click view will redirect to the viewBreakAssets.php file FORM of part. asset========
-    function viewBreak(breakdownId,assetId){   
-        var viewBreakAssetDetails = null;
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET',`http://localhost/assetpro/`,true);
-        xhr.onload = function(){
-            if(this.status == 200){
-             viewBreakAssetDetails = JSON.parse(this.responseText);
-             console.log(viewBreakAssetDetails);
-             loadSection('centerSection','viewBreakAssets');   
-             var json = JSON.stringify(viewBreakAssetDetails );       //object to string
-             document.cookie=`BreakdownID=${json}`;
-           }  
-       }
-       xhr.send();
-     }
-    
-    
-
- 
-     
-// //=================================report.php=========================================
-// //the basic information of the asset will be displayed default and reason & defected part can be written
+//=================================report.php=========================================
+//The basic information of the asset will be displayed default and reason & defected part can be written
 
 //     var assetID = getCookieValue('assetID');  
 //     var asset =   JSON.parse(assetID)[0];  //string to object
@@ -151,7 +98,7 @@ function loadAssets(userID){
 //         reportForm.append('defP',defectedPart);
 //         explainDefect = document.getElementById('exDef').value;
 //         reportForm.append('exDef',explainDefect);
-//         console.log(reportForm);
+//         // console.log(reportForm);
 //         if(defectedPart == "" || explainDefect == "")
 //         {
 //             return null;
@@ -176,9 +123,57 @@ function loadAssets(userID){
 //     // console.log(report);
 //    }
 
-   
 
+    
 
+//==========================reportedBreakdown.php=======================================
+//===================viewing the reported assets in table==============================
+    function viewBreakAsset(userID){
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://localhost/assetpro/breakdown/assigned/${userID}`, true);
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var viewassets = JSON.parse(this.response);
+                for (var i = 0; i < viewassets.length; i++) {
+                    var date = new Date(viewassets[i]['reportedDate']);
+                    var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
+                    var reportedDate = viewassets[i]['reportedDate'].replace(/-/gi, "/");
+                    document.getElementById('employeeTableBody').innerHTML += `
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${newDate}</td>
+                                        <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
+                                        <td>${viewassets[i]['assetName']}</td>
+                                        <td>${viewassets[i]['assetType']}</td>
+                                        <td>${viewassets[i]['Status']}</td>
+                                        <td>  
+                                        <button class='btn btn-submit' onClick="viewBreak(${viewassets[i]['AssetID']},${viewassets[i]['BreakdownID']})">View</button>
+                                        </td> 
+                                    </tr>`;
+                }
+            }
+        }
+        xhr.send();
+    }
+//==========================reportedBreakdown.php=============================================== 
+//==========click view will redirect to the viewBreakAssets.php file FORM of part. asset========
+    function viewBreak(assetId,breakdownId){   
+        var viewBreakAssetDetails = null;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET',`http://localhost/assetpro/breakdown/getBreakdown/${assetId}/${breakdownId}`,true);
+        xhr.onload = function(){
+            if(this.status == 200){
+             viewBreakAssetDetails = JSON.parse(this.response);
+             console.log(viewBreakAssetDetails);
+             loadSection('centerSection','viewBreakAssets');   
+             var json = JSON.stringify(viewBreakAssetDetails );       //object to string
+             document.cookie=`BreakdownID=${json}`;
+           }  
+       }
+       xhr.send();
+     }
+    
+    
     
     
 //      //======================viewBreakAssets.php===============================

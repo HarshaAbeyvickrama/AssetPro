@@ -43,7 +43,8 @@ class AssetController extends Asset
         // if($accessManager->validateAccess(type:"GET_ASSET" , assetID:$id)){
         // }
         $result = $this->get($id);
-        return json_encode($result->fetchAll()[0]);
+        // print_r($result->fetchAll());
+        return json_encode($result->fetchAll());
     }
     public function deleteAsset($id)
     {

@@ -23,38 +23,49 @@ if ($url == '/' || $url[0] == 'dashboard') {
     require_once './controller/autoloadController.php';
     $controller = $url[0];
     $action = $url[1];
-
-    switch ($controller) {
-        case 'asset':
-            // require_once './controller/assetController.php';
-            $ac = new AssetController();
-            switch ($action) {
-                case 'getAllAssets':
-                    echo $ac->getAllAssets($url[2]);
-                    break;
-                case 'count':
-                    echo $ac->getAllAssetCounts();
-                    break;
-                case 'assigned':
-                    echo $ac->getAllAssignedAssets($url[2]);
-                    break;
-                case 'getAsset':
-                    echo $ac->getAsset($url[2]);
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
-            break;
-        case 'breakdown':
-            $bc = new BreakdownController();
-            switch ($action) {
-                case 'assigned':
-                    echo $bc->getAllAssignedBreakdowns($url[2]);
-                    break;
-            }
-            break;
+    
+        switch ($controller) {
+            case 'asset':
+                // require_once './controller/assetController.php';
+                $ac = new AssetController();
+                switch ($action) {
+                    case 'getAllAssets':
+                        echo $ac->getAllAssets($url[2]);
+                        break;
+                    case 'count':
+                        echo $ac->getAllAssetCounts();
+                        break;
+                    case 'assigned':
+                        echo $ac->getAllAssignedAssets($url[2]);
+                        break;
+                    case 'getAsset':
+                        echo $ac->getAsset($url[2]);
+                        break;
+                   
+                    default:
+                        # code...
+                        break;
+                }
+                break;
+                
+            case 'breakdown':
+                $bc = new BreakdownController();
+                switch($action){
+                    case 'assigned':
+                        echo $bc->getAllAssignedBreakdowns($url[2]);
+                        break;
+                    case 'getBreakdown':
+                        echo $bc->getBreakdown($url[2],$url[3]);
+                        break;
+                    case 'reportBreakdown':
+                        $data = json_decode(file_get_contents('php://input'), true);
+                        echo $bc->reportBreakdown($data);
+                        break;
+                    case 'getAssignedBreakdownT':
+                        echo $bc->getAllAssignedTechBreakdowns($url[2]);
+                        break;
+                }
+                break;
 
         case 'view':
             $vc = new ViewController();
@@ -69,6 +80,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
             }
             break;
+
         case 'depricated':
             $dc = new DepriciationController();
             switch ($action) {
@@ -81,16 +93,19 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
             }
             break;
+
         case 'employees':
             $ec = new EmployeeController();
             switch ($action) {
                 case 'all':
-                    echo $ec->getAllEmployees($url[2]);
+                    echo $ec->getAllEmployees();
                     break;
                 case 'getEmployee':
                     echo $ec->getEmployee($url[2]);
+                    break;
             }
             break;
+
         case 'technicians':
             $tc = new TechnicianController();
             switch ($action) {
@@ -99,18 +114,34 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getTechnician':
                     echo $tc->getTechnician($url[2]);
+                    break;
             }
             break;
+
         case 'departments':
-            $dc = new departmentController();
+            $dc = new DepartmentController();
             switch ($action) {
                 case 'all':
                     echo $dc->getAllDepartments();
                     break;
                 case 'getDepartment':
                     echo $dc->getDepartment($url[2]);
+                    break;
             }
             break;
+
+        case 'departmentheads':
+            $dhc = new DepartmentHeadController();
+            switch ($action) {
+                case 'all':
+                    echo $dhc->getAllDepartmentHeads();
+                    break;
+                case 'getDepartmentHead':
+                    echo $dhc->getDepartmentHead($url[2]);
+                    break;
+            }
+            break;
+
         default:
         
     }

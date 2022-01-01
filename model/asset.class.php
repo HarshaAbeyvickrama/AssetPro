@@ -222,31 +222,50 @@ class Asset extends DBConnection{
     // Get all the details of a particular asset by assetID
     protected function get($assetId){
         $dbConnection = $this->connect();
+        // $sql = "SELECT
+        //         a.*,
+        //         ad.*,
+        //         aw.*,
+        //         d.*,
+        //         t.TypeCode,
+        //         t.Name AS assetType,
+        //         c.CategoryCode,
+        //         c.Name AS categoryName
+        //     FROM
+        //         asset a
+        //     LEFT JOIN assetdetails ad ON
+        //         a.AssetID = ad.AssetID
+        //     LEFT JOIN assetwarranty aw ON
+        //         aw.AssetID = a.AssetID
+        //     LEFT JOIN depreciation d ON
+        //         a.AssetID = d.AssetID
+        //     LEFT JOIN TYPE t ON
+        //         t.TypeID = a.TypeID
+        //     LEFT JOIN category c ON
+        //         c.CategoryID = a.CategoryID
+        //     WHERE
+        //         a.AssetID = ?";
+
         $sql = "SELECT
-                    a.*,
-                    ad.*,
-                    aw.*,
-                    d.*,
-                    t.TypeCode,
-                    c.CategoryCode
+                    asset.AssetID,
+                    assetdetails.Name AS assetName,
+                    assetdetails.AssetCondition,
+                    TYPE.Name AS assetType,
+                    category.Name AS categoryName
                 FROM
-                    asset a
-                LEFT JOIN assetdetails ad ON
-                    a.AssetID = ad.AssetID
-                LEFT JOIN assetwarranty aw ON
-                    aw.AssetID = a.AssetID
-                LEFT JOIN depreciation d ON
-                    a.AssetID = d.AssetID
-                LEFT JOIN type t ON
-                    t.TypeID = a.TypeID
-                LEFT JOIN category c ON
-                    c.CategoryID = a.CategoryID
+                    asset
+                INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                INNER JOIN TYPE ON asset.TypeID = TYPE.TypeID
+                INNER JOIN category ON asset.CategoryID = category.CategoryID
                 WHERE
-                    a.AssetID = ?";
+                    asset.AssetID = ?
+                ORDER BY
+                    asset.AssetID";
         $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$assetId]);
         return $stmt;
     }
+
 
     // Delete an asset by the ID
     protected function delete($assetId){

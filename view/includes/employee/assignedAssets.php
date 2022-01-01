@@ -12,7 +12,6 @@
                         <th>Asset ID</th>
                         <th>Asset Name</th>
                         <th>Asset Type</th>
-                        <th>Status</th>
                         <th>Report Breakdown</th>
                     </tr>
                 </thead>

@@ -2,27 +2,27 @@
 
 // include_once 'autoloadController.php';
 
-class EmployeeController extends Employee {
+class DepartmentHeadController extends DepartmentHead {
     public function __construct()
     {
         
     }
     
-    //Getting all the employees
-    public function getAllEmployees() {
+    //Getting all the department heads
+    public function getAllDepartmentHeads() {
         $result = $this->getAll();
         return json_encode($result->fetchAll());
     }
 
-    //Getting an employee
-    public function getEmployee($id) {
+    //Getting a department head
+    public function getDepartmentHead($id) {
         $result = $this->get($id);
         return json_encode($result->fetchAll());
     }
 
-    //Adding an employee
-    public function addTechnician($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
-        $newEmployee = new Employee (
+    //Adding a department head
+    public function addDepartmentHead($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
+        $newDepartmentHead = new DepartmentHead (
             firstName:$firstName,
             lastName:$lastName,
             NIC:$NIC,
@@ -37,17 +37,17 @@ class EmployeeController extends Employee {
             eRelationship:$eRelationship,
             eContact:$eContact);
         
-        $result = $newEmployee->add();
+        $result = $newDepartmentHead->add();
         return json_encode($result);
     }
 
-    //Updating employee details
-    public function updateEmployee($id) {
+    //Updating department head details
+    public function updateDepartmentHead($id) {
         
     }
 
-    //Deleting an employee
-    public function deleteEmployee($id) {
+    //Deleting a department head
+    public function deleteDepartmentHead($id) {
         $result = $this->delete($id);
     }
 

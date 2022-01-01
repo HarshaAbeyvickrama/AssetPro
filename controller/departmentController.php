@@ -1,8 +1,10 @@
 <?php
+class DepartmentController extends Department {
 
-include_once 'autoloadController.php';
-
-class departmentController extends Department {
+    public function __construct()
+    {
+        
+    }
     
     //Getting all the departments
     public function getAllDepartments() {

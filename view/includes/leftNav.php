@@ -226,18 +226,23 @@
             //Technician
             case '4':
                 
-                //Assigned Assets
+                //Assigned Breakdowns
                 echo "<div class='component' id='assets'>
-                    <img src='../Images/icons/NotSelected/Assets.png' >
+                    <img src='../Images/icons/NotSelected/Breakdowns.png' >
                     <span class='componentText'>Breakdowns</span>
                 </div>";
 
                 //Repaired Assets
                 echo "<div class='component' id='repairedAssets'>
-                    <img src='../Images/icons/NotSelected/Repaired.png' >
+                    <img src='../Images/icons/NotSelected/broken.png' >
                     <span class='componentText'>Repaired Assets</span>
                 </div>";
-                //Repaired Assets
+                
+                //Assigned Assets
+                echo "<div class='component' id='assignedAssets'>
+                    <img src='../Images/icons/NotSelected/assignedassets.png' >
+                    <span class='componentText'>Assigned assets</span>
+                </div>";
                 
                
 
@@ -285,6 +290,35 @@
 
 
                 break;
+
+                case '5':
+                    //Employees
+                    echo "<div class='component' id='employees'>
+                        <img src='../Images/icons/NotSelected/employees.png' >
+                        <span class='componentText'>Employees</span>
+                    </div>";
+    
+                    //Assets
+                    echo "<div class='component' id='assets'>
+                        <img src='../Images/icons/NotSelected/assets.png' >
+                        <span class='componentText'>Assets</span>
+                    </div>";
+
+    
+                    //Assigned assets
+                    echo "<div class='component' id='assignedAssets'>
+                        <img src='../Images/icons/NotSelected/assignedassets.png' >
+                        <span class='componentText'>Assigned Assets</span>
+                    </div>";
+
+                    //Assigned assets
+                    echo "<div class='component' id='reports'>
+                        <img src='../Images/icons/NotSelected/report.png' >
+                        <span class='componentText'>Reports</span>
+                    </div>";
+    
+    
+                    break;
             default:
                 # code...
                 break;

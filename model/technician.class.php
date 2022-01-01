@@ -1,6 +1,6 @@
 <?php
 
-require_once './controller/autoloadController.php';
+// require_once './controller/autoloadController.php';
 
 class Technician extends DBConnection {
     //Database connection
@@ -41,24 +41,28 @@ class Technician extends DBConnection {
     //Getting all the technicians
     protected function getAll() {
         $sql = "SELECT
-                    USER.UserID,
-                    CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
-                    userdetails.Gender,
-                    CONCAT('TEC/',tec.TechnicianID) AS TechnicianID
+                    ud.UserID,
+                    CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                    ud.Gender,
+                    d.DepartmentCode,
+                    tu.TechnicianID
                 FROM
-                    technicianuser tec
-                INNER JOIN userdetails ON userdetails.UserID = tec.UserID
-                JOIN USER ON USER.UserID = userdetails.UserID
-                WHERE
-                    USER.RoleID = 4";
+                    userdetails ud
+                INNER JOIN technicianuser tu ON
+                    ud.UserID = tu.UserID
+                INNER JOIN department d ON
+                    tu.DepartmentID = d.DepartmentID
+                ORDER BY
+                    tu.TechnicianID";
 
-        $pstm = $this->dbConnection->prepare($sql);
+        $pstm = $this->connect()->prepare($sql);
         $pstm->execute();
         return $pstm;
     }
 
     //Getting a technician detail using TechnicianID
     protected function get($TechnicianID) {
+        $DBConnection = $this->connect();
         $sql = "SELECT
                     tu.TechnicianID,
                     ud.fName,
@@ -80,9 +84,9 @@ class Technician extends DBConnection {
                     ud.UserID = tu.UserID
                 INNER JOIN useremergency ue ON
                     tu.UserID = ue.UserID
-                WHERE TechnicianID = $TechnicianID";
+                WHERE TechnicianID = ?";
         
-        $stmt = $this->DBConnection->prepare($sql);
+        $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$TechnicianID]);
         return $stmt;
     }
@@ -150,7 +154,7 @@ class Technician extends DBConnection {
             $result = array(
                 "status"=>"Failed",
                 "Error"=>$e->getMessage(),
-                "Message"=>"Cannot add an Employee"
+                "Message"=>"Cannot add a Technician"
             );
 
             return $result;
