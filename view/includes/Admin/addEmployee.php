@@ -384,25 +384,25 @@
         loadSection('centerSection', 'employees');
     }
 
-// getDepartments();
-//     function getDepartments() {
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("POST", "../model/Department.php?action=getDepartments", true);
+getDepartments();
+    function getDepartments() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost/assetpro/departments/all/", true);
 
-//         xhr.onload = function() {
-//             if (this.status === 200) {
-//                 var departments = JSON.parse(this.responseText);
-//                 // console.log(departments);
-//                 var select = document.getElementById('depID');
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var departments = JSON.parse(this.responseText);
+                // console.log(departments);
+                var select = document.getElementById('depID');
 
-//                 for(var i = 0; i<departments.length; i++) {
-//                     console.log(departments[i]);
-//                     var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
-//                     select.innerHTML+=option;
+                for(var i = 0; i<departments.length; i++) {
+                    console.log(departments[i]);
+                    var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
+                    select.innerHTML+=option;
 
-//                 }
-//             }
-//         }
-//         xhr.send();
-//     }
+                }
+            }
+        }
+        xhr.send();
+    }
 </script>
