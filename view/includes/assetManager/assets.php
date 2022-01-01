@@ -35,10 +35,10 @@
 
     .buttonSection {
         display: flex;
-        align-items: center;
+        /* align-items: center; */
         justify-content: right;
-        /* padding-bottom: 10px; */
-        float: right;
+        padding-bottom: 10px;
+        /* float: right; */
     }
 
     .button {
@@ -47,11 +47,20 @@
         padding: 10px 20px;
         color: white;
         border-radius: 10px;
+        width: max-content;
     }
 
     .button:hover {
         cursor: pointer;
     }
+
+ 
+    #topSection{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+  
+    
 </style>
 
 <script>
@@ -170,7 +179,7 @@
     document.getElementById("addAsset").addEventListener('click', function(e) {
         const eventId = e.target.id;
         if (eventId == "addAsset") {
-            loadSection("centerSection", eventId);
+            loadSection("popup", eventId);
         }
     })
 
@@ -229,8 +238,12 @@
             </div>
         </div>
     </div>
-    <div>
+    <div id="topSection">
         <div class="section-subHeading">Assets</div>
+        <div class="buttonSection" id="addAssetButtonSection">
+            <div class="button" id="addAsset">Add Asset</div>
+        </div>
+
     </div>
     <div class="contentSection">
         <div id="assetSections">
@@ -244,8 +257,7 @@
             include("allAssets.php");
             ?>
         </div>
-        <div class="buttonSection">
-            <div class="button" id="addAsset">Add Asset</div>
-        </div>
+       
+
     </div>
 </div>
