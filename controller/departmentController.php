@@ -41,6 +41,12 @@ class DepartmentController extends Department {
     public function deleteDepartment($id) {
         $result = $this->delete($id);
     }
+
+    //Getting a breakdownAssets
+    public function getAllBreakdownAssets($did) {
+        $result = $this->getBreakdownAssets($did);
+        return json_encode($result->fetchAll());
+    }
 }
 
 ?>
