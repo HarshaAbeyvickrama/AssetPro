@@ -64,29 +64,32 @@ class Breakdown extends DBConnection{
         return $stmt;
     }
 
-    protected function  reportAsset($assetId){
+    protected function  reportAsset($data){
         $dbConnection = $this->connect();
-
-        $defectedPart = $_POST['defP'];
-        $reason = $_POST['exDef']; 
-        $EmpID = $_SESSION['UserID'];
+        $assetId = $data['assetID'];
+        $defectedPart = $data['defP'];
+        $reason = $data['exDef']; 
+        // $EmpID = $_SESSION['UserID'];
+        // $EmpID = $_SESSION['EmployeeID'];
+        $EmpID = 3;
         $sql = "INSERT INTO breakdown(
                 AssetID,
                 EmployeeID,
-                DATE,
+                Date,
                 Reason,
                 DefectedParts
             )
-            VALUES(assetId, empId, NOW(), reason, defectedPart)";
+            VALUES(:assetId, :empId, NOW(), :reason, :defectedPart)";
         
         $stmt = $dbConnection->prepare($sql);
 
-        $stmt->bindParam('assetId',$assetId);
-        $stmt->bindParam('empId',$EmpID);
-        $stmt->bindParam('reason',$reason);
-        $stmt->bindParam('defectedPart',$defectedPart);
+        $stmt->bindParam(':assetId',$assetId);
+        $stmt->bindParam(':empId',$EmpID);
+        $stmt->bindParam(':reason',$reason);
+        $stmt->bindParam(':defectedPart',$defectedPart);
 
         $stmt->execute();
+        return $stmt;
 
         // if(mysqli_query($mysql,$reportassetquery )) {
         //     echo("Successfully Reported!!");
@@ -95,7 +98,7 @@ class Breakdown extends DBConnection{
         // }
     }
 //===================techinicians========================
-    protected function getAssignedBreakdowns(){
+    protected function getAssignedBreakdowns($userID){
         $dbConnection = $this->connect();
         $sql = "SELECT
                     assetdetails.AssetID,
@@ -112,10 +115,20 @@ class Breakdown extends DBConnection{
                 INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
                 INNER JOIN category ON category.CategoryID = asset.CategoryID
                 INNER JOIN employeeuser ON employeeuser.EmployeeID = breakdown.EmployeeID
-                INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID";
-        $stmt = $dbConnection->prepare($sql);
-        $stmt->execute();
-        return $stmt;
+                INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID
+                INNER JOIN techrepairbreak ON techrepairbreak.BreakdownID = breakdown.BreakdownID
+                WHERE
+                    techrepairbreak.TechnicianID =(
+                    SELECT
+                        technicianuser.TechnicianID
+                    FROM
+                        technicianuser
+                    WHERE
+                        technicianuser.UserID = ?
+                )";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($userID));
+        return $pstm;
     }
          
 

@@ -13,15 +13,20 @@ class BreakdownController extends Breakdown{
       return json_encode($result->fetchAll());
     }
 
-    public function reportBreakdown($aid){
-      $result = $this->reportAsset($aid);
-      // return json_encode($result->fetchAll());
+    public function reportBreakdown($data){
+      $result = $this->reportAsset($data);
+      if($result->rowCount() > 0){
+        $res = array('status' => 'success');
+      } else {
+          $res = array('status' => 'failed');
+      }
+      
+      return json_encode($res);
     }
 
-    public function getAllAssignedTechBreakdowns(){
-      $result = $this->getAssignedBreakdowns();
+    public function getAllAssignedTechBreakdowns($id){
+      $result = $this->getAssignedBreakdowns($id);
       return json_encode($result->fetchAll());
 
     }
 }
-?> 
