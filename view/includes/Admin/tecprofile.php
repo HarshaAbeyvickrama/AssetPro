@@ -243,7 +243,7 @@
                     <div class="title"> Basic Information: </div>
 
                     <div class="col-f">
-                        <span for="empID"> Technician ID: </span>
+                        <span for="tecID"> Technician ID: </span>
                         <input type="text" name="tecID" id="tecID">
                     </div>
                     
@@ -264,7 +264,7 @@
 
                     <div class="col-f">
                         <span for="role"> Role: </span>
-                        <input type="text" name="role" id="role" value="Employee">
+                        <input type="text" name="role" id="role" value="Technician">
                     </div>
 
                     <div class="col-f">
@@ -325,7 +325,7 @@
                 <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
             <div class="col-btn">
-                <div class="btnAction" id="back"> Back </div>
+                <div class="btnAction" id="cancelAddEmployee" onclick="goBack()"> Back </div>
             </div>
                     
               
@@ -345,63 +345,63 @@
     //      true --> form disabled 
     //      false --> form enabled 
     
-    // function formState(formId,readonlyState){
-    //     const form = document.getElementById(formId);
-    //     var elements = form.elements;
-    //     var len = elements.length;
-    //     for(var i=0; i<len; ++i){
-    //         elements[i].disabled=readonlyState;
-    //     }
-    //     document.getElementById("uploadBtn").disabled=readonlyState;
+    function formState(formId,readonlyState){
+        const form = document.getElementById(formId);
+        var elements = form.elements;
+        var len = elements.length;
+        for(var i=0; i<len; ++i){
+            elements[i].disabled=readonlyState;
+        }
+        document.getElementById("uploadBtn").disabled=readonlyState;
 
         
-    // }
+    }
     
-    // formState("errorlogForm",true);
+    formState("errorlogForm",true);
 
-    // document.querySelectorAll(".col-btn").forEach(button =>{
-    //     const backBtn = document.getElementById("back");
-    //     button.addEventListener('click',function(event){
-    //         switch (event.target.id) {
-    //             case 'back':
-    //                 formState("errorlogForm",true);
+    document.querySelectorAll(".col-btn").forEach(button =>{
+        const backBtn = document.getElementById("back");
+        button.addEventListener('click',function(event){
+            switch (event.target.id) {
+                case 'back':
+                    formState("errorlogForm",true);
                     /*saveBtn.style.display = 'none';
                     cancelBtn.style.display = 'none';
                     btnEditProfile.style.display = 'block';*/
                 
                     
-    //                 break;
+                    break;
             
-    //             default:
-    //                 break;
-    //         }
+                default:
+                    break;
+            }
         
         
-    //     })
-    // })
+        })
+    })
 
     //Getting the employee details to the form
-    // var employeeID = getCookieValue('EmployeeID');
-    // var employee = JSON.parse(employeeID)[0];
-    // console.log(employee);
+    var technicianID = getCookieValue('TechnicianID');
+    var technician = JSON.parse(technicianID)[0];
+    console.log(technician);
 
-    // document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
-    // document.getElementById('empID').value = employee.EmployeeID;
-    // document.getElementById('fName').value = employee.fName;
-    // document.getElementById('lName').value = employee.lName;
-    // document.getElementById('NIC').value = employee.NIC;
-    // var radio = document.getElementById('radio-group').children;
-    // console.log(employee.Gender);
-    // var gender = document.getElementById(employee.Gender)
+    document.getElementById('imagePrev').src = `..${technician.ProfilePicURL}`;
+    document.getElementById('tecID').value = technician.TechnicianID;
+    document.getElementById('fName').value = technician.fName;
+    document.getElementById('lName').value = technician.lName;
+    document.getElementById('NIC').value = technician.NIC;
+    var radio = document.getElementById('radio-group').children;
+    // console.log(technician.Gender);
+    var gender = document.getElementById(technician.Gender)
     // gender.checked = true;
-    // document.getElementById(employee.Gender).checked = true;
-//     document.getElementById('dob').value = employee.DOB;
-//     document.getElementById('maritalStatus').value = employee.CivilStatus;
-//     document.getElementById('address').value = employee.Address;
-//     document.getElementById('contactNo').value = employee.PhoneNumber;
-//     document.getElementById('email').value = employee.Email;
-//     document.getElementById('eName').value = employee.eName;
-//     document.getElementById('eRelationship').value = employee.Relationship;
-//     document.getElementById('econtact').value = employee.TelephoneNumber;
+    document.getElementById(technician.Gender).checked = true;
+    document.getElementById('dob').value = technician.DOB;
+    document.getElementById('maritalStatus').value = technician.CivilStatus;
+    document.getElementById('address').value = technician.Address;
+    document.getElementById('contactNo').value = technician.PhoneNumber;
+    document.getElementById('email').value = technician.Email;
+    document.getElementById('eName').value = technician.eName;
+    document.getElementById('eRelationship').value = technician.Relationship;
+    document.getElementById('econtact').value = technician.TelephoneNumber;
     
 // </script>
