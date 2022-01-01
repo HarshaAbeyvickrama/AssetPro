@@ -58,7 +58,8 @@ if ($url == '/' || $url[0] == 'dashboard') {
                         echo $bc->getBreakdown($url[2],$url[3]);
                         break;
                     case 'reportBreakdown':
-                        echo $bc->reportBreakdown($url[2]);
+                        $data = json_decode(file_get_contents('php://input'), true);
+                        echo $bc->reportBreakdown($data);
                         break;
                     case 'getAssignedBreakdownT':
                         echo $bc->getAllAssignedTechBreakdowns($url[2]);
