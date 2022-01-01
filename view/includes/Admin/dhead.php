@@ -40,7 +40,7 @@
     </div> -->
     <div class="heading">
         <!-- <div>All Employees</div> -->
-        <div class="addEmp"><button id="addEmp">Add Employee</button></div>
+        <div class="addEmp"><button id="addEmp">Add Department Head</button></div>
     </div>
 
     <div class="contentSection">
@@ -49,19 +49,19 @@
             <thead>
                 <tr>
                     <th class="heading">#</th>
-                    <th>Employee ID</th>
+                    <th>Department Head ID</th>
                     <th>Name</th>
                     <th>Gender</th>
                     <th>View</th>
                 </tr>
             </thead>
-            <tbody class="tableRowGroup" id="employeeTableBody"></tbody>
+            <tbody class="tableRowGroup" id="headTableBody"></tbody>
         </table>
     </div>
 </div>
 
 <script>
-    window.addEventListener('load', loadEmployees());
+    window.addEventListener('load', loadDepartmentHeads());
 </script>
 
 
@@ -74,7 +74,7 @@
 
     });
 
-    //Viewing the employee details
+    //Viewing the deaprtment details
     var viewEmployeeBtn = document.querySelectorAll('#view');
     for (var i = 0; i < viewEmployeeBtn.length; i++) {
         viewEmployeeBtn[i].addEventListener('click', function() {

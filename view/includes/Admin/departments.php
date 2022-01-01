@@ -7,7 +7,7 @@
         border-radius: 14px;
         font-size: 20px;
         border: none;
-        margin-left: 60vw;
+        /* margin-left: 60vw; */
     }
     .viewBtn,
     .editBtn,
@@ -124,7 +124,7 @@
 
 <div class="overviewLayout">
     <div>
-        <div>All Departments</div>
+        <!-- <div>All Departments</div> -->
         <div class="addDep">
             <button id="addDep">Add Department</button>
         </div>
@@ -181,7 +181,7 @@
     window.addEventListener('load', loadDepartments());
 </script>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     //JS for pop-up form
     document.getElementById('addDep').addEventListener('click',
         function popForm() {
@@ -198,112 +198,112 @@
         });
 
     //close form function
-    function closeForm(formID) {
-        document.getElementById('closeForm').style.display = 'none';
-    }
+    // function closeForm(formID) {
+    //     document.getElementById('closeForm').style.display = 'none';
+    // }
 
     // Getting the form data
-    document.querySelectorAll(".col-btn").forEach(button => {
-        // const cancBtn = document.getElementById('cancelAddDepartment');
-        const saveBtn = document.getElementById("btnSaveDepartment");
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            switch (event.target.id) {
-                case 'cancelAddDepartment':
+    // document.querySelectorAll(".col-btn").forEach(button => {
+    //     // const cancBtn = document.getElementById('cancelAddDepartment');
+    //     const saveBtn = document.getElementById("btnSaveDepartment");
+    //     button.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         switch (event.target.id) {
+    //             case 'cancelAddDepartment':
 
-                    break;
-                case 'btnSaveDepartment':
-                    const department = getFormdata();
-                    // saveDepartment(department);
-                    var isEmpty = false;
-                    for (var pair of department.entries()) {
-                        // console.log(pair[0] + ': ' + pair[1]);
-                        if (pair[1] == '') {
-                            isEmpty = true;
-                        }
-                    }
-                    if (!isEmpty) {
-                        saveDepartment(department);
-                    } else {
-                        alert('Fill the form!');
-                    }
+    //                 break;
+    //             case 'btnSaveDepartment':
+    //                 const department = getFormdata();
+    //                 // saveDepartment(department);
+    //                 var isEmpty = false;
+    //                 for (var pair of department.entries()) {
+    //                     // console.log(pair[0] + ': ' + pair[1]);
+    //                     if (pair[1] == '') {
+    //                         isEmpty = true;
+    //                     }
+    //                 }
+    //                 if (!isEmpty) {
+    //                     saveDepartment(department);
+    //                 } else {
+    //                     alert('Fill the form!');
+    //                 }
 
-                    break;
+    //                 break;
 
-                default:
-                    break;
-            }
-        })
-    })
+    //             default:
+    //                 break;
+    //         }
+    //     })
+    // })
 
     //getting the form data
 
-    function getFormdata() {
-        return new FormData(document.getElementById('addDepartmentForm'));
-    }
+    // function getFormdata() {
+    //     return new FormData(document.getElementById('addDepartmentForm'));
+    // }
 
     //Saving the department function
     //Saving department details through AJAX
 
-    function saveDepartment(department) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../model/Department.php?action=addDepartment", true);
+    // function saveDepartment(department) {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("POST", "../model/Department.php?action=addDepartment", true);
 
-        xhr.onload = function() {
-            if (this.status === 200) {
-                alert(this.responseText);
+    //     xhr.onload = function() {
+    //         if (this.status === 200) {
+    //             alert(this.responseText);
 
-            }
-        }
-        xhr.send(department);
-    }
+    //         }
+    //     }
+    //     xhr.send(department);
+    // }
 
 
     //Viewing the deaprtment details
-    var viewDepartmentBtn = document.querySelectorAll('#view');
-    for (var i = 0; i < viewDepartmentBtn.length; i++) {
-        viewDepartmentBtn[i].addEventListener('click', function() {
-            loadDepartment(event.target.parentElement.id);
-            // console.log(event.target.parentElement.id);
+    // var viewDepartmentBtn = document.querySelectorAll('#view');
+    // for (var i = 0; i < viewDepartmentBtn.length; i++) {
+    //     viewDepartmentBtn[i].addEventListener('click', function() {
+    //         loadDepartment(event.target.parentElement.id);
+    //         // console.log(event.target.parentElement.id);
 
-        });
-    }
+    //     });
+    // }
 
     //Loading details of the selected department
-    function loadDepartment(DepartmentID) {
-        var departmentDetails = null;
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", `../model/Department.php?action=loadDepartment&DepartmentID=${DepartmentID}`, true);
+    // function loadDepartment(DepartmentID) {
+    //     var departmentDetails = null;
+    //     const xhr = new XMLHttpRequest();
+    //     xhr.open("POST", `../model/Department.php?action=loadDepartment&DepartmentID=${DepartmentID}`, true);
 
-        xhr.onload = function() {
-            if (this.status === 200) {
-                departmentDetails = JSON.parse(this.responseText);
-                // alert(this.responseText);
-                loadSection('centerSection', 'departmentDetails');
+    //     xhr.onload = function() {
+    //         if (this.status === 200) {
+    //             departmentDetails = JSON.parse(this.responseText);
+    //             // alert(this.responseText);
+    //             loadSection('centerSection', 'departmentDetails');
 
-                var json = JSON.stringify(departmentDetails);
-                document.cookie = `DepartmentID=${json}`;
-            }
-        }
-        xhr.send();
-    }
+    //             var json = JSON.stringify(departmentDetails);
+    //             document.cookie = `DepartmentID=${json}`;
+    //         }
+    //     }
+    //     xhr.send();
+    // }
 
     //Loading the employee list of the selected department
-    function loadEmploeeDepartment(DepartmentID) {
-        var departmentEMployeeDetails = null;
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", `../model/Department.php?action=loadEmployeeDepartment&DepartmentID=${DepartmentID}`, true);
+    // function loadEmploeeDepartment(DepartmentID) {
+    //     var departmentEMployeeDetails = null;
+    //     const xhr = new XMLHttpRequest();
+    //     xhr.open("POST", `../model/Department.php?action=loadEmployeeDepartment&DepartmentID=${DepartmentID}`, true);
 
-        xhr.onload = function() {
-            if (this.status === 200) {
-                departmentEmployeeDetails = JSON.parse(this.responseText);
-                // alert(this.responseText);
-                // loadSection('centerSection', 'departmentDetails');
+    //     xhr.onload = function() {
+    //         if (this.status === 200) {
+    //             departmentEmployeeDetails = JSON.parse(this.responseText);
+    //             // alert(this.responseText);
+    //             // loadSection('centerSection', 'departmentDetails');
 
-                var json = JSON.stringify(departmentDetails);
-                document.cookie = `DepartmentID=${json}`;
-            }
-        }
-        xhr.send();
-    }
-</script> -->
+    //             var json = JSON.stringify(departmentDetails);
+    //             document.cookie = `DepartmentID=${json}`;
+    //         }
+    //     }
+    //     xhr.send();
+    // }
+</script>
