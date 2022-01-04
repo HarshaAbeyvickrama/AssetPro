@@ -33,98 +33,20 @@ function loadAssets(userID){
         var assetDetails=null;
          console.log('assetId = ' + assetId);
         const xhr = new XMLHttpRequest();      
-        xhr.open('GET',`http://localhost/assetpro/asset/getAsset/${assetId}`,true);
+        xhr.open('GET',`http://localhost/assetpro/asset/getAssetForm/${assetId}`,true);
         xhr.onload = function(){
             if(this.status == 200){
                 assetDetails = JSON.parse(this.response);
                 loadSection('centerSection','report');
                 var json = JSON.stringify(assetDetails);       //object to string ==> the details of (partcular asset) will be stored as a string
                 document.cookie=`assetID=${json}`;
-            }    
-            // console.log(assetDetails);            
+            }           
         }
         xhr.send();
        
      }  
 
 
-//=================================report.php=========================================
-//The basic information of the asset will be displayed default and reason & defected part can be written
-
-//     var assetID = getCookieValue('assetID');  
-//     var asset =   JSON.parse(assetID)[0];  //string to object
-//     console.log(asset); 
-//     document.getElementById('assetID').value = asset.AssetID;
-//     document.getElementById('assetName').value = asset.assetName;
-//     document.getElementById('assetType').value = asset.assetType;
-//     document.getElementById('category').value = asset.categoryName;
-//     document.getElementById('condition').value = asset.AssetCondition;
-
-  
-   
-//     document.querySelectorAll(".col-btn").forEach(button =>{
-//         const cancelBtn = document.getElementById("cancelReport");
-//         const reportBtn = document.getElementById("reportAsset");
-//         button.addEventListener('click',function(event){
-//             //event.preventDefault();
-//             switch (event.target.id) {                       //event triggered when clicking the report btn
-//                 case 'cancelReport':
-                   
-//                     break;
-//                 case 'reportAsset':
-//                    const report = getFormdata();   
-//                    for (var pair of report.entries()) 
-//                    {
-//                    console.log(pair[0] + ': ' + pair[1]);
-//                    }
-                   
-//                    if(report == null){
-//                      alert('Fields cannot be empty');
-//                    }else{
-//                     saveReport(report);
-//                    }
-//                     break;
-            
-//                 default:
-//                     break;
-//             }
-        
-        
-//         })
-//     })
-//     function getFormdata(){
-//         reportForm = new FormData(document.getElementById('reportAssetForm'));
-//         defectedPart =  document.getElementById('defP').value;
-//         reportForm.append('defP',defectedPart);
-//         explainDefect = document.getElementById('exDef').value;
-//         reportForm.append('exDef',explainDefect);
-//         // console.log(reportForm);
-//         if(defectedPart == "" || explainDefect == "")
-//         {
-//             return null;
-//         }   
-//         return reportForm;
-//     }
-    
-   
-//     function saveReport(report){
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("POST",`../model/Report.php?action=reportBreakAsset&asset_id=${asset.AssetID}`,true);    //POST
-  
-//         xhr.onload = function(){
-//             if(this.status === 200){
-//                alert(this.responseText); // 2nd alert
-//             }
-//         }
-//         xhr.send(report);
-//     }
-//    function cancelReport(){
-//     loadSection('centerSection','assignedAssets');
-//     // console.log(report);
-//    }
-
-
-    
 
 //==========================reportedBreakdown.php=======================================
 //===================viewing the reported assets in table==============================
@@ -156,7 +78,7 @@ function loadAssets(userID){
         xhr.send();
     }
 //==========================reportedBreakdown.php=============================================== 
-//==========click view will redirect to the viewBreakAssets.php file FORM of part. asset========
+//================click view will redirect to the viewBreakAssets.php file FORM ================
     function viewBreak(assetId,breakdownId){   
         var viewBreakAssetDetails = null;
         const xhr = new XMLHttpRequest();
@@ -239,6 +161,83 @@ function loadAssets(userID){
 //    function cancelReport(){
 //     loadSection('centerSection','reportedBreakdown');
 //    }
+
+
+//=================================report.php=========================================
+//The basic information of the asset will be displayed default and reason & defected part can be written
+
+//     var assetID = getCookieValue('assetID');  
+//     var asset =   JSON.parse(assetID)[0];  //string to object
+//     console.log(asset); 
+//     document.getElementById('assetID').value = asset.AssetID;
+//     document.getElementById('assetName').value = asset.assetName;
+//     document.getElementById('assetType').value = asset.assetType;
+//     document.getElementById('category').value = asset.categoryName;
+//     document.getElementById('condition').value = asset.AssetCondition;
+
+  
+   
+//     document.querySelectorAll(".col-btn").forEach(button =>{
+//         const cancelBtn = document.getElementById("cancelReport");
+//         const reportBtn = document.getElementById("reportAsset");
+//         button.addEventListener('click',function(event){
+//             //event.preventDefault();
+//             switch (event.target.id) {                       //event triggered when clicking the report btn
+//                 case 'cancelReport':
+                   
+//                     break;
+//                 case 'reportAsset':
+//                    const report = getFormdata();   
+//                    for (var pair of report.entries()) 
+//                    {
+//                    console.log(pair[0] + ': ' + pair[1]);
+//                    }
+                   
+//                    if(report == null){
+//                      alert('Fields cannot be empty');
+//                    }else{
+//                     saveReport(report);
+//                    }
+//                     break;
+            
+//                 default:
+//                     break;
+//             }
+        
+        
+//         })
+//     })
+//     function getFormdata(){
+//         reportForm = new FormData(document.getElementById('reportAssetForm'));
+//         defectedPart =  document.getElementById('defP').value;
+//         reportForm.append('defP',defectedPart);
+//         explainDefect = document.getElementById('exDef').value;
+//         reportForm.append('exDef',explainDefect);
+//         // console.log(reportForm);
+//         if(defectedPart == "" || explainDefect == "")
+//         {
+//             return null;
+//         }   
+//         return reportForm;
+//     }
+    
+   
+//     function saveReport(report){
+//         var xhr = new XMLHttpRequest();
+//         xhr.open("POST",`../model/Report.php?action=reportBreakAsset&asset_id=${asset.AssetID}`,true);    //POST
+  
+//         xhr.onload = function(){
+//             if(this.status === 200){
+//                alert(this.responseText); // 2nd alert
+//             }
+//         }
+//         xhr.send(report);
+//     }
+//    function cancelReport(){
+//     loadSection('centerSection','assignedAssets');
+//     // console.log(report);
+//    }
+
 
 
 
