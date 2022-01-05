@@ -76,6 +76,7 @@ if (session_status() === PHP_SESSION_NONE) {
         .scrollBar::-webkit-scrollbar-thumb {
             background-color: #5C6E9B !important;
         }
+
         .popup-container {
             display: none;
             position: fixed;
@@ -83,14 +84,26 @@ if (session_status() === PHP_SESSION_NONE) {
             left: 0;
             bottom: 0;
             right: 0;
-            width: 100vw;
-            height: 100vh;
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 9999;
-            align-items: center;
             justify-items: center;
-            padding: 20px;
+            padding: 40px 20px;
+
         }
+        #closePopup{
+            position: absolute;
+            height: 32px;
+            right: 20px;
+            top: 10px;
+        }
+        #closePopup img{
+            height: 25px;
+            
+        }
+        #closePopup img:hover{
+            cursor: pointer;
+        }
+
         /* .popup-container::before{
             content: url('../Images/icons/close.png');
             position: fixed;
@@ -98,7 +111,6 @@ if (session_status() === PHP_SESSION_NONE) {
             right: 5px;
             z-index: 100;
         } */
-       
     </style>
     <script>
         getCount();
@@ -145,13 +157,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
     </div>
-    <div class="popup-container" id="popup">
+    <div class="popup-container">
+        <div id="closePopup">
+            <img src="../Images/icons/close.png" alt="">
+        </div>
+        <div id="popup"></div>
     </div>
     <script>
         evaluateJs('centerSection');
-
-        
-
 
         function getAll(type, table) {
             const tb = document.getElementById(table);
@@ -203,6 +216,13 @@ if (session_status() === PHP_SESSION_NONE) {
         function getCookieValue(name) {
             return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
         }
+
+        document.getElementById('closePopup').addEventListener('click', function() {
+            var closePopup = document.querySelector('.popup-container');
+            closePopup.style.display = 'none';
+            // var popuop = document.getElementById('popup');
+            // closePopup.innerHTML = '';
+        });
     </script>
 </body>
 

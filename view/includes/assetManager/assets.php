@@ -54,13 +54,11 @@
         cursor: pointer;
     }
 
- 
-    #topSection{
+
+    #topSection {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
-  
-    
 </style>
 
 <script>
@@ -177,10 +175,10 @@
         document.getElementById(eventId).classList.add('activeTab');
     }
     document.getElementById("addAsset").addEventListener('click', function(e) {
-        const eventId = e.target.id;
-        if (eventId == "addAsset") {
-            loadSection("popup", eventId);
-        }
+        popup = document.querySelector('.popup-container');
+        popup.style.display = 'grid';
+        e.stopPropagation();
+        loadSection("popup", "addAsset");
     })
 
 
@@ -257,7 +255,7 @@
             include("allAssets.php");
             ?>
         </div>
-       
+
 
     </div>
 </div>
