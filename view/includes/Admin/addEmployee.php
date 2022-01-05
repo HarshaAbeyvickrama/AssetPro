@@ -384,6 +384,7 @@
         loadSection('centerSection', 'employees');
     }
 
+//Getting the department code
 getDepartments();
     function getDepartments() {
         var xhr = new XMLHttpRequest();
