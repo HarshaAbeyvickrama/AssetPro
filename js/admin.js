@@ -334,15 +334,12 @@ function loadEmployees() {
         document.getElementById("employeeTableBody").innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${employees[i]["DepartmentCode"]}/EMP/${
-          employees[i]["EmployeeID"]
-        }</td>
+            <td>${employees[i]["DepartmentCode"]}/EMP/${employees[i]["EmployeeID"]}</td>
             <td>${employees[i]["Name"]}</td>
             <td>${employees[i]["Gender"]}</td>
+            <td>${employees[i]["jobTitle"]}</td>
             <td>
-              <button class='btn btn-submit ' id='view' onClick="loadEmployee(${
-                employees[i]["EmployeeID"]
-              })">View</button>
+              <button class='btn btn-submit ' id='view' onClick="loadEmployee(${employees[i]["EmployeeID"]})">View</button>
             </td>
           </tr>`;
       }
@@ -426,15 +423,12 @@ function loadTechnicians() {
         document.getElementById("techniciansTableBody").innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${technicians[i]["DepartmentCode"]}/TEC/${
-          technicians[i]["TechnicianID"]
-        }</td>
+            <td>${technicians[i]["DepartmentCode"]}/TEC/${technicians[i]["TechnicianID"]}</td>
             <td>${technicians[i]["Name"]}</td>
             <td>${technicians[i]["Gender"]}</td>
+            <td>${technicians[i]["jobTitle"]}</td>
             <td>
-              <button class='btn btn-submit ' id='view' onClick="loadTechnician(${
-                technicians[i]["TechnicianID"]
-              })">View</button>
+              <button class='btn btn-submit ' id='view' onClick="loadTechnician(${technicians[i]["TechnicianID"]})">View</button>
             </td>
           </tr>`;
       }
