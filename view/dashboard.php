@@ -90,17 +90,20 @@ if (session_status() === PHP_SESSION_NONE) {
             padding: 40px 20px;
 
         }
-        #closePopup{
+
+        #closePopup {
             position: absolute;
             height: 32px;
             right: 20px;
             top: 10px;
         }
-        #closePopup img{
+
+        #closePopup img {
             height: 25px;
-            
+
         }
-        #closePopup img:hover{
+
+        #closePopup img:hover {
             cursor: pointer;
         }
 
