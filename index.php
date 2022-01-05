@@ -103,6 +103,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getEmployee':
                     echo $ec->getEmployee($url[2]);
                     break;
+                case 'getDepartmentEmployees':
+                    echo $ec->getHeadDepartmentEmployees();
+                    break;
             }
             break;
 

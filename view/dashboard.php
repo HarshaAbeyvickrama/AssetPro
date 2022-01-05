@@ -18,7 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="../js/admin.js"></script>
     <script src="../js/employee.js"></script>
     <script src="../js/technician.js"></script>
-    <script src="../js/hod.js"></script>
+    <script src="../js/departmentHead.js"></script>
     <title>Dashboard</title>
     <style>
         .container {
@@ -136,7 +136,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         include_once("includes/assetManager/overview.php");
                         break;
                     case '5':
-                        include_once("includes/head/overview.php");
+                        include_once("includes/departmentHead/overview.php");
                         break;
                 }
                 ?>
