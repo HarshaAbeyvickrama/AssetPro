@@ -7,16 +7,15 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Date</th>
-                        <!-- <th>Error ID</th> -->
+                        <th>#</th>                    
                         <th>Asset ID</th>
                         <th>Asset Name</th>
-                        <th>Asset Type</th>
+                        <th>Department Name</th>
+                        <th>Defected Parts</th>
                         <th>view Breakdown</th>
                     </tr>
                 </thead>
-                <tbody id="employeeTableBody"></tbody>
+                <tbody id="DHBody"></tbody>
              
             </table>
     </div>
@@ -24,11 +23,11 @@
 
 <script>
     <?php
-    // echo 'var userID ='.$_SESSION['UserID']
-    //should define the department id
+    echo 'var userID ='.$_SESSION['UserID'];
     ?>
   
-    //  window.addEventListener('load', viewBreakAsset(userID))
+
+     window.addEventListener('load',viewBreakAssetDH(userID));
 </script>
 
 

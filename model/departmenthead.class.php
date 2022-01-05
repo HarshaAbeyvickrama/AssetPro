@@ -171,4 +171,49 @@ class DepartmentHead extends DBConnection {
         return $stmt;
     }
 
+    //Getting breakdownAssets of particular Department
+    protected function getBreakdownAssets($userId){
+        $DBConnection = $this->connect();
+        // $sql = "SELECT
+        //             breakdown.AssetID,
+        //             assetdetails.Name AS assetName,
+        //             TYPE.Name AS assetType,
+        //             asset.assignedUser,
+        //             departmentheaduser.DepartmentID
+        //         FROM
+        //             breakdown
+        //         INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
+        //         INNER JOIN asset ON asset.AssetID = breakdown.AssetID
+        //         INNER JOIN TYPE ON TYPE
+        //             .TypeID = asset.TypeID
+        //         INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
+        //         WHERE
+        //             departmentheaduser.DepartmentID = ? ";
+
+        $sql = "SELECT
+                    breakdown.AssetID,
+                    assetdetails.Name AS assetName,
+                    TYPE.Name AS assetType,
+                    asset.assignedUser,
+                    departmentheaduser.DepartmentID,
+                    department.Name AS departmentName,
+                    breakdown.DefectedParts,
+                    category.CategoryCode,
+                    type.TypeCode
+                FROM
+                    breakdown
+                INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
+                INNER JOIN asset ON asset.AssetID = breakdown.AssetID
+                INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
+                INNER JOIN category ON category.CategoryID = type.CategoryID
+                INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
+                INNER JOIN department ON department.DepartmentID = departmentheaduser.DepartmentID
+                WHERE
+                    departmentheaduser.UserID = ?";
+
+        $pstm = $DBConnection->prepare($sql);
+        $pstm->execute(array($userId));
+        return $pstm;
+    }
+
 }

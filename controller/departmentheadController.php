@@ -51,6 +51,12 @@ class DepartmentHeadController extends DepartmentHead {
         $result = $this->delete($id);
     }
 
+    //Getting a breakdownAssets
+    public function getAllBreakdownAssets($uid) {
+        $result = $this->getBreakdownAssets($uid);
+        return json_encode($result->fetchAll());
+    }
+
 }
 
 ?>

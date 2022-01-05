@@ -141,6 +141,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getDepartmentHead':
                     echo $dhc->getDepartmentHead($url[2]);
                     break;
+                case 'getDHBreakdowns':
+                    echo $dhc-> getAllBreakdownAssets($url[2]);
+                    break;
             }
             break;
 
