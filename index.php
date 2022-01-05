@@ -41,7 +41,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     case 'getAssetForm':
                         echo $ac-> getAssetDataForm($url[2]);
                         break;
-                   
+                    case 'categories':
+                        echo $ac->getAssetCategories();
+                        break;
                     default:
                         # code...
                         break;

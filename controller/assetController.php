@@ -113,7 +113,7 @@ class AssetController extends Asset
 
     public function getAssetCategories(){
         $res = $this->getCategories();
-        return json_encode($res->fetchAll());
+        return json_encode($res);
     }
 }
 
