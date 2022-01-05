@@ -52,6 +52,7 @@
                     <th>Employee ID</th>
                     <th>Name</th>
                     <th>Gender</th>
+                    <th>Job Title</th>
                     <th>View</th>
                 </tr>
             </thead>
