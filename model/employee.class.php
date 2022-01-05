@@ -46,6 +46,7 @@ class Employee extends DBConnection {
                     ud.Gender,
                     ud.jobTitle,
                     d.DepartmentCode,
+                    d.Name as DepartmentName,
                     eu.EmployeeID
                 FROM
                     userdetails ud

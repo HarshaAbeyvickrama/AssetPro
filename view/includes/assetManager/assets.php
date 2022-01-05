@@ -192,11 +192,7 @@
     //     })
     // }
 
-    function addViewAssetListener(element, callback) {
-        element.addEventListener("click", function(e) {
-            callback(this.id);
-        });
-    }
+    
     //Get asset details by ID
 </script>
 <div class="overviewLayout">

@@ -30,9 +30,8 @@
             tableRow.innerHTML = row;
 
             addViewAssetListener(tableRow, (id) => {
-                popup = document.getElementById('popup');
+                popup = document.querySelector('.popup-container');
                 popup.style.display = 'grid';
-                event.stopPropagation();
                 document.cookie = `assetID=${id}`;
                 loadSection('popup', 'viewAsset');
             });
