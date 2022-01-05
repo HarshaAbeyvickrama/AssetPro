@@ -43,10 +43,10 @@ class DepartmentController extends Department {
     }
 
     //Getting a breakdownAssets
-    public function getAllBreakdownAssets($did) {
-        $result = $this->getBreakdownAssets($did);
-        return json_encode($result->fetchAll());
-    }
+    // public function getAllBreakdownAssets($did) {
+    //     $result = $this->getBreakdownAssets($did);
+    //     return json_encode($result->fetchAll());
+    // }
 }
 
 ?>
