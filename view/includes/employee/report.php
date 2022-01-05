@@ -345,8 +345,8 @@
     console.log('assetdetails'+assetID);
     var asset =   JSON.parse(assetID)[0];  //string to object
     console.log(asset); 
-    document.getElementById('assetID').value = asset.AssetID;
-    document.getElementById('assetName').value = asset.Name;
+    document.getElementById('assetID').value = asset.CategoryCode + '/' + asset.TypeCode + '/' + asset.AssetID;
+    document.getElementById('assetName').value = asset.assetName;
     document.getElementById('assetType').value = asset.assetType;
     document.getElementById('category').value = asset.categoryName;
     document.getElementById('condition').value = asset.AssetCondition;
@@ -358,17 +358,13 @@
         const reportBtn = document.getElementById("reportAsset");
         button.addEventListener('click',function(event){
             //event.preventDefault();
-            switch (event.target.id) {                       //event triggered when clicking the report btn
+            switch (event.target.id) {                      
                 case 'cancelReport':
                    
                     break;
                 case 'reportAsset':
-                   const report = getFormdata();   
-                //    for (var pair of report.entries()) 
-                //    {
-                //    console.log(pair[0] + ': ' + pair[1]);
-                //    }
-                   
+                   const report = getFormdata(asset.AssetID);   
+
                    if(report == null){
                      alert('Fields cannot be empty');
                    }else{
@@ -384,16 +380,10 @@
         })
     })
 
-    function getFormdata(){
-        // reportForm = new FormData(document.getElementById('reportAssetForm'));
-        assetID = document.getElementById('assetID').value;
-        // console.log(reportForm);
+    function getFormdata(id){
+        assetID = id;
         defectedPart =  document.getElementById('defP').value;
-        // reportForm.append('defP',defectedPart);
         explainDefect = document.getElementById('exDef').value;
-        // reportForm.append('exDef',explainDefect);
-        // reportForm.append('assetID',assetID);
-        // console.log(reportForm);
 
         if(defectedPart == "" || explainDefect == "")
         {
@@ -412,15 +402,6 @@
     
      
     function saveReport(report){
-        // var xhr = new XMLHttpRequest();
-        // xhr.open("POST",`http://localhost/assetpro/breakdown/reportBreakdown`,true);
-        // xhr.onload = function(){
-        //     if(this.status === 200){
-        //        alert(this.responseText); // 2nd alert
-        //     }
-        // }
-        // xhr.send(report);
-
         postData('http://localhost/assetpro/breakdown/reportBreakdown' , report , (response) =>{
             console.log(response);
         })

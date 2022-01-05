@@ -91,6 +91,14 @@ if (session_status() === PHP_SESSION_NONE) {
             justify-items: center;
             padding: 20px;
         }
+        /* .popup-container::before{
+            content: url('../Images/icons/close.png');
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            z-index: 100;
+        } */
+       
     </style>
     <script>
         getCount();
@@ -137,7 +145,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
     </div>
-    <div class="popup-container" id="popup"></div>
+    <div class="popup-container" id="popup">
+    </div>
     <script>
         evaluateJs('centerSection');
 

@@ -316,6 +316,13 @@
                         <img src='../Images/icons/NotSelected/report.png' >
                         <span class='componentText'>Reports</span>
                     </div>";
+
+                    //Breakdown
+                    echo "<div class='component' id='reportedBreakdown'>
+                    <img src='../Images/icons/NotSelected/reportedBreakdowns.png' >
+                    <span class='componentText'>Breakdowns</span>
+                    </div>";
+
     
     
                     break;

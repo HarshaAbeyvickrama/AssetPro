@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2022 at 01:27 PM
+-- Generation Time: Jan 01, 2022 at 12:33 PM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -165,6 +165,7 @@ CREATE TABLE `breakdown` (
 -- Dumping data for table `breakdown`
 --
 
+<<<<<<< HEAD
 INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `EmployeeID`, `Date`, `Reason`, `DefectedParts`, `Status`) VALUES
 (1, 1, 3, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering', 'Reported'),
 (2, 1, 14, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys', 'Reported'),
@@ -172,6 +173,13 @@ INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `EmployeeID`, `Date`, `Reason
 (4, 1, 14, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard', 'Reported'),
 (11, 4, 3, '2022-01-01 17:33:22.000000', 'sd', 's', 'Reported'),
 (12, 4, 3, '2022-01-01 17:34:29.000000', 'd', 'd', 'Reported');
+=======
+INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `EmployeeID`, `Date`, `Reason`, `DefectedParts`) VALUES
+(1, 1, 14, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering'),
+(2, 1, 14, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys'),
+(3, 4, 14, '2021-10-22 09:16:07.000000', 'Lense Damaged', 'Camera lense'),
+(4, 1, 14, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard');
+>>>>>>> 96cc940da9c3db9204c7b7c67b05b98860198bc7
 
 -- --------------------------------------------------------
 

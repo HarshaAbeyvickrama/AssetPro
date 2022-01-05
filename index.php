@@ -38,8 +38,8 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     case 'assigned':
                         echo $ac->getAllAssignedAssets($url[2]);
                         break;
-                    case 'getAsset':
-                        echo $ac->getAsset($url[2]);
+                    case 'getAssetForm':
+                        echo $ac-> getAssetDataForm($url[2]);
                         break;
                    
                     default:
@@ -138,6 +138,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getDepartmentHead':
                     echo $dhc->getDepartmentHead($url[2]);
+                    break;
+                case 'getDHBreakdowns':
+                    echo $dhc-> getAllBreakdownAssets($url[2]);
                     break;
             }
             break;

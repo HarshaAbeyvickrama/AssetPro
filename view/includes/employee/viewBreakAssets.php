@@ -281,7 +281,7 @@
     var breakdownID = getCookieValue('BreakdownID');  
     var breakdown =   JSON.parse(breakdownID)[0];  //string to object
     console.log(breakdown); 
-    document.getElementById('assetID').value = breakdown.AssetID;
+    document.getElementById('assetID').value = breakdown.CategoryCode + '/' + breakdown.TypeCode + '/' + breakdown.AssetID;
     document.getElementById('assetName').value = breakdown.assetName;
     document.getElementById('assetType').value = breakdown.assetType;
     document.getElementById('category').value =breakdown.categoryName;
