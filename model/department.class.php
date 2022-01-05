@@ -103,27 +103,27 @@
 
         
         //Getting breakdownAssets of particular Department
-        protected function getBreakdownAssets($departmentId){
-            $DBConnection = $this->connect();
-            $sql = "SELECT
-                        breakdown.AssetID,
-                        assetdetails.Name AS assetName,
-                        TYPE.Name AS assetType,
-                        asset.assignedUser,
-                        departmentheaduser.DepartmentID
-                    FROM
-                        breakdown
-                    INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
-                    INNER JOIN asset ON asset.AssetID = breakdown.AssetID
-                    INNER JOIN TYPE ON TYPE
-                        .TypeID = asset.TypeID
-                    INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
-                    WHERE
-                        departmentheaduser.DepartmentID = ? ";
-            $pstm = $DBConnection->prepare($sql);
-            $pstm->execute(array($departmentId));
-            return $pstm;
-        }
+        // protected function getBreakdownAssets($departmentId){
+        //     $DBConnection = $this->connect();
+        //     $sql = "SELECT
+        //                 breakdown.AssetID,
+        //                 assetdetails.Name AS assetName,
+        //                 TYPE.Name AS assetType,
+        //                 asset.assignedUser,
+        //                 departmentheaduser.DepartmentID
+        //             FROM
+        //                 breakdown
+        //             INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
+        //             INNER JOIN asset ON asset.AssetID = breakdown.AssetID
+        //             INNER JOIN TYPE ON TYPE
+        //                 .TypeID = asset.TypeID
+        //             INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
+        //             WHERE
+        //                 departmentheaduser.DepartmentID = ? ";
+        //     $pstm = $DBConnection->prepare($sql);
+        //     $pstm->execute(array($departmentId));
+        //     return $pstm;
+        // }
 
     }
 

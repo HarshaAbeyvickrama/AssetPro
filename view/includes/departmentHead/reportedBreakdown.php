@@ -16,7 +16,7 @@
                         <th>view Breakdown</th>
                     </tr>
                 </thead>
-                <tbody id="employeeTableBody"></tbody>
+                <tbody id="DHBody"></tbody>
              
             </table>
     </div>
@@ -26,9 +26,10 @@
     <?php
     // echo 'var userID ='.$_SESSION['UserID']
     //should define the department id
+    echo 'var DeptID = 1';
     ?>
   
-    //  window.addEventListener('load', viewBreakAsset(userID))
+     window.addEventListener('load', viewBreakAssetDH(1))
 </script>
 
 
