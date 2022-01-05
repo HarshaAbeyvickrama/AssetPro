@@ -17,7 +17,7 @@ class EmployeeController extends Employee {
     //Getting an employee
     public function getEmployee($id) {
         $result = $this->get($id);
-        return json_encode($result->fetchAll());
+        return json_encode($result->fetch());
     }
 
     //Adding an employee

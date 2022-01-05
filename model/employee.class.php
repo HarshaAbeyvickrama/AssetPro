@@ -45,6 +45,7 @@ class Employee extends DBConnection {
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
                     ud.Gender,
                     d.DepartmentCode,
+                    d.Name as DepartmentName,
                     eu.EmployeeID
                 FROM
                     userdetails ud
