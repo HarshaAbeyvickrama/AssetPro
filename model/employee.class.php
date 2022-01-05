@@ -69,6 +69,31 @@ class Employee extends DBConnection {
                     ud.NIC,
                     ud.Gender,
                     ud.DOB,
+                    ud.ProfilePicURL
+                FROM
+                    userdetails ud
+                INNER JOIN employeeuser eu ON
+                    ud.UserID = eu.UserID
+                INNER JOIN useremergency ue ON
+                    eu.UserID = ue.UserID
+                WHERE EmployeeID = ?";
+        
+        $stmt = $DBConnection->prepare($sql);
+        $stmt->execute([$EmployeeID]);
+        return $stmt;
+    }
+
+    //Getting employees using department ID
+    protected function getDepartmentEmployees() {
+        $DBConnection = $this->connect();
+        $sql = "SELECT
+                    eu.EmployeeID,
+                    d.DepartmentID,
+                    d.DepartmentCode,
+                    CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                    ud.NIC,
+                    ud.Gender,
+                    ud.DOB,
                     ud.ProfilePicURL,
                     ud.CivilStatus,
                     ud.Address,
@@ -83,10 +108,13 @@ class Employee extends DBConnection {
                     ud.UserID = eu.UserID
                 INNER JOIN useremergency ue ON
                     eu.UserID = ue.UserID
-                WHERE EmployeeID = ?";
-        
+                INNER JOIN department d ON
+                    d.DepartmentID = eu.DepartmentID
+                WHERE
+                    d.DepartmentID = 1";
+
         $stmt = $DBConnection->prepare($sql);
-        $stmt->execute([$EmployeeID]);
+        $stmt->execute();
         return $stmt;
     }
 

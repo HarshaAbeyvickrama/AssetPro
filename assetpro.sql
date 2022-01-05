@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2022 at 12:33 PM
+-- Generation Time: Jan 05, 2022 at 05:21 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.0
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,25 +53,26 @@ CREATE TABLE `asset` (
   `assignedUser` int(11) DEFAULT NULL,
   `DateCreated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `LastModified` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Status` varchar(20) NOT NULL
+  `Status` varchar(20) NOT NULL,
+  `LocationID` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `asset`
 --
 
-INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assignedUser`, `DateCreated`, `LastModified`, `Status`) VALUES
-(1, 1, 2, NULL, NULL, '2021-10-20 10:21:20', '2021-10-20 10:21:20', 'Unassigned'),
-(2, 1, 1, NULL, NULL, '2021-10-20 10:26:31', '2021-10-20 10:26:31', 'Unassigned'),
-(3, 2, 5, NULL, 3, '2021-10-21 15:47:26', '2021-10-20 10:30:46', 'Assigned'),
-(4, 2, 5, NULL, 3, '2021-10-21 15:48:18', '2021-10-20 10:32:38', 'Assigned'),
-(5, 3, 6, NULL, 3, '2021-10-21 15:48:21', '2021-10-20 10:34:02', 'Assigned'),
-(6, 3, 6, 1, NULL, '2021-10-21 15:48:27', '2021-10-20 10:35:21', 'Shared'),
-(7, 1, 2, 1, NULL, '2021-10-21 15:48:31', '2021-10-20 10:38:07', 'Shared'),
-(8, 2, 5, NULL, NULL, '2021-10-21 12:43:31', '2021-10-21 12:43:31', 'Unassigned'),
-(13, 2, 5, NULL, NULL, '2021-10-21 16:15:18', '2021-10-21 16:15:18', 'Unassigned'),
-(14, 1, 2, NULL, NULL, '2021-10-22 00:21:51', '2021-10-22 00:21:51', 'Unassigned'),
-(15, 1, 2, NULL, NULL, '2021-10-22 01:30:14', '2021-10-22 01:30:14', 'Unassigned');
+INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assignedUser`, `DateCreated`, `LastModified`, `Status`, `LocationID`) VALUES
+(1, 1, 2, NULL, 2, '2022-01-01 12:24:48', '2021-10-20 10:21:20', 'Unassigned', 1),
+(2, 1, 1, NULL, 2, '2022-01-01 12:24:51', '2021-10-20 10:26:31', 'Unassigned', 1),
+(3, 2, 5, NULL, 3, '2022-01-01 12:23:29', '2021-10-20 10:30:46', 'Assigned', 1),
+(4, 2, 5, NULL, 3, '2022-01-01 12:23:33', '2021-10-20 10:32:38', 'Assigned', 1),
+(5, 3, 6, 1, 3, '2022-01-01 15:21:52', '2021-10-20 10:34:02', 'Assigned', 1),
+(6, 3, 6, 1, 1, '2022-01-01 12:25:00', '2021-10-20 10:35:21', 'Shared', 1),
+(7, 1, 2, 1, 1, '2022-01-01 12:25:03', '2021-10-20 10:38:07', 'Shared', 1),
+(8, 2, 5, NULL, 1, '2022-01-01 12:25:06', '2021-10-21 12:43:31', 'Unassigned', 1),
+(13, 2, 5, NULL, 4, '2022-01-01 12:25:10', '2021-10-21 16:15:18', 'Unassigned', 1),
+(14, 1, 2, NULL, 4, '2022-01-01 12:25:15', '2021-10-22 00:21:51', 'Unassigned', 1),
+(15, 1, 2, 1, 5, '2022-01-01 13:44:19', '2021-10-22 01:30:14', 'Unassigned', 1);
 
 -- --------------------------------------------------------
 
@@ -156,18 +157,21 @@ CREATE TABLE `breakdown` (
   `EmployeeID` int(11) NOT NULL,
   `Date` datetime(6) NOT NULL,
   `Reason` longtext NOT NULL,
-  `DefectedParts` longtext NOT NULL
+  `DefectedParts` longtext NOT NULL,
+  `Status` varchar(50) NOT NULL DEFAULT 'Reported'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `breakdown`
 --
 
-INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `EmployeeID`, `Date`, `Reason`, `DefectedParts`) VALUES
-(1, 1, 14, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering'),
-(2, 1, 14, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys'),
-(3, 4, 14, '2021-10-22 09:16:07.000000', 'Lense Damaged', 'Camera lense'),
-(4, 1, 14, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard');
+INSERT INTO `breakdown` (`BreakdownID`, `AssetID`, `EmployeeID`, `Date`, `Reason`, `DefectedParts`, `Status`) VALUES
+(1, 4, 3, '2021-10-21 21:47:48.000000', 'Cannot get a clear view', 'Display Fickering', 'Reported'),
+(2, 5, 3, '2021-10-21 22:51:40.000000', 'not working', 'Keyboard keys', 'Reported'),
+(3, 4, 3, '2021-10-22 09:16:07.000000', 'Lense Damaged', 'Camera lense', 'Reported'),
+(4, 5, 3, '2021-10-22 10:26:41.000000', 'Keys are not working', 'Keyboard', 'Reported'),
+(15, 3, 3, '2022-01-01 19:32:28.000000', 'broken by fall', 'keyboard,window and touch pad', 'Reported'),
+(16, 3, 3, '2022-01-04 15:52:39.000000', 'improper usage', 'touch pad', 'Reported');
 
 -- --------------------------------------------------------
 
@@ -617,7 +621,8 @@ ALTER TABLE `asset`
   ADD KEY `ctg_fk` (`CategoryID`),
   ADD KEY `tp_fk` (`TypeID`),
   ADD KEY `dpt_fk` (`DepartmentID`),
-  ADD KEY `empl_fk` (`assignedUser`);
+  ADD KEY `empl_fk` (`assignedUser`),
+  ADD KEY `LocationID` (`LocationID`);
 
 --
 -- Indexes for table `assetdetails`
@@ -783,7 +788,7 @@ ALTER TABLE `assetmanageruser`
 -- AUTO_INCREMENT for table `breakdown`
 --
 ALTER TABLE `breakdown`
-  MODIFY `BreakdownID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `BreakdownID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -865,6 +870,7 @@ ALTER TABLE `adminuser`
 -- Constraints for table `asset`
 --
 ALTER TABLE `asset`
+  ADD CONSTRAINT `asset_ibfk_1` FOREIGN KEY (`LocationID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ctg_fk` FOREIGN KEY (`CategoryID`) REFERENCES `category` (`CategoryID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dpt_fk` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `empl_fk` FOREIGN KEY (`assignedUser`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,

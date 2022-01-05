@@ -363,11 +363,10 @@ function loadEmployee(EmployeeID) {
   xhr.onload = function () {
     if (this.status === 200) {
       employeeDetails = JSON.parse(this.responseText);
-      popup = document.getElementById("popup");
-      popup.style.display = "grid";
-      // event.stopPropagation();
-      loadSection("popup", "emprofile");
-
+      // popup = document.getElementById("popup");
+      // popup.style.display = "grid";
+      event.stopPropagation();
+      loadSection("centerSection", "emprofile");
       var json = JSON.stringify(employeeDetails);
       document.cookie = `EmployeeID=${json}`;
     }
