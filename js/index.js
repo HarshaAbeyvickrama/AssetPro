@@ -24,3 +24,10 @@ function postData(url, data, callback) {
   xhr.send(JSON.stringify(data));
 }
 
+  function inputs(formID,state){
+  var inputs = document.getElementById(formID).querySelectorAll("input, select");
+  inputs.forEach(input =>{
+      input.disabled = state;
+  })
+  }
+

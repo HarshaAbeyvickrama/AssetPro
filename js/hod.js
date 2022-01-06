@@ -7,13 +7,15 @@ function viewBreakAssetDH(userID){
             var viewassets = JSON.parse(this.response);
             console.log('the data is');
             for (var i = 0; i < viewassets.length; i++) {
+              var date = new Date(viewassets[i]['reportedDate']);
+              var newDate = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();     
+              var reportedDate = viewassets[i]['reportedDate'].replace(/-/gi, "/");
                 document.getElementById('DHBody').innerHTML += `
                                 <tr>
                                     <td>${i+1}</td>
                                     <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
+                                    <td>${newDate}</td>
                                     <td>${viewassets[i]['assetName']}</td>
-                                    <td>${viewassets[i]['departmentName']}</td>
-                                    <td>${viewassets[i]['DefectedParts']}</td>
                                     <td>  
                                     <button class='btn btn-submit' onClick="">View</button>
                                     </td> 
