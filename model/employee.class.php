@@ -44,6 +44,7 @@ class Employee extends DBConnection {
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
                     ud.Gender,
+                    ud.jobTitle,
                     d.DepartmentCode,
                     d.Name as DepartmentName,
                     eu.EmployeeID
@@ -85,41 +86,6 @@ class Employee extends DBConnection {
         
         $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$EmployeeID]);
-        return $stmt;
-    }
-
-    //Getting employees using department ID
-    protected function getDepartmentEmployees() {
-        $DBConnection = $this->connect();
-        $sql = "SELECT
-                    eu.EmployeeID,
-                    d.DepartmentID,
-                    d.DepartmentCode,
-                    CONCAT(ud.fName, ' ', ud.lName) AS Name,
-                    ud.NIC,
-                    ud.Gender,
-                    ud.DOB,
-                    ud.ProfilePicURL,
-                    ud.CivilStatus,
-                    ud.Address,
-                    ud.PhoneNumber,
-                    ud.Email,
-                    ue.fName AS eName,
-                    ue.Relationship,
-                    ue.TelephoneNumber
-                FROM
-                    userdetails ud
-                INNER JOIN employeeuser eu ON
-                    ud.UserID = eu.UserID
-                INNER JOIN useremergency ue ON
-                    eu.UserID = ue.UserID
-                INNER JOIN department d ON
-                    d.DepartmentID = eu.DepartmentID
-                WHERE
-                    d.DepartmentID = 1";
-
-        $stmt = $DBConnection->prepare($sql);
-        $stmt->execute();
         return $stmt;
     }
 

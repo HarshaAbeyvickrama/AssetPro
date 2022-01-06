@@ -26,9 +26,9 @@ function viewBreakAssetDH(userID){
 
 /************************************employees.php*********************************************/
 //Loading all the employees within his department
-function loadDepartmentEmployees() {
+function loadDepartmentEmployees(userID) {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/assetpro/employees/getDepartmentEmployees", true);
+    xhr.open("GET", `http://localhost/assetpro/departmentheads/getDepartmentEmployees/${userID}`, true);
     xhr.onload = function () {
       if (this.status == 200) {
         var employees = JSON.parse(this.response);
@@ -39,13 +39,14 @@ function loadDepartmentEmployees() {
               <td>${employees[i]["DepartmentCode"]}/EMP/${employees[i]["EmployeeID"]}</td>
               <td>${employees[i]["Name"]}</td>
               <td>${employees[i]["Gender"]}</td>
-              <td>Hello</td>
+              <td>${employees[i]["jobTitle"]}</td>
               <td>
                 <button class='btn btn-submit ' id='view' onClick="loadEmployee(${employees[i]["EmployeeID"]})">View</button>
               </td>
             </tr>`;
         }
       }
+      console.log(employees);
     };
     xhr.send();
   }

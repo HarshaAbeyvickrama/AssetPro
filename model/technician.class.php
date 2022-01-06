@@ -44,6 +44,7 @@ class Technician extends DBConnection {
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
                     ud.Gender,
+                    ud.jobTitle,
                     d.DepartmentCode,
                     d.Name as DepartmentName,
                     tu.TechnicianID
