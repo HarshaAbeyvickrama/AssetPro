@@ -30,6 +30,7 @@
                     <th>Technician ID</th>
                     <th>Name</th>
                     <th>Gender</th>
+                    <th>Job Title</th>
                     <th>View</th>
                 </tr>
                 <tbody class="tableRowGroup" id="techniciansTableBody"></tbody>

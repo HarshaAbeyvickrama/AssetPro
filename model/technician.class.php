@@ -44,7 +44,9 @@ class Technician extends DBConnection {
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
                     ud.Gender,
+                    ud.jobTitle,
                     d.DepartmentCode,
+                    d.Name as DepartmentName,
                     tu.TechnicianID
                 FROM
                     userdetails ud
@@ -84,7 +86,7 @@ class Technician extends DBConnection {
                     ud.UserID = tu.UserID
                 INNER JOIN useremergency ue ON
                     tu.UserID = ue.UserID
-                WHERE TechnicianID = ?";
+                WHERE tu.TechnicianID = ?";
         
         $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$TechnicianID]);

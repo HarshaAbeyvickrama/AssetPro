@@ -1,34 +1,4 @@
-<style>
-    * {
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
 
-    /* .contentSection {
-        display: flex;
-        justify-content: center;
-        background-color: white;
-        border-radius: 15px;
-        margin-top: 15px;
-        height: 82vh;
-        align-items: flex-start !important;
-    } */
-
-    .addEmp #addEmp {
-        color: white;
-        background-color: #6A71D7;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 14px;
-        font-size: 20px;
-        border: none;
-        /* margin-left: 62vw; */
-    }
-    .heading {
-        display: flex;
-    }
-
-    /* CSS for the employee table */
-</style>
 <div class="overviewLayout">
     <!-- <div>
         <div>All Employees</div>
@@ -39,6 +9,9 @@
         </div>
     </div> -->
 
+    <div>
+        <div class="section-heading">All Employees</div>
+    </div>
 
     <div class="contentSection">
         <!-- <div> -->
@@ -53,13 +26,17 @@
                     <th>View</th>
                 </tr>
             </thead>
-            <tbody class="tableRowGroup" id="employeeTableBody"></tbody>
+            <tbody id="employeeTableBody"></tbody>
         </table>
     </div>
 </div>
 
 <script>
-    window.addEventListener('load', loadDepartmentEmployees());
+    <?php
+    echo 'var userID ='.$_SESSION['UserID'];
+    ?>
+
+    window.addEventListener('load', loadDepartmentEmployees(userID));
 </script>
 
 

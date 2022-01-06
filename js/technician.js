@@ -173,13 +173,13 @@
 
 
     //Add event listener to listen for click events on each asset in all tables
-    function addViewAssetListener(assetElement){
-        assetElement.addEventListener('click', (event) =>{
-            var asset = event.target.parentElement;
-            event.stopPropagation();
-            getAsset(assets.id)
-        })
-    }
+    // function addViewAssetListener(assetElement){
+    //     assetElement.addEventListener('click', (event) =>{
+    //         var asset = event.target.parentElement;
+    //         event.stopPropagation();
+    //         getAsset(assets.id)
+    //     })
+    // }
 
     //Get asset details by ID
     // function getAsset(assetID){

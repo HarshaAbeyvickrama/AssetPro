@@ -17,7 +17,7 @@ class EmployeeController extends Employee {
     //Getting an employee
     public function getEmployee($id) {
         $result = $this->get($id);
-        return json_encode($result->fetchAll());
+        return json_encode($result->fetch());
     }
 
     //Adding an employee
@@ -39,12 +39,6 @@ class EmployeeController extends Employee {
         
         $result = $newEmployee->add();
         return json_encode($result);
-    }
-
-    //Getting all the employees in a particular department
-    public function getHeadDepartmentEmployees() {
-        $result = $this->getDepartmentEmployees();
-        return json_encode($result->fetchAll());
     }
 
     //Updating employee details
