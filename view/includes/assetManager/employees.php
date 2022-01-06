@@ -28,11 +28,11 @@
             btn.id = employee.EmployeeID;
             btn.innerHTML = 'View';
             addViewAssetListener(btn, (id) => {
-                getData(`http://localhost/assetpro/employees/getEmployee/${id}`, (data) => {
-                    console.log(data);
-                    popup = document.querySelector('.popup-container');
-                    popup.style.display = 'grid';
-                })
+                popupContainer = document.querySelector('.popup-container');
+                popupContainer.style.display = 'grid';
+                document.cookie = `EmployeeID = ${id}`;
+                loadSection('popup', 'emprofile');
+                
             })
             var tr = create('tr');
             var td = create('td', index + 1);

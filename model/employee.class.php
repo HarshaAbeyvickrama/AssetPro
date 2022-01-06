@@ -61,16 +61,20 @@ class Employee extends DBConnection {
     }
 
     //Getting the employee details using EmployeeID
+    // ud.fName,
+    //                 ud.lName,
+    //                 ud.NIC,
+    //                 ud.Gender,
+    //                 ud.DOB,
+    //                 ud.ProfilePicURL
     protected function get($EmployeeID) {
         $DBConnection = $this->connect();
         $sql = "SELECT
                     eu.EmployeeID,
-                    ud.fName,
-                    ud.lName,
-                    ud.NIC,
-                    ud.Gender,
-                    ud.DOB,
-                    ud.ProfilePicURL
+                    ud.*,
+                    ue.fName as eName,
+                    ue.Relationship as eRelationship,
+                    ue.TelephoneNumber as eContact
                 FROM
                     userdetails ud
                 INNER JOIN employeeuser eu ON
