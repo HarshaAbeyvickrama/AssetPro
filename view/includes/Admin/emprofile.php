@@ -254,9 +254,9 @@
                         </div>
                     </div>
                     
-                    <div class="col-btn">
+                    <!-- <div class="col-btn">
                         <div class="btnAction" id="btnEditProfile"> Edit </div>
-                    </div>
+                    </div> -->
 
                 </div>
                 
@@ -305,6 +305,8 @@
             </div>
             <div class="col-btn">
                 <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div>
+                <div class="btnAction" id="btnEditProfile"> Edit </div>
+
             </div>
                     
               
@@ -362,9 +364,9 @@ function formState(formId,readonlyState){
     //Getting the employee details to the form
    var employeeID = getCookieValue('EmployeeID');
    var employee = JSON.parse(employeeID)[0];
-   console.log(employee);
+//    console.log(employee);
 
-   console.log(employee.ProfilePicURL);
+//    console.log(employee.ProfilePicURL);
 
    document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
     

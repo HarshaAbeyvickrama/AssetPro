@@ -352,11 +352,7 @@ function loadEmployees() {
 function loadEmployee(EmployeeID) {
   var employeeDetails = null;
   const xhr = new XMLHttpRequest();
-  xhr.open(
-    "GET",
-    `http://localhost/assetpro/employees/getEmployee/${EmployeeID}`,
-    true
-  );
+  xhr.open("GET", `http://localhost/assetpro/employees/getEmployee/${EmployeeID}`,true);
   xhr.onload = function () {
     if (this.status === 200) {
       employeeDetails = JSON.parse(this.responseText);
@@ -367,7 +363,7 @@ function loadEmployee(EmployeeID) {
       var json = JSON.stringify(employeeDetails);
       document.cookie = `EmployeeID=${json}`;
     }
-    console.log(employeeDetails);
+    // console.log(employeeDetails);
   };
   xhr.send();
 }
