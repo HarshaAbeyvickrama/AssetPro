@@ -61,13 +61,7 @@ class Employee extends DBConnection {
         return $pstm;
     }
 
-    //Getting the employee details using EmployeeID
-    // ud.fName,
-    //                 ud.lName,
-    //                 ud.NIC,
-    //                 ud.Gender,
-    //                 ud.DOB,
-    //                 ud.ProfilePicURL
+    //Getting the details of an employee using the employee ID
     protected function get($EmployeeID) {
         $DBConnection = $this->connect();
         $sql = "SELECT

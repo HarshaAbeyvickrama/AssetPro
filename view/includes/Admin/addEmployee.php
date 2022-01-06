@@ -301,7 +301,7 @@
                 </div>
 
                 <!-- Add and Cancel button to add -->
-                <div class="col-btn">
+                <div class="col-btn" id="EditBtnSection">
                     <button class="addBtn" id="btnSaveEmployee">Save</button>
                     <button class="addBtn" id="cancelAddEmployee" onClick="goBack()">Back</button>
                 </div>
@@ -313,6 +313,7 @@
 </form>
 
 <script>
+
     // document.querySelectorAll(".col-btn").forEach(button => {
     //     const cancBtn = document.getElementById('cancelAddEmployee');
     //     const saveBtn = document.getElementById("btnSaveEmployee");

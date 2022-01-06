@@ -274,7 +274,7 @@
                 </div>
                 <div class="col-btn" id="updateBtnSection">
                         <div id="ConfirmUpdate" >Update</div> 
-                        <div id="Cancelupdate" >cancel</div> 
+                        <div id="Cancelupdate" >Cancel</div> 
                 </div>
             </div>
         </div>

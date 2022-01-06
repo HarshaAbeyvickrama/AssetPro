@@ -207,6 +207,10 @@
         transition: .5s;
     }
 
+    #updateBtnSection{
+        display: none;
+    }
+
 </style>
 <form action="" id="errorlogForm">
 
@@ -303,10 +307,13 @@
                 <span for="econtact"> Telephone Number: </span>
                 <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
-            <div class="col-btn">
+            <div class="col-btn" id="EditBtnSection">
                 <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div>
                 <div class="btnAction" id="btnEditProfile"> Edit </div>
-
+            </div>
+            <div class="col-btn" id="updateBtnSection">
+                <div class="btnAction" id="Cancelupdate"> Cancel </div>
+                <div class="btnAction" id="ConfirmUpdate"> Update </div>
             </div>
                     
               
@@ -318,6 +325,18 @@
 </form>
 
 <script>
+
+    document.getElementById('btnEditProfile').addEventListener('click',() => {
+        document.getElementById('EditBtnSection').style.display = 'none';
+        document.getElementById('updateBtnSection').style.display = 'block';
+    inputs('errorlogForm',false);
+    })
+
+    document.getElementById('Cancelupdate').addEventListener('click',() => {
+        document.getElementById('updateBtnSection').style.display = 'none';
+        document.getElementById('EditBtnSection').style.display = 'block';
+        inputs('errorlogForm',true);
+    })
 
     // Enable / Disable the form fields
 
