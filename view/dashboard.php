@@ -106,7 +106,9 @@ if (session_status() === PHP_SESSION_NONE) {
         #closePopup img:hover {
             cursor: pointer;
         }
-
+        #popup{
+            align-items: center;
+        }
         /* .popup-container::before{
             content: url('../Images/icons/close.png');
             position: fixed;
@@ -220,11 +222,11 @@ if (session_status() === PHP_SESSION_NONE) {
             return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
         }
 
+        // Close the popup on click of the close button
         document.getElementById('closePopup').addEventListener('click', function() {
             var closePopup = document.querySelector('.popup-container');
             closePopup.style.display = 'none';
-            // var popuop = document.getElementById('popup');
-            // closePopup.innerHTML = '';
+            document.getElementById('popup').innerHTML = '';
         });
     </script>
 </body>

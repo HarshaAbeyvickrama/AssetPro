@@ -31,11 +31,10 @@
             btn.id = technician.TechnicianID;
             btn.innerHTML = 'View';
             addViewAssetListener(btn, (id) => {
-                getData(`http://localhost/assetpro/technicians/getTechnician/${id}`, (data) => {
-                    console.log(data);
-                    popup = document.querySelector('.popup-container');
-                    popup.style.display = 'grid';
-                })
+                popup = document.querySelector('.popup-container');
+                popup.style.display = 'grid';
+                document.cookie = `TechnicianID = ${id}`;
+                loadSection('popup', 'techprofile');
             })
             var tr = create('tr');
             var td = create('td', index + 1);

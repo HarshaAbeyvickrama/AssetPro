@@ -62,6 +62,12 @@ class Employee extends DBConnection {
     }
 
     //Getting the employee details using EmployeeID
+    // ud.fName,
+    //                 ud.lName,
+    //                 ud.NIC,
+    //                 ud.Gender,
+    //                 ud.DOB,
+    //                 ud.ProfilePicURL
     protected function get($EmployeeID) {
         $DBConnection = $this->connect();
         $sql = "SELECT
