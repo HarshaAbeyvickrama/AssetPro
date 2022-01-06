@@ -64,6 +64,11 @@
             return json_encode($result->fetchAll());
         }
 
+        public function getAllinProgressAssets($id){
+            $result = $this->getinProgress($id);
+            return json_encode($result->fetchAll());
+        }
+
         public function getAllAssetCounts(){
             $res = $this->getAllCounts();
             $count = $res->fetchAll();

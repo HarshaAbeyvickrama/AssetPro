@@ -219,11 +219,11 @@
                         <div class="tableCell"> Reported a Breakdown of FA/23456 </div>
                         <div class="tableCell"> 4 day ago </div>
                     </div>
-                    <div class="tableRow">
+                    <!-- <div class="tableRow">
                         <div class="tableCell"> 12/10/2021 </div>
                         <div class="tableCell"> IA/34567 was unassigned from you </div>
                         <div class="tableCell"> 10 days ago </div>
-                    </div>
+                    </div> -->
                    
                 </div>
             </div>

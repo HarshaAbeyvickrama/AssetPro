@@ -42,6 +42,9 @@
                     case 'getAsset':
                         echo $ac->getAsset($url[2]);
                         break;
+                    case 'inProgress':
+                        echo $ac->getAllinProgressAssets($url[2]);
+                        break;
                    
                     default:
                         # code...
