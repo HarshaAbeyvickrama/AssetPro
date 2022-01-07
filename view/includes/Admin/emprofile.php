@@ -207,6 +207,10 @@
         transition: .5s;
     }
 
+    #updateBtnSection{
+        display: none;
+    }
+
 </style>
 <form action="" id="errorlogForm">
 
@@ -254,9 +258,9 @@
                         </div>
                     </div>
                     
-                    <div class="col-btn">
+                    <!-- <div class="col-btn">
                         <div class="btnAction" id="btnEditProfile"> Edit </div>
-                    </div>
+                    </div> -->
 
                 </div>
                 
@@ -303,8 +307,13 @@
                 <span for="econtact"> Telephone Number: </span>
                 <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
-            <div class="col-btn">
+            <div class="col-btn" id="EditBtnSection">
                 <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div>
+                <div class="btnAction" id="btnEditProfile"> Edit </div>
+            </div>
+            <div class="col-btn" id="updateBtnSection">
+                <div class="btnAction" id="Cancelupdate"> Cancel </div>
+                <div class="btnAction" id="ConfirmUpdate"> Update </div>
             </div>
                     
               
@@ -316,6 +325,18 @@
 </form>
 
 <script>
+
+    document.getElementById('btnEditProfile').addEventListener('click',() => {
+        document.getElementById('EditBtnSection').style.display = 'none';
+        document.getElementById('updateBtnSection').style.display = 'block';
+    inputs('errorlogForm',false);
+    })
+
+    document.getElementById('Cancelupdate').addEventListener('click',() => {
+        document.getElementById('updateBtnSection').style.display = 'none';
+        document.getElementById('EditBtnSection').style.display = 'block';
+        inputs('errorlogForm',true);
+    })
 
     // Enable / Disable the form fields
 
@@ -362,9 +383,9 @@ function formState(formId,readonlyState){
     //Getting the employee details to the form
    var employeeID = getCookieValue('EmployeeID');
    var employee = JSON.parse(employeeID)[0];
-   console.log(employee);
+//    console.log(employee);
 
-   console.log(employee.ProfilePicURL);
+//    console.log(employee.ProfilePicURL);
 
    document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
     

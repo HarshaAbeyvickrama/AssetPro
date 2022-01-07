@@ -9,9 +9,9 @@
                     <tr>
                         <th>#</th>                    
                         <th>Asset ID</th>
+                        <th>Reported Date</th>
                         <th>Asset Name</th>
-                        <th>Department Name</th>
-                        <th>Defected Parts</th>
+                        <th>Assigned Employee</th>
                         <th>view Breakdown</th>
                     </tr>
                 </thead>

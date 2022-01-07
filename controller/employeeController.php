@@ -21,7 +21,7 @@ class EmployeeController extends Employee {
     }
 
     //Adding an employee
-    public function addTechnician($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
+    public function addEmployee($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
         $newEmployee = new Employee (
             firstName:$firstName,
             lastName:$lastName,
@@ -38,6 +38,7 @@ class EmployeeController extends Employee {
             eContact:$eContact);
         
         $result = $newEmployee->add();
+
         return json_encode($result);
     }
 

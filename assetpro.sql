@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2022 at 05:21 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Jan 06, 2022 at 07:45 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,7 +64,7 @@ CREATE TABLE `asset` (
 INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assignedUser`, `DateCreated`, `LastModified`, `Status`, `LocationID`) VALUES
 (1, 1, 2, NULL, 2, '2022-01-01 12:24:48', '2021-10-20 10:21:20', 'Unassigned', 1),
 (2, 1, 1, NULL, 2, '2022-01-01 12:24:51', '2021-10-20 10:26:31', 'Unassigned', 1),
-(3, 2, 5, NULL, 3, '2022-01-01 12:23:29', '2021-10-20 10:30:46', 'Assigned', 1),
+(3, 2, 5, 1, 3, '2022-01-05 12:43:40', '2021-10-20 10:30:46', 'Assigned', 1),
 (4, 2, 5, NULL, 3, '2022-01-01 12:23:33', '2021-10-20 10:32:38', 'Assigned', 1),
 (5, 3, 6, 1, 3, '2022-01-01 15:21:52', '2021-10-20 10:34:02', 'Assigned', 1),
 (6, 3, 6, 1, 1, '2022-01-01 12:25:00', '2021-10-20 10:35:21', 'Shared', 1),
@@ -95,6 +95,17 @@ CREATE TABLE `assetdetails` (
 --
 
 INSERT INTO `assetdetails` (`AssetID`, `Name`, `Cost`, `AssetCondition`, `ImageURL`, `Description`, `PurchasedDate`) VALUES
+(1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
+(2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
+(3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
+(4, 'Web Cam', 5000, 'Brand New', '/uploads/assets/4.png', 'Asus C3 1080p Webcam', '2021-10-05'),
+(5, 'Windows 10', 4500, 'Brand New', '/uploads/assets/5.png', 'Windows 10 Pro', '2021-09-15'),
+(6, 'Office 365', 30000, 'Brand New', '/uploads/assets/6.jpg', 'Microsoft 365 Services', '2021-09-18'),
+(7, 'Printer', 90000, 'Used', '/uploads/assets/7.jfif', 'Epson WorkForce Wireless Printer w/ADF (WF-2850)', '2021-09-16'),
+(8, 'Key Board', 2000, 'Brand New', '/uploads/assets/8.jpg', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-21'),
+(13, 'Logitech C505 HD Webcam', 15400, 'Brand New', '/uploads/assets/13.png', 'Web Cam', '2021-10-22'),
+(14, 'HP LaserJet', 20000, 'Brand New', '/uploads/assets/14.jpeg', 'Printer', '2021-10-22'),
+(15, 'HP 1102 InkJet', 30000, 'Brand New', '/uploads/assets/15.jpeg', 'Printer', '2021-10-22'),
 (1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
 (2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
 (3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
@@ -250,19 +261,20 @@ CREATE TABLE `depreciation` (
   `AssetID` int(11) NOT NULL,
   `UsefulYears` int(11) DEFAULT NULL,
   `DepriciaionRate` decimal(10,0) DEFAULT NULL,
-  `ResidualValue` decimal(10,0) DEFAULT NULL
+  `ResidualValue` decimal(10,0) DEFAULT NULL,
+  `isDepriciated` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `depreciation`
 --
 
-INSERT INTO `depreciation` (`DepreciationID`, `AssetID`, `UsefulYears`, `DepriciaionRate`, `ResidualValue`) VALUES
-(1, 1, 10, '2', '50000'),
-(2, 2, 3, '5', '5000'),
-(3, 7, 3, '2', '2000'),
-(4, 14, 5, '2', '5000'),
-(5, 15, 5, '2', '2000');
+INSERT INTO `depreciation` (`DepreciationID`, `AssetID`, `UsefulYears`, `DepriciaionRate`, `ResidualValue`, `isDepriciated`) VALUES
+(1, 1, 10, '2', '50000', 0),
+(2, 2, 3, '5', '5000', 0),
+(3, 7, 3, '2', '2000', 0),
+(4, 14, 5, '2', '5000', 0),
+(5, 15, 5, '2', '2000', 0);
 
 -- --------------------------------------------------------
 
@@ -526,39 +538,40 @@ CREATE TABLE `userdetails` (
   `Email` varchar(255) NOT NULL,
   `DOB` date NOT NULL,
   `ProfilePicURL` varchar(1000) NOT NULL,
-  `CivilStatus` varchar(10) NOT NULL
+  `CivilStatus` varchar(10) NOT NULL,
+  `jobTitle` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `userdetails`
 --
 
-INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender`, `PhoneNumber`, `Email`, `DOB`, `ProfilePicURL`, `CivilStatus`) VALUES
-(1, 'Induni', 'Dulanjalee', '986151010V', 'Badulla', 'Female', '0719598424', 'indunijd@gmail.com', '1998-04-24', '', 'Single'),
-(2, 'Harsha', 'Abeyvickrama', '199824200890', 'Rakwana', 'Male', '0711425085', 'harshaabeyvickrama@gmail.com\r\n', '1998-08-29', '', 'Single'),
-(3, 'Mushrifa', 'Mansoor', '996893758V', 'Mawanella', 'Female', '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '/uploads/employees/3.jpg', 'Single'),
-(4, 'Ayisha', 'Siddeequa', '997271386V', 'Kandy', 'Female', '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '/uploads/technicians/4.jpg', 'Single'),
-(5, 'Namal', 'Ranasinghe', '936987123V', 'Nugegoda', 'Male', '0719989796', 'namalr@gmail.com', '1993-06-10', '/uploads/employees/5.jpg', 'Married'),
-(6, 'Jithendra', 'Prianjalee', '913456770V', 'Bandarawela', 'Female', '0764352718', 'jithendra@gmail.com', '1991-08-23', '/uploads/employees/6.jpg', 'Married'),
-(8, 'Sara', 'Desapriyan', '200323045691', 'Kurunegala', 'Female', '0775081822', 'sara@gmail.com', '2003-02-20', '/uploads/employees/8.jpg', 'Unmarried'),
-(9, 'Lakshman', 'Kumar', '958123456X', 'Galle', 'Male', '0756789211', 'lakshman@gmail.com', '1995-02-20', '/uploads/employees/9.jpg', 'Married'),
-(10, 'Muzni', 'Ahamed', '', 'Galle', 'Male', '0765667891', 'ahamed@gmail.com', '1998-01-20', '/uploads/employees/10.jpg', 'Unmarried'),
-(11, 'Douglas', 'Kumar', '', 'Kuruwita', 'Male', '0782234789', 'douglas@gmail.com', '1994-03-20', '/uploads/technicians/11.jpg', 'Unmarried'),
-(12, 'Andrew', 'Dias', '', 'Panadura', 'Male', '0776545611', 'andrew@gmail,com', '1990-01-20', '/uploads/technicians/12.jpg', 'Unmarried'),
-(13, 'Pavani', 'Kumari', '', 'Kuliyapitiya', 'Female', '0777345678', 'pavani@gmail.com', '1989-01-20', '/uploads/technicians/13.jpg', 'Unmarried'),
-(14, 'Samanali', 'Perea', '', 'Peradeniya', 'Female', '0774563211', 'samanali@gmail.com', '1975-12-20', '/uploads/technicians/14.jpg', 'Married'),
-(15, 'Farhan', 'Ahamed', '', 'Mawanella', 'Male', '0775067551', 'farhan@gmail.com', '1992-07-20', '/uploads/technicians/15.jpg', 'Married'),
-(18, 'Charuni', 'Kumari', '987456190V', 'Polonnaruwa', 'Female', '0712348790', 'charunik@gmail.com', '1998-08-13', '/uploads/employees/18.jpeg', 'Married'),
-(19, 'Jeewanthi', 'Gunaratne', '796345678V', 'Anuradhapura', 'Female', '0712348790', 'jeewanthi@gmail.com', '1979-07-18', '/uploads/employees/19.jpg', 'Married'),
-(20, 'Aruna', 'Kumara', '798345780V', 'Kuruwita', 'Male', '0712348790', 'aruna@gmail.com', '1979-10-17', '/uploads/employees/20.jpg', 'Married'),
-(21, 'Amanda', 'Dineshiya', '956345123V', 'Matara', 'Female', '0777412112', 'amandad@gmail.com', '1995-06-15', '/uploads/technicians/21.jpg', 'Married'),
-(22, 'Thusitha', 'Dissanayake', '836567900V', 'Battaramulla', 'Male', '0713454545', 'thusithad@gmail.com', '1983-05-19', '/uploads/employees/22.jpg', 'Married'),
-(23, 'Prasanna', 'Ranathunge', '987234567V', 'Polonnaruwa', 'Male', '0711234567', 'prasanna@gmail.com', '1998-08-10', '/uploads/employees/23.jpg', 'Married'),
-(24, 'Herath', 'Bandara', '987234678V', 'Polonnaruwa', 'Male', '0764352718', 'herath@gmail.com', '1998-07-16', '/uploads/employees/24.jpg', 'Married'),
-(25, 'Sachini', 'Thennakoon', '854123678V', 'Bandarawela', 'Female', '0712348790', 'delegates.revolux@gmail.com', '1985-05-20', '/uploads/employees/25.jpg', 'Married'),
-(26, 'Herath', 'Thennakoon', '765234789V', 'Anuradhapura', 'Male', '0764352718', 'delegates.revolux@gmail.com', '1976-05-16', '/uploads/employees/26.jpg', 'Married'),
-(27, 'Dinithi', 'Perera', '987123678V', 'Polonnaruwa', 'Female', '0712348790', 'dinithi@gmail.com', '1998-04-17', '/uploads/employees/27.jpeg', 'Married'),
-(28, 'Ashen', 'Senadheera', '692876108V', 'Kurunegala', 'Male', '0774462819', 'ashenS@gmail.com', '1969-01-14', '', 'Married');
+INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender`, `PhoneNumber`, `Email`, `DOB`, `ProfilePicURL`, `CivilStatus`, `jobTitle`) VALUES
+(1, 'Induni', 'Dulanjalee', '986151010V', 'Badulla', 'Female', '0719598424', 'indunijd@gmail.com', '1998-04-24', '', 'Single', 'Admin'),
+(2, 'Harsha', 'Abeyvickrama', '199824200890', 'Rakwana', 'Male', '0711425085', 'harshaabeyvickrama@gmail.com\r\n', '1998-08-29', '', 'Single', 'Asset Manager'),
+(3, 'Mushrifa', 'Mansoor', '996893758V', 'Mawanella', 'Female', '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '/uploads/employees/3.jpg', 'Single', 'Accountant'),
+(4, 'Ayisha', 'Siddeequa', '997271386V', 'Kandy', 'Female', '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '/uploads/technicians/4.jpg', 'Single', 'Electrician'),
+(5, 'Namal', 'Ranasinghe', '936987123V', 'Nugegoda', 'Male', '0719989796', 'namalr@gmail.com', '1993-06-10', '/uploads/employees/5.jpg', 'Married', 'Analyst'),
+(6, 'Jithendra', 'Prianjalee', '913456770V', 'Bandarawela', 'Female', '0764352718', 'jithendra@gmail.com', '1991-08-23', '/uploads/employees/6.jpg', 'Married', 'sales Manager'),
+(8, 'Sara', 'Desapriyan', '200323045691', 'Kurunegala', 'Female', '0775081822', 'sara@gmail.com', '2003-02-20', '/uploads/employees/8.jpg', 'Unmarried', 'Clerk'),
+(9, 'Lakshman', 'Kumar', '958123456X', 'Galle', 'Male', '0756789211', 'lakshman@gmail.com', '1995-02-20', '/uploads/employees/9.jpg', 'Married', 'Logistic Supervisor'),
+(10, 'Muzni', 'Ahamed', '', 'Galle', 'Male', '0765667891', 'ahamed@gmail.com', '1998-01-20', '/uploads/employees/10.jpg', 'Unmarried', 'Production Planner'),
+(11, 'Douglas', 'Kumar', '', 'Kuruwita', 'Male', '0782234789', 'douglas@gmail.com', '1994-03-20', '/uploads/technicians/11.jpg', 'Unmarried', 'Carpenter'),
+(12, 'Andrew', 'Dias', '', 'Panadura', 'Male', '0776545611', 'andrew@gmail,com', '1990-01-20', '/uploads/technicians/12.jpg', 'Unmarried', 'Carpenter'),
+(13, 'Pavani', 'Kumari', '', 'Kuliyapitiya', 'Female', '0777345678', 'pavani@gmail.com', '1989-01-20', '/uploads/technicians/13.jpg', 'Unmarried', 'Carpenter'),
+(14, 'Samanali', 'Perea', '', 'Peradeniya', 'Female', '0774563211', 'samanali@gmail.com', '1975-12-20', '/uploads/technicians/14.jpg', 'Married', 'Electrician'),
+(15, 'Farhan', 'Ahamed', '', 'Mawanella', 'Male', '0775067551', 'farhan@gmail.com', '1992-07-20', '/uploads/technicians/15.jpg', 'Married', 'Electrician'),
+(18, 'Charuni', 'Kumari', '987456190V', 'Polonnaruwa', 'Female', '0712348790', 'charunik@gmail.com', '1998-08-13', '/uploads/employees/18.jpeg', 'Married', 'SEO Specialist'),
+(19, 'Jeewanthi', 'Gunaratne', '796345678V', 'Anuradhapura', 'Female', '0712348790', 'jeewanthi@gmail.com', '1979-07-18', '/uploads/employees/19.jpg', 'Married', 'Brand Manager'),
+(20, 'Aruna', 'Kumara', '798345780V', 'Kuruwita', 'Male', '0712348790', 'aruna@gmail.com', '1979-10-17', '/uploads/employees/20.jpg', 'Married', 'Clerk'),
+(21, 'Amanda', 'Dineshiya', '956345123V', 'Matara', 'Female', '0777412112', 'amandad@gmail.com', '1995-06-15', '/uploads/technicians/21.jpg', 'Married', 'Electrician'),
+(22, 'Thusitha', 'Dissanayake', '836567900V', 'Battaramulla', 'Male', '0713454545', 'thusithad@gmail.com', '1983-05-19', '/uploads/employees/22.jpg', 'Married', 'Analyst'),
+(23, 'Prasanna', 'Ranathunge', '987234567V', 'Polonnaruwa', 'Male', '0711234567', 'prasanna@gmail.com', '1998-08-10', '/uploads/employees/23.jpg', 'Married', 'Team Leader'),
+(24, 'Herath', 'Bandara', '987234678V', 'Polonnaruwa', 'Male', '0764352718', 'herath@gmail.com', '1998-07-16', '/uploads/employees/24.jpg', 'Married', 'Clerk'),
+(25, 'Sachini', 'Thennakoon', '854123678V', 'Bandarawela', 'Female', '0712348790', 'delegates.revolux@gmail.com', '1985-05-20', '/uploads/employees/25.jpg', 'Married', 'Analyst'),
+(26, 'Herath', 'Thennakoon', '765234789V', 'Anuradhapura', 'Male', '0764352718', 'delegates.revolux@gmail.com', '1976-05-16', '/uploads/employees/26.jpg', 'Married', 'Production PLanner'),
+(27, 'Dinithi', 'Perera', '987123678V', 'Polonnaruwa', 'Female', '0712348790', 'dinithi@gmail.com', '1998-04-17', '/uploads/employees/27.jpeg', 'Married', 'SEO Specialist'),
+(28, 'Ashen', 'Senadheera', '692876108V', 'Kurunegala', 'Male', '0774462819', 'ashenS@gmail.com', '1969-01-14', '', 'Married', 'Department Head');
 
 -- --------------------------------------------------------
 
@@ -579,7 +592,7 @@ CREATE TABLE `useremergency` (
 
 INSERT INTO `useremergency` (`UserID`, `Relationship`, `fName`, `TelephoneNumber`) VALUES
 (3, 'Mother', 'zeenathul\r\n', '0775564712'),
-(4, 'Mother', 'a', '0775564700'),
+(4, 'Mother', 'Shiyana', '0775564700'),
 (5, 'Father', 'Amarapaala', '0719989799'),
 (6, 'Mother', 'Sudeshika', '0764352719'),
 (8, 'Father', 'Desapriyan', '0775081800'),
