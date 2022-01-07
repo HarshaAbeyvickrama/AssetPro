@@ -353,7 +353,6 @@
     var technicianID = getCookieValue('TechnicianID');
 
     getData(`http://localhost/assetpro/technicians/getTechnician/${technicianID}`, (technician) => {
-        console.log(technician);
     
         document.getElementById('imagePrev').src = `..${technician.ProfilePicURL}`;
         document.getElementById('tecID').value = technician.TechnicianID;
@@ -361,9 +360,7 @@
         document.getElementById('lName').value = technician.lName;
         document.getElementById('NIC').value = technician.NIC;
         var radio = document.getElementById('radio-group').children;
-        // console.log(technician.Gender);
         var gender = document.getElementById(technician.Gender)
-        // gender.checked = true;
         document.getElementById(technician.Gender).checked = true;
         document.getElementById('dob').value = technician.DOB;
         document.getElementById('maritalStatus').value = technician.CivilStatus;
