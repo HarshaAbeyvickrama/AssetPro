@@ -382,7 +382,7 @@
 
     //Getting the employee details to the form
     var technicianID = getCookieValue('TechnicianID');
-    var technician = JSON.parse(technicianID)[0];
+    var technician = JSON.parse(technicianID);
     console.log(technician);
 
     document.getElementById('imagePrev').src = `..${technician.ProfilePicURL}`;
@@ -404,4 +404,4 @@
     document.getElementById('eRelationship').value = technician.Relationship;
     document.getElementById('econtact').value = technician.TelephoneNumber;
     
-// </script>
+</script>

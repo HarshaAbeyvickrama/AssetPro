@@ -381,9 +381,9 @@ function formState(formId,readonlyState){
    })
 
     //Getting the employee details to the form
-   var employeeID = getCookieValue('EmployeeID');
-   var employee = JSON.parse(employeeID)[0];
-//    console.log(employee);
+   var employeeDetails = getCookieValue('EmployeeDetails');
+   var employee = JSON.parse(employeeDetails);
+   console.log(employee);
 
 //    console.log(employee.ProfilePicURL);
 

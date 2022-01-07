@@ -344,14 +344,13 @@ function loadEmployee(EmployeeID) {
   xhr.onload = function () {
     if (this.status === 200) {
       employeeDetails = JSON.parse(this.responseText);
-      // popup = document.getElementById("popup");
-      // popup.style.display = "grid";
-      event.stopPropagation();
-      loadSection("centerSection", "emprofile");
+      popup = document.querySelector('.popup-container');
+      popup.style.display = 'grid';
+      loadSection("popup", "emprofile");
       var json = JSON.stringify(employeeDetails);
-      document.cookie = `EmployeeID=${json}`;
+      document.cookie = `EmployeeDetails=${json}`;
     }
-    // console.log(employeeDetails);
+    console.log(employeeDetails);
   };
   xhr.send();
 }
@@ -366,8 +365,9 @@ addEmployeeBtn.addEventListener("click", function () {
 var viewEmployeeBtn = document.querySelectorAll("#view");
 for (var i = 0; i < viewEmployeeBtn.length; i++) {
   viewEmployeeBtn[i].addEventListener("click", function () {
-    loadEmployee(event.target.parentElement.id);
+    // loadEmployee(event.target.parentElement.id);
     // console.log(event.target.parentElement.id);
+    console.log('Hello');
   });
 }
 
