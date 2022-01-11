@@ -319,9 +319,7 @@ class Asset extends DBConnection
             $stmt->bindParam(':dateModified', $dateModified);
 
             $stmt->execute();
-            echo "1 " . '<br>';
             $assetID = $this->dbConnection->lastInsertId();
-            echo $assetID . '<br>';
             // Saving the image
             
 
@@ -337,19 +335,16 @@ class Asset extends DBConnection
             $stmt->bindParam(':purchaseDate', $this->purchaseDate);
 
             $stmt->execute();
-            echo "2 " . '<br>';
             // Warrenty
             if ($this->hasWarrenty) {
-                $warrentyQuery = "insert into assetwarranty values(assetId,warrentyStart,warrentyEnd,otherInfo)";
+                $warrentyQuery = "insert into assetwarranty values(:assetId,:warrentyStart,:warrentyEnd,:otherInfo)";
                 $stmt = $this->dbConnection->prepare($warrentyQuery);
-
-                $stmt->bindParam('assetId', $assetID);
-                $stmt->bindParam('warrentyStart', $this->warrentyStart);
-                $stmt->bindParam('warrentyEnd', $this->warrentyEnd);
-                $stmt->bindParam('otherInfo', $this->otherInfo);
+                $stmt->bindParam(':assetId', $assetID);
+                $stmt->bindParam(':warrentyStart', $this->warrentyStart);
+                $stmt->bindParam(':warrentyEnd', $this->warrentyEnd);
+                $stmt->bindParam(':otherInfo', $this->otherInfo);
 
                 $stmt->execute();
-                echo "3 " . '<br>';
             }
 
             if ($this->hasDepriciation) {
@@ -362,7 +357,6 @@ class Asset extends DBConnection
                 $stmt->bindParam('residualValue', $this->residualValue);
 
                 $stmt->execute();
-                echo "4 " . '<br>';
             }
 
             $this->dbConnection->commit();
@@ -373,7 +367,7 @@ class Asset extends DBConnection
                 message: "Added New Asset",
                 userId: $_SESSION['UserID'],
                 assetId: $assetID,
-                targetUsers: $_SESSION['UserID']
+                targetUsers: array($_SESSION['UserID'])
             );
 
             $result = array(
@@ -382,8 +376,9 @@ class Asset extends DBConnection
                 "message" => "Asset Added Successfully"
             );
             return $result;
-        } catch (PDOException | Exception $e) {
+        } catch (Exception | Throwable $e) {
             $this->dbConnection->rollBack();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->image);
 
             $result = array(
                 "status" => "Failed",

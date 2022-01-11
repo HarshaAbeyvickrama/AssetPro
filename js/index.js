@@ -34,13 +34,14 @@ function postFiles(url, data, callback) {
   xhr.send(data);
 }
 
-  function inputs(formID,state){
-  var inputs = document.getElementById(formID).querySelectorAll("input, select");
-  inputs.forEach(input =>{
-      input.disabled = state;
-  })
-  }
-
+function inputs(formID, state) {
+  var inputs = document
+    .getElementById(formID)
+    .querySelectorAll("input, select");
+  inputs.forEach((input) => {
+    input.disabled = state;
+  });
+}
 
 // Add a click asset listener
 function addViewAssetListener(element, callback) {
@@ -55,4 +56,3 @@ function create(element, text = "") {
   el.innerHTML = text;
   return el;
 }
-
