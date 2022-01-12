@@ -250,41 +250,15 @@
 
     // Get categories and types
     var categories = null;
-
-    getCatogories().then(res => {
-        categories = res;
-        setCats();
-    })
+    loadCategories();
 
     // Load asset details
     var assetID = getCookieValue('assetID');
-    console.log("Aset id is : " + assetID);
     // getAsset(assetID)
 
-    // Function to set categories
-    getData(`http://localhost/assetpro/asset/getAsset/${assetID}`, populateData);
+    // Function to get assetDetrails
+    getData(`http://localhost/assetpro/asset/get/${assetID}`, populateData);
 
-    function setCats() {
-        var select = document.getElementById("category");
-        categories.forEach(category => {
-            var option = `<option value=${category.categoryID}>${category.categoryName}</option>`;
-            select.innerHTML += option;
-        });
-        setTypes(categories[0].categoryID);
-    }
-
-    function setTypes(id) {
-        var select = document.getElementById("assetType");
-        categories.forEach(category => {
-            if (category.categoryID == id) {
-                select.innerHTML = '';
-                category.types.forEach(type => {
-                    var option = `<option value=${type.typeID}>${type.name}</option>`;
-                    select.innerHTML += option;
-                })
-            }
-        });
-    }
 
 
 
@@ -316,34 +290,7 @@
         })
     }
 
-    // formState("userProfileForm",true);
 
-    document.querySelectorAll(".col-btn").forEach(button => {
-        const cancelBtn = document.getElementById("cancelAddAsset");
-        const saveBtn = document.getElementById("btnSaveAsset");
-        button.addEventListener('click', function(event) {
-            switch (event.target.id) {
-                case 'cancelAddAsset':
-                    setFocus('assets');
-                    loadSection("centerSection", 'assets');
-                    break;
-                case 'btnSaveAsset':
-                    const asset = getFormdata();
-                    // for (var pair of asset.entries()) {
-                    //     console.log(pair[1].name);
-                    //     break;
-                    // }
-                    saveAsset(asset);
-
-                    break;
-
-                default:
-                    break;
-            }
-
-
-        })
-    })
     // formState(true);
     var depriciation = element('depriciation');
     depriciation.addEventListener('change', function() {
@@ -371,49 +318,8 @@
     }
 
 
-    //Save asset function ----->  Saving asset details through AJAX
-
-    function saveAsset(asset) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../model/Asset.php?action=addAsset", true);
-
-        xhr.onload = function() {
-            if (this.status === 200) {
-                alert(this.responseText);
-            }
-        }
-        xhr.send(asset);
-    }
-
-    async function getCatogories() {
-        return new Promise(function(resolve, reject) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "../model/Asset.php?action=getCats", true);
-            xhr.onload = function() {
-                if (this.status === 200) {
-                    var cats = JSON.parse(this.responseText);
-                    // console.log(cats);
-                    resolve(cats);
-                }
-            }
-            xhr.send();
-        });
-    }
-
-
     // Get asset Details
     function populateData(asset) {
-        // const xhr = new XMLHttpRequest();
-        // xhr.open("GET",`../model/Asset.php?action=getAsset&id=${assetID}`,true);
-        // xhr.onload = function(){
-        //     if(this.status === 200){
-        //         var asset = JSON.parse(this.responseText);
-
-
-        //     }
-        // }
-        // xhr.send();
-        console.log(asset);
         element('assetID').value = `${asset.CategoryCode}/${asset.TypeCode}/${asset.AssetID}`;
         element('imagePreview').src = `../${asset.ImageURL}`;
         element('assetName').value = asset.Name;
