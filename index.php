@@ -52,6 +52,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'categories':
                     echo $ac->getAssetCategories();
                     break;
+                case 'get':
+                    echo $ac->getAsset($url[2]);
+                    break;
                 default:
                     # code...
                     break;
