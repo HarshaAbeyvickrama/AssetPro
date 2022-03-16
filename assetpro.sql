@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2022 at 07:45 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Jan 07, 2022 at 08:25 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,7 +72,7 @@ INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assigne
 (8, 2, 5, NULL, 1, '2022-01-01 12:25:06', '2021-10-21 12:43:31', 'Unassigned', 1),
 (13, 2, 5, NULL, 4, '2022-01-01 12:25:10', '2021-10-21 16:15:18', 'Unassigned', 1),
 (14, 1, 2, NULL, 4, '2022-01-01 12:25:15', '2021-10-22 00:21:51', 'Unassigned', 1),
-(15, 1, 2, 1, 5, '2022-01-01 13:44:19', '2021-10-22 01:30:14', 'Unassigned', 1);
+(15, 1, 2, 1, 28, '2022-01-06 16:39:50', '2021-10-22 01:30:14', 'Unassigned', 1);
 
 -- --------------------------------------------------------
 
@@ -95,17 +95,6 @@ CREATE TABLE `assetdetails` (
 --
 
 INSERT INTO `assetdetails` (`AssetID`, `Name`, `Cost`, `AssetCondition`, `ImageURL`, `Description`, `PurchasedDate`) VALUES
-(1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
-(2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
-(3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
-(4, 'Web Cam', 5000, 'Brand New', '/uploads/assets/4.png', 'Asus C3 1080p Webcam', '2021-10-05'),
-(5, 'Windows 10', 4500, 'Brand New', '/uploads/assets/5.png', 'Windows 10 Pro', '2021-09-15'),
-(6, 'Office 365', 30000, 'Brand New', '/uploads/assets/6.jpg', 'Microsoft 365 Services', '2021-09-18'),
-(7, 'Printer', 90000, 'Used', '/uploads/assets/7.jfif', 'Epson WorkForce Wireless Printer w/ADF (WF-2850)', '2021-09-16'),
-(8, 'Key Board', 2000, 'Brand New', '/uploads/assets/8.jpg', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-21'),
-(13, 'Logitech C505 HD Webcam', 15400, 'Brand New', '/uploads/assets/13.png', 'Web Cam', '2021-10-22'),
-(14, 'HP LaserJet', 20000, 'Brand New', '/uploads/assets/14.jpeg', 'Printer', '2021-10-22'),
-(15, 'HP 1102 InkJet', 30000, 'Brand New', '/uploads/assets/15.jpeg', 'Printer', '2021-10-22'),
 (1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
 (2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
 (3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
