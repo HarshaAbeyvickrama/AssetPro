@@ -16,7 +16,7 @@ class TechnicianController extends Technician {
     //Getting a technician
     public function getTechnician($id) {
         $result = $this->get($id);
-        return json_encode($result->fetchAll());
+        return json_encode($result->fetch());
     }
 
     //Adding a technician

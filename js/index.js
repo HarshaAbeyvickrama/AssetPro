@@ -18,7 +18,6 @@ function postData(url, data, callback) {
       callback(JSON.parse(xhr.response));
     }
   };
-  console.log(data);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));
@@ -31,3 +30,16 @@ function postData(url, data, callback) {
   })
   }
 
+// Add a click asset listener
+function addViewAssetListener(element, callback) {
+  element.addEventListener("click", function (e) {
+    callback(this.id);
+  });
+}
+
+// Create a js element
+function create(element, text = "") {
+  var el = document.createElement(element);
+  el.innerHTML = text;
+  return el;
+}

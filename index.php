@@ -36,7 +36,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                         echo $ac->getAllAssetCounts();
                         break;
                     case 'assigned':
-                        echo $ac->getAllAssignedAssets($url[2]);
+                        echo $ac->getAllAssignedAssets($url[2]); 
                         break;
                     case 'getAssetForm':
                         echo $ac-> getAssetDataForm($url[2]);
@@ -105,9 +105,6 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getEmployee':
                     echo $ec->getEmployee($url[2]);
                     break;
-                case 'getDepartmentEmployees':
-                    echo $ec->getHeadDepartmentEmployees();
-                    break;
             }
             break;
 
@@ -129,9 +126,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'all':
                     echo $dc->getAllDepartments();
                     break;
-                case 'getDepartment':
-                    echo $dc->getDepartment($url[2]);
-                    break;
+                
             }
             break;
 
@@ -146,6 +141,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getDHBreakdowns':
                     echo $dhc-> getAllBreakdownAssets($url[2]);
+                    break;
+                case 'getDepartmentEmployees':
+                    echo $dhc->getHeadDepartmentEmployees($url[2]);
                     break;
             }
             break;
