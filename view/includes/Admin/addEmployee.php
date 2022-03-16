@@ -314,46 +314,70 @@
 
 <script>
 
-    // document.querySelectorAll(".col-btn").forEach(button => {
-    //     const cancBtn = document.getElementById('cancelAddEmployee');
-    //     const saveBtn = document.getElementById("btnSaveEmployee");
-    //     button.addEventListener('click', function(event) {
-    //         event.preventDefault();
-    //         switch (event.target.id) {
-    //             case 'cancelAddEmployee':
+    document.querySelectorAll(".col-btn").forEach(button => {
+        const cancBtn = document.getElementById('cancelAddEmployee');
+        const saveBtn = document.getElementById("btnSaveEmployee");
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            switch (event.target.id) {
+                case 'cancelAddEmployee':
 
-    //                 break;
-    //             case 'btnSaveEmployee':
-    //                 const employee = getFormdata();
-    //                 // saveDepartment(department);
-    //                 var isEmpty = false;
-    //                 for (var pair of employee.entries()) {
-    //                     // console.log(pair[0] + ': ' + pair[1]);
-    //                     if (pair[1] == '') {
-    //                         isEmpty = true;
-    //                     }
-    //                 }
-    //                 if (!isEmpty) {
-    //                     saveEmployee(employee);
-    //                 } else {
-    //                     alert('Fill the form!');
-    //                 }
+                    break;
+                case 'btnSaveEmployee':
+                    const employee = getFormdata("addEmployeeForm");
+                    // saveDepartment(department);
 
-    //                 break;
+                    // get Image and add it a form object
+                    var image = document.getElementById('profileImage').files[0];
+                    if (image) {
+                        var formData = new FormData();
+                        formData.append('image', image);
+                        postFiles('http://localhost/assetpro/employees/addImage', formData, (data) => {
+                            if(data.status == 'success'){
+                                console.log(data);
+                                employee.image = data.imageUrl;
+                                console.log(employee);
+                                saveEmployee(employee);
+                            }
+                        })
+                    } else {
+                        console.log("Image not found");
+                    }
 
-    //             default:
-    //                 break;
-    //         }
-    //     })
-    // })
+                    // var isEmpty = false;
+                    // for (var pair of employee.entries()) {
+                    //     // console.log(pair[0] + ': ' + pair[1]);
+                    //     if (pair[1] == '') {
+                    //         isEmpty = true;
+                    //     }
+                    // }
+                    // if (!isEmpty) {
+                    //     saveEmployee(employee);
+                    // } else {
+                    //     alert('Fill the form!');
+                    // }
 
-    //getting the form data
+                    break;
 
-    // function getFormdata() {
-    //     return new FormData(document.getElementById('addEmployeeForm'));
-    // }
+                default:
+                    break;
+            }
+        })
+    })
 
-    //Getting the image preview
+    // getting the form data
+
+    function getFormdata() {
+        form = new FormData(document.getElementById('addEmployeeForm'));
+        var employee = {};
+        for (var pair of form.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+            employee[pair[0]] = pair[1];
+        }
+        return employee;
+    }
+
+    // Getting the image preview
     // var imageUpload = document.getElementById('profileImage');
     // imageUpload.addEventListener('change', () => {
     //     const image = imageUpload.files[0];
@@ -364,8 +388,8 @@
 
     // });
 
-    //Saving the employee function
-    //Saving employee details through AJAX
+    // Saving the employee function
+    // Saving employee details through AJAX
 
     // function saveEmployee(employee) {
     //     var xhr = new XMLHttpRequest();

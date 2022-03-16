@@ -53,16 +53,9 @@ imageUpload.addEventListener("change", () => {
 //Saving employee details through AJAX
 
 function saveEmployee(employee) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "../model/Employee.php?action=addEmployee", true);
-
-  xhr.onload = function () {
-    if (this.status === 200) {
-      console.log(this.responseText);
-      alert("Successfully added to the system!");
-    }
-  };
-  xhr.send(employee);
+  postData("http://localhost/assetpro/employees/addEmployee", employee, (data) => {
+    console.log(data);
+  });
 }
 
 //Function to go back
@@ -177,11 +170,15 @@ function loadDepartments() {
         document.getElementById("departmentTableBody").innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${department[i]["DepartmentCode"]}/${department[i]["DepartmentID"]}</td>
+            <td>${department[i]["DepartmentCode"]}/${
+          department[i]["DepartmentID"]
+        }</td>
             <td>${department[i]["Name"]}</td>
             <td>${department[i]["ContactNum"]}</td>
             <td>
-              <button class='btn btn-submit ' id='view' onClick="loadDepartment(${department[i]["DepartmentID"]})">View</button>
+              <button class='btn btn-submit ' id='view' onClick="loadDepartment(${
+                department[i]["DepartmentID"]
+              })">View</button>
             </td>
           </tr>`;
       }
@@ -243,8 +240,8 @@ document.querySelectorAll(".col-btn").forEach((button) => {
 
 //getting the form data
 
-function getFormdata() {
-  return new FormData(document.getElementById("addDepartmentForm"));
+function getFormdata(formID) {
+  return new FormData(document.getElementById(formID));
 }
 
 //Saving the department function
@@ -275,7 +272,11 @@ for (var i = 0; i < viewDepartmentBtn.length; i++) {
 function loadDepartment(DepartmentID) {
   var departmentDetails = null;
   const xhr = new XMLHttpRequest();
-  xhr.open("GET",`http://localhost/assetpro/departments/getDepartment/${DepartmentID}`, true);
+  xhr.open(
+    "GET",
+    `http://localhost/assetpro/departments/getDepartment/${DepartmentID}`,
+    true
+  );
 
   xhr.onload = function () {
     if (this.status === 200) {
@@ -295,7 +296,10 @@ function loadEmploeeDepartment(DepartmentID) {
   var departmentEMployeeDetails = null;
   const xhr = new XMLHttpRequest();
   xhr.open(
-    "POST",`../model/Department.php?action=loadEmployeeDepartment&DepartmentID=${DepartmentID}`,true);
+    "POST",
+    `../model/Department.php?action=loadEmployeeDepartment&DepartmentID=${DepartmentID}`,
+    true
+  );
   xhr.onload = function () {
     if (this.status === 200) {
       departmentEmployeeDetails = JSON.parse(this.responseText);
@@ -322,12 +326,16 @@ function loadEmployees() {
         document.getElementById("employeeTableBody").innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${employees[i]["DepartmentCode"]}/EMP/${employees[i]["EmployeeID"]}</td>
+            <td>${employees[i]["DepartmentCode"]}/EMP/${
+          employees[i]["EmployeeID"]
+        }</td>
             <td>${employees[i]["Name"]}</td>
             <td>${employees[i]["Gender"]}</td>
             <td>${employees[i]["jobTitle"]}</td>
             <td>
-              <button class='btn btn-submit ' id='view' onClick="loadEmployee(${employees[i]["EmployeeID"]})">View</button>
+              <button class='btn btn-submit ' id='view' onClick="loadEmployee(${
+                employees[i]["EmployeeID"]
+              })">View</button>
             </td>
           </tr>`;
       }
@@ -340,12 +348,16 @@ function loadEmployees() {
 function loadEmployee(EmployeeID) {
   var employeeDetails = null;
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", `http://localhost/assetpro/employees/getEmployee/${EmployeeID}`,true);
+  xhr.open(
+    "GET",
+    `http://localhost/assetpro/employees/getEmployee/${EmployeeID}`,
+    true
+  );
   xhr.onload = function () {
     if (this.status === 200) {
       employeeDetails = JSON.parse(this.responseText);
-      popup = document.querySelector('.popup-container');
-      popup.style.display = 'grid';
+      popup = document.querySelector(".popup-container");
+      popup.style.display = "grid";
       loadSection("popup", "emprofile");
       var json = JSON.stringify(employeeDetails);
       document.cookie = `EmployeeDetails=${json}`;
@@ -367,7 +379,7 @@ for (var i = 0; i < viewEmployeeBtn.length; i++) {
   viewEmployeeBtn[i].addEventListener("click", function () {
     // loadEmployee(event.target.parentElement.id);
     // console.log(event.target.parentElement.id);
-    console.log('Hello');
+    console.log("Hello");
   });
 }
 
@@ -387,7 +399,6 @@ document.getElementById("dName").value = department.Name;
 document.getElementById("dCon").value = department.ContactNum;
 document.getElementById("dDes").value = department.description;
 
-
 // ***************** technicians.php ***************** //
 
 //Load all the technicians
@@ -401,12 +412,16 @@ function loadTechnicians() {
         document.getElementById("techniciansTableBody").innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${technicians[i]["DepartmentCode"]}/TEC/${technicians[i]["TechnicianID"]}</td>
+            <td>${technicians[i]["DepartmentCode"]}/TEC/${
+          technicians[i]["TechnicianID"]
+        }</td>
             <td>${technicians[i]["Name"]}</td>
             <td>${technicians[i]["Gender"]}</td>
             <td>${technicians[i]["jobTitle"]}</td>
             <td>
-              <button class='btn btn-submit ' id='view' onClick="loadTechnician(${technicians[i]["TechnicianID"]})">View</button>
+              <button class='btn btn-submit ' id='view' onClick="loadTechnician(${
+                technicians[i]["TechnicianID"]
+              })">View</button>
             </td>
           </tr>`;
       }
@@ -419,7 +434,11 @@ function loadTechnicians() {
 function loadTechnician(TechnicianID) {
   var technicianDetails = null;
   const xhr = new XMLHttpRequest();
-  xhr.open("GET",`http://localhost/assetpro/technicians/getTechnician/${TechnicianID}`,true);
+  xhr.open(
+    "GET",
+    `http://localhost/assetpro/technicians/getTechnician/${TechnicianID}`,
+    true
+  );
   xhr.onload = function () {
     console.log(technicianDetails);
     if (this.status === 200) {
@@ -493,11 +512,15 @@ function loadDepartmentHeads() {
         document.getElementById("headTableBody").innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${departmenthead[i]["DepartmentCode"]}/DH/${departmenthead[i]["HeadID"]}</td>
+            <td>${departmenthead[i]["DepartmentCode"]}/DH/${
+          departmenthead[i]["HeadID"]
+        }</td>
             <td>${departmenthead[i]["Name"]}</td>
             <td>${departmenthead[i]["ContactNum"]}</td>
             <td>
-              <button class='btn btn-submit ' id='view' onClick="loadDepartmentHead(${departmenthead[i]["HeadID"]})">View</button>
+              <button class='btn btn-submit ' id='view' onClick="loadDepartmentHead(${
+                departmenthead[i]["HeadID"]
+              })">View</button>
             </td>
           </tr>`;
       }

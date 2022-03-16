@@ -308,7 +308,7 @@
                 <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
             <div class="col-btn" id="EditBtnSection">
-                <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div>
+                <!-- <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div> -->
                 <div class="btnAction" id="btnEditProfile"> Edit </div>
             </div>
             <div class="col-btn" id="updateBtnSection">
