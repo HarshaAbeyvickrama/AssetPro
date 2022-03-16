@@ -2,7 +2,7 @@
 
 //==============================assignedAssets.php================================================
 //========Reporting the particular asset from the table of assigned assets======================= 
-function loadAssets(userID){
+function loadAssets(userID){ //comment
         const xhr = new XMLHttpRequest();
         xhr.open("GET", `http://localhost/assetpro/asset/assigned/${userID}`, true);
         xhr.onload = function() {
