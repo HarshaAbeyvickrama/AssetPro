@@ -20,7 +20,6 @@ class Notification extends DBConnection
 
     public function createNotification($type, $userId, $message, $assetId = null, $addedUser = null, $targetUsers)
     {
-        echo "createNotification";
         $dbConnection = $this->connect();
         $sql = "INSERT INTO notification (type , createdBy , message , assetId , addedUser  ) VALUES (:type , :user_id , :message ,  :asset_id , :addedUser)";
         $stmt = $dbConnection->prepare($sql);

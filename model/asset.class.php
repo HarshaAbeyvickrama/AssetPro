@@ -39,9 +39,9 @@ class Asset extends DBConnection
 
     // Image
 
-    private $extension = null;
+    private $image = null;
 
-    public function __construct($assetName, $assetType, $category, $condition, $purchaseCost, $purchaseDate, $otherInfo = null, $extension, $hasWarrenty = false, $warrentyStart = null, $warrentyEnd = null, $hasDepriciation = false, $depriciationMethod = 'straightLine', $usefulYears = null, $depriciaionRate = null, $residualValue = null)
+    public function __construct($assetName, $assetType, $category, $condition, $purchaseCost, $purchaseDate, $otherInfo = null, $image, $hasWarrenty = false, $warrentyStart = null, $warrentyEnd = null, $hasDepriciation = false, $depriciationMethod = 'straightLine', $usefulYears = null, $depriciaionRate = null, $residualValue = null)
     {
 
         $this->dbConnection = $this->connect();
@@ -51,7 +51,7 @@ class Asset extends DBConnection
         $this->condition = $condition;
         $this->purchaseCost = $purchaseCost;
         $this->purchaseDate = $purchaseDate;
-        $this->extension = $extension;
+        $this->image = $image;
 
         $this->hasWarrenty = $hasWarrenty;
         $this->warrentyStart = $warrentyStart;
@@ -296,6 +296,7 @@ class Asset extends DBConnection
     protected function update()
     {
     }
+    
     protected function save()
     {
 
@@ -305,51 +306,43 @@ class Asset extends DBConnection
             $dateCreated = date("Y-m-d H:i:s");
             $dateModified = date("Y-m-d H:i:s");
             //Get the Id after adding the asset
-            // $assetId = null;
+            $assetId = null;
 
             // Asset table query
-            $assetQuery = "insert into asset (AssetID,CategoryID,TypeID,DateCreated,LastModified,Status) values(NULL,category,assetType,dateCreated,dateModified,'Unassigned')";
+            $assetQuery = "insert into asset (AssetID,CategoryID,TypeID,DateCreated,LastModified,Status) values(:assetID,:category,:assetType,:dateCreated,:dateModified,'Unassigned')";
             $stmt = $this->dbConnection->prepare($assetQuery);
 
-            $stmt->bindParam('category', $this->category);
-            $stmt->bindParam('assetType', $this->assetType);
-            $stmt->bindParam('dateCreated', $dateCreated);
-            $stmt->bindParam('dateModified', $dateModified);
+            $stmt->bindParam(":assetID", $assetId);
+            $stmt->bindParam(':category', $this->category);
+            $stmt->bindParam(':assetType', $this->assetType);
+            $stmt->bindParam(':dateCreated', $dateCreated);
+            $stmt->bindParam(':dateModified', $dateModified);
 
             $stmt->execute();
-
             $assetID = $this->dbConnection->lastInsertId();
-
             // Saving the image
-            $fileUrl = '/uploads/assets/' . $assetID . '.' . $this->extension;
-            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'], '../' . $fileUrl);
+            
 
-            if (!$imageSaved) {
-                // throw exception
-            }
-
-            $assetDetails = "insert into assetdetails values (assetId,assetName , purchaseCost,condition,fileUrl,assetDescription,purchaseDate)";
+            $assetDetails = "insert into assetdetails values (:assetId,:assetName , :purchaseCost,:condition,:fileUrl,:assetDescription,:purchaseDate)";
             $stmt = $this->dbConnection->prepare($assetDetails);
 
-            $stmt->bindParam('assetId', $assetID);
-            $stmt->bindParam('assetName', $this->assetName);
-            $stmt->bindParam('purchaseCost', $this->purchaseCost);
-            $stmt->bindParam('condition', $this->condition);
-            $stmt->bindParam('fileUrl', $fileUrl);
-            $stmt->bindParam('assetDescription', $this->assetDescription);
-            $stmt->bindParam('purchaseDate', $this->purchaseDate);
+            $stmt->bindParam(':assetId', $assetID);
+            $stmt->bindParam(':assetName', $this->assetName);
+            $stmt->bindParam(':purchaseCost', $this->purchaseCost);
+            $stmt->bindParam(':condition', $this->condition);
+            $stmt->bindParam(':fileUrl', $this->image);
+            $stmt->bindParam(':assetDescription', $this->assetDescription);
+            $stmt->bindParam(':purchaseDate', $this->purchaseDate);
 
             $stmt->execute();
-
             // Warrenty
             if ($this->hasWarrenty) {
-                $warrentyQuery = "insert into assetwarranty values(assetId,warrentyStart,warrentyEnd,otherInfo)";
+                $warrentyQuery = "insert into assetwarranty values(:assetId,:warrentyStart,:warrentyEnd,:otherInfo)";
                 $stmt = $this->dbConnection->prepare($warrentyQuery);
-
-                $stmt->bindParam('assetId', $assetID);
-                $stmt->bindParam('warrentyStart', $this->warrentyStart);
-                $stmt->bindParam('warrentyEnd', $this->warrentyEnd);
-                $stmt->bindParam('otherInfo', $this->otherInfo);
+                $stmt->bindParam(':assetId', $assetID);
+                $stmt->bindParam(':warrentyStart', $this->warrentyStart);
+                $stmt->bindParam(':warrentyEnd', $this->warrentyEnd);
+                $stmt->bindParam(':otherInfo', $this->otherInfo);
 
                 $stmt->execute();
             }
@@ -372,9 +365,9 @@ class Asset extends DBConnection
             $notification->createNotification(
                 type: "addAsset",
                 message: "Added New Asset",
-                userId: $_SESSION['userID'],
+                userId: $_SESSION['UserID'],
                 assetId: $assetID,
-                targetUsers: $_SESSION['userID']
+                targetUsers: array($_SESSION['UserID'])
             );
 
             $result = array(
@@ -383,8 +376,9 @@ class Asset extends DBConnection
                 "message" => "Asset Added Successfully"
             );
             return $result;
-        } catch (PDOException | Exception $e) {
+        } catch (Exception | Throwable $e) {
             $this->dbConnection->rollBack();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->image);
 
             $result = array(
                 "status" => "Failed",

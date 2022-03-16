@@ -282,6 +282,7 @@
                 </div>
             </div>
         </div>
+
 </form>
 
 <form action="" id="EditForm">
@@ -303,6 +304,7 @@
             <div class="col-btn" id="updateBtnSection">
                 <div id="ConfirmUpdate">Update</div>
                 <div id="Cancelupdate">cancel</div>
+
             </div>
         </div>
     </div>
