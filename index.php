@@ -116,6 +116,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getEmployee':
                     echo $ec->getEmployee($url[2]);
                     break;
+                case 'addImage':
+                    echo $ec->addImage($_FILES);
+                    break;
+                case 'addEmployee':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $ec->addEmployee($data);
+                    break;
             }
             break;
 

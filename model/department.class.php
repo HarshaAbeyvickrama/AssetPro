@@ -65,12 +65,12 @@
                 $stmt = $this->DBConnection->prepare($addDepartment);
 
                 // $stmt->bindParam('DepartmentID', $DepartmentID);
-                $stmt->bindParam('DepartmentCode', $this->departmentCode);
-                $stmt->bindParam('Name', $this->Name);
-                $stmt->bindParam('ContactNum', $this->ContactNum);
-                $stmt->bindParam('description', $this->description);
-                $stmt->bindParam('DateCreated', $DateCreated);
-                $stmt->bindParam('LastModified', $LastModified);
+                $stmt->bindParam(':DepartmentCode', $this->departmentCode);
+                $stmt->bindParam(':Name', $this->Name);
+                $stmt->bindParam(':ContactNum', $this->ContactNum);
+                $stmt->bindParam(':description', $this->description);
+                $stmt->bindParam(':DateCreated', $DateCreated);
+                $stmt->bindParam(':LastModified', $LastModified);
 
                 $stmt->execute();
 

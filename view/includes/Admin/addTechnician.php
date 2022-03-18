@@ -110,7 +110,8 @@
         background-color: #5C6E9B;
     }
 
-    .col-f input[type=text], input[type=number] {
+    .col-f input[type=text],
+    input[type=number] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -251,12 +252,14 @@
                     <input type="date" name="dob" id="dob">
                 </div>
                 <div class="col-f">
-                    <span>Marital Status</span>
+                    <!-- <span>Marital Status</span>
                     <select name="maritalStatus" id="maritalStatus">
                         <option value="Married">Married</option>
                         <option value="Unmarried">Single</option>
                         <option value="Widowed">Widowed</option>
-                    </select>
+                    </select> -->
+                    <span for="jobTitle"> Job Title: </span>
+                    <input type="text" name="jobTitle" id="jobTitle">
                 </div>
                 <div class="col-f">
                     <span for="address">Address</span>

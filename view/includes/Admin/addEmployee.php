@@ -118,7 +118,9 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text], input[type=number], select {
+    .col-f input[type=text],
+    input[type=number],
+    select {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -265,12 +267,14 @@
                     <input type="date" name="dob" id="dob">
                 </div>
                 <div class="col-f">
-                    <span>Marital Status</span>
+                    <!-- <span>Marital Status</span>
                     <select name="maritalStatus" id="maritalStatus">
                         <option value="Married">Married</option>
                         <option value="Unmarried">Single</option>
                         <option value="Widowed">Widowed</option>
-                    </select>
+                    </select> -->
+                    <span for="jobtitle"> Job Title: </span>
+                    <input type="text" name="jobTitle" id="jobTitle">
                 </div>
                 <div class="col-f">
                     <span for="address">Address</span>
@@ -313,47 +317,70 @@
 </form>
 
 <script>
+    document.querySelectorAll(".col-btn").forEach(button => {
+        const cancBtn = document.getElementById('cancelAddEmployee');
+        const saveBtn = document.getElementById("btnSaveEmployee");
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            switch (event.target.id) {
+                case 'cancelAddEmployee':
 
-    // document.querySelectorAll(".col-btn").forEach(button => {
-    //     const cancBtn = document.getElementById('cancelAddEmployee');
-    //     const saveBtn = document.getElementById("btnSaveEmployee");
-    //     button.addEventListener('click', function(event) {
-    //         event.preventDefault();
-    //         switch (event.target.id) {
-    //             case 'cancelAddEmployee':
+                    break;
+                case 'btnSaveEmployee':
+                    const employee = getFormdata("addEmployeeForm");
+                    // saveDepartment(department);
 
-    //                 break;
-    //             case 'btnSaveEmployee':
-    //                 const employee = getFormdata();
-    //                 // saveDepartment(department);
-    //                 var isEmpty = false;
-    //                 for (var pair of employee.entries()) {
-    //                     // console.log(pair[0] + ': ' + pair[1]);
-    //                     if (pair[1] == '') {
-    //                         isEmpty = true;
-    //                     }
-    //                 }
-    //                 if (!isEmpty) {
-    //                     saveEmployee(employee);
-    //                 } else {
-    //                     alert('Fill the form!');
-    //                 }
+                    // get Image and add it a form object
+                    var image = document.getElementById('profileImage').files[0];
+                    if (image) {
+                        var formData = new FormData();
+                        formData.append('image', image);
+                        postFiles('http://localhost/assetpro/employees/addImage', formData, (data) => {
+                            if (data.status == 'success') {
+                                console.log(data);
+                                employee.image = data.imageUrl;
+                                console.log(employee);
+                                saveEmployee(employee);
+                            }
+                        })
+                    } else {
+                        console.log("Image not found");
+                    }
 
-    //                 break;
+                    // var isEmpty = false;
+                    // for (var pair of employee.entries()) {
+                    //     // console.log(pair[0] + ': ' + pair[1]);
+                    //     if (pair[1] == '') {
+                    //         isEmpty = true;
+                    //     }
+                    // }
+                    // if (!isEmpty) {
+                    //     saveEmployee(employee);
+                    // } else {
+                    //     alert('Fill the form!');
+                    // }
 
-    //             default:
-    //                 break;
-    //         }
-    //     })
-    // })
+                    break;
 
-    //getting the form data
+                default:
+                    break;
+            }
+        })
+    })
 
-    // function getFormdata() {
-    //     return new FormData(document.getElementById('addEmployeeForm'));
-    // }
+    // getting the form data
 
-    //Getting the image preview
+    function getFormdata() {
+        form = new FormData(document.getElementById('addEmployeeForm'));
+        var employee = {};
+        for (var pair of form.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+            employee[pair[0]] = pair[1];
+        }
+        return employee;
+    }
+
+    // Getting the image preview
     // var imageUpload = document.getElementById('profileImage');
     // imageUpload.addEventListener('change', () => {
     //     const image = imageUpload.files[0];
@@ -364,8 +391,8 @@
 
     // });
 
-    //Saving the employee function
-    //Saving employee details through AJAX
+    // Saving the employee function
+    // Saving employee details through AJAX
 
     // function saveEmployee(employee) {
     //     var xhr = new XMLHttpRequest();
@@ -385,8 +412,9 @@
         loadSection('centerSection', 'employees');
     }
 
-//Getting the department code
-getDepartments();
+    //Getting the department code
+    getDepartments();
+
     function getDepartments() {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "http://localhost/assetpro/departments/all/", true);
@@ -397,10 +425,10 @@ getDepartments();
                 // console.log(departments);
                 var select = document.getElementById('depID');
 
-                for(var i = 0; i<departments.length; i++) {
+                for (var i = 0; i < departments.length; i++) {
                     console.log(departments[i]);
                     var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
-                    select.innerHTML+=option;
+                    select.innerHTML += option;
 
                 }
             }

@@ -153,7 +153,7 @@
     var data = {
         labels: labels,
         datasets: [{
-            label: 'My First dataset',
+            label: 'My Second dataset',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: [0, 10, 5, 2, 20, 30, 45],
@@ -190,7 +190,7 @@
             'Blue'
         ],
         datasets: [{
-            label: 'My First Dataset',
+            label: 'My Third Dataset',
             data: [11, 16, 7, 3, 14],
             backgroundColor: [
                 'rgb(255, 99, 132)',
@@ -211,7 +211,7 @@
     var data = {
         labels: labels,
         datasets: [{
-            label: 'My First Dataset',
+            label: 'My Fourth Dataset',
             data: [65, 59, 80, 81, 56, 55, 40],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
