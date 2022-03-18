@@ -179,16 +179,21 @@ class DepartmentHead extends DBConnection {
         //             assetdetails.Name AS assetName,
         //             TYPE.Name AS assetType,
         //             asset.assignedUser,
-        //             departmentheaduser.DepartmentID
+        //             departmentheaduser.DepartmentID,
+        //             department.Name AS departmentName,
+        //             breakdown.DefectedParts,
+        //             category.CategoryCode,
+        //             type.TypeCode
         //         FROM
         //             breakdown
         //         INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
         //         INNER JOIN asset ON asset.AssetID = breakdown.AssetID
-        //         INNER JOIN TYPE ON TYPE
-        //             .TypeID = asset.TypeID
+        //         INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
+        //         INNER JOIN category ON category.CategoryID = type.CategoryID
         //         INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
+        //         INNER JOIN department ON department.DepartmentID = departmentheaduser.DepartmentID
         //         WHERE
-        //             departmentheaduser.DepartmentID = ? ";
+        //             departmentheaduser.UserID = ?";
 
         $sql = "SELECT
                     breakdown.AssetID,
@@ -196,16 +201,16 @@ class DepartmentHead extends DBConnection {
                     TYPE.Name AS assetType,
                     asset.assignedUser,
                     departmentheaduser.DepartmentID,
-                    department.Name AS departmentName,
-                    breakdown.DefectedParts,
+                    breakdown.Date AS reportedDate,
                     category.CategoryCode,
-                    type.TypeCode
+                    TYPE.TypeCode
                 FROM
                     breakdown
                 INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
                 INNER JOIN asset ON asset.AssetID = breakdown.AssetID
-                INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
-                INNER JOIN category ON category.CategoryID = type.CategoryID
+                INNER JOIN TYPE ON TYPE
+                    .TypeID = asset.TypeID
+                INNER JOIN category ON category.CategoryID = TYPE.CategoryID
                 INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
                 INNER JOIN department ON department.DepartmentID = departmentheaduser.DepartmentID
                 WHERE

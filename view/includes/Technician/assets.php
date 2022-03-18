@@ -229,16 +229,14 @@
 
 
 
-<!-- <script>
+<script>
 
-    getCount('allAssets');
-    getCount('assignedAssets');
-    getCount('inProgress');
-    getCount('repairedAssets');
+    // getCount('allAssets');
+    // getCount('assignedAssets');
+    // getCount('inProgress');
+    // getCount('repairedAssets');
 
     
-    
-
     function getAssets(type){
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
@@ -248,24 +246,25 @@
                 var assets = JSON.parse(this.responseText);
                 switch (type) {
                     case 'assigned':
-                        for(var i = 0; i<assets.length;i++){
-                            var bd = document.getElementById('assignedAssetsTableBody')
+                        for(var i = 0; i < assets.length; i++){
+                            var bd = document.getElementById('techniciantable')
                             var row= `
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['Number']}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['AssetName']}</div>
-                                    <div>${assets[i]['AssetType']}</div>
-                                    <div>${assets[i]['ReportedEmployee']}</div>   
-                                    <div>${assets[i]['StartRepairing']}</div>
-                                `;
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['Name']}</td>
+                                    <td>${assets[i]['typeName']}</td>
+                                    <td>${assets[i]['DepartmentCode']}/EMP/${assets[i]['reportedEmployee']}</td>
+                                    <td>  
+                                    <button class='btn btn-submit' onClick="">View</button>
+                                    </td> 
+                                </tr>`;
                             var tableRow = document.createElement('div');
                             tableRow.className = 'tableRow';
                             tableRow.id = assets[i]['AssetID'];
                             tableRow.innerHTML = row;
                             addViewAssetListener(tableRow);
                             bd.appendChild(tableRow);
-
 
                         }
                         break;

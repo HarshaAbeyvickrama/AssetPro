@@ -23,6 +23,26 @@ function postData(url, data, callback) {
   xhr.send(JSON.stringify(data));
 }
 
+function postFiles(url, data, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      callback(JSON.parse(xhr.response));
+    }
+  };
+  xhr.open("POST", url, true);
+  xhr.send(data);
+}
+
+function inputs(formID, state) {
+  var inputs = document
+    .getElementById(formID)
+    .querySelectorAll("input, select");
+  inputs.forEach((input) => {
+    input.disabled = state;
+  });
+}
+
 // Add a click asset listener
 function addViewAssetListener(element, callback) {
   element.addEventListener("click", function (e) {

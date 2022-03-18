@@ -25,7 +25,8 @@ class AssetController extends Asset
         //     return $accessManager->setResponseCode(403);
         // }
     }
-    public function getAssetsByCategory($category){
+    public function getAssetsByCategory($category)
+    {
         switch ($category) {
             case 'fixed':
                 $result = $this->getByCategory(1);
@@ -73,33 +74,58 @@ class AssetController extends Asset
         $result = $this->getAssetForm($id);
         return json_encode($result->fetchAll());
     }
-    
+
     public function deleteAsset($id)
     {
         $result = $this->delete($id);
     }
 
-    public function addAsset($assetName = null, $assetType = null, $category = null, $condition = null, $purchaseDate = null, $purchaseCost = null, $otherInfo = null, $extension = null, $hasWarrenty = false, $warrentyStart = null, $warrentyEnd = null, $hasDepriciation = false, $depriciationMethod = 'straightLine', $usefulYears = null, $depriciaionRate = null, $residualValue = null)
+    public function addImage($image){
+        $extension = pathinfo($image['image']['name'], PATHINFO_EXTENSION);
+        $fileUrl = '/uploads/assets/' . uniqid() . '.' . $extension;
+        $url = $_SERVER['DOCUMENT_ROOT'] . '/assetpro' . $fileUrl;
+        $imageSaved = move_uploaded_file($image['image']['tmp_name'],  $url);
+
+        if ($imageSaved) {
+            $result = array(
+                'status' => 'success',
+                'message' => 'Image uploaded successfully',
+                'imageUrl' => $fileUrl
+            );
+        }else{
+            $result = array(
+                'status' => 'error',
+                'message' => 'Image upload failed'
+            );
+        }
+        return json_encode($result);
+    }
+    public function addAsset($asset)
     {
+        // imag extension
+        $hasWarrenty = isset($asset['warrenty']);
+        $hasDepriciation = isset($_POST['depriciation']);
+
         $newAsset = new Asset(
-            assetName: $assetName,
-            assetType: $assetType,
-            category: $category,
-            condition: $condition,
-            otherInfo: $otherInfo,
-            extension: $extension,
-            hasWarrenty: $hasWarrenty,
-            warrentyStart: $warrentyStart,
-            warrentyEnd: $warrentyEnd,
-            hasDepriciation: $hasDepriciation,
-            depriciationMethod: $depriciationMethod,
-            depriciaionRate: $depriciaionRate,
-            residualValue: $residualValue,
-            usefulYears: $usefulYears,
-            purchaseDate: $purchaseDate,
-            purchaseCost: $purchaseCost
+            assetName: $asset['assetName'],
+            assetType: $asset['assetType'],
+            category: $asset['category'],
+            condition: $asset['condition'],
+            otherInfo: isset($asset['otherInfo']) ? $asset['otherInfo'] : '',
+            image: $asset['image'],
+            hasWarrenty: $hasWarrenty, //later
+            warrentyStart: isset($asset['warrentyStart']) ? $asset['warrentyStart'] : '',
+            warrentyEnd: isset($asset['warrentyEnd']) ? $asset['warrentyEnd'] : '',
+            hasDepriciation: $hasDepriciation, //later
+            depriciationMethod: isset($asset['depriciationMethod']) ? $asset['depriciationMethod'] : '',
+            depriciaionRate: isset($asset['depriciationRate']) ? $asset['depriciationRate'] : '',
+            residualValue: isset($asset['residualValue']) ? $asset['residualValue'] : '',
+            usefulYears: isset($asset['usefulYears']) ? $asset['usefulYears'] : '',
+            purchaseDate: $asset['purchaseDate'],
+            purchaseCost: $asset['purchaseCost'],
         );
         $res = $newAsset->save();
+        unset($newAsset);
         return json_encode($res);
     }
 
@@ -134,7 +160,8 @@ class AssetController extends Asset
         return json_encode($res->fetchAll());
     }
 
-    public function getAssetCategories(){
+    public function getAssetCategories()
+    {
         $res = $this->getCategories();
         return json_encode($res);
     }

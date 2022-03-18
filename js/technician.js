@@ -131,7 +131,7 @@
                 console.log(assets);
                         for(var i = 0; i<assets.length;i++){
                             document.getElementById('techniciantable').innerHTML +=`
-                                 <tr>
+                                <tr>
                                     <td>${i+1}</td>
                                     <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['Name']}</td>

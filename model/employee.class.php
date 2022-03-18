@@ -61,28 +61,32 @@ class Employee extends DBConnection {
         return $pstm;
     }
 
-    //Getting the employee details using EmployeeID
-    // ud.fName,
-    //                 ud.lName,
-    //                 ud.NIC,
-    //                 ud.Gender,
-    //                 ud.DOB,
-    //                 ud.ProfilePicURL
+    //Getting the details of an employee using the employee ID
     protected function get($EmployeeID) {
         $DBConnection = $this->connect();
         $sql = "SELECT
                     eu.EmployeeID,
-                    ud.*,
-                    ue.fName as eName,
-                    ue.Relationship as eRelationship,
-                    ue.TelephoneNumber as eContact
+                    ud.fName,
+                    ud.lName,
+                    ud.NIC,
+                    ud.Gender,
+                    ud.DOB,
+                    ud.ProfilePicURL,
+                    ud.CivilStatus,
+                    ud.Address,
+                    ud.PhoneNumber,
+                    ud.Email,
+                    ue.fName AS eName,
+                    ue.Relationship,
+                    ue.TelephoneNumber
                 FROM
                     userdetails ud
                 INNER JOIN employeeuser eu ON
                     ud.UserID = eu.UserID
                 INNER JOIN useremergency ue ON
                     eu.UserID = ue.UserID
-                WHERE EmployeeID = ?";
+                WHERE
+                    eu.EmployeeID = ?";
         
         $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$EmployeeID]);
@@ -91,6 +95,7 @@ class Employee extends DBConnection {
 
     //Adding an employee
     protected function add() {
+        $DBConnection = $this->connect();
         try {
             $this->DBConnection->beginTransaction();
 
@@ -112,17 +117,17 @@ class Employee extends DBConnection {
             $userdetails = "INSERT INTO userdetails VALUES (userID, firstname, lastName, NIC, address, gender, contactNo, email, dob, fileUrl, maritalStatus)";
             $stmt = $this->DBConnection->prepare($userdetails);
 
-            $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('firstName', $this->firstName);
-            $stmt->bindParam('lastName', $this->lastName);
-            $stmt->bindParam('NIC', $this->NIC);
-            $stmt->bindParam('address', $this->address);
-            $stmt->bindParam('gender', $this->gender);
-            $stmt->bindParam('contactNo', $this->contactNo);
-            $stmt->bindParam('email', $this->email);
-            $stmt->bindParam('dob', $this->dob);
-            $stmt->bindParam('fileUrl', $fileUrl);
-            $stmt->bindParam('maritalStatus', $this->maritalStatus);
+            $stmt->bindParam(':userID', $UserID);
+            $stmt->bindParam(':firstName', $this->firstName);
+            $stmt->bindParam(':lastName', $this->lastName);
+            $stmt->bindParam(':NIC', $this->NIC);
+            $stmt->bindParam(':address', $this->address);
+            $stmt->bindParam(':gender', $this->gender);
+            $stmt->bindParam(':contactNo', $this->contactNo);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':dob', $this->dob);
+            $stmt->bindParam(':fileUrl', $fileUrl);
+            $stmt->bindParam(':maritalStatus', $this->maritalStatus);
 
             $stmt->execute();
 
@@ -130,8 +135,8 @@ class Employee extends DBConnection {
             $employeeuser = "INSERT INTO employeeuser VALUES (NULL, userID, departmentID)";
             $stmt = $this->DBConnection->prepare($employeeuser);
 
-            $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('departmentID', $this->departmentID);
+            $stmt->bindParam(':userID', $UserID);
+            $stmt->bindParam(':departmentID', $this->departmentID);
 
             $stmt->execute();
 
@@ -139,10 +144,10 @@ class Employee extends DBConnection {
             $userEmergency = "INSERT INTO useremergency VALUES (userID, eRelationship, eName, eContact)";
             $stmt = $this->DBConnection->prepare($userEmergency);
             
-            $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('eRelationship', $this->eRelationship);
-            $stmt->bindParam('eName', $this->eName);
-            $stmt->bindParam('eContact', $this->eContact);
+            $stmt->bindParam(':userID', $UserID);
+            $stmt->bindParam(':eRelationship', $this->eRelationship);
+            $stmt->bindParam(':eName', $this->eName);
+            $stmt->bindParam(':eContact', $this->eContact);
 
             $stmt->execute();
 

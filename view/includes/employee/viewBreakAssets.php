@@ -210,11 +210,14 @@
         right: calc(0%);
         cursor: pointer;
     } */
+    #updateBtnSection{
+        display: none;
+    }
   
 </style>
 
 
-<form action="" id="reportAssetForm" onsubmit="">
+<form action="" id="BreakAssetForm" onsubmit="">
 
     <div class="profile">
         <div id="pLeft" class="leftSection"> 
@@ -265,18 +268,36 @@
                     <span for="explainDefect">Explain the defect</span>
                     <textarea class="textarea" cols="10" rows="10" id="exDef" disabled></textarea>
                 </div>
-                <div class="col-btn">
+                <div class="col-btn" id="EditBtnSection">
                         <div id="cancelReport" onClick="cancelReport()">Back</div> 
-                        <div id="cancelReport" onClick="cancelReport()">Edit</div> 
+                        <div id="EditReport" >Edit</div> 
+                </div>
+                <div class="col-btn" id="updateBtnSection">
+                        <div id="ConfirmUpdate" >Update</div> 
+                        <div id="Cancelupdate" >Cancel</div> 
                 </div>
             </div>
         </div>
     </div>
 </form>
+
  <script>
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
+
+
+    document.getElementById('EditReport').addEventListener('click',() => {
+        document.getElementById('EditBtnSection').style.display = 'none';
+        document.getElementById('updateBtnSection').style.display = 'block';
+    inputs('BreakAssetForm',false);
+    })
+
+    document.getElementById('Cancelupdate').addEventListener('click',() => {
+        document.getElementById('updateBtnSection').style.display = 'none';
+        document.getElementById('EditBtnSection').style.display = 'block';
+        inputs('BreakAssetForm',true);
+    })
 
     var breakdownID = getCookieValue('BreakdownID');  
     var breakdown =   JSON.parse(breakdownID)[0];  //string to object
