@@ -35,10 +35,10 @@
 
     .buttonSection {
         display: flex;
-        align-items: center;
+        /* align-items: center; */
         justify-content: right;
-        /* padding-bottom: 10px; */
-        float: right;
+        padding-bottom: 10px;
+        /* float: right; */
     }
 
     .button {
@@ -47,29 +47,29 @@
         padding: 10px 20px;
         color: white;
         border-radius: 10px;
+        width: max-content;
     }
 
     .button:hover {
         cursor: pointer;
     }
+
+
+    #topSection {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 </style>
 
 <script>
-    //Get Asset Counts
-    // getCount('allAssets', 'allAssetsCount');
-    // getCount('allEmployees', 'allEmployeesCount');
-    // getCount('allTechnicians', 'allTechniciansCount');
-    // getCount('allTangible', 'allTangible');
-    // getCount('allConsumable', 'allConsumable');
-    console.log(getCount());
-    // document.getElementById('allAssetsCount').innerHTML = data.allAssetsCount;
-        // document.getElementById('allEmployeesCount').innerHTML = data.allEmployeesCount;
-        // document.getElementById('allTechniciansCount').innerHTML = data.allTechniciansCount;
-        // document.getElementById('allTangible').innerHTML = data.allTangible;
-        // document.getElementById('allConsumable').innerHTML = data.allConsumable;
-    
-
-
+    // Retrieve and set all counts
+    getData('http://localhost/assetpro/stats/all/', (data) => {
+        document.getElementById('allAssetsCount').innerHTML = data.allAssets;
+        document.getElementById('allEmployeesCount').innerHTML = data.allEmployees;
+        document.getElementById('allTechniciansCount').innerHTML = data.allTechnicians;
+        document.getElementById('allTangible').innerHTML = data.tangibleAssets;
+        document.getElementById('allConsumable').innerHTML = data.consumableAssets;
+    });
 
     function getAssets(type) {
         const xhr = new XMLHttpRequest();
@@ -175,23 +175,24 @@
         document.getElementById(eventId).classList.add('activeTab');
     }
     document.getElementById("addAsset").addEventListener('click', function(e) {
-        const eventId = e.target.id;
-        if (eventId == "addAsset") {
-            loadSection("centerSection", eventId);
-        }
+        popup = document.querySelector('.popup-container');
+        popup.style.display = 'grid';
+        e.stopPropagation();
+        loadSection("popup", "addAsset");
     })
 
 
     //Add event listener to listen for click events on each asset in all tables
-    function addViewAssetListener(assetElement) {
-        assetElement.addEventListener('click', (event) => {
-            var asset = event.target.parentElement;
-            event.stopPropagation();
-            document.cookie = `assetID=${asset.id}`;
-            loadSection('centerSection', 'viewAsset');
-        })
-    }
+    // function addViewAssetListener(assetElement) {
+    //     assetElement.addEventListener('click', (event) => {
+    //         var asset = event.target.parentElement;
+    //         event.stopPropagation();
+    //         document.cookie = `assetID=${asset.id}`;
+    //         loadSection('centerSection', 'viewAsset');
+    //     })
+    // }
 
+    
     //Get asset details by ID
 </script>
 <div class="overviewLayout">
@@ -231,8 +232,12 @@
             </div>
         </div>
     </div>
-    <div>
+    <div id="topSection">
         <div class="section-subHeading">Assets</div>
+        <div class="buttonSection" id="addAssetButtonSection">
+            <div class="button" id="addAsset">Add Asset</div>
+        </div>
+
     </div>
     <div class="contentSection">
         <div id="assetSections">
@@ -246,8 +251,7 @@
             include("allAssets.php");
             ?>
         </div>
-        <div class="buttonSection">
-            <div class="button" id="addAsset">Add Asset</div>
-        </div>
+
+
     </div>
 </div>

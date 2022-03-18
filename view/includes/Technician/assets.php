@@ -1,5 +1,65 @@
 <style>
-    .overviewLayout{
+    #assetSections {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #assetSections>div {
+        width: 200px;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        color: #7F91BC;
+        font-size: 20px;
+        height: 100%;
+        padding: 8px 0px;
+    }
+
+    #assetSections>div:hover {
+        cursor: pointer;
+        background-color: #EAEDF5;
+    }
+
+    #assetContents {
+        overflow-y: hidden;
+        /* padding: 10px; */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+    }
+
+    .buttonSection {
+        display: flex;
+        /* align-items: center; */
+        justify-content: right;
+        padding-bottom: 10px;
+        /* float: right; */
+    }
+
+    .button {
+        margin-right: 15px;
+        background-color: #6A71D7;
+        padding: 10px 20px;
+        color: white;
+        border-radius: 10px;
+        width: max-content;
+    }
+
+    .button:hover {
+        cursor: pointer;
+    }
+
+    #topSection {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+</style>
+
+    <!-- .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
         background-color: #F1F4FF;
@@ -165,8 +225,8 @@
     
     .activeTab{
         background-image: linear-gradient(#EAEDF5, white);;
-    }
-</style>
+    } -->
+
 
 
 <!-- <script>
@@ -280,10 +340,23 @@
 
 
 <div class="overviewLayout">
-    <div>
-        <div> Dashboard Overview </div>
+    <div class="section-heading"> All Assigned Breakdowns </div>
+    
+    <div class="contentSection">
+        <div id="assetSections">
+            <div id="assignedBreakdowns" class="activeTab"> Assigned Breakdowns </div>
+            <div id="breakdownsInProgress"> Breakdowns In Progress </div>
+        </div>
+        <div id="assetContents">
+            <?php
+                include("assignedBreakdowns.php");
+            ?>
+        </div>
     </div>
-    <div class="statSection">
+</div>
+
+
+<!-- <div class="statSection">
         <div>
             <div class="statBox box1" >
                 <div class="statNumber" id="allAssets"> 16 </div>
@@ -310,22 +383,5 @@
                     <div class="statText"> Repaired Assets </div>
             </div>
         </div>
-    </div>
-    <div>
-        <div> All Assigned Assets </div>
-    </div>
-    <div class="contentSection">
-        <div id="assetSections">
-            <div id="techAssignedAssets" class="activeTab"> Assigned Assets </div>
-            <div id="assetsinprogress"> In Progress </div>
-        </div>
-        <div id="assetContents">
-            <?php
-                include("techAssignedAssets.php");
-            ?>
-        </div>
-    </div>
-</div>
-
-
+    </div> -->
 

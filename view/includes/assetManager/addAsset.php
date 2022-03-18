@@ -1,6 +1,6 @@
 <style>
     form{
-        height: 87vh;
+        /* height: 87vh; */
     }
     .profile {
         all: revert;
@@ -227,30 +227,33 @@
 
     // Get categories and types
     var categories = null;
-    
-    getCatogories().then(res => {
-        categories = res;
+
+    getData('http://localhost/assetpro/asset/categories' ,(data)=> {
+        categories = data;
         setCats();
+
     })
+    
     
     // Function to set categories
     
     function setCats(){
         var select = document.getElementById("category");
         categories.forEach(category =>{
-           var option = `<option value=${category.categoryID}>${category.categoryName}</option>`;
+            console.log(category);
+           var option = `<option value=${category.CategoryID}>${category.CategoryName}</option>`;
            select.innerHTML += option;
         });
-        setTypes(categories[0].categoryID);
     }
 
+    
     function setTypes(id){
         var select = document.getElementById("assetType");
         categories.forEach(category =>{
-            if(category.categoryID == id){
-                select.innerHTML='';
-                category.types.forEach(type =>{
-                    var option = `<option value=${type.typeID}>${type.name}</option>`;
+            if(category.CategoryID == id){
+                select.innerHTML=`<option value="">Select Type</option>`;
+                category.Types.forEach(type =>{
+                    var option = `<option value=${type.TypeID}>${type.TypeName}</option>`;
                     select.innerHTML += option;
                 })
             }
@@ -283,7 +286,6 @@
     function sectionState(sectionID, state){
         var inputs = document.getElementById(sectionID).querySelectorAll("input, select");
         inputs.forEach(input =>{
-            console.log(input);
             input.disabled = state;
         })
     }
@@ -354,20 +356,6 @@
         xhr.send(asset);
     }
     
-    async function getCatogories(){
-        return new Promise(function(resolve, reject){
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET","../model/Asset.php?action=getCats",true);
-            xhr.onload = function(){
-                if(this.status === 200){
-                    var cats = JSON.parse(this.responseText);
-                    // console.log(cats);
-                    resolve(cats);
-                }
-            }
-            xhr.send();
-        });    
-    }
     
 
 </script>
@@ -402,12 +390,13 @@
                     <div class="col-f">
                         <span for="category">Category</span>
                         <select name="category" id="category">
-                            
+                            <option value="">Select Category</option>
                         </select>
                     </div>
                     <div class="col-f">
                         <span for="assetType">Asset Type</span>
                         <select name="assetType" id="assetType">
+                            <option value="">Select Type</option>
                         </select>
                     </div>
                     

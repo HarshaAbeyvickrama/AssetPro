@@ -27,6 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
             grid-template-columns: 10vw 90vw;
             overflow: hidden;
             z-index: 0;
+            background-color: #F1F4FF;
 
         }
 
@@ -38,19 +39,21 @@ if (session_status() === PHP_SESSION_NONE) {
         }
 
         #headerDiv {
+            /* display: grid; */
             border: none;
             border-left: 4px solid #F1F4FF;
             margin: 0;
             padding: 0;
+            align-items: center;
         }
 
         .dashboardRight {
             display: grid;
-            grid-template-rows: 12vh 88vh;
+            grid-template-rows: 10vh 90vh;
         }
 
         #centerSection>div:first-of-type {
-            height: 82vh;
+            height: 87vh;
             overflow: hidden;
             padding: 20px;
             background-color: #F1F4FF;
@@ -74,6 +77,46 @@ if (session_status() === PHP_SESSION_NONE) {
         .scrollBar::-webkit-scrollbar-thumb {
             background-color: #5C6E9B !important;
         }
+
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-items: center;
+            padding: 40px 20px;
+
+        }
+
+        #closePopup {
+            position: absolute;
+            height: 32px;
+            right: 20px;
+            top: 10px;
+        }
+
+        #closePopup img {
+            height: 25px;
+
+        }
+
+        #closePopup img:hover {
+            cursor: pointer;
+        }
+        #popup{
+            align-items: center;
+        }
+        /* .popup-container::before{
+            content: url('../Images/icons/close.png');
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            z-index: 100;
+        } */
     </style>
     <script>
         getCount();
@@ -111,7 +154,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         include_once("includes/assetManager/overview.php");
                         break;
                     case '5':
-                        include_once("includes/head/overview.php");
+                        include_once("includes/departmentHead/overview.php");
                         break;
                 }
                 ?>
@@ -120,11 +163,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
     </div>
+    <div class="popup-container">
+        <div id="closePopup">
+            <img src="../Images/icons/close.png" alt="">
+        </div>
+        <div id="popup"></div>
+    </div>
     <script>
         evaluateJs('centerSection');
-
-        
-
 
         function getAll(type, table) {
             const tb = document.getElementById(table);
@@ -176,6 +222,13 @@ if (session_status() === PHP_SESSION_NONE) {
         function getCookieValue(name) {
             return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
         }
+
+        // Close the popup on click of the close button
+        document.getElementById('closePopup').addEventListener('click', function() {
+            var closePopup = document.querySelector('.popup-container');
+            closePopup.style.display = 'none';
+            document.getElementById('popup').innerHTML = '';
+        });
     </script>
 </body>
 

@@ -267,12 +267,13 @@
                 </div>
                 <div class="col-btn">
                         <div id="cancelReport" onClick="cancelReport()">Back</div> 
+                        <div id="cancelReport" onClick="cancelReport()">Edit</div> 
                 </div>
             </div>
         </div>
     </div>
 </form>
-<!-- <script>
+ <script>
 // function getCookieValue(name){
 //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 //     }
@@ -280,7 +281,7 @@
     var breakdownID = getCookieValue('BreakdownID');  
     var breakdown =   JSON.parse(breakdownID)[0];  //string to object
     console.log(breakdown); 
-    document.getElementById('assetID').value = breakdown.AssetID;
+    document.getElementById('assetID').value = breakdown.CategoryCode + '/' + breakdown.TypeCode + '/' + breakdown.AssetID;
     document.getElementById('assetName').value = breakdown.assetName;
     document.getElementById('assetType').value = breakdown.assetType;
     document.getElementById('category').value =breakdown.categoryName;
@@ -289,67 +290,8 @@
     document.getElementById('exDef').value = breakdown.Reason;
    
     
-
   
-   
-    document.querySelectorAll(".col-btn").forEach(button =>{
-        const cancelBtn = document.getElementById("cancelReport");
-        const reportBtn = document.getElementById("reportAsset");
-        button.addEventListener('click',function(event){
-            //event.preventDefault();
-            switch (event.target.id) {                       //event triggered when clicking the report btn
-                case 'cancelReport':
-                   
-                    break;
-                case 'reportAsset':
-                   const report = getFormdata();   
-                   for (var pair of report.entries()) 
-                   {
-                   console.log(pair[0] + ': ' + pair[1]);
-                   }
-                   
-                   if(report == null){
-                     alert('Fields cannot be empty');
-                   }else{
-                    saveReport(report);
-                   }
-                    break;
-            
-                default:
-                    break;
-            }
-        
-        
-        })
-    })
-    function getFormdata(){
-        reportForm = new FormData(document.getElementById('reportAssetForm'));
-        defectedPart =  document.getElementById('defP').value;
-        reportForm.append('defP',defectedPart);
-        explainDefect = document.getElementById('exDef').value;
-        reportForm.append('exDef',explainDefect);
-        console.log(reportForm);
-        if(defectedPart == "" || explainDefect == "")
-        {
-            return null;
-        }   
-        return reportForm;
-    }
-    
-   
-    // function saveReport(report){
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open("POST","../model/Report.php?action=reportBreakAsset",true);    //POST
-        
-    //     xhr.onload = function(){
-    //         if(this.status === 200){
-    //            alert(this.responseText); // 2nd alert
-    //         }
-    //     }
-    //     xhr.send(report);
-    // }
    function cancelReport(){
     loadSection('centerSection','reportedBreakdown');
-    // console.log(report);
    }
-</script> -->
+</script> 

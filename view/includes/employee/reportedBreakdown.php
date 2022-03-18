@@ -1,43 +1,3 @@
-<style>
-    .overviewLayout{
-        display: grid;  
-    }
-    .overviewLayout > div{
-        display: grid;
-        align-items: center;
-        color: #304068;
-        font-size: 24px;
-        font-weight: bold;
-    }
-    .overviewLayout .contentSection{
-        all: revert;
-        display: inline-block;
-        border-radius: 15px;
-        padding: 10px;
-        background-color: white;
-        overflow-y: auto;
-    }
-    .contentSection > div{
-        margin:15px;
-        height: auto;
-    }
-    .btnAction{
-        color: white;
-        background-color: #5C6E9B;
-        padding: 10px;
-        border: none;
-        border-radius: 32px;
-        width: 80px;
-        height: 40px;
-        cursor: pointer;
-        font-size: 15px;
-        align-items:center;
-    }
-    .btnAction:hover{
-        color: black;
-        background-color: white;
-    } 
-</style>
 
 <div class="overviewLayout">
     <div>
@@ -49,10 +9,11 @@
                     <tr>
                         <th>#</th>
                         <th>Date</th>
-                        <th>Error ID</th>
+                        <!-- <th>Error ID</th> -->
                         <th>Asset ID</th>
                         <th>Asset Name</th>
                         <th>Asset Type</th>
+                        <th>Status</th>
                         <th>view Breakdown</th>
                     </tr>
                 </thead>
@@ -66,7 +27,8 @@
     <?php
     echo 'var userID ='.$_SESSION['UserID']
     ?>
-     viewBreakAsset(userID);
+    //  viewBreakAsset(userID);
+     window.addEventListener('load', viewBreakAsset(userID))
 </script>
 
 <!-- <script>

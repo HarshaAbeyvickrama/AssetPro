@@ -166,6 +166,34 @@ document.getElementById("tabSections").addEventListener("click", function (e) {
 
 // ***************** departments.php ***************** //
 
+//Loading all the departments
+function loadDepartments() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost/assetpro/departments/all", true);
+  xhr.onload = function () {
+    if (this.status == 200) {
+      var department = JSON.parse(this.response);
+      for (var i = 0; i < department.length; i++) {
+        document.getElementById("departmentTableBody").innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${department[i]["DepartmentCode"]}/${
+          department[i]["DepartmentID"]
+        }</td>
+            <td>${department[i]["Name"]}</td>
+            <td>${department[i]["ContactNum"]}</td>
+            <td>
+              <button class='btn btn-submit ' id='view' onClick="loadDepartment(${
+                department[i]["DepartmentID"]
+              })">View</button>
+            </td>
+          </tr>`;
+      }
+    }
+  };
+  xhr.send();
+}
+
 //JS for pop-up form
 document.getElementById("addDep").addEventListener("click", function popForm() {
   document.querySelector(".bg-popup").style.display = "flex";
@@ -295,13 +323,62 @@ function loadEmploeeDepartment(DepartmentID) {
 
 // ***************** employees.php ***************** //
 
+//Loading all the employees
+function loadEmployees() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost/assetpro/employees/all", true);
+  xhr.onload = function () {
+    if (this.status == 200) {
+      var employees = JSON.parse(this.response);
+      for (var i = 0; i < employees.length; i++) {
+        document.getElementById("employeeTableBody").innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${employees[i]["DepartmentCode"]}/EMP/${employees[i]["EmployeeID"]}</td>
+            <td>${employees[i]["Name"]}</td>
+            <td>${employees[i]["Gender"]}</td>
+            <td>${employees[i]["jobTitle"]}</td>
+            <td>
+              <button class='btn btn-submit ' id='view' onClick="loadEmployee(${employees[i]["EmployeeID"]})">View</button>
+            </td>
+          </tr>`;
+      }
+    }
+  };
+  xhr.send();
+}
+
+//Loading details of the selected employee
+function loadEmployee(EmployeeID) {
+  var employeeDetails = null;
+  const xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    `http://localhost/assetpro/employees/getEmployee/${EmployeeID}`,
+    true
+  );
+  xhr.onload = function () {
+    if (this.status === 200) {
+      employeeDetails = JSON.parse(this.responseText);
+      // popup = document.getElementById("popup");
+      // popup.style.display = "grid";
+      event.stopPropagation();
+      loadSection("centerSection", "emprofile");
+      var json = JSON.stringify(employeeDetails);
+      document.cookie = `EmployeeID=${json}`;
+    }
+    console.log(employeeDetails);
+  };
+  xhr.send();
+}
+
 //Loading the add employee page
 var addEmployeeBtn = document.getElementById("addEmp");
 addEmployeeBtn.addEventListener("click", function () {
   loadSection("centerSection", "addEmployee");
 });
 
-//Viewing the deaprtment details
+//Viewing the employee details
 var viewEmployeeBtn = document.querySelectorAll("#view");
 for (var i = 0; i < viewEmployeeBtn.length; i++) {
   viewEmployeeBtn[i].addEventListener("click", function () {
@@ -310,99 +387,10 @@ for (var i = 0; i < viewEmployeeBtn.length; i++) {
   });
 }
 
-//Loading details of the selected department
-function loadDepartment(EmployeeID) {
-  var employeeDetails = null;
-  const xhr = new XMLHttpRequest();
-  xhr.open(
-    "POST",
-    `../model/Employee.php?action=loadEmployee&EmployeeID=${EmployeeID}`,
-    true
-  );
-
-  xhr.onload = function () {
-    if (this.status === 200) {
-      employeeDetails = JSON.parse(this.responseText);
-      console.log(employeeDetails);
-      loadSection("centerSection", "emprofile");
-
-      var json = JSON.stringify(employeeDetails);
-      document.cookie = `EmployeeID=${json}`;
-    }
-  };
-  xhr.send();
-}
-
 //Function to go back
 function goBack() {
   loadSection("centerSection", "employees");
 }
-
-// ***************** emprofile.php ***************** //
-
-// Enable / Disable the form fields
-
-// formID = the Id of the form that should be diabled
-// readonlyState ---->
-//      true --> form disabled
-//      false --> form enabled
-
-function formState(formId, readonlyState) {
-  const form = document.getElementById(formId);
-  var elements = form.elements;
-  var len = elements.length;
-  for (var i = 0; i < len; ++i) {
-    elements[i].disabled = readonlyState;
-  }
-  document.getElementById("uploadBtn").disabled = readonlyState;
-}
-
-formState("errorlogForm", true);
-
-document.querySelectorAll(".col-btn").forEach((button) => {
-  const backBtn = document.getElementById("back");
-  button.addEventListener("click", function (event) {
-    switch (event.target.id) {
-      case "back":
-        formState("errorlogForm", true);
-        /*saveBtn.style.display = 'none';
-                    cancelBtn.style.display = 'none';
-                    btnEditProfile.style.display = 'block';*/
-
-        break;
-
-      default:
-        break;
-    }
-  });
-});
-
-//Getting the employee details to the form
-var employeeID = getCookieValue("EmployeeID");
-var employee = JSON.parse(employeeID)[0];
-console.log(employee);
-
-console.log(employee.ProfilePicURL);
-
-document.getElementById("imagePrev").src = `..${employee.ProfilePicURL}`;
-
-document.getElementById("empID").value = employee.EmployeeID;
-document.getElementById("fName").value = employee.fName;
-document.getElementById("lName").value = employee.lName;
-document.getElementById("NIC").value = employee.NIC;
-var radio = document.getElementById("radio-group").children;
-// console.log(employee.Gender);
-var gender = document.getElementById(employee.Gender);
-gender.checked = true;
-// document.getElementById(employee.Gender).checked = true;
-document.getElementById("dob").value = employee.DOB;
-document.getElementById("maritalStatus").value = employee.CivilStatus;
-document.getElementById("address").value = employee.Address;
-document.getElementById("contactNo").value = employee.PhoneNumber;
-document.getElementById("email").value = employee.Email;
-document.getElementById("eName").value = employee.eName;
-document.getElementById("eRelationship").value = employee.Relationship;
-document.getElementById("econtact").value = employee.TelephoneNumber;
 
 // ***************** generalDetails.php ***************** //
 
@@ -423,6 +411,52 @@ getCount("allEmployees", "allEmployeesCount");
 getCount("allTechnicians", "allTechniciansCount");
 
 // ***************** technicians.php ***************** //
+
+//Load all the technicians
+function loadTechnicians() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost/assetpro/technicians/all", true);
+  xhr.onload = function () {
+    if (this.status == 200) {
+      var technicians = JSON.parse(this.response);
+      for (var i = 0; i < technicians.length; i++) {
+        document.getElementById("techniciansTableBody").innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${technicians[i]["DepartmentCode"]}/TEC/${technicians[i]["TechnicianID"]}</td>
+            <td>${technicians[i]["Name"]}</td>
+            <td>${technicians[i]["Gender"]}</td>
+            <td>${technicians[i]["jobTitle"]}</td>
+            <td>
+              <button class='btn btn-submit ' id='view' onClick="loadTechnician(${technicians[i]["TechnicianID"]})">View</button>
+            </td>
+          </tr>`;
+      }
+    }
+  };
+  xhr.send();
+}
+
+//Loading details of the selected technician
+function loadTechnician(TechnicianID) {
+  var technicianDetails = null;
+  const xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    `http://localhost/assetpro/technicians/getTechnician/${TechnicianID}`,
+    true
+  );
+  xhr.onload = function () {
+    console.log(technicianDetails);
+    if (this.status === 200) {
+      technicianDetails = JSON.parse(this.responseText);
+      loadSection("centerSection", "tecprofile");
+      var json = JSON.stringify(technicianDetails);
+      document.cookie = `TechnicianID=${json}`;
+    }
+  };
+  xhr.send();
+}
 
 //Funtion to get the add technicians form
 var addTechnicianBtn = document.getElementById("addTec");
@@ -471,26 +505,33 @@ document.querySelectorAll(".col-btn").forEach((button) => {
   });
 });
 
-//Getting the employee details to the form
-var employeeID = getCookieValue("EmployeeID");
-var employee = JSON.parse(employeeID)[0];
-console.log(employee);
+// ************************* dhead.php ************************ //
 
-document.getElementById("imagePrev").src = `..${employee.ProfilePicURL}`;
-document.getElementById("empID").value = employee.EmployeeID;
-document.getElementById("fName").value = employee.fName;
-document.getElementById("lName").value = employee.lName;
-document.getElementById("NIC").value = employee.NIC;
-var radio = document.getElementById("radio-group").children;
-// console.log(employee.Gender);
-var gender = document.getElementById(employee.Gender);
-gender.checked = true;
-// document.getElementById(employee.Gender).checked = true;
-document.getElementById("dob").value = employee.DOB;
-document.getElementById("maritalStatus").value = employee.CivilStatus;
-document.getElementById("address").value = employee.Address;
-document.getElementById("contactNo").value = employee.PhoneNumber;
-document.getElementById("email").value = employee.Email;
-document.getElementById("eName").value = employee.eName;
-document.getElementById("eRelationship").value = employee.Relationship;
-document.getElementById("econtact").value = employee.TelephoneNumber;
+//Getting all the department heads
+function loadDepartmentHeads() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost/assetpro/departmentheads/all", true);
+  xhr.onload = function () {
+    if (this.status == 200) {
+      var departmenthead = JSON.parse(this.response);
+      console.log(departmenthead);
+      for (var i = 0; i < departmenthead.length; i++) {
+        document.getElementById("headTableBody").innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${departmenthead[i]["DepartmentCode"]}/DH/${
+          departmenthead[i]["HeadID"]
+        }</td>
+            <td>${departmenthead[i]["Name"]}</td>
+            <td>${departmenthead[i]["ContactNum"]}</td>
+            <td>
+              <button class='btn btn-submit ' id='view' onClick="loadDepartmentHead(${
+                departmenthead[i]["HeadID"]
+              })">View</button>
+            </td>
+          </tr>`;
+      }
+    }
+  };
+  xhr.send();
+}

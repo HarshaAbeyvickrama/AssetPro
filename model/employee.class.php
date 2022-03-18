@@ -1,6 +1,6 @@
 <?php
 
-require_once './controller/autoloadController.php';
+// require_once './controller/autoloadController.php';
 
 class Employee extends DBConnection {
     //Database connection
@@ -17,10 +17,10 @@ class Employee extends DBConnection {
     private $contactNo;
     private $email;
     private $eName;
-    private $eRelarionship;
+    private $eRelationship;
     private $eContact;
 
-    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelarionship, $eContact)
+    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
         $this->DBConnection = $this->connect();
         $this->departmentID = $departmentID;
@@ -34,7 +34,7 @@ class Employee extends DBConnection {
         $this->contactNo = $contactNo;
         $this->email = $email;
         $this->eName = $eName;
-        $this->eRelarionship = $eRelarionship;
+        $this->eRelationship = $eRelationship;
         $this->eContact = $eContact;
     }
 
@@ -44,50 +44,52 @@ class Employee extends DBConnection {
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
                     ud.Gender,
+                    ud.jobTitle,
                     d.DepartmentCode,
+                    d.Name as DepartmentName,
                     eu.EmployeeID
                 FROM
                     userdetails ud
                 INNER JOIN employeeuser eu ON
                     ud.UserID = eu.UserID
                 INNER JOIN department d ON
-                    eu.DepartmentID = d.DepartmentID";
+                    eu.DepartmentID = d.DepartmentID
+                ORDER BY eu.EmployeeID";
 
-        $pstm = $this->dbConnection->prepare($sql);
+        $pstm = $this->connect()->prepare($sql);
         $pstm->execute();
         return $pstm;
     }
 
     //Getting the employee details using EmployeeID
+    // ud.fName,
+    //                 ud.lName,
+    //                 ud.NIC,
+    //                 ud.Gender,
+    //                 ud.DOB,
+    //                 ud.ProfilePicURL
     protected function get($EmployeeID) {
+        $DBConnection = $this->connect();
         $sql = "SELECT
                     eu.EmployeeID,
-                    ud.fName,
-                    ud.lName,
-                    ud.NIC,
-                    ud.Gender,
-                    ud.DOB,
-                    ud.ProfilePicURL,
-                    ud.CivilStatus,
-                    ud.Address,
-                    ud.PhoneNumber,
-                    ud.Email,
-                    ue.fName AS eName,
-                    ue.Relationship,
-                    ue.TelephoneNumber
+                    ud.*,
+                    ue.fName as eName,
+                    ue.Relationship as eRelationship,
+                    ue.TelephoneNumber as eContact
                 FROM
                     userdetails ud
                 INNER JOIN employeeuser eu ON
                     ud.UserID = eu.UserID
                 INNER JOIN useremergency ue ON
                     eu.UserID = ue.UserID
-                WHERE EmployeeID = $EmployeeID";
+                WHERE EmployeeID = ?";
         
-        $stmt = $this->DBConnection->prepare($sql);
+        $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$EmployeeID]);
         return $stmt;
     }
 
+    //Adding an employee
     protected function add() {
         try {
             $this->DBConnection->beginTransaction();
@@ -95,6 +97,7 @@ class Employee extends DBConnection {
             //INserting into the user table
             $addEmployee = "INSERT INTO user VALUES (NULL, '3')";
             $stmt = $this->DBConnection->prepare($addEmployee);
+            $stmt->execute();
 
             $UserID = $this->dbConnection->lastInsertId();
 
@@ -106,21 +109,20 @@ class Employee extends DBConnection {
                 
             }
             //Inserting into the userdetails table
-            $userdetails = "INSERT INTO userdetails VALUES (userID, firstname, lastName, NIC, address, gender, '23', contactNo, email, dob, fileUrl, maritalStatus)";
+            $userdetails = "INSERT INTO userdetails VALUES (userID, firstname, lastName, NIC, address, gender, contactNo, email, dob, fileUrl, maritalStatus)";
             $stmt = $this->DBConnection->prepare($userdetails);
 
             $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('firstName', $firstName);
-            $stmt->bindParam('lastName', $lastName);
-            $stmt->bindParam('NIC', $NIC);
-            $stmt->bindParam('address', $address);
-            $stmt->bindParam('gender', $gender);
-            $stmt->bindParam('23', '23');
-            $stmt->bindParam('contactNo', $contactNo);
-            $stmt->bindParam('email', $email);
-            $stmt->bindParam('dob', $dob);
+            $stmt->bindParam('firstName', $this->firstName);
+            $stmt->bindParam('lastName', $this->lastName);
+            $stmt->bindParam('NIC', $this->NIC);
+            $stmt->bindParam('address', $this->address);
+            $stmt->bindParam('gender', $this->gender);
+            $stmt->bindParam('contactNo', $this->contactNo);
+            $stmt->bindParam('email', $this->email);
+            $stmt->bindParam('dob', $this->dob);
             $stmt->bindParam('fileUrl', $fileUrl);
-            $stmt->bindParam('maritalStatus', $maritalStatus);
+            $stmt->bindParam('maritalStatus', $this->maritalStatus);
 
             $stmt->execute();
 
@@ -129,18 +131,46 @@ class Employee extends DBConnection {
             $stmt = $this->DBConnection->prepare($employeeuser);
 
             $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('departmentID', $departmentID);
+            $stmt->bindParam('departmentID', $this->departmentID);
 
             $stmt->execute();
 
             //Inserting into useremergency table
-            $userEmergency = "INSERT INTO useremergency VALUES ()"; 
+            $userEmergency = "INSERT INTO useremergency VALUES (userID, eRelationship, eName, eContact)";
+            $stmt = $this->DBConnection->prepare($userEmergency);
+            
+            $stmt->bindParam('userID', $UserID);
+            $stmt->bindParam('eRelationship', $this->eRelationship);
+            $stmt->bindParam('eName', $this->eName);
+            $stmt->bindParam('eContact', $this->eContact);
 
-
+            $stmt->execute();
 
         } catch (PDOException | Exception $e) {
-            
+            $this->DBConnection->rollBack();
+
+            $result = array(
+                "status"=>"Failed",
+                "Error"=>$e->getMessage(),
+                "Message"=>"Cannot add an Employee"
+            );
+
+            return $result;
         }
+    }
+
+    //Updating employee details
+    protected function update($EmployeeID) {
+
+    }
+
+    //Deleting an employee
+    protected function delete($EmployeeID) {
+        $sql = "DELETE FROM user INNER JOIN employeeuser ON user.UserID = employeeuser.UserID WHERE employeeuser.EmployeeID = :EmployeeID";
+        $stmt = $this->DBConnection->prepare($sql);
+        $stmt->bindParam(":EmployeeID", $EmployeeID);
+        $stmt->execute();
+        return $stmt;
     }
 
 }
