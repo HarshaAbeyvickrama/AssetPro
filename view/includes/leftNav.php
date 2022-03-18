@@ -279,11 +279,11 @@
 //                    <span class='componentText'>Employees</span>
 //                </div>";
 //
-///               //Employees
-//                echo "<div class='component' id='employees'>
-//                    <img src='../Images/icons/NotSelected/Employees.png' >
-//                    <span class='componentText'>Employees</span>
-//                </div>";
+                //Department head
+                echo "<div class='component' id='departmentHeads'>
+                    <img src='../Images/icons/NotSelected/dh.png' >
+                    <span class='componentText'>Department Heads</span>
+                </div>";
 
                 //Technicians
                 echo "<div class='component' id='technicians'>
