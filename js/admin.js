@@ -309,7 +309,7 @@ function loadEmploeeDepartment(DepartmentID) {
   xhr.send();
 }
 
-// ***************** employees.php ***************** //
+// ***************** employees_rem.php ***************** //
 
 //Loading all the employees
 function loadEmployees() {
