@@ -228,7 +228,8 @@ class Asset extends DBConnection
                 asset.AssetID,
                 assetdetails.assetName,
                 assetType
-                "
+                ";
+        return null;
     }
 
     // Get all the details of a particular asset by assetID
