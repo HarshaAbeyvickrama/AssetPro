@@ -53,9 +53,15 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'categories':
                     echo $ac->getAssetCategories();
                     break;
+
                 // case 'inProgress':
                 //     echo $ac->getAllinProgressAssets($url[2]);
                 //     break;
+
+                case 'get':
+                    echo $ac->getAsset($url[2]);
+                    break;
+
                 default:
                     # code...
                     break;
@@ -119,6 +125,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getEmployee':
                     echo $ec->getEmployee($url[2]);
+                    break;
+                case 'addImage':
+                    echo $ec->addImage($_FILES);
+                    break;
+                case 'addEmployee':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $ec->addEmployee($data);
                     break;
             }
             break;

@@ -273,12 +273,14 @@
                 <input type="datetime" name="dob" id="dob">
             </div>
             <div class="col-f">
-                <span> Marital Status: </span>
+                <!-- <span> Marital Status: </span>
                 <select name="maritalStatus" id="maritalStatus">
                     <option value="Married"> Married </option>
                     <option value="Unmarried"> Unmarried </option>
                     <option value="Widowed"> Widowed </option>
-                </select>
+                </select> -->
+                <span for="jobTitle"> Job Title: </span>
+                <input type="text" name="jobTitle" id="jobTitle">
             </div>
             <div class="col-f">
                 <span for="address"> Address: </span>
@@ -308,7 +310,7 @@
                 <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
             </div>
             <div class="col-btn" id="EditBtnSection">
-                <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div>
+                <!-- <div class="btnAction" id="cancelAddEmployee" onClick="goBack()"> Back </div> -->
                 <div class="btnAction" id="btnEditProfile"> Edit </div>
             </div>
             <div class="col-btn" id="updateBtnSection">
@@ -381,9 +383,9 @@ function formState(formId,readonlyState){
    })
 
     //Getting the employee details to the form
-   var employeeID = getCookieValue('EmployeeID');
-   var employee = JSON.parse(employeeID)[0];
-//    console.log(employee);
+   var employeeDetails = getCookieValue('EmployeeDetails');
+   var employee = JSON.parse(employeeDetails);
+   console.log(employee);
 
 //    console.log(employee.ProfilePicURL);
 
@@ -399,7 +401,8 @@ function formState(formId,readonlyState){
     // gender.checked = true;
     document.getElementById(employee.Gender).checked = true;
     document.getElementById('dob').value = employee.DOB;
-    document.getElementById('maritalStatus').value = employee.CivilStatus;
+    // document.getElementById('maritalStatus').value = employee.CivilStatus;
+    document.getElementById('jobTitle').value = employee.jobTitle;
     document.getElementById('address').value = employee.Address;
     document.getElementById('contactNo').value = employee.PhoneNumber;
     document.getElementById('email').value = employee.Email;

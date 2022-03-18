@@ -1,22 +1,25 @@
 <style>
-    form{
+    form {
         height: 87vh;
     }
+
     .profile {
         all: revert;
         display: grid;
         grid-template-columns: 1fr 1fr;
         background-color: #F1F4FF;
-        overflow:hidden;
+        overflow: hidden;
         padding: 0px;
         height: 87vh;
     }
+
     .profile>div {
         background-color: white;
         border-radius: 10px;
     }
+
     .leftSection,
-    .rightSection{
+    .rightSection {
         overflow-y: hidden;
     }
 
@@ -32,29 +35,33 @@
         align-items: center;
         margin: 15px 7.5px 15px 15px;
         padding: 10px;
-        
+
     }
+
     .leftSection>div {
         /* height: 100%; */
         /* width: 100%; */
     }
+
     .profileImageSection>img {
         width: 200px;
         border-radius: 0%;
     }
+
     .leftSection .leftBottom {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         height: 100%;
     }
-   
+
     .profileImageSection {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+
     #uploadBtn {
         display: flex;
         align-items: center;
@@ -66,11 +73,13 @@
         color: #F1F4FF;
         border-radius: 30px;
     }
+
     #uploadBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
+
     /* Form styling */
     .basic-information {
         width: calc(100% - 40px);
@@ -79,9 +88,10 @@
         flex-wrap: wrap;
         padding: 10px;
         /* overflow-y:auto; */
-        overflow-y:hidden;
+        overflow-y: hidden;
         /* justify-content: space-around; */
     }
+
     .title {
         width: 100%;
         color: #304068;
@@ -89,11 +99,13 @@
         margin: 10px 0px;
         font-size: 20px;
     }
+
     .col-f {
         width: 100%;
         color: #5C6E9B;
     }
-    .col-f select{
+
+    .col-f select {
         justify-content: center;
         align-items: center;
         width: calc(94% - 30px);
@@ -105,17 +117,20 @@
         margin-top: 10px;
         outline: none;
     }
+
     .col-h {
         width: 50%;
         color: #5C6E9B;
     }
+
     .col-btn {
         position: relative;
         text-align: center;
         width: 100%;
         align-items: center;
-        margin: 10px 0px;   
+        margin: 10px 0px;
     }
+
     .col-btn>div {
         border-radius: 15px;
         padding: 10px 20px;
@@ -128,6 +143,7 @@
         float: right;
         margin-right: 5px;
     }
+
     .col-f input[type=text] {
         justify-content: center;
         align-items: center;
@@ -141,6 +157,7 @@
         margin-top: 10px;
         outline: none;
     }
+
     .col-h input[type=text] {
         justify-content: center;
         align-items: center;
@@ -153,7 +170,8 @@
         margin-top: 10px;
         outline: none;
     }
-    .textarea{
+
+    .textarea {
         justify-content: center;
         align-items: center;
         width: calc(94% - 30px);
@@ -166,42 +184,51 @@
         margin-top: 10px;
         outline: none;
     }
+
     .col-h,
     .col-f>span {
         display: block;
         margin-top: 5px;
     }
-    
-    .radio-group{
+
+    .radio-group {
         margin: 5px 0px;
     }
-    .radio-group > label { 
+
+    .radio-group>label {
         margin-left: 5px;
     }
-    .radio-group > input[type=radio]:hover{
+
+    .radio-group>input[type=radio]:hover {
         cursor: pointer;
     }
-    .col-btn > div:hover {
+
+    .col-btn>div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
     }
-    #pRight{
+
+    #pRight {
         background-color: #F1F4FF;
         /* display: grid; */
         /* grid-template-rows: 1fr 1fr; */
         overflow-x: hidden;
     }
-    #pRight > div{
+
+    #pRight>div {
         background-color: white;
         border-radius: 10px;
     }
-    #pRight > div:nth-child(1){
+
+    #pRight>div:nth-child(1) {
         margin: 15px 10px 5px 5px;
     }
-    #pRight > div:nth-child(2){
+
+    #pRight>div:nth-child(2) {
         margin: 5px 15px 10px 5px;
     }
+
     /* .col-btn{
         z-index: 1;
         position: absolute;
@@ -210,19 +237,18 @@
         right: calc(0%);
         cursor: pointer;
     } */
-    #updateBtnSection{
+    #updateBtnSection {
         display: none;
     }
-  
 </style>
 
 
 <form action="" id="BreakAssetForm" onsubmit="">
 
     <div class="profile">
-        <div id="pLeft" class="leftSection"> 
+        <div id="pLeft" class="leftSection">
             <div class="profileImageSection">
-                <image src="../Images/lap1.jpg"alt="laptop-1">
+                <image src="../Images/lap1.jpg" alt="laptop-1">
             </div>
             <div class="leftBottom">
                 <div class="basic-information">
@@ -231,88 +257,93 @@
                         <span for="errorId">Error ID</span>
                         <input type="text" name="errorId" id="errorId" value="D/FA/2346">
                     </div> -->
-                    
+
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
                         <input type="text" name="assetID" id="assetID" disabled>
                     </div>
-                   
+
                     <div class="col-f">
                         <span for="assetName">Asset Name</span>
                         <input type="text" name="assetName" id="assetName" disabled>
                     </div>
                     <div class="col-f">
                         <span for="AssetType">Asset Type</span>
-                        <input type="text" name="assetType" id="assetType" disabled >
+                        <input type="text" name="assetType" id="assetType" disabled>
                     </div>
                     <div class="col-f">
                         <span for="category">Asset Category</span>
-                        <input type="text" name="category" id="category" disabled >
+                        <input type="text" name="category" id="category" disabled>
                     </div>
                     <div class="col-f">
                         <span for="condition">Condition</span>
                         <input type="text" name="condition" id="condition" disabled>
                     </div>
+                </div>
             </div>
         </div>
-     </div>
-        
-        <div id="pRight" class="rightSection">
-            <div class="basic-information">
-                <div class="title">Report Breakdown:</div>
-                <div class="col-f">
-                    <span for="defectedParts">Defected Parts</span>
-                    <textarea class="textarea" cols="8.5" rows="8.5" id="defP" disabled></textarea>
-                </div>
-                <div class="col-f">
-                    <span for="explainDefect">Explain the defect</span>
-                    <textarea class="textarea" cols="10" rows="10" id="exDef" disabled></textarea>
-                </div>
-                <div class="col-btn" id="EditBtnSection">
-                        <div id="cancelReport" onClick="cancelReport()">Back</div> 
-                        <div id="EditReport" >Edit</div> 
-                </div>
-                <div class="col-btn" id="updateBtnSection">
-                        <div id="ConfirmUpdate" >Update</div> 
-                        <div id="Cancelupdate" >Cancel</div> 
-                </div>
+
+</form>
+
+<form action="" id="EditForm">
+    <div id="pRight" class="rightSection">
+        <div class="basic-information">
+            <div class="title">Report Breakdown:</div>
+            <div class="col-f">
+                <span for="defectedParts">Defected Parts</span>
+                <textarea class="textarea" cols="8.5" rows="8.5" id="defP" disabled></textarea>
+            </div>
+            <div class="col-f">
+                <span for="explainDefect">Explain the defect</span>
+                <textarea class="textarea" cols="10" rows="10" id="exDef" disabled></textarea>
+            </div>
+            <div class="col-btn" id="EditBtnSection">
+                <div id="cancelReport" onClick="cancelReport()">Back</div>
+                <div id="EditReport">Edit</div>
+            </div>
+            <div class="col-btn" id="updateBtnSection">
+                <div id="ConfirmUpdate">Update</div>
+                <div id="Cancelupdate">cancel</div>
+
             </div>
         </div>
     </div>
 </form>
-
- <script>
-// function getCookieValue(name){
-//         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
-//     }
+</div>
 
 
-    document.getElementById('EditReport').addEventListener('click',() => {
+<script>
+    // function getCookieValue(name){
+    //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
+    //     }
+
+
+    document.getElementById('EditReport').addEventListener('click', () => {
         document.getElementById('EditBtnSection').style.display = 'none';
         document.getElementById('updateBtnSection').style.display = 'block';
-    inputs('BreakAssetForm',false);
+        inputs('EditForm', false);
     })
 
-    document.getElementById('Cancelupdate').addEventListener('click',() => {
+    document.getElementById('Cancelupdate').addEventListener('click', () => {
         document.getElementById('updateBtnSection').style.display = 'none';
         document.getElementById('EditBtnSection').style.display = 'block';
-        inputs('BreakAssetForm',true);
+        inputs('EditForm', true);
     })
 
-    var breakdownID = getCookieValue('BreakdownID');  
-    var breakdown =   JSON.parse(breakdownID)[0];  //string to object
-    console.log(breakdown); 
+    var breakdownID = getCookieValue('BreakdownID');
+    var breakdown = JSON.parse(breakdownID)[0]; //string to object
+    console.log(breakdown);
     document.getElementById('assetID').value = breakdown.CategoryCode + '/' + breakdown.TypeCode + '/' + breakdown.AssetID;
     document.getElementById('assetName').value = breakdown.assetName;
     document.getElementById('assetType').value = breakdown.assetType;
-    document.getElementById('category').value =breakdown.categoryName;
+    document.getElementById('category').value = breakdown.categoryName;
     document.getElementById('condition').value = breakdown.AssetCondition;
     document.getElementById('defP').value = breakdown.DefectedParts;
     document.getElementById('exDef').value = breakdown.Reason;
-   
-    
-  
-   function cancelReport(){
-    loadSection('centerSection','reportedBreakdown');
-   }
-</script> 
+
+
+
+    function cancelReport() {
+        loadSection('centerSection', 'reportedBreakdown');
+    }
+</script>

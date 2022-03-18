@@ -26,7 +26,7 @@ function viewBreakAssetDH(userID){
     xhr.send();
 }
 
-/************************************employees.php*********************************************/
+/************************************employees_rem.php*********************************************/
 //Loading all the employees within his department
 function loadDepartmentEmployees(userID) {
     const xhr = new XMLHttpRequest();

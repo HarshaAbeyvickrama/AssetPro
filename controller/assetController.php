@@ -44,7 +44,7 @@ class AssetController extends Asset
         // if($accessManager->validateAccess(type:"GET_ASSET" , assetID:$id)){
         // }
         $result = $this->get($id);
-        return json_encode($result->fetchAll());
+        return json_encode($result->fetch());
     }
 
 <<<<<<< HEAD

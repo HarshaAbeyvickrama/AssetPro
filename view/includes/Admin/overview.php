@@ -1,6 +1,6 @@
 <style>
     /* Recent activity Table CSS */
-    hr {
+    /* hr {
         background-color: #304068;
         width: 100%;
         height: 1px;
@@ -8,7 +8,7 @@
 
     #centerSection>div:first-of-type {
         padding: 0px 20px 20px 20px;
-    }
+    } */
 
     
 
@@ -16,23 +16,67 @@
         display: grid;
         grid-template-columns: 16% 16% 16% 50%;
         grid-template-rows: 50% 50%;
+        gap: 18px;
     }
     .wrapper > div{
-        background: #eee;
+        background: white;
         padding: 1em;
+        border-radius: 15px;
     }
-    .wrapper > div:nth-child(odd) {
-        background: #ddd;
+    .box-5 {
+        grid-column: 1/4;
     }
+
+    .image img{
+        width: 60px;
+        height: 60px;
+    }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="wrapper">
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate magni, illo quibusdam laborum deleniti illum sequi, reiciendis veniam debitis velit quidem quae deserunt at, ut culpa explicabo optio unde nobis doloremque quod quas incidunt nulla? Consequatur illum distinctio laborum, nesciunt molestias, iste velit repellat ea eum ex exercitationem eius eos, necessitatibus sit dolore. Inventore ipsa quibusdam tenetur quos vel atque doloremque beatae recusandae, expedita autem ipsum illum sit fuga voluptates voluptate totam. Rem labore eligendi eos eaque corrupti ex sequi.</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ea autem necessitatibus illo ex eaque amet exercitationem obcaecati? Illum consequatur ab praesentium aperiam obcaecati autem facilis nihil quis, inventore aliquam.</div>
+    <!-- Box 1 -->
+    <div class="box1">
+        <div class="image">
+            <img src="../Images/icons/employees.png">
+        </div>
+        <div class="title">Employees</div>
+        <div class="count">c</div>
+    </div>
+
+    <!-- Box 2 -->
+    <div>
+        <div class="image">
+            <img src="../Images/icons/technicians.png" alt="" width="60px" height="60px">
+        </div>
+        <div class="title">Technicians</div>
+        <div class="count">c</div>
+    </div>
+    <!-- Box 3-->
+    <div>
+        <div class="image">
+            <img src="../Images/icons/departments.png" alt="" width="60px" height="60px">
+        </div>
+        <div class="title">Departments</div>
+        <div class="count">c</div>
+    </div>
+
+    <!-- Box 4 -->
+    <div>
+        4
+    </div>
+
+    <!-- Box 5 -->
+    <div class="box-5">
+        5
+    </div>
+
+    <!-- Box 6 -->
+    <div>
+        6
+    </div>
+
 
 </div>
 

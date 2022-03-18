@@ -7,12 +7,14 @@ class Employee extends DBConnection {
     private $DBConnection;
 
     private $departmentID;
+    private $fileUrl;
     private $firstName;
     private $lastName;
     private $NIC;
     private $gender;
     private $dob;
     private $maritalStatus;
+    private $jobTitle;
     private $address;
     private $contactNo;
     private $email;
@@ -20,16 +22,18 @@ class Employee extends DBConnection {
     private $eRelationship;
     private $eContact;
 
-    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
+    public function __construct($departmentID, $fileUrl, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $jobTitle, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
         $this->DBConnection = $this->connect();
         $this->departmentID = $departmentID;
+        $this->fileUrl = $fileUrl;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->NIC = $NIC;
         $this->gender = $gender;
         $this->dob = $dob;
         $this->maritalStatus = $maritalStatus;
+        $this->jobTitle = $jobTitle;
         $this->address = $address;
         $this->contactNo = $contactNo;
         $this->email = $email;
@@ -72,7 +76,7 @@ class Employee extends DBConnection {
                     ud.Gender,
                     ud.DOB,
                     ud.ProfilePicURL,
-                    ud.CivilStatus,
+                    ud.jobTitle,
                     ud.Address,
                     ud.PhoneNumber,
                     ud.Email,
@@ -97,52 +101,49 @@ class Employee extends DBConnection {
     protected function add() {
         $DBConnection = $this->connect();
         try {
-            $this->DBConnection->beginTransaction();
+            $DBConnection->beginTransaction();
 
             //INserting into the user table
-            $addEmployee = "INSERT INTO user VALUES (NULL, '3')";
-            $stmt = $this->DBConnection->prepare($addEmployee);
+            $null = null;
+            $addEmployee = "INSERT INTO user VALUES (:userID, '3')";
+            $stmt = $DBConnection->prepare($addEmployee);
+            $stmt->bindParam(':userID', $null);
             $stmt->execute();
 
-            $UserID = $this->dbConnection->lastInsertId();
+            $UserID = $DBConnection->lastInsertId();
 
-            //Saving the image
-            $fileUrl = '/uploads/employees/'.$UserID.'.'.$this->extention;
-            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , '../'.$fileUrl);
-
-            if(!$imageSaved) {
-                
-            }
             //Inserting into the userdetails table
-            $userdetails = "INSERT INTO userdetails VALUES (userID, firstname, lastName, NIC, address, gender, contactNo, email, dob, fileUrl, maritalStatus)";
-            $stmt = $this->DBConnection->prepare($userdetails);
+            $userdetails = "INSERT INTO userdetails VALUES (:userID, :firstName, :lastName, :NIC, :addr, :gender, :contactNo, :email, :dob, :fileUrl, :maritalStatus, :jobTitle)";
+            $stmt = $DBConnection->prepare($userdetails);
 
             $stmt->bindParam(':userID', $UserID);
             $stmt->bindParam(':firstName', $this->firstName);
             $stmt->bindParam(':lastName', $this->lastName);
             $stmt->bindParam(':NIC', $this->NIC);
-            $stmt->bindParam(':address', $this->address);
+            $stmt->bindParam(':addr', $this->address);
             $stmt->bindParam(':gender', $this->gender);
             $stmt->bindParam(':contactNo', $this->contactNo);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':dob', $this->dob);
-            $stmt->bindParam(':fileUrl', $fileUrl);
+            $stmt->bindParam(':fileUrl', $this->fileUrl);
             $stmt->bindParam(':maritalStatus', $this->maritalStatus);
+            $stmt->bindParam(':jobTitle', $this->jobTitle);
 
             $stmt->execute();
 
             //Inserting into employeeuser table
-            $employeeuser = "INSERT INTO employeeuser VALUES (NULL, userID, departmentID)";
-            $stmt = $this->DBConnection->prepare($employeeuser);
+            $employeeuser = "INSERT INTO employeeuser VALUES (:EmployeeID, :userID, :departmentID)";
+            $stmt = $DBConnection->prepare($employeeuser);
 
+            $stmt->bindParam(':EmployeeID', $null);
             $stmt->bindParam(':userID', $UserID);
             $stmt->bindParam(':departmentID', $this->departmentID);
 
             $stmt->execute();
 
             //Inserting into useremergency table
-            $userEmergency = "INSERT INTO useremergency VALUES (userID, eRelationship, eName, eContact)";
-            $stmt = $this->DBConnection->prepare($userEmergency);
+            $userEmergency = "INSERT INTO useremergency VALUES (:userID, :eRelationship, :eName, :eContact)";
+            $stmt = $DBConnection->prepare($userEmergency);
             
             $stmt->bindParam(':userID', $UserID);
             $stmt->bindParam(':eRelationship', $this->eRelationship);
@@ -151,8 +152,17 @@ class Employee extends DBConnection {
 
             $stmt->execute();
 
+            $DBConnection->commit();
+
+            $result = array(
+                "status" => "Ok",
+                "userID" => $UserID,
+                "message" => "Employee Added Successfully"
+            );
+            return $result;
+
         } catch (PDOException | Exception $e) {
-            $this->DBConnection->rollBack();
+            $DBConnection->rollBack();
 
             $result = array(
                 "status"=>"Failed",
