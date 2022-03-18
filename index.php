@@ -24,6 +24,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
     $controller = $url[0];
     $action = $url[1];
 
+
     switch ($controller) {
         case 'asset':
             // require_once './controller/assetController.php';
@@ -52,9 +53,15 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'categories':
                     echo $ac->getAssetCategories();
                     break;
+
+                // case 'inProgress':
+                //     echo $ac->getAllinProgressAssets($url[2]);
+                //     break;
+
                 case 'get':
                     echo $ac->getAsset($url[2]);
                     break;
+
                 default:
                     # code...
                     break;
@@ -76,6 +83,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getAssignedBreakdownT':
                     echo $bc->getAllAssignedTechBreakdowns($url[2]);
+                    break;
+                case 'getBreakdownInprogressT':
+                    echo $bc->getAllTechBreakdownsInProgress($url[2]);
                     break;
             }
             break;
@@ -161,6 +171,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getDepartmentEmployees':
                     echo $dhc->getHeadDepartmentEmployees($url[2]);
+                    break;
+                case 'getDHAssignedAssets':
+                    echo $dhc-> getDHAllAssignedAssets($url[2]);
                     break;
             }
             break;

@@ -47,6 +47,28 @@ class AssetController extends Asset
         return json_encode($result->fetch());
     }
 
+<<<<<<< HEAD
+        public function getAllinProgressAssets($id){
+            $result = $this->getinProgress($id);
+            return json_encode($result->fetchAll());
+        }
+
+        public function getAllAssetCounts(){
+            $res = $this->getAllCounts();
+            $count = $res->fetchAll();
+            return json_encode($count[0]);
+        }
+        
+        public function getAssetCount($type){
+            if($type == '' || $type == NULL){
+                $result = array(
+                    "status" => "404",
+                    "message" => "Invalid type");
+                return json_encode($result);
+            }
+            $res = $this->getCount('all');
+            return json_encode($res->fetchAll());
+=======
     public function getAssetDataForm($id)
     {
         $result = $this->getAssetForm($id);
@@ -132,6 +154,7 @@ class AssetController extends Asset
                 "message" => "Invalid type"
             );
             return json_encode($result);
+>>>>>>> upstream/main
         }
         $res = $this->getCount('all');
         return json_encode($res->fetchAll());

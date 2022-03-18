@@ -244,5 +244,21 @@ class DepartmentHead extends DBConnection {
             return $stmt;
         }
 
+    //Getting all assigned assets of particular department
+    // protected function getDHAssignedAssets($userId) {
+    //     $DBConnection = $this->connect();
+    //     $sql = "SELECT
+                    
+    //             FROM
+                
+    //             INNER JOIN
+    //             INNER JOIN
+                
+    //             WHERE
+                
+    //     $stmt = $DBConnection->prepare($sql);
+    //     $stmt->execute(array($userId));
+    //     return $stmt;"
+    // }
 }
 

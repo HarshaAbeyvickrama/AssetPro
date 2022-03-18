@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .overviewLayout{
         display: grid;
         grid-template-rows: 0.75fr 1.5fr 0.75fr 7fr ;
@@ -181,8 +181,8 @@
     }
 
 
-</style>
-<div class="overviewLayout">
+</style> -->
+<!-- <div class="overviewLayout">
     <div>
         <div> Overview </div>
     </div>
@@ -215,9 +215,9 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
-    <div>
+    <!-- <div>
         <div> Repaired Assets </div>
     </div>
     <div class="contentSection scrollbar">
@@ -288,8 +288,28 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
+<div class = "overviewLayout">
+    <div>
+        <div class="section-heading"> All Repaired Assets </div>
+    </div>
+    <div class="contentSection">
+            <table class="table" id="filterTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Asset ID</th>
+                        <th>Asset Name</th>
+                        <th>Asset Type</th>
+                        <th>Reported Employee</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="techniciantable"></tbody>
+            </table>
+    </div>
+</div>
 <!-- <script>
     getCount('allAssets');
     getCount('assignedAssets');

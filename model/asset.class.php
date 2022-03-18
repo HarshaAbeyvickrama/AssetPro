@@ -221,6 +221,15 @@ class Asset extends DBConnection
         $pstm->execute(array($userID));
         return $pstm;
     }
+    //Get all assets in progress by assetID
+    protected function getinProgress($assetID){
+        $dbConnection = $this->connect();
+        $sql ="SELECT
+                asset.AssetID,
+                assetdetails.assetName,
+                assetType
+                "
+    }
 
     // Get all the details of a particular asset by assetID
     protected function get($assetId)
