@@ -226,6 +226,9 @@
         transition: .5s;
     }
 
+    #updateBtnSection{
+        display: none;
+    }
 
     /* .BtnGroup{
         border: 1px solid red;
@@ -421,7 +424,7 @@
     document.getElementById(technician.Gender).checked = true;
     document.getElementById('dob').value = technician.DOB;
     // document.getElementById('maritalStatus').value = technician.CivilStatus;
-    document.getElementById('address').value = technician.jobTitle;
+    document.getElementById('jobTitle').value = technician.jobTitle;
     document.getElementById('address').value = technician.Address;
     document.getElementById('contactNo').value = technician.PhoneNumber;
     document.getElementById('email').value = technician.Email;
