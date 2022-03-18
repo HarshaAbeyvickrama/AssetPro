@@ -20,7 +20,7 @@ class TechnicianController extends Technician {
     }
 
     //Adding a technician
-    public function addTechnician($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
+    public function addTechnician($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $jobTitle, $eName, $eRelationship, $eContact) {
         $newTechnician = new Technician (
             firstName:$firstName,
             lastName:$lastName,
@@ -32,6 +32,7 @@ class TechnicianController extends Technician {
             dob:$dob,
             departmentID:$departmentID,
             maritalStatus:$maritalStatus,
+            jobTitle:$jobTitle,
             eName:$eName,
             eRelationship:$eRelationship,
             eContact:$eContact);

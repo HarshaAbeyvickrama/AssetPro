@@ -118,7 +118,9 @@
         margin-right: 5px;
     }
 
-    .col-f input[type=text], input[type=number], select {
+    .col-f input[type=text],
+    input[type=number],
+    select {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -265,12 +267,14 @@
                     <input type="date" name="dob" id="dob">
                 </div>
                 <div class="col-f">
-                    <span>Marital Status</span>
+                    <!-- <span>Marital Status</span>
                     <select name="maritalStatus" id="maritalStatus">
                         <option value="Married">Married</option>
                         <option value="Unmarried">Single</option>
                         <option value="Widowed">Widowed</option>
-                    </select>
+                    </select> -->
+                    <span for="jobtitle"> Job Title: </span>
+                    <input type="text" name="jobTitle" id="jobTitle">
                 </div>
                 <div class="col-f">
                     <span for="address">Address</span>
@@ -313,7 +317,6 @@
 </form>
 
 <script>
-
     document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddEmployee');
         const saveBtn = document.getElementById("btnSaveEmployee");
@@ -333,7 +336,7 @@
                         var formData = new FormData();
                         formData.append('image', image);
                         postFiles('http://localhost/assetpro/employees/addImage', formData, (data) => {
-                            if(data.status == 'success'){
+                            if (data.status == 'success') {
                                 console.log(data);
                                 employee.image = data.imageUrl;
                                 console.log(employee);
@@ -409,8 +412,9 @@
         loadSection('centerSection', 'employees');
     }
 
-//Getting the department code
-getDepartments();
+    //Getting the department code
+    getDepartments();
+
     function getDepartments() {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "http://localhost/assetpro/departments/all/", true);
@@ -421,10 +425,10 @@ getDepartments();
                 // console.log(departments);
                 var select = document.getElementById('depID');
 
-                for(var i = 0; i<departments.length; i++) {
+                for (var i = 0; i < departments.length; i++) {
                     console.log(departments[i]);
                     var option = `<option value=${departments[i].DepartmentID}>${departments[i].Name}(${departments[i].DepartmentCode})</option>`;
-                    select.innerHTML+=option;
+                    select.innerHTML += option;
 
                 }
             }

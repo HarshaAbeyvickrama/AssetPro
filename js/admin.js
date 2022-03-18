@@ -373,15 +373,15 @@ addEmployeeBtn.addEventListener("click", function () {
   loadSection("centerSection", "addEmployee");
 });
 
-//Viewing the employee details
-var viewEmployeeBtn = document.querySelectorAll("#view");
-for (var i = 0; i < viewEmployeeBtn.length; i++) {
-  viewEmployeeBtn[i].addEventListener("click", function () {
-    // loadEmployee(event.target.parentElement.id);
-    // console.log(event.target.parentElement.id);
-    console.log("Hello");
-  });
-}
+// //Viewing the employee details
+// var viewEmployeeBtn = document.querySelectorAll("#view");
+// for (var i = 0; i < viewEmployeeBtn.length; i++) {
+//   viewEmployeeBtn[i].addEventListener("click", function () {
+//     // loadEmployee(event.target.parentElement.id);
+//     // console.log(event.target.parentElement.id);
+//     console.log("Hello");
+//   });
+// }
 
 //Function to go back
 function goBack() {
@@ -443,7 +443,9 @@ function loadTechnician(TechnicianID) {
     console.log(technicianDetails);
     if (this.status === 200) {
       technicianDetails = JSON.parse(this.responseText);
-      loadSection("centerSection", "tecprofile");
+      popup = document.querySelector('.popup-container');
+      popup.style.display = "grid";
+      loadSection("popup", "tecprofile");
       var json = JSON.stringify(technicianDetails);
       document.cookie = `TechnicianID=${json}`;
     }

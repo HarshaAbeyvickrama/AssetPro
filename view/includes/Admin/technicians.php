@@ -23,7 +23,7 @@
 
     <div class="contentSection ">
         <!-- <div> -->
-        <table class="table">
+        <table class="table" id="tecData">
             <thead>
                 <tr>
                     <th>#</th>
@@ -45,7 +45,7 @@
 </script>
 
 <script type="text/javascript">
-    //Loading the add employee page
+    //Loading the add technician page
     var addTechnicianBtn = document.getElementById('addTec');
     addTechnicianBtn.addEventListener('click', function() {
 
@@ -53,10 +53,10 @@
 
     });
 
-    //Viewing the deaprtment details
-    var viewEmployeeBtn = document.querySelectorAll('#view');
-    for (var i = 0; i < viewEmployeeBtn.length; i++) {
-        viewEmployeeBtn[i].addEventListener('click', function() {
+    //Viewing the technicians details
+    var viewTechnicianBtn = document.querySelectorAll('#view');
+    for (var i = 0; i < viewTechnicianBtn.length; i++) {
+        viewTechnicianBtn[i].addEventListener('click', function() {
             loadDepartment(event.target.parentElement.id);
             // console.log(event.target.parentElement.id);
 

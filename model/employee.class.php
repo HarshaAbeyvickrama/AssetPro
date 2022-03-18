@@ -14,6 +14,7 @@ class Employee extends DBConnection {
     private $gender;
     private $dob;
     private $maritalStatus;
+    private $jobTitle;
     private $address;
     private $contactNo;
     private $email;
@@ -21,7 +22,7 @@ class Employee extends DBConnection {
     private $eRelationship;
     private $eContact;
 
-    public function __construct($departmentID, $fileUrl, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
+    public function __construct($departmentID, $fileUrl, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $jobTitle, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
         $this->DBConnection = $this->connect();
         $this->departmentID = $departmentID;
@@ -32,6 +33,7 @@ class Employee extends DBConnection {
         $this->gender = $gender;
         $this->dob = $dob;
         $this->maritalStatus = $maritalStatus;
+        $this->jobTitle = $jobTitle;
         $this->address = $address;
         $this->contactNo = $contactNo;
         $this->email = $email;
@@ -74,7 +76,7 @@ class Employee extends DBConnection {
                     ud.Gender,
                     ud.DOB,
                     ud.ProfilePicURL,
-                    ud.CivilStatus,
+                    ud.jobTitle,
                     ud.Address,
                     ud.PhoneNumber,
                     ud.Email,
@@ -125,7 +127,7 @@ class Employee extends DBConnection {
             $stmt->bindParam(':dob', $this->dob);
             $stmt->bindParam(':fileUrl', $this->fileUrl);
             $stmt->bindParam(':maritalStatus', $this->maritalStatus);
-            $stmt->bindParam(':jobTitle', $null);
+            $stmt->bindParam(':jobTitle', $this->jobTitle);
 
             $stmt->execute();
 

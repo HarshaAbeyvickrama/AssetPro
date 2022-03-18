@@ -56,6 +56,7 @@ class EmployeeController extends Employee {
             dob:$employee['dob'],
             departmentID:$employee['depID'],
             maritalStatus:$employee['maritalStatus'],
+            jobTitle:$employee['jobTitle'],
             eName:$employee['eName'],
             eRelationship:$employee['eRelationship'],
             eContact:$employee['econtact']);
