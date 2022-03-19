@@ -1,9 +1,11 @@
 <?php
 require_once './controller/autoloadController.php';
 
-class Breakdown extends DBConnection{
-     // Get all the breakdown assets assigned to a particular user by the userID
-    protected function getAssigned($userID){
+class Breakdown extends DBConnection
+{
+    // Get all the breakdown assets assigned to a particular user by the userID
+    protected function getAssigned($userID)
+    {
         $dbConnection = $this->connect();
         $sql = "SELECT
                     asset.AssetID,
@@ -39,7 +41,8 @@ class Breakdown extends DBConnection{
         return $pstm;
     }
 
-    protected function get($assetId,$breakdownId){
+    protected function get($assetId, $breakdownId)
+    {
         $dbConnection = $this->connect();
         $sql = "SELECT
                     asset.AssetID,
@@ -63,15 +66,16 @@ class Breakdown extends DBConnection{
                     breakdown.BreakdownID ASC";
 
         $stmt = $dbConnection->prepare($sql);
-        $stmt->execute([$assetId,$breakdownId]);
+        $stmt->execute([$assetId, $breakdownId]);
         return $stmt;
     }
 
-    protected function  reportAsset($data){
+    protected function reportAsset($data)
+    {
         $dbConnection = $this->connect();
         $assetId = $data['assetID'];
         $defectedPart = $data['defP'];
-        $reason = $data['exDef']; 
+        $reason = $data['exDef'];
         // $EmpID = $_SESSION['UserID'];
         // $EmpID = $_SESSION['EmployeeID'];
         $EmpID = 3;
@@ -83,16 +87,63 @@ class Breakdown extends DBConnection{
                 DefectedParts
             )
             VALUES(:assetId, :empId, NOW(), :reason, :defectedPart)";
-        
+
         $stmt = $dbConnection->prepare($sql);
 
-        $stmt->bindParam(':assetId',$assetId);
-        $stmt->bindParam(':empId',$EmpID);
-        $stmt->bindParam(':reason',$reason);
-        $stmt->bindParam(':defectedPart',$defectedPart);
+        $stmt->bindParam(':assetId', $assetId);
+        $stmt->bindParam(':empId', $EmpID);
+        $stmt->bindParam(':reason', $reason);
+        $stmt->bindParam(':defectedPart', $defectedPart);
 
         $stmt->execute();
+
+        $lastInsertedBreakdownID=$dbConnection->lastInsertId(); //PK is the lastInsertID=(BreakdownID)
+
+        $specialization = $this->techSpecialization();  //array inside the techSpecialization will be assigned to a var
+
+        $sql = "SELECT TYPE
+                .TypeID,
+                TYPE.TypeCode
+            FROM
+               type
+            INNER JOIN asset ON type.TypeID = asset.TypeID
+            WHERE
+                asset.AssetID =$assetId";                //getting the typeCode related to sepcific assetID
+        $stmt1 = $dbConnection->prepare($sql);
+        $stmt1->execute();
+
+        $typeData =$stmt1->fetch();
+        $typeCode = $typeData['TypeCode'];
+//        print_r($type);
+        $techSpecial = $specialization[$typeCode]; //if we pass the $typeCode it'll return the key value (specialized person)
+//        print_r( $techSpecial);
+
+        $sql = "SELECT
+                TechnicianID
+            FROM
+                technicianuserspec
+            WHERE
+                Specialization ='$techSpecial'";   //getting all the technicianId related to specific specialization
+        $stmt2 = $dbConnection->prepare($sql);
+        $stmt2->execute();
+
+        $technicians =$stmt2->fetchAll(); //returns an associative array
+        $tecCount=count($technicians);
+        $randomIndex=rand(0,$tecCount-1);
+        $technicianID = $technicians[$randomIndex]['TechnicianID']; //associative array [index][AssoArra->techiD]
+
+
+        $sql = "INSERT INTO techrepairbreak(BreakdownID, TechnicianID)
+                VALUES(:breakdownId, :technicianId)";
+        $stmt3 = $dbConnection->prepare($sql);
+
+        $stmt3->bindParam(':breakdownId', $lastInsertedBreakdownID);
+        $stmt3->bindParam(':technicianId',  $technicianID);
+
+        $stmt3->execute();
+
         return $stmt;
+
 
         // if(mysqli_query($mysql,$reportassetquery )) {
         //     echo("Successfully Reported!!");
@@ -100,8 +151,10 @@ class Breakdown extends DBConnection{
         //     echo("Error in Submitting!!");
         // }
     }
+
 //===================techinicians========================
-    protected function getAssignedBreakdowns($userID){
+    protected function getAssignedBreakdowns($userID)
+    {
         $dbConnection = $this->connect();
         $sql = "SELECT
                     assetdetails.AssetID,
@@ -133,6 +186,17 @@ class Breakdown extends DBConnection{
         $pstm->execute(array($userID));
         return $pstm;
     }
-         
+
+    private function techSpecialization()
+    {
+        return [
+            "EA" => "Electrician",
+            "FU" => "Carpenter",
+            "PE" => "Electrician",
+            "MA" => "Mechanic",
+            "SW" => "IT_Technician"
+        ];
+    }
+
 
 }
