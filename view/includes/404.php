@@ -45,11 +45,6 @@
         top: -20px;
         left: 40%;
     }
-    /* h3 {
-        position: absolute;
-        bottom: 20px;
-        left: 10px;
-    } */
     a {
         text-decoration: none;
         color: #5a6d9c;
@@ -64,7 +59,7 @@
     <section class="overviewLayout">
         <div class="contentSection">
             <div class="center">
-                <img src="../Images/404.gif" alt="">
+                <img src="../Images/404.gif" alt="Not Found Error Image">
                 <h1>404</h1>
                 <h3 class="second-txt">Looks Like You're Lost</h3>
                 <p>The page you are looking for is not available</p>
