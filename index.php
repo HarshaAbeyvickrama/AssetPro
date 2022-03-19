@@ -145,6 +145,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getTechnician':
                     echo $tc->getTechnician($url[2]);
                     break;
+                case 'addImage':
+                    echo $tc->addImage($_FILES);
+                    break;
+                case 'addTechnician':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $tc->addTechnician($data);
+                    break;
             }
             break;
 
@@ -154,6 +161,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'all':
                     echo $dc->getAllDepartments();
                     break;
+                case 'addDepartment':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $dc->addDepartment($data);
             }
             break;
 

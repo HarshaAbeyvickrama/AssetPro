@@ -231,7 +231,7 @@
 
                     <div class="col-f">
                         <span for="depID">Department ID</span>
-                        <select name="depID" id="depID"></select>
+                        <input type="text" name="depID" id="depID">
                     </div>
 
                     <div class="col-h">
@@ -344,7 +344,7 @@
                             }
                         })
                     } else {
-                        console.log("Image not found");
+                        console.log("Image not Found!");
                     }
 
                     // var isEmpty = false;
@@ -408,9 +408,9 @@
     // }
 
     //Function to go back
-    function goBack() {
-        loadSection('centerSection', 'employees');
-    }
+    // function goBack() {
+    //     loadSection('centerSection', 'employees');
+    // }
 
     //Getting the department code
     getDepartments();

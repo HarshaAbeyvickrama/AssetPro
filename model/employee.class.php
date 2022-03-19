@@ -13,7 +13,7 @@ class Employee extends DBConnection {
     private $NIC;
     private $gender;
     private $dob;
-    private $maritalStatus;
+    // private $maritalStatus;
     private $jobTitle;
     private $address;
     private $contactNo;
@@ -22,7 +22,7 @@ class Employee extends DBConnection {
     private $eRelationship;
     private $eContact;
 
-    public function __construct($departmentID, $fileUrl, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $jobTitle, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
+    public function __construct($departmentID, $fileUrl, $firstName, $lastName, $NIC, $gender, $dob, $jobTitle, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
         $this->DBConnection = $this->connect();
         $this->departmentID = $departmentID;
@@ -32,7 +32,6 @@ class Employee extends DBConnection {
         $this->NIC = $NIC;
         $this->gender = $gender;
         $this->dob = $dob;
-        $this->maritalStatus = $maritalStatus;
         $this->jobTitle = $jobTitle;
         $this->address = $address;
         $this->contactNo = $contactNo;
@@ -103,7 +102,7 @@ class Employee extends DBConnection {
         try {
             $DBConnection->beginTransaction();
 
-            //INserting into the user table
+            //Inserting into the user table
             $null = null;
             $addEmployee = "INSERT INTO user VALUES (:userID, '3')";
             $stmt = $DBConnection->prepare($addEmployee);
@@ -113,7 +112,7 @@ class Employee extends DBConnection {
             $UserID = $DBConnection->lastInsertId();
 
             //Inserting into the userdetails table
-            $userdetails = "INSERT INTO userdetails VALUES (:userID, :firstName, :lastName, :NIC, :addr, :gender, :contactNo, :email, :dob, :fileUrl, :maritalStatus, :jobTitle)";
+            $userdetails = "INSERT INTO userdetails VALUES (:userID, :firstName, :lastName, :NIC, :addr, :gender, :contactNo, :email, :dob, :fileUrl, :jobTitle)";
             $stmt = $DBConnection->prepare($userdetails);
 
             $stmt->bindParam(':userID', $UserID);
@@ -126,7 +125,6 @@ class Employee extends DBConnection {
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':dob', $this->dob);
             $stmt->bindParam(':fileUrl', $this->fileUrl);
-            $stmt->bindParam(':maritalStatus', $this->maritalStatus);
             $stmt->bindParam(':jobTitle', $this->jobTitle);
 
             $stmt->execute();

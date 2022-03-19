@@ -54,18 +54,24 @@
 
         //Adding a department
         protected function add() {
+            $DBConnection = $this->connect();
             try {
-                $this->DBConnection->beginTransaction();
+                $DBConnection->beginTransaction();
 
                 $DateCreated = date("Y-m-d H:i:s");
                 $LastModified = date("Y-m-d H:i:s");
 
+                $null = null;
                 //Inserting into the department table
-                $addDepartment = "INSERT INTO department VALUES (DepartmentCode, Name, Description, ContactNum, DateCreated, LastModified)";
-                $stmt = $this->DBConnection->prepare($addDepartment);
+                $addDepartment = "INSERT INTO department VALUES (:DepartmentID, :DepartmentCode, :Name, :Description, :ContactNum, :DateCreated, :LastModified)";
+                $stmt = $DBConnection->prepare($addDepartment);
+                $stmt->bindParam(':DepartmentID', $null);
+                $stmt->execute();
 
-                // $stmt->bindParam('DepartmentID', $DepartmentID);
-                $stmt->bindParam(':DepartmentCode', $this->departmentCode);
+                $DepartmentID = $DBConnection->lastInsertId();
+
+                $stmt->bindParam(':DepartmentID', $DepartmentID);
+                $stmt->bindParam(':DepartmentCode', $departmentCode);
                 $stmt->bindParam(':Name', $this->Name);
                 $stmt->bindParam(':ContactNum', $this->ContactNum);
                 $stmt->bindParam(':description', $this->description);
@@ -74,13 +80,20 @@
 
                 $stmt->execute();
 
+                $result = array(
+                    "status" => "Ok",
+                    "DepartmentID" => $DepartmentID,
+                    "message" => "Department Added successfully"
+                );
+                return $result;
+
             } catch (PDOException | Exception $e) {
                 $this->DBConnection->rollBack();
 
                 $result = array(
                     "status"=>"Failed",
                     "Error"=>$e->getMessage(),
-                    "Message"=>"Cannot add an Employee"
+                    "Message"=>"Cannot add the Department"
                 );
 
                 return $result;

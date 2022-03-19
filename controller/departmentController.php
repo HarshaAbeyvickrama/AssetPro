@@ -19,14 +19,19 @@ class DepartmentController extends Department {
     }
     
     //Adding a department
-    public function addDepartment($departmentCode, $Name, $ContactNum, $description, $DateCreated, $LastModified) {
+    public function addDepartment($department) {
         $newDepartment = new Department(
-            departmentCode:$departmentCode,
-            Name:$Name,
-            description:$description,
-            ContactNum:$ContactNum,
-            DateCreated:$DateCreated,
-            LastModified:$LastModified);
+            departmentCode:$department['departmentCode'],
+            Name:$department['Name'],
+            description:$department['description'],
+            ContactNum:$department['ContactNum'],
+            DateCreated:$department['DateCreated'],
+            LastModified:$department['LastModified']);
+
+        $result = $newDepartment->add();
+        unset($newDepartment);
+
+        return json_encode($result);
 
         $result = $newDepartment->add();
         return json_encode($result);
