@@ -268,19 +268,20 @@
 
                         }
                         break;
+
                     case 'inprogress':
                         for(var i = 0; i<assets.length;i++){
                             var tb = document.getElementById('inprogressAssetsTableBody');
                             tb.innerHTML += `
-                                <div class="tableRow">
-                                    <div>${i+1}</div>
-                                    <div>${assets[i]['Number']}</div>
-                                    <div>${assets[i]['AssetID']}</div>
-                                    <div>${assets[i]['AssetName']}</div>
-                                    <div>${assets[i]['AssetType']}</div>
-                                    <div>${assets[i]['ReportedEmployee']}</div>
-                                    <div>${assets[i]['MarkasDone']}</div>
-                                </div>`;
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${assets[i]['Number']}</td>
+                                    <td>${assets[i]['AssetID']}</td>
+                                    <td>${assets[i]['AssetName']}</td>
+                                    <td>${assets[i]['AssetType']}</td>
+                                    <td>${assets[i]['ReportedEmployee']}</td>
+                                    <td>${assets[i]['MarkasDone']}</td>
+                                </tr>`;
                         }
                         addEventListeners();
                         break;
@@ -288,7 +289,6 @@
                     default:
                         break;
                 }
-                
             }
         }
         xhr.setRequestHeader("Content-type", "application/json");
@@ -312,12 +312,6 @@
         })
         document.getElementById(eventId).classList.add('activeTab');
     }
-    document.getElementById("addAsset").addEventListener('click',function(e){
-        const eventId = e.target.id;
-        if(eventId == "addAsset"){
-            loadSection("centerSection",eventId);
-        }
-    })
 
 
     //Add event listener to listen for click events on each asset in all tables
@@ -334,8 +328,7 @@
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
     }
-</script> -->
-
+</script>
 
 
 <div class="overviewLayout">
