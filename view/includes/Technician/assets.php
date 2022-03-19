@@ -270,7 +270,7 @@
                         break;
 
                     case 'inprogress':
-                        for(var i = 0; i<assets.length;i++){
+                        for (var i = 0; i<assets.length; i++){
                             var tb = document.getElementById('inprogressAssetsTableBody');
                             tb.innerHTML += `
                                 <tr>
