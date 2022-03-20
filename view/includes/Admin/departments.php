@@ -151,7 +151,7 @@
 <!-- Add Department pop-up form -->
 <div class="bg-popup" id="closeForm">
     <div class="popup-content" id="popup-content">
-        <div class="close" id="cancelAddTechnician">+</div>
+        <div class="close" id="cancelAddDepartment">+</div>
         <h3 class="depInfo">Department Information</h3>
         <form action="" id="addDepartmentForm">
             <div class="col-f">
@@ -198,65 +198,76 @@
         });
 
     //close form function
-    // function closeForm(formID) {
-    //     document.getElementById('closeForm').style.display = 'none';
-    // }
+    function closeForm(formID) {
+        document.getElementById('closeForm').style.display = 'none';
+    }
 
     // Getting the form data
-    // document.querySelectorAll(".col-btn").forEach(button => {
-    //     // const cancBtn = document.getElementById('cancelAddDepartment');
-    //     const saveBtn = document.getElementById("btnSaveDepartment");
-    //     button.addEventListener('click', function(event) {
-    //         event.preventDefault();
-    //         switch (event.target.id) {
-    //             case 'cancelAddDepartment':
+    document.querySelectorAll(".col-btn").forEach(button => {
+        // const cancBtn = document.getElementById('cancelAddDepartment');
+        const saveBtn = document.getElementById("btnSaveDepartment");
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            switch (event.target.id) {
+                case 'cancelAddDepartment':
 
-    //                 break;
-    //             case 'btnSaveDepartment':
-    //                 const department = getFormdata();
-    //                 // saveDepartment(department);
-    //                 var isEmpty = false;
-    //                 for (var pair of department.entries()) {
-    //                     // console.log(pair[0] + ': ' + pair[1]);
-    //                     if (pair[1] == '') {
-    //                         isEmpty = true;
-    //                     }
-    //                 }
-    //                 if (!isEmpty) {
-    //                     saveDepartment(department);
-    //                 } else {
-    //                     alert('Fill the form!');
-    //                 }
+                    break;
+                case 'btnSaveDepartment':
+                    const department = getFormdata("addDepartmentForm");
 
-    //                 break;
+                    if(department == null) {
+                        alert("Fields Cannot be Empty!");
+                    } else {
+                        saveDepartment(department);
+                    }
+                    break;
 
-    //             default:
-    //                 break;
-    //         }
-    //     })
-    // })
+                    default:
+                        break;
+                }
+
+                    // saveDepartment(department);
+                    // var isEmpty = false;
+                    // for (var pair of department.entries()) {
+                    //     // console.log(pair[0] + ': ' + pair[1]);
+                    //     if (pair[1] == '') {
+                    //         isEmpty = true;
+                    //     }
+                    // }
+                    // if (!isEmpty) {
+                    //     saveDepartment(department);
+                    // } else {
+                    //     alert('Fill the form!');
+                    // }
+
+                //     break;
+
+                // default:
+                //     break;
+            // }
+        })
+    })
 
     //getting the form data
 
-    // function getFormdata() {
-    //     return new FormData(document.getElementById('addDepartmentForm'));
-    // }
+    function getFormdata() {
+        form = new FormData(document.getElementById('addDepartmentForm'));
+        var department = {}
+        for(var pair of form.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+            department[pair[0]] = pair[1];
+        }
+        return department;
+    }
 
     //Saving the department function
     //Saving department details through AJAX
 
-    // function saveDepartment(department) {
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open("POST", "../model/Department.php?action=addDepartment", true);
-
-    //     xhr.onload = function() {
-    //         if (this.status === 200) {
-    //             alert(this.responseText);
-
-    //         }
-    //     }
-    //     xhr.send(department);
-    // }
+    function saveDepartment(department) {
+        postData("http://localhost/assetpro/departments/addDepartment", department, (data) => {
+            console.log(data);
+        });
+    }
 
 
     //Viewing the deaprtment details

@@ -231,7 +231,7 @@
 
                     <div class="col-f">
                         <span for="depID">Department ID</span>
-                        <input type="text" name="depID" id="depID">
+                        <select type="text" name="depID" id="depID"></select>
                     </div>
 
                     <div class="col-h">
@@ -415,6 +415,7 @@
     //Getting the department code
     getDepartments();
 
+    //Getting the departments
     function getDepartments() {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "http://localhost/assetpro/departments/all/", true);
