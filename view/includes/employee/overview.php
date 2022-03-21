@@ -62,7 +62,7 @@
     <!-- Box 1 -->
     <div class="box1">
         <div class="image">
-            <img src="../Images/icons/consumables.png">
+            <img src="../Images/icons/totalconsumables.png">
         </div>
         <div class="boxTitle">Total Consumables</div>
         <div class="boxCount">10</div>
