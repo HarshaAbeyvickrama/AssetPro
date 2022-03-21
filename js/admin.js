@@ -280,7 +280,7 @@ document.getElementById("dName").value = department.Name;
 document.getElementById("dCon").value = department.ContactNum;
 document.getElementById("dDes").value = department.description;
 
-// ***************** technicians.php ***************** //
+// ***************** technicians_rem.php ***************** //
 
 //Load all the technicians
 function loadTechnicians() {

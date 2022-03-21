@@ -285,11 +285,17 @@
                     <span class='componentText'>Department Heads</span>
                 </div>";
 
-                //Technicians
-                echo "<div class='component' id='technicians'>
-                    <img src='../Images/icons/NotSelected/Technician.png' >
-                    <span class='componentText'>Technicians</span>
+                //Departments
+                echo "<div class='component' id='departments'>
+                    <img src='../Images/icons/NotSelected/department.png' >
+                    <span class='componentText'>Departments</span>
                 </div>";
+
+//                //Technicians
+//                echo "<div class='component' id='technicians'>
+//                    <img src='../Images/icons/NotSelected/Technician.png' >
+//                    <span class='componentText'>Technicians</span>
+//                </div>";
 
                 //Disposals
                 echo "<div class='component' id='disposals'>
