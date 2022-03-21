@@ -126,7 +126,7 @@
     <div>
         <!-- <div>All Departments</div> -->
         <div class="addDep">
-            <button id="addDep">Add Department</button>
+            <button id="addDep">Insert</button>
         </div>
     </div>
 

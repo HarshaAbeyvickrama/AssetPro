@@ -194,7 +194,7 @@
                 //Employees
                 echo "<div class='component' id='employees'>
                     <img src='../Images/icons/NotSelected/employees.png' >
-                    <span class='componentText'>Employees</span>
+                    <span class='componentText'>Staff</span>
                 </div>";
 
                 //Technicians

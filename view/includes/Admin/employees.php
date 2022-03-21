@@ -40,7 +40,7 @@
     </div> -->
     <div class="heading">
         <!-- <div>All Employees</div> -->
-        <div class="addEmp"><button id="addEmp">Add Employee</button></div>
+        <div class="addEmp"><button id="addEmp">Insert</button></div>
     </div>
 
     <div class="contentSection">

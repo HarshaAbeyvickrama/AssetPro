@@ -2,7 +2,8 @@
 
 // require_once './controller/autoloadController.php';
 
-class Technician extends DBConnection {
+class Technician extends DBConnection
+{
     //Database connection
     private $DBConnection;
 
@@ -41,7 +42,8 @@ class Technician extends DBConnection {
     }
 
     //Getting all the technicians
-    protected function getAll() {
+    protected function getAll()
+    {
         $sql = "SELECT
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
@@ -65,7 +67,8 @@ class Technician extends DBConnection {
     }
 
     //Getting a technician detail using TechnicianID 
-    protected function get($TechnicianID) {
+    protected function get($TechnicianID)
+    {
         $DBConnection = $this->connect();
         $sql = "SELECT
                     tu.TechnicianID,
@@ -89,14 +92,15 @@ class Technician extends DBConnection {
                 INNER JOIN useremergency ue ON
                     tu.UserID = ue.UserID
                 WHERE tu.TechnicianID = ?";
-        
+
         $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$TechnicianID]);
         return $stmt;
     }
 
     //Adding a technician
-    protected function add() {
+    protected function add()
+    {
         $DBConnection = $this->connect();
         try {
             $DBConnection->beginTransaction();
@@ -124,9 +128,8 @@ class Technician extends DBConnection {
             $stmt->bindParam(':dob', $this->dob);
             $stmt->bindParam(':fileUrl', $this->fileUrl);
             $stmt->bindParam(':jobTitle', $this->jobTitle);
-           
             $stmt->execute();
-           
+
             //Inserting into technicianuser table
             $technicianuser = "INSERT INTO technicianuser VALUES (:TechnicianID, :userID, :departmentID)";
             $stmt = $DBConnection->prepare($technicianuser);
@@ -140,7 +143,7 @@ class Technician extends DBConnection {
             //Inserting into useremergency table
             $userEmergency = "INSERT INTO useremergency VALUES (:userID, :eRelationship, :eName, :eContact)";
             $stmt = $DBConnection->prepare($userEmergency);
-            
+
             $stmt->bindParam(':userID', $UserID);
             $stmt->bindParam(':eRelationship', $this->eRelationship);
             $stmt->bindParam(':eName', $this->eName);
@@ -155,7 +158,6 @@ class Technician extends DBConnection {
                 "userID" => $UserID,
                 "message" => "Technician Added Successfully"
             );
-
         } catch (PDOException | Exception $e) {
             $DBConnection->rollBack();
 
@@ -170,17 +172,17 @@ class Technician extends DBConnection {
     }
 
     //Updating technician details
-    protected function update($TechnicianID) {
-
+    protected function update($TechnicianID)
+    {
     }
 
     //Deleting a technician
-    protected function delete($TechnicianID) {
+    protected function delete($TechnicianID)
+    {
         $sql = "DELETE FROM ";
         $stmt = $this->DBConnection->prepare($sql);
         $stmt->bindParam(":TechnicianID", $TechnicianID);
         $stmt->execute();
         return $stmt;
     }
-
 }
