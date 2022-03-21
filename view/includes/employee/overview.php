@@ -26,17 +26,20 @@
 
     .box3 {
        grid-row: 1/3;
+        max-width: 100%;
+        max-height: 100%;
     }
 
     .image img{
-        width: 120px;
-        height: 120px;
+        width: 80px;
+        height: 80px;
+        align-items: center;
     }
 
     .boxCount{
         margin-top: 22px;
         position: relative;
-        font-size: 30px;
+        font-size: 40px;
     }
     .boxCount::before{
         position: absolute;
@@ -50,8 +53,9 @@
 
     .boxTitle{
         color: #707ea1;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: bold;
+        text-align: center;
 
     }
 </style>

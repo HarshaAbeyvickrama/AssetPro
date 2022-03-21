@@ -22,6 +22,12 @@ class StatController extends Stats{
         $res = $stats->getTotalValues();
         return json_encode($res->fetchAll()[0]);
     }
+
+    function getCountAllFixed($id){
+        $stats = new Stats();
+        $res = $stats->getCountFixed($id);
+        return json_encode($res->fetchAll());
+    }
 }
 
 // $sc = new StatController();
