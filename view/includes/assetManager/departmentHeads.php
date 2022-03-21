@@ -49,7 +49,6 @@
                 <th>Email</th>
             </tr>
             </thead>
-
             <tbody id="dhTableBody red-border">
             <tr class="list-item red-border">
                 <td class="red-border a">
@@ -64,7 +63,6 @@
                     harshaabeyvickrama@gmail.com
                 </td>
             </tr>
-
             </tbody>
         </table>
     </div>
