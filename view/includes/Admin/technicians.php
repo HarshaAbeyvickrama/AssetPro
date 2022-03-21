@@ -16,7 +16,7 @@
     <div>
         <!-- <div>All Technicians</div> -->
         <div class="addTec">
-            <button id="addTec">Add Technician</button>
+            <button id="addTec">Insert</button>
         </div>
     </div>
 

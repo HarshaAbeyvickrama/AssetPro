@@ -17,33 +17,58 @@ class DepartmentHeadController extends DepartmentHead {
     //Getting all the employees in a particular department
     public function getHeadDepartmentEmployees($id) {
         $result = $this->getDepartmentEmployees($id);
-        return json_encode($result->fetchAll());
+        return json_encode($result->fetch());
     }
 
     //Getting a department head
     public function getDepartmentHead($id) {
         $result = $this->get($id);
-        return json_encode($result->fetchAll());
+        return json_encode($result->fetch());
+    }
+
+    //Getting the image
+    public function addImage($image) {
+        $extension = pathinfo($image['image']['name'], PATHINFO_EXTENSION);
+        $fileUrl = '/uploads/departmentheads/' . uniqid() . '.' . $extension;
+        $url = $_SERVER['DOCUMENT_ROOT'] . '/assetpro' . $fileUrl;
+        $imageSaved = move_uploaded_file($image['image']['tmp_name'], $url);
+
+        if($imageSaved) {
+            $result = array(
+                'status' => 'success',
+                'message' => 'Image uploaded successfully',
+                'imageUrl' => $fileUrl
+            );
+        } else {
+            $result = array(
+                'status' => 'error',
+                'message' => 'Image upload failed'
+            );
+        }
+        return json_encode($result);
     }
 
     //Adding a department head
-    public function addDepartmentHead($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
+    public function addDepartmentHead($departmentHead) {
         $newDepartmentHead = new DepartmentHead (
-            firstName:$firstName,
-            lastName:$lastName,
-            NIC:$NIC,
-            address:$address,
-            gender:$gender,
-            contactNo:$contactNo,
-            email:$email,
-            dob:$dob,
-            departmentID:$departmentID,
-            maritalStatus:$maritalStatus,
-            eName:$eName,
-            eRelationship:$eRelationship,
-            eContact:$eContact);
+            fileUrl:$departmentHead['image'],
+            firstName:$departmentHead['fName'],
+            lastName:$departmentHead['lName'],
+            NIC:$departmentHead['NIC'],
+            address:$departmentHead['address'],
+            gender:$departmentHead['gender'],
+            contactNo:$departmentHead['contactNo'],
+            email:$departmentHead['email'],
+            dob:$departmentHead['dob'],
+            departmentID:$departmentHead['depID'],
+            jobTitle:$departmentHead['jobTitle'],
+            eName:$departmentHead['eName'],
+            eRelationship:$departmentHead['eRelationship'],
+            eContact:$departmentHead['econtact']);
         
         $result = $newDepartmentHead->add();
+        unset($newDepartmentHead);
+
         return json_encode($result);
     }
 

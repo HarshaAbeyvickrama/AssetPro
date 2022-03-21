@@ -40,7 +40,7 @@
     </div> -->
     <div class="heading">
         <!-- <div>All Employees</div> -->
-        <div class="addEmp"><button id="addEmp">Add Department Head</button></div>
+        <div class="addEmp"><button id="addEmp">Insert</button></div>
     </div>
 
     <div class="contentSection">
@@ -67,22 +67,22 @@
 
 <script type="text/javascript">
     //Loading the add employee page
-    var addEmployeeBtn = document.getElementById('addEmp');
-    addEmployeeBtn.addEventListener('click', function() {
+    var addHeadBtn = document.getElementById('addEmp');
+    addHeadBtn.addEventListener('click', function() {
 
-        loadSection('centerSection', 'addEmployee');
+        loadSection('centerSection', 'addDepartmentHead');
 
     });
 
     //Viewing the deaprtment details
-    var viewEmployeeBtn = document.querySelectorAll('#view');
-    for (var i = 0; i < viewEmployeeBtn.length; i++) {
-        viewEmployeeBtn[i].addEventListener('click', function() {
-            loadDepartment(event.target.parentElement.id);
-            // console.log(event.target.parentElement.id);
+    // var viewEmployeeBtn = document.querySelectorAll('#view');
+    // for (var i = 0; i < viewEmployeeBtn.length; i++) {
+    //     viewEmployeeBtn[i].addEventListener('click', function() {
+    //         loadDepartment(event.target.parentElement.id);
+    //         // console.log(event.target.parentElement.id);
 
-        });
-    }
+    //     });
+    // }
 
     //Loading details of the selected department
     // function loadDepartment(EmployeeID) {
@@ -105,6 +105,6 @@
 
     //Function to go back
     function goBack() {
-        loadSection('centerSection', 'employees');
+        loadSection('centerSection', 'dhead');
     }
 </script>
