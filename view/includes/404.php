@@ -36,15 +36,15 @@
 </style>
 
 <body>
-    <section class="overviewLayout">
-        <div class="contentSection">
-            <div class="center">
-                <img src="../Images/404.gif" alt="">
-                <h1>404</h1>
-                <h3 class="second-txt">Looks Like You're Lost in Space</h3>
-                <p>The page you are looking for is not available</p>
-                <a href="#" >Go to Dashboard</a>
-            </div>
+<section class="overviewLayout">
+    <div class="contentSection">
+        <div class="center">
+            <img src="../Images/404.gif" alt="">
+            <h1>404</h1>
+            <h3 class="second-txt">Looks Like You're Lost in Space</h3>
+            <p>The page you are looking for is not available</p>
+            <a href="#" >Go to Dashboard</a>
         </div>
-    </section>
+    </div>
+</section>
 </body>

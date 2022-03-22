@@ -366,7 +366,9 @@
     window.addEventListener('load', setISEditing(false));
 
     //button event listeners
-    document.getElementById('cancelEditAsset').addEventListener('click' , setISEditing(false));
+    document.getElementById('cancelEditAsset').addEventListener('click' , ()=>{
+        setISEditing(false);
+    });
 
 
 </script>
