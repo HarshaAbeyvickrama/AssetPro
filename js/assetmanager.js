@@ -6,9 +6,9 @@ function loadCategories() {
 }
 
 function setCats() {
-  var select = document.getElementById("category");
+  const select = document.getElementById("category");
   categories.forEach((category) => {
-    var option = `<option value=${category.CategoryID}>${category.CategoryName}</option>`;
+    const option = `<option value=${category.CategoryID}>${category.CategoryName}</option>`;
     select.innerHTML += option;
   });
 }
@@ -16,7 +16,7 @@ function setCats() {
 function setTypes(id) {
   var select = document.getElementById("assetType");
   categories.forEach((category) => {
-    if (category.CategoryID == id) {
+    if (category.CategoryID === id) {
       select.innerHTML = `<option value="">Select Type</option>`;
       category.Types.forEach((type) => {
         var option = `<option value=${type.TypeID}>${type.TypeName}</option>`;
