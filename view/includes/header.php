@@ -285,7 +285,7 @@ include_once("notification.php")
             showNotification(false);
         }
         if(e.target.id != 'userSectionMask'){
-            console.log('Not profile');
+            
             showUserSection(false);
         }
     })

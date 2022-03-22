@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2022 at 08:25 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.0
+-- Generation Time: Mar 22, 2022 at 08:34 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,7 +72,7 @@ INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assigne
 (8, 2, 5, NULL, 1, '2022-01-01 12:25:06', '2021-10-21 12:43:31', 'Unassigned', 1),
 (13, 2, 5, NULL, 4, '2022-01-01 12:25:10', '2021-10-21 16:15:18', 'Unassigned', 1),
 (14, 1, 2, NULL, 4, '2022-01-01 12:25:15', '2021-10-22 00:21:51', 'Unassigned', 1),
-(15, 1, 2, 1, 28, '2022-01-06 16:39:50', '2021-10-22 01:30:14', 'Unassigned', 1);
+(15, 1, 2, 1, 5, '2022-01-01 13:44:19', '2021-10-22 01:30:14', 'Unassigned', 1);
 
 -- --------------------------------------------------------
 
@@ -95,6 +95,17 @@ CREATE TABLE `assetdetails` (
 --
 
 INSERT INTO `assetdetails` (`AssetID`, `Name`, `Cost`, `AssetCondition`, `ImageURL`, `Description`, `PurchasedDate`) VALUES
+(1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
+(2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
+(3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
+(4, 'Web Cam', 5000, 'Brand New', '/uploads/assets/4.png', 'Asus C3 1080p Webcam', '2021-10-05'),
+(5, 'Windows 10', 4500, 'Brand New', '/uploads/assets/5.png', 'Windows 10 Pro', '2021-09-15'),
+(6, 'Office 365', 30000, 'Brand New', '/uploads/assets/6.jpg', 'Microsoft 365 Services', '2021-09-18'),
+(7, 'Printer', 90000, 'Used', '/uploads/assets/7.jfif', 'Epson WorkForce Wireless Printer w/ADF (WF-2850)', '2021-09-16'),
+(8, 'Key Board', 2000, 'Brand New', '/uploads/assets/8.jpg', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-21'),
+(13, 'Logitech C505 HD Webcam', 15400, 'Brand New', '/uploads/assets/13.png', 'Web Cam', '2021-10-22'),
+(14, 'HP LaserJet', 20000, 'Brand New', '/uploads/assets/14.jpeg', 'Printer', '2021-10-22'),
+(15, 'HP 1102 InkJet', 30000, 'Brand New', '/uploads/assets/15.jpeg', 'Printer', '2021-10-22'),
 (1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
 (2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
 (3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
@@ -202,6 +213,7 @@ INSERT INTO `category` (`CategoryID`, `Name`, `CategoryCode`) VALUES
 
 CREATE TABLE `department` (
   `DepartmentID` int(11) NOT NULL,
+  `departmentHeadID` int(11) NOT NULL,
   `DepartmentCode` varchar(5) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `description` longtext DEFAULT NULL,
@@ -214,11 +226,11 @@ CREATE TABLE `department` (
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
-(1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(2, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(3, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
-(4, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
+INSERT INTO `department` (`DepartmentID`, `departmentHeadID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
+(1, 1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(2, 1, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(3, 1, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
+(4, 1, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
 
 -- --------------------------------------------------------
 
@@ -228,16 +240,15 @@ INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description
 
 CREATE TABLE `departmentheaduser` (
   `HeadID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  `DepartmentID` int(11) NOT NULL
+  `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `departmentheaduser`
 --
 
-INSERT INTO `departmentheaduser` (`HeadID`, `UserID`, `DepartmentID`) VALUES
-(1, 28, 1);
+INSERT INTO `departmentheaduser` (`HeadID`, `UserID`) VALUES
+(1, 28);
 
 -- --------------------------------------------------------
 
@@ -663,14 +674,14 @@ ALTER TABLE `category`
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
-  ADD PRIMARY KEY (`DepartmentID`);
+  ADD PRIMARY KEY (`DepartmentID`),
+  ADD KEY `departmentHeadID` (`departmentHeadID`);
 
 --
 -- Indexes for table `departmentheaduser`
 --
 ALTER TABLE `departmentheaduser`
   ADD PRIMARY KEY (`HeadID`),
-  ADD KEY `departmentheaduser_ibfk_1` (`DepartmentID`),
   ADD KEY `departmentheaduser_ibfk_2` (`UserID`);
 
 --
@@ -904,11 +915,16 @@ ALTER TABLE `breakdown`
   ADD CONSTRAINT `bemp_fk` FOREIGN KEY (`EmployeeID`) REFERENCES `employeeuser` (`EmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `department`
+--
+ALTER TABLE `department`
+  ADD CONSTRAINT `department_ibfk_1` FOREIGN KEY (`departmentHeadID`) REFERENCES `departmentheaduser` (`HeadID`);
+
+--
 -- Constraints for table `departmentheaduser`
 --
 ALTER TABLE `departmentheaduser`
-  ADD CONSTRAINT `departmentheaduser_ibfk_1` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `departmentheaduser_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `departmentheaduser_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`);
 
 --
 -- Constraints for table `depreciation`
