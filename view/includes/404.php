@@ -20,7 +20,7 @@
         bottom: 20px;
         left: 10px;
     } */
-    .return-btn {
+    a{
         text-decoration: none;
         color: white;
         padding: 10px 20px;
