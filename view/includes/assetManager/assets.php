@@ -6,7 +6,7 @@
 
     }
 
-    #assetSections>div {
+    #assetSections > div {
         width: 200px;
         display: flex;
         text-align: center;
@@ -19,7 +19,7 @@
 
     }
 
-    #assetSections>div:hover {
+    #assetSections > div:hover {
         cursor: pointer;
         background-color: #EAEDF5;
     }
@@ -75,7 +75,7 @@
         const xhr = new XMLHttpRequest();
         xhr.open("GET", `../model/Asset.php?action=getAssets&type=${type}`, true);
 
-        xhr.onload = function() {
+        xhr.onload = function () {
             if (this.status === 200) {
                 var assets = JSON.parse(this.responseText);
                 switch (type) {
@@ -83,7 +83,7 @@
                         for (var i = 0; i < assets.length; i++) {
                             var bd = document.getElementById('allAssetsTableBody')
                             var row = `
-                                    <td>${i+1}</td>
+                                    <td>${i + 1}</td>
                                     <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
@@ -104,7 +104,7 @@
                             var tb = document.getElementById('assignedAssetsTableBody');
                             tb.innerHTML += `
                                 <tr>
-                                    <td>${i+1}</td>
+                                    <td>${i + 1}</td>
                                     <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
@@ -118,7 +118,7 @@
                         for (var i = 0; i < assets.length; i++) {
                             document.getElementById('sharedAssetsTableBody').innerHTML += `
                                 <tr>
-                                    <td>${i+1}</td>
+                                    <td>${i + 1}</td>
                                     <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
@@ -132,7 +132,7 @@
                             const tb = document.getElementById('unassignedAssetsTableBody');
                             tb.innerHTML += `
                                 <tr>
-                                    <td>${i+1}</td>
+                                    <td>${i + 1}</td>
                                     <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
                                     <td>${assets[i]['assetName']}</td>
                                     <td>${assets[i]['assetType']}</td>
@@ -157,7 +157,7 @@
         xhr.send();
     }
 
-    document.getElementById("assetSections").addEventListener('click', function(e) {
+    document.getElementById("assetSections").addEventListener('click', function (e) {
         const eventId = e.target.id;
         if (eventId != 'assetSections') {
             loadSection("assetContents", eventId);
@@ -174,27 +174,15 @@
         })
         document.getElementById(eventId).classList.add('activeTab');
     }
-    document.getElementById("addAsset").addEventListener('click', function(e) {
+
+    document.getElementById("addAsset").addEventListener('click', function (e) {
         popup = document.querySelector('.popup-container');
         popup.style.display = 'grid';
         e.stopPropagation();
         loadSection("popup", "addAsset");
     })
-
-
-    //Add event listener to listen for click events on each asset in all tables
-    // function addViewAssetListener(assetElement) {
-    //     assetElement.addEventListener('click', (event) => {
-    //         var asset = event.target.parentElement;
-    //         event.stopPropagation();
-    //         document.cookie = `assetID=${asset.id}`;
-    //         loadSection('centerSection', 'viewAsset');
-    //     })
-    // }
-
-    
-    //Get asset details by ID
 </script>
+
 <div class="overviewLayout">
     <div class="section-heading">Dashboard Overview</div>
 
