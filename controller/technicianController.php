@@ -22,7 +22,7 @@ class TechnicianController extends Technician {
     //Getting the image
     public function addImage($image){
         $extension = pathinfo($image['image']['name'], PATHINFO_EXTENSION);
-        $fileUrl = '/uploads/technicians' . uniqid() . '.' . $extension;
+        $fileUrl = '/uploads/technicians/' . uniqid() . '.' . $extension;
         $url = $_SERVER['DOCUMENT_ROOT'] . '/assetpro' . $fileUrl;
         $imageSaved = move_uploaded_file($image['image']['tmp_name'], $url);
 
@@ -43,6 +43,7 @@ class TechnicianController extends Technician {
 
     //Adding a technician
     public function addTechnician($technician) {
+        print_r($technician['jobTitle']);
         $newTechnician = new Technician (
             departmentID: $technician['depID'],
             fileUrl: $technician['image'],

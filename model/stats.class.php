@@ -89,11 +89,9 @@ class Stats extends DBConnection
     function getCountFixed($id)
     {
         $dbConnection = $this->connect();
-        $sql='SELECT COUNT(CategoryID),CategoryID,assignedUser FROM asset WHERE CategoryID=1 AND assignedUser= ?';
+        $sql='SELECT COUNT(CategoryID) AS fixedcount,CategoryID,assignedUser FROM asset WHERE CategoryID=1 AND assignedUser= ?';
         $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$id]);
         return $stmt;
-
-
     }
 }

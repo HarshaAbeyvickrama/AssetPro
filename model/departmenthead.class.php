@@ -2,17 +2,20 @@
 
 // require_once './controller/autoloadController.php';
 
-class DepartmentHead extends DBConnection {
+class DepartmentHead extends DBConnection
+{
     //Database connection
     private $DBConnection;
 
     private $departmentID;
+    private $fileUrl;
     private $firstName;
     private $lastName;
     private $NIC;
     private $gender;
     private $dob;
-    private $maritalStatus;
+    // private $maritalStatus;
+    private $jobTitle;
     private $address;
     private $contactNo;
     private $email;
@@ -20,16 +23,17 @@ class DepartmentHead extends DBConnection {
     private $eRelationship;
     private $eContact;
 
-    public function __construct($departmentID, $firstName, $lastName, $NIC, $gender, $dob, $maritalStatus, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
+    public function __construct($departmentID, $fileUrl, $firstName, $lastName, $NIC, $gender, $dob, $jobTitle, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
         $this->DBConnection = $this->connect();
         $this->departmentID = $departmentID;
+        $this->fileUrl = $fileUrl;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->NIC = $NIC;
         $this->gender = $gender;
         $this->dob = $dob;
-        $this->maritalStatus = $maritalStatus;
+        $this->jobTitle = $jobTitle;
         $this->address = $address;
         $this->contactNo = $contactNo;
         $this->email = $email;
@@ -39,18 +43,24 @@ class DepartmentHead extends DBConnection {
     }
 
     //Getting all the department heads
-    protected function getAll() {
+    protected function getAll()
+    {
         $sql = "SELECT
-                    USER.UserID,
-                    CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
-                    userdetails.Gender,
-                    dhu.HeadID AS HeadID
+                    ud.UserID,
+                    CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                    ud.Gender,
+                    ud.jobTitle,
+                    d.DepartmentCode,
+                    d.Name AS DepartmentName,
+                    dhu.HeadID
                 FROM
-                    departmentheaduser dhu
-                INNER JOIN userdetails ON userdetails.UserID = dhu.UserID
-                JOIN USER ON USER.UserID = userdetails.UserID
-                WHERE
-                    USER.RoleID = 5";
+                    userdetails ud
+                INNER JOIN departmentheaduser dhu ON
+                    ud.UserID = dhu.UserID
+                INNER JOIN department d ON
+                    dhu.DepartmentID = d.DepartmentID
+                ORDER BY
+                    dhu.HeadID";
 
         $pstm = $this->connect()->prepare($sql);
         $pstm->execute();
@@ -58,7 +68,9 @@ class DepartmentHead extends DBConnection {
     }
 
     //Getting a department head detail using HeadID
-    protected function get($HeadID) {
+    protected function get($HeadID)
+    {
+        $DBConnection = $this->connect();
         $sql = "SELECT
                     dhu.HeadID,
                     ud.fName,
@@ -67,7 +79,7 @@ class DepartmentHead extends DBConnection {
                     ud.Gender,
                     ud.DOB,
                     ud.ProfilePicURL,
-                    ud.CivilStatus,
+                    ud.joBTitle,
                     ud.Address,
                     ud.PhoneNumber,
                     ud.Email,
@@ -80,90 +92,96 @@ class DepartmentHead extends DBConnection {
                     ud.UserID = dhu.UserID
                 INNER JOIN useremergency ue ON
                     dhu.UserID = ue.UserID
-                WHERE HeadID = $HeadID";
-        
-        $stmt = $this->DBConnection->prepare($sql);
+                WHERE HeadID = ?";
+
+        $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$HeadID]);
         return $stmt;
     }
 
-    //Adding a department head
+    //Adding an Department Head
     protected function add() {
+        $DBConnection = $this->connect();
         try {
-            $this->DBConnection->beginTransaction();
+            $DBConnection->beginTransaction();
 
             //Inserting into the user table
-            $addTechnician = "INSERT INTO user VALUES (NULL, '4')";
-            $stmt = $this->DBConnection->prepare($addTechnician);
+            $null = null;
+            $addDepartmentHead = "INSERT INTO user VALUES (:userID, '5')";
+            $stmt = $DBConnection->prepare($addDepartmentHead);
+            $stmt->bindParam(':userID', $null);
             $stmt->execute();
 
-            $UserID = $this->dbConnection->lastInsertId();
+            $UserID = $DBConnection->lastInsertId();
 
-            //Saving the image
-            $fileUrl = '/uploads/dheads/'.$UserID.'.'.$this->extention;
-            $imageSaved = move_uploaded_file($_FILES['image']['tmp_name'] , '../'.$fileUrl);
-
-            if(!$imageSaved) {
-                
-            }
             //Inserting into the userdetails table
-            $userdetails = "INSERT INTO userdetails VALUES (userID, firstname, lastName, NIC, address, gender, contactNo, email, dob, fileUrl, maritalStatus)";
-            $stmt = $this->DBConnection->prepare($userdetails);
+            $userdetails = "INSERT INTO userdetails VALUES (:userID, :firstName, :lastName, :NIC, :addr, :gender, :contactNo, :email, :dob, :fileUrl, :jobTitle)";
+            $stmt = $DBConnection->prepare($userdetails);
 
-            $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('firstName', $firstName);
-            $stmt->bindParam('lastName', $lastName);
-            $stmt->bindParam('NIC', $NIC);
-            $stmt->bindParam('address', $address);
-            $stmt->bindParam('gender', $gender);
-            $stmt->bindParam('contactNo', $contactNo);
-            $stmt->bindParam('email', $email);
-            $stmt->bindParam('dob', $dob);
-            $stmt->bindParam('fileUrl', $fileUrl);
-            $stmt->bindParam('maritalStatus', $maritalStatus);
+            $stmt->bindParam(':userID', $UserID);
+            $stmt->bindParam(':firstName', $this->firstName);
+            $stmt->bindParam(':lastName', $this->lastName);
+            $stmt->bindParam(':NIC', $this->NIC);
+            $stmt->bindParam(':addr', $this->address);
+            $stmt->bindParam(':gender', $this->gender);
+            $stmt->bindParam(':contactNo', $this->contactNo);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':dob', $this->dob);
+            $stmt->bindParam(':fileUrl', $this->fileUrl);
+            $stmt->bindParam(':jobTitle', $this->jobTitle);
 
             $stmt->execute();
 
             //Inserting into departmentheaduser table
-            $technicianuser = "INSERT INTO departmentheaduser VALUES (NULL, userID, departmentID)";
-            $stmt = $this->DBConnection->prepare($technicianuser);
+            $dheaduser = "INSERT INTO departmentheaduser VALUES (:HeadID, :userID, :departmentID)";
+            $stmt = $DBConnection->prepare($dheaduser);
 
-            $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('departmentID', $departmentID);
+            $stmt->bindParam(':HeadID', $null);
+            $stmt->bindParam(':userID', $UserID);
+            $stmt->bindParam(':departmentID', $this->departmentID);
 
             $stmt->execute();
 
             //Inserting into useremergency table
-            $userEmergency = "INSERT INTO useremergency VALUES (userID, eRelationship, eName, eContact)";
-            $stmt = $this->DBConnection->prepare($userEmergency);
+            $userEmergency = "INSERT INTO useremergency VALUES (:userID, :eRelationship, :eName, :eContact)";
+            $stmt = $DBConnection->prepare($userEmergency);
             
-            $stmt->bindParam('userID', $UserID);
-            $stmt->bindParam('eRelationship', $eRelationship);
-            $stmt->bindParam('eName', $eName);
-            $stmt->bindParam('eContact', $eContact);
+            $stmt->bindParam(':userID', $UserID);
+            $stmt->bindParam(':eRelationship', $this->eRelationship);
+            $stmt->bindParam(':eName', $this->eName);
+            $stmt->bindParam(':eContact', $this->eContact);
 
             $stmt->execute();
 
+            $DBConnection->commit();
+
+            $result = array(
+                "status" => "Ok",
+                "userID" => $UserID,
+                "message" => "Department Head Added Successfully"
+            );
+            return $result;
+
         } catch (PDOException | Exception $e) {
-            $this->DBConnection->rollBack();
+            $DBConnection->rollBack();
 
             $result = array(
                 "status"=>"Failed",
                 "Error"=>$e->getMessage(),
-                "Message"=>"Cannot add a Department Head"
+                "Message"=>"Cannot add a Departmet Head"
             );
 
             return $result;
         }
     }
 
-    //Updating department head details
-    protected function update($HeadID) {
 
-    }
+    //Updating department head details
+    protected function update($HeadID) {}
 
     //Deleting a department head
-    protected function delete($HeadID) {
+    protected function delete($HeadID)
+    {
         $sql = "DELETE FROM ";
         $stmt = $this->DBConnection->prepare($sql);
         $stmt->bindParam("HeadID", $HeadID);
@@ -172,7 +190,8 @@ class DepartmentHead extends DBConnection {
     }
 
     //Getting breakdownAssets of particular Department
-    protected function getBreakdownAssets($userId){
+    protected function getBreakdownAssets($userId)
+    {
         $DBConnection = $this->connect();
         // $sql = "SELECT
         //             breakdown.AssetID,
@@ -221,10 +240,11 @@ class DepartmentHead extends DBConnection {
         return $pstm;
     }
 
-        //Getting employees using department ID
-        protected function getDepartmentEmployees($userId) {
-            $DBConnection = $this->connect();
-            $sql = "SELECT
+    //Getting employees using department ID
+    protected function getDepartmentEmployees($userId)
+    {
+        $DBConnection = $this->connect();
+        $sql = "SELECT
                         employeeuser.EmployeeID AS EmployeeID,
                         employeeuser.DepartmentID,
                         department.DepartmentCode AS DepartmentCode,
@@ -238,27 +258,26 @@ class DepartmentHead extends DBConnection {
                     INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = department.DepartmentID
                     WHERE
                         departmentheaduser.UserID = ?";
-    
-            $stmt = $DBConnection->prepare($sql);
-            $stmt->execute(array($userId));
-            return $stmt;
-        }
+
+        $stmt = $DBConnection->prepare($sql);
+        $stmt->execute(array($userId));
+        return $stmt;
+    }
 
     //Getting all assigned assets of particular department
     // protected function getDHAssignedAssets($userId) {
     //     $DBConnection = $this->connect();
     //     $sql = "SELECT
-                    
+
     //             FROM
-                
+
     //             INNER JOIN
     //             INNER JOIN
-                
+
     //             WHERE
-                
+
     //     $stmt = $DBConnection->prepare($sql);
     //     $stmt->execute(array($userId));
     //     return $stmt;"
     // }
 }
-

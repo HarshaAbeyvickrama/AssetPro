@@ -194,7 +194,7 @@
                 //Employees
                 echo "<div class='component' id='employees'>
                     <img src='../Images/icons/NotSelected/employees.png' >
-                    <span class='componentText'>Employees</span>
+                    <span class='componentText'>Staff</span>
                 </div>";
 
                 //Technicians
@@ -285,11 +285,17 @@
                     <span class='componentText'>Department Heads</span>
                 </div>";
 
-                //Technicians
-                echo "<div class='component' id='technicians'>
-                    <img src='../Images/icons/NotSelected/Technician.png' >
-                    <span class='componentText'>Technicians</span>
+                //Departments
+                echo "<div class='component' id='departments'>
+                    <img src='../Images/icons/NotSelected/department.png' >
+                    <span class='componentText'>Departments</span>
                 </div>";
+
+//                //Technicians
+//                echo "<div class='component' id='technicians'>
+//                    <img src='../Images/icons/NotSelected/Technician.png' >
+//                    <span class='componentText'>Technicians</span>
+//                </div>";
 
                 //Disposals
                 echo "<div class='component' id='disposals'>
@@ -412,11 +418,10 @@
         const scripts = document.querySelectorAll(`.${sectionId}Script`);
         for (var n = 0; n < scripts.length; n++) {
             scripts[n].remove();
-
         }
     }
 
-    // seting the colored icon and text on the navigation on click
+    // setting the colored icon and text on the navigation on click
     function setFocus(id) {
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item => {

@@ -33,7 +33,12 @@
     .image img{
         width: 80px;
         height: 80px;
-        align-items: center;
+
+    }
+
+    .image{
+        display: flex;
+        justify-content: center;
     }
 
     .boxCount{
@@ -68,8 +73,8 @@
         <div class="image">
             <img src="../Images/icons/totalconsumables.png">
         </div>
-        <div class="boxTitle">Total Consumables</div>
-        <div class="boxCount">10</div>
+        <div class="boxTitle">Total Consumables
+            <div class="boxCount">10</div></div>
     </div>
 
     <!-- Box 2 -->
@@ -77,8 +82,8 @@
         <div class="image">
             <img src="../Images/icons/fixedassets.png">
         </div>
-        <div class="boxTitle">Total Fixed</div>
-        <div class="boxCount">20</div>
+        <div class="boxTitle">Total Fixed
+            <div class="boxCount" id="fixedCount"></div></div>
     </div>
     <!-- Box 3-->
     <div class = "box3">
@@ -90,8 +95,8 @@
         <div class="image">
             <img src="../Images/icons/intangibles.png">
         </div>
-        <div class="boxTitle">Total Intangibles</div>
-        <div class="boxCount">10</div>
+        <div class="boxTitle">Total Intangibles
+            <div class="boxCount">10</div></div>
     </div>
 
     <!-- Box 5 -->
@@ -99,12 +104,9 @@
         <div class="image">
             <img src="../Images/icons/tangibles.png">
         </div>
-        <div class="boxTitle">Total Tangibles</div>
-        <div class="boxCount">30</div>
+        <div class="boxTitle">Total Tangibles
+            <div class="boxCount">30</div></div>
     </div>
-
-    
-
 
 </div>
 
@@ -154,6 +156,25 @@
         document.getElementById('assetCategoriesChart'),
         config
     );
-
-
 </script>
+
+<script>
+    <?php
+        echo 'var userID =' . $_SESSION['UserID'];
+    ?>
+    window.addEventListener('load', loadCountFixed(userID));
+</script>
+
+<script>
+    function loadCountFixed(userID){
+        const xhr = new XMLHttpRequestEventTarget();
+        xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
+        xhr.onload = function (){
+            if(this.status == 200){
+                var fixedCount = JSON.parse(this.response);
+                console.log(fixedCount);
+                document.getElementById('assetCategoriesChart').innerHTML = fixedCount;
+        }
+    }
+</script>
+

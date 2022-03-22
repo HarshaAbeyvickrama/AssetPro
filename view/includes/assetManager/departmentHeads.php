@@ -1,25 +1,40 @@
-
 <style>
-    .list-avatar{
+    .list-avatar {
         width: 50px;
         height: 50px;
         border-radius: 50%;
     }
-    .list-item{
+
+    .list-item {
         border: 1px solid red;
         align-items: center;
     }
-    .list-item > span{
-        margin: 5px 0px;
+
+    td {
+        vertical-align: middle !important;
     }
-    td{
-        vertical-align: central;
+
+    td > span {
+        display: inline-block;
+        text-align: center;
+        margin: 0 auto;
     }
-    table{
+
+    table {
         width: 100%;
     }
-    span{
-        height: 100%!important;
+
+    span {
+        height: 100% !important;
+    }
+
+    .red-border {
+        border: 1px solid red !important;
+    }
+
+    .a {
+        height: 100%;
+        vertical-align: middle;
     }
 </style>
 <div class="overviewLayout">
@@ -34,99 +49,14 @@
                 <th>Email</th>
             </tr>
             </thead>
-
-            <tbody id="dhTableBody">
-            <tr class="list-item">
-                <td>
+            <tbody id="dhTableBody red-border">
+            <tr class="list-item red-border">
+                <td class="red-border a">
                     <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    <span>VH Abey</span>
+                    <span>VHA</span>
                 </td>
                 <td>
-                    Finance
-
-                </td>
-                <td>
-                    harshaabeyvickrama@gmail.com
-                </td>
-            </tr><tr class="list-item">
-                <td>
-                    <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    Harsha Abeyvickrama
-                </td>
-                <td>
-                    Finance
-
-                </td>
-                <td>
-                    harshaabeyvickrama@gmail.com
-                </td>
-            </tr><tr class="list-item">
-                <td>
-                    <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    Harsha Abeyvickrama
-                </td>
-                <td>
-                    Finance
-
-                </td>
-                <td>
-                    harshaabeyvickrama@gmail.com
-                </td>
-            </tr><tr class="list-item">
-                <td>
-                    <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    Harsha Abeyvickrama
-                </td>
-                <td>
-                    Finance
-
-                </td>
-                <td>
-                    harshaabeyvickrama@gmail.com
-                </td>
-            </tr><tr class="list-item">
-                <td>
-                    <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    Harsha Abeyvickrama
-                </td>
-                <td>
-                    Finance
-
-                </td>
-                <td>
-                    harshaabeyvickrama@gmail.com
-                </td>
-            </tr><tr class="list-item">
-                <td>
-                    <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    Harsha Abeyvickrama
-                </td>
-                <td>
-                    Finance
-
-                </td>
-                <td>
-                    harshaabeyvickrama@gmail.com
-                </td>
-            </tr><tr class="list-item">
-                <td>
-                    <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    Harsha Abeyvickrama
-                </td>
-                <td>
-                    Finance
-
-                </td>
-                <td>
-                    harshaabeyvickrama@gmail.com
-                </td>
-            </tr><tr class="list-item">
-                <td>
-                    <img src="http://localhost/assetpro/images/profile.jpg" alt="" class="list-avatar">
-                    Harsha Abeyvickrama
-                </td>
-                <td>
-                    Finance
+                    Financeddd
 
                 </td>
                 <td>

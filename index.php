@@ -101,6 +101,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'all':
                     echo $vc->getAllStats();
                     break;
+                case 'fixedCount':
+                    echo $vc->getCountAllFixed();
+                    break;
             }
             break;
 
@@ -175,6 +178,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getDepartmentHead':
                     echo $dhc->getDepartmentHead($url[2]);
+                    break;
+                case 'addImage':
+                    echo $dhc->addImage($_FILES);
+                    break;
+                case 'addDepartmentHead':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $dhc->addDepartmentHead($data); 
                     break;
                 case 'getDHBreakdowns':
                     echo $dhc->getAllBreakdownAssets($url[2]);

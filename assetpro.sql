@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2022 at 08:25 AM
+-- Generation Time: Mar 22, 2022 at 09:31 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.0
 
@@ -72,7 +72,7 @@ INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assigne
 (8, 2, 5, NULL, 1, '2022-01-01 12:25:06', '2021-10-21 12:43:31', 'Unassigned', 1),
 (13, 2, 5, NULL, 4, '2022-01-01 12:25:10', '2021-10-21 16:15:18', 'Unassigned', 1),
 (14, 1, 2, NULL, 4, '2022-01-01 12:25:15', '2021-10-22 00:21:51', 'Unassigned', 1),
-(15, 1, 2, 1, 28, '2022-01-06 16:39:50', '2021-10-22 01:30:14', 'Unassigned', 1);
+(15, 1, 2, 1, 5, '2022-01-01 13:44:19', '2021-10-22 01:30:14', 'Unassigned', 1);
 
 -- --------------------------------------------------------
 
@@ -95,6 +95,17 @@ CREATE TABLE `assetdetails` (
 --
 
 INSERT INTO `assetdetails` (`AssetID`, `Name`, `Cost`, `AssetCondition`, `ImageURL`, `Description`, `PurchasedDate`) VALUES
+(1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
+(2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
+(3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
+(4, 'Web Cam', 5000, 'Brand New', '/uploads/assets/4.png', 'Asus C3 1080p Webcam', '2021-10-05'),
+(5, 'Windows 10', 4500, 'Brand New', '/uploads/assets/5.png', 'Windows 10 Pro', '2021-09-15'),
+(6, 'Office 365', 30000, 'Brand New', '/uploads/assets/6.jpg', 'Microsoft 365 Services', '2021-09-18'),
+(7, 'Printer', 90000, 'Used', '/uploads/assets/7.jfif', 'Epson WorkForce Wireless Printer w/ADF (WF-2850)', '2021-09-16'),
+(8, 'Key Board', 2000, 'Brand New', '/uploads/assets/8.jpg', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-21'),
+(13, 'Logitech C505 HD Webcam', 15400, 'Brand New', '/uploads/assets/13.png', 'Web Cam', '2021-10-22'),
+(14, 'HP LaserJet', 20000, 'Brand New', '/uploads/assets/14.jpeg', 'Printer', '2021-10-22'),
+(15, 'HP 1102 InkJet', 30000, 'Brand New', '/uploads/assets/15.jpeg', 'Printer', '2021-10-22'),
 (1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20'),
 (2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18'),
 (3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14'),
@@ -202,6 +213,7 @@ INSERT INTO `category` (`CategoryID`, `Name`, `CategoryCode`) VALUES
 
 CREATE TABLE `department` (
   `DepartmentID` int(11) NOT NULL,
+  `HeadID` int(11) NOT NULL,
   `DepartmentCode` varchar(5) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `description` longtext DEFAULT NULL,
@@ -214,11 +226,11 @@ CREATE TABLE `department` (
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
-(1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(2, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(3, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
-(4, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
+INSERT INTO `department` (`DepartmentID`, `HeadID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
+(1, 1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(2, 1, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(3, 1, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
+(4, 1, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
 
 -- --------------------------------------------------------
 
@@ -228,16 +240,15 @@ INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description
 
 CREATE TABLE `departmentheaduser` (
   `HeadID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  `DepartmentID` int(11) NOT NULL
+  `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `departmentheaduser`
 --
 
-INSERT INTO `departmentheaduser` (`HeadID`, `UserID`, `DepartmentID`) VALUES
-(1, 28, 1);
+INSERT INTO `departmentheaduser` (`HeadID`, `UserID`) VALUES
+(1, 28);
 
 -- --------------------------------------------------------
 
@@ -296,7 +307,8 @@ INSERT INTO `employeeuser` (`EmployeeID`, `UserID`, `DepartmentID`) VALUES
 (25, 24, 1),
 (26, 25, 1),
 (27, 26, 1),
-(28, 27, 1);
+(28, 27, 1),
+(29, 37, 2);
 
 -- --------------------------------------------------------
 
@@ -415,7 +427,8 @@ INSERT INTO `technicianuser` (`TechnicianID`, `UserID`, `DepartmentID`) VALUES
 (9, 14, 4),
 (10, 15, 4),
 (11, 21, 4),
-(12, 4, 4);
+(12, 4, 4),
+(13, 36, 4);
 
 -- --------------------------------------------------------
 
@@ -501,6 +514,7 @@ INSERT INTO `user` (`UserID`, `RoleID`) VALUES
 (25, 3),
 (26, 3),
 (27, 3),
+(37, 3),
 (4, 4),
 (11, 4),
 (12, 4),
@@ -508,6 +522,7 @@ INSERT INTO `user` (`UserID`, `RoleID`) VALUES
 (14, 4),
 (15, 4),
 (21, 4),
+(36, 4),
 (28, 5);
 
 -- --------------------------------------------------------
@@ -527,7 +542,6 @@ CREATE TABLE `userdetails` (
   `Email` varchar(255) NOT NULL,
   `DOB` date NOT NULL,
   `ProfilePicURL` varchar(1000) NOT NULL,
-  `CivilStatus` varchar(10) NOT NULL,
   `jobTitle` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -535,32 +549,34 @@ CREATE TABLE `userdetails` (
 -- Dumping data for table `userdetails`
 --
 
-INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender`, `PhoneNumber`, `Email`, `DOB`, `ProfilePicURL`, `CivilStatus`, `jobTitle`) VALUES
-(1, 'Induni', 'Dulanjalee', '986151010V', 'Badulla', 'Female', '0719598424', 'indunijd@gmail.com', '1998-04-24', '', 'Single', 'Admin'),
-(2, 'Harsha', 'Abeyvickrama', '199824200890', 'Rakwana', 'Male', '0711425085', 'harshaabeyvickrama@gmail.com\r\n', '1998-08-29', '', 'Single', 'Asset Manager'),
-(3, 'Mushrifa', 'Mansoor', '996893758V', 'Mawanella', 'Female', '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '/uploads/employees/3.jpg', 'Single', 'Accountant'),
-(4, 'Ayisha', 'Siddeequa', '997271386V', 'Kandy', 'Female', '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '/uploads/technicians/4.jpg', 'Single', 'Electrician'),
-(5, 'Namal', 'Ranasinghe', '936987123V', 'Nugegoda', 'Male', '0719989796', 'namalr@gmail.com', '1993-06-10', '/uploads/employees/5.jpg', 'Married', 'Analyst'),
-(6, 'Jithendra', 'Prianjalee', '913456770V', 'Bandarawela', 'Female', '0764352718', 'jithendra@gmail.com', '1991-08-23', '/uploads/employees/6.jpg', 'Married', 'sales Manager'),
-(8, 'Sara', 'Desapriyan', '200323045691', 'Kurunegala', 'Female', '0775081822', 'sara@gmail.com', '2003-02-20', '/uploads/employees/8.jpg', 'Unmarried', 'Clerk'),
-(9, 'Lakshman', 'Kumar', '958123456X', 'Galle', 'Male', '0756789211', 'lakshman@gmail.com', '1995-02-20', '/uploads/employees/9.jpg', 'Married', 'Logistic Supervisor'),
-(10, 'Muzni', 'Ahamed', '', 'Galle', 'Male', '0765667891', 'ahamed@gmail.com', '1998-01-20', '/uploads/employees/10.jpg', 'Unmarried', 'Production Planner'),
-(11, 'Douglas', 'Kumar', '', 'Kuruwita', 'Male', '0782234789', 'douglas@gmail.com', '1994-03-20', '/uploads/technicians/11.jpg', 'Unmarried', 'Carpenter'),
-(12, 'Andrew', 'Dias', '', 'Panadura', 'Male', '0776545611', 'andrew@gmail,com', '1990-01-20', '/uploads/technicians/12.jpg', 'Unmarried', 'Carpenter'),
-(13, 'Pavani', 'Kumari', '', 'Kuliyapitiya', 'Female', '0777345678', 'pavani@gmail.com', '1989-01-20', '/uploads/technicians/13.jpg', 'Unmarried', 'Carpenter'),
-(14, 'Samanali', 'Perea', '', 'Peradeniya', 'Female', '0774563211', 'samanali@gmail.com', '1975-12-20', '/uploads/technicians/14.jpg', 'Married', 'Electrician'),
-(15, 'Farhan', 'Ahamed', '', 'Mawanella', 'Male', '0775067551', 'farhan@gmail.com', '1992-07-20', '/uploads/technicians/15.jpg', 'Married', 'Electrician'),
-(18, 'Charuni', 'Kumari', '987456190V', 'Polonnaruwa', 'Female', '0712348790', 'charunik@gmail.com', '1998-08-13', '/uploads/employees/18.jpeg', 'Married', 'SEO Specialist'),
-(19, 'Jeewanthi', 'Gunaratne', '796345678V', 'Anuradhapura', 'Female', '0712348790', 'jeewanthi@gmail.com', '1979-07-18', '/uploads/employees/19.jpg', 'Married', 'Brand Manager'),
-(20, 'Aruna', 'Kumara', '798345780V', 'Kuruwita', 'Male', '0712348790', 'aruna@gmail.com', '1979-10-17', '/uploads/employees/20.jpg', 'Married', 'Clerk'),
-(21, 'Amanda', 'Dineshiya', '956345123V', 'Matara', 'Female', '0777412112', 'amandad@gmail.com', '1995-06-15', '/uploads/technicians/21.jpg', 'Married', 'Electrician'),
-(22, 'Thusitha', 'Dissanayake', '836567900V', 'Battaramulla', 'Male', '0713454545', 'thusithad@gmail.com', '1983-05-19', '/uploads/employees/22.jpg', 'Married', 'Analyst'),
-(23, 'Prasanna', 'Ranathunge', '987234567V', 'Polonnaruwa', 'Male', '0711234567', 'prasanna@gmail.com', '1998-08-10', '/uploads/employees/23.jpg', 'Married', 'Team Leader'),
-(24, 'Herath', 'Bandara', '987234678V', 'Polonnaruwa', 'Male', '0764352718', 'herath@gmail.com', '1998-07-16', '/uploads/employees/24.jpg', 'Married', 'Clerk'),
-(25, 'Sachini', 'Thennakoon', '854123678V', 'Bandarawela', 'Female', '0712348790', 'delegates.revolux@gmail.com', '1985-05-20', '/uploads/employees/25.jpg', 'Married', 'Analyst'),
-(26, 'Herath', 'Thennakoon', '765234789V', 'Anuradhapura', 'Male', '0764352718', 'delegates.revolux@gmail.com', '1976-05-16', '/uploads/employees/26.jpg', 'Married', 'Production PLanner'),
-(27, 'Dinithi', 'Perera', '987123678V', 'Polonnaruwa', 'Female', '0712348790', 'dinithi@gmail.com', '1998-04-17', '/uploads/employees/27.jpeg', 'Married', 'SEO Specialist'),
-(28, 'Ashen', 'Senadheera', '692876108V', 'Kurunegala', 'Male', '0774462819', 'ashenS@gmail.com', '1969-01-14', '', 'Married', 'Department Head');
+INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender`, `PhoneNumber`, `Email`, `DOB`, `ProfilePicURL`, `jobTitle`) VALUES
+(1, 'Induni', 'Dulanjalee', '986151010V', 'Badulla', 'Female', '0719598424', 'indunijd@gmail.com', '1998-04-24', '', 'Admin'),
+(2, 'Harsha', 'Abeyvickrama', '199824200890', 'Rakwana', 'Male', '0711425085', 'harshaabeyvickrama@gmail.com\r\n', '1998-08-29', '', 'Asset Manager'),
+(3, 'Mushrifa', 'Mansoor', '996893758V', 'Mawanella', 'Female', '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '/uploads/employees/3.jpg', 'Accountant'),
+(4, 'Ayisha', 'Siddeequa', '997271386V', 'Kandy', 'Female', '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '/uploads/technicians/4.jpg', 'Electrician'),
+(5, 'Namal', 'Ranasinghe', '936987123V', 'Nugegoda', 'Male', '0719989796', 'namalr@gmail.com', '1993-06-10', '/uploads/employees/5.jpg', 'Analyst'),
+(6, 'Jithendra', 'Prianjalee', '913456770V', 'Bandarawela', 'Female', '0764352718', 'jithendra@gmail.com', '1991-08-23', '/uploads/employees/6.jpg', 'sales Manager'),
+(8, 'Sara', 'Desapriyan', '200323045691', 'Kurunegala', 'Female', '0775081822', 'sara@gmail.com', '2003-02-20', '/uploads/employees/8.jpg', 'Clerk'),
+(9, 'Lakshman', 'Kumar', '958123456X', 'Galle', 'Male', '0756789211', 'lakshman@gmail.com', '1995-02-20', '/uploads/employees/9.jpg', 'Logistic Supervisor'),
+(10, 'Muzni', 'Ahamed', '', 'Galle', 'Male', '0765667891', 'ahamed@gmail.com', '1998-01-20', '/uploads/employees/10.jpg', 'Production Planner'),
+(11, 'Douglas', 'Kumar', '', 'Kuruwita', 'Male', '0782234789', 'douglas@gmail.com', '1994-03-20', '/uploads/technicians/11.jpg', 'Carpenter'),
+(12, 'Andrew', 'Dias', '', 'Panadura', 'Male', '0776545611', 'andrew@gmail,com', '1990-01-20', '/uploads/technicians/12.jpg', 'Carpenter'),
+(13, 'Pavani', 'Kumari', '', 'Kuliyapitiya', 'Female', '0777345678', 'pavani@gmail.com', '1989-01-20', '/uploads/technicians/13.jpg', 'Carpenter'),
+(14, 'Samanali', 'Perea', '', 'Peradeniya', 'Female', '0774563211', 'samanali@gmail.com', '1975-12-20', '/uploads/technicians/14.jpg', 'Electrician'),
+(15, 'Farhan', 'Ahamed', '', 'Mawanella', 'Male', '0775067551', 'farhan@gmail.com', '1992-07-20', '/uploads/technicians/15.jpg', 'Electrician'),
+(18, 'Charuni', 'Kumari', '987456190V', 'Polonnaruwa', 'Female', '0712348790', 'charunik@gmail.com', '1998-08-13', '/uploads/employees/18.jpeg', 'SEO Specialist'),
+(19, 'Jeewanthi', 'Gunaratne', '796345678V', 'Anuradhapura', 'Female', '0712348790', 'jeewanthi@gmail.com', '1979-07-18', '/uploads/employees/19.jpg', 'Brand Manager'),
+(20, 'Aruna', 'Kumara', '798345780V', 'Kuruwita', 'Male', '0712348790', 'aruna@gmail.com', '1979-10-17', '/uploads/employees/20.jpg', 'Clerk'),
+(21, 'Amanda', 'Dineshiya', '956345123V', 'Matara', 'Female', '0777412112', 'amandad@gmail.com', '1995-06-15', '/uploads/technicians/21.jpg', 'Electrician'),
+(22, 'Thusitha', 'Dissanayake', '836567900V', 'Battaramulla', 'Male', '0713454545', 'thusithad@gmail.com', '1983-05-19', '/uploads/employees/22.jpg', 'Analyst'),
+(23, 'Prasanna', 'Ranathunge', '987234567V', 'Polonnaruwa', 'Male', '0711234567', 'prasanna@gmail.com', '1998-08-10', '/uploads/employees/23.jpg', 'Team Leader'),
+(24, 'Herath', 'Bandara', '987234678V', 'Polonnaruwa', 'Male', '0764352718', 'herath@gmail.com', '1998-07-16', '/uploads/employees/24.jpg', 'Clerk'),
+(25, 'Sachini', 'Thennakoon', '854123678V', 'Bandarawela', 'Female', '0712348790', 'delegates.revolux@gmail.com', '1985-05-20', '/uploads/employees/25.jpg', 'Analyst'),
+(26, 'Herath', 'Thennakoon', '765234789V', 'Anuradhapura', 'Male', '0764352718', 'delegates.revolux@gmail.com', '1976-05-16', '/uploads/employees/26.jpg', 'Production PLanner'),
+(27, 'Dinithi', 'Perera', '987123678V', 'Polonnaruwa', 'Female', '0712348790', 'dinithi@gmail.com', '1998-04-17', '/uploads/employees/27.jpeg', 'SEO Specialist'),
+(28, 'Ashen', 'Senadheera', '692876108V', 'Kurunegala', 'Male', '0774462819', 'ashenS@gmail.com', '1969-01-14', '', 'Department Head'),
+(36, 'Bhanuka', 'Supun', '976345190V', 'Galle', 'Male', '0764352715', 'bhanuka@gmail.co', '1997-09-10', '/uploads/technicians/6239888f56e97.jpg', NULL),
+(37, 'Nethmini', 'Kumari', '987856190V', 'Walasmulla', 'Female', '0761234718', 'nethmini@gmail.com', '1998-03-11', '/uploads/employees/623989195c6d3.png', 'Software Engineer');
 
 -- --------------------------------------------------------
 
@@ -602,7 +618,9 @@ INSERT INTO `useremergency` (`UserID`, `Relationship`, `fName`, `TelephoneNumber
 (25, 'Father', 'Amarapaala', '0712348796'),
 (26, 'Wife', 'Damayanthi', '0764352710'),
 (27, 'Mother', 'Hema', '0712348723'),
-(28, 'Wife', 'Sangeetha', '0775564718');
+(28, 'Wife', 'Sangeetha', '0775564718'),
+(36, 'Mother', 'Wasana', '0764352345'),
+(37, 'Father', 'Amarapaala', '0776542718');
 
 --
 -- Indexes for dumped tables
@@ -663,14 +681,14 @@ ALTER TABLE `category`
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
-  ADD PRIMARY KEY (`DepartmentID`);
+  ADD PRIMARY KEY (`DepartmentID`),
+  ADD KEY `departmentHeadID` (`HeadID`);
 
 --
 -- Indexes for table `departmentheaduser`
 --
 ALTER TABLE `departmentheaduser`
   ADD PRIMARY KEY (`HeadID`),
-  ADD KEY `departmentheaduser_ibfk_1` (`DepartmentID`),
   ADD KEY `departmentheaduser_ibfk_2` (`UserID`);
 
 --
@@ -820,7 +838,7 @@ ALTER TABLE `depreciation`
 -- AUTO_INCREMENT for table `employeeuser`
 --
 ALTER TABLE `employeeuser`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `notification`
@@ -838,7 +856,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `technicianuser`
 --
 ALTER TABLE `technicianuser`
-  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `TechnicianID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `technicianuserspec`
@@ -856,7 +874,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables
@@ -904,11 +922,16 @@ ALTER TABLE `breakdown`
   ADD CONSTRAINT `bemp_fk` FOREIGN KEY (`EmployeeID`) REFERENCES `employeeuser` (`EmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `department`
+--
+ALTER TABLE `department`
+  ADD CONSTRAINT `department_ibfk_1` FOREIGN KEY (`HeadID`) REFERENCES `departmentheaduser` (`HeadID`);
+
+--
 -- Constraints for table `departmentheaduser`
 --
 ALTER TABLE `departmentheaduser`
-  ADD CONSTRAINT `departmentheaduser_ibfk_1` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `departmentheaduser_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `departmentheaduser_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`);
 
 --
 -- Constraints for table `depreciation`

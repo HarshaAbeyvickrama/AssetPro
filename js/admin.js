@@ -280,7 +280,7 @@ document.getElementById("dName").value = department.Name;
 document.getElementById("dCon").value = department.ContactNum;
 document.getElementById("dDes").value = department.description;
 
-// ***************** technicians.php ***************** //
+// ***************** technicians_rem.php ***************** //
 
 //Load all the technicians
 function loadTechnicians() {
@@ -399,7 +399,7 @@ function loadDepartmentHeads() {
           departmenthead[i]["HeadID"]
         }</td>
             <td>${departmenthead[i]["Name"]}</td>
-            <td>${departmenthead[i]["ContactNum"]}</td>
+            <td>${departmenthead[i]["Gender"]}</td>
             <td>
               <button class='btn btn-submit ' id='view' onClick="loadDepartmentHead(${
                 departmenthead[i]["HeadID"]
@@ -411,3 +411,30 @@ function loadDepartmentHeads() {
   };
   xhr.send();
 }
+
+//Loading details of the department head
+function loadDepartmentHead(HeadID) {
+  var headDetails = null;
+  const xhr = new XMLHttpRequest();
+  xhr.open ("GET", `http://localhost/assetpro/departmentheads/getDepartmentHead/${HeadID}`, true);
+  xhr.onload = function() {
+    if(this.status == 200) {
+      headDetails = JSON.parse(this.responseText);
+      popup = document.querySelector(".popup-container");
+      popup.style.display = "grid";
+      loadSection("popup", "headprofile");
+      var json = JSON.stringify(headDetails);
+      document.cookie = `HeadDetails=${json}`;
+    }
+    console.log(headDetails);
+  };
+  xhr.send();
+}
+
+//Save department head function
+function saveDepartmentHead(departmenthead) {
+  postData("http://localhost/assetpro/departmentheads/addDepartmentHead", departmenthead, (data) => {
+    console.log(data);
+  });
+}
+

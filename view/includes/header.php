@@ -277,7 +277,6 @@ include_once("notification.php")
 
     // Handle all the clicks outside the dropdown
     document.addEventListener('click', (e) => {
-        console.log(e.target.id);
         // if(e.targer.id == 'userSection' || e.target.id == 'username'){
         //     showUserSection(true);
         // }
@@ -285,7 +284,6 @@ include_once("notification.php")
             showNotification(false);
         }
         if(e.target.id != 'userSectionMask'){
-            console.log('Not profile');
             showUserSection(false);
         }
     })
