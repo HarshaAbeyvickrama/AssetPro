@@ -90,8 +90,8 @@ class DepartmentHeadController extends DepartmentHead {
 
     //Getting all the assigned assets
     public function getDHAllAssignedAssets($uid) {
-        $result = $this-> getDHAssignedAssets($uid);
-        return json_encode($result->fetchAll());
+        // $result = $this-> getDHAssignedAssets($uid);
+        // return json_encode($result->fetchAll());
     }
 }
 
