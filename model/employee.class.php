@@ -174,7 +174,7 @@ class Employee extends DBConnection {
 
     //Updating employee details
     protected function update($EmployeeID) {
-
+        $sql = "UPDATE"
     }
 
     //Deleting an employee

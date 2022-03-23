@@ -164,6 +164,10 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'addDepartment':
                     $data = json_decode(file_get_contents('php://input'), true);
                     echo $dc->addDepartment($data);
+                    break;
+                case 'getDepartmentHeadList':
+                    echo $dc->getDepartmentHeadList();
+                    break;
             }
             break;
 

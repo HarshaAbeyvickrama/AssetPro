@@ -58,7 +58,7 @@ class DepartmentHead extends DBConnection
                 INNER JOIN departmentheaduser dhu ON
                     ud.UserID = dhu.UserID
                 INNER JOIN department d ON
-                    dhu.DepartmentID = d.DepartmentID
+                    dhu.HeadID = d.HeadID
                 ORDER BY
                     dhu.HeadID";
 
@@ -111,6 +111,7 @@ class DepartmentHead extends DBConnection
             $stmt = $DBConnection->prepare($addDepartmentHead);
             $stmt->bindParam(':userID', $null);
             $stmt->execute();
+            print_r('Hello1');
 
             $UserID = $DBConnection->lastInsertId();
 
@@ -131,14 +132,14 @@ class DepartmentHead extends DBConnection
             $stmt->bindParam(':jobTitle', $this->jobTitle);
 
             $stmt->execute();
+            print_r('Hello2');
 
             //Inserting into departmentheaduser table
-            $dheaduser = "INSERT INTO departmentheaduser VALUES (:HeadID, :userID, :departmentID)";
+            $dheaduser = "INSERT INTO departmentheaduser VALUES (:HeadID, :userID)";
             $stmt = $DBConnection->prepare($dheaduser);
 
             $stmt->bindParam(':HeadID', $null);
             $stmt->bindParam(':userID', $UserID);
-            $stmt->bindParam(':departmentID', $this->departmentID);
 
             $stmt->execute();
 
