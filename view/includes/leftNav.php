@@ -418,11 +418,10 @@
         const scripts = document.querySelectorAll(`.${sectionId}Script`);
         for (var n = 0; n < scripts.length; n++) {
             scripts[n].remove();
-
         }
     }
 
-    // seting the colored icon and text on the navigation on click
+    // setting the colored icon and text on the navigation on click
     function setFocus(id) {
         var components = document.getElementById("components").querySelectorAll(".component");
         components.forEach(item => {
