@@ -167,7 +167,7 @@
     const xhr = new XMLHttpRequest();
     xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
     xhr.onload = function (){
-        // console.log(this.response);
+        console.log(Hiii);
         if(this.status == 200){
             const result = JSON.parse(this.response);
             document.getElementById('fixedCount').innerHTML = result.fixedcount;
@@ -186,6 +186,20 @@
         }
     }
     xhr1.send();
+
+    //==============Getting All Intangible Assets assigned=================
+    const xhr1 = new XMLHttpRequest();
+    xhr1.open("GET",`http://localhost/assetpro/stats/consumableCount/${userID}`,true);
+    xhr1.onload = function (){
+        console.log(this.response);
+        if(this.status == 200){
+            const result1 = JSON.parse(this.response);
+            document.getElementById('consumableCount').innerHTML = result1.consumablecount;
+        }
+    }
+    xhr1.send();
+
+
 
 
 </script>
