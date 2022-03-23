@@ -94,4 +94,14 @@ class Stats extends DBConnection
         $stmt->execute([$id]);
         return $stmt;
     }
+
+    function getCountConsumables($id)
+    {
+        $dbConnection = $this->connect();
+        $sql='SELECT COUNT(CategoryID) AS consumablecount,CategoryID,assignedUser FROM asset WHERE CategoryID=2 AND assignedUser= ?';
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt;
+    }
+
 }

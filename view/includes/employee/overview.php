@@ -74,7 +74,7 @@
             <img src="../Images/icons/totalconsumables.png">
         </div>
         <div class="boxTitle">Total Consumables
-            <div class="boxCount">10</div></div>
+            <div class="boxCount" id="consumableCount"></div></div>
     </div>
 
     <!-- Box 2 -->
@@ -161,23 +161,33 @@
     echo 'var userID =' . $_SESSION['UserID'];
     ?>
 
-    <?php
-    echo 'var totaltangibles = 0';
 
-    ?>
-
-    console.log(userID);
+    // console.log(userID);
+    //==============Getting All Fixed Assets assigned=================
     const xhr = new XMLHttpRequest();
     xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
     xhr.onload = function (){
-        console.log(this.response);
+        // console.log(this.response);
         if(this.status == 200){
             const result = JSON.parse(this.response);
             document.getElementById('fixedCount').innerHTML = result.fixedcount;
-            totaltangibles = result.fixedcount;
         }
     }
     xhr.send();
+
+    //==============Getting All Consumable Assets assigned=================
+    const xhr1 = new XMLHttpRequest();
+    xhr1.open("GET",`http://localhost/assetpro/stats/consumableCount/${userID}`,true);
+    xhr1.onload = function (){
+        console.log(this.response);
+        if(this.status == 200){
+            const result1 = JSON.parse(this.response);
+            document.getElementById('consumableCount').innerHTML = result1.consumablecount;
+        }
+    }
+    xhr1.send();
+
+
 </script>
 
 

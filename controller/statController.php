@@ -28,6 +28,12 @@ class StatController extends Stats{
         $res = $stats->getCountFixed($id);
         return json_encode($res->fetch());
     }
+
+    function getCountAllConsumables($id){
+        $stats = new Stats();
+        $res = $stats->getCountConsumables($id);
+        return json_encode($res->fetch());
+    }
 }
 
 // $sc = new StatController();

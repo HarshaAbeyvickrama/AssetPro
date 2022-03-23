@@ -104,6 +104,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'fixedCount':
                     echo $vc->getCountAllFixed($url[2]);
                     break;
+                case 'consumableCount':
+                    echo $vc->getCountAllConsumables($url[2]);
+                    break;
             }
             break;
 
