@@ -96,7 +96,7 @@
             <img src="../Images/icons/intangibles.png">
         </div>
         <div class="boxTitle">Total Intangibles
-            <div class="boxCount">10</div></div>
+            <div class="boxCount" id="intangibleCount"></div></div>
     </div>
 
     <!-- Box 5 -->
@@ -167,7 +167,6 @@
     const xhr = new XMLHttpRequest();
     xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
     xhr.onload = function (){
-        console.log(Hiii);
         if(this.status == 200){
             const result = JSON.parse(this.response);
             document.getElementById('fixedCount').innerHTML = result.fixedcount;
@@ -188,16 +187,15 @@
     xhr1.send();
 
     //==============Getting All Intangible Assets assigned=================
-    const xhr1 = new XMLHttpRequest();
-    xhr1.open("GET",`http://localhost/assetpro/stats/consumableCount/${userID}`,true);
-    xhr1.onload = function (){
-        console.log(this.response);
+    const xhr2 = new XMLHttpRequest();
+    xhr2.open("GET",`http://localhost/assetpro/stats/intangibleCount/${userID}`,true);
+    xhr2.onload = function (){
         if(this.status == 200){
-            const result1 = JSON.parse(this.response);
-            document.getElementById('consumableCount').innerHTML = result1.consumablecount;
+            const result2 = JSON.parse(this.response);
+            document.getElementById('intangibleCount').innerHTML = result2.intangiblecount;
         }
     }
-    xhr1.send();
+    xhr2.send();
 
 
 

@@ -104,4 +104,13 @@ class Stats extends DBConnection
         return $stmt;
     }
 
+    function getCountIntangibles($id)
+    {
+        $dbConnection = $this->connect();
+        $sql='SELECT COUNT(CategoryID) AS intangiblecount,CategoryID,assignedUser FROM asset WHERE CategoryID=3 AND assignedUser= ?';
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt;
+    }
+
 }

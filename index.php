@@ -107,6 +107,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'consumableCount':
                     echo $vc->getCountAllConsumables($url[2]);
                     break;
+                case 'intangibleCount':
+                    echo $vc->getCountAllIntangibles($url[2]);
+                    break;
             }
             break;
 
