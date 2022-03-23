@@ -6,21 +6,17 @@ class Department extends DBConnection
     private $DBConnection;
 
     private $DepartmentCode;
-    private $HeadID;
     private $Name;
-    // private $dhead;
     private $description;
     private $ContactNum;
     private $DateCreated;
     private $LastModified;
 
-    public function __construct($DepartmentCode, $HeadID, $Name, $description, $ContactNum, $DateCreated, $LastModified)
+    public function __construct($DepartmentCode, $Name, $description, $ContactNum, $DateCreated, $LastModified)
     {
         $this->DBConnection = $this->connect();
         $this->DepartmentCode = $DepartmentCode;
-        $this->HeadID = $HeadID;
         $this->Name = $Name;
-        // $this->dhead = $dhead;
         $this->description = $description;
         $this->ContactNum = $ContactNum;
         $this->DateCreated = $DateCreated;
@@ -86,12 +82,11 @@ class Department extends DBConnection
 
             $null = null;
             //Inserting into the department table
-            $addDepartment = "INSERT INTO department VALUES (:DepartmentID, :DepartmentCode, :Name, :description, :ContactNum, :DateCreated, :LastModified)";
+            $addDepartment = "INSERT INTO department VALUES (:DepartmentID, 'Unassigned',  :DepartmentCode, :Name, :description, :ContactNum, :DateCreated, :LastModified)";
             $stmt = $DBConnection->prepare($addDepartment);
             $stmt->bindParam(':DepartmentID', $DepartmentID);
             $stmt->bindParam(':DepartmentCode', $this->DepartmentCode);
             $stmt->bindParam(':Name', $this->Name);
-            // $stmt->bindParam(':HeadID', $null);
             $stmt->bindParam(':ContactNum', $this->ContactNum);
             $stmt->bindParam(':description', $this->description);
             $stmt->bindParam(':DateCreated', $this->DateCreated);

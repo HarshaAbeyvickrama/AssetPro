@@ -32,7 +32,6 @@ class DepartmentController extends Department {
 
         $newDepartment = new Department(
             DepartmentCode:$department['dCode'],
-            HeadID:$HeadID,
             Name:$department['dName'],
             description:$department['dDes'],
             ContactNum:$department['dCon'],
