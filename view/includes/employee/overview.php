@@ -156,25 +156,32 @@
         document.getElementById('assetCategoriesChart'),
         config
     );
-</script>
 
-<script>
     <?php
-        echo 'var userID =' . $_SESSION['UserID'];
+    echo 'var userID =' . $_SESSION['UserID'];
     ?>
-    window.addEventListener('load', loadCountFixed(userID));
-</script>
 
-<script>
-    function loadCountFixed(userID){
-        const xhr = new XMLHttpRequestEventTarget();
-        xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
-        xhr.onload = function (){
-            if(this.status == 200){
-                var fixedCount = JSON.parse(this.response);
-                console.log(fixedCount);
-                document.getElementById('assetCategoriesChart').innerHTML = fixedCount;
+    <?php
+    echo 'var totaltangibles = 0';
+
+    ?>
+
+    console.log(userID);
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
+    xhr.onload = function (){
+        console.log(this.response);
+        if(this.status == 200){
+            const result = JSON.parse(this.response);
+            document.getElementById('fixedCount').innerHTML = result.fixedcount;
+            totaltangibles = result.fixedcount;
         }
     }
+    xhr.send();
 </script>
+
+
+
+
+
 

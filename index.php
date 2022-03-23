@@ -102,7 +102,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $vc->getAllStats();
                     break;
                 case 'fixedCount':
-                    echo $vc->getCountAllFixed();
+                    echo $vc->getCountAllFixed($url[2]);
                     break;
             }
             break;

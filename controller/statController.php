@@ -26,7 +26,7 @@ class StatController extends Stats{
     function getCountAllFixed($id){
         $stats = new Stats();
         $res = $stats->getCountFixed($id);
-        return json_encode($res->fetchAll());
+        return json_encode($res->fetch());
     }
 }
 
