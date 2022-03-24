@@ -168,7 +168,7 @@
                         <th>Department ID</th>
                         <th>Department Name</th>
                         <th>Contact Number</th>
-                        <th>View</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody class="tableRowGroup" id="departmentTableBody"></tbody>

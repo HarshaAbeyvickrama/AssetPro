@@ -52,7 +52,7 @@
                     <th>Department Head ID</th>
                     <th>Name</th>
                     <th>Gender</th>
-                    <th>View</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody class="tableRowGroup" id="headTableBody"></tbody>
