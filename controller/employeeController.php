@@ -66,9 +66,17 @@ class EmployeeController extends Employee {
         return json_encode($result);
     }
 
+    //Find user by ID
+    // public function findUser($id) {
+    //     $result = $this->get($id);
+    //     return json_encode($result->fetch());
+    // }
+
     //Updating employee details
     public function updateEmployee($id) {
-        
+        // $result = $this->findUserById($id);
+        // return json_encode($result->fetch());
+
     }
 
     //Deleting an employee

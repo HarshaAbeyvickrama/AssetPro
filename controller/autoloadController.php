@@ -4,7 +4,7 @@ spl_autoload_register('classLoader');
 
 function classLoader($className){
 
-    if (strpos($className, 'Controller') !== false) {
+    if (str_contains($className, 'Controller')) {
         $ext = ".php";
         $path = './controller/';
     } else {

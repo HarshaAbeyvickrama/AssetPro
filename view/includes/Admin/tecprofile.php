@@ -252,7 +252,7 @@
 
                     <div class="col-f">
                         <span for="tecID"> Technician ID: </span>
-                        <input type="text" name="tecID" id="tecID">
+                        <input type="text" name="tecID" id="tecID" readonly="readonly">
                     </div>
 
                     <div class="col-h">
