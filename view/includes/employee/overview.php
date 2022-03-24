@@ -157,48 +157,21 @@
     echo 'var allTangibles = 0' ;
     ?>
 
-
-    // console.log(userID);
-    //==============Getting countOf All Fixed Assets assigned=================
     const xhr = new XMLHttpRequest();
-    xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
+    xhr.open("GET",`http://localhost/assetpro/stats/assetsCount/${userID}`,true);
     xhr.onload = function (){
         if(this.status == 200){
+            console.log(this.response);
             const result = JSON.parse(this.response);
-            document.getElementById('fixedCount').innerHTML = result.fixedcount;
-            allTangibles = parseInt(result.fixedcount);
+            document.getElementById('fixedCount').innerHTML = result.totalfixed;
+            document.getElementById('consumableCount').innerHTML = result.totalconsumables;
+            document.getElementById('intangibleCount').innerHTML = result.totalintangibles;
+            allTangibles = parseInt(result.totalfixed) + parseInt(result.totalconsumables);
+            console.log(allTangibles);
+            document.getElementById('tangibleCount').innerHTML =   allTangibles ;
         }
     }
     xhr.send();
-
-
-    //==============Getting countOf All Consumable Assets assigned=================
-    const xhr1 = new XMLHttpRequest();
-    xhr1.open("GET",`http://localhost/assetpro/stats/consumableCount/${userID}`,true);
-    xhr1.onload = function (){
-        // console.log(this.response);
-        if(this.status == 200){
-            const result1 = JSON.parse(this.response);
-            document.getElementById('consumableCount').innerHTML = result1.consumablecount;
-            allTangibles = allTangibles + parseInt(result1.consumablecount);
-        }
-        document.getElementById('tangibleCount').innerHTML = allTangibles;
-    }
-    xhr1.send();
-
-
-
-    //==============Getting countOf All Intangible Assets assigned=================
-    const xhr2 = new XMLHttpRequest();
-    xhr2.open("GET",`http://localhost/assetpro/stats/intangibleCount/${userID}`,true);
-    xhr2.onload = function (){
-        if(this.status == 200){
-            const result2 = JSON.parse(this.response);
-            document.getElementById('intangibleCount').innerHTML = result2.intangiblecount;
-        }
-    }
-    xhr2.send();
-
 
 </script>
 
