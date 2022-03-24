@@ -110,7 +110,8 @@
         background-color: #5C6E9B;
     }
 
-    .col-f input[type=text], input[type=number] {
+    .col-f input[type=text],
+    input[type=number] {
         justify-content: center;
         align-items: center;
         width: calc(100% - 50px);
@@ -218,6 +219,11 @@
                 <div class="basic-information">
                     <div class="title">Basic Information:</div>
 
+                    <div class="col-f">
+                        <span for="depID">Department ID</span>
+                        <input name="depID" id="depID">
+                    </div>
+
                     <div class="col-h">
                         <span for="fName">First Name</span>
                         <input type="text" name="fName" id="fName">
@@ -251,12 +257,8 @@
                     <input type="date" name="dob" id="dob">
                 </div>
                 <div class="col-f">
-                    <span>Marital Status</span>
-                    <select name="maritalStatus" id="maritalStatus">
-                        <option value="Married">Married</option>
-                        <option value="Unmarried">Single</option>
-                        <option value="Widowed">Widowed</option>
-                    </select>
+                    <span for="jobTitle"> Job Title: </span>
+                    <input type="text" name="jobTitle" id="jobTitle">
                 </div>
                 <div class="col-f">
                     <span for="address">Address</span>
@@ -298,7 +300,8 @@
 
 </form>
 
-<!-- <script>
+<script>
+
     document.querySelectorAll(".col-btn").forEach(button => {
         const cancBtn = document.getElementById('cancelAddTechnician');
         const saveBtn = document.getElementById("btnSaveTechnician");
@@ -309,9 +312,22 @@
 
                     break;
                 case 'btnSaveTechnician':
-                    const technician = getFormdata();
-                    saveTechnician(technician);
-                    console.log(technician);
+                    const technician = getFormdata("addTechnicianForm");
+                    var image = document.getElementById('profileImage').files[0];
+                    if(image) {
+                        var formData = new FormData();
+                        formData.append('image', image);
+                        postFiles('http://localhost/assetpro/technicians/addImage', formData, (data) => {
+                            if(data.status == 'success') {
+                                console.log(data);
+                                technician.image = data.imageUrl;
+                                console.log(technician);
+                                saveTechnician(technician);
+                            }
+                        })
+                    } else {
+                        console.log("Image not Found!");
+                    }
                     break;
 
                 default:
@@ -323,38 +339,45 @@
     //getting the form data
 
     function getFormdata() {
-        return new FormData(document.getElementById('addTechnicianForm'));
+        form = new FormData(document.getElementById('addTechnicianForm'));
+        var technician = {};
+        for (var pair of form.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+            technician[pair[0]] = pair[1];
+        }
+        return technician;
     }
 
-    //Getting the image preview
-    var imageUpload = document.getElementById('profileImage');
-    imageUpload.addEventListener('change', () => {
-        const image = imageUpload.files[0];
-        if (image) {
-            var src = URL.createObjectURL(image);
-            document.getElementById('imagePreview').src = src;
-        }
+    // //Getting the image preview
+    // var imageUpload = document.getElementById('profileImage');
+    // imageUpload.addEventListener('change', () => {
+    //     const image = imageUpload.files[0];
+    //     if (image) {
+    //         var src = URL.createObjectURL(image);
+    //         document.getElementById('imagePreview').src = src;
+    //     }
 
-    });
+    // });
 
     //Saving the technician function
     //Saving technician details through AJAX
 
-    function saveTechnician(technician) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../model/Technician.php?action=addTechnician", true);
+    // function saveTechnician(technician) {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("POST", "../model/Technician.php?action=addTechnician", true);
 
-        xhr.onload = function() {
-            if (this.status === 200) {
-                console.log(this.responseText);
-                alert("Successfully added to the system!");
-            }
-        }
-        xhr.send(technician);
-    }
+    //     xhr.onload = function() {
+    //         if (this.status === 200) {
+    //             console.log(this.responseText);
+    //             alert("Successfully added to the system!");
+    //         }
+    //     }
+    //     xhr.send(technician);
+    // }
 
     //Function to go back
     function goBack() {
         loadSection('centerSection', 'technicians');
     }
-</script> -->
+
+</script>

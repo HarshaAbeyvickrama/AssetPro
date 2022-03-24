@@ -82,12 +82,37 @@
         padding: 8px 15px 8px 15px;
     }
 
-    .col-h {
+    .col-h input[type=text] {
+        justify-content: center;
+        align-items: center;
+        width: calc(94% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 15px;
+        border-radius: 9px;
+        padding: 8px 15px 8px 15px;
+        outline: none;
+    }
+    .col-h,
+    .col-f>span {
         display: block;
+    }
+    select {
+        justify-content: center;
+        align-items: center;
+        width: 97%;
+        border: none;
+        background-color: #F1F4FF;
+        height: 37px;
+        border-radius: 9px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 8px 15px 8px 15px;
+        outline: none;
     }
 
     #dDes {
-        height: 80px;
+        height: 100px;
     }
 
     span {
@@ -102,13 +127,17 @@
         border-radius: 20px;
         cursor: pointer;
         color: #F1F4FF;
-        margin-left: 95vh;
+        /* margin-left: 95vh; */
     }
 
     .addBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
+    }
+    .add-btn {
+        display: flex;
+        justify-content: end;
     }
 
     .close {
@@ -126,7 +155,7 @@
     <div>
         <!-- <div>All Departments</div> -->
         <div class="addDep">
-            <button id="addDep">Add Department</button>
+            <button id="addDep">Insert</button>
         </div>
     </div>
 
@@ -151,7 +180,7 @@
 <!-- Add Department pop-up form -->
 <div class="bg-popup" id="closeForm">
     <div class="popup-content" id="popup-content">
-        <div class="close" id="cancelAddTechnician">+</div>
+        <div class="close" id="cancelAddDepartment">+</div>
         <h3 class="depInfo">Department Information</h3>
         <form action="" id="addDepartmentForm">
             <div class="col-f">
@@ -160,8 +189,12 @@
             </div>
             <div class="col-f">
                 <span for="dName" id="fieldName">Department Name</span>
-                <input type="text" name="dName" id="dName" required />
+                <input type="text" name="dName" id="dName" required >
             </div>
+            <!-- <div class="col-f">
+                <span for="dhName">Department Head</span>
+                <select class="dhName" type="text" name="dhName" id="dhName" required ></select>
+            </div> -->
             <div class="col-f">
                 <span for="dCon" id="fieldName">Contact Number</span>
                 <input type="text" name="dCon" id="dCon" required />
@@ -170,7 +203,7 @@
                 <span for="dDes" id="fieldName">Description</span>
                 <textarea type="text" name="dDes" id="dDes"></textarea>
             </div>
-            <div class="col-btn">
+            <div class="col-btn add-btn">
                 <button class="addBtn" id="btnSaveDepartment" type="submit">Add</button>
             </div>
         </form>
@@ -186,6 +219,7 @@
     document.getElementById('addDep').addEventListener('click',
         function popForm() {
             document.querySelector('.bg-popup').style.display = 'flex';
+            getDepartmentHeads();
         });
 
     // function popForm() {
@@ -198,65 +232,96 @@
         });
 
     //close form function
-    // function closeForm(formID) {
-    //     document.getElementById('closeForm').style.display = 'none';
-    // }
+    function closeForm(formID) {
+        document.getElementById('closeForm').style.display = 'none';
+    }
 
     // Getting the form data
-    // document.querySelectorAll(".col-btn").forEach(button => {
-    //     // const cancBtn = document.getElementById('cancelAddDepartment');
-    //     const saveBtn = document.getElementById("btnSaveDepartment");
-    //     button.addEventListener('click', function(event) {
-    //         event.preventDefault();
-    //         switch (event.target.id) {
-    //             case 'cancelAddDepartment':
+    document.querySelectorAll(".col-btn").forEach(button => {
+        // const cancBtn = document.getElementById('cancelAddDepartment');
+        const saveBtn = document.getElementById("btnSaveDepartment");
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            switch (event.target.id) {
+                case 'cancelAddDepartment':
 
-    //                 break;
-    //             case 'btnSaveDepartment':
-    //                 const department = getFormdata();
-    //                 // saveDepartment(department);
-    //                 var isEmpty = false;
-    //                 for (var pair of department.entries()) {
-    //                     // console.log(pair[0] + ': ' + pair[1]);
-    //                     if (pair[1] == '') {
-    //                         isEmpty = true;
-    //                     }
-    //                 }
-    //                 if (!isEmpty) {
-    //                     saveDepartment(department);
-    //                 } else {
-    //                     alert('Fill the form!');
-    //                 }
+                    break;
+                case 'btnSaveDepartment':
+                    const department = getFormdata("addDepartmentForm");
 
-    //                 break;
+                    if(department == null) {
+                        alert("Fields Cannot be Empty!");
+                    } else {
+                        saveDepartment(department);
+                    }
+                    break;
 
-    //             default:
-    //                 break;
-    //         }
-    //     })
-    // })
+                    default:
+                        break;
+                }
+
+                    // saveDepartment(department);
+                    // var isEmpty = false;
+                    // for (var pair of department.entries()) {
+                    //     // console.log(pair[0] + ': ' + pair[1]);
+                    //     if (pair[1] == '') {
+                    //         isEmpty = true;
+                    //     }
+                    // }
+                    // if (!isEmpty) {
+                    //     saveDepartment(department);
+                    // } else {
+                    //     alert('Fill the form!');
+                    // }
+
+                //     break;
+
+                // default:
+                //     break;
+            // }
+        })
+    })
 
     //getting the form data
 
-    // function getFormdata() {
-    //     return new FormData(document.getElementById('addDepartmentForm'));
-    // }
+    function getFormdata() {
+        form = new FormData(document.getElementById('addDepartmentForm'));
+        var department = {}
+        for(var pair of form.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+            department[pair[0]] = pair[1];
+        }
+        return department;
+    }
 
     //Saving the department function
     //Saving department details through AJAX
 
-    // function saveDepartment(department) {
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open("POST", "../model/Department.php?action=addDepartment", true);
+    function saveDepartment(department) {
+        postData("http://localhost/assetpro/departments/addDepartment", department, (data) => {
+            console.log(data);
+        });
+    }
 
-    //     xhr.onload = function() {
-    //         if (this.status === 200) {
-    //             alert(this.responseText);
+    //Getting the department heads list
+    function getDepartmentHeads() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost/assetpro/departments/getDepartmentHeadList", true);
+        xhr.onload = function() {
+            if(this.status == 200) {
+                var departmentHeads = JSON.parse(this.responseText);
+                var select = document.getElementById('dhName');
 
-    //         }
-    //     }
-    //     xhr.send(department);
-    // }
+                for(var i = 0; i <departmentHeads.length; i++) {
+                    console.log(departmentHeads[i]);
+                    var option = `<option value=${departmentHeads[i].HeadID}>${departmentHeads[i].Name}</option>`;
+                    select.innerHTML += option;
+                }
+            }
+        }
+        xhr.send();
+    }
+    
 
 
     //Viewing the deaprtment details

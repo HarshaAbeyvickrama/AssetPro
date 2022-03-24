@@ -16,7 +16,7 @@
         border-radius: 15px;
     }
 
-    .profile>div {
+    .profile > div {
         background-color: white;
         border-radius: 10px;
 
@@ -43,12 +43,12 @@
     }
 
 
-    .leftSection>div {
+    .leftSection > div {
         /* height: 100%; */
         /* width: 100%; */
     }
 
-    .profileImageSection>img {
+    .profileImageSection > img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
@@ -69,7 +69,7 @@
     }
 
     #uploadBtn {
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         width: 150px;
@@ -128,19 +128,17 @@
     }
 
     .col-btn {
-        position: absolute;
-        bottom: 0;
-        right: 0 !important;
+        position: relative !important;
         text-align: center;
-        width: 40vw;
-        /* align-items: center; */
-        /* margin: 10px 0px; */
-        border: 1px solid red;
-        background-color: white;
+        width: auto !important;
+        /*border: 1px solid red;*/
+        background-color: transparent;
+        padding: 10px;
+        margin: 10px 15px 15px 15px !important;
 
     }
 
-    .col-btn>div {
+    .col-btn > div {
         border-radius: 15px;
         padding: 10px 20px;
         color: white;
@@ -190,7 +188,7 @@
     }
 
     .col-h,
-    .col-f>span {
+    .col-f > span {
         display: block;
         margin-top: 5px;
     }
@@ -199,15 +197,15 @@
         margin: 5px 0px;
     }
 
-    .radio-group>label {
+    .radio-group > label {
         margin-left: 5px;
     }
 
-    .radio-group>input[type=radio]:hover {
+    .radio-group > input[type=radio]:hover {
         cursor: pointer;
     }
 
-    .col-btn>div:hover {
+    .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
@@ -220,16 +218,16 @@
         overflow-x: hidden;
     }
 
-    #pRight>div {
+    #pRight > div {
         background-color: white;
         border-radius: 10px;
     }
 
-    #pRight>div:nth-child(1) {
+    #pRight > div:nth-child(1) {
         margin: 15px 10px 5px 5px;
     }
 
-    #pRight>div:nth-child(2) {
+    #pRight > div:nth-child(2) {
         margin: 5px 15px 10px 5px;
     }
 
@@ -242,50 +240,23 @@
     }
 </style>
 <script>
+    // ViewAsset.php
     // Event listener to chande asset Types
     var categorySelect = document.getElementById('category');
-    categorySelect.addEventListener('change', function(event) {
+    categorySelect.addEventListener('change', function (event) {
         setTypes(categorySelect.value);
     })
 
     // Get categories and types
     var categories = null;
-
-    getCatogories().then(res => {
-        categories = res;
-        setCats();
-    })
+    loadCategories();
 
     // Load asset details
     var assetID = getCookieValue('assetID');
-    console.log("Aset id is : " + assetID);
     // getAsset(assetID)
 
-    // Function to set categories
-    getData(`http://localhost/assetpro/asset/getAsset/${assetID}`, populateData);
-
-    function setCats() {
-        var select = document.getElementById("category");
-        categories.forEach(category => {
-            var option = `<option value=${category.categoryID}>${category.categoryName}</option>`;
-            select.innerHTML += option;
-        });
-        setTypes(categories[0].categoryID);
-    }
-
-    function setTypes(id) {
-        var select = document.getElementById("assetType");
-        categories.forEach(category => {
-            if (category.categoryID == id) {
-                select.innerHTML = '';
-                category.types.forEach(type => {
-                    var option = `<option value=${type.typeID}>${type.name}</option>`;
-                    select.innerHTML += option;
-                })
-            }
-        });
-    }
-
+    // Function to get assetDetrails
+    getData(`http://localhost/assetpro/asset/get/${assetID}`, populateData);
 
 
     // Enable / Disable the form fields
@@ -301,12 +272,12 @@
             var src = URL.createObjectURL(image);
             document.getElementById('imagePreview').src = src;
         }
-
     })
 
     function formState(id, state) {
         document.getElementById(id).disabled = state;
     }
+
     sectionState('addAssetForm', true)
 
     function sectionState(sectionID, state) {
@@ -316,50 +287,23 @@
         })
     }
 
-    // formState("userProfileForm",true);
 
-    document.querySelectorAll(".col-btn").forEach(button => {
-        const cancelBtn = document.getElementById("cancelAddAsset");
-        const saveBtn = document.getElementById("btnSaveAsset");
-        button.addEventListener('click', function(event) {
-            switch (event.target.id) {
-                case 'cancelAddAsset':
-                    setFocus('assets');
-                    loadSection("centerSection", 'assets');
-                    break;
-                case 'btnSaveAsset':
-                    const asset = getFormdata();
-                    // for (var pair of asset.entries()) {
-                    //     console.log(pair[1].name);
-                    //     break;
-                    // }
-                    saveAsset(asset);
-
-                    break;
-
-                default:
-                    break;
-            }
-
-
-        })
-    })
     // formState(true);
     var depriciation = element('depriciation');
-    depriciation.addEventListener('change', function() {
+    depriciation.addEventListener('change', function () {
         formState('depriciationMethod', !depriciation.checked);
         formState('depriciaionRate', !depriciation.checked);
         formState('residualValue', !depriciation.checked);
         formState('usefulYears', !depriciation.checked);
     })
     var warrenty = element('warrenty');
-    warrenty.addEventListener('change', function() {
+    warrenty.addEventListener('change', function () {
         formState('fromDate', !warrenty.checked);
         formState('toDate', !warrenty.checked);
         formState('otherInfo', !warrenty.checked);
     })
 
-    document.getElementById('image').addEventListener('change', function(e) {
+    document.getElementById('image').addEventListener('change', function (e) {
         // console.log(e.target.files[0].value)
     })
 
@@ -371,49 +315,8 @@
     }
 
 
-    //Save asset function ----->  Saving asset details through AJAX
-
-    function saveAsset(asset) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../model/Asset.php?action=addAsset", true);
-
-        xhr.onload = function() {
-            if (this.status === 200) {
-                alert(this.responseText);
-            }
-        }
-        xhr.send(asset);
-    }
-
-    async function getCatogories() {
-        return new Promise(function(resolve, reject) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "../model/Asset.php?action=getCats", true);
-            xhr.onload = function() {
-                if (this.status === 200) {
-                    var cats = JSON.parse(this.responseText);
-                    // console.log(cats);
-                    resolve(cats);
-                }
-            }
-            xhr.send();
-        });
-    }
-
-
     // Get asset Details
     function populateData(asset) {
-        // const xhr = new XMLHttpRequest();
-        // xhr.open("GET",`../model/Asset.php?action=getAsset&id=${assetID}`,true);
-        // xhr.onload = function(){
-        //     if(this.status === 200){
-        //         var asset = JSON.parse(this.responseText);
-
-
-        //     }
-        // }
-        // xhr.send();
-        console.log(asset);
         element('assetID').value = `${asset.CategoryCode}/${asset.TypeCode}/${asset.AssetID}`;
         element('imagePreview').src = `../${asset.ImageURL}`;
         element('assetName').value = asset.Name;
@@ -443,6 +346,29 @@
     function element(id) {
         return document.getElementById(id);
     }
+
+    //Set the isEditing State
+    function setISEditing(state) {
+        if (state) {
+            document.getElementById("uploadBtn").style.display = 'flex';
+            document.getElementById("btnUpdateAsset").style.display = 'block';
+            document.getElementById("cancelEditAsset").style.display = 'block';
+            document.getElementById("btnEditAsset").style.display = 'none';
+        }else {
+            document.getElementById("uploadBtn").style.display = 'none';
+            document.getElementById("btnUpdateAsset").style.display = 'none';
+            document.getElementById("cancelEditAsset").style.display = 'none';
+            document.getElementById("btnEditAsset").style.display = 'block';
+        }
+    }
+
+    //On window load
+    window.addEventListener('load', setISEditing(false));
+
+    //button event listeners
+    document.getElementById('cancelEditAsset').addEventListener('click' , setISEditing(false));
+
+
 </script>
 
 <form action="" id="addAssetForm">
@@ -458,11 +384,6 @@
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
 
-                    <!-- <div class="col-f">
-                        <span for="assetId">Asset ID</span>
-                        <input type="text" name="assetId" id="assetId">
-                    </div>
-                     -->
                     <div class="col-f">
                         <span for="assetName">Asset ID</span>
                         <input type="text" name="assetID" id="assetID">
@@ -495,12 +416,6 @@
                             <option value="Used">Used</option>
                         </select>
                     </div>
-
-                    <!-- <div class="col-btn">
-                        <div id="btnSaveAsset">Save</div>
-                        <div id="cancelAddAsset">Cancel</div>
-                    </div> -->
-
                 </div>
             </div>
         </div>
@@ -517,11 +432,13 @@
                         <input type="number" name="purchaseCost" id="purchaseCost">
                     </div>
 
-                    <div class="title" for="warrenty">Warrenty <input type="checkbox" name="warrenty" id="warrenty"></div>
+                    <div class="title" for="warrenty">Warrenty <input type="checkbox" name="warrenty" id="warrenty">
+                    </div>
 
                     <div class="col-f">
                         <span for="warrentyPeriod">Warrenty Period</span>
-                        <label for="fromDate">From</label><input class="shortInput" type="date" name="fromDate" id="fromDate">
+                        <label for="fromDate">From</label><input class="shortInput" type="date" name="fromDate"
+                                                                 id="fromDate">
                         <label for="toDate">To</label><input class="shortInput" type="date" name="toDate" id="toDate">
                     </div>
                     <div class="col-f">
@@ -534,7 +451,8 @@
 
             <div id="depriciationSection">
                 <div class="basic-information">
-                    <div class="title" for="depriciation">Depriciation <input type="checkbox" name="depriciation" id="depriciation"></div>
+                    <div class="title" for="depriciation">Depriciation <input type="checkbox" name="depriciation"
+                                                                              id="depriciation"></div>
                     <div class="col-f">
                         <span for="depriciationMethod">Depriciation Method</span>
                         <select name="depriciationMethod" id="depriciationMethod">
@@ -555,7 +473,11 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-btn">
+                <div id="btnEditAsset" onclick="setISEditing(true)">Edit</div>
+                <div id="btnUpdateAsset">Update</div>
+                <div id="cancelEditAsset">Cancel</div>
+            </div>
         </div>
 
     </div>

@@ -17,18 +17,30 @@ class DepartmentController extends Department {
         $result = $this->get($id);
         return json_encode($result->fetchAll());
     }
+
+    //Getting the department head list
+    public function getDepartmentHeadList() {
+        $result = $this->getHeadList();
+        return json_encode($result->fetchAll());
+    }
     
     //Adding a department
-    public function addDepartment($departmentCode, $Name, $ContactNum, $description, $DateCreated, $LastModified) {
+    public function addDepartment($department) {
+        $DateCreated = date("Y-m-d H:i:s");
+        $LastModified = date("Y-m-d H:i:s");
+        $HeadID = null;
+
         $newDepartment = new Department(
-            departmentCode:$departmentCode,
-            Name:$Name,
-            description:$description,
-            ContactNum:$ContactNum,
+            DepartmentCode:$department['dCode'],
+            Name:$department['dName'],
+            description:$department['dDes'],
+            ContactNum:$department['dCon'],
             DateCreated:$DateCreated,
             LastModified:$LastModified);
 
         $result = $newDepartment->add();
+        unset($newDepartment);
+
         return json_encode($result);
     }
 

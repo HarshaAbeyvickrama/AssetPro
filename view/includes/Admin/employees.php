@@ -40,7 +40,7 @@
     </div> -->
     <div class="heading">
         <!-- <div>All Employees</div> -->
-        <div class="addEmp"><button id="addEmp">Add Employee</button></div>
+        <div class="addEmp"><button id="addEmp">Insert</button></div>
     </div>
 
     <div class="contentSection">
@@ -75,15 +75,15 @@
 
     });
 
-    //Viewing the employee details
-    var viewEmployeeBtn = document.querySelectorAll('#view');
-    for (var i = 0; i < viewEmployeeBtn.length; i++) {
-        viewEmployeeBtn[i].addEventListener('click', function() {
-            loadDepartment(event.target.parentElement.id);
-            // console.log(event.target.parentElement.id);
+    // //Viewing the employee details
+    // var viewEmployeeBtn = document.querySelectorAll('#view');
+    // for (var i = 0; i < viewEmployeeBtn.length; i++) {
+    //     viewEmployeeBtn[i].addEventListener('click', function() {
+    //         loadDepartment(event.target.parentElement.id);
+    //         // console.log(event.target.parentElement.id);
 
-        });
-    }
+    //     });
+    // }
 
     //Loading details of the selected department
     // function loadDepartment(EmployeeID) {

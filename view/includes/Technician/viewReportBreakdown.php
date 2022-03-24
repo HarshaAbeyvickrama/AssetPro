@@ -289,12 +289,15 @@
                     <textarea class="textarea" cols="" rows="" id="exDef"></textarea>
                 </div>
 
-               
                 <div class="col-btn">
                     <div class="commenceBtn btnAction" id="commence"> Commence </div>
                     <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>     
                 </div>
 
+                <div class="col-btn">
+                    <div class="commenceBtn btnAction" id="commence"> Commence </div>
+                    <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>     
+                </div>
             </div>
         </div>
     </div>

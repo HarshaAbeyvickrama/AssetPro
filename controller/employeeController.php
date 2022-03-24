@@ -20,24 +20,48 @@ class EmployeeController extends Employee {
         return json_encode($result->fetch());
     }
 
+    //Getting the image
+    public function addImage($image){
+        $extension = pathinfo($image['image']['name'], PATHINFO_EXTENSION);
+        $fileUrl = '/uploads/employees/' . uniqid() . '.' . $extension;
+        $url = $_SERVER['DOCUMENT_ROOT'] . '/assetpro' . $fileUrl;
+        $imageSaved = move_uploaded_file($image['image']['tmp_name'],  $url);
+
+        if ($imageSaved) {
+            $result = array(
+                'status' => 'success',
+                'message' => 'Image uploaded successfully',
+                'imageUrl' => $fileUrl
+            );
+        }else{
+            $result = array(
+                'status' => 'error',
+                'message' => 'Image upload failed'
+            );
+        }
+        return json_encode($result);
+    }
+
     //Adding an employee
-    public function addEmployee($firstName, $lastName, $NIC, $address, $gender, $contactNo, $email, $dob, $departmentID, $maritalStatus, $eName, $eRelationship, $eContact) {
+    public function addEmployee($employee) { 
         $newEmployee = new Employee (
-            firstName:$firstName,
-            lastName:$lastName,
-            NIC:$NIC,
-            address:$address,
-            gender:$gender,
-            contactNo:$contactNo,
-            email:$email,
-            dob:$dob,
-            departmentID:$departmentID,
-            maritalStatus:$maritalStatus,
-            eName:$eName,
-            eRelationship:$eRelationship,
-            eContact:$eContact);
+            fileUrl:$employee['image'],
+            firstName:$employee['fName'],
+            lastName:$employee['lName'],
+            NIC:$employee['NIC'],
+            address:$employee['address'],
+            gender:$employee['gender'],
+            contactNo:$employee['contactNo'],
+            email:$employee['email'],
+            dob:$employee['dob'],
+            departmentID:$employee['depID'],
+            jobTitle:$employee['jobTitle'],
+            eName:$employee['eName'],
+            eRelationship:$employee['eRelationship'],
+            eContact:$employee['econtact']);
         
         $result = $newEmployee->add();
+        unset($newEmployee);
 
         return json_encode($result);
     }

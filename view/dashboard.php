@@ -2,7 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+define('URLROOT','http://localhost/assetpro/');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

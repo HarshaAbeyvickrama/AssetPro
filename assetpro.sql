@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2022 at 07:45 AM
+-- Generation Time: Mar 22, 2022 at 08:34 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -213,6 +213,7 @@ INSERT INTO `category` (`CategoryID`, `Name`, `CategoryCode`) VALUES
 
 CREATE TABLE `department` (
   `DepartmentID` int(11) NOT NULL,
+  `departmentHeadID` int(11) NOT NULL,
   `DepartmentCode` varchar(5) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `description` longtext DEFAULT NULL,
@@ -225,11 +226,11 @@ CREATE TABLE `department` (
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
-(1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(2, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(3, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
-(4, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
+INSERT INTO `department` (`DepartmentID`, `departmentHeadID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
+(1, 1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(2, 1, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(3, 1, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
+(4, 1, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
 
 -- --------------------------------------------------------
 
@@ -239,16 +240,15 @@ INSERT INTO `department` (`DepartmentID`, `DepartmentCode`, `Name`, `description
 
 CREATE TABLE `departmentheaduser` (
   `HeadID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  `DepartmentID` int(11) NOT NULL
+  `UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `departmentheaduser`
 --
 
-INSERT INTO `departmentheaduser` (`HeadID`, `UserID`, `DepartmentID`) VALUES
-(1, 28, 1);
+INSERT INTO `departmentheaduser` (`HeadID`, `UserID`) VALUES
+(1, 28);
 
 -- --------------------------------------------------------
 
@@ -674,14 +674,14 @@ ALTER TABLE `category`
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
-  ADD PRIMARY KEY (`DepartmentID`);
+  ADD PRIMARY KEY (`DepartmentID`),
+  ADD KEY `departmentHeadID` (`departmentHeadID`);
 
 --
 -- Indexes for table `departmentheaduser`
 --
 ALTER TABLE `departmentheaduser`
   ADD PRIMARY KEY (`HeadID`),
-  ADD KEY `departmentheaduser_ibfk_1` (`DepartmentID`),
   ADD KEY `departmentheaduser_ibfk_2` (`UserID`);
 
 --
@@ -915,11 +915,16 @@ ALTER TABLE `breakdown`
   ADD CONSTRAINT `bemp_fk` FOREIGN KEY (`EmployeeID`) REFERENCES `employeeuser` (`EmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `department`
+--
+ALTER TABLE `department`
+  ADD CONSTRAINT `department_ibfk_1` FOREIGN KEY (`departmentHeadID`) REFERENCES `departmentheaduser` (`HeadID`);
+
+--
 -- Constraints for table `departmentheaduser`
 --
 ALTER TABLE `departmentheaduser`
-  ADD CONSTRAINT `departmentheaduser_ibfk_1` FOREIGN KEY (`DepartmentID`) REFERENCES `department` (`DepartmentID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `departmentheaduser_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `departmentheaduser_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`);
 
 --
 -- Constraints for table `depreciation`

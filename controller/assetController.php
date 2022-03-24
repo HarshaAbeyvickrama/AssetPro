@@ -44,8 +44,9 @@ class AssetController extends Asset
         // if($accessManager->validateAccess(type:"GET_ASSET" , assetID:$id)){
         // }
         $result = $this->get($id);
-        return json_encode($result->fetchAll());
+        return json_encode($result->fetch());
     }
+
 
     public function getAssetDataForm($id)
     {
@@ -117,6 +118,11 @@ class AssetController extends Asset
         return json_encode($result->fetchAll());
     }
 
+    public function getAllinProgressAssets($id){
+        $result = $this->getinProgress($id);
+        // return json_encode($result->fetchAll());
+    }
+
     public function getAllAssetCounts()
     {
         $res = $this->getAllCounts();
@@ -132,6 +138,7 @@ class AssetController extends Asset
                 "message" => "Invalid type"
             );
             return json_encode($result);
+
         }
         $res = $this->getCount('all');
         return json_encode($res->fetchAll());

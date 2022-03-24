@@ -24,6 +24,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
     $controller = $url[0];
     $action = $url[1];
 
+
     switch ($controller) {
         case 'asset':
             // require_once './controller/assetController.php';
@@ -52,6 +53,15 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'categories':
                     echo $ac->getAssetCategories();
                     break;
+
+                // case 'inProgress':
+                //     echo $ac->getAllinProgressAssets($url[2]);
+                //     break;
+
+                case 'get':
+                    echo $ac->getAsset($url[2]);
+                    break;
+
                 default:
                     # code...
                     break;
@@ -74,6 +84,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getAssignedBreakdownT':
                     echo $bc->getAllAssignedTechBreakdowns($url[2]);
                     break;
+                case 'getBreakdownInprogressT':
+                    echo $bc->getAllTechBreakdownsInProgress($url[2]);
+                    break;
             }
             break;
 
@@ -87,6 +100,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
             switch ($action) {
                 case 'all':
                     echo $vc->getAllStats();
+                    break;
+                case 'assetsCount':
+                    echo $vc-> getAllCount($url[2]);
                     break;
             }
             break;
@@ -113,6 +129,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getEmployee':
                     echo $ec->getEmployee($url[2]);
                     break;
+                case 'addImage':
+                    echo $ec->addImage($_FILES);
+                    break;
+                case 'addEmployee':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $ec->addEmployee($data);
+                    break;
             }
             break;
 
@@ -125,6 +148,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getTechnician':
                     echo $tc->getTechnician($url[2]);
                     break;
+                case 'addImage':
+                    echo $tc->addImage($_FILES);
+                    break;
+                case 'addTechnician':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $tc->addTechnician($data);
+                    break;
             }
             break;
 
@@ -133,6 +163,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
             switch ($action) {
                 case 'all':
                     echo $dc->getAllDepartments();
+                    break;
+                case 'addDepartment':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $dc->addDepartment($data);
+                    break;
+                case 'getDepartmentHeadList':
+                    echo $dc->getDepartmentHeadList();
                     break;
             }
             break;
@@ -146,11 +183,21 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getDepartmentHead':
                     echo $dhc->getDepartmentHead($url[2]);
                     break;
+                case 'addImage':
+                    echo $dhc->addImage($_FILES);
+                    break;
+                case 'addDepartmentHead':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $dhc->addDepartmentHead($data); 
+                    break;
                 case 'getDHBreakdowns':
                     echo $dhc->getAllBreakdownAssets($url[2]);
                     break;
                 case 'getDepartmentEmployees':
                     echo $dhc->getHeadDepartmentEmployees($url[2]);
+                    break;
+                case 'getDHAssignedAssets':
+                    echo $dhc-> getDHAllAssignedAssets($url[2]);
                     break;
             }
             break;
