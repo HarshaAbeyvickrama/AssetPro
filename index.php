@@ -101,14 +101,8 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'all':
                     echo $vc->getAllStats();
                     break;
-                case 'fixedCount':
-                    echo $vc->getCountAllFixed($url[2]);
-                    break;
-                case 'consumableCount':
-                    echo $vc->getCountAllConsumables($url[2]);
-                    break;
-                case 'intangibleCount':
-                    echo $vc->getCountAllIntangibles($url[2]);
+                case 'assetsCount':
+                    echo $vc-> getAllCount($url[2]);
                     break;
             }
             break;
