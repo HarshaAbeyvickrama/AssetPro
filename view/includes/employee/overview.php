@@ -113,49 +113,41 @@
 
 <script>
     // //Assigned Assets to staff in category wise
-    // var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
-    // var data = {
-    //     labels: labels,
-    //     datasets:[{
-    //         label:'Assigned Assets in categories',
-    //         data:[10,20,30,40,50,60,70],
-    //         backgroundColor: [
-    //             'rgba(255, 99, 132, 0.2)',
-    //             'rgba(255, 159, 64, 0.2)',
-    //             'rgba(255, 205, 86, 0.2)',
-    //             'rgba(75, 192, 192, 0.2)',
-    //             'rgba(54, 162, 235, 0.2)',
-    //             'rgba(153, 102, 255, 0.2)',
-    //             'rgba(201, 203, 207, 0.2)'
-    //         ],
-    //         borderColor: [
-    //             'rgb(255, 99, 132)',
-    //             'rgb(255, 159, 64)',
-    //             'rgb(255, 205, 86)',
-    //             'rgb(75, 192, 192)',
-    //             'rgb(54, 162, 235)',
-    //             'rgb(153, 102, 255)',
-    //             'rgb(201, 203, 207)'
-    //         ],
-    //         borderWidth: 1
-    //
-    //     }]
-    // };
-    // var config = {
-    //     type: 'bar',
-    //     data: data,
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         }
-    //     },
-    // };
-    // var assetBreakdownChart = new Chart(
-    //     document.getElementById('assetCategoriesChart'),
-    //     config
-    // );
+    var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
+    var data = {
+        labels: labels,
+        datasets:[{
+            label:'Assigned Assets in categories',
+            data:[1,2,3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 205, 86)',
+                'rgb(54, 162, 235)',
+            ],
+            borderWidth: 1
+
+        }]
+    };
+    var config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+    var assetBreakdownChart = new Chart(
+        document.getElementById('assetCategoriesChart'),
+        config
+    );
 
     <?php
     echo 'var userID =' . $_SESSION['UserID'];
@@ -189,11 +181,11 @@
             const result1 = JSON.parse(this.response);
             document.getElementById('consumableCount').innerHTML = result1.consumablecount;
             allTangibles = allTangibles + parseInt(result1.consumablecount);
-            console.log(allTangibles);
         }
         document.getElementById('tangibleCount').innerHTML = allTangibles;
     }
     xhr1.send();
+
 
 
     //==============Getting countOf All Intangible Assets assigned=================
@@ -206,46 +198,6 @@
         }
     }
     xhr2.send();
-
-
-    //================Assigned Assets to staff in category wise============
-    var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
-    var data = {
-        labels: labels,
-        datasets:[{
-            label:'Assigned Assets in categories',
-            data:[1,2,3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 205, 86, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 205, 86)',
-                'rgb(000, 000, 139)',
-            ],
-            borderWidth: 1
-
-        }]
-    };
-    var config = {
-        type: 'bar',
-        data: data,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        },
-    };
-    var assetBreakdownChart = new Chart(
-        document.getElementById('assetCategoriesChart'),
-        config
-    );
-
-
 
 
 </script>
