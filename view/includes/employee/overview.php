@@ -113,41 +113,41 @@
 
 <script>
     // //Assigned Assets to staff in category wise
-    var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
-    var data = {
-        labels: labels,
-        datasets:[{
-            label:'Assigned Assets in categories',
-            data:[1,2,3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 205, 86, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 205, 86)',
-                'rgb(54, 162, 235)',
-            ],
-            borderWidth: 1
-
-        }]
-    };
-    var config = {
-        type: 'bar',
-        data: data,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        },
-    };
-    var assetBreakdownChart = new Chart(
-        document.getElementById('assetCategoriesChart'),
-        config
-    );
+    // var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
+    // var data = {
+    //     labels: labels,
+    //     datasets:[{
+    //         label:'Assigned Assets in categories',
+    //         data:[1,2,3],
+    //         backgroundColor: [
+    //             'rgba(255, 99, 132, 0.2)',
+    //             'rgba(255, 205, 86, 0.2)',
+    //             'rgba(54, 162, 235, 0.2)',
+    //         ],
+    //         borderColor: [
+    //             'rgb(255, 99, 132)',
+    //             'rgb(255, 205, 86)',
+    //             'rgb(54, 162, 235)',
+    //         ],
+    //         borderWidth: 1
+    //
+    //     }]
+    // };
+    // var config = {
+    //     type: 'bar',
+    //     data: data,
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     },
+    // };
+    // var assetBreakdownChart = new Chart(
+    //     document.getElementById('assetCategoriesChart'),
+    //     config
+    // );
 
     <?php
     echo 'var userID =' . $_SESSION['UserID'];
@@ -161,15 +161,51 @@
     xhr.open("GET",`http://localhost/assetpro/stats/assetsCount/${userID}`,true);
     xhr.onload = function (){
         if(this.status == 200){
-            console.log(this.response);
+            // console.log(this.response);
             const result = JSON.parse(this.response);
             document.getElementById('fixedCount').innerHTML = result.totalfixed;
-            document.getElementById('consumableCount').innerHTML = result.totalconsumables;
-            document.getElementById('intangibleCount').innerHTML = result.totalintangibles;
+             var allConsumables = document.getElementById('consumableCount').innerHTML = result.totalconsumables;
+             var allIntangibles = document.getElementById('intangibleCount').innerHTML = result.totalintangibles;
             allTangibles = parseInt(result.totalfixed) + parseInt(result.totalconsumables);
-            console.log(allTangibles);
             document.getElementById('tangibleCount').innerHTML =   allTangibles ;
         }
+        console.log(allTangibles);
+        // //Assigned Assets to staff in category wise
+        var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
+        var data = {
+            labels: labels,
+            datasets:[{
+                label:'Assigned Assets in categories',
+                data:[allConsumables, allTangibles, allIntangibles],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 205, 86)',
+                    'rgb(54, 162, 235)',
+                ],
+                borderWidth: 1
+
+            }]
+        };
+        var config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+        var assetBreakdownChart = new Chart(
+            document.getElementById('assetCategoriesChart'),
+            config
+        );
     }
     xhr.send();
 
