@@ -49,11 +49,11 @@
             <thead>
                 <tr>
                     <th class="heading">#</th>
-                    <th>Employee ID</th>
+                    <th>Staff ID</th>
                     <th>Name</th>
                     <th>Gender</th>
                     <th>Job Title</th>
-                    <th>View</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody class="tableRowGroup" id="employeeTableBody"></tbody>

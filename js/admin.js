@@ -207,7 +207,7 @@ function loadEmployees() {
         document.getElementById("employeeTableBody").innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${employees[i]["DepartmentCode"]}/EMP/${
+            <td>${employees[i]["DepartmentCode"]}/STF/${
           employees[i]["EmployeeID"]
         }</td>
             <td>${employees[i]["Name"]}</td>

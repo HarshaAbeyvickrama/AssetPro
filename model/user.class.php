@@ -11,7 +11,7 @@ require_once '../model/dbConnection.class.php';
 
         //Find user by username
         public function findUserByUsername($Username, $Email) {
-            // $this->db->query('SELECT login.Username, login.Password, userdetails.Email AS Email FROM login INNER JOIN userdetails ON login.UserID = userdetails.UserID WHERE login.Username = :Username OR userdetails.Email = :Email');
+            
             $sql = "SELECT
                         login.UserID AS UserID,
                         login.Username,

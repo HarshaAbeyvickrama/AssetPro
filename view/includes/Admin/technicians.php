@@ -31,7 +31,7 @@
                     <th>Name</th>
                     <th>Gender</th>
                     <th>Job Title</th>
-                    <th>View</th>
+                    <th>Action</th>
                 </tr>
                 <tbody class="tableRowGroup" id="techniciansTableBody"></tbody>
             </thead>
