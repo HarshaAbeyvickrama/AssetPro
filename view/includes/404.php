@@ -20,6 +20,7 @@
         bottom: 20px;
         left: 10px;
     } */
+
     a {
         text-decoration: none;
         color: white;
@@ -46,5 +47,6 @@
                 <a href="#">Go to Dashboard</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>

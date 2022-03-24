@@ -109,7 +109,8 @@ define('URLROOT','http://localhost/assetpro/');
             cursor: pointer;
         }
         #popup{
-            align-items: center;
+            display: flex;
+            justify-content: center;
         }
         /* .popup-container::before{
             content: url('../Images/icons/close.png');
