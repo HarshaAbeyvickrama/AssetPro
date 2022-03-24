@@ -85,4 +85,32 @@ class Stats extends DBConnection
         }
         return $stmt;
     }
+
+    function getCountFixed($id)
+    {
+        $dbConnection = $this->connect();
+        $sql='SELECT COUNT(CategoryID) AS fixedcount,CategoryID,assignedUser FROM asset WHERE CategoryID=1 AND assignedUser= ?';
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt;
+    }
+
+    function getCountConsumables($id)
+    {
+        $dbConnection = $this->connect();
+        $sql='SELECT COUNT(CategoryID) AS consumablecount,CategoryID,assignedUser FROM asset WHERE CategoryID=2 AND assignedUser= ?';
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt;
+    }
+
+    function getCountIntangibles($id)
+    {
+        $dbConnection = $this->connect();
+        $sql='SELECT COUNT(CategoryID) AS intangiblecount,CategoryID,assignedUser FROM asset WHERE CategoryID=3 AND assignedUser= ?';
+        $stmt = $dbConnection->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt;
+    }
+
 }

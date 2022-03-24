@@ -413,17 +413,17 @@
 
 
    //JS for pop-up form
-//    document.getElementById('reportAsset').addEventListener('click',
-//         function popForm() {
-//             document.querySelector('.bg-popup').style.display = 'flex';
-//         });
+   document.getElementById('reportAsset').addEventListener('click',
+        function popForm() {
+            document.querySelector('.bg-popup').style.display = 'flex';
+        });
 
-//     function popForm() {
-//         document.getElementById('bg-popup').style.display = 'flex';
-//     }
+    function popForm() {
+        document.getElementById('bg-popup').style.display = 'flex';
+    }
 
-//     document.querySelector('.close').addEventListener('click',
-//         function popForm() {
-//             document.querySelector('.bg-popup').style.display = 'none';
-//         });
+    document.querySelector('.close').addEventListener('click',
+        function popForm() {
+            document.querySelector('.bg-popup').style.display = 'none';
+        });
 </script>

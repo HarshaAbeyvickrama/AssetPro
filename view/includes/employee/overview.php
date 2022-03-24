@@ -10,7 +10,7 @@
         padding: 0px 20px 20px 20px;
     } */
 
-    
+
 
     .wrapper {
         display: grid;
@@ -26,58 +26,184 @@
 
     .box3 {
        grid-row: 1/3;
+        max-width: 100%;
+        max-height: 100%;
     }
 
     .image img{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
+
     }
 
+    .image{
+        display: flex;
+        justify-content: center;
+    }
 
+    .boxCount{
+        margin-top: 22px;
+        position: relative;
+        font-size: 40px;
+    }
+    .boxCount::before{
+        position: absolute;
+        left: 0;
+        top: -22px;
+        color: #707ea1;
+        font-size: 15px;
+        font-weight: bold;
+        content: attr(title)
+    }
+
+    .boxTitle{
+        color: #707ea1;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+
+    }
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="wrapper">
     <!-- Box 1 -->
     <div class="box1">
         <div class="image">
-            <img src="../Images/icons/employees.png">
+            <img src="../Images/icons/totalconsumables.png">
         </div>
-        <div class="title">Employees</div>
-        <div class="count">c</div>
+        <div class="boxTitle">Total Consumables
+            <div class="boxCount" id="consumableCount"></div></div>
     </div>
 
     <!-- Box 2 -->
     <div>
         <div class="image">
-            <img src="../Images/icons/technicians.png" alt="" width="60px" height="60px">
+            <img src="../Images/icons/fixedassets.png">
         </div>
-        <div class="title">Technicians</div>
-        <div class="count">c</div>
+        <div class="boxTitle">Total Fixed
+            <div class="boxCount" id="fixedCount"></div></div>
     </div>
     <!-- Box 3-->
     <div class = "box3">
-        <div class="image">
-            <img src="../Images/icons/departments.png" alt="" width="60px" height="60px">
-        </div>
-        <div class="title">Departments</div>
-        <div class="count">c</div>
+        <canvas id="assetCategoriesChart"></canvas>
     </div>
 
     <!-- Box 4 -->
     <div>
-        4
+        <div class="image">
+            <img src="../Images/icons/intangibles.png">
+        </div>
+        <div class="boxTitle">Total Intangibles
+            <div class="boxCount" id="intangibleCount"></div></div>
     </div>
 
     <!-- Box 5 -->
     <div class="box-5">
-        5
+        <div class="image">
+            <img src="../Images/icons/tangibles.png">
+        </div>
+        <div class="boxTitle">Total Tangibles
+            <div class="boxCount" id="tangibleCount"></div></div>
     </div>
-
-    
-
 
 </div>
 
 
+<script>
+    // //Assigned Assets to staff in category wise
+    var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
+    var data = {
+        labels: labels,
+        datasets:[{
+            label:'Assigned Assets in categories',
+            data:[1,2,3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 205, 86)',
+                'rgb(54, 162, 235)',
+            ],
+            borderWidth: 1
+
+        }]
+    };
+    var config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+    var assetBreakdownChart = new Chart(
+        document.getElementById('assetCategoriesChart'),
+        config
+    );
+
+    <?php
+    echo 'var userID =' . $_SESSION['UserID'];
+    ?>
+
+    <?php
+    echo 'var allTangibles = 0' ;
+    ?>
+
+
+    // console.log(userID);
+    //==============Getting countOf All Fixed Assets assigned=================
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
+    xhr.onload = function (){
+        if(this.status == 200){
+            const result = JSON.parse(this.response);
+            document.getElementById('fixedCount').innerHTML = result.fixedcount;
+            allTangibles = parseInt(result.fixedcount);
+        }
+    }
+    xhr.send();
+
+
+    //==============Getting countOf All Consumable Assets assigned=================
+    const xhr1 = new XMLHttpRequest();
+    xhr1.open("GET",`http://localhost/assetpro/stats/consumableCount/${userID}`,true);
+    xhr1.onload = function (){
+        // console.log(this.response);
+        if(this.status == 200){
+            const result1 = JSON.parse(this.response);
+            document.getElementById('consumableCount').innerHTML = result1.consumablecount;
+            allTangibles = allTangibles + parseInt(result1.consumablecount);
+        }
+        document.getElementById('tangibleCount').innerHTML = allTangibles;
+    }
+    xhr1.send();
+
+
+
+    //==============Getting countOf All Intangible Assets assigned=================
+    const xhr2 = new XMLHttpRequest();
+    xhr2.open("GET",`http://localhost/assetpro/stats/intangibleCount/${userID}`,true);
+    xhr2.onload = function (){
+        if(this.status == 200){
+            const result2 = JSON.parse(this.response);
+            document.getElementById('intangibleCount').innerHTML = result2.intangiblecount;
+        }
+    }
+    xhr2.send();
+
+
 </script>
+
+
+
+
+
+

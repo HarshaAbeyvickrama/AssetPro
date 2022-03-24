@@ -94,7 +94,21 @@ function loadAssets(userID){ //comment
        }
        xhr.send();
      }
-    
+
+    // function loadCountFixed(userID){
+    //     console.log('HIIIIIIIIIII');
+    //     const xhr = new XMLHttpRequestEventTarget();
+    //     xhr.open("GET",`http://localhost/assetpro/stats/fixedCount/${userID}`,true);
+    //     xhr.onload = function (){
+    //         console.log(this.response);
+    //         if(this.status == 200){
+    //             const fixedCount = JSON.parse(this.response);
+    //             document.getElementById('fixedCount').innerHTML = fixedCount;
+    //         }
+    //     }
+    //     xhr.send();
+    // }
+
     
     
     

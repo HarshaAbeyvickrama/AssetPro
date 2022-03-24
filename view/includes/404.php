@@ -20,7 +20,7 @@
         bottom: 20px;
         left: 10px;
     } */
-    .return-btn {
+    a {
         text-decoration: none;
         color: white;
         padding: 10px 20px;
@@ -43,7 +43,7 @@
                 <h1>404</h1>
                 <h3 class="second-txt">Looks Like You're Lost in Space</h3>
                 <p>The page you are looking for is not available</p>
-                <a href="#" >Go to Dashboard</a>
+                <a href="#">Go to Dashboard</a>
             </div>
         </div>
     </section>
