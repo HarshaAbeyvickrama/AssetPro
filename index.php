@@ -26,6 +26,19 @@ if ($url == '/' || $url[0] == 'dashboard') {
 
 
     switch ($controller) {
+        case 'user':
+            $uc = new userController();
+            switch ($action) {
+                case 'forgotPassword':
+                    // header("location: http://localhost/assetpro");
+                // redirect('http://localhost/assetpro');
+                echo 'sdvhsgdhgsdhjagd';
+                return;
+                    // echo $uc->forgotPassword();
+                    // echo json_encode($uc->forgotPassword());
+                break;
+            }
+            break;
         case 'asset':
             // require_once './controller/assetController.php';
             $ac = new AssetController();
@@ -85,7 +98,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $bc->getAllAssignedTechBreakdowns($url[2]);
                     break;
                 case 'getBreakdownInprogressT':
-                    echo $bc->getAllTechBreakdownsInProgress($url[2]);
+                    // echo $bc->getAllTechBreakdownsInProgress($url[2]);
                     break;
             }
             break;
@@ -100,6 +113,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
             switch ($action) {
                 case 'all':
                     echo $vc->getAllStats();
+                    break;
+                case 'assetsCount':
+                    echo $vc-> getAllCount($url[2]);
                     break;
             }
             break;
@@ -164,6 +180,10 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'addDepartment':
                     $data = json_decode(file_get_contents('php://input'), true);
                     echo $dc->addDepartment($data);
+                    break;
+                case 'getDepartmentHeadList':
+                    echo $dc->getDepartmentHeadList();
+                    break;
             }
             break;
 

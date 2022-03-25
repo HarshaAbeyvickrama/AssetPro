@@ -150,6 +150,10 @@ class Employee extends DBConnection {
 
             $stmt->execute();
 
+            //Getting a random username
+            //Generating username by concatenating first name and last name
+            // $username = strtolower($firstName . "_" . $lastName);
+
             $DBConnection->commit();
 
             $result = array(
@@ -172,9 +176,68 @@ class Employee extends DBConnection {
         }
     }
 
-    //Updating employee details
-    protected function update($EmployeeID) {
+    //Finding the user from the table
+    protected function findUserById($UserID) {
+        $DBConnection = $this->connect();
+        $findUser = "SELECT * FROM user WHERE UserID = :UserID";
+        $stmt = $DBConnection->prepare($findUser);
+        $stmt->bindParam(':UserID', $UserID);
+        $stmt->execute([$UserID]);
+        return $stmt;
+        print_r($findUser);
+    }
 
+    //Updating employee details
+    protected function update($UserID) {
+        $DBConnection = $this->connect();
+        try {
+            $DBConnection->beginTransaction();
+            $null = null;
+
+            //Updating the userdetails table
+            $userdetails = "UPDATE userdetails SET fName = ?, lName = ?, NIC = ?, Address = ?, Gender = ?, PhoneNumber = ?, Email = ?, ProfilePicUrl = ?, jobTItle = ? WHERE UserID = :UserID";
+            $stmt = $DBConnection->prepare($userdetails);
+            $stmt->bindParam(':fName', $firstName);
+            $stmt->bindParam(':lName', $lastName);
+            $stmt->bindParam(':NIC', $NIC);
+            $stmt->bindParam(':Address', $address);
+            $stmt->bindParam(':Gender', $gender);
+            $stmt->bindParam(':Phoneumber', $contactNo);
+            $stmt->bindParam(':Email', $email);
+            $stmt->bindParam(':fileUrl', $fileUrl);
+            $stmt->bindParam(':jobTitle', $jobTitle);
+
+            $stmt->execute();
+
+            //Updating the emergency contact table
+            $userEmergency = "UPDATE useremergency SET eRelationship = ?, eName = ?, eCOntact = ? WHERE UserID = :UserID";
+            $stmt = $DBConnection->prepare($userEmergency);
+
+            $stmt->bindParam(':eRelationship', $eRelationship);
+            $stmt->bindParam(':eName', $eName);
+            $stmt->bindParam(':eContact', $eContact);
+
+            $stmt->execute();
+
+            $DBConnection->commit();
+
+            $result = array(
+                "status" => "Ok",
+                "userID" => $UserID,
+                "message" => "Employee Updated Successfully"
+            );
+            return $result;
+
+        } catch (PDOException | Exception $e) {
+            $DBConnection->rollBack();
+            
+            $result = array(
+                "status" => "Failed",
+                "Error" => $e ->getMessage(),
+                "message" => "Cannot update employee"
+            );
+            return $result;
+        }
     }
 
     //Deleting an employee

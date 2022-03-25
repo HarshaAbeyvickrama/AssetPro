@@ -284,6 +284,7 @@ include_once("notification.php")
             showNotification(false);
         }
         if(e.target.id != 'userSectionMask'){
+
             showUserSection(false);
         }
     })

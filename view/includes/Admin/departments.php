@@ -82,12 +82,37 @@
         padding: 8px 15px 8px 15px;
     }
 
-    .col-h {
+    .col-h input[type=text] {
+        justify-content: center;
+        align-items: center;
+        width: calc(94% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 15px;
+        border-radius: 9px;
+        padding: 8px 15px 8px 15px;
+        outline: none;
+    }
+    .col-h,
+    .col-f>span {
         display: block;
+    }
+    select {
+        justify-content: center;
+        align-items: center;
+        width: 97%;
+        border: none;
+        background-color: #F1F4FF;
+        height: 37px;
+        border-radius: 9px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 8px 15px 8px 15px;
+        outline: none;
     }
 
     #dDes {
-        height: 80px;
+        height: 100px;
     }
 
     span {
@@ -102,13 +127,17 @@
         border-radius: 20px;
         cursor: pointer;
         color: #F1F4FF;
-        margin-left: 95vh;
+        /* margin-left: 95vh; */
     }
 
     .addBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
+    }
+    .add-btn {
+        display: flex;
+        justify-content: end;
     }
 
     .close {
@@ -139,7 +168,7 @@
                         <th>Department ID</th>
                         <th>Department Name</th>
                         <th>Contact Number</th>
-                        <th>View</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody class="tableRowGroup" id="departmentTableBody"></tbody>
@@ -160,8 +189,12 @@
             </div>
             <div class="col-f">
                 <span for="dName" id="fieldName">Department Name</span>
-                <input type="text" name="dName" id="dName" required />
+                <input type="text" name="dName" id="dName" required >
             </div>
+            <!-- <div class="col-f">
+                <span for="dhName">Department Head</span>
+                <select class="dhName" type="text" name="dhName" id="dhName" required ></select>
+            </div> -->
             <div class="col-f">
                 <span for="dCon" id="fieldName">Contact Number</span>
                 <input type="text" name="dCon" id="dCon" required />
@@ -170,7 +203,7 @@
                 <span for="dDes" id="fieldName">Description</span>
                 <textarea type="text" name="dDes" id="dDes"></textarea>
             </div>
-            <div class="col-btn">
+            <div class="col-btn add-btn">
                 <button class="addBtn" id="btnSaveDepartment" type="submit">Add</button>
             </div>
         </form>
@@ -186,6 +219,7 @@
     document.getElementById('addDep').addEventListener('click',
         function popForm() {
             document.querySelector('.bg-popup').style.display = 'flex';
+            getDepartmentHeads();
         });
 
     // function popForm() {
@@ -268,6 +302,26 @@
             console.log(data);
         });
     }
+
+    //Getting the department heads list
+    function getDepartmentHeads() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost/assetpro/departments/getDepartmentHeadList", true);
+        xhr.onload = function() {
+            if(this.status == 200) {
+                var departmentHeads = JSON.parse(this.responseText);
+                var select = document.getElementById('dhName');
+
+                for(var i = 0; i <departmentHeads.length; i++) {
+                    console.log(departmentHeads[i]);
+                    var option = `<option value=${departmentHeads[i].HeadID}>${departmentHeads[i].Name}</option>`;
+                    select.innerHTML += option;
+                }
+            }
+        }
+        xhr.send();
+    }
+    
 
 
     //Viewing the deaprtment details

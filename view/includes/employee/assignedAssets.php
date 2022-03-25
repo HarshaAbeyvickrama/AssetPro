@@ -17,7 +17,7 @@
         </table>
     </div>
 </div>
-<!--comment demo search-->
+
 <script>
     <?php
     echo 'var userID =' . $_SESSION['UserID'];
