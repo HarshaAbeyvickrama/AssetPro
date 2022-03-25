@@ -363,20 +363,19 @@
 
                     break;
                 case 'reportAsset':
-                    // const report = getFormdata(asset.AssetID);
-
-                    const result = showConfirmation('Are you really want to report?');
-                    if(result==true){
-                        const report = getFormdata(asset.AssetID);
-                        console.log(report);
-                        saveReport(report);
-                        alert('Successfully Reported!');
-                            if(report == null){
-                                alert('Fields cannot be empty');
-                            }
+                    const report = getFormdata(asset.AssetID);
+                    if(report == null){
+                        alert('Fields cannot be empty');
+                    }
+                    else {
+                        const result = showConfirmation('Are you really want to report?');
+                           if (result == true) {
+                            console.log(report);
+                            saveReport(report);
+                            alert('Successfully Reported!');
+                           } else {
+                            alert('Breakdown was not recorded!');
                         }
-                    else{
-                        alert('Breakdown was not recorded!');
                     }
                 }
 
