@@ -9,15 +9,32 @@
         border: none;
         /* margin-left: 62vw; */
     }
-
+    .header-title {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .addTec {
+        display: flex;
+        justify-content: end;
+    }
+    .heading-title {
+        display: flex;
+        font-size: 30px;
+        color: #304068;
+        align-items: center;
+        font-weight: bold;
+    }
+    .profile-image {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
 
 </style>
 <div class="overviewLayout">
-    <div>
-        <!-- <div>All Technicians</div> -->
-        <div class="addTec">
-            <button id="addTec">Insert</button>
-        </div>
+    <div class="header-title">
+    <div class="heading-title">Technicians</div>
+        <div class="addTec"><button id="addTec">Insert</button></div>
     </div>
 
 

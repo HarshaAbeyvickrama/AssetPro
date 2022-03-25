@@ -210,7 +210,10 @@ function loadEmployees() {
             <td>${employees[i]["DepartmentCode"]}/STF/${
           employees[i]["EmployeeID"]
         }</td>
-            <td>${employees[i]["Name"]}</td>
+            <td class="profile-row">
+              <img class="profile-image" src="http://localhost/assetpro/${employees[i]["ProfilePicURL"]}" alt="">
+              <div class="profile-name">${employees[i]["Name"]}</div>
+            </td>
             <td>${employees[i]["Gender"]}</td>
             <td>${employees[i]["jobTitle"]}</td>
             <td>
@@ -296,7 +299,10 @@ function loadTechnicians() {
             <td>${technicians[i]["DepartmentCode"]}/TEC/${
           technicians[i]["TechnicianID"]
         }</td>
-            <td>${technicians[i]["Name"]}</td>
+            <td>
+            <img class="profile-image" src="http://localhost/assetpro/${technicians[i]["ProfilePicURL"]}" alt="">
+              <div class="profile-name">${technicians[i]["Name"]}</div>
+            </td>
             <td>${technicians[i]["Gender"]}</td>
             <td>${technicians[i]["jobTitle"]}</td>
             <td>
@@ -398,7 +404,10 @@ function loadDepartmentHeads() {
             <td>${departmenthead[i]["DepartmentCode"]}/DH/${
           departmenthead[i]["HeadID"]
         }</td>
-            <td>${departmenthead[i]["Name"]}</td>
+            <td class="profile-row">
+              <img class="" src="http://localhost/assetpro/${departmenthead[i]["ProfilePicURL"]}" alt="">
+              <div class="">${departmenthead[i]["Name"]}</div>
+            </td>
             <td>${departmenthead[i]["Gender"]}</td>
             <td>
               <button class='btn btn-submit ' id='view' onClick="loadDepartmentHead(${

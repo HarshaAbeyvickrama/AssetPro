@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <title>Forgot Password</title>
     <script src="../js/index.js"></script>
     
@@ -138,16 +137,15 @@
 
     <div class="bg-popup" id="closeForm">
         <div class="popup-content" id="popup-content">
-
             <!-- Form for entering the email address -->
-            <form method="POST" target="" id="forgot-password-form">
+            <form method="POST" action="http://localhost/assetpro/resetPassword" id="forgot-password-form">
                 <input type="hidden" name="email" value="send">
                 <h3 class="forgotPasswordInfo">Forgot Password</h3>
                 <img src="../Images/forgotpass.png" alt="forgot password">
                 <h4 class="emailText">Enter your email address below</h4>
                 <input type="text" placeholder="E-Mail" class="email" name="email" autocomplete="off" required>
                 <div class="btn-box">
-                    <a href="http://localhost/assetpro/login"><button type="button">Back</button></a>
+                    <a href="http://localhost/assetpro/view/login.php"><button type="button">Back</button></a>
                     <button type="submit" name="submit">Send Link</button>
                 </div>
             </form>
@@ -156,13 +154,19 @@
 </body>
 </html>
 
- <script> 
-        document.getElementById('forgot-password-form').addEventListener('submit' , (e) => {
-            e.preventDefault();
-            const formElement = document.getElementById('forgot-password-form');
-            const formData = new FormData(formElement);
-            postData('http://localhost/assetpro/user/forgotPassword' , formData , (res) => {
-                console.log(res);
-            } )
-        })
-    </script>
+<!-- <script> -->
+<!--        document.getElementById('forgot-password-form').addEventListener('submit' , (e) => {-->
+<!--            e.preventDefault();-->
+<!--            const formElement = document.getElementById('forgot-password-form');-->
+<!--            const formData = new FormData(formElement);-->
+<!--            //set the session-->
+<!--            log-->
+<!--            const sessionDetails = {name: 'RESET_PASSWORD' , value : true};-->
+<!--            // postData('http://localhost/assetpro/session/set',sessionDetails , (res) => {-->
+<!--            //     console.log(res);-->
+<!--            // })-->
+<!--            postData('http://localhost/assetpro/user/forgotPassword' , formData , (res) => {-->
+<!--                console.log(res);-->
+<!--            } )-->
+<!--        })-->
+<!--    </script>-->
