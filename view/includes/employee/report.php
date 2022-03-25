@@ -378,32 +378,10 @@
                     else{
                         alert('Breakdown was not recorded!');
                     }
-
-            }
-
-
-            // if(report == null){
-            //             alert('Fields cannot be empty');
-            //         }
-            // else{
-            //             saveReport(report);
-            //         }
-            //         break;
-            //
-            //     default:
-            //         break;
-            // }
-
+                }
 
         })
     })
-
-    // document.getElementById('reportAsset').addEventListener('click', () => {
-    //     var result = showConfirmation('Are you really want to report?');
-    //     console.log(result);
-    //
-    //     }
-    // })
 
 
     function getFormdata(id){
@@ -421,12 +399,9 @@
             exDef: explainDefect
 
         }
-        // console.log(reportdata);
         return reportdata;
 
     }
-
-
 
     function saveReport(report){
         postData('http://localhost/assetpro/breakdown/reportBreakdown' , report , (response) =>{
@@ -438,16 +413,5 @@
         loadSection('centerSection','assignedAssets');
     }
 
-
-    //JS for pop-up form
-
-    // document.getElementById('reportAsset').addEventListener('click', () => {
-    //     var result = showConfirmation('Are you really want to report?');
-    //     console.log(result);
-    //
-    //     if(result==true){
-    //
-    //     }
-    // })
 
 </script>
