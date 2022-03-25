@@ -1,3 +1,13 @@
+<style>
+    .section-heading {
+        display: flex;
+        font-size: 30px;
+        color: #304068;
+        align-items: center;
+        font-weight: bold;
+    }
+</style>
+
 <div class="overviewLayout">
     <div>
         <div class="section-heading">Assigned Assets</div>

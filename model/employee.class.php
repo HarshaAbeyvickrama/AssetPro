@@ -47,9 +47,10 @@ class Employee extends DBConnection {
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
                     ud.Gender,
+                    ud.ProfilePicURL,
                     ud.jobTitle,
                     d.DepartmentCode,
-                    d.Name as DepartmentName,
+                    d.Name AS DepartmentName,
                     eu.EmployeeID
                 FROM
                     userdetails ud
@@ -57,7 +58,8 @@ class Employee extends DBConnection {
                     ud.UserID = eu.UserID
                 INNER JOIN department d ON
                     eu.DepartmentID = d.DepartmentID
-                ORDER BY eu.EmployeeID";
+                ORDER BY
+                    eu.EmployeeID";
 
         $pstm = $this->connect()->prepare($sql);
         $pstm->execute();

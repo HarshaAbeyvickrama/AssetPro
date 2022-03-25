@@ -34,6 +34,21 @@
     .deleteBtn {
         background-color: #394564;
     }
+    .header-title {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .addDep {
+        display: flex;
+        justify-content: end;
+    }
+    .heading-title {
+        display: flex;
+        font-size: 30px;
+        color: #304068;
+        align-items: center;
+        font-weight: bold;
+    }
 
     /* CSS for pop-up form */
     .bg-popup {
@@ -60,6 +75,9 @@
         position: relative;
     }
 
+    .red {
+        color: red;
+    }
     .depInfo {
         text-align: left;
         margin-left: 20px;
@@ -152,11 +170,9 @@
 </style>
 
 <div class="overviewLayout">
-    <div>
-        <!-- <div>All Departments</div> -->
-        <div class="addDep">
-            <button id="addDep">Insert</button>
-        </div>
+    <div class="header-title">
+        <div class="heading-title">Departments</div>
+        <div class="addDep"><button id="addDep">Insert</button></div>
     </div>
 
     <div class="contentSection ">
@@ -184,11 +200,11 @@
         <h3 class="depInfo">Department Information</h3>
         <form action="" id="addDepartmentForm">
             <div class="col-f">
-                <span for="dCode" id="fieldName">Department Code</span>
+                <span for="dCode" id="fieldName">Department Code <span class="red">*</span></span>
                 <input type="text" name="dCode" id="dCode" required />
             </div>
             <div class="col-f">
-                <span for="dName" id="fieldName">Department Name</span>
+                <span for="dName" id="fieldName">Department Name <span class="red">*</span></span>
                 <input type="text" name="dName" id="dName" required >
             </div>
             <!-- <div class="col-f">
@@ -196,7 +212,7 @@
                 <select class="dhName" type="text" name="dhName" id="dhName" required ></select>
             </div> -->
             <div class="col-f">
-                <span for="dCon" id="fieldName">Contact Number</span>
+                <span for="dCon" id="fieldName">Contact Number <span class="red">*</span></span>
                 <input type="text" name="dCon" id="dCon" required />
             </div>
             <div class="col-f">

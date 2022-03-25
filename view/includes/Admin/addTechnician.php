@@ -141,6 +141,9 @@
     .col-f>span {
         display: block;
     }
+    .red{
+        color: red;
+    }
 
     #email,
     #dob {
@@ -220,28 +223,28 @@
                     <div class="title">Basic Information:</div>
 
                     <div class="col-f">
-                        <span for="depID">Department ID</span>
-                        <input name="depID" id="depID">
+                        <span for="depID">Department ID <span class="red">*</span></span>
+                        <input type="text" name="depID" id="depID" value="4" readonly>
                     </div>
 
                     <div class="col-h">
-                        <span for="fName">First Name</span>
+                        <span for="fName">First Name <span class="red">*</span></span>
                         <input type="text" name="fName" id="fName">
                     </div>
                     <div class="col-h">
-                        <span for="lName">Last Name</span>
+                        <span for="lName">Last Name <span class="red">*</span></span>
                         <input type="text" name="lName" id="lName">
                     </div>
                     <div class="col-f">
-                        <span for="NIC">NIC</span>
+                        <span for="NIC">NIC <span class="red">*</span></span>
                         <input type="text" name="NIC" id="NIC" maxlength="12" minlength="10">
                     </div>
                     <div class="col-f">
-                        <span for="role">Role</span>
-                        <input type="text" name="role" id="role" value="Technician">
+                        <span for="role">Role <span class="red">*</span></span>
+                        <input type="text" name="role" id="role" value="Technician" readonly>
                     </div>
                     <div class="col-f">
-                        <span for="gender" id="gender">Gender</span>
+                        <span for="gender" id="gender">Gender <span class="red">*</span></span>
                         <input type="radio" name="gender" id="male" value="Male"><label>Male</label>
                         <input type="radio" name="gender" id="female" value="Female"><label>Female</label>
                     </div>
@@ -253,38 +256,38 @@
         <div id="pRight" class="rightSection">
             <div class="basic-information">
                 <div class="col-f">
-                    <span for="dob">Date of Birth</span>
+                    <span for="dob">Date of Birth <span class="red">*</span></span>
                     <input type="date" name="dob" id="dob">
                 </div>
                 <div class="col-f">
-                    <span for="jobTitle"> Job Title: </span>
+                    <span for="jobTitle"> Job Title <span class="red">*</span></span>
                     <input type="text" name="jobTitle" id="jobTitle">
                 </div>
                 <div class="col-f">
-                    <span for="address">Address</span>
+                    <span for="address">Address <span class="red">*</span></span>
                     <input type="text" name="address" id="address">
                 </div>
                 <div class="col-f">
-                    <span for="contactNo">Contact Number</span>
+                    <span for="contactNo">Contact Number <span class="red">*</span></span>
                     <input type="number" name="contactNo" id="contactNo" maxlength="10" minlength="10">
                 </div>
                 <div class="col-f">
-                    <span for="email">Email Address</span>
+                    <span for="email">Email Address <span class="red">*</span></span>
                     <input type="email" name="email" id="email">
                 </div>
 
                 <div class="title">Emergency Contact:</div>
 
                 <div class="col-f">
-                    <span for="eName">Name</span>
+                    <span for="eName">Name <span class="red">*</span></span>
                     <input type="text" name="eName" id="eName">
                 </div>
                 <div class="col-f">
-                    <span for="eRelationship">Relationship</span>
+                    <span for="eRelationship">Relationship <span class="red">*</span></span>
                     <input type="text" name="eRelationship" id="eRelationship">
                 </div>
                 <div class="col-f">
-                    <span for="econtact">Telephone Number</span>
+                    <span for="econtact">Telephone Number <span class="red">*</span></span>
                     <input type="number" name="econtact" id="econtact" maxlength="10" minlength="10">
                 </div>
 

@@ -47,6 +47,7 @@ class Technician extends DBConnection
         $sql = "SELECT
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
+                    ud.ProfilePicURL,
                     ud.Gender,
                     ud.jobTitle,
                     d.DepartmentCode,
