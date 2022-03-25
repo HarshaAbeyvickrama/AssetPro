@@ -3,7 +3,7 @@
     require_once '../model/user.class.php';
     require_once '../helpers/sessionHelper.php';
     
-    class userController {
+    class userController extends User{
 
         private $userModel;
 
@@ -11,7 +11,7 @@
             $this->userModel = new User;
         }
 
-        public function login() {
+        public function login($Username, $Password) {
             //Sanitize POST data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -43,7 +43,7 @@
                     echo "Password verified";
                     $this->createUserSession($login);
                 } else {
-                    flash("Login", "Password Incorrect");
+                    flash("Login", "Password is Incorrect");
                     // echo "Password incorrect";
                     redirect("../view/login.php");
                 }
@@ -105,11 +105,6 @@
                 return false;
             }
         }
-
-        //=================Getting session for Employee-ID======================
-        // public function createEmployeeSession($empUserId){
-        //     $_SESSION['employeeID'] = $empUserId;
-        // }
     }
 
     $init = new userController;
@@ -118,7 +113,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         switch($_POST['type']) {
             case 'login':
-                $init->login();
+                $init->login($Username, $Password);
                 break;
             default:
                 // redirect("../view/login.php");

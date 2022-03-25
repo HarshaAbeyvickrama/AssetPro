@@ -227,7 +227,7 @@
 
                     <div class="col-f">
                         <span for="empID"> Employee ID: </span>
-                        <input type="text" name="empID" id="empID">
+                        <input type="text" name="empID" id="empID" disabled="disabled">
                     </div>
                     
                     <div class="col-h">

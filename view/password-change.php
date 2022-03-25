@@ -22,7 +22,7 @@ session_start();
         body {
             margin: 0;
             padding: 0;
-            background-image: url(./Images/loginBackground.png);
+            background-image: url(../Images/loginBackground.png);
             background-position: center;
             background-size: cover;
             height: 100vh;
@@ -143,7 +143,7 @@ session_start();
 
             <!-- Form for entering the email address -->
             <form action="./controller/password-reset-code.php" method="POST">
-                <img src="./Images/newpass.png" alt="forgot password" style="width: 110px;">
+                <img src="../Images/newpass.png" alt="forgot password" style="width: 110px;">
                 <h4 class="emailText">Enter new password</h4>
                 <!-- Getting the token and set as hidden -->
                 <input type="hidden" name="password_token" value="<?php if (isset($_GET['token'])) {

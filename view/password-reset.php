@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <title>Forgot Password</title>
-
+    <script src="../js/index.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -122,33 +123,31 @@
             width: 100%;
         }
     </style>
+
+   
 </head>
 
 <body>
     <!-- PLace to show the success message -->
     <?php
-        if(isset($_SESSION['status'])) {
-            ?>
-            <div class="successAlert">
-                <h5><?= $_SESSION['status']; ?></h5>
-            </div>
-            <?php
-                unset($_SESSION['status']);
+        if(isset($_SESSION['resetPassword'])) {
+            echo `<script>alert('Email error');</script>`;
         }
     ?>
+    
 
     <div class="bg-popup" id="closeForm">
         <div class="popup-content" id="popup-content">
 
             <!-- Form for entering the email address -->
-            <form action="../controller/passwordResetController.php" method="POST">
+            <form method="POST" target="" id="forgot-password-form">
                 <input type="hidden" name="email" value="send">
                 <h3 class="forgotPasswordInfo">Forgot Password</h3>
                 <img src="../Images/forgotpass.png" alt="forgot password">
                 <h4 class="emailText">Enter your email address below</h4>
                 <input type="text" placeholder="E-Mail" class="email" name="email" autocomplete="off" required>
                 <div class="btn-box">
-                    <a href="login.php"><button type="button">Back</button></a>
+                    <a href="http://localhost/assetpro/login"><button type="button">Back</button></a>
                     <button type="submit" name="submit">Send Link</button>
                 </div>
             </form>
@@ -156,3 +155,14 @@
     </div>
 </body>
 </html>
+
+ <script> 
+        document.getElementById('forgot-password-form').addEventListener('submit' , (e) => {
+            e.preventDefault();
+            const formElement = document.getElementById('forgot-password-form');
+            const formData = new FormData(formElement);
+            postData('http://localhost/assetpro/user/forgotPassword' , formData , (res) => {
+                console.log(res);
+            } )
+        })
+    </script>

@@ -11,7 +11,8 @@ class Stats extends DBConnection
                 (SELECT COUNT(*) FROM asset WHERE CategoryID = 1 OR CategoryID = 2) as tangibleAssets,
                 (SELECT COUNT(*) FROM asset WHERE CategoryID = 2) as consumableAssets,
                 (SELECT COUNT(*) FROM employeeuser) as allEmployees,
-                (SELECT COUNT(*) FROM technicianuser) as allTechnicians
+                (SELECT COUNT(*) FROM technicianuser) as allTechnicians,
+                (SELECT COUNT(*) FROM department) as allDepartments
                 from DUAL";
         $stmt = $this->connect()->prepare($sql);
 
@@ -52,7 +53,8 @@ class Stats extends DBConnection
                 (SELECT COUNT(*) FROM asset WHERE CategoryID = 1 OR CategoryID = 2) as tangibleAssets,
                 (SELECT COUNT(*) FROM asset WHERE CategoryID = 2) as consumableAssets,
                 (SELECT COUNT(*) FROM employeeuser) as allEmployees,
-                (SELECT COUNT(*) FROM technicianuser) as allTechnicians
+                (SELECT COUNT(*) FROM technicianuser) as allTechnicians,
+                (SELECT COUNT(*) FROM department) as allDepartments
                 from DUAL";
         $stmt = $this->connect()->prepare($sql);
 
