@@ -408,6 +408,7 @@ class Asset extends DBConnection
             //Updating the asset table
             if (isset($filtered['asset'])) {
                 $assetSQL = $this->sqlQueryBuilder('asset', $filtered['asset'], 'AssetID = ' . $filtered['assetID']);
+                print_r($assetSQL);
                 $assetStmt = $this->dbConnection->prepare($assetSQL);
                 $assetStmt->execute();
             }
@@ -480,7 +481,7 @@ class Asset extends DBConnection
             $cols[] = $key . " = " . $valString;
         }
         $update = "UPDATE $table SET " . implode(', ', $cols);
-        $where = $where ? " WHERE $where" : '';
+        $where = $where = null ? " WHERE $where" : '';
         return ($update . $where);
     }
 

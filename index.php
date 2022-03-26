@@ -225,7 +225,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $dhc->getAllBreakdownAssets($url[2]);
                     break;
                 case 'getDepartmentEmployees':
-                    echo $dhc->getHeadDepartmentEmployees($url[2]);
+                    echo $dhc->getHeadDepartmentEmployeesList($url[2]);
                     break;
                 case 'getDHAssignedAssets':
                     echo $dhc->getDHAllAssignedAssets($url[2]);

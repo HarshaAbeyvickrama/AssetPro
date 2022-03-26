@@ -9,7 +9,6 @@
         border: none;
         /* margin-left: 60vw; */
     }
-
     .viewBtn,
     .editBtn,
     .deleteBtn {
@@ -34,6 +33,21 @@
 
     .deleteBtn {
         background-color: #394564;
+    }
+    .header-title {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .addDep {
+        display: flex;
+        justify-content: end;
+    }
+    .heading-title {
+        display: flex;
+        font-size: 30px;
+        color: #304068;
+        align-items: center;
+        font-weight: bold;
     }
 
     /* CSS for pop-up form */
@@ -61,6 +75,9 @@
         position: relative;
     }
 
+    .red {
+        color: red;
+    }
     .depInfo {
         text-align: left;
         margin-left: 20px;
@@ -83,12 +100,37 @@
         padding: 8px 15px 8px 15px;
     }
 
-    .col-h {
+    .col-h input[type=text] {
+        justify-content: center;
+        align-items: center;
+        width: calc(94% - 30px);
+        border: none;
+        background-color: #F1F4FF;
+        height: 15px;
+        border-radius: 9px;
+        padding: 8px 15px 8px 15px;
+        outline: none;
+    }
+    .col-h,
+    .col-f>span {
         display: block;
+    }
+    select {
+        justify-content: center;
+        align-items: center;
+        width: 97%;
+        border: none;
+        background-color: #F1F4FF;
+        height: 37px;
+        border-radius: 9px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 8px 15px 8px 15px;
+        outline: none;
     }
 
     #dDes {
-        height: 80px;
+        height: 100px;
     }
 
     span {
@@ -103,13 +145,17 @@
         border-radius: 20px;
         cursor: pointer;
         color: #F1F4FF;
-        margin-left: 95vh;
+        /* margin-left: 95vh; */
     }
 
     .addBtn:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
+    }
+    .add-btn {
+        display: flex;
+        justify-content: end;
     }
 
     .close {
@@ -124,17 +170,22 @@
 </style>
 
 <div class="overviewLayout">
-    <div class="section-heading">Departments</div>
+    <div class="header-title">
+        <div class="heading-title">Departments</div>
+        <!-- <div class="addDep"><button id="addDep">Insert</button></div> -->
+    </div>
+
     <div class="contentSection ">
         <div class="table">
             <table class="table">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Department Name</th>
-                    <th>Department Head</th>
-                    <th>Asset Count</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Department ID</th>
+                        <th>Department Name</th>
+                        <th>Contact Number</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody class="tableRowGroup" id="departmentTableBody"></tbody>
             </table>
@@ -149,21 +200,32 @@
         <h3 class="depInfo">Department Information</h3>
         <form action="" id="addDepartmentForm">
             <div class="col-f">
-                <span for="dName" id="fieldName">Department Name</span>
-                <input type="text" name="dName" id="dName" required/>
+                <span for="dCode" id="fieldName">Department Code <span class="red">*</span></span>
+                <input type="text" name="dCode" id="dCode" required />
             </div>
             <div class="col-f">
-                <span for="dCode" id="fieldName">Department Head</span>
-                <input type="text" name="dCode" id="dCode" required/>
+                <span for="dName" id="fieldName">Department Name <span class="red">*</span></span>
+                <input type="text" name="dName" id="dName" required >
+            </div>
+            <!-- <div class="col-f">
+                <span for="dhName">Department Head</span>
+                <select class="dhName" type="text" name="dhName" id="dhName" required ></select>
+            </div> -->
+            <div class="col-f">
+                <span for="dCon" id="fieldName">Contact Number <span class="red">*</span></span>
+                <input type="text" name="dCon" id="dCon" required />
             </div>
             <div class="col-f">
-                <span for="dDes" id="fieldName">Asset Count</span>
+                <span for="dDes" id="fieldName">Description</span>
                 <textarea type="text" name="dDes" id="dDes"></textarea>
             </div>
-            <div class="col-btn">
+            <div class="col-btn add-btn">
                 <button class="addBtn" id="btnSaveDepartment" type="submit">Add</button>
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    window.addEventListener('load', loadDepartments());
+</script>
