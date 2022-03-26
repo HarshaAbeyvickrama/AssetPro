@@ -15,9 +15,9 @@ class DepartmentHeadController extends DepartmentHead {
     }
 
     //Getting all the employees in a particular department
-    public function getHeadDepartmentEmployees($id) {
+    public function getHeadDepartmentEmployeesList($id) {
         $result = $this->getDepartmentEmployees($id);
-        return json_encode($result->fetch());
+        return json_encode($result->fetchAll());
     }
 
     //Getting a department head

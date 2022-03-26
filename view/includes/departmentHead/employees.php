@@ -1,4 +1,18 @@
-
+<style>
+    .profile-row {
+        /* display: inline-flex; */
+        /* height: 2rem !important; */
+    }
+    .profile-image {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+    .profile-name {
+        height: 100% !important;
+        /* display: inline-block; */
+    }
+</style>
 <div class="overviewLayout">
     <!-- <div>
         <div>All Employees</div>
@@ -10,7 +24,7 @@
     </div> -->
 
     <div>
-        <div class="section-heading">All Employees</div>
+        <div class="section-heading">Employees</div>
     </div>
 
     <div class="contentSection">
