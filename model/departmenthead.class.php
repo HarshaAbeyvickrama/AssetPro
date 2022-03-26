@@ -249,7 +249,7 @@ class DepartmentHead extends DBConnection
     }
 
     //===========Getting assigned assets of departmentHead=============
-    protected function getAssigned($userID)
+    protected function getAssigned($userId)
     {
         $dbConnection = $this->connect();
         $sql = "SELECT
@@ -270,8 +270,36 @@ class DepartmentHead extends DBConnection
                     ORDER BY
                         asset.AssetID";
         $pstm = $dbConnection->prepare($sql);
-        $pstm->execute(array($userID));
+        $pstm->execute(array($userId));
         return $pstm;
+    }
+
+    protected function getDeptAssets($userId){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                asset.AssetID,
+                assetdetails.Name AS assetName,
+                asset.DepartmentID,
+                t.Name AS assetType,
+                t.TypeCode AS TypeCode,
+                c.CategoryCode AS CategoryCode,
+                c.Name AS categoryName
+            FROM
+                asset
+            INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+            INNER JOIN category c ON
+                asset.CategoryID = c.CategoryID
+            INNER JOIN TYPE t ON
+                t.TypeID = asset.TypeID
+            INNER JOIN department ON department.DepartmentID = asset.DepartmentID
+            WHERE
+                asset.assignedUser = ?
+            ORDER BY
+                asset.AssetID";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($userId));
+        return $pstm;
+
     }
 
 

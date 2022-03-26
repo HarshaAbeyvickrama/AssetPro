@@ -83,3 +83,27 @@ function loadAssignedAssets(userID){
   }
   xhr.send();
 }
+
+//Loading all the Assets of Department Head
+function loadDeptAssets(userID){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", `http://localhost/assetpro/departmentheads/getDeptAssets/${userID}`, true);
+    xhr.onload = function() {
+        if (this.status == 200) {
+            var viewassets = JSON.parse(this.response);
+            console.log(viewassets);
+            for (var i = 0; i < viewassets.length; i++) {
+                document.getElementById('DHBody').innerHTML += `
+                              <tr>
+                                  <td>${i+1}</td>
+                                  <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
+                                  <td>${viewassets[i]['assetName']}</td>
+                                  <td>${viewassets[i]['assetType']}</td>
+                                   <td>${viewassets[i]['categoryName']}</td>
+                                 
+                              </tr>`;
+            }
+        }
+    }
+    xhr.send();
+}
