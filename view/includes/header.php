@@ -177,7 +177,6 @@
         transform: 0.5s;
     }
 
-
     .profile-dropdown .menu ul li:hover img {
         opacity: 1;
     }
@@ -217,29 +216,38 @@ include_once("notification.php")
 
 <script>
     const userSectionMask = document.getElementById('userSectionMask');
+    const dd = document.getElementById('profiledropdown');
     userSectionMask.addEventListener('click', () => {
         showUserSection();
     });
 
-
     function showUserSection() {
-        const dd = document.getElementById('profiledropdown');
         const style = window.getComputedStyle(dd, null).display;
         if (style === 'none') {
             dd.style.display = 'block';
         } else {
             dd.style.display = 'none';
-
         }
     }
+
+    const icon = document.getElementById("notificationIcon");
+    icon.addEventListener("click", e => {
+        showNotification();
+    })
+
 
     document.getElementById('logout').addEventListener('click', (e) => {
         window.location.replace("http://localhost/assetpro/logout");
     })
 
-    var icon = document.getElementById("notificationIcon");
-    icon.addEventListener("click", e => {
-        showNotification();
+    //Catch the click outside the profile dropdown
+    document.addEventListener('click', (e) => {
+        if (e.target.id !== 'userSectionMask') {
+            const style = window.getComputedStyle(dd, null).display;
+            if (style === 'block') {
+                dd.style.display = 'none';
+            }
+        }
     })
 
 
