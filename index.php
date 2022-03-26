@@ -1,6 +1,8 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Colombo');
 require_once './controller/autoloadController.php';
+
 
 $url = isset($_SERVER['PATH_INFO']) ? explode("/", ltrim($_SERVER['PATH_INFO'], '/')) : '/';
 
@@ -30,7 +32,6 @@ if ($url == '/' || $url[0] == 'dashboard') {
     $controller = $url[0];
     $action = $url[1];
 
-
     switch ($controller) {
         case 'user':
             $uc = new userController();
@@ -52,20 +53,31 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'addImage':
                     echo $ac->addImage($_FILES);
                     break;
+
                 case 'addAsset':
                     $data = json_decode(file_get_contents('php://input'), true);
-                    // print_r($data);
                     echo $ac->addAsset($data);
                     break;
+
+                case 'update':
+                    $_SESSION['IS_EDITING_ASSET'] = true;
+                    $data = json_decode($_POST['editedAssetDetails'], true);
+                    $res = $ac->updateAsset($data, $_FILES);
+                    echo json_encode($res);
+                    break;
+
                 case 'getAllAssets':
                     echo $ac->getAllAssets($url[2]);
                     break;
+
                 case 'count':
                     echo $ac->getAllAssetCounts();
                     break;
+
                 case 'assigned':
                     echo $ac->getAllAssignedAssets($url[2]);
                     break;
+
                 case 'getAssetForm':
                     echo $ac->getAssetDataForm($url[2]);
                     break;
