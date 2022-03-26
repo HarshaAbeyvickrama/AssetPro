@@ -198,5 +198,25 @@ class Breakdown extends DBConnection
         ];
     }
 
+    protected function updateBreakdown($data){
+        $dbConnection = $this->connect();
+        $assetId = $data['assetID'];
+        $breakdownId = $data[''];
+        $defectedPart = $data['defP'];
+        $reason = $data['exDef'];
+
+        $sql = "update breakdown set DefectedParts = :defectedPart, Reason =:reason WHERE AssetID = :assetId  AND BreakdownID = 21";
+
+        $stmt = $dbConnection->prepare($sql);
+
+        $stmt->bindParam(':assetId', $assetId);
+        $stmt->bindParam(':reason', $reason);
+        $stmt->bindParam(':defectedPart', $defectedPart);
+
+        $stmt->execute();
+
+
+    }
+
 
 }

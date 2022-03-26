@@ -195,47 +195,28 @@ class DepartmentHead extends DBConnection
     protected function getBreakdownAssets($userId)
     {
         $DBConnection = $this->connect();
-        // $sql = "SELECT
-        //             breakdown.AssetID,
-        //             assetdetails.Name AS assetName,
-        //             TYPE.Name AS assetType,
-        //             asset.assignedUser,
-        //             departmentheaduser.DepartmentID,
-        //             department.Name AS departmentName,
-        //             breakdown.DefectedParts,
-        //             category.CategoryCode,
-        //             type.TypeCode
-        //         FROM
-        //             breakdown
-        //         INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
-        //         INNER JOIN asset ON asset.AssetID = breakdown.AssetID
-        //         INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
-        //         INNER JOIN category ON category.CategoryID = type.CategoryID
-        //         INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
-        //         INNER JOIN department ON department.DepartmentID = departmentheaduser.DepartmentID
-        //         WHERE
-        //             departmentheaduser.UserID = ?";
+
 
         $sql = "SELECT
-                    breakdown.AssetID,
-                    assetdetails.Name AS assetName,
-                    TYPE.Name AS assetType,
-                    asset.assignedUser,
-                    departmentheaduser.DepartmentID,
-                    breakdown.Date AS reportedDate,
-                    category.CategoryCode,
-                    TYPE.TypeCode
-                FROM
-                    breakdown
-                INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
-                INNER JOIN asset ON asset.AssetID = breakdown.AssetID
-                INNER JOIN TYPE ON TYPE
-                    .TypeID = asset.TypeID
-                INNER JOIN category ON category.CategoryID = TYPE.CategoryID
-                INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
-                INNER JOIN department ON department.DepartmentID = departmentheaduser.DepartmentID
-                WHERE
-                    departmentheaduser.UserID = ?";
+                        breakdown.AssetID,
+                        breakdown.Date AS reportedDate,
+                        asset.AssetID,
+                        assetdetails.Name AS assetName,
+                        department.DepartmentID,
+                        departmentheaduser.HeadID,
+                        category.CategoryCode,
+                        TYPE.TypeCode
+                    FROM
+                        breakdown
+                    INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
+                    INNER JOIN asset ON asset.AssetID = assetdetails.AssetID
+                    INNER JOIN TYPE ON TYPE
+                        .TypeID = asset.TypeID
+                    INNER JOIN category ON category.CategoryID = TYPE.CategoryID
+                    INNER JOIN department ON department.DepartmentID = asset.DepartmentID
+                    INNER JOIN departmentheaduser ON departmentheaduser.HeadID = department.HeadID
+                    WHERE
+                        departmentheaduser.UserID = ?";
 
         $pstm = $DBConnection->prepare($sql);
         $pstm->execute(array($userId));

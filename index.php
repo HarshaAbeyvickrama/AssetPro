@@ -118,6 +118,10 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getBreakdownInprogressT':
                     // echo $bc->getAllTechBreakdownsInProgress($url[2]);
                     break;
+                case 'updateAllBreakdowns':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $bc->updateAllBreakdowns($data);
+                    break;
             }
             break;
 

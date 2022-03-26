@@ -16,6 +16,7 @@ function viewBreakAssetDH(userID){
                                     <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
                                     <td>${newDate}</td>
                                     <td>${viewassets[i]['assetName']}</td>
+                                     <td></td>
                                     <td>  
                                     <button class='btn btn-submit' onClick="">View</button>
                                     </td> 

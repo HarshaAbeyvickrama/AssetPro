@@ -341,4 +341,60 @@
     function cancelReport() {
         loadSection('centerSection', 'reportedBreakdown');
     }
+
+//=============updating the data by clicking the update button==========
+    document.querySelectorAll(".col-btn").forEach(button =>{
+        const updateBtn = document.getElementById("ConfirmUpdate");
+        const cancelBtn = document.getElementById("Cancelupdate");
+        button.addEventListener('click',function(event){
+
+            switch (event.target.id) {
+                case 'Cancelupdate':
+
+                    break;
+                case 'ConfirmUpdate':
+                    const updateData = getFormData(breakdown.AssetID);
+                    console.log('updateData');
+                    if(updateData == null){
+                        alert('Fields cannot be empty');
+                    }
+                    else {
+                        const result = showConfirmation('Are you really want to report?');
+                        if (result == true) {
+                            saveUpdate(updateData);
+                            alert('Successfully Reported!');
+                        } else {
+                            alert('Breakdown was not recorded!');
+                        }
+                    }
+            }
+
+        })
+    })
+
+    function getFormdata(assetid){
+        assetID = assetid;
+        defectedPart =  document.getElementById('defP').value;
+        explainDefect = document.getElementById('exDef').value;
+
+        // if(defectedPart == "" || explainDefect == "")
+        // {
+        //     return null;
+        // }
+        var updatedata = {
+            assetID:assetID,
+            defP:defectedPart,
+            exDef: explainDefect
+
+        }
+        return updatedata;
+
+    }
+
+    function saveUpdate(updateData){
+        postData('http://localhost/assetpro/breakdown/updateAllBreakdowns' , updateData , (response) =>{
+            // console.log(response);
+        })
+    }
+
 </script>
