@@ -100,7 +100,7 @@ class DepartmentHead extends DBConnection
         return $stmt;
     }
 
-    //Adding an Department Head
+    //Adding a Department Head
     protected function add() {
         $DBConnection = $this->connect();
         try {
@@ -247,19 +247,20 @@ class DepartmentHead extends DBConnection
     {
         $DBConnection = $this->connect();
         $sql = "SELECT
-                        employeeuser.EmployeeID AS EmployeeID,
-                        employeeuser.DepartmentID,
-                        department.DepartmentCode AS DepartmentCode,
-                        CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
-                        userdetails.Gender AS Gender,
-                        userdetails.jobTitle AS jobTitle
-                    FROM
-                        userdetails
-                    INNER JOIN employeeuser ON userdetails.UserID = employeeuser.UserID
-                    INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID
-                    INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = department.DepartmentID
-                    WHERE
-                        departmentheaduser.UserID = ?";
+                    employeeuser.EmployeeID AS EmployeeID,
+                    employeeuser.DepartmentID AS DepartmentID,
+                    department.DepartmentCode AS DepartmentCode,
+                    CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
+                    userdetails.ProfilePicURL as ProfilePicURL,
+                    userdetails.Gender AS Gender,
+                    userdetails.jobTitle AS jobTitle
+                FROM
+                    userdetails
+                INNER JOIN employeeuser ON userdetails.UserID = employeeuser.UserID
+                INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID
+                INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = department.DepartmentID
+                WHERE
+                    departmentheaduser.UserID = ?";
 
         $stmt = $DBConnection->prepare($sql);
         $stmt->execute(array($userId));

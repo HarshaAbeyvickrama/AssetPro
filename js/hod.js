@@ -39,7 +39,10 @@ function loadDepartmentEmployees(userID) {
             <tr>
               <td>${i + 1}</td>
               <td>${employees[i]["DepartmentCode"]}/EMP/${employees[i]["EmployeeID"]}</td>
-              <td>${employees[i]["Name"]}</td>
+              <td class="profile-row">
+                <img class="profile-image" src="http://localhost/assetpro/${employees[i]["ProfilePicURL"]}" alt="">
+                <span class="profile-name">${employees[i]["Name"]}</span>
+              </td>
               <td>${employees[i]["Gender"]}</td>
               <td>${employees[i]["jobTitle"]}</td>
               <td>

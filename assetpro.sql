@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2022 at 06:13 AM
+-- Generation Time: Mar 26, 2022 at 10:56 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -62,17 +62,17 @@ CREATE TABLE `asset` (
 --
 
 INSERT INTO `asset` (`AssetID`, `CategoryID`, `TypeID`, `DepartmentID`, `assignedUser`, `DateCreated`, `LastModified`, `Status`, `LocationID`) VALUES
-(1, 1, 2, NULL, 2, '2022-01-01 06:54:48', '2021-10-20 04:51:20', 'Unassigned', 1),
+(1, 2, 5, NULL, 2, '2022-03-26 06:39:48', '2022-03-26 06:39:48', 'Unassigned', 1),
 (2, 1, 1, NULL, 2, '2022-01-01 06:54:51', '2021-10-20 04:56:31', 'Unassigned', 1),
-(3, 2, 5, 1, 3, '2022-01-05 07:13:40', '2021-10-20 05:00:46', 'Assigned', 1),
-(4, 2, 5, NULL, 3, '2022-01-01 06:53:33', '2021-10-20 05:02:38', 'Assigned', 1),
-(5, 3, 6, 1, 3, '2022-01-01 09:51:52', '2021-10-20 05:04:02', 'Assigned', 1),
-(6, 3, 6, 1, 1, '2022-01-01 06:55:00', '2021-10-20 05:05:21', 'Shared', 1),
-(7, 1, 2, 1, 1, '2022-01-01 06:55:03', '2021-10-20 05:08:07', 'Shared', 1),
+(3, 3, 6, 1, 3, '2022-03-26 05:10:37', '2022-03-26 05:10:37', 'Assigned', 1),
+(4, 3, 6, NULL, 3, '2022-03-26 09:42:41', '2022-03-26 09:42:41', 'Assigned', 1),
+(5, 3, 6, 1, 3, '2022-03-26 07:47:18', '2022-03-26 07:47:18', 'Assigned', 1),
+(6, 1, 1, 1, 1, '2022-03-26 07:57:34', '2022-03-26 07:57:34', 'Shared', 1),
+(7, 2, 5, 1, 1, '2022-03-26 06:03:30', '2022-03-26 06:03:30', 'Shared', 1),
 (8, 2, 5, NULL, 1, '2022-01-01 06:55:06', '2021-10-21 07:13:31', 'Unassigned', 1),
-(13, 2, 5, NULL, 4, '2022-01-01 06:55:10', '2021-10-21 10:45:18', 'Unassigned', 1),
+(13, 2, 5, NULL, 4, '2022-03-26 06:06:40', '2022-03-26 06:06:40', 'Unassigned', 1),
 (14, 1, 2, NULL, 4, '2022-01-01 06:55:15', '2021-10-21 18:51:51', 'Unassigned', 1),
-(15, 1, 2, 1, 5, '2022-01-01 08:14:19', '2021-10-21 20:00:14', 'Unassigned', 1);
+(15, 1, 2, 1, 5, '2022-03-26 06:04:55', '2022-03-26 06:04:55', 'Unassigned', 1);
 
 -- --------------------------------------------------------
 
@@ -97,17 +97,17 @@ CREATE TABLE `assetdetails` (
 --
 
 INSERT INTO `assetdetails` (`AssetID`, `Name`, `Cost`, `AssetCondition`, `ImageURL`, `Description`, `PurchasedDate`, `hasWarranty`, `hasDepriciation`) VALUES
-(1, 'Acer Nitro', 300000, 'Brand New', '/uploads/assets/1.jpg', 'Gaming Computer', '2021-10-20', 1, 1),
+(1, 'Acer Nitro', 300000, 'Brand New', 'Array', 'Gaming Computer', '2021-10-20', 1, 0),
 (2, 'Sibosen Gaming Chair', 45000, 'Brand New', '/uploads/assets/2.jpg', 'Sibosen Gaming Chair | Office Chair | Computer Chair | High Back PU Leather Desk Chair Ergonomic Adjustable Reclining', '2021-10-18', 1, 1),
 (3, 'Key Board', 5000, 'Brand New', '/uploads/assets/3.png', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-14', 1, 0),
-(4, 'Web Cam', 5000, 'Brand New', '/uploads/assets/4.png', 'Asus C3 1080p Webcam', '2021-10-05', 1, 0),
-(5, 'Windows 10', 4500, 'Brand New', '/uploads/assets/5.png', 'Windows 10 Pro', '2021-09-15', 0, 0),
-(6, 'Office 365', 30000, 'Brand New', '/uploads/assets/6.jpg', 'Microsoft 365 Services', '2021-09-18', 0, 0),
-(7, 'Printer', 90000, 'Used', '/uploads/assets/7.jfif', 'Epson WorkForce Wireless Printer w/ADF (WF-2850)', '2021-09-16', 0, 1),
+(4, 'Web Cam', 5000, 'Brand New', 'Array', 'Asus C3 1080p Webcam 123', '2021-10-05', 1, 0),
+(5, 'Windows 10', 4500, 'Brand New', 'Array', 'Windows 10 Pro max', '2021-09-15', 0, 1),
+(6, 'Office 365', 30000, 'Brand New', 'Array', 'Microsoft 365 Services 4567', '2021-09-18', 1, 0),
+(7, 'Printer 2', 90000, 'Used', 'Array', 'Epson WorkForce Wffffffffireless Printer w/ADF (WF-2850)', '2021-09-16', 0, 1),
 (8, 'Key Board', 2000, 'Brand New', '/uploads/assets/8.jpg', 'Gaming Keyboard ESG K6 Mechanik', '2021-10-21', 1, 0),
-(13, 'Logitech C505 HD Webcam', 15400, 'Brand New', '/uploads/assets/13.png', 'Web Cam', '2021-10-22', 1, 0),
+(13, 'Logitech C505 ', 15400, 'Brand New', 'Array', 'Web Cam', '2021-10-22', 1, 0),
 (14, 'HP LaserJet', 20000, 'Brand New', '/uploads/assets/14.jpeg', 'Printer', '2021-10-22', 1, 1),
-(15, 'HP 1102 InkJet', 30000, 'Brand New', '/uploads/assets/15.jpeg', 'Printer', '2021-10-22', 1, 1);
+(15, 'HP 1102 InkJet bullet', 30000, 'Brand New', 'Array', 'Printer', '2021-10-22', 1, 1);
 
 -- --------------------------------------------------------
 
