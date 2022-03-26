@@ -76,8 +76,9 @@ class Breakdown extends DBConnection
         $assetId = $data['assetID'];
         $defectedPart = $data['defP'];
         $reason = $data['exDef'];
-        $EmpID = $_SESSION['EmployeeID'];
-
+         $EmpID = $_SESSION['UserID'];
+        // $EmpID = $_SESSION['EmployeeID'];
+       //$EmpID = 3;
         $sql = "INSERT INTO breakdown(
                 AssetID,
                 EmployeeID,
@@ -144,6 +145,11 @@ class Breakdown extends DBConnection
         return $stmt;
 
 
+        // if(mysqli_query($mysql,$reportassetquery )) {
+        //     echo("Successfully Reported!!");
+        // }else{
+        //     echo("Error in Submitting!!");
+        // }
     }
 
 //===================techinicians========================

@@ -18,13 +18,11 @@ require_once '../model/dbConnection.class.php';
                         login.Password AS Password,
                         userdetails.Email AS Email,
                         CONCAT(userdetails.fName,' ',userdetails.lName) AS name,
-                        user.RoleID,
-                        employeeuser.EmployeeID
+                        user.RoleID
                     FROM
                         login
                     INNER JOIN user ON user.UserID = login.UserID
                     INNER JOIN userdetails ON login.UserID = userdetails.UserID
-                    INNER JOIN employeeuser ON login.UserID = employeeuser.UserID
                     WHERE
                         login.Username = :Username OR userdetails.Email = :Email";
             $pstmt = $this->db->prepare($sql);

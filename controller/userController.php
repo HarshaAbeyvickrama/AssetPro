@@ -60,7 +60,6 @@
             $_SESSION['Username'] = $user['Username'];
             $_SESSION['name'] = $user['name'];
             $_SESSION['Email'] = $user['Email'];
-            $_SESSION['EmployeeID'] = $user['EmployeeID'];
 
             // switch ($_SESSION['RoleID']) {
             //     case '1':
