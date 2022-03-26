@@ -247,17 +247,6 @@
     // Get categories and types
     var categories = null;
     loadCategories();
-    
-
-
-    // Function to set categories
-
-    
-
-
-    
-
-
 
     // Enable / Disable the form fields
 
@@ -275,10 +264,8 @@
 
     })
 
-
     sectionState('warrentySection', true);
     sectionState('depriciationSection', true);
-
 
     function sectionState(sectionID, state) {
         var inputs = document.getElementById(sectionID).querySelectorAll("input, select");
@@ -323,20 +310,17 @@
                 default:
                     break;
             }
-
-
         })
     })
+
     var depriciation = document.getElementById('depriciation');
     depriciation.addEventListener('change', function() {
         sectionState('depriciationSection', !depriciation.checked);
-        console.log(!depriciation.checked);
     })
 
     var warrenty = document.getElementById('warrenty');
     warrenty.addEventListener('change', function() {
         sectionState('warrentySection', !warrenty.checked);
-        console.log(!warrenty.checked);
     })
 
     document.getElementById('image').addEventListener('change', function(e) {
@@ -346,15 +330,14 @@
 
     //get Form data
 
-    function getFormdata() {
-        form = new FormData(document.getElementById('addAssetForm'));
-        var asset = {};
-        for (var pair of form.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-            asset[pair[0]] = pair[1];
-        }
-        return asset;
-    }
+    // function getFormdata() {
+    //     form = new FormData(document.getElementById('addAssetForm'));
+    //     var asset = {};
+    //     for (var pair of form.entries()) {
+    //         asset[pair[0]] = pair[1];
+    //     }
+    //     return asset;
+    // }
 
 
     //Save asset function ----->  Saving asset details through AJAX
@@ -362,7 +345,6 @@
     function saveAsset(asset) {
         postData('http://localhost/assetpro/asset/addAsset', asset, (data) => {
             console.log(data);
-
         })
     }
 </script>

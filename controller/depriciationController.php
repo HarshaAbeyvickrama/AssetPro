@@ -1,6 +1,6 @@
 <?php
 // require_once '../model/dbConnection.class.php';
-// require_once '../model/depriciation.class.php';
+// require_once '../model/depreciation.class.php';
 // require_once '../model/asset.class.php';
 // require_once './assetController.php';
 class DepriciationController extends Depriciation

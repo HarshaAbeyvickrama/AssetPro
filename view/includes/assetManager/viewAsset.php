@@ -231,145 +231,103 @@
         margin: 5px 15px 10px 5px;
     }
 
-    .col-btn {
-        z-index: 1;
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        right: calc(50%);
-    }
+    /*.col-btn {*/
+    /*    z-index: 1;*/
+    /*    position: absolute;*/
+    /*    left: 0px;*/
+    /*    bottom: 0px;*/
+    /*    right: calc(50%);*/
+    /*}*/
 </style>
 <script>
     // ViewAsset.php
-    // Event listener to chande asset Types
-    var categorySelect = document.getElementById('category');
+    //=================================================== Variables ===================================================
+
+    var assetID = getCookieValue('assetID'); //current selected asset's ID
+    var categorySelect = element('category'); //The category dropdown element
+    var imageUpload = element('image'); // Image element
+    var depreciation = element('depreciation'); // Depreciation checkbox
+    var warranty = element('warranty'); //Warranty checkbox
+
+    //=================================================== Function calls on load ===================================================
+
+    loadCategories(); //Load all the asset categories
+    setISEditing(false); //Set editing to false
+    getData(`http://localhost/assetpro/asset/get/${assetID}`, populateData); // Load data and populate
+
+    //=================================================== Listeners ===================================================
+
+    //To change the type according to the category selected
     categorySelect.addEventListener('change', function (event) {
         setTypes(categorySelect.value);
     })
 
-    // Get categories and types
-    var categories = null;
-    loadCategories();
+    //Cancel edit button
+    element('cancelEditAsset').addEventListener('click', () => {
+        setISEditing(false);
+    });
 
-    // Load asset details
-    var assetID = getCookieValue('assetID');
-    // getAsset(assetID)
+    //Edit asset button
+    element('btnEditAsset').addEventListener('click', () => {
+        setISEditing(true);
+    });
 
-    // Function to get assetDetrails
-    getData(`http://localhost/assetpro/asset/get/${assetID}`, populateData);
+    //Update asset button
+    element('btnUpdateAsset').addEventListener('click', () => {
+        const message = "Are you sure you want to update this asset?";
+        if (showConfirmation(message)) {
+            const image = document.getElementById('image').files[0];
+            let editedAssetDetails = getFormData('addAssetForm');
+            const formData = new FormData();
+            editedAssetDetails['assetID'] = assetID;
 
+            editedAssetDetails['depreciation'] = "depreciation" in editedAssetDetails;
+            editedAssetDetails['warranty'] = "warranty" in editedAssetDetails;
+            if (!("otherInfo" in editedAssetDetails)) {
+                editedAssetDetails['otherInfo'] = '';
+            }
+            formData.append('image', image);
+            console.log(editedAssetDetails);
+            formData.append('editedAssetDetails', JSON.stringify(editedAssetDetails));
 
-    // Enable / Disable the form fields
+            postFiles('http://localhost/assetpro/asset/update/', formData, (result) => {
+                if(result.isSuccess){
+                    alert("Asset updated successfully");
+                }else {
+                    alert("Asset updating failed");
+                }
+            })
 
-    // formID = the Id of the form that should be diabled
-    // readonlyState ---->
-    //      true --> form disabled 
-    //      false --> form enabled 
-    var imageUpload = document.getElementById('image');
+        } else {
+            console.log('no update');
+        }
+
+        // setISEditing(false);
+    });
+
+    //Set the uploaded image as preview
     imageUpload.addEventListener('change', () => {
         const image = imageUpload.files[0];
         if (image) {
             var src = URL.createObjectURL(image);
-            document.getElementById('imagePreview').src = src;
+            element('imagePreview').src = src;
         }
     })
 
-    function formState(id, state) {
-        document.getElementById(id).disabled = state;
-    }
-
-    sectionState('addAssetForm', true)
-
-    function sectionState(sectionID, state) {
-        var inputs = document.getElementById(sectionID).querySelectorAll("input, select");
-        inputs.forEach(input => {
-            input.disabled = state;
-        })
-    }
-
-
-    // formState(true);
-    var depriciation = element('depriciation');
-    depriciation.addEventListener('change', function () {
-        formState('depriciationMethod', !depriciation.checked);
-        formState('depriciaionRate', !depriciation.checked);
-        formState('residualValue', !depriciation.checked);
-        formState('usefulYears', !depriciation.checked);
-    })
-    var warrenty = element('warrenty');
-    warrenty.addEventListener('change', function () {
-        formState('fromDate', !warrenty.checked);
-        formState('toDate', !warrenty.checked);
-        formState('otherInfo', !warrenty.checked);
+    //Depreciation enable / disable
+    depreciation.addEventListener('change', function () {
+        assetFormState('depreciationMethod', !depreciation.checked);
+        assetFormState('depreciationRate', !depreciation.checked);
+        assetFormState('residualValue', !depreciation.checked);
+        assetFormState('usefulYears', !depreciation.checked);
     })
 
-    document.getElementById('image').addEventListener('change', function (e) {
-        // console.log(e.target.files[0].value)
+    //Warranty enable / disable
+    warranty.addEventListener('change', function () {
+        assetFormState('fromDate', !warranty.checked);
+        assetFormState('toDate', !warranty.checked);
+        assetFormState('otherInfo', !warranty.checked);
     })
-
-
-    //get Form data
-
-    function getFormdata() {
-        return new FormData(document.getElementById('addAssetForm'));
-    }
-
-
-    // Get asset Details
-    function populateData(asset) {
-        element('assetID').value = `${asset.CategoryCode}/${asset.TypeCode}/${asset.AssetID}`;
-        element('imagePreview').src = `../${asset.ImageURL}`;
-        element('assetName').value = asset.Name;
-        element('assetDescription').value = asset.Description;
-        setTypes(asset.CategoryID);
-        element('category').value = asset.CategoryID;
-        element('assetType').value = asset.TypeID;
-        element('condition').value = asset.AssetCondition;
-        element('purchaseDate').value = asset.PurchasedDate;
-        element('purchaseCost').value = asset.Cost;
-
-        if (asset.fromDate != null) {
-            element('warrenty').checked = true;
-            element('fromDate').value = asset.fromDate;
-            element('toDate').value = asset.toDate;
-            element('otherInfo').value = asset.OtherInfo;
-        }
-
-        if (asset.DepriciaionRate != null) {
-            element('depriciation').checked = true;
-            element('depriciaionRate').value = asset.DepriciaionRate;
-            element('residualValue').value = asset.ResidualValue;
-            element('usefulYears').value = asset.UsefulYears;
-        }
-    }
-
-    function element(id) {
-        return document.getElementById(id);
-    }
-
-    //Set the isEditing State
-    function setISEditing(state) {
-        if (state) {
-            document.getElementById("uploadBtn").style.display = 'flex';
-            document.getElementById("btnUpdateAsset").style.display = 'block';
-            document.getElementById("cancelEditAsset").style.display = 'block';
-            document.getElementById("btnEditAsset").style.display = 'none';
-        }else {
-            document.getElementById("uploadBtn").style.display = 'none';
-            document.getElementById("btnUpdateAsset").style.display = 'none';
-            document.getElementById("cancelEditAsset").style.display = 'none';
-            document.getElementById("btnEditAsset").style.display = 'block';
-        }
-    }
-
-    //On window load
-    window.addEventListener('load', setISEditing(false));
-
-    //button event listeners
-    document.getElementById('cancelEditAsset').addEventListener('click' , ()=>{
-        setISEditing(false);
-    });
-
 
 </script>
 
@@ -387,7 +345,7 @@
                     <div class="title">Basic Information</div>
 
                     <div class="col-f">
-                        <span for="assetName">Asset ID</span>
+                        <span for="assetID">Asset ID</span>
                         <input type="text" name="assetID" id="assetID">
                     </div>
                     <div class="col-f">
@@ -434,11 +392,11 @@
                         <input type="number" name="purchaseCost" id="purchaseCost">
                     </div>
 
-                    <div class="title" for="warrenty">Warrenty <input type="checkbox" name="warrenty" id="warrenty">
+                    <div class="title" for="warranty">Warranty <input type="checkbox" name="warranty" id="warranty">
                     </div>
 
                     <div class="col-f">
-                        <span for="warrentyPeriod">Warrenty Period</span>
+                        <span for="warrantyPeriod">Warranty Period</span>
                         <label for="fromDate">From</label><input class="shortInput" type="date" name="fromDate"
                                                                  id="fromDate">
                         <label for="toDate">To</label><input class="shortInput" type="date" name="toDate" id="toDate">
@@ -451,19 +409,19 @@
 
             </div>
 
-            <div id="depriciationSection">
+            <div id="depreciationSection">
                 <div class="basic-information">
-                    <div class="title" for="depriciation">Depriciation <input type="checkbox" name="depriciation"
-                                                                              id="depriciation"></div>
+                    <div class="title" for="depreciation">Depreciation <input type="checkbox" name="depreciation"
+                                                                              id="depreciation"></div>
                     <div class="col-f">
-                        <span for="depriciationMethod">Depriciation Method</span>
-                        <select name="depriciationMethod" id="depriciationMethod">
-                            <option value="Staright Line">Straight Line Method</option>
+                        <span for="depreciationMethod">Depreciation Method</span>
+                        <select name="depreciationMethod" id="depreciationMethod">
+                            <option value="Straight Line">Straight Line Method</option>
                         </select>
                     </div>
                     <div class="col-f">
-                        <span for="depriciaionRate">Depriciation Rate</span>
-                        <input type="number" name="depriciaionRate" id="depriciaionRate" step=".01">
+                        <span for="depreciationRate">Depreciation Rate</span>
+                        <input type="number" name="depreciationRate" id="depreciationRate" step=".01">
                     </div>
                     <div class="col-f">
                         <span for="residualValue">Residual Value</span>
@@ -476,7 +434,7 @@
                 </div>
             </div>
             <div class="col-btn">
-                <div id="btnEditAsset" onclick="setISEditing(true)">Edit</div>
+                <div id="btnEditAsset">Edit</div>
                 <div id="btnUpdateAsset">Update</div>
                 <div id="cancelEditAsset">Cancel</div>
             </div>
