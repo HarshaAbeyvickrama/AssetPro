@@ -318,9 +318,9 @@
 
                
                 <div class="col-btn">
-                    <div class="sendfbBtn btnAction" id="sendFeedback"> Send </div>
                     <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>
                     <div class="editBtn btnAction" id="editFeedback"> Edit </div>
+                    <div class="sendfbBtn btnAction" id="sendFeedback"> Send </div>
                 </div>
                   
 
