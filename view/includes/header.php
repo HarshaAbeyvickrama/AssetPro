@@ -235,7 +235,6 @@ include_once("notification.php")
         showNotification();
     })
 
-
     document.getElementById('logout').addEventListener('click', (e) => {
         window.location.replace("http://localhost/assetpro/logout");
     })

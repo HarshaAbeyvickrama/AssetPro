@@ -12,7 +12,7 @@ if ($url[0] == 'resetPassword') {
     return;
 }
 
-if($url[0] == 'login'){
+if ($url[0] == 'login') {
     header("Location: http://localhost/assetpro/view/login.php");
     exit(0);
 }
@@ -64,6 +64,36 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     $data = json_decode($_POST['editedAssetDetails'], true);
                     $res = $ac->updateAsset($data, $_FILES);
                     echo json_encode($res);
+                    break;
+
+                case 'delete':
+                    if (!isset($_SESSION['IS_DELETING_ASSET'])) {
+                        $_SESSION['DELETE_ASSET'] = array();
+                        $_SESSION['DELETE_ASSET']['assetID'] = $url[2];
+
+                        //check if asset is assigned to a department and employee
+                        $assigns = $ac->getAssignedDetails($url[2]);
+
+                        if ($assigns['hasDepartment'] || $assigns['hasBreakdowns'] || $assigns['hasAssignedUser']) {
+                            $_SESSION['DELETE_ASSET']['isDeletable'] = false;
+                            $_SESSION['DELETE_ASSET']['data'] = $assigns;
+                        } else {
+                            $_SESSION['DELETE_ASSET']['isDeletable'] = true;
+
+                        }
+                    }
+                    if ((isset($_POST['deleteConfirmation']) && $_POST['deleteConfirmation']) || $_SESSION['DELETE_ASSET']['isDeletable']) {
+                        $res = $ac->deleteAsset($_SESSION['DELETE_ASSET']['assetID']);
+                        unset($_SESSION['DELETE_ASSET']);
+                        echo json_encode($res);
+                    } else {
+                        echo json_encode(array(
+                            'isSuccess' => true,
+                            'isPending' => true,
+                            'data' => $_SESSION['DELETE_ASSET']
+                        ));
+                    }
+
                     break;
 
                 case 'getAllAssets':

@@ -337,7 +337,6 @@
                         <span class='componentText'>Assets</span>
                     </div>";
 
-
                 //Assigned assets
                 echo "<div class='component' id='assignedAssets'>
                         <img src='../Images/icons/NotSelected/assignedassets.png' >
@@ -356,7 +355,6 @@
                     <span class='componentText'>Breakdowns</span>
                     </div>";
 
-
                 break;
             default:
                 # code...
@@ -368,8 +366,8 @@
 </div>
 
 <script>
-    //Components event listener
 
+    //Components event listener
     var components = document.getElementById("components");
     components.addEventListener("click", (event) => {
         // event.preventDefault();

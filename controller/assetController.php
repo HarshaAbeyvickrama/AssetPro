@@ -57,7 +57,7 @@ class AssetController extends Asset
 
     public function deleteAsset($id)
     {
-        $result = $this->delete($id);
+        return $this->delete($id);
     }
 
     public function addImage($image)
@@ -258,8 +258,8 @@ class AssetController extends Asset
             $resultAsset['assetDetails'] = $assetDetails;
         }
 
-        echo ("OLd : " . $old['hasDepriciation']);
-        echo ("new : " . $updated['hasDepriciation']);
+        echo("OLd : " . $old['hasDepriciation']);
+        echo("new : " . $updated['hasDepriciation']);
 
         //depreciation details
         if (isset($assetDetails['hasDepriciation']) && $assetDetails['hasDepriciation']) {
@@ -310,4 +310,35 @@ class AssetController extends Asset
 
         return $resultAsset;
     }
+
+    public function getAssignedDetails(string $assetID): array
+    {
+        $assigned = $this->checkAssigned($assetID);
+        if ($assigned['DepartmentID']) {
+            $result['hasDepartment'] = true;
+            $result['departmentID'] = $assigned['DepartmentID'];
+        } else {
+            $result['hasDepartment'] = false;
+        }
+
+        if ($assigned['assignedUser']) {
+            $result['hasAssignedUser'] = true;
+            $result['assignedUser'] = $assigned['assignedUser'];
+        } else {
+            $result['hasAssignedUser'] = false;
+        }
+
+        $breakdowns = $this->checkBreakdowns($assetID);
+
+        if ($breakdowns['count']) {
+            $result['hasBreakdowns'] = true;
+            $result['breakdownCount'] = $breakdowns['count'];
+        } else {
+            $result['hasBreakdowns'] = false;
+        }
+        return $result;
+//
+    }
+
+
 }
