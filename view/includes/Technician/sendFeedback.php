@@ -135,7 +135,7 @@
         font-size: 18px;
         background-color: #5C6E9B;
         width: 80px;
-        max-height: 30px;
+        max-height: 40px;
         position: relative;
         float: right;
         margin-right: 5px;
@@ -318,9 +318,9 @@
 
                
                 <div class="col-btn">
-                    <div class="sendfbBtn btnAction" id="sendFeedback"> Send Feedback </div>
+                    <div class="sendfbBtn btnAction" id="sendFeedback"> Send </div>
                     <div class="cancBtn btnAction" id="cancelEdit"> Cancel </div>
-                    <div class="errlogBtn btnAction" id="errorLog"> Error Log </div>
+                    <div class="editBtn btnAction" id="editFeedback"> Edit </div>
                 </div>
                   
 
