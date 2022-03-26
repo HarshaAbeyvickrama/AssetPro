@@ -13,7 +13,7 @@
         height: 87vh;
     }
 
-    .profile>div {
+    .profile > div {
         background-color: white;
         border-radius: 10px;
     }
@@ -38,12 +38,12 @@
 
     }
 
-    .leftSection>div {
+    .leftSection > div {
         /* height: 100%; */
         /* width: 100%; */
     }
 
-    .profileImageSection>img {
+    .profileImageSection > img {
         width: 200px;
         border-radius: 0%;
     }
@@ -131,7 +131,7 @@
         margin: 10px 0px;
     }
 
-    .col-btn>div {
+    .col-btn > div {
         border-radius: 15px;
         padding: 10px 20px;
         color: white;
@@ -186,7 +186,7 @@
     }
 
     .col-h,
-    .col-f>span {
+    .col-f > span {
         display: block;
         margin-top: 5px;
     }
@@ -195,15 +195,15 @@
         margin: 5px 0px;
     }
 
-    .radio-group>label {
+    .radio-group > label {
         margin-left: 5px;
     }
 
-    .radio-group>input[type=radio]:hover {
+    .radio-group > input[type=radio]:hover {
         cursor: pointer;
     }
 
-    .col-btn>div:hover {
+    .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
@@ -216,16 +216,16 @@
         overflow-x: hidden;
     }
 
-    #pRight>div {
+    #pRight > div {
         background-color: white;
         border-radius: 10px;
     }
 
-    #pRight>div:nth-child(1) {
+    #pRight > div:nth-child(1) {
         margin: 15px 10px 5px 5px;
     }
 
-    #pRight>div:nth-child(2) {
+    #pRight > div:nth-child(2) {
         margin: 5px 15px 10px 5px;
     }
 
@@ -253,10 +253,10 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
-<!--                    --><?php
-//                       $txt = $_SESSION['EmployeeID'];
-//                       echo ($txt);
-//                    ?>
+                    <!--                    --><?php
+                    //                       $txt = $_SESSION['EmployeeID'];
+                    //                       echo ($txt);
+                    //                    ?>
 
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
@@ -317,17 +317,13 @@
     //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
     //     }
 
-
+    // setIsEditingBreakdown(false);
     document.getElementById('EditReport').addEventListener('click', () => {
-        document.getElementById('EditBtnSection').style.display = 'none';
-        document.getElementById('updateBtnSection').style.display = 'block';
-        inputs('EditForm', false);
+        setIsEditingBreakdown(true);
     })
 
     document.getElementById('Cancelupdate').addEventListener('click', () => {
-        document.getElementById('updateBtnSection').style.display = 'none';
-        document.getElementById('EditBtnSection').style.display = 'block';
-        inputs('EditForm', true);
+        setIsEditingBreakdown(false);
     })
 
     var breakdownID = getCookieValue('BreakdownID');
@@ -340,7 +336,6 @@
     document.getElementById('condition').value = breakdown.AssetCondition;
     document.getElementById('defP').value = breakdown.DefectedParts;
     document.getElementById('exDef').value = breakdown.Reason;
-
 
 
     function cancelReport() {

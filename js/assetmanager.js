@@ -85,10 +85,7 @@ function getFormData(formID) {
     return asset;
 }
 
-//Change the form state with ID
-function assetFormState(id, state) {
-    element(id).disabled = state;
-}
+
 
 //Change the section state with ID
 function sectionState(sectionID, state) {

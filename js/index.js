@@ -66,3 +66,8 @@ function element(id) {
 function showConfirmation(text){
     return confirm(text);
 }
+
+//Change the form state with ID
+function assetFormState(id, state) {
+    element(id).disabled = state;
+}
