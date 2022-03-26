@@ -23,8 +23,37 @@
         border: none;
         /* margin-left: 62vw; */
     }
-    .heading {
+    .header-title {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .addEmp {
         display: flex;
+        justify-content: end;
+    }
+    .heading-title {
+        display: flex;
+        font-size: 30px;
+        color: #304068;
+        align-items: center;
+        font-weight: bold;
+    }
+    .profile-row {
+        /* display: inline-flex; */
+        /* height: 2rem !important; */
+    }
+    .profile-image {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+    .profile-name {
+        height: 100% !important;
+        /* display: inline-block; */
+    }
+
+    tr {
+        /* align-items: center !important; */
     }
 
     /* CSS for the employee table */
@@ -38,8 +67,8 @@
             </div>
         </div>
     </div> -->
-    <div class="heading">
-        <!-- <div>All Employees</div> -->
+    <div class="header-title">
+        <div class="heading-title">Employees</div>
         <div class="addEmp"><button id="addEmp">Insert</button></div>
     </div>
 

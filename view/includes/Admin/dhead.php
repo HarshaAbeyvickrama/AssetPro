@@ -23,8 +23,20 @@
         border: none;
         /* margin-left: 62vw; */
     }
-    .heading {
+    .header-title {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .addEmp {
         display: flex;
+        justify-content: end;
+    }
+    .heading-title {
+        display: flex;
+        font-size: 30px;
+        color: #304068;
+        align-items: center;
+        font-weight: bold;
     }
 
     /* CSS for the employee table */
@@ -38,8 +50,8 @@
             </div>
         </div>
     </div> -->
-    <div class="heading">
-        <!-- <div>All Employees</div> -->
+    <div class="header-title">
+        <div class="heading-title">Department Heads</div>
         <div class="addEmp"><button id="addEmp">Insert</button></div>
     </div>
 

@@ -1,21 +1,16 @@
 <?php
-// enum Types: string{
-//     case ALL ="all";
-//     case ASSIGNED ="assigned";
-//     case UNASSIGNED ="unassigned";
-//     case TANGIBLE ="tangible";
-//     case CONSUMABLE ="consumable";
-// }
+date_default_timezone_set('Asia/Colombo');
+
 class Asset extends DBConnection
 {
 
-    private $dbConnection;
+    protected $dbConnection;
 
     // properties related to an asset
-
+    private $assetID = null;
     private $status = "unassigned";
     // Getting the values
-    private $assetName;
+    private $assetName = '';
     private $assetDescription;
     private $assetType;
     private $category;
@@ -35,13 +30,14 @@ class Asset extends DBConnection
     private $depriciationMethod;
     private $depriciaionRate;
     private $residualValue;
+    private $isDepreciated;
     private $usefulYears;
 
     // Image
 
     private $image = null;
 
-    public function __construct($assetName, $assetType, $category, $condition, $purchaseCost, $purchaseDate, $otherInfo = null, $image, $hasWarrenty = false, $warrentyStart = null, $warrentyEnd = null, $hasDepriciation = false, $depriciationMethod = 'straightLine', $usefulYears = null, $depriciaionRate = null, $residualValue = null)
+    public function __construct($assetName, $assetType, $category, $condition, $purchaseCost, $purchaseDate, $assetDescription, $otherInfo = null, $image, $hasWarrenty = false, $warrentyStart = null, $warrentyEnd = null, $hasDepriciation = false, $depriciationMethod = 'straightLine', $usefulYears = null, $depriciaionRate = null, $residualValue = null, $isDepreciated = false)
     {
 
         $this->dbConnection = $this->connect();
@@ -52,7 +48,7 @@ class Asset extends DBConnection
         $this->purchaseCost = $purchaseCost;
         $this->purchaseDate = $purchaseDate;
         $this->image = $image;
-
+        $this->assetDescription = $assetDescription;
         $this->hasWarrenty = $hasWarrenty;
         $this->warrentyStart = $warrentyStart;
         $this->warrentyEnd = $warrentyEnd;
@@ -63,10 +59,11 @@ class Asset extends DBConnection
         $this->depriciaionRate = $depriciaionRate;
         $this->usefulYears = $usefulYears;
         $this->residualValue = $residualValue;
+        $this->isDepreciated = $isDepreciated;
     }
     // Get all assets in the db (for asset manager)
     // $type = the typeof assets to retrieve (all , assigned , shared , unassigned)
-    protected function getAll($type)
+    protected function getAll($type): bool|PDOStatement
     {
         $dbConnection = $this->connect();
         switch ($type) {
@@ -172,7 +169,7 @@ class Asset extends DBConnection
         return $result;
     }
 
-    function getByCategory($category)
+    function getByCategory($category): bool|PDOStatement
     {
         $dbConnection = $this->connect();
         $sql = "SELECT
@@ -194,6 +191,7 @@ class Asset extends DBConnection
         $stmt->execute();
         return $stmt;
     }
+
     // Get all the assets assigned to a particular user by the userID
     protected function getAssigned($userID)
     {
@@ -221,10 +219,12 @@ class Asset extends DBConnection
         $pstm->execute(array($userID));
         return $pstm;
     }
+
     //Get all assets in progress by assetID
-    protected function getinProgress($assetID){
+    protected function getinProgress($assetID)
+    {
         $dbConnection = $this->connect();
-        $sql ="SELECT
+        $sql = "SELECT
                 asset.AssetID,
                 assetdetails.assetName,
                 assetType
@@ -233,7 +233,7 @@ class Asset extends DBConnection
     }
 
     // Get all the details of a particular asset by assetID
-    protected function get($assetId)
+    protected function get($assetId): bool|PDOStatement
     {
         $dbConnection = $this->connect();
         $sql = "SELECT
@@ -303,11 +303,8 @@ class Asset extends DBConnection
         return $stmt;
     }
 
-    protected function update()
-    {
-    }
-    
-    protected function save()
+
+    protected function save(): array
     {
 
         try {
@@ -331,7 +328,7 @@ class Asset extends DBConnection
             $stmt->execute();
             $assetID = $this->dbConnection->lastInsertId();
             // Saving the image
-            
+
 
             $assetDetails = "insert into assetdetails values (:assetId,:assetName , :purchaseCost,:condition,:fileUrl,:assetDescription,:purchaseDate)";
             $stmt = $this->dbConnection->prepare($assetDetails);
@@ -374,8 +371,8 @@ class Asset extends DBConnection
             $notification = new Notification();
             $notification->createNotification(
                 type: "addAsset",
-                message: "Added New Asset",
                 userId: $_SESSION['UserID'],
+                message: "Added New Asset",
                 assetId: $assetID,
                 targetUsers: array($_SESSION['UserID'])
             );
@@ -386,7 +383,7 @@ class Asset extends DBConnection
                 "message" => "Asset Added Successfully"
             );
             return $result;
-        } catch (Exception | Throwable $e) {
+        } catch (Exception|Throwable $e) {
             $this->dbConnection->rollBack();
             unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->image);
 
@@ -398,6 +395,84 @@ class Asset extends DBConnection
 
             return $result;
         }
+    }
+
+    protected function update($filtered): array
+    {
+        if ($this->dbConnection == null) {
+            $this->dbConnection = $this->connect();
+        }
+        try {
+            $this->dbConnection->beginTransaction();
+
+            //Updating the asset table
+            if (isset($filtered['asset'])) {
+                $assetSQL = $this->sqlQueryBuilder('asset', $filtered['asset'], 'AssetID = ' . $filtered['assetID']);
+                $assetStmt = $this->dbConnection->prepare($assetSQL);
+                $assetStmt->execute();
+            }
+
+            if (isset($filtered['assetDetails'])) {
+                $assetDetailsSQL = $this->sqlQueryBuilder('assetdetails', $filtered['assetDetails'], 'AssetID = ' . $filtered['assetID']);
+                $assetDetailsStmt = $this->dbConnection->prepare($assetDetailsSQL);
+                $assetDetailsStmt->execute();
+            }
+
+            if (isset($filtered['depreciation'])) {
+                $assetDetailsSQL = $this->sqlQueryBuilder('depreciation', $filtered['depreciation'], 'AssetID = ' . $filtered['assetID']);
+                $assetDetailsStmt = $this->dbConnection->prepare($assetDetailsSQL);
+                $assetDetailsStmt->execute();
+            }
+
+            if (isset($filtered['warranty'])) {
+                $assetDetailsSQL = $this->sqlQueryBuilder('assetwarranty', $filtered['warranty'], 'AssetID = ' . $filtered['assetID']);
+                $assetDetailsStmt = $this->dbConnection->prepare($assetDetailsSQL);
+                $assetDetailsStmt->execute();
+            }
+
+            $this->dbConnection->commit();
+//
+//            $notification = new Notification();
+//            $notification->createNotification(
+//                type: "addAsset",
+//                userId: $_SESSION['UserID'],
+//                message: "Added New Asset",
+//                assetId: $assetID,
+//                targetUsers: array($_SESSION['UserID'])
+//            );
+
+            return array(
+                'isSuccess' => true,
+                "status" => "Ok",
+                "message" => "Asset Updated Successfully"
+            );
+        } catch (Exception|Throwable $e) {
+            $this->dbConnection->rollBack();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->image);
+
+            $result = array(
+                "status" => "Failed",
+                "error" => $e->getMessage(),
+                "message" => "Asset addition failed"
+            );
+
+            return $result;
+        }
+    }
+
+
+    /* function to build SQL UPDATE string */
+    protected function sqlQueryBuilder($table, $data, $where = null): string
+    {
+        error_reporting(E_ERROR | E_PARSE);
+        $cols = array();
+        foreach ($data as $key => $val) {
+            $valString = "'" . $val . "'";
+            $cols[] = $key . " = " . $valString;
+        }
+        $update = "UPDATE $table SET " . implode(', ', $cols);
+        $where = $where ? " WHERE $where" : '';
+        return ($update . $where);
     }
 
     protected function getAllCounts()
@@ -440,7 +515,8 @@ class Asset extends DBConnection
         return $pstm;
     }
 
-    protected function getCategories(){
+    protected function getCategories()
+    {
         $dbConnection = $this->connect();
         $catSql = 'SELECT * FROM `category`';
         $stmt = $dbConnection->prepare($catSql);
@@ -449,7 +525,7 @@ class Asset extends DBConnection
         $output = array();
         foreach ($result as $row) {
             $line = array("CategoryID" => $row['CategoryID'], "CategoryName" => $row['Name'], "CategoryCode" => $row['CategoryCode']);
-            $typeSQL =  'SELECT
+            $typeSQL = 'SELECT
                     TypeID,
                     Name,
                     TypeCode
@@ -468,5 +544,33 @@ class Asset extends DBConnection
             array_push($output, $line);
         }
         return $output;
+    }
+
+    protected function toString(): array
+    {
+        $result = array();
+
+        $result['assetName'] = $this->assetName;
+        $result['assetType'] = $this->assetType;
+        $result['categoryID'] = $this->category;
+        $result['condition'] = $this->condition;
+        $result['purchaseCost'] = $this->purchaseCost;
+        $result['purchaseDate'] = $this->purchaseDate;
+        $result['assetDescription'] = $this->assetDescription;
+        $result['imageURL'] = $this->image;
+
+        $result['hasWarrenty'] = $this->hasWarrenty;
+        $result['warrentyStart'] = $this->warrentyStart;
+        $result['warrentyEnd'] = $this->warrentyEnd;
+        $result['otherInfo'] = $this->otherInfo;
+
+        $result['hasDepriciation'] = $this->hasDepriciation;
+        $result['depriciationMethod'] = $this->depriciationMethod;
+        $result['depriciaionRate'] = $this->depriciaionRate;
+        $result['usefulYears'] = $this->usefulYears;
+        $result['residualValue'] = $this->residualValue;
+        $result['isDepreciated'] = $this->isDepreciated;
+
+        return $result;
     }
 }

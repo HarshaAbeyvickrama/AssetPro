@@ -1,28 +1,17 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8" />
   <title>AssetPro</title>
-  <link rel="stylesheet" href="style.css" />
+<!--  <link rel="stylesheet" href="style.css" />-->
   <link rel="stylesheet" href="../css/login.css">
-  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 </head>
-
-<?php
-//The helper page and it's functions
-include_once '../helpers/sessionHelper.php';
-?>
 
 <body>
   <div class="center">
-    <div class="alert-message">
-      <?php flash('login') ?>
-    </div>
+
 
     <div class="logo">
       <img src="../Images/AssetProLogo.png" alt="AssetPro Logo">
@@ -49,23 +38,3 @@ include_once '../helpers/sessionHelper.php';
 </body>
 
 </html>
-<!-- <script>
-  const form = document.getElementById('loginForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    var login = new FormData(form);
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', './controller/mainController.php?action=login', true);
-    xhr.onload = function() {
-      const res = JSON.parse(this.responseText);
-      if (res.status != "ok") {
-        alert("Wrong userame/password combination!!!!!")
-      } else {
-        // console.log(`http://localhost/assetpro/${res.location}`);
-        window.location.replace(res.location);
-      }
-    }
-    xhr.send(login);
-  })
-</script> -->

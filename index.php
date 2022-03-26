@@ -1,29 +1,36 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Colombo');
+require_once './controller/autoloadController.php';
+
+
+$url = isset($_SERVER['PATH_INFO']) ? explode("/", ltrim($_SERVER['PATH_INFO'], '/')) : '/';
+
+if ($url[0] == 'resetPassword') {
+    echo 'shagdjhagdjhas';
+    $uc = new userController();
+    return;
+}
+
+if($url[0] == 'login'){
+    header("Location: http://localhost/assetpro/view/login.php");
+    exit(0);
+}
 
 if (!isset($_SESSION['UserID'])) {
     header("Location: ./view/login.php");
     return;
 }
 
-$url = isset($_SERVER['PATH_INFO']) ? explode("/", ltrim($_SERVER['PATH_INFO'], '/')) : '/';
-
-// if (!isset($_SESSION['user']) || $url[0] == 'login') {
-//     header("location: ./view/login.php");
-// }
-
 if ($url == '/' || $url[0] == 'dashboard') {
-    // dashboard
-    // echo 'dashboard';
     header("location: ./view/dashboard.php");
+    exit(0);
 } elseif ($url[0] == 'logout') {
     session_destroy();
     header("location: ./view/login.php");
 } else {
-    require_once './controller/autoloadController.php';
     $controller = $url[0];
     $action = $url[1];
-
 
     switch ($controller) {
         case 'user':
@@ -31,12 +38,12 @@ if ($url == '/' || $url[0] == 'dashboard') {
             switch ($action) {
                 case 'forgotPassword':
                     // header("location: http://localhost/assetpro");
-                // redirect('http://localhost/assetpro');
-                echo 'sdvhsgdhgsdhjagd';
-                return;
+                    // redirect('http://localhost/assetpro');
+                    echo 'sdvhsgdhgsdhjagd';
+                    return;
                     // echo $uc->forgotPassword();
                     // echo json_encode($uc->forgotPassword());
-                break;
+                    break;
             }
             break;
         case 'asset':
@@ -46,20 +53,31 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'addImage':
                     echo $ac->addImage($_FILES);
                     break;
+
                 case 'addAsset':
                     $data = json_decode(file_get_contents('php://input'), true);
-                    // print_r($data);
                     echo $ac->addAsset($data);
                     break;
+
+                case 'update':
+                    $_SESSION['IS_EDITING_ASSET'] = true;
+                    $data = json_decode($_POST['editedAssetDetails'], true);
+                    $res = $ac->updateAsset($data, $_FILES);
+                    echo json_encode($res);
+                    break;
+
                 case 'getAllAssets':
                     echo $ac->getAllAssets($url[2]);
                     break;
+
                 case 'count':
                     echo $ac->getAllAssetCounts();
                     break;
+
                 case 'assigned':
                     echo $ac->getAllAssignedAssets($url[2]);
                     break;
+
                 case 'getAssetForm':
                     echo $ac->getAssetDataForm($url[2]);
                     break;
@@ -115,7 +133,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $vc->getAllStats();
                     break;
                 case 'assetsCount':
-                    echo $vc-> getAllCount($url[2]);
+                    echo $vc->getAllCount($url[2]);
                     break;
             }
             break;
@@ -201,7 +219,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'addDepartmentHead':
                     $data = json_decode(file_get_contents('php://input'), true);
-                    echo $dhc->addDepartmentHead($data); 
+                    echo $dhc->addDepartmentHead($data);
                     break;
                 case 'getDHBreakdowns':
                     echo $dhc->getAllBreakdownAssets($url[2]);
@@ -210,7 +228,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $dhc->getHeadDepartmentEmployees($url[2]);
                     break;
                 case 'getDHAssignedAssets':
-                    echo $dhc-> getDHAllAssignedAssets($url[2]);
+                    echo $dhc->getDHAllAssignedAssets($url[2]);
                     break;
             }
             break;

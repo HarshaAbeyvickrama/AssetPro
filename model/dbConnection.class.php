@@ -1,15 +1,17 @@
 <?php
 
-class DBConnection{
-    
-    public function connect()    {
+class DBConnection
+{
+
+    public function connect()
+    {
         try {
             $username = "root";
             $host = "localhost";
             $pwd = "";
             $db = "assetpro";
             $dbConnection = new PDO('mysql:host=' . $host . ';dbname=' . $db, $username, $pwd);
-            $dbConnection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC);
+            $dbConnection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             return $dbConnection;
         } catch (PDOException $e) {
             print "Error : " . $e->getMessage() . '<br/>';
@@ -18,14 +20,16 @@ class DBConnection{
     }
     //Newly added
     //Prepare statement with query
-    public function query($sql) {
+    public function query($sql)
+    {
         $this->stmt = $this->dbConnection->prepare($sql);
     }
 
     //Bind values to prepared statement using named parameters
-    public function bind($param, $value, $type = null) {
-        if(is_null($type)) {
-            switch(true) {
+    public function bind($param, $value, $type = null)
+    {
+        if (is_null($type)) {
+            switch (true) {
                 case is_int($value):
                     $type = PDO::PARAM_INT;
                     break;
@@ -43,26 +47,32 @@ class DBConnection{
     }
 
     //Execute the prepared statement
-    public function execute() {
+    public function execute()
+    {
         return $this->stmt->execute();
     }
 
     //Return multiple records
-    public function resultSet() {
+    public function resultSet()
+    {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     //Return  single record
-    public function single() {
+    public function single()
+    {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     //Get row count
-    public function rowCount() {
+    public function rowCount()
+    {
         return $this->stmt->rowCount();
     }
+
+
 }
 
 ?>
