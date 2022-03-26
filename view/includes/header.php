@@ -208,7 +208,7 @@ include_once("notification.php")
     <div class="menu">
         <h3>Signed in as <br> <span><?php echo $_SESSION['name'] ?></span></h3>
         <ul>
-            <li><img src="../Images/avatar.png" alt="">My Profile</li>
+            <li id="my-profile"><img src="../Images/avatar.png" alt="">My Profile</li>
             <li id="logout"><img src="../Images/settings.png" alt="">Log Out</li>
         </ul>
     </div>
@@ -247,6 +247,10 @@ include_once("notification.php")
             if (style === 'block') {
                 dd.style.display = 'none';
             }
+        }
+
+        if (e.target.id === 'my-profile') {
+            loadSection("centerSection", 'profile');
         }
     })
 

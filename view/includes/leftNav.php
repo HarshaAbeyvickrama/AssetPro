@@ -367,14 +367,11 @@
     var components = document.getElementById("components");
     components.addEventListener("click", (event) => {
         // event.preventDefault();
-
         var eventId = event.path[1].id;
-        if (eventId != 'components') {
+        if (eventId !== 'components') {
             setFocus(eventId);
             loadSection("centerSection", eventId);
         }
-
-
     });
 
     //Loading the sections on left nav clicks with AJAX
