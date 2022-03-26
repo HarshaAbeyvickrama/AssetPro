@@ -272,6 +272,18 @@
         setISEditing(true);
     });
 
+    //Edit asset button
+    element('btnDeleteAsset').addEventListener('click', () => {
+        if(showConfirmation("Do you really want to delete this asset?")){
+            
+            // postFiles('http://localhost/assetpro/asset/delete/' , {} , () => {
+            //
+            // })
+        }else{
+
+        }
+    });
+
     //Update asset button
     element('btnUpdateAsset').addEventListener('click', () => {
         const message = "Are you sure you want to update this asset?";

@@ -9,7 +9,7 @@
         /* border: 1px solid red; */
     }
 
-    .header>div {
+    .header > div {
         margin: 0px 10px;
     }
 
@@ -22,7 +22,7 @@
         align-items: center;
     }
 
-    .notificationBadge>img {
+    .notificationBadge > img {
         height: 25px;
         width: 25px;
     }
@@ -74,16 +74,18 @@
         /* height: 100%; */
     }
 
-    #username:hover {
-        cursor: pointer;
-    }
-    #userSectionMask{
+    #userSectionMask {
         background-color: transparent;
-        width: 230px;
+        width: 220px !important;
         height: 45px;
         position: absolute;
         z-index: 10;
         color: transparent;
+        right: 0;
+    }
+
+    #userSectionMask:hover {
+        cursor: pointer;
     }
 
     /* Dropdown */
@@ -102,11 +104,11 @@
         z-index: 10;
     }
 
-    .profile-dropdown>div {
+    .profile-dropdown > div {
         padding: 0px 10px;
     }
 
-    .profile-dropdown>hr {
+    .profile-dropdown > hr {
         width: 100%;
         height: 0.5px;
     }
@@ -128,7 +130,7 @@
         padding: 10px 20px;
         background: #FAFBFF;
         width: 200px;
-        box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+        /*box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);*/
         border-radius: 15px;
         transition: 0.5s;
     }
@@ -195,41 +197,13 @@
             ?>
         </div>
         <div id="userSectionMask">
-    5
+
         </div>
     </div>
 </div>
 <?php
 include_once("notification.php")
 ?>
-
-<!-- <div class="profile-dropdown" id="profiledropDown">
-    <div>Signed in as</div>
-    <div>
-        
-    </div>
-    <hr>
-    <div id="your-profile">
-        Your Profile
-    </div>
-    <div id="logout">
-        Log Out
-    </div>
-</div> -->
-<!-- <div class="profile-dropdown">
-    <div class="maintopic">Signed in as</div>
-    <div class="signedName">
-        
-    </div>
-    <hr>
-    <div id="your-profile" class="topic">
-        Your Profile
-    </div>
-    <div id="logout" class="log-out">
-        Log Out
-    </div>
-
-</div> -->
 
 <div class="profile-dropdown" id="profiledropdown">
     <div class="menu">
@@ -242,27 +216,21 @@ include_once("notification.php")
 </div>
 
 <script>
-    var userSectionMask = document.getElementById('userSectionMask');
-    userSectionMask.addEventListener('click',showUserSection(true));
+    const userSectionMask = document.getElementById('userSectionMask');
+    userSectionMask.addEventListener('click', () => {
+        showUserSection();
+    });
 
-    function showUserSection(visible) {
-        var dd = document.getElementById('profiledropdown');
-        if(visible) {
+
+    function showUserSection() {
+        const dd = document.getElementById('profiledropdown');
+        const style = window.getComputedStyle(dd, null).display;
+        if (style === 'none') {
             dd.style.display = 'block';
         } else {
             dd.style.display = 'none';
-        }
-        // if(!visible){
-        //     dd.style.display = "none";
-        //     console.log("User Section : " + dd.style.display);
-        //     return;
-        // }
-        // if(dd.style.display == "block"){
-        //     dd.style.display = "none";
-        // }else{
-        //     dd.style.display = "block";
-        // }
 
+        }
     }
 
     document.getElementById('logout').addEventListener('click', (e) => {
@@ -275,17 +243,4 @@ include_once("notification.php")
     })
 
 
-    // Handle all the clicks outside the dropdown
-    document.addEventListener('click', (e) => {
-        // if(e.targer.id == 'userSection' || e.target.id == 'username'){
-        //     showUserSection(true);
-        // }
-        if (e.target.id != 'notificationIcon' ) {
-            showNotification(false);
-        }
-        if(e.target.id != 'userSectionMask'){
-
-            showUserSection(false);
-        }
-    })
 </script>

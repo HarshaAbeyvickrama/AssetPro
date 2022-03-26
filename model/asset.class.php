@@ -419,6 +419,15 @@ class Asset extends DBConnection
             }
 
             if (isset($filtered['depreciation'])) {
+                //Check if value exists
+                $existsSQL = "SELECT EXISTS(SELECT 1 FROM depreciation WHERE AssetID =".$filtered['assetID']." ) AS depExists ";
+                $exists = $this->dbConnection->query($existsSQL)->fetch()['depExists'];
+
+                if($exists){
+                    echo 'update';
+                }else{
+                    echo 'insert';
+                }
                 $assetDetailsSQL = $this->sqlQueryBuilder('depreciation', $filtered['depreciation'], 'AssetID = ' . $filtered['assetID']);
                 $assetDetailsStmt = $this->dbConnection->prepare($assetDetailsSQL);
                 $assetDetailsStmt->execute();

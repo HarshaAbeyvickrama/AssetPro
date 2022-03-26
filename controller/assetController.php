@@ -109,7 +109,7 @@ class AssetController extends Asset
         //filtered asset details that should be updated
         $filtered = $this->filterDetails($existingAsset->toString(), $updatedAsset->toString());
         $filtered['assetID'] = $data['assetID'];
-
+        print_r($filtered);
         return $this->update($filtered);
     }
 
@@ -258,6 +258,8 @@ class AssetController extends Asset
             $resultAsset['assetDetails'] = $assetDetails;
         }
 
+        echo ("OLd : " . $old['hasDepriciation']);
+        echo ("new : " . $updated['hasDepriciation']);
 
         //depreciation details
         if (isset($assetDetails['hasDepriciation']) && $assetDetails['hasDepriciation']) {
