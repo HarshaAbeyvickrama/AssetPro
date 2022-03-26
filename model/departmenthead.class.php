@@ -191,7 +191,7 @@ class DepartmentHead extends DBConnection
         return $stmt;
     }
 
-    //Getting breakdownAssets of particular Department
+    //=========Getting breakdownAssets of particular Department===========
     protected function getBreakdownAssets($userId)
     {
         $DBConnection = $this->connect();
@@ -223,7 +223,7 @@ class DepartmentHead extends DBConnection
         return $pstm;
     }
 
-    //Getting employees using department ID
+    //=================Getting employees using department ID==============
     protected function getDepartmentEmployees($userId)
     {
         $DBConnection = $this->connect();
@@ -248,6 +248,33 @@ class DepartmentHead extends DBConnection
         return $stmt;
     }
 
+    //===========Getting assigned assets of departmentHead=============
+    protected function getAssigned($userID)
+    {
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                        asset.AssetID,
+                        assetdetails.Name AS assetName,
+                        t.Name AS assetType,
+                        t.TypeCode AS TypeCode,
+                        c.CategoryCode AS CategoryCode
+                    FROM
+                        asset
+                    INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                    INNER JOIN category c ON
+                        asset.CategoryID = c.CategoryID
+                    INNER JOIN TYPE t ON
+                        t.TypeID = asset.TypeID
+                    WHERE
+                        asset.assignedUser = ?
+                    ORDER BY
+                        asset.AssetID";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($userID));
+        return $pstm;
+    }
+
+
     //Getting all assigned assets of particular department
     // protected function getDHAssignedAssets($userId) {
     //     $DBConnection = $this->connect();
@@ -264,4 +291,6 @@ class DepartmentHead extends DBConnection
     //     $stmt->execute(array($userId));
     //     return $stmt;"
     // }
+
+
 }

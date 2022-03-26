@@ -1,4 +1,5 @@
 
+//================loading all the breakdown assets within the department of DH==============
 function viewBreakAssetDH(userID){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `http://localhost/assetpro/departmentheads/getDHBreakdowns/${userID}`, true);
@@ -58,24 +59,23 @@ function loadDepartmentEmployees(userID) {
   }
 
 
-//Loading all the assigned assets of head of deaprtment
-function viewAssignedAssetDH(userID){
+//Loading all the assigned assets of Department Head
+function loadAssignedAssets(userID){
   const xhr = new XMLHttpRequest();
   xhr.open("GET", `http://localhost/assetpro/departmentheads/getDHAssignedAssets/${userID}`, true);
   xhr.onload = function() {
-      if (this.status === 200) {
+      if (this.status == 200) {
           var viewassets = JSON.parse(this.response);
-          console.log('the data is');
+          console.log(viewassets);
           for (var i = 0; i < viewassets.length; i++) {
               document.getElementById('DHBody').innerHTML += `
                               <tr>
                                   <td>${i+1}</td>
                                   <td>${viewassets[i]['CategoryCode']}/${viewassets[i]['TypeCode']}/${viewassets[i]['AssetID']}</td>
                                   <td>${viewassets[i]['assetName']}</td>
-                                  <td>${viewassets[i]['departmentName']}</td>
-                                  <td>${viewassets[i]['DefectedParts']}</td>
+                                  <td>${viewassets[i]['assetType']}</td>
                                   <td>  
-                                  <button class='btn btn-submit' onClick="">View</button>
+                                  <button class='btn btn-submit' onClick="">Report</button>
                                   </td> 
                               </tr>`;
           }
