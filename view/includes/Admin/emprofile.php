@@ -410,4 +410,19 @@ function formState(formId,readonlyState){
     document.getElementById('eRelationship').value = employee.Relationship;
     document.getElementById('econtact').value = employee.TelephoneNumber;
     
+
+    //Updating the employee details
+    element('ConfirmUpdate').addEventListener('click', () => {
+        const message = "Are you sure you want to update this Staff member?";
+        if(showConfirmation(message)) {
+            const image = document.getElementById('profileImage').files[0];
+            let editedEmployeeDetails = getFormData('errorLogForm');
+            const formData = new FormData();
+            editedEmployeeDetails['empID'] = empID;
+
+            // editedEmployeeDetails[''] = in editedEmployeeDetails;
+
+        }
+    })
+
 </script>

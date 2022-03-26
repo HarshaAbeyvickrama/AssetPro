@@ -212,7 +212,7 @@ function loadEmployees() {
         }</td>
             <td class="profile-row">
               <img class="profile-image" src="http://localhost/assetpro/${employees[i]["ProfilePicURL"]}" alt="">
-              <div class="profile-name">${employees[i]["Name"]}</div>
+              <span class="profile-name">${employees[i]["Name"]}</span>
             </td>
             <td>${employees[i]["Gender"]}</td>
             <td>${employees[i]["jobTitle"]}</td>
@@ -301,7 +301,7 @@ function loadTechnicians() {
         }</td>
             <td>
             <img class="profile-image" src="http://localhost/assetpro/${technicians[i]["ProfilePicURL"]}" alt="">
-              <div class="profile-name">${technicians[i]["Name"]}</div>
+              <span class="profile-name">${technicians[i]["Name"]}</span>
             </td>
             <td>${technicians[i]["Gender"]}</td>
             <td>${technicians[i]["jobTitle"]}</td>
@@ -405,8 +405,8 @@ function loadDepartmentHeads() {
           departmenthead[i]["HeadID"]
         }</td>
             <td class="profile-row">
-              <img class="" src="http://localhost/assetpro/${departmenthead[i]["ProfilePicURL"]}" alt="">
-              <div class="">${departmenthead[i]["Name"]}</div>
+              <img class="profile-image" src="http://localhost/assetpro/${departmenthead[i]["ProfilePicURL"]}" alt="">
+              <span class="profile-name">${departmenthead[i]["Name"]}</span>
             </td>
             <td>${departmenthead[i]["Gender"]}</td>
             <td>
