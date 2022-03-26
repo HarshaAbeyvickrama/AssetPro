@@ -32,7 +32,7 @@
         align-items: center;
         margin: 15px 7.5px 15px 15px;
         padding: 10px;
-        
+
     }
     .leftSection>div {
         /* height: 100%; */
@@ -48,7 +48,7 @@
         align-items: flex-start;
         height: 100%;
     }
-   
+
     .profileImageSection {
         display: flex;
         flex-direction: column;
@@ -114,7 +114,7 @@
         text-align: center;
         width: 100%;
         align-items: center;
-        margin: 10px 0px;   
+        margin: 10px 0px;
     }
     .col-btn>div {
         border-radius: 15px;
@@ -171,11 +171,11 @@
         display: block;
         margin-top: 5px;
     }
-    
+
     .radio-group{
         margin: 5px 0px;
     }
-    .radio-group > label { 
+    .radio-group > label {
         margin-left: 5px;
     }
     .radio-group > input[type=radio]:hover{
@@ -210,8 +210,8 @@
         right: calc(0%);
         cursor: pointer;
     } */
-        /* CSS for pop-up form */
-        .bg-popup {
+    /* CSS for pop-up form */
+    .bg-popup {
         width: 100vw;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.8);
@@ -230,7 +230,7 @@
         height: 130px;
         background-color: white;
         border-radius: 20px;
-        /* text-align: center; */
+        text-align: center;
         padding: 20px;
         position: relative;
     }
@@ -273,14 +273,14 @@
 <form action="" id="reportAssetForm" onsubmit="">
 
     <div class="profile">
-        <div id="pLeft" class="leftSection"> 
+        <div id="pLeft" class="leftSection">
             <div class="profileImageSection">
                 <image src="../Images/lap1.jpg"alt="laptop-1">
             </div>
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
-                    
+
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
                         <input type="text" name="assetID" id="assetID" disabled>
@@ -301,11 +301,11 @@
                         <span for="condition">Condition</span>
                         <input type="text" name="condition" id="condition" disabled>
                     </div>
-                    
+
+                </div>
             </div>
         </div>
-     </div>
-        
+
         <div id="pRight" class="rightSection">
             <div class="basic-information">
                 <div class="title">Report Breakdown:</div>
@@ -318,8 +318,8 @@
                     <textarea class="textarea" cols="10" rows="10" id="exDef"></textarea>
                 </div>
                 <div class="col-btn">
-                        <div id="cancelReport" onClick="cancelReport()">Cancel</div>
-                        <div id="reportAsset">Report</div>     
+                    <div id="cancelReport" onClick="cancelReport()">Cancel</div>
+                    <div id="reportAsset">Report</div>
                 </div>
             </div>
         </div>
@@ -331,54 +331,57 @@
     <div class="popup-content" id="popup-content">
         <div class="close" id="cancelAddTechnician">+</div>
         <h2 class="depInfo">Do you really want to report?</h2>
-            <div class="col-btn">
-                <button class="addBtn" id="btnSaveDepartment" type="submit">Yes</button>
-                <button class="addBtn" id="btnSaveDepartment" type="submit">No</button>
-            </div>
+        <div class="col-btn">
+            <button class="addBtn" id="btnSaveDepartment" type="submit">Yes</button>
+            <button class="addBtn" id="btnSaveDepartment" type="submit">No</button>
+        </div>
     </div>
 </div>
 
 
 <script>
 
-    var assetID = getCookieValue('assetID');  
-    console.log('assetdetails'+assetID);
+    var assetID = getCookieValue('assetID');
+    // console.log('assetdetails'+assetID);
     var asset =   JSON.parse(assetID)[0];  //string to object
-    console.log(asset); 
+    // console.log(asset);
     document.getElementById('assetID').value = asset.CategoryCode + '/' + asset.TypeCode + '/' + asset.AssetID;
     document.getElementById('assetName').value = asset.assetName;
     document.getElementById('assetType').value = asset.assetType;
     document.getElementById('category').value = asset.categoryName;
     document.getElementById('condition').value = asset.AssetCondition;
 
-  
-   
+
+
     document.querySelectorAll(".col-btn").forEach(button =>{
         const cancelBtn = document.getElementById("cancelReport");
         const reportBtn = document.getElementById("reportAsset");
         button.addEventListener('click',function(event){
             //event.preventDefault();
-            switch (event.target.id) {                      
+            switch (event.target.id) {
                 case 'cancelReport':
-                   
+
                     break;
                 case 'reportAsset':
-                   const report = getFormdata(asset.AssetID);   
+                    const report = getFormdata(asset.AssetID);
+                    if(report == null){
+                        alert('Fields cannot be empty');
+                    }
+                    else {
+                        const result = showConfirmation('Are you really want to report?');
+                           if (result == true) {
+                            console.log(report);
+                            saveReport(report);
+                            alert('Successfully Reported!');
+                           } else {
+                            alert('Breakdown was not recorded!');
+                        }
+                    }
+                }
 
-                   if(report == null){
-                     alert('Fields cannot be empty');
-                   }else{
-                    saveReport(report);
-                   }
-                    break;
-            
-                default:
-                    break;
-            }
-        
-        
         })
     })
+
 
     function getFormdata(id){
         assetID = id;
@@ -388,42 +391,26 @@
         if(defectedPart == "" || explainDefect == "")
         {
             return null;
-        }   
+        }
         var reportdata = {
             assetID:assetID,
             defP:defectedPart,
             exDef: explainDefect
 
         }
-
         return reportdata;
+
     }
 
-    
-     
     function saveReport(report){
         postData('http://localhost/assetpro/breakdown/reportBreakdown' , report , (response) =>{
-            console.log(response);
+            // console.log(response);
         })
     }
 
-   function cancelReport(){
-    loadSection('centerSection','assignedAssets');
-   }
-
-
-   //JS for pop-up form
-   document.getElementById('reportAsset').addEventListener('click',
-        function popForm() {
-            document.querySelector('.bg-popup').style.display = 'flex';
-        });
-
-    function popForm() {
-        document.getElementById('bg-popup').style.display = 'flex';
+    function cancelReport(){
+        loadSection('centerSection','assignedAssets');
     }
 
-    document.querySelector('.close').addEventListener('click',
-        function popForm() {
-            document.querySelector('.bg-popup').style.display = 'none';
-        });
+
 </script>

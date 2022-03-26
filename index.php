@@ -1,27 +1,34 @@
 <?php
 session_start();
 date_default_timezone_set('Asia/Colombo');
+require_once './controller/autoloadController.php';
+
+
+$url = isset($_SERVER['PATH_INFO']) ? explode("/", ltrim($_SERVER['PATH_INFO'], '/')) : '/';
+
+if ($url[0] == 'resetPassword') {
+    echo 'shagdjhagdjhas';
+    $uc = new userController();
+    return;
+}
+
+if($url[0] == 'login'){
+    header("Location: http://localhost/assetpro/view/login.php");
+    exit(0);
+}
 
 if (!isset($_SESSION['UserID'])) {
     header("Location: ./view/login.php");
     return;
 }
 
-$url = isset($_SERVER['PATH_INFO']) ? explode("/", ltrim($_SERVER['PATH_INFO'], '/')) : '/';
-
-// if (!isset($_SESSION['user']) || $url[0] == 'login') {
-//     header("location: ./view/login.php");
-// }
-
 if ($url == '/' || $url[0] == 'dashboard') {
-    // dashboard
-    // echo 'dashboard';
     header("location: ./view/dashboard.php");
+    exit(0);
 } elseif ($url[0] == 'logout') {
     session_destroy();
     header("location: ./view/login.php");
 } else {
-    require_once './controller/autoloadController.php';
     $controller = $url[0];
     $action = $url[1];
 
@@ -31,12 +38,12 @@ if ($url == '/' || $url[0] == 'dashboard') {
             switch ($action) {
                 case 'forgotPassword':
                     // header("location: http://localhost/assetpro");
-                // redirect('http://localhost/assetpro');
-                echo 'sdvhsgdhgsdhjagd';
-                return;
+                    // redirect('http://localhost/assetpro');
+                    echo 'sdvhsgdhgsdhjagd';
+                    return;
                     // echo $uc->forgotPassword();
                     // echo json_encode($uc->forgotPassword());
-                break;
+                    break;
             }
             break;
         case 'asset':
@@ -126,7 +133,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $vc->getAllStats();
                     break;
                 case 'assetsCount':
-                    echo $vc-> getAllCount($url[2]);
+                    echo $vc->getAllCount($url[2]);
                     break;
             }
             break;

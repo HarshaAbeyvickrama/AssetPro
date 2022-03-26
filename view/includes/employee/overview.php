@@ -112,43 +112,6 @@
 
 
 <script>
-    // //Assigned Assets to staff in category wise
-    // var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
-    // var data = {
-    //     labels: labels,
-    //     datasets:[{
-    //         label:'Assigned Assets in categories',
-    //         data:[1,2,3],
-    //         backgroundColor: [
-    //             'rgba(255, 99, 132, 0.2)',
-    //             'rgba(255, 205, 86, 0.2)',
-    //             'rgba(54, 162, 235, 0.2)',
-    //         ],
-    //         borderColor: [
-    //             'rgb(255, 99, 132)',
-    //             'rgb(255, 205, 86)',
-    //             'rgb(54, 162, 235)',
-    //         ],
-    //         borderWidth: 1
-    //
-    //     }]
-    // };
-    // var config = {
-    //     type: 'bar',
-    //     data: data,
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         }
-    //     },
-    // };
-    // var assetBreakdownChart = new Chart(
-    //     document.getElementById('assetCategoriesChart'),
-    //     config
-    // );
-
     <?php
     echo 'var userID =' . $_SESSION['UserID'];
     ?>
@@ -166,17 +129,18 @@
             document.getElementById('fixedCount').innerHTML = result.totalfixed;
              var allConsumables = document.getElementById('consumableCount').innerHTML = result.totalconsumables;
              var allIntangibles = document.getElementById('intangibleCount').innerHTML = result.totalintangibles;
+            var allFixed = document.getElementById('fixedCount').innerHTML = result.totalfixed;
             allTangibles = parseInt(result.totalfixed) + parseInt(result.totalconsumables);
             document.getElementById('tangibleCount').innerHTML =   allTangibles ;
         }
         console.log(allTangibles);
         // //Assigned Assets to staff in category wise
-        var labels = ['Fixed' , 'Consumables' , 'Intangibles'];
+        var labels = ['Fixed' , 'Consumables' , 'Intangibles','Tangibles'];
         var data = {
             labels: labels,
             datasets:[{
                 label:'Assigned Assets in categories',
-                data:[allConsumables, allTangibles, allIntangibles],
+                data:[allFixed,allConsumables,allIntangibles,allTangibles],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 205, 86, 0.2)',

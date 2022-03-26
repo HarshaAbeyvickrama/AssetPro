@@ -5,7 +5,7 @@
 
 /* Colors */
 :root {
-  --primary: #304068;
+  --primary: #5C6E9B;
   /* --btn-assign:  */
 }
 
@@ -26,17 +26,24 @@
 .table thead {
   color: #304068;
 }
+tbody {
+  overflow: auto;
+}
+.table tbody tr {
+  border-bottom: 1px solid #c6d4fa;
+}
 .table th {
   padding: 5px 15px;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   font-weight: 900;
   font-size: 1rem;
-  /* position: sticky;
-  top: 0;
-  z-index: 2; */
+  position: sticky;
+  /*top: 0;*/
+  /*z-index: 2;*/
   background-color: #d4daeb;
 }
+
 .table td {
   padding: 5px 15px;
   color: #5c6e9b;
@@ -44,10 +51,10 @@
   white-space: normal;
 }
 .table tbody tr:nth-child(even) {
-  background-color: #eaedf5;
+  background-color: #f8faff;
 }
 .table tbody tr:hover {
-  /* background-color: #eaedf5; */
+   background-color: #ecf0ff;
   cursor: pointer;
 }
 .btncol {

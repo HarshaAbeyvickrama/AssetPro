@@ -49,6 +49,7 @@ class DepartmentHead extends DBConnection
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
                     ud.Gender,
+                    ud.ProfilePicURL,
                     ud.jobTitle,
                     d.DepartmentCode,
                     d.Name AS DepartmentName,
