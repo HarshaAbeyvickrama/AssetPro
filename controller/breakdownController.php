@@ -32,11 +32,6 @@ class BreakdownController extends Breakdown{
 
     public function updateAllBreakdowns($data){
         $result = $this->updateBreakdown($data);
-        if($result->rowCount() > 0){
-            $res = array('status' => 'success');
-        } else {
-            $res = array('status' => 'failed');
-        }
-
+        return json_encode($result);
     }
 }

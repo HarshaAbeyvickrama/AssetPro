@@ -288,14 +288,18 @@
 <form action="" id="EditForm">
     <div id="pRight" class="rightSection">
         <div class="basic-information">
-            <div class="title">Report Breakdown:</div>
+            <div class="title">Reported Breakdown:</div>
+            <div class="col-f">
+                <span for="defectedParts">Breakdown ID</span>
+                <textarea class="textarea"  id="Bid" name="breakdownid" disabled></textarea>
+            </div>
             <div class="col-f">
                 <span for="defectedParts">Defected Parts</span>
-                <textarea class="textarea" cols="8.5" rows="8.5" id="defP" disabled></textarea>
+                <textarea class="textarea" cols="8.5" rows="8.5" id="defP" name="defectedPrt" disabled></textarea>
             </div>
             <div class="col-f">
                 <span for="explainDefect">Explain the defect</span>
-                <textarea class="textarea" cols="10" rows="10" id="exDef" disabled></textarea>
+                <textarea class="textarea" cols="10" rows="10" id="exDef" name="explainDef" disabled></textarea>
             </div>
             <div class="col-btn" id="EditBtnSection">
                 <div id="cancelReport" onClick="cancelReport()">Back</div>
@@ -328,7 +332,7 @@
 
     var breakdownID = getCookieValue('BreakdownID');
     var breakdown = JSON.parse(breakdownID)[0]; //string to object
-    console.log(breakdown);
+    // console.log(breakdown);
     document.getElementById('assetID').value = breakdown.CategoryCode + '/' + breakdown.TypeCode + '/' + breakdown.AssetID;
     document.getElementById('assetName').value = breakdown.assetName;
     document.getElementById('assetType').value = breakdown.assetType;
@@ -336,6 +340,9 @@
     document.getElementById('condition').value = breakdown.AssetCondition;
     document.getElementById('defP').value = breakdown.DefectedParts;
     document.getElementById('exDef').value = breakdown.Reason;
+    document.getElementById('Bid').value = breakdown.BreakdownID;
+    //Getting the breakdownID
+    // var BreakId = breakdown.BreakdownID;
 
 
     function cancelReport() {
@@ -347,49 +354,49 @@
         const updateBtn = document.getElementById("ConfirmUpdate");
         const cancelBtn = document.getElementById("Cancelupdate");
         button.addEventListener('click',function(event){
-
             switch (event.target.id) {
                 case 'Cancelupdate':
 
                     break;
                 case 'ConfirmUpdate':
-                    const updateData = getFormData(breakdown.AssetID);
-                    console.log('updateData');
-                    if(updateData == null){
-                        alert('Fields cannot be empty');
-                    }
-                    else {
-                        const result = showConfirmation('Are you really want to report?');
-                        if (result == true) {
-                            saveUpdate(updateData);
-                            alert('Successfully Reported!');
-                        } else {
-                            alert('Breakdown was not recorded!');
-                        }
-                    }
+                    const updateData = getFormData('EditForm');
+                    console.log(updateData);
+                    saveUpdate(updateData);
+                    // if(updateData == null){
+                    //     alert('Fields cannot be empty');
+                    // }
+                    // else {
+                    //     const result = showConfirmation('Are you really want to report?');
+                    //     if (result == true) {
+                    //         saveUpdate(updateData);
+                    //         alert('Successfully Reported!');
+                    //     } else {
+                    //         alert('Breakdown was not recorded!');
+                    //     }
+                    // }
             }
 
         })
     })
 
-    function getFormdata(assetid){
-        assetID = assetid;
-        defectedPart =  document.getElementById('defP').value;
-        explainDefect = document.getElementById('exDef').value;
-
-        // if(defectedPart == "" || explainDefect == "")
-        // {
-        //     return null;
-        // }
-        var updatedata = {
-            assetID:assetID,
-            defP:defectedPart,
-            exDef: explainDefect
-
-        }
-        return updatedata;
-
-    }
+    // function getFormdata(breakdownid){
+    //     breakdownI = breakdownid;
+    //     defectedPart =  document.getElementById('defP').value;
+    //     explainDefect = document.getElementById('exDef').value;
+    //
+    //     // if(defectedPart == "" || explainDefect == "")
+    //     // {
+    //     //     return null;
+    //     // }
+    //     var updatedata = {
+    //         breakdownid:breakdownID2,
+    //         defP:defectedPart,
+    //         exDef: explainDefect
+    //
+    //     }
+    //     return updatedata;
+    //
+    // }
 
     function saveUpdate(updateData){
         postData('http://localhost/assetpro/breakdown/updateAllBreakdowns' , updateData , (response) =>{
