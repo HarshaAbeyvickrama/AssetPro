@@ -91,6 +91,7 @@ function loadAssets(userID) {
     xhr.open("GET", `http://localhost/assetpro/asset/assigned/${userID}`, true);
     xhr.onload = function () {
         if (this.status === 200) {
+            console.log('this.response');
             var assets = JSON.parse(this.response);
             for (var i = 0; i < assets.length; i++) {
                 document.getElementById('AMTableBody').innerHTML += `
@@ -105,7 +106,6 @@ function loadAssets(userID) {
         }
     }
     xhr.send();
-}
 }
 
 

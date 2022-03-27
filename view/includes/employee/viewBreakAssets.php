@@ -365,41 +365,12 @@
                     updateData['BID'] = Bid;
 
                     saveUpdate(updateData);
-                // if(updateData == null){
-                //     alert('Fields cannot be empty');
-                // }
-                // else {
-                //     const result = showConfirmation('Are you really want to report?');
-                //     if (result == true) {
-                //         saveUpdate(updateData);
-                //         alert('Successfully Reported!');
-                //     } else {
-                //         alert('Breakdown was not recorded!');
-                //     }
-                // }
             }
 
         })
     })
 
-    // function getFormdata(breakdownid){
-    //     breakdownI = breakdownid;
-    //     defectedPart =  document.getElementById('defP').value;
-    //     explainDefect = document.getElementById('exDef').value;
-    //
-    //     // if(defectedPart == "" || explainDefect == "")
-    //     // {
-    //     //     return null;
-    //     // }
-    //     var updatedata = {
-    //         breakdownid:breakdownID2,
-    //         defP:defectedPart,
-    //         exDef: explainDefect
-    //
-    //     }
-    //     return updatedata;
-    //
-    // }
+
 
     function saveUpdate(updateData) {
         postData('http://localhost/assetpro/breakdown/updateAllBreakdowns', updateData, (response) => {

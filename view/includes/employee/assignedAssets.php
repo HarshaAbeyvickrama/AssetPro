@@ -22,11 +22,8 @@
     <?php
     echo 'var userID =' . $_SESSION['UserID'];
     ?>
-    // loadAssets(userID);
-    window.addEventListener('load', () => {
-        loadAssets(userID)
-    });
-    }
+
+    window.addEventListener('load', loadAssets(userID));
 </script>
 <!--comment-->
 
