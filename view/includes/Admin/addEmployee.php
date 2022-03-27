@@ -354,6 +354,7 @@
                                 employee.image = data.imageUrl;
                                 console.log(employee);
                                 saveEmployee(employee);
+                                alert("Staff Member added Successfully");
                             }
                         })
                     } else {

@@ -2,7 +2,8 @@
 
 // require_once './controller/autoloadController.php';
 
-class Employee extends DBConnection {
+class Employee extends DBConnection
+{
     //Database connection
     private $DBConnection;
 
@@ -42,7 +43,8 @@ class Employee extends DBConnection {
     }
 
     //Getting all the employees
-    protected function getAll() {
+    protected function getAll()
+    {
         $sql = "SELECT
                     ud.UserID,
                     CONCAT(ud.fName, ' ', ud.lName) AS Name,
@@ -67,7 +69,8 @@ class Employee extends DBConnection {
     }
 
     //Getting the details of an employee using the employee ID
-    protected function get($EmployeeID) {
+    protected function get($EmployeeID)
+    {
         $DBConnection = $this->connect();
         $sql = "SELECT
                     eu.EmployeeID,
@@ -83,7 +86,8 @@ class Employee extends DBConnection {
                     ud.Email,
                     ue.fName AS eName,
                     ue.Relationship,
-                    ue.TelephoneNumber
+                    ue.TelephoneNumber,
+                    eu.DepartmentID
                 FROM
                     userdetails ud
                 INNER JOIN employeeuser eu ON
@@ -92,14 +96,15 @@ class Employee extends DBConnection {
                     eu.UserID = ue.UserID
                 WHERE
                     eu.EmployeeID = ?";
-        
+
         $stmt = $DBConnection->prepare($sql);
         $stmt->execute([$EmployeeID]);
         return $stmt;
     }
 
     //Adding an employee
-    protected function add() {
+    protected function add()
+    {
         $DBConnection = $this->connect();
         try {
             $DBConnection->beginTransaction();
@@ -144,7 +149,7 @@ class Employee extends DBConnection {
             //Inserting into useremergency table
             $userEmergency = "INSERT INTO useremergency VALUES (:userID, :eRelationship, :eName, :eContact)";
             $stmt = $DBConnection->prepare($userEmergency);
-            
+
             $stmt->bindParam(':userID', $UserID);
             $stmt->bindParam(':eRelationship', $this->eRelationship);
             $stmt->bindParam(':eName', $this->eName);
@@ -165,40 +170,130 @@ class Employee extends DBConnection {
             );
             return $result;
 
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException|Exception $e) {
             $DBConnection->rollBack();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->fileUrl);
 
             $result = array(
-                "status"=>"Failed",
-                "Error"=>$e->getMessage(),
-                "Message"=>"Cannot add an Employee"
+                "status" => "Failed",
+                "Error" => $e->getMessage(),
+                "Message" => "Cannot add an Employee"
             );
 
             return $result;
         }
     }
 
-    //Finding the user from the table
-    protected function findUserById($UserID) {
-        $DBConnection = $this->connect();
-        $findUser = "SELECT * FROM user WHERE UserID = :UserID";
-        $stmt = $DBConnection->prepare($findUser);
-        $stmt->bindParam(':UserID', $UserID);
-        $stmt->execute([$UserID]);
-        return $stmt;
-        print_r($findUser);
+    //Updating employee details
+    protected function update($filtered): array
+    {
+        if ($this->DBConnection == null) {
+            $this->DBConnection = $this->connect();
+        }
+
+        //Getting the userID of the employee who is being updated
+        $sqlUserID = 'SELECT
+                            UserID
+                        FROM
+                            employeeuser
+                        WHERE
+                            EmployeeID = ' . $filtered['EmployeeID'];
+        $userID = $this->DBConnection->query($sqlUserID)->fetch()['UserID'];
+
+        try {
+            $this->DBConnection->beginTransaction();
+
+            //Updating the userdetails table
+            if (isset($filtered['userdetails'])) {
+                $userdetails = $this->sqlQueryBuilder('userdetails', $filtered['userdetails'], 'UserID = ' . $userID);
+                print_r($userdetails);
+                $stmt = $this->DBConnection->prepare($userdetails);
+                $stmt->execute();
+            }
+
+            //Updating the employeeuser table
+            if (isset($filtered['employeeuser'])) {
+                $employeeuser = $this->sqlQueryBuilder('employeeuser', $filtered['employeeuser'], 'EmployeeID = ' . $filtered['EmployeeID']);
+                print_r($employeeuser);
+
+                $stmt = $this->DBConnection->prepare($employeeuser);
+                $stmt->execute();
+            }
+
+            //Updating the employeeuser table
+            if (isset($filtered['useremergency'])) {
+                $useremergency = $this->sqlQueryBuilder('useremergency', $filtered['useremergency'], 'EmployeeID = ' . $filtered['EmployeeID']);
+                $stmt = $this->sqlQueryBuilder('useremergency', $filtered['EmployeeID'], 'EmployeeID = ' . $filtered['EmployeeID']);
+                $stmt->execute();
+            }
+
+            $this->DBConnection->commit();
+
+            return array(
+                'isSuccess' => true,
+                "status" => "Ok",
+                "message" => "Staff Updated Successfully"
+            );
+
+        } catch (Exception|Throwable $e) {
+            $this->DBConnection->rollBack();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->fileUrl);
+
+            $result = array(
+                "status" => "Failed",
+                "error" => $e->getMessage(),
+                "message" => "Employee Update Failed"
+            );
+
+            return $result;
+        }
     }
 
-    //Updating employee details
-    
+    /* function to build SQL UPDATE string */
+    protected function sqlQueryBuilder($table, $data, $where = null): string
+    {
+        error_reporting(E_ERROR | E_PARSE);
+        $cols = array();
+        foreach ($data as $key => $val) {
+            $valString = "'" . $val . "'";
+            $cols[] = $key . " = " . $valString;
+        }
+        $update = "UPDATE $table SET " . implode(', ', $cols);
+        $where = $where = null ? " WHERE $where" : '';
+        return ($update . $where);
+    }
+
+    //ToString function
+    protected function toString(): array
+    {
+
+        $result = array();
+
+        $result['departmentID'] = $this->departmentID;
+        $result['fileUrl'] = $this->fileUrl;
+        $result['firstName'] = $this->firstName;
+        $result['lastName'] = $this->lastName;
+        $result['NIC'] = $this->NIC;
+        $result['gender'] = $this->gender;
+        $result['dob'] = $this->dob;
+        $result['jobTitle'] = $this->jobTitle;
+        $result['address'] = $this->address;
+        $result['contactNo'] = $this->contactNo;
+        $result['email'] = $this->email;
+        $result['eName'] = $this->eName;
+        $result['TelephoneNumber'] = $this->eRelationship;
+        $result['eRelationship'] = $this->eContact;
+
+        return $result;
+    }
 
     //Deleting an employee
-    protected function delete($EmployeeID) {
+    protected function delete($EmployeeID)
+    {
         $sql = "DELETE FROM user INNER JOIN employeeuser ON user.UserID = employeeuser.UserID WHERE employeeuser.EmployeeID = :EmployeeID";
         $stmt = $this->DBConnection->prepare($sql);
         $stmt->bindParam(":EmployeeID", $EmployeeID);
         $stmt->execute();
         return $stmt;
     }
-
 }

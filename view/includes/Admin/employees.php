@@ -23,14 +23,17 @@
         border: none;
         /* margin-left: 62vw; */
     }
+
     .header-title {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
+
     .addEmp {
         display: flex;
         justify-content: end;
     }
+
     .heading-title {
         display: flex;
         font-size: 30px;
@@ -38,15 +41,18 @@
         align-items: center;
         font-weight: bold;
     }
+
     .profile-row {
         /* display: inline-flex; */
         /* height: 2rem !important; */
     }
+
     .profile-image {
         width: 45px;
         height: 45px;
         border-radius: 50%;
     }
+
     .profile-name {
         height: 100% !important;
         /* display: inline-block; */
@@ -68,22 +74,24 @@
         </div>
     </div> -->
     <div class="header-title">
-        <div class="heading-title">Employees</div>
-        <div class="addEmp"><button id="addEmp">Insert</button></div>
+        <div class="heading-title">Staff</div>
+        <div class="addEmp">
+            <button id="addEmp">Insert</button>
+        </div>
     </div>
 
     <div class="contentSection">
         <!-- <div> -->
         <table class="table" id="empData">
             <thead>
-                <tr>
-                    <th class="heading">#</th>
-                    <th>Staff ID</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>Job Title</th>
-                    <th>Action</th>
-                </tr>
+            <tr>
+                <th class="heading">#</th>
+                <th>Staff ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Job Title</th>
+                <th>Action</th>
+            </tr>
             </thead>
             <tbody class="tableRowGroup" id="employeeTableBody"></tbody>
         </table>
@@ -91,17 +99,15 @@
 </div>
 
 <script>
-    window.addEventListener('load', loadEmployees());
+    loadEmployees();
 </script>
 
 
 <script type="text/javascript">
     //Loading the add employee page
     var addEmployeeBtn = document.getElementById('addEmp');
-    addEmployeeBtn.addEventListener('click', function() {
-
+    addEmployeeBtn.addEventListener('click', function () {
         loadSection('centerSection', 'addEmployee');
-
     });
 
     // //Viewing the employee details

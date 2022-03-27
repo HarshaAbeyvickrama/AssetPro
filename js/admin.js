@@ -203,6 +203,7 @@ function loadEmployees() {
   xhr.onload = function () {
     if (this.status == 200) {
       var employees = JSON.parse(this.response);
+      console.log(employees);
       for (var i = 0; i < employees.length; i++) {
         document.getElementById("employeeTableBody").innerHTML += `
           <tr>
@@ -245,6 +246,7 @@ function loadEmployee(EmployeeID) {
       loadSection("popup", "emprofile");
       var json = JSON.stringify(employeeDetails);
       document.cookie = `EmployeeDetails=${json}`;
+      document.cookie = `EmployeeID=${EmployeeID}`;
     }
     console.log(employeeDetails);
   };

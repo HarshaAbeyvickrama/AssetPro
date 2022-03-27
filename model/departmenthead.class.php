@@ -166,6 +166,7 @@ class DepartmentHead extends DBConnection
 
         } catch (PDOException | Exception $e) {
             $DBConnection->rollBack();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->fileUrl);
 
             $result = array(
                 "status"=>"Failed",
@@ -250,15 +251,19 @@ class DepartmentHead extends DBConnection
                     employeeuser.EmployeeID AS EmployeeID,
                     employeeuser.DepartmentID AS DepartmentID,
                     department.DepartmentCode AS DepartmentCode,
-                    CONCAT(userdetails.fName,' ',userdetails.lName) AS Name,
-                    userdetails.ProfilePicURL as ProfilePicURL,
+                    CONCAT(
+                        userdetails.fName,
+                        ' ',
+                        userdetails.lName
+                    ) AS Name,
+                    userdetails.ProfilePicURL AS ProfilePicURL,
                     userdetails.Gender AS Gender,
                     userdetails.jobTitle AS jobTitle
                 FROM
                     userdetails
                 INNER JOIN employeeuser ON userdetails.UserID = employeeuser.UserID
                 INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID
-                INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = department.DepartmentID
+                INNER JOIN departmentheaduser ON departmentheaduser.HeadID = department.HeadID
                 WHERE
                     departmentheaduser.UserID = ?";
 
