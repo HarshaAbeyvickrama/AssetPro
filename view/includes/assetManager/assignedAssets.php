@@ -1,40 +1,20 @@
-<!--<table class="table">-->
-<!--    <thead>-->
-<!--        <tr>-->
-<!--            <th>#</th>-->
-<!--            <th>Asset ID</th>-->
-<!--            <th>Asset Name</th>-->
-<!--            <th>Asset Type</th>-->
-<!--            <th>Condition</th>-->
-<!--            <th>Assigned Employee</th>-->
-<!--        </tr>-->
-<!--    </thead>-->
-<!---->
-<!--    <tbody class="tableRowGroup " id="assignedAssetsTableBody">-->
-<!---->
-<!--    </tbody>-->
-<!--</table>-->
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Asset ID</th>
+            <th>Asset Name</th>
+            <th>Asset Type</th>
+            <th>Condition</th>
+            <th>Assigned Employee</th>
+        </tr>
+    </thead>
 
-<div class="overviewLayout">
-    <div>
-        <div class="section-heading">Assigned Assets</div>
-    </div>
-    <div class="contentSection">
-        <table class="table" id="filterTable">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Asset ID</th>
-                <th>Asset Name</th>
-                <th>Asset Type</th>
-                <th>Condition</th>
-                <th>Assigned Employee</th>
-            </tr>
-            </thead>
-            <tbody id="assignedAssetsTableBody"></tbody>
-        </table>
-    </div>
-</div>
+    <tbody class="tableRowGroup " id="assignedAssetsTableBody">
+
+    </tbody>
+</table>
+
 
 <script>
     getData('http://localhost/assetpro/asset/getAllAssets/assigned', (data) => {
