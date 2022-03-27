@@ -198,7 +198,7 @@ class Breakdown extends DBConnection
     protected function updateBreakdown($data){
         $dbConnection = $this->connect();
 //      $assetId = $data['assetID'];
-        $breakdownId = $data['Bid'];
+        $breakdownId = $data['BID'];
         $defectedPart = $data['defP'];
         $reason = $data['exDef'];
 

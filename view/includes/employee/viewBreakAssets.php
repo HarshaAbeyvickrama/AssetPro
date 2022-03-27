@@ -360,7 +360,10 @@
                     break;
                 case 'ConfirmUpdate':
                     const updateData = getFormData('EditForm');
-                    console.log(updateData);
+                    const Bid = element('Bid').value;
+                    console.log(Bid);
+                    updateData.append('BID' , Bid);
+
                     saveUpdate(updateData);
                     // if(updateData == null){
                     //     alert('Fields cannot be empty');
