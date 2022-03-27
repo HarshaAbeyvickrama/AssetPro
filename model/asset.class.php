@@ -266,7 +266,7 @@ class Asset extends DBConnection
     }
 
     // data to form report.php
-    protected function getAssetForm($assetId)
+    protected function getAssetForm($assetId): bool|PDOStatement
     {
         $dbConnection = $this->connect();
         $sql = "SELECT
@@ -293,18 +293,47 @@ class Asset extends DBConnection
 
 
     // Delete an asset by the ID
-    protected function delete($assetId)
+    protected function delete($assetId): array
     {
-        // $dbConnection = $this->connect();
-        $sql = "delete from asset where assetId=assetID";
-        $stmt = $this->dbConnection->prepare($sql);
-        $stmt->bindParam("assetID", $assetId);
-        $stmt->execute();
-        return $stmt;
+        if ($this->dbConnection == null) {
+            $this->dbConnection = $this->connect();
+        }
+        $lastModified = date("Y-m-d H:i:s");
+        try {
+            //mark asset as deleted
+            $this->dbConnection->beginTransaction();
+            $markDeleted = "UPDATE
+                            `asset`
+                        SET
+                            `DepartmentID` = null,
+                            `assignedUser` = null,
+                            `LastModified` = '$lastModified',
+                            `LocationID` = null ,
+                            `isDeleted` = true 
+                        WHERE
+                            AssetID =" . $assetId;
+            $this->dbConnection->prepare($markDeleted)->execute();
+
+            $this->dbConnection->commit();
+
+            //set a notification to asset manager and assigned user that asset is deleted
+            return array(
+                'isSuccess' => true
+            );
+
+        } catch (Exception|Throwable $e) {
+            $this->dbConnection->rollBack();
+            return array(
+                'isSuccess' => false,
+                'message' => $e->getMessage()
+            );
+        }
+
     }
 
 
-    protected function save(): array
+    protected
+    function save(): array
     {
 
         try {
@@ -397,7 +426,8 @@ class Asset extends DBConnection
         }
     }
 
-    protected function update($filtered): array
+    protected
+    function update($filtered): array
     {
         if ($this->dbConnection == null) {
             $this->dbConnection = $this->connect();
@@ -420,6 +450,15 @@ class Asset extends DBConnection
             }
 
             if (isset($filtered['depreciation'])) {
+                //Check if value exists
+                $existsSQL = "SELECT EXISTS(SELECT 1 FROM depreciation WHERE AssetID =" . $filtered['assetID'] . " ) AS depExists ";
+                $exists = $this->dbConnection->query($existsSQL)->fetch()['depExists'];
+
+                if ($exists) {
+                    echo 'update';
+                } else {
+                    echo 'insert';
+                }
                 $assetDetailsSQL = $this->sqlQueryBuilder('depreciation', $filtered['depreciation'], 'AssetID = ' . $filtered['assetID']);
                 $assetDetailsStmt = $this->dbConnection->prepare($assetDetailsSQL);
                 $assetDetailsStmt->execute();
@@ -476,7 +515,8 @@ class Asset extends DBConnection
         return ($update . $where);
     }
 
-    protected function getAllCounts()
+    protected
+    function getAllCounts()
     {
         $sql = "select (select count(*)from asset)  as allAssets ,
                 (select count(*) from asset where assignedUser IS NOT NULL) as assignedAssets ,
@@ -491,7 +531,8 @@ class Asset extends DBConnection
     }
 
     // get the counts of each types seperately
-    protected function getCount($type)
+    protected
+    function getCount($type)
     {
         switch ($type) {
             case 'all':
@@ -516,7 +557,8 @@ class Asset extends DBConnection
         return $pstm;
     }
 
-    protected function getCategories()
+    protected
+    function getCategories()
     {
         $dbConnection = $this->connect();
         $catSql = 'SELECT * FROM `category`';
@@ -547,7 +589,8 @@ class Asset extends DBConnection
         return $output;
     }
 
-    protected function toString(): array
+    protected
+    function toString(): array
     {
         $result = array();
 
@@ -573,5 +616,23 @@ class Asset extends DBConnection
         $result['isDepreciated'] = $this->isDepreciated;
 
         return $result;
+    }
+
+    protected function checkAssigned($assetID)
+    {
+        if ($this->dbConnection == null) {
+            $this->dbConnection = $this->connect();
+        }
+        $sql = "SELECT DepartmentID , assignedUser FROM `asset` WHERE AssetID =" . $assetID;
+        return $this->dbConnection->query($sql)->fetch();
+    }
+
+    protected function checkBreakdowns(string $assetID)
+    {
+        if ($this->dbConnection == null) {
+            $this->dbConnection = $this->connect();
+        }
+        $sql = "SELECT COUNT(*) AS count FROM `breakdown` WHERE AssetID =" . $assetID;
+        return $this->dbConnection->query($sql)->fetch();
     }
 }

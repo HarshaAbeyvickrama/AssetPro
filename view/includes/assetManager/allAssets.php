@@ -18,7 +18,7 @@
         data.forEach((asset, index) => {
             var bd = document.getElementById('allAssetsTableBody');
             var row = `
-                <td>${index}</td>
+                <td>${index+1}</td>
                 <td>${asset.CategoryCode}/${asset.TypeCode}/${asset.AssetID}</td>
                 <td>${asset.assetName}</td>
                 <td>${asset.assetType}</td>

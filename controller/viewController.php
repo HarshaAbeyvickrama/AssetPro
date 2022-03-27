@@ -1,8 +1,10 @@
 <?php
-class ViewController{
 
-    function renderView($view){
+class ViewController
+{
 
+    function renderView($view)
+    {
         if ($view == "profile") {
             return include("./view/includes/profile.php");
         }
