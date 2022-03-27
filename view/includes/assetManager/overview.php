@@ -87,10 +87,7 @@
         document.getElementById('allAssetsCount').innerHTML = data.allAssets;
         document.getElementById('allEmployeesCount').innerHTML = data.allEmployees;
         document.getElementById('allTechniciansCount').innerHTML = data.allTechnicians;
-        // document.getElementById('allTangible').innerHTML = data.tangibleAssets;
-        // document.getElementById('allConsumable').innerHTML = data.consumableAssets;
         document.getElementById('allDepartmentsCount').innerHTML = data.allDepartments;
-        console.log(data.allDepartments);
     });
 </script>
 
