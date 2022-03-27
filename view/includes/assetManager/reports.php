@@ -313,54 +313,58 @@
                     <div>Time : </div>
                     <div>Depriciation Method : </div>
                 </div>
-                <div class="table">
-                    <div class="tableHeader">
-                        <div>All Assets</div>
-                        <div>FA</div>
-                        <div>CA</div>
-                        <div>IA</div>
-                        <div>Total</div>
-                    </div>
-                    <div class="tableRowGroup" id="allAssetsTableBody">
-                        <div class="tableRow">
-                            <div>Count</div>
+                <table class="table">
+                    <thead>
+                    <tr class="">
+                        <th>All Assets</th>
+                        <th>FA</th>
+                        <th>CA</th>
+                        <th>IA</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                            <div>3</div>
-                            <div>4</div>
-                            <div>7</div> 
-                            <div>14</div>
-                        </div>
-                        <div class="tableRow">
-                            <div>Number of Brakdowns</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>7</div> 
-                            <div>14</div>
-                        </div>
-                        <div class="tableRow">
-                            <div>Number of Repaired Assets</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>7</div> 
-                            <div>14</div>
-                        </div>
-                        <div class="tableRow">
-                            <div>Total Value of Assets</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>7</div> 
-                            <div>14</div>
-                        </div>
-                        <div class="tableRow">
-                            <div>Sent for disposal</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>7</div> 
-                            <div>14</div>
+                    <tr class="row">
+                        <td class="innerRow">Count</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>14</td>
+                    </tr>
 
-                        </div>
-                    </div>
-                </div>
+                    <tr class="row">
+                        <td class="innerRow">Number of breakdowns</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>14</td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="innerRow">Number of repaired assets</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>14</td>
+                    </tr>
+
+                    <tr class="row">
+                        <td class="innerRow">Total Value of assets</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>14</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="innerRow">Total Value of assets</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>14</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -381,7 +385,8 @@
                     <div>Date : </div>
                     <div>Time : </div>
                 </div>
-                <table class="">
+                <table class="table">
+                    <thead>
                     <tr class="">
                         <th>All Assets</th>
                         <th>Number of Breakdowns</th>
@@ -389,6 +394,8 @@
                         <th>Number of Repaired Assets</th>
                         <th>Number of Employees Assigned</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr class="spanRow">
                         <td colspan="5">Fixed Assets</td>
                     </tr>
@@ -397,37 +404,37 @@
                         <td>14</td>
                         <td>4</td>
 
-                        <td>4</td> 
+                        <td>4</td>
                         <td>14</td>
-                    </tr>                      
+                    </tr>
 
                     <tr class="row">
                         <td class="innerRow">Machinery</td>
                         <td>14</td>
                         <td>4</td>
 
-                        <td>4</td> 
+                        <td>4</td>
                         <td>14</td>
-                    </tr>                      
+                    </tr>
 
                     <tr class="row">
                         <td class="innerRow">Computer</td>
                         <td>14</td>
                         <td>4</td>
 
-                        <td>4</td> 
+                        <td>4</td>
                         <td>14</td>
-                    </tr>                      
+                    </tr>
 
                     <tr class="row">
                         <td class="innerRow">Printers</td>
                         <td>14</td>
                         <td>4</td>
 
-                        <td>4</td> 
+                        <td>4</td>
                         <td>14</td>
-                    </tr>                      
-
+                    </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

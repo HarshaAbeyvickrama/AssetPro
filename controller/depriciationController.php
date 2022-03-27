@@ -10,6 +10,7 @@ class DepriciationController extends Depriciation
     function __construct()
     {
     }
+
     function calculateNetValue($asset)
     {
         $depriciation = ($asset['Cost'] - $asset['ResidualValue']) / $asset['UsefulYears'];
@@ -21,7 +22,8 @@ class DepriciationController extends Depriciation
         $netValue = $asset['Cost'] - ($depriciation * $years);
         return $netValue;
     }
-    function calculateYearsElapsed($purchaseDate)
+
+    function calculateYearsElapsed($purchaseDate): float|int
     {
         $purchaseYear = $purchaseDate;
         $now = date('Y-m-d');
@@ -48,7 +50,7 @@ class DepriciationController extends Depriciation
                 $netValue = $this->calculateNetValue($assets[$i]);
                 echo $assets[$i]['AssetID'] . ' Netvalue : ' . $netValue . ' Elaspsed: ' . $this->calculateYearsElapsed($assets[$i]['PurchasedDate']) . ' Residual Value : ' . $assets[$i]['ResidualValue'] . ' Cost : ' . $assets[$i]['Cost'] . '<br>';
                 if ($netValue <= $assets[$i]['ResidualValue'] || $this->calculateYearsElapsed($assets[$i]['PurchasedDate']) >= $assets[$i]['UsefulYears'] * 12) {
-                    $this->updateDepriciation($assets[$i]['AssetID']);
+                    return $this->updateDepriciation($assets[$i]['AssetID']);
                 }
             }
         } catch (PDOException $ex) {
@@ -64,10 +66,11 @@ class DepriciationController extends Depriciation
             }
         }
     }
+
     function getAssetCost($assetID)
     {
         $res = $this->getCost($assetID);
-        echo ($res);
+        echo($res);
     }
 
     public function getAllDepriciatedAssets()
@@ -81,7 +84,8 @@ class DepriciationController extends Depriciation
         return json_encode($res);
     }
 
-    public function submitForDisposal($assetID){
+    public function submitForDisposal($assetID)
+    {
         if ($this->isDisposed($assetID)) {
             $res = array('status' => 'error', 'message' => 'Asset already Submitted disposed');
         } else {

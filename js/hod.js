@@ -100,7 +100,6 @@ function loadDeptAssets(userID){
                                   <td>${viewassets[i]['assetName']}</td>
                                   <td>${viewassets[i]['assetType']}</td>
                                    <td>${viewassets[i]['categoryName']}</td>
-                                 
                               </tr>`;
             }
         }

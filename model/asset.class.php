@@ -636,4 +636,24 @@ class Asset extends DBConnection
         $sql = "SELECT COUNT(*) AS count FROM `breakdown` WHERE AssetID =" . $assetID;
         return $this->dbConnection->query($sql)->fetch();
     }
+
+    protected function assignDepartment($assetID, $departmentID)
+    {
+        if ($this->dbConnection == null) {
+            $this->dbConnection = $this->connect();
+        }
+        $sql = "UPDATE `asset` SET `DepartmentID`= :departmentID WHERE AssetID = :assetID";
+        $pstm = $this->dbConnection->prepare($sql);
+        $pstm->bindParam(':departmentID', $departmentID);
+        $pstm->bindParam(':assetID', $assetID);
+        return $pstm->execute();
+
+    }
+
+    protected function getAssetsWithDepreciation()
+    {
+        //get all asset details with depreciation
+
+        //return;
+    }
 }

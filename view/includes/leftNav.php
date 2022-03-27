@@ -26,7 +26,6 @@
     }
 
     #components {
-        margin-top: 20px;
         overflow-y: hidden;
         overflow-x: hidden;
         margin-bottom: 10px;

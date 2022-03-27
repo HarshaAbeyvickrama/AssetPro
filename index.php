@@ -124,6 +124,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $ac->getAsset($url[2]);
                     break;
 
+                case 'assignToDepartment':
+                    echo $ac->assignToDepartment($_POST['assetID'], $_POST['departmentID']);
+                    break;
+
+                case 'calculateDepreciation':
+                    $ac->calculateDepreciation();
+                    break;
                 default:
                     # code...
                     break;
@@ -176,6 +183,10 @@ if ($url == '/' || $url[0] == 'dashboard') {
         case 'depricated':
             $dc = new DepriciationController();
             switch ($action) {
+                case 'calculate':
+                    $dc->calculateDepriciation();
+                    break;
+
                 case 'all':
                     echo $dc->getAllDepriciatedAssets();
                     break;
