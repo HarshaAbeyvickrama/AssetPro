@@ -119,40 +119,41 @@ class EmployeeController extends Employee
         //Filter data for the userdetails table
 
         //Employee first name
-        if ($old['firstName'] != $updated['firstName']) {
+        if ($old['firstName'] !== $updated['firstName']) {
             $userdetails['fName'] = $updated['firstName'];
         }
         //Employee last name
-        if ($old['lastName'] != $updated['lastName']) {
+        if ($old['lastName'] !== $updated['lastName']) {
             $userdetails['lName'] = $updated['lastName'];
         }
         //NIC
-        if ($old['NIC'] != $updated['NIC']) {
+        if ($old['NIC'] !== $updated['NIC']) {
             $userdetails['NIC'] = $updated['NIC'];
         }
         //Address
-        if ($old['address'] != $updated['address']) {
+        if ($old['address'] !== $updated['address']) {
             $userdetails['Address'] = $updated['address'];
         }
         //Gender
-        if ($old['gender'] != $updated['gender']) {
+        if ($old['gender'] !== $updated['gender']) {
             $userdetails['Gender'] = $updated['gender'];
         }
         //Contact Number
-        if ($old['contactNo'] != $updated['contactNo']) {
+        if ($old['contactNo'] !== $updated['contactNo']) {
             $userdetails['PhoneNumber'] = $updated['contactNo'];
         }
 
         //Email
-        if ($old['email'] != $updated['email']) {
+        if ($old['email'] !== $updated['email']) {
             $userdetails['Email'] = $updated['email'];
         }
         //Date of Birth
         if ($old['dob'] != $updated['dob']) {
             $userdetails['DOB'] = $updated['dob'];
         }
+
         //jobTitle
-        if ($old['jobTitle'] != $updated['jobTitle']) {
+        if ($old['jobTitle'] !== $updated['jobTitle']) {
             $userdetails['jobTitle'] = $updated['jobTitle'];
         }
 
@@ -162,7 +163,7 @@ class EmployeeController extends Employee
 
         //==========employeeuser table=========//
         //Employee user table
-        if ($old['departmentID'] != $updated['departmentID']) {
+        if ($old['departmentID'] !== $updated['departmentID']) {
             $employeeuser['DepartmentID'] = $updated['departmentID'];
         }
 
@@ -172,22 +173,22 @@ class EmployeeController extends Employee
 
         //=========useremergency table=============//
         //eName
-        if ($old['eName'] != $updated['eName']) {
+        if ($old['eName'] !== $updated['eName']) {
             $useremergency['fName'] = $updated['eName'];
         }
 
         //eRelationship
-        if ($old['eRelationship'] != $updated['eRelationship']) {
+        if ($old['eRelationship'] !== $updated['eRelationship']) {
             $useremergency['Relationship'] = $updated['eRelationship'];
         }
 
         //Contact Number
-        if ($old['TelephoneNumber'] != $updated['TelephoneNumber']) {
-            $useremergency['TelephoneNumber'] = $updated['TelephoneNumber'];
+        if ($old['contactNo'] !== $updated['contactNo']) {
+            $useremergency['TelephoneNumber'] = $updated['contactNo'];
         }
 
         if (count($useremergency) > 0) {
-            $resultArray['emergencyuser'] = $useremergency;
+            $resultArray['useremergency'] = $useremergency;
         }
 
         return $resultArray;

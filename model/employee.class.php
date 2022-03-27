@@ -5,7 +5,7 @@
 class Employee extends DBConnection
 {
     //Database connection
-    private $DBConnection;
+    private $dbConnection;
 
     private $departmentID;
     private $fileUrl;
@@ -25,7 +25,7 @@ class Employee extends DBConnection
 
     public function __construct($departmentID, $fileUrl, $firstName, $lastName, $NIC, $gender, $dob, $jobTitle, $address, $contactNo, $email, $eName, $eRelationship, $eContact)
     {
-        $this->DBConnection = $this->connect();
+        $this->dbConnection = $this->connect();
         $this->departmentID = $departmentID;
         $this->fileUrl = $fileUrl;
         $this->firstName = $firstName;
@@ -187,8 +187,8 @@ class Employee extends DBConnection
     //Updating employee details
     protected function update($filtered): array
     {
-        if ($this->DBConnection == null) {
-            $this->DBConnection = $this->connect();
+        if ($this->dbConnection == null) {
+            $this->dbConnection = $this->connect();
         }
 
         //Getting the userID of the employee who is being updated
@@ -198,16 +198,16 @@ class Employee extends DBConnection
                             employeeuser
                         WHERE
                             EmployeeID = ' . $filtered['EmployeeID'];
-        $userID = $this->DBConnection->query($sqlUserID)->fetch()['UserID'];
+        $userID = $this->dbConnection->query($sqlUserID)->fetch()['UserID'];
 
         try {
-            $this->DBConnection->beginTransaction();
+            $this->dbConnection->beginTransaction();
 
             //Updating the userdetails table
             if (isset($filtered['userdetails'])) {
                 $userdetails = $this->sqlQueryBuilder('userdetails', $filtered['userdetails'], 'UserID = ' . $userID);
+                $stmt = $this->dbConnection->prepare($userdetails);
                 print_r($userdetails);
-                $stmt = $this->DBConnection->prepare($userdetails);
                 $stmt->execute();
             }
 
@@ -216,18 +216,20 @@ class Employee extends DBConnection
                 $employeeuser = $this->sqlQueryBuilder('employeeuser', $filtered['employeeuser'], 'EmployeeID = ' . $filtered['EmployeeID']);
                 print_r($employeeuser);
 
-                $stmt = $this->DBConnection->prepare($employeeuser);
+                $stmt = $this->dbConnection->prepare($employeeuser);
                 $stmt->execute();
             }
 
             //Updating the employeeuser table
             if (isset($filtered['useremergency'])) {
-                $useremergency = $this->sqlQueryBuilder('useremergency', $filtered['useremergency'], 'EmployeeID = ' . $filtered['EmployeeID']);
-                $stmt = $this->sqlQueryBuilder('useremergency', $filtered['EmployeeID'], 'EmployeeID = ' . $filtered['EmployeeID']);
+                $useremergency = $this->sqlQueryBuilder('useremergency', $filtered['useremergency'], 'UserID = ' . $filtered['EmployeeID']);
+                print_r($useremergency);
+
+                $stmt = $this->dbConnection->prepare($useremergency);
                 $stmt->execute();
             }
 
-            $this->DBConnection->commit();
+            $this->dbConnection->commit();
 
             return array(
                 'isSuccess' => true,
@@ -236,7 +238,7 @@ class Employee extends DBConnection
             );
 
         } catch (Exception|Throwable $e) {
-            $this->DBConnection->rollBack();
+            $this->dbConnection->rollBack();
             unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->fileUrl);
 
             $result = array(
@@ -259,7 +261,7 @@ class Employee extends DBConnection
             $cols[] = $key . " = " . $valString;
         }
         $update = "UPDATE $table SET " . implode(', ', $cols);
-        $where = $where = null ? " WHERE $where" : '';
+        $where = $where ? " WHERE $where" : '';
         return ($update . $where);
     }
 
@@ -281,8 +283,8 @@ class Employee extends DBConnection
         $result['contactNo'] = $this->contactNo;
         $result['email'] = $this->email;
         $result['eName'] = $this->eName;
-        $result['TelephoneNumber'] = $this->eRelationship;
-        $result['eRelationship'] = $this->eContact;
+        $result['eRelationship'] = $this->eRelationship;
+        $result['eContact'] = $this->eContact;
 
         return $result;
     }
@@ -291,7 +293,7 @@ class Employee extends DBConnection
     protected function delete($EmployeeID)
     {
         $sql = "DELETE FROM user INNER JOIN employeeuser ON user.UserID = employeeuser.UserID WHERE employeeuser.EmployeeID = :EmployeeID";
-        $stmt = $this->DBConnection->prepare($sql);
+        $stmt = $this->dbConnection->prepare($sql);
         $stmt->bindParam(":EmployeeID", $EmployeeID);
         $stmt->execute();
         return $stmt;
