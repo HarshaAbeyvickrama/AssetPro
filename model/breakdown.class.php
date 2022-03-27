@@ -187,6 +187,43 @@ class Breakdown extends DBConnection
         return $pstm;
     }
 
+    ///////////////////////Breakdowns in progress/////////////////////
+    protected function getBreakdownsInProgress($userID)
+    {
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                    assetdetails.AssetID,
+                    assetdetails.Name,
+                    TYPE.Name AS typeName,
+                    breakdown.EmployeeID AS reportedEmployee,
+                    department.DepartmentCode,
+                    category.CategoryCode,
+                    TYPE.TypeCode
+                FROM
+                    breakdown
+                INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
+                INNER JOIN asset ON asset.AssetID = breakdown.AssetID
+                INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
+                INNER JOIN category ON category.CategoryID = asset.CategoryID
+                INNER JOIN employeeuser ON employeeuser.EmployeeID = breakdown.EmployeeID
+                INNER JOIN department ON department.DepartmentID = employeeuser.DepartmentID
+                INNER JOIN techrepairbreak ON techrepairbreak.BreakdownID = breakdown.BreakdownID
+                WHERE
+                    techrepairbreak.TechnicianID =(
+                    SELECT
+                        technicianuser.TechnicianID
+                    FROM
+                        technicianuser
+                    WHERE
+                        technicianuser.UserID = ?
+                )";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($userID));
+        return $pstm;
+    }
+
+
+
     private function techSpecialization()
     {
         return [

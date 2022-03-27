@@ -116,7 +116,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $bc->getAllAssignedTechBreakdowns($url[2]);
                     break;
                 case 'getBreakdownInprogressT':
-                    // echo $bc->getAllTechBreakdownsInProgress($url[2]);
+                    echo $bc->getAllTechBreakdownsInProgress($url[2]);
                     break;
             }
             break;

@@ -29,4 +29,10 @@ class BreakdownController extends Breakdown{
       return json_encode($result->fetchAll());
 
     }
+
+    public function getAllTechBreakdownsInProgress($id){
+      $result = $this->getBreakdownsInProgress($id);
+      return json_encode($result->fetchAll());
+
+    }
 }

@@ -11,7 +11,7 @@
         </tr>
     </thead>
 
-    <tbody class="tableRowGroup" id = "inprogressAssetsTableBody">
+    <tbody id = "inprogressAssetsTableBody">
     
     </tbody>
 </table>
@@ -48,7 +48,7 @@
 echo 'var userID ='. $_SESSION['UserID']; 
 ?>
 // loadAssets(userID);
-window.addEventListener('load',loadAssets(userID));
+window.addEventListener('load',getAssets(userID));
 </script>
 
 
