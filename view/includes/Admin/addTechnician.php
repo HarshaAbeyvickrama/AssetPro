@@ -326,10 +326,12 @@
                                 technician.image = data.imageUrl;
                                 console.log(technician);
                                 saveTechnician(technician);
+                                alert("Technician added Successfully!");
                             }
                         })
                     } else {
                         console.log("Image not Found!");
+                        alert("Technician addition Failed!");
                     }
                     break;
 

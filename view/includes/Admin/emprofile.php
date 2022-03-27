@@ -129,6 +129,7 @@
         width: 100%;
         align-items: center;
         margin: 10px 0px;
+        cursor: pointer;
         
     }
     .col-btn>div {
@@ -212,8 +213,41 @@
     }
 
 </style>
-<form action="" id="errorlogForm">
 
+<script>
+
+    var EmployeeID = getCookieValue('EmployeeID');
+
+    //Updating the employee details
+    element('ConfirmUpdate').addEventListener('click', () => {
+        const message = "Are you sure you want to update this Staff member?";
+        if(showConfirmation(message)) {
+
+            const image = document.getElementById('profileImage').files[0];
+            let editedEmployeeDetails = getFormData('errorlogForm');
+            const formData = new FormData();
+            editedEmployeeDetails['EmployeeID'] = EmployeeID;
+
+            editedEmployeeDetails['employeeuser'] = "employeeuser" in editedEmployeeDetails;
+            editedEmployeeDetails['useremergency'] = "employeeuser" in editedEmployeeDetails;
+
+            formData.append('profileImage', image);
+            console.log(editedEmployeeDetails);
+            formData.append('editedEmployeeDetails', JSON.stringify(editedEmployeeDetails));
+             postFiles('http://localhost/assetpro/employees/update/', formData, (result) => {
+                 if(result.isSuccess) {
+                     alert("Staff details updated successfully");
+                 } else {
+                     alert("Staff details update failed");
+                 }
+             })
+        } else {
+            console.log('Update Failed');
+        }
+    });
+</script>
+
+<form action="" id="errorlogForm">
     <div class="profile">
         <div id="pLeft" class="leftSection scrollBar"> 
             <div class="profileImageSection">
@@ -228,6 +262,11 @@
                     <div class="col-f">
                         <span for="empID"> Employee ID: </span>
                         <input type="text" name="empID" id="empID" readonly>
+                    </div>
+
+                    <div class="col-f">
+                        <span for="empID"> Department ID: </span>
+                        <input type="text" name="depID" id="depID" readonly>
                     </div>
                     
                     <div class="col-h">
@@ -247,14 +286,14 @@
 
                     <div class="col-f">
                         <span for="role"> Role: </span>
-                        <input type="text" name="role" id="role" value="Employee">
+                        <input type="text" name="role" id="role" value="Employee" disabled>
                     </div>
 
                     <div class="col-f">
                         <span for="gender"> Gender </span>
                         <div class="radio-group" id="radio-group">
-                            <input type="radio" name="gender" id="Male" value="male"><label> Male </label>
-                            <input type="radio" name="gender" id="Female" value="female"><label> Female </label>
+                            <input type="radio" name="gender" id="male" value="male"><label> Male </label>
+                            <input type="radio" name="gender" id="female" value="female"><label> Female </label>
                         </div>
                     </div>
                     
@@ -317,10 +356,7 @@
                 <div class="btnAction" id="Cancelupdate"> Cancel </div>
                 <div class="btnAction" id="ConfirmUpdate"> Update </div>
             </div>
-                    
-              
         </div>
-
         </div>
     </div>
 
@@ -355,8 +391,6 @@ function formState(formId,readonlyState){
         elements[i].disabled=readonlyState;
     }
     document.getElementById("uploadBtn").disabled=readonlyState;
-
-        
 }
     
    formState("errorlogForm",true);
@@ -390,16 +424,26 @@ function formState(formId,readonlyState){
 //    console.log(employee.ProfilePicURL);
 
    document.getElementById('imagePrev').src = `..${employee.ProfilePicURL}`;
+
+      //Set the uploaded image as preview
+    //   imageUpload.addEventListener('change', () => {
+    //     const image = imageUpload.files[0];
+    //     if (image) {
+    //         var src = URL.createObjectURL(image);
+    //         element('profileImage').src = src;
+    //     }
+    // })
     
    document.getElementById('empID').value = employee.EmployeeID;
+   document.getElementById('depID').value = employee.DepartmentID;
    document.getElementById('fName').value = employee.fName;
    document.getElementById('lName').value = employee.lName;
    document.getElementById('NIC').value = employee.NIC;
    var radio = document.getElementById('radio-group').children;
-    // console.log(employee.Gender);
-   var gender = document.getElementById(employee.Gender)
+    // console.log(radio);
+   var gender = document.getElementById(employee.Gender.toLowerCase());
     // gender.checked = true;
-    document.getElementById(employee.Gender).checked = true;
+    gender.checked = true;
     document.getElementById('dob').value = employee.DOB;
     // document.getElementById('maritalStatus').value = employee.CivilStatus;
     document.getElementById('jobTitle').value = employee.jobTitle;
@@ -409,20 +453,5 @@ function formState(formId,readonlyState){
     document.getElementById('eName').value = employee.eName;
     document.getElementById('eRelationship').value = employee.Relationship;
     document.getElementById('econtact').value = employee.TelephoneNumber;
-    
-
-    //Updating the employee details
-    element('ConfirmUpdate').addEventListener('click', () => {
-        const message = "Are you sure you want to update this Staff member?";
-        if(showConfirmation(message)) {
-            const image = document.getElementById('profileImage').files[0];
-            let editedEmployeeDetails = getFormData('errorLogForm');
-            const formData = new FormData();
-            editedEmployeeDetails['empID'] = empID;
-
-            // editedEmployeeDetails[''] = in editedEmployeeDetails;
-
-        }
-    })
 
 </script>

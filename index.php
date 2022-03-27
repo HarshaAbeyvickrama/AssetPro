@@ -46,6 +46,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
             }
             break;
+
         case 'asset':
             // require_once './controller/assetController.php';
             $ac = new AssetController();
@@ -201,6 +202,12 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     $data = json_decode(file_get_contents('php://input'), true);
                     echo $ec->addEmployee($data);
                     break;
+                case 'update':
+                    $data = json_decode($_POST['editedEmployeeDetails'], true);
+                    $res = $ec->updateEmployee($data, $_FILES);
+                    echo json_encode($res);
+                    break;
+
             }
             break;
 

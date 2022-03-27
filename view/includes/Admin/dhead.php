@@ -39,6 +39,20 @@
         font-weight: bold;
     }
 
+    .profile-row {
+        /* display: inline-flex; */
+        /* height: 2rem !important; */
+    }
+    .profile-image {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+    .profile-name {
+        height: 100% !important;
+        /* display: inline-block; */
+    }
+
     /* CSS for the employee table */
 </style>
 <div class="overviewLayout">

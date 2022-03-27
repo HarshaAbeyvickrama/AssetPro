@@ -106,6 +106,7 @@ class Department extends DBConnection
 
         } catch (PDOException|Exception $e) {
             $DBConnection->rollBack();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/assetpro/' . $this->fileUrl);
 
             $result = array(
                 "status" => "Failed",
