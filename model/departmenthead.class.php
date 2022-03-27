@@ -192,58 +192,39 @@ class DepartmentHead extends DBConnection
         return $stmt;
     }
 
-    //Getting breakdownAssets of particular Department
+    //=========Getting breakdownAssets of particular Department===========
     protected function getBreakdownAssets($userId)
     {
         $DBConnection = $this->connect();
-        // $sql = "SELECT
-        //             breakdown.AssetID,
-        //             assetdetails.Name AS assetName,
-        //             TYPE.Name AS assetType,
-        //             asset.assignedUser,
-        //             departmentheaduser.DepartmentID,
-        //             department.Name AS departmentName,
-        //             breakdown.DefectedParts,
-        //             category.CategoryCode,
-        //             type.TypeCode
-        //         FROM
-        //             breakdown
-        //         INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
-        //         INNER JOIN asset ON asset.AssetID = breakdown.AssetID
-        //         INNER JOIN TYPE ON TYPE.TypeID = asset.TypeID
-        //         INNER JOIN category ON category.CategoryID = type.CategoryID
-        //         INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
-        //         INNER JOIN department ON department.DepartmentID = departmentheaduser.DepartmentID
-        //         WHERE
-        //             departmentheaduser.UserID = ?";
+
 
         $sql = "SELECT
-                    breakdown.AssetID,
-                    assetdetails.Name AS assetName,
-                    TYPE.Name AS assetType,
-                    asset.assignedUser,
-                    departmentheaduser.DepartmentID,
-                    breakdown.Date AS reportedDate,
-                    category.CategoryCode,
-                    TYPE.TypeCode
-                FROM
-                    breakdown
-                INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
-                INNER JOIN asset ON asset.AssetID = breakdown.AssetID
-                INNER JOIN TYPE ON TYPE
-                    .TypeID = asset.TypeID
-                INNER JOIN category ON category.CategoryID = TYPE.CategoryID
-                INNER JOIN departmentheaduser ON departmentheaduser.DepartmentID = asset.DepartmentID
-                INNER JOIN department ON department.DepartmentID = departmentheaduser.DepartmentID
-                WHERE
-                    departmentheaduser.UserID = ?";
+                        breakdown.AssetID,
+                        breakdown.Date AS reportedDate,
+                        asset.AssetID,
+                        assetdetails.Name AS assetName,
+                        department.DepartmentID,
+                        departmentheaduser.HeadID,
+                        category.CategoryCode,
+                        TYPE.TypeCode
+                    FROM
+                        breakdown
+                    INNER JOIN assetdetails ON assetdetails.AssetID = breakdown.AssetID
+                    INNER JOIN asset ON asset.AssetID = assetdetails.AssetID
+                    INNER JOIN TYPE ON TYPE
+                        .TypeID = asset.TypeID
+                    INNER JOIN category ON category.CategoryID = TYPE.CategoryID
+                    INNER JOIN department ON department.DepartmentID = asset.DepartmentID
+                    INNER JOIN departmentheaduser ON departmentheaduser.HeadID = department.HeadID
+                    WHERE
+                        departmentheaduser.UserID = ?";
 
         $pstm = $DBConnection->prepare($sql);
         $pstm->execute(array($userId));
         return $pstm;
     }
 
-    //Getting employees using department ID
+    //=================Getting employees using department ID==============
     protected function getDepartmentEmployees($userId)
     {
         $DBConnection = $this->connect();
@@ -272,6 +253,61 @@ class DepartmentHead extends DBConnection
         return $stmt;
     }
 
+    //===========Getting assigned assets of departmentHead=============
+    protected function getAssigned($userId)
+    {
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                        asset.AssetID,
+                        assetdetails.Name AS assetName,
+                        t.Name AS assetType,
+                        t.TypeCode AS TypeCode,
+                        c.CategoryCode AS CategoryCode
+                    FROM
+                        asset
+                    INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+                    INNER JOIN category c ON
+                        asset.CategoryID = c.CategoryID
+                    INNER JOIN TYPE t ON
+                        t.TypeID = asset.TypeID
+                    WHERE
+                        asset.assignedUser = ?
+                    ORDER BY
+                        asset.AssetID";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($userId));
+        return $pstm;
+    }
+
+    protected function getDeptAssets($userId){
+        $dbConnection = $this->connect();
+        $sql = "SELECT
+                asset.AssetID,
+                assetdetails.Name AS assetName,
+                asset.DepartmentID,
+                t.Name AS assetType,
+                t.TypeCode AS TypeCode,
+                c.CategoryCode AS CategoryCode,
+                c.Name AS categoryName
+            FROM
+                asset
+            INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID
+            INNER JOIN category c ON
+                asset.CategoryID = c.CategoryID
+            INNER JOIN TYPE t ON
+                t.TypeID = asset.TypeID
+            INNER JOIN department ON department.DepartmentID = asset.DepartmentID
+            WHERE
+                asset.assignedUser = ?
+            ORDER BY
+                asset.AssetID";
+        $pstm = $dbConnection->prepare($sql);
+        $pstm->execute(array($userId));
+        return $pstm;
+
+    }
+
+
     //Getting all assigned assets of particular department
     // protected function getDHAssignedAssets($userId) {
     //     $DBConnection = $this->connect();
@@ -288,4 +324,6 @@ class DepartmentHead extends DBConnection
     //     $stmt->execute(array($userId));
     //     return $stmt;"
     // }
+
+
 }

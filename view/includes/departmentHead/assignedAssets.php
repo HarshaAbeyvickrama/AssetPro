@@ -13,7 +13,7 @@
                     <th>Report Breakdown</th>
                 </tr>
             </thead>
-            <tbody id="employeeTableBody"></tbody>
+            <tbody id="DHBody"></tbody>
         </table>
 
     </div>
@@ -24,5 +24,5 @@
     echo 'var userID =' . $_SESSION['UserID'];
     ?>
     // loadAssets(userID);
-    window.addEventListener('load', loadAssets(userID));
+    window.addEventListener('load',loadAssignedAssets(userID));
 </script>

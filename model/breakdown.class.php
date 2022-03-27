@@ -50,6 +50,7 @@ class Breakdown extends DBConnection
                     assetdetails.AssetCondition,
                     TYPE.Name AS assetType,
                     category.Name AS categoryName,
+                    breakdown.BreakdownID,
                     breakdown.Reason,
                     breakdown.DefectedParts,
                     category.CategoryCode,
@@ -76,9 +77,9 @@ class Breakdown extends DBConnection
         $assetId = $data['assetID'];
         $defectedPart = $data['defP'];
         $reason = $data['exDef'];
-        // $EmpID = $_SESSION['UserID'];
+        $EmpID = $_SESSION['UserID'];
         // $EmpID = $_SESSION['EmployeeID'];
-        $EmpID = 3;
+        //$EmpID = 3;
         $sql = "INSERT INTO breakdown(
                 AssetID,
                 EmployeeID,
@@ -97,7 +98,7 @@ class Breakdown extends DBConnection
 
         $stmt->execute();
 
-        $lastInsertedBreakdownID=$dbConnection->lastInsertId(); //PK is the lastInsertID=(BreakdownID)
+        $lastInsertedBreakdownID = $dbConnection->lastInsertId(); //PK is the lastInsertID=(BreakdownID)
 
         $specialization = $this->techSpecialization();  //array inside the techSpecialization will be assigned to a var
 
@@ -112,24 +113,23 @@ class Breakdown extends DBConnection
         $stmt1 = $dbConnection->prepare($sql);
         $stmt1->execute();
 
-        $typeData =$stmt1->fetch();
-        $typeCode = $typeData['TypeCode'];
-//        print_r($type);
+        $typeData = $stmt1->fetch();          //only one row will come as the output threfo -> fetch
+        $typeCode = $typeData['TypeCode'];   //from that array we select only TypeCode
         $techSpecial = $specialization[$typeCode]; //if we pass the $typeCode it'll return the key value (specialized person)
-//        print_r( $techSpecial);
+
 
         $sql = "SELECT
                 TechnicianID
             FROM
                 technicianuserspec
             WHERE
-                Specialization ='$techSpecial'";   //getting all the technicianId related to specific specialization
+                Specialization ='$techSpecial'";   //getting all the technicianId related to specific specialization based on the typecode
         $stmt2 = $dbConnection->prepare($sql);
         $stmt2->execute();
 
-        $technicians =$stmt2->fetchAll(); //returns an associative array
-        $tecCount=count($technicians);
-        $randomIndex=rand(0,$tecCount-1);
+        $technicians = $stmt2->fetchAll(); //returns an associative array
+        $tecCount = count($technicians);
+        $randomIndex = rand(0, $tecCount - 1); //inorder to access an array we count from 0 to array.length-1
         $technicianID = $technicians[$randomIndex]['TechnicianID']; //associative array [index][AssoArra->techiD]
 
 
@@ -138,19 +138,26 @@ class Breakdown extends DBConnection
         $stmt3 = $dbConnection->prepare($sql);
 
         $stmt3->bindParam(':breakdownId', $lastInsertedBreakdownID);
-        $stmt3->bindParam(':technicianId',  $technicianID);
+        $stmt3->bindParam(':technicianId', $technicianID);
 
         $stmt3->execute();
 
         return $stmt;
 
-
-        // if(mysqli_query($mysql,$reportassetquery )) {
-        //     echo("Successfully Reported!!");
-        // }else{
-        //     echo("Error in Submitting!!");
-        // }
     }
+
+    private function techSpecialization()
+    {
+        return [
+            "EA" => "Electrician",
+            "FU" => "Carpenter",
+            "PE" => "Electrician",
+            "MA" => "Mechanic",
+            "SW" => "IT_Technician",
+            "CP" => "PC_Technician"
+        ];
+    }
+
 
 //===================techinicians========================
     protected function getAssignedBreakdowns($userID)
@@ -187,15 +194,26 @@ class Breakdown extends DBConnection
         return $pstm;
     }
 
-    private function techSpecialization()
+
+    protected function updateBreakdown($data)
     {
-        return [
-            "EA" => "Electrician",
-            "FU" => "Carpenter",
-            "PE" => "Electrician",
-            "MA" => "Mechanic",
-            "SW" => "IT_Technician"
-        ];
+        $dbConnection = $this->connect();
+//      $assetId = $data['assetID'];
+        $breakdownId = $data['BID'];
+        $defectedPart = $data['defectedPrt'];
+        $reason = $data['explainDef'];
+
+        $sql = "update breakdown set DefectedParts = :defectedPart, Reason =:reason WHERE BreakdownID = :breakdownId";
+
+        $stmt = $dbConnection->prepare($sql);
+
+        $stmt->bindParam(':breakdownId', $breakdownId);
+        $stmt->bindParam(':reason', $reason);
+        $stmt->bindParam(':defectedPart', $defectedPart);
+
+        return $stmt->execute();
+
+
     }
 
 

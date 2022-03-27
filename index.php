@@ -124,6 +124,13 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     echo $ac->getAsset($url[2]);
                     break;
 
+                case 'assignToDepartment':
+                    echo $ac->assignToDepartment($_POST['assetID'], $_POST['departmentID']);
+                    break;
+
+                case 'calculateDepreciation':
+                    $ac->calculateDepreciation();
+                    break;
                 default:
                     # code...
                     break;
@@ -149,6 +156,10 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getBreakdownInprogressT':
                     // echo $bc->getAllTechBreakdownsInProgress($url[2]);
                     break;
+                case 'updateAllBreakdowns':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo json_encode($bc->updateAllBreakdowns($data));
+                    break;
             }
             break;
 
@@ -172,6 +183,10 @@ if ($url == '/' || $url[0] == 'dashboard') {
         case 'depricated':
             $dc = new DepriciationController();
             switch ($action) {
+                case 'calculate':
+                    $dc->calculateDepriciation();
+                    break;
+
                 case 'all':
                     echo $dc->getAllDepriciatedAssets();
                     break;
@@ -266,6 +281,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getDHAssignedAssets':
                     echo $dhc->getDHAllAssignedAssets($url[2]);
+                    break;
+                case 'getDeptAssets':
+                    echo $dhc->getAllDeptAssets($url[2]);
                     break;
             }
             break;

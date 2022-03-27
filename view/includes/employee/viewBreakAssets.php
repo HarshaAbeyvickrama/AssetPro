@@ -13,7 +13,7 @@
         height: 87vh;
     }
 
-    .profile>div {
+    .profile > div {
         background-color: white;
         border-radius: 10px;
     }
@@ -38,12 +38,12 @@
 
     }
 
-    .leftSection>div {
+    .leftSection > div {
         /* height: 100%; */
         /* width: 100%; */
     }
 
-    .profileImageSection>img {
+    .profileImageSection > img {
         width: 200px;
         border-radius: 0%;
     }
@@ -131,7 +131,7 @@
         margin: 10px 0px;
     }
 
-    .col-btn>div {
+    .col-btn > div {
         border-radius: 15px;
         padding: 10px 20px;
         color: white;
@@ -186,7 +186,7 @@
     }
 
     .col-h,
-    .col-f>span {
+    .col-f > span {
         display: block;
         margin-top: 5px;
     }
@@ -195,15 +195,15 @@
         margin: 5px 0px;
     }
 
-    .radio-group>label {
+    .radio-group > label {
         margin-left: 5px;
     }
 
-    .radio-group>input[type=radio]:hover {
+    .radio-group > input[type=radio]:hover {
         cursor: pointer;
     }
 
-    .col-btn>div:hover {
+    .col-btn > div:hover {
         cursor: pointer;
         background-color: #304068;
         transition: .5s;
@@ -216,16 +216,16 @@
         overflow-x: hidden;
     }
 
-    #pRight>div {
+    #pRight > div {
         background-color: white;
         border-radius: 10px;
     }
 
-    #pRight>div:nth-child(1) {
+    #pRight > div:nth-child(1) {
         margin: 15px 10px 5px 5px;
     }
 
-    #pRight>div:nth-child(2) {
+    #pRight > div:nth-child(2) {
         margin: 5px 15px 10px 5px;
     }
 
@@ -253,10 +253,10 @@
             <div class="leftBottom">
                 <div class="basic-information">
                     <div class="title">Basic Information</div>
-                    <!-- <div class="col-h">
-                        <span for="errorId">Error ID</span>
-                        <input type="text" name="errorId" id="errorId" value="D/FA/2346">
-                    </div> -->
+                    <!--                    --><?php
+                    //                       $txt = $_SESSION['EmployeeID'];
+                    //                       echo ($txt);
+                    //                    ?>
 
                     <div class="col-f">
                         <span for="assetId">Asset ID</span>
@@ -288,14 +288,18 @@
 <form action="" id="EditForm">
     <div id="pRight" class="rightSection">
         <div class="basic-information">
-            <div class="title">Report Breakdown:</div>
+            <div class="title">Reported Breakdown:</div>
+            <div class="col-f">
+                <span for="defectedParts">Breakdown ID</span>
+                <textarea class="textarea" id="Bid" name="breakdownid" disabled></textarea>
+            </div>
             <div class="col-f">
                 <span for="defectedParts">Defected Parts</span>
-                <textarea class="textarea" cols="8.5" rows="8.5" id="defP" disabled></textarea>
+                <textarea class="textarea" cols="8.5" rows="8.5" id="defP" name="defectedPrt" disabled></textarea>
             </div>
             <div class="col-f">
                 <span for="explainDefect">Explain the defect</span>
-                <textarea class="textarea" cols="10" rows="10" id="exDef" disabled></textarea>
+                <textarea class="textarea" cols="10" rows="10" id="exDef" name="explainDef" disabled></textarea>
             </div>
             <div class="col-btn" id="EditBtnSection">
                 <div id="cancelReport" onClick="cancelReport()">Back</div>
@@ -317,22 +321,18 @@
     //         return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
     //     }
 
-
+    // setIsEditingBreakdown(false);
     document.getElementById('EditReport').addEventListener('click', () => {
-        document.getElementById('EditBtnSection').style.display = 'none';
-        document.getElementById('updateBtnSection').style.display = 'block';
-        inputs('EditForm', false);
+        setIsEditingBreakdown(true);
     })
 
     document.getElementById('Cancelupdate').addEventListener('click', () => {
-        document.getElementById('updateBtnSection').style.display = 'none';
-        document.getElementById('EditBtnSection').style.display = 'block';
-        inputs('EditForm', true);
+        setIsEditingBreakdown(false);
     })
 
     var breakdownID = getCookieValue('BreakdownID');
     var breakdown = JSON.parse(breakdownID)[0]; //string to object
-    console.log(breakdown);
+    // console.log(breakdown);
     document.getElementById('assetID').value = breakdown.CategoryCode + '/' + breakdown.TypeCode + '/' + breakdown.AssetID;
     document.getElementById('assetName').value = breakdown.assetName;
     document.getElementById('assetType').value = breakdown.assetType;
@@ -340,10 +340,71 @@
     document.getElementById('condition').value = breakdown.AssetCondition;
     document.getElementById('defP').value = breakdown.DefectedParts;
     document.getElementById('exDef').value = breakdown.Reason;
-
+    document.getElementById('Bid').value = breakdown.BreakdownID;
+    //Getting the breakdownID
+    // var BreakId = breakdown.BreakdownID;
 
 
     function cancelReport() {
         loadSection('centerSection', 'reportedBreakdown');
     }
+
+    //=============updating the data by clicking the update button==========
+    document.querySelectorAll(".col-btn").forEach(button => {
+        const updateBtn = document.getElementById("ConfirmUpdate");
+        const cancelBtn = document.getElementById("Cancelupdate");
+        button.addEventListener('click', function (event) {
+            switch (event.target.id) {
+                case 'Cancelupdate':
+
+                    break;
+                case 'ConfirmUpdate':
+                    const updateData = getFormData('EditForm');
+                    const Bid = element('Bid').value;
+                    console.log(Bid);
+                    updateData['BID'] = Bid;
+
+                    saveUpdate(updateData);
+                // if(updateData == null){
+                //     alert('Fields cannot be empty');
+                // }
+                // else {
+                //     const result = showConfirmation('Are you really want to report?');
+                //     if (result == true) {
+                //         saveUpdate(updateData);
+                //         alert('Successfully Reported!');
+                //     } else {
+                //         alert('Breakdown was not recorded!');
+                //     }
+                // }
+            }
+
+        })
+    })
+
+    // function getFormdata(breakdownid){
+    //     breakdownI = breakdownid;
+    //     defectedPart =  document.getElementById('defP').value;
+    //     explainDefect = document.getElementById('exDef').value;
+    //
+    //     // if(defectedPart == "" || explainDefect == "")
+    //     // {
+    //     //     return null;
+    //     // }
+    //     var updatedata = {
+    //         breakdownid:breakdownID2,
+    //         defP:defectedPart,
+    //         exDef: explainDefect
+    //
+    //     }
+    //     return updatedata;
+    //
+    // }
+
+    function saveUpdate(updateData) {
+        postData('http://localhost/assetpro/breakdown/updateAllBreakdowns', updateData, (response) => {
+            alert("Breakdown Updated Successfully!");
+        })
+    }
+
 </script>

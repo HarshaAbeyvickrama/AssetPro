@@ -15,6 +15,7 @@
     </tbody>
 </table>
 
+
 <script>
     getData('http://localhost/assetpro/asset/getAllAssets/assigned', (data) => {
         data.forEach((asset, index) => {

@@ -6,6 +6,7 @@ class AssetController extends Asset
 {
     public function __construct()
     {
+
     }
     // Done
     // Only available for Asset Manager
@@ -191,7 +192,6 @@ class AssetController extends Asset
         );
     }
 
-
     //Filter the updated details
     private function filterDetails($old, $updated): array
     {
@@ -340,5 +340,28 @@ class AssetController extends Asset
 //
     }
 
+    public function assignToDepartment($assetID, $departmentID)
+    {
+        $res = $this->assignDepartment();
+        if ($res) {
+            $result = array(
+                'isSuccess' => true,
+                'message' => 'Department Assigned successfully'
+            );
+        } else {
+            $result = array(
+                'isSuccess' => false,
+                'message' => 'Department Assignment Failed'
+            );
+        }
+
+        return $result;
+    }
+
+    public function calculateDepreciation()
+    {
+        $res = $this->calculateDepreciation();
+
+    }
 
 }

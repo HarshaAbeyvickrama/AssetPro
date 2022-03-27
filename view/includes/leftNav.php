@@ -26,7 +26,6 @@
     }
 
     #components {
-        margin-top: 20px;
         overflow-y: hidden;
         overflow-x: hidden;
         margin-bottom: 10px;
@@ -316,7 +315,7 @@
                 </div>";
 
                 //Assigned assets
-                echo "<div class='component' id='assignedAssets'>
+                echo "<div class='component' id='assignedAssetsAM'>
                     <img src='../Images/icons/NotSelected/assignedassets.png' >
                     <span class='componentText'>Assigned Assets</span>
                 </div>";

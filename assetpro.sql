@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2022 at 10:56 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Mar 26, 2022 at 04:42 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -219,7 +219,7 @@ CREATE TABLE `department` (
 
 INSERT INTO `department` (`DepartmentID`, `HeadID`, `DepartmentCode`, `Name`, `description`, `ContactNum`, `DateCreated`, `LastModified`) VALUES
 (1, 1, 'FIN', 'Finance', 'This is the Finance Department', '0112345678', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
-(2, 1, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
+(2, 2, 'MKT', 'Marketing', 'This is the Marketing Department', '0118878685', '2021-10-20 20:32:31.000000', '2021-10-20 20:32:31.000000'),
 (3, 1, 'PRD', 'Production', 'This is the Production department', '0116789121', '2021-10-20 21:32:00.000000', '2021-10-20 21:32:00.000000'),
 (4, 1, 'TCD', 'Technical', 'This is the department of all the technicians', '0112345680', '2021-12-27 12:01:31.000000', '2021-12-27 12:01:31.000000');
 
@@ -239,7 +239,8 @@ CREATE TABLE `departmentheaduser` (
 --
 
 INSERT INTO `departmentheaduser` (`HeadID`, `UserID`) VALUES
-(1, 28);
+(1, 28),
+(2, 38);
 
 -- --------------------------------------------------------
 
@@ -514,7 +515,8 @@ INSERT INTO `user` (`UserID`, `RoleID`) VALUES
 (15, 4),
 (21, 4),
 (36, 4),
-(28, 5);
+(28, 5),
+(38, 5);
 
 -- --------------------------------------------------------
 
@@ -541,8 +543,8 @@ CREATE TABLE `userdetails` (
 --
 
 INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender`, `PhoneNumber`, `Email`, `DOB`, `ProfilePicURL`, `jobTitle`) VALUES
-(1, 'Induni', 'Dulanjalee', '986151010V', 'Badulla', 'Female', '0719598424', 'indunijd@gmail.com', '1998-04-24', '', 'Admin'),
-(2, 'Harsha', 'Abeyvickrama', '199824200890', 'Rakwana', 'Male', '0711425085', 'harshaabeyvickrama@gmail.com\r\n', '1998-08-29', '', 'Asset Manager'),
+(1, 'Induni', 'Dulanjalee', '986151010V', 'Badulla', 'Female', '0719598424', 'indunijd@gmail.com', '1998-04-24', '/uploads/admin/1.jpg', 'Admin'),
+(2, 'Harsha', 'Abeyvickrama', '199824200890', 'Rakwana', 'Male', '0711425085', 'harshaabeyvickrama@gmail.com\r\n', '1998-08-29', '/uploads/departmenthead/2.jpg', 'Asset Manager'),
 (3, 'Mushrifa', 'Mansoor', '996893758V', 'Mawanella', 'Female', '0775067556', 'mushimmf7877@gmail.com', '1999-07-07', '/uploads/employees/3.jpg', 'Accountant'),
 (4, 'Ayisha', 'Siddeequa', '997271386V', 'Kandy', 'Female', '0764243353', 'ayisha5siddeequa@gmail.com', '1999-08-14', '/uploads/technicians/4.jpg', 'Electrician'),
 (5, 'Namal', 'Ranasinghe', '936987123V', 'Nugegoda', 'Male', '0719989796', 'namalr@gmail.com', '1993-06-10', '/uploads/employees/5.jpg', 'Analyst'),
@@ -565,9 +567,10 @@ INSERT INTO `userdetails` (`UserID`, `fName`, `lName`, `NIC`, `Address`, `Gender
 (25, 'Sachini', 'Thennakoon', '854123678V', 'Bandarawela', 'Female', '0712348790', 'delegates.revolux@gmail.com', '1985-05-20', '/uploads/employees/25.jpg', 'Analyst'),
 (26, 'Herath', 'Thennakoon', '765234789V', 'Anuradhapura', 'Male', '0764352718', 'delegates.revolux@gmail.com', '1976-05-16', '/uploads/employees/26.jpg', 'Production PLanner'),
 (27, 'Dinithi', 'Perera', '987123678V', 'Polonnaruwa', 'Female', '0712348790', 'dinithi@gmail.com', '1998-04-17', '/uploads/employees/27.jpeg', 'SEO Specialist'),
-(28, 'Ashen', 'Senadheera', '692876108V', 'Kurunegala', 'Male', '0774462819', 'ashenS@gmail.com', '1969-01-14', '', 'Department Head'),
-(36, 'Bhanuka', 'Supun', '976345190V', 'Galle', 'Male', '0764352715', 'bhanuka@gmail.co', '1997-09-10', '/uploads/technicians/6239888f56e97.jpg', NULL),
-(37, 'Nethmini', 'Kumari', '987856190V', 'Walasmulla', 'Female', '0761234718', 'nethmini@gmail.com', '1998-03-11', '/uploads/employees/623989195c6d3.png', 'Software Engineer');
+(28, 'Ashen', 'Senadheera', '692876108V', 'Kurunegala', 'Male', '0774462819', 'ashenS@gmail.com', '1969-01-14', '/uploads/departmentheads/28.jpg', 'Department Head'),
+(36, 'Bhanuka', 'Supun', '976345190V', 'Galle', 'Male', '0764352715', 'bhanuka@gmail.com', '1997-09-10', '/uploads/technicians/6239888f56e97.jpg', NULL),
+(37, 'Nethmini', 'Kumari', '987856190V', 'Walasmulla', 'Female', '0761234718', 'nethmini@gmail.com', '1998-03-11', '/uploads/employees/623989195c6d3.jpg', 'Software Engineer'),
+(38, 'Waruna`', 'Abeyvickrama', '987134890V', 'Gampola', 'Male', '0764356618', 'warunaabey@gmail.com', '1998-12-07', '/uploads/departmentheads/623f31e453bc3.jpg', 'Department Head');
 
 -- --------------------------------------------------------
 
@@ -611,7 +614,8 @@ INSERT INTO `useremergency` (`UserID`, `Relationship`, `fName`, `TelephoneNumber
 (27, 'Mother', 'Hema', '0712348723'),
 (28, 'Wife', 'Sangeetha', '0775564718'),
 (36, 'Mother', 'Wasana', '0764352345'),
-(37, 'Father', 'Amarapaala', '0776542718');
+(37, 'Father', 'Amarapaala', '0776542718'),
+(38, 'Mother', 'Shanika', '0764332718');
 
 --
 -- Indexes for dumped tables
@@ -818,7 +822,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `departmentheaduser`
 --
 ALTER TABLE `departmentheaduser`
-  MODIFY `HeadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `HeadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `depreciation`
@@ -866,7 +870,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables

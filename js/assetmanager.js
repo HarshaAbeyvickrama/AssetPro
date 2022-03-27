@@ -85,10 +85,31 @@ function getFormData(formID) {
     return asset;
 }
 
-//Change the form state with ID
-function assetFormState(id, state) {
-    element(id).disabled = state;
+//=============AssignedAssets of AM================
+function loadAssets(userID) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", `http://localhost/assetpro/asset/assigned/${userID}`, true);
+    xhr.onload = function () {
+        if (this.status === 200) {
+            var assets = JSON.parse(this.response);
+            for (var i = 0; i < assets.length; i++) {
+                document.getElementById('AMTableBody').innerHTML += `
+                                    <tr>
+                                        <td>${i + 1}</td>
+                                        <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+                                        <td>${assets[i]['assetName']}</td>
+                                        <td>${assets[i]['assetType']}</td>
+                                        <td>${assets[i]['assetCategory']}</td>      
+                                    </tr>`;
+            }
+        }
+    }
+    xhr.send();
 }
+}
+
+
+
 
 //Change the section state with ID
 function sectionState(sectionID, state) {

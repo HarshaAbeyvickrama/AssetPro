@@ -11,7 +11,7 @@
                         <th>Asset ID</th>
                         <th>Reported Date</th>
                         <th>Asset Name</th>
-                        <th>Assigned Employee</th>
+                        <th>Assigned Technician</th>
                         <th>view Breakdown</th>
                     </tr>
                 </thead>

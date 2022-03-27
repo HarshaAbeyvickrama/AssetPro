@@ -5,11 +5,9 @@
         width: 100%;
         height: 1px;
     }
-
     #centerSection>div:first-of-type {
         padding: 0px 20px 20px 20px;
     }
-
     .dashboardContainer {
         height: 90vh;
         display: grid;
@@ -19,7 +17,6 @@
         gap: 18px;
         /* width: 90%; */
     }
-
     .gridRow {
         /* border: 1px solid green; */
         padding: 5px;
@@ -28,44 +25,33 @@
         max-width: 100%;
         max-height: 100%;
     }
-
     .one {
         grid-column: 1 / 3;
         grid-row: 1 / 3;
     }
-
     .two {
         grid-row: 1 / 3;
     }
-
     .seven {
         grid-column: 3/5;
     }
-
-
-
     #assetBreakdownChart {
         height: 100% !important;
     }
-
     #assetDistributionChart {
         height: 100% !important;
     }
-
     #assetCategoriesChart {
         max-width: 100% !important;
         max-height: 280px !important;
     }
-
     #assetDisposalsChart {
         max-width: 100% !important;
         max-height: 280px !important;
     }
-
     #assetDistributionDepartments {
         height: 280px !important;
         max-width: 100% !important;
-
     }
     .box{
         padding: 10px 20px;
@@ -77,7 +63,6 @@
         color: #707ea1;
         font-size: 15px;
         font-weight: bold;
-
     }
     .boxCount{
         margin-top: 22px;
@@ -96,23 +81,38 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+    // Retrieve and set all counts
+    getData('http://localhost/assetpro/stats/all/', (data) => {
+        document.getElementById('allAssetsCount').innerHTML = data.allAssets;
+        document.getElementById('allEmployeesCount').innerHTML = data.allEmployees;
+        document.getElementById('allTechniciansCount').innerHTML = data.allTechnicians;
+        document.getElementById('allDepartmentsCount').innerHTML = data.allDepartments;
+    });
+</script>
+
 <div class="dashboardContainer">
     <div class="gridRow one">
         <canvas id="assetBreakdownChart"></canvas>
     </div>
-    <div class="gridRow two">
-        <canvas id="assetDistributionChart"></canvas>
-    </div>
     <div class="gridRow three box">
         <!-- <div class="boxTitle">Total Value</div> -->
-        <div class="boxCount" title="Total Value">Rs.785,000</div>
+        <div class="boxCount" title="All Assets" id="allAssetsCount"></div>
     </div>
     <div class="gridRow four box">
         <!-- <div class="boxTitle">Net Value</div> -->
-        <div class="boxCount" title="Net Value">Rs.555,000</div>
+        <div class="boxCount" title="All Staff" id="allEmployeesCount"></div>
+    </div>
+    <div class="gridRow three box">
+        <!-- <div class="boxTitle">Total Value</div> -->
+        <div class="boxCount" title="All Technicians" id="allTechniciansCount"></div>
+    </div>
+    <div class="gridRow four box">
+        <!-- <div class="boxTitle">Net Value</div> -->
+        <div class="boxCount" title="All Departments" id="allDepartmentsCount"></div>
     </div>
     <div class="gridRow five">
-        <canvas id="assetCategoriesChart"></canvas>
+        <canvas id="assetCategoriesChart">Count
     </div>
     <div class="gridRow six">
         <canvas id="assetDistributionDepartments"></canvas>
@@ -124,7 +124,6 @@
 <!-- breakdwon chart js -->
 <script>
     var labels = ['January', 'February', 'March', 'April', 'May', 'June', ];
-
     var data = {
         labels: labels,
         datasets: [{
@@ -134,7 +133,6 @@
             data: [0, 10, 5, 2, 20, 30, 45],
         }]
     };
-
     var config = {
         type: 'line',
         data: data,
@@ -149,7 +147,6 @@
 <!-- Disposals chart js -->
 <script>
     var labels = ['January', 'February', 'March', 'April', 'May', 'June', ];
-
     var data = {
         labels: labels,
         datasets: [{
@@ -159,7 +156,6 @@
             data: [0, 10, 5, 2, 20, 30, 45],
         }]
     };
-
     var config = {
         type: 'line',
         data: data,
@@ -201,7 +197,7 @@
             ]
         }]
     };
-    renderChart('assetDistributionChart', 'polarArea', data)
+    // renderChart('assetDistributionChart', 'polarArea', data)
     renderChart('assetCategoriesChart', 'doughnut', data)
 </script>
 
@@ -245,7 +241,6 @@
             }
         },
     };
-
     var assetBreakdownChart = new Chart(
         document.getElementById('assetDistributionDepartments'),
         config
