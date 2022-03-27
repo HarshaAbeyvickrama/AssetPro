@@ -148,6 +148,10 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getBreakdownInprogressT':
                     // echo $bc->getAllTechBreakdownsInProgress($url[2]);
                     break;
+                case 'updateAllBreakdowns':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    echo $bc->updateAllBreakdowns($data);
+                    break;
             }
             break;
 
@@ -259,6 +263,9 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'getDHAssignedAssets':
                     echo $dhc->getDHAllAssignedAssets($url[2]);
+                    break;
+                case 'getDeptAssets':
+                    echo $dhc->getAllDeptAssets($url[2]);
                     break;
             }
             break;

@@ -29,4 +29,9 @@ class BreakdownController extends Breakdown{
       return json_encode($result->fetchAll());
 
     }
+
+    public function updateAllBreakdowns($data){
+        $result = $this->updateBreakdown($data);
+        return json_encode($result);
+    }
 }
