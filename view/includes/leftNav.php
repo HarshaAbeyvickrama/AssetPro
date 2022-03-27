@@ -316,7 +316,7 @@
                 </div>";
 
                 //Assigned assets
-                echo "<div class='component' id='assignedAssets'>
+                echo "<div class='component' id='assignedAssetsAM'>
                     <img src='../Images/icons/NotSelected/assignedassets.png' >
                     <span class='componentText'>Assigned Assets</span>
                 </div>";

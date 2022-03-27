@@ -77,9 +77,9 @@ class Breakdown extends DBConnection
         $assetId = $data['assetID'];
         $defectedPart = $data['defP'];
         $reason = $data['exDef'];
-         $EmpID = $_SESSION['UserID'];
+        $EmpID = $_SESSION['UserID'];
         // $EmpID = $_SESSION['EmployeeID'];
-       //$EmpID = 3;
+        //$EmpID = 3;
         $sql = "INSERT INTO breakdown(
                 AssetID,
                 EmployeeID,
@@ -98,7 +98,7 @@ class Breakdown extends DBConnection
 
         $stmt->execute();
 
-        $lastInsertedBreakdownID=$dbConnection->lastInsertId(); //PK is the lastInsertID=(BreakdownID)
+        $lastInsertedBreakdownID = $dbConnection->lastInsertId(); //PK is the lastInsertID=(BreakdownID)
 
         $specialization = $this->techSpecialization();  //array inside the techSpecialization will be assigned to a var
 
@@ -113,7 +113,7 @@ class Breakdown extends DBConnection
         $stmt1 = $dbConnection->prepare($sql);
         $stmt1->execute();
 
-        $typeData =$stmt1->fetch();          //only one row will come as the output threfo -> fetch
+        $typeData = $stmt1->fetch();          //only one row will come as the output threfo -> fetch
         $typeCode = $typeData['TypeCode'];   //from that array we select only TypeCode
         $techSpecial = $specialization[$typeCode]; //if we pass the $typeCode it'll return the key value (specialized person)
 
@@ -127,9 +127,9 @@ class Breakdown extends DBConnection
         $stmt2 = $dbConnection->prepare($sql);
         $stmt2->execute();
 
-        $technicians =$stmt2->fetchAll(); //returns an associative array
-        $tecCount=count($technicians);
-        $randomIndex=rand(0,$tecCount-1); //inorder to access an array we count from 0 to array.length-1
+        $technicians = $stmt2->fetchAll(); //returns an associative array
+        $tecCount = count($technicians);
+        $randomIndex = rand(0, $tecCount - 1); //inorder to access an array we count from 0 to array.length-1
         $technicianID = $technicians[$randomIndex]['TechnicianID']; //associative array [index][AssoArra->techiD]
 
 
@@ -138,7 +138,7 @@ class Breakdown extends DBConnection
         $stmt3 = $dbConnection->prepare($sql);
 
         $stmt3->bindParam(':breakdownId', $lastInsertedBreakdownID);
-        $stmt3->bindParam(':technicianId',  $technicianID);
+        $stmt3->bindParam(':technicianId', $technicianID);
 
         $stmt3->execute();
 
@@ -195,22 +195,23 @@ class Breakdown extends DBConnection
     }
 
 
-    protected function updateBreakdown($data){
+    protected function updateBreakdown($data)
+    {
         $dbConnection = $this->connect();
 //      $assetId = $data['assetID'];
         $breakdownId = $data['BID'];
-        $defectedPart = $data['defP'];
-        $reason = $data['exDef'];
+        $defectedPart = $data['defectedPrt'];
+        $reason = $data['explainDef'];
 
         $sql = "update breakdown set DefectedParts = :defectedPart, Reason =:reason WHERE BreakdownID = :breakdownId";
 
         $stmt = $dbConnection->prepare($sql);
 
-        $stmt->bindParam(':breakdownId',  $breakdownId);
+        $stmt->bindParam(':breakdownId', $breakdownId);
         $stmt->bindParam(':reason', $reason);
         $stmt->bindParam(':defectedPart', $defectedPart);
 
-        $stmt->execute();
+        return $stmt->execute();
 
 
     }

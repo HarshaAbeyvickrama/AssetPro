@@ -291,7 +291,7 @@
             <div class="title">Reported Breakdown:</div>
             <div class="col-f">
                 <span for="defectedParts">Breakdown ID</span>
-                <textarea class="textarea"  id="Bid" name="breakdownid" disabled></textarea>
+                <textarea class="textarea" id="Bid" name="breakdownid" disabled></textarea>
             </div>
             <div class="col-f">
                 <span for="defectedParts">Defected Parts</span>
@@ -349,11 +349,11 @@
         loadSection('centerSection', 'reportedBreakdown');
     }
 
-//=============updating the data by clicking the update button==========
-    document.querySelectorAll(".col-btn").forEach(button =>{
+    //=============updating the data by clicking the update button==========
+    document.querySelectorAll(".col-btn").forEach(button => {
         const updateBtn = document.getElementById("ConfirmUpdate");
         const cancelBtn = document.getElementById("Cancelupdate");
-        button.addEventListener('click',function(event){
+        button.addEventListener('click', function (event) {
             switch (event.target.id) {
                 case 'Cancelupdate':
 
@@ -362,21 +362,21 @@
                     const updateData = getFormData('EditForm');
                     const Bid = element('Bid').value;
                     console.log(Bid);
-                    updateData.append('BID' , Bid);
+                    updateData['BID'] = Bid;
 
                     saveUpdate(updateData);
-                    // if(updateData == null){
-                    //     alert('Fields cannot be empty');
-                    // }
-                    // else {
-                    //     const result = showConfirmation('Are you really want to report?');
-                    //     if (result == true) {
-                    //         saveUpdate(updateData);
-                    //         alert('Successfully Reported!');
-                    //     } else {
-                    //         alert('Breakdown was not recorded!');
-                    //     }
-                    // }
+                // if(updateData == null){
+                //     alert('Fields cannot be empty');
+                // }
+                // else {
+                //     const result = showConfirmation('Are you really want to report?');
+                //     if (result == true) {
+                //         saveUpdate(updateData);
+                //         alert('Successfully Reported!');
+                //     } else {
+                //         alert('Breakdown was not recorded!');
+                //     }
+                // }
             }
 
         })
@@ -401,9 +401,9 @@
     //
     // }
 
-    function saveUpdate(updateData){
-        postData('http://localhost/assetpro/breakdown/updateAllBreakdowns' , updateData , (response) =>{
-            // console.log(response);
+    function saveUpdate(updateData) {
+        postData('http://localhost/assetpro/breakdown/updateAllBreakdowns', updateData, (response) => {
+            alert("Breakdown Updated Successfully!");
         })
     }
 
