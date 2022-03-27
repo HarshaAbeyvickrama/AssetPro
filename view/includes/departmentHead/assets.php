@@ -1,6 +1,6 @@
 <div class="overviewLayout">
     <div>
-        <div class="section-heading">Assigned Assets</div>
+        <div class="section-heading">All Department Assets</div>
     </div>
     <div class="contentSection">
         <table class="table" id="filterTable">

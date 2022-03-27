@@ -203,7 +203,8 @@ class Asset extends DBConnection
                     assetdetails.AssetCondition,
                     t.Name AS assetType,
                     t.TypeCode,
-                    c.CategoryCode
+                    c.CategoryCode,
+                    c.Name AS assetCategory
                 FROM
                     asset
                 INNER JOIN assetdetails ON asset.AssetID = assetdetails.AssetID

@@ -151,7 +151,7 @@ if ($url == '/' || $url[0] == 'dashboard') {
                     break;
                 case 'updateAllBreakdowns':
                     $data = json_decode(file_get_contents('php://input'), true);
-                    echo $bc->updateAllBreakdowns($data);
+                    echo json_encode($bc->updateAllBreakdowns($data));
                     break;
             }
             break;
