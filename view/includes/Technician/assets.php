@@ -61,64 +61,6 @@
 
 
 <script>
- 
-    function getAssets(type){
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
-
-        xhr.onload = function(){
-            if(this.status === 200){
-                var assets = JSON.parse(this.responseText);
-                switch (type) {
-                    case 'assigned':
-                        for(var i = 0; i < assets.length; i++){
-                            var bd = document.getElementById('techniciantable')
-                            var row= `
-                                <tr>
-                                    <td>${i+1}</td>
-                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
-                                    <td>${assets[i]['Name']}</td>
-                                    <td>${assets[i]['typeName']}</td>
-                                    <td>${assets[i]['DepartmentCode']}/EMP/${assets[i]['reportedEmployee']}</td>
-                                    <td>  
-                                    <button class='btn btn-submit' onClick="">View</button>
-                                    </td> 
-                                </tr>`;
-                            var tableRow = document.createElement('div');
-                            tableRow.className = 'tableRow';
-                            tableRow.id = assets[i]['AssetID'];
-                            tableRow.innerHTML = row;
-                            addViewAssetListener(tableRow);
-                            bd.appendChild(tableRow);
-
-                        }
-                        break;
-
-                    case 'inprogress':
-                        for (var i = 0; i<assets.length; i++){
-                            var tb = document.getElementById('inprogressAssetsTableBody');
-                            tb.innerHTML += `
-                                <tr>
-                                    <td>${i+1}</td>
-                                    <td>${assets[i]['Number']}</td>
-                                    <td>${assets[i]['AssetID']}</td>
-                                    <td>${assets[i]['AssetName']}</td>
-                                    <td>${assets[i]['AssetType']}</td>
-                                    <td>${assets[i]['ReportedEmployee']}</td>
-                                    <td>${assets[i]['MarkasDone']}</td>
-                                </tr>`;
-                        }
-                        addEventListeners();
-                        break;
-                
-                    default:
-                        break;
-                }
-            }
-        }
-        xhr.setRequestHeader("Content-type", "application/json");
-        xhr.send();
-    }
 
     document.getElementById("assetSections").addEventListener('click',function(e){
         const eventId = e.target.id;
@@ -148,11 +90,7 @@
         })
     }
 
-    //Get asset details by ID
-    function getAsset(assetID){
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
-    }
+
 </script>
 
 

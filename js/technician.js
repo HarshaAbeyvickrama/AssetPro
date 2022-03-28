@@ -1,8 +1,8 @@
 /* ===========================script of assets.php========================================================= */
-    getCount('allAssets');
-    getCount('assignedAssets');
-    getCount('inProgress');
-    getCount('repairedAssets');
+    // getCount('allAssets');
+    // getCount('assignedAssets');
+    // getCount('inProgress');
+    // getCount('repairedAssets');
 
     
     
@@ -122,11 +122,13 @@
     //     xhr.send();
     // }
 
+
+///////////Select query for Assigned Breakdowns///////////////////
     function getAssets(userID){
         const xhr = new XMLHttpRequest();
         xhr.open("GET",`http://localhost/assetpro/breakdown/getAssignedBreakdownT/${userID}`,true);
         xhr.onload = function(){
-            if(this.status === 200){
+            if(this.status === 200)
                 var assets = JSON.parse(this.responseText);
                 console.log(assets);
                         for(var i = 0; i<assets.length;i++){
@@ -145,7 +147,7 @@
                     }
                 }
         xhr.send();
-    }
+    
 
     document.getElementById("assetSections").addEventListener('click',function(e){
         const eventId = e.target.id;
@@ -187,49 +189,72 @@
     //     xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
     // }
 
-/* ===========================script of assetsinProgress.php================================================== */
-
+/* ===========================query for breakdownsInProgress================================================= */
+function getAssets(userID){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET",`http://localhost/assetpro/breakdown/getBreakdownInprogressT/${userID}`,true);
+    xhr.onload = function(){
+        if(this.status === 200){
+            var assets = JSON.parse(this.responseText);
+            console.log(assets);
+                    for(var i = 0; i<assets.length;i++){
+                        document.getElementById('inprogressAssetsTableBody').innerHTML +=`
+                            <tr>
+                                <td>${i+1}</td>
+                                <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+                                <td>${assets[i]['Name']}</td>
+                                <td>${assets[i]['typeName']}</td>
+                                <td>${assets[i]['DepartmentCode']}/EMP/${assets[i]['reportedEmployee']}</td>
+                                <td>  
+                                <button class='btn btn-submit' onClick=""> Mark as Done </button>
+                                </td> 
+                            </tr>`;
+                    }
+                }
+            }
+    xhr.send();
+}
 
 
 /* ===========================script of errorLog.php========================================================= */
 
-function formState(formId,readonlyState){
-    const form = document.getElementById(formId);
-    var elements = form.elements;
-    var len = elements.length;
-    for(var i=0; i<len; ++i){
-        elements[i].disabled=readonlyState;
-    }
-    document.getElementById("uploadBtn").disabled=readonlyState;
+// function formState(formId,readonlyState){
+//     const form = document.getElementById(formId);
+//     var elements = form.elements;
+//     var len = elements.length;
+//     for(var i=0; i<len; ++i){
+//         elements[i].disabled=readonlyState;
+//     }
+//     document.getElementById("uploadBtn").disabled=readonlyState;
 
-}
+// }
 
-formState("errorlogForm",true);
+// formState("errorlogForm",true);
 
-document.querySelectorAll(".col-btn").forEach(button =>{
-    const finishBtn = document.getElementById("finish");
-    const backBtn = document.getElementById("back");
-    button.addEventListener('click',function(event){
-        switch (event.target.id) {
-            case 'finish':
-                formState("errorlogForm",true);
-                finishBtn.style.display = 'none';
-                backBtn.style.display = 'none';
+// document.querySelectorAll(".col-btn").forEach(button =>{
+//     const finishBtn = document.getElementById("finish");
+//     const backBtn = document.getElementById("back");
+//     button.addEventListener('click',function(event){
+//         switch (event.target.id) {
+//             case 'finish':
+//                 formState("errorlogForm",true);
+//                 finishBtn.style.display = 'none';
+//                 backBtn.style.display = 'none';
                 
                 
-                break;
-            case 'back':
-                finishBtn.style.display = 'block';
-                formState("reportBreakdownForm",false);
-                break;
+//                 break;
+//             case 'back':
+//                 finishBtn.style.display = 'block';
+//                 formState("reportBreakdownForm",false);
+//                 break;
         
-            default:
-                break;
-        }
+//             default:
+//                 break;
+//         }
     
     
-    })
-})
+//     })
+// })
 
 /* ===========================script of overview.php========================================================= */
 
@@ -290,30 +315,30 @@ document.querySelectorAll(".col-btn").forEach(button =>{
 /* ===========================script of techAssignedAssets.php==================================================== */
 
     
-    getAssets('assigned');
+    // getAssets('assigned');
 
-    function ajaxcall () {                  //GET DATA
-        var data = new FormData();
-        data.append("Number", document.getElementById("new").value);
-        data.append("Asset ID", document.getElementById("new").value);
-        data.append("Asset Name", document.getElementById("new").value);
-        data.append("Asset Type", document.getElementById("new").value);
-        data.append("Reported Employee", document.getElementById("new").value);
-        data.append("View Breakdown", document.getElementById("").value);
+    // function ajaxcall () {                  //GET DATA
+    //     var data = new FormData();
+    //     data.append("Number", document.getElementById("new").value);
+    //     data.append("Asset ID", document.getElementById("new").value);
+    //     data.append("Asset Name", document.getElementById("new").value);
+    //     data.append("Asset Type", document.getElementById("new").value);
+    //     data.append("Reported Employee", document.getElementById("new").value);
+    //     data.append("View Breakdown", document.getElementById("").value);
 
 
-        var xhr = new XMLHttpRequest();        //AJAX CALL
-        xhr.open("POST" , "...\AssetPro\view\includes\Technician\viewReportBreakdown.php");
-        xhr.onload = function() {
-            console.log(this.response);
-        };
-        xhr.send(data);
+    //     var xhr = new XMLHttpRequest();        //AJAX CALL
+    //     xhr.open("POST" , "...\AssetPro\view\includes\Technician\viewReportBreakdown.php");
+    //     xhr.onload = function() {
+    //         console.log(this.response);
+    //     };
+    //     xhr.send(data);
 
-        var Btnview = document.getElementById('')           //Loading the viewReportBreakdown page
-        Btnview.addEventListener('click', function() {
-        //loadSection('centersection','viewBreakdown');
-        });
-        }
+    //     var Btnview = document.getElementById('')           //Loading the viewReportBreakdown page
+    //     Btnview.addEventListener('click', function() {
+    //     //loadSection('centersection','viewBreakdown');
+    //     });
+    //     }
 
     
 
