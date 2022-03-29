@@ -81,17 +81,19 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'getAssetForm':
                     echo $ac->getAssetDataForm($url[2]);
                     break;
+
                 case 'categories':
                     echo $ac->getAssetCategories();
                     break;
 
-                // case 'inProgress':
-                //     echo $ac->getAllinProgressAssets($url[2]);
-                //     break;
-
                 case 'get':
                     echo $ac->getAsset($url[2]);
                     break;
+
+                // case 'repaired':
+                //     echo $ac->getAllRepairedAssets($url[2]);
+                //     break;
+
 
                 default:
                     # code...
@@ -105,19 +107,25 @@ if ($url == '/' || $url[0] == 'dashboard') {
                 case 'assigned':
                     echo $bc->getAllAssignedBreakdowns($url[2]);
                     break;
+
                 case 'getBreakdown':
                     echo $bc->getBreakdown($url[2], $url[3]);
                     break;
+
                 case 'reportBreakdown':
                     $data = json_decode(file_get_contents('php://input'), true);
                     echo $bc->reportBreakdown($data);
                     break;
+
                 case 'getAssignedBreakdownT':
                     echo $bc->getAllAssignedTechBreakdowns($url[2]);
                     break;
+
                 case 'getBreakdownInprogressT':
                     echo $bc->getAllTechBreakdownsInProgress($url[2]);
                     break;
+
+                
             }
             break;
 

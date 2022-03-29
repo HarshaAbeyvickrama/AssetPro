@@ -152,7 +152,7 @@ class Breakdown extends DBConnection
         // }
     }
 
-//===================techinicians========================
+//===================technicians========================
     protected function getAssignedBreakdowns($userID)
     {
         $dbConnection = $this->connect();

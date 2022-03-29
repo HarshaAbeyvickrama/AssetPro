@@ -11,13 +11,13 @@
     } */
 
 
-
     .wrapper {
         display: grid;
         grid-template-columns: 50% 25% 25%;
         grid-template-rows: 50% 50%;
         gap: 18px;
     }
+    
     .wrapper > div{
         background: white;
         padding: 1em;
@@ -46,6 +46,7 @@
         position: relative;
         font-size: 40px;
     }
+
     .boxCount::before{
         position: absolute;
         left: 0;

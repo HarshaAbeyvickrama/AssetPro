@@ -1,153 +1,25 @@
-/* ===========================script of assets.php========================================================= */
-    // getCount('allAssets');
-    // getCount('assignedAssets');
-    // getCount('inProgress');
-    // getCount('repairedAssets');
+// function loadAssetsTec(userID){ //comment
+//     const xhr = new XMLHttpRequest();
+//     xhr.open("GET", `http://localhost/assetpro/asset/assigned/${userID}`, true);
+//     xhr.onload = function() {
+//         if (this.status === 200) {
+//             var assets = JSON.parse(this.response);
+//             for (var i = 0; i < assets.length; i++) {
+//                 document.getElementById('techniciantable').innerHTML += `
+//                                 <tr>
+//                                     <td>${i+1}</td>
+//                                     <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
+//                                     <td>${assets[i]['assetName']}</td>
+//                                     <td>${assets[i]['assetType']}</td>
+//                                     <td>${assets[i]['Assetcondition']}</td>
+//                                     <td>${assets[i]['technicianID']}/${assets[i]['specialization']}</td>     
+//                                 </tr>`;
+//             }
+//         }
+//     }
+//     xhr.send();
+// }
 
-    
-    
-
-    // function getAssets(type){
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
-
-    //     xhr.onload = function(){
-    //         if(this.status === 200){
-    //             var assets = JSON.parse(this.responseText);
-    //             switch (type) {
-    //                 case 'assigned':
-    //                     for(var i = 0; i<assets.length;i++){
-    //                         var bd = document.getElementById('assignedAssetsTableBody')
-    //                         var row= `
-    //                                 <div>${i+1}</div>
-    //                                 <div>${assets[i]['Number']}</div>
-    //                                 <div>${assets[i]['AssetID']}</div>
-    //                                 <div>${assets[i]['AssetName']}</div>
-    //                                 <div>${assets[i]['AssetType']}</div>
-    //                                 <div>${assets[i]['ReportedEmployee']}</div>   
-    //                                 <div>${assets[i]['StartRepairing']}</div>
-    //                             `;
-    //                         var tableRow = document.createElement('div');
-    //                         tableRow.className = 'tableRow';
-    //                         tableRow.id = assets[i]['AssetID'];
-    //                         tableRow.innerHTML = row;
-    //                         addViewAssetListener(tableRow);
-    //                         bd.appendChild(tableRow);
-
-
-    //                     }
-    //                     break;
-    //                 case 'inprogress':
-    //                     for(var i = 0; i<assets.length;i++){
-    //                         var tb = document.getElementById('inprogressAssetsTableBody');
-    //                         tb.innerHTML += `
-    //                             <div class="tableRow">
-    //                                 <div>${i+1}</div>
-    //                                 <div>${assets[i]['Number']}</div>
-    //                                 <div>${assets[i]['AssetID']}</div>
-    //                                 <div>${assets[i]['AssetName']}</div>
-    //                                 <div>${assets[i]['AssetType']}</div>
-    //                                 <div>${assets[i]['ReportedEmployee']}</div>
-    //                                 <div>${assets[i]['MarkasDone']}</div>
-    //                             </div>`;
-    //                     }
-    //                     addEventListeners();
-    //                     break;
-                
-    //                 default:
-    //                     break;
-    //             }
-                
-    //         }
-    //     }
-    //     xhr.setRequestHeader("Content-type", "application/json");
-    //     xhr.send();
-    // }
-
-  //==========================techAssignedAssets.php==================================  
-    // function getAssets(type){
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open("GET",`http://localhost/assetpro/breakdown/getAssignedBreakdownT`,true);
-
-    //     xhr.onload = function(){
-    //         if(this.status === 200){
-    //             var assets = JSON.parse(this.responseText);
-    //             switch (type) {
-    //                 case 'assigned':
-    //                     for(var i = 0; i<assets.length;i++){
-    //                         document.getElementById('techniciantable').innerHTML +=`
-    //                              <tr>
-    //                                 <td>${i+1}</td>
-    //                                 <td>${assets[i]['AssetID']}</td>
-    //                                 <td>${assets[i]['AssetName']}</td>
-    //                                 <td>${assets[i]['AssetType']}</td>
-    //                                 <td>${assets[i]['ReportedEmployee']}</td>
-    //                                 <td>  
-    //                                 <button class='btn btn-submit' onClick="">View</button>
-    //                                 </td> 
-    //                             </tr>`;
-    //                         // var tableRow = document.createElement('div');
-    //                         // tableRow.className = 'tableRow';
-    //                         // tableRow.id = assets[i]['AssetID'];
-    //                         // tableRow.innerHTML = row;
-    //                         // addViewAssetListener(tableRow);
-    //                         // bd.appendChild(tableRow);
-
-    //                     }
-    //                     break;
-    //                 case 'inprogress':
-    //                     for(var i = 0; i<assets.length;i++){
-    //                         var tb = document.getElementById('inprogressAssetsTableBody');
-    //                         tb.innerHTML += `
-    //                             <div class="tableRow">
-    //                                 <div>${i+1}</div>
-    //                                 <div>${assets[i]['Number']}</div>
-    //                                 <div>${assets[i]['AssetID']}</div>
-    //                                 <div>${assets[i]['AssetName']}</div>
-    //                                 <div>${assets[i]['AssetType']}</div>
-    //                                 <div>${assets[i]['ReportedEmployee']}</div>
-    //                                 <div>${assets[i]['MarkasDone']}</div>
-    //                             </div>`;
-    //                     }
-    //                     addEventListeners();
-    //                     break;
-                
-    //                 default:
-    //                     break;
-    //             }
-                
-    //         }
-    //     }
-    //     xhr.setRequestHeader("Content-type", "application/json");
-    //     xhr.send();
-    // }
-
-
-///////////Select query for Assigned Breakdowns///////////////////
-    function getAssets(userID){
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET",`http://localhost/assetpro/breakdown/getAssignedBreakdownT/${userID}`,true);
-        xhr.onload = function(){
-            if(this.status === 200)
-                var assets = JSON.parse(this.responseText);
-                console.log(assets);
-                        for(var i = 0; i<assets.length;i++){
-                            document.getElementById('techniciantable').innerHTML +=`
-                                <tr>
-                                    <td>${i+1}</td>
-                                    <td>${assets[i]['CategoryCode']}/${assets[i]['TypeCode']}/${assets[i]['AssetID']}</td>
-                                    <td>${assets[i]['Name']}</td>
-                                    <td>${assets[i]['typeName']}</td>
-                                    <td>${assets[i]['DepartmentCode']}/EMP/${assets[i]['reportedEmployee']}</td>
-                                    <td>  
-                                    <button class='btn btn-submit' onClick="">View</button>
-                                    </td> 
-                                </tr>`;
-                        }
-                    }
-                }
-        xhr.send();
-    
 
     document.getElementById("assetSections").addEventListener('click',function(e){
         const eventId = e.target.id;
@@ -256,20 +128,6 @@ function getAssets(userID){
 //     })
 // })
 
-/* ===========================script of overview.php========================================================= */
-
-    getCount('allAssets');
-    getCount('assignedAssets');
-    getCount('inProgress');
-    getCount('repairedAssets');
-
-/* ===========================script of repairedAssets.php==================================================== */
-
-    getCount('allAssets');
-    getCount('assignedAssets');
-    getCount('inProgress');
-    getCount('repairedAssets');
-
 /* ===========================script of sendfeedback.php==================================================== */ 
 
 function formState(formId,readonlyState){
@@ -311,35 +169,6 @@ document.querySelectorAll(".col-btn").forEach(button =>{
     
     })
 })
-
-/* ===========================script of techAssignedAssets.php==================================================== */
-
-    
-    // getAssets('assigned');
-
-    // function ajaxcall () {                  //GET DATA
-    //     var data = new FormData();
-    //     data.append("Number", document.getElementById("new").value);
-    //     data.append("Asset ID", document.getElementById("new").value);
-    //     data.append("Asset Name", document.getElementById("new").value);
-    //     data.append("Asset Type", document.getElementById("new").value);
-    //     data.append("Reported Employee", document.getElementById("new").value);
-    //     data.append("View Breakdown", document.getElementById("").value);
-
-
-    //     var xhr = new XMLHttpRequest();        //AJAX CALL
-    //     xhr.open("POST" , "...\AssetPro\view\includes\Technician\viewReportBreakdown.php");
-    //     xhr.onload = function() {
-    //         console.log(this.response);
-    //     };
-    //     xhr.send(data);
-
-    //     var Btnview = document.getElementById('')           //Loading the viewReportBreakdown page
-    //     Btnview.addEventListener('click', function() {
-    //     //loadSection('centersection','viewBreakdown');
-    //     });
-    //     }
-
     
 
 /* ===========================script of viewreportbreakdown.php==================================================== */

@@ -4,7 +4,7 @@ function loadCategories() {
         categories = data;
         setCategories();
     });
-}
+}ZZ
 
 //Set the loaded asset categories to the form dropdown
 function setCategories() {

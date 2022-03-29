@@ -62,13 +62,14 @@
 
 <script>
  
-    function getAssets(type){
+    function getAssets(userID){
         const xhr = new XMLHttpRequest();
-        xhr.open("GET",`../model/Asset.php?action=getAssets&type=${type}`,true);
-
+        xhr.open("GET", `http://localhost/assetpro/breakdown/getAssignedBreakdownT/${userID}`, true);
+        
         xhr.onload = function(){
             if(this.status === 200){
                 var assets = JSON.parse(this.responseText);
+                console.log(this.response);
                 switch (type) {
                     case 'assigned':
                         for(var i = 0; i < assets.length; i++){
